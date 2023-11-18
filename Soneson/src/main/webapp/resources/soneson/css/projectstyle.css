@@ -129,9 +129,43 @@ textarea {
 }
 
 /*------project_step2-----*/
+.agree-list {
+	padding: 36px 0px;
+    border-top: 1px solid rgb(239, 239, 239);
+    border-bottom: 1px solid rgb(239, 239, 239);
+    margin: 0px 0px 16px;
+    color: rgb(61, 61, 61);
+}
+.agree-check {
+	cursor: pointer;
+    position: relative;
+    overflow: hidden;
+/*     padding: 0px 0px 0px 29px; */
+    color: rgb(61, 61, 61);
+    display: inline-flex;	
+}
 
 
+.agree-next {
+	display: flex;
+    justify-content: space-between;
+}
 
+
+.agree-next button {
+	background: rgb(240, 240, 240);
+	color: rgb(61, 61, 61);
+	border-radius: 1px;
+	
+}
+button:disabled {
+  opacity: 0.5;
+  pointer-events: none
+}
+
+ input[type=checkbox] {
+  accent-color: rgb(248, 100, 83);
+}
 
 /* Template default CSS
 /*----------------------------------------*/

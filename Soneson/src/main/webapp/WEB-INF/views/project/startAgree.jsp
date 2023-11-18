@@ -5,7 +5,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/projectstyle.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/projectstyle.css" type="text/css">
+<script src= "${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
+<script>
+	function backToStart() {
+		history.back();
+	}
+
+	$(function() {
+		//체크박스 전체선택 시 활성화
+		$(".plan-agree-check").click(function() {
+			let checks =$(".plan-agree-check:checked").length;
+// 			alert(checks);
+			if(checks == 3) {
+				$("#step2_next").prop("disabled",false);
+			} else {
+				$("#step2_next").prop("disabled",true);
+			}
+			
+		});
+		
+		$("#step2_next").on("click",function() {
+			$(this).css({"background":"rgb(248, 100, 83)","color":"#ffffff"});
+// 			location.href="projectInsertForm";
+		});
+		
+	});
+</script>
+
 </head>
 <body>
 	<div class="pro-step1-container">
@@ -13,14 +40,40 @@
 			<div>
 				<div class="pro-step1-plan">
 					<div class="plan-title">
-						<h2>프로젝트를 간단하게 알려주세요</h2>
-						<p>나중에 변경 가능하니 너무 걱정하지 마세요</p>
+						<h2>작성 전, 준비해 주세요.</h2>
+						<p>프로젝트를 진행하시려면 아래 내용을 준비해주세요.</p>
 					</div>
-					<div>
-						<textarea class="plan-textarea" placeholder="프로젝트요약을 입력해 주세요"></textarea>
+					<div class="plan-agree">
+						<ul class="agree-list">
+							<li>
+								<label for="plan-agree1" class="agree-check">
+									<input class="plan-agree-check" id="plan-agree1" style='zoom:1.4;' type="checkbox">
+									<div>
+										대표창작자는 <strong>만 19세 이상의 성인</strong>이어야 합니다.
+									</div>
+								</label>
+							</li>
+							<li>
+								<label for="plan-agree2" class="agree-check">
+									<input class="plan-agree-check" id="plan-agree2" style='zoom:1.4;' type="checkbox">
+									<div>
+										창작자의 <strong>본인 명의의 휴대폰 번호</strong>와 <strong>이메일 주소</strong>가 필요합니다.
+									</div>
+								</label>
+							</li>
+							<li>
+								<label for="plan-agree3" class="agree-check">
+									<input class="plan-agree-check" id="plan-agree3" style='zoom:1.4;' type="checkbox">
+									<div>
+										펀딩 성공 후 정산을 위해 <strong>신분증 또는 사업자 등록증, 국내 은행 계좌</strong>를 준비해주세요.
+									</div>
+								</label>
+							</li>
+						</ul>
 					</div>
-					<div class="plan-next">
-						<button onclick="">다음</button>
+					<div class="agree-next">
+						<button id="step2_prev" onclick="backToStart()">돌아가기</button>
+						<button id="step2_next" disabled="disabled">다음</button>
 					</div>
 				</div>
 			</div>
