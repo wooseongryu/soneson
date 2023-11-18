@@ -14,6 +14,6 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		System.out.println("HomeController - home");
 		
-		return "mypage/soneson/index";
+		return "soneson/index";
 	}
 }

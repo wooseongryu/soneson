@@ -1,18 +1,23 @@
 package com.itwillbs.soneson.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import javax.servlet.http.HttpSession;
 
-import com.itwillbs.soneson.service.AdminService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 
 @Controller
 public class AdminController {
 
-	@Autowired
-	private AdminService adminService;
+	@GetMapping("admin")
+	public String admin(HttpSession session, Model model) {
+		System.out.println("AdminController - admin()");
 	
-	
+		
+		return "mypage/admin/admin_mypage";	
+	}
 	
 	
 }
