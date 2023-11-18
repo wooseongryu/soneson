@@ -60,7 +60,7 @@
                                     </ul>
                                 </li>
                                 <li><a href="admin">관리자페이지로</a></li>
-                                <li><a href="insertProject">프로젝트 등록</a></li>
+                                <li><a href="projectStartForm">프로젝트 등록</a></li>
                                 <li><a href="./blog.html">Our Blog</a></li>
                                 <li><a href="#">Contacts</a></li>
                             </ul>

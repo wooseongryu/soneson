@@ -6,9 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class ProjectController {
 
-	@GetMapping("insertProject")
-	public String insertProject() {
+	@GetMapping("projectStartForm")
+	public String projectStartForm() {
 		
-		return "insert_project";
+		return "project/start";
+	}
+	
+	@GetMapping("projectAgreeForm")
+	public String projectAgreeForm() {
+		return "project/startAgree";
 	}
 }
