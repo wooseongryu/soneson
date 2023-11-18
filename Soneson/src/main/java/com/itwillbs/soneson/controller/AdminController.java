@@ -18,6 +18,14 @@ public class AdminController {
 		
 		return "mypage/admin/admin_mypage";	
 	}
+
+	@GetMapping("table")
+	public String table(HttpSession session, Model model) {
+		System.out.println("AdminController - table()");
+		
+		
+		return "mypage/admin/tables";	
+	}
 	
 	
 }
