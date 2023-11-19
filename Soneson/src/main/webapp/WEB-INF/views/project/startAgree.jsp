@@ -18,16 +18,16 @@
 			let checks =$(".plan-agree-check:checked").length;
 // 			alert(checks);
 			if(checks == 3) {
-				$("#step2_next").prop("disabled",false);
+				$("#step2_next").css("background","rgb(248, 100, 83)").prop("disabled",false);
 			} else {
-				$("#step2_next").prop("disabled",true);
+				$("#step2_next").css("background","rgb(240, 240, 240)").prop("disabled",true);
 			}
 			
 		});
 		
 		$("#step2_next").on("click",function() {
 			$(this).css({"background":"rgb(248, 100, 83)","color":"#ffffff"});
-// 			location.href="projectInsertForm";
+			location.href="projectInsertForm";
 		});
 		
 	});

@@ -160,12 +160,178 @@ textarea {
 }
 button:disabled {
   opacity: 0.5;
+  background:rgb(240, 240, 240);
   pointer-events: none
+  
 }
 
  input[type=checkbox] {
   accent-color: rgb(248, 100, 83);
 }
+
+/*------project_step3-----*/
+.write-view-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+.write-view-top {
+	width: 100%;
+	box-shadow: rgba(0, 0, 0, 0.04) 0px 1px 8px,
+				rgba(0, 0, 0, 0.02) 0px 1px 0px;
+}
+.view-top-header {
+	height: 64px;
+	position: fixed;
+    top: 0px;
+    z-index: 100;
+    width: 100%;
+	font-size: 14px;
+}
+.top-headerWarp {
+	width: 1080px;
+	height: 100%;
+    margin: 0px auto;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+.top-headerWarp-left {
+	position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: rgb(13, 13, 13);
+}
+
+.top-headerWarp h1 {
+	display: flex;
+	position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    font-size: 2em !important;
+}
+.top-headerWarp-right {
+	position: relative;
+    z-index: 1;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.top-headerWarp-right span {
+	width: 38px;
+	height: 38px;
+}
+.view-top-content {
+	margin: 64px auto 0px;
+	display: block;
+}
+.top-contentWarp {
+	margin: 0px auto;
+    width: 1080px;
+}
+.top-content-right {
+	display: flex;
+    gap: 8px;
+    padding: 24px 0px 25px;
+    justify-content: flex-end;
+    padding: 20px 16px;
+    position: relative;
+}
+
+.top-content-center {
+	display: inline-flex;
+    padding: 0px 0px 54px;
+    align-items: center;
+}
+.top-content-img {
+	display: inline-block;
+	border-radius: 8px;
+    width: 200px;
+    height: 133px;
+    margin: 0px 32px 20px 0px;
+    background-repeat: no-repeat;
+    background-image: url("../img/project/default.png");
+	box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 4px, rgba(0, 0, 0, 0.1) 0px 1px 0px;
+	background-size: 200px 133px;
+}
+
+.view-top-menu {
+	height: 60px;
+	position: relative;
+}
+.top-menu-content {
+	width: 1080px;
+    padding: 100px 0px 0px;
+    margin: 0px auto;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+.top-menu-list {
+	padding: 0px;
+    margin: 0px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+}
+.top-menu-btn {
+	padding: 0px;
+    margin: 0px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.write-list {
+	position: relative;
+    display: flex;
+    height: 100%;
+    margin: 0px 16px;
+
+}
+.write-list:first-child {
+	margin-left: 0px;
+}
+.write-list::after {
+	content: "";
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: rgb(248, 100, 83);
+} 
+.top-menu-list a {
+	font-weight: 700;
+	align-items: center;
+	display: flex;
+	font-size: 14px;
+}
+
+.write-view-content {
+	width: 100%;
+    max-width: 1080px;
+    margin: 0px auto;
+}
+.view-content-form {
+	padding: 84px 0px 0px;
+}
+
+
+
+
+
 
 /* Template default CSS
 /*----------------------------------------*/
@@ -232,12 +398,16 @@ button:focus,
 textarea:focus {
 	outline: none;
 }
+a {
+	text-decoration: none;
+}
 
 a:hover,
 a:focus {
 	text-decoration: none;
 	outline: none;
-	color: #ffffff;
+	color: #c7c7c7;
+	cursor: pointer;
 }
 
 ul,

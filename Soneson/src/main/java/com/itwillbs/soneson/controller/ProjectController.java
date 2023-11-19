@@ -21,7 +21,7 @@ public class ProjectController {
 	//작성페이지이동	
 	@GetMapping("projectInsertForm")
 	public String projectInsertForm() {
-		return "";
+		return "project/default";
 	}
 	
 }
