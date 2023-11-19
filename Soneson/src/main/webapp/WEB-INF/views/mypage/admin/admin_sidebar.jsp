@@ -59,7 +59,7 @@
             <li class="nav-item">
             	<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
             		aria-expanded="true" aria-controls="collapseUser">
-            		<i class="fas fa-fw fa-cog"></i>
+            		<i class="fas fa-fw fa-user"></i>
             		<span>회원관리</span>
             	</a>
 				<div id="collapseUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -76,7 +76,7 @@
             <li class="nav-item">
             	<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCate"
             		aria-expanded="true" aria-controls="collapseCate">
-            		<i class="fas fa-fw fa-cog"></i>
+            		<i class="fas fa-fw fa-pager"></i>
             		<span>메인 페이지 관리</span>
             	</a>
 				<div id="collapseCate" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -91,7 +91,7 @@
             <li class="nav-item">
             	<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProject"
             		aria-expanded="true" aria-controls="collapseProject">
-            		<i class="fas fa-fw fa-cog"></i>
+            		<i class="fas fa-fw fa-handshake"></i>
             		<span>펀딩 프로젝트 관리</span>
             	</a>
 				<div id="collapseProject" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -110,7 +110,7 @@
             <li class="nav-item">
             	<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBoard"
             		aria-expanded="true" aria-controls=collapseBoard>
-            		<i class="fas fa-fw fa-cog"></i>
+            		<i class="fas fa-fw fa-clipboard"></i>
             		<span>게시판관리</span>
             	</a>
 				<div id="collapseBoard" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -128,7 +128,7 @@
             <li class="nav-item">
             	<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReview"
             		aria-expanded="true" aria-controls=collapseReview>
-            		<i class="fas fa-fw fa-cog"></i>
+            		<i class="fas fa-fw fa-comment-dots"></i>
             		<span>펀딩후기관리</span>
             	</a>
 				<div id="collapseReview" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
