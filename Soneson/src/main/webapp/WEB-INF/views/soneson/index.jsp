@@ -9,7 +9,7 @@
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Anime | Template</title>
+    <title>soneson</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -63,6 +63,8 @@
                                 <li><a href="projectStartForm">프로젝트 등록</a></li>
                                 <li><a href="./blog.html">Our Blog</a></li>
                                 <li><a href="#">Contacts</a></li>
+                                <li><a href="main">메인</a></li>
+                                <li><a href="mainTest">메인테스트</a></li>
                             </ul>
                         </nav>
                     </div>

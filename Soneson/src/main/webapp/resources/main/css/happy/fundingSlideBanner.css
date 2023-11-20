@@ -1,0 +1,121 @@
+.wrap {
+  overflow: hidden;
+  position: relative;
+}
+
+.inner {
+  position: relative;
+  transition: background-color 0.5s;
+}
+
+.inner :global(.slick-slider) {
+  height: 250px;
+}
+
+.inner :global(.slick-arrow) {
+  position: relative;
+  display: inline-block;
+  width: 22px;
+  height: 40px;
+  position: absolute;
+  z-index: 10;
+  padding: 10px;
+  box-sizing: content-box;
+}
+
+.inner :global(.slick-arrow)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 26px;
+  height: 26px;
+  -webkit-transform: translate(-50%, -50%) scale(1.1, 1) rotate(45deg);
+  transform: translate(-50%, -50%) scale(1.1, 1) rotate(45deg);
+  margin-left: 10px;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+}
+
+.inner :global(.slick-prev) {
+  left: 50%;
+  margin-left: -550px;
+}
+
+.inner :global(.slick-next) {
+  right: 50%;
+  margin-right: -550px;
+  transform: rotate(180deg) translateY(50%);
+}
+
+.banner {
+  position: relative;
+  width: 1140px;
+  height: 250px;
+  margin: 0 auto;
+}
+
+.link {
+  display: block;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: auto 250px;
+  background-position: 50%;
+}
+
+.progress {
+  position: absolute;
+  left: 50%;
+  bottom: 39px;
+  margin-left: -369px;
+  height: 18px;
+}
+
+.progress_bar {
+  position: relative;
+  width: 50px;
+  height: 1px;
+  margin: 8px 0 0 20px;
+  background-color: rgba(216, 216, 216, 0.5);
+}
+
+.bar_current {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+}
+
+.progress_current, .progress_total {
+  position: absolute;
+  top: 0;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.progress_current {
+  right: 55px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.progress_total {
+  left: 76px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.button_progress {
+  position: absolute;
+  top: -1px;
+  z-index: 10;
+  left: 95px;
+  width: 20px;
+  height: 20px;
+  background: url(~svg/pc/icons/icon_banner_stop.svg) no-repeat;
+  background-size: 100%;
+}
+
+.button_progress:global(.is_paused) {
+  background-image: url(~svg/pc/icons/icon_banner_play.svg);
+}

@@ -1,0 +1,248 @@
+.footer {
+  position: relative;
+  z-index: 10;
+  margin-top: 96px;
+  padding-top: 52px;
+  border-top: 1px solid #e0e0e0;
+  background-clip: content-box;
+  background-color: #f6f6f6;
+}
+
+.footer::before {
+  position: absolute;
+  top: 51px;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background-color: #e3e3e3;
+  content: "";
+}
+
+.service_info_wrap {
+  position: relative;
+  width: 1140px;
+  margin: -52px auto 0;
+  padding: 16px 0 0;
+}
+
+.footer_info_wrap {
+  position: relative;
+  padding: 22px 0 50px;
+  border-top: 1px solid #f0f0f0;
+  background-color: #fff;
+  font-size: 14px;
+  color: #828282;
+}
+
+.btn_service_info {
+  position: relative;
+  padding-right: 19px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.btn_service_info::after {
+  width: 12px;
+  height: 7px;
+  background: url(~svg/pc/images/sort_down_icon01.svg) no-repeat 0 0;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -4px;
+  content: "";
+}
+
+.btn_service_info[aria-pressed=true]:after {
+  background-image: url(~svg/pc/images/sort_up_icon01.svg);
+}
+
+.service_info_inner {
+  margin-top: 36px;
+  padding: 12px 0 24px;
+}
+
+.service_info_grid {
+  position: relative;
+  padding: 0 94px 0 134px;
+  font-size: 0;
+  line-height: 0;
+}
+
+.service_info_title {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  font-size: 14px;
+  line-height: 1.36;
+  font-weight: bold;
+}
+
+.service_info_item {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.36;
+  color: #828282;
+}
+
+.service_info_item + .service_info_item:before {
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  margin: 2px 12px 0 11px;
+  background-color: #d7d7d7;
+  font-size: 0;
+  line-height: 0;
+  vertical-align: top;
+  content: "";
+}
+
+.service_info_item a {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.notice_wrap {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  font-size: 15px;
+}
+
+.notice_wrap::after {
+  display: table;
+  table-layout: fixed;
+  clear: both;
+  content: "";
+}
+
+.notice_wrap .notice_title {
+  float: left;
+  width: 124px;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.notice_wrap .notice_text {
+  float: left;
+  color: #828282;
+  display: none;
+}
+
+.notice_wrap .notice_text.is_active {
+  display: block;
+}
+
+.notice_wrap .icon_new {
+  display: inline-block;
+  width: 9px;
+  height: 11px;
+  margin-left: 7px;
+  background: url(~svg/pc/images/new_icon.svg) no-repeat 0 0;
+}
+
+.footer_info_inner {
+  width: 1140px;
+  margin: 0 auto;
+}
+
+.footer_info {
+  display: inline-block;
+  position: relative;
+  width: 525px;
+  vertical-align: top;
+  box-sizing: content-box;
+}
+
+.footer_info + .footer_info {
+  padding-left: 24px;
+}
+
+.footer_info + .footer_info:after {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  bottom: 0;
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  content: "";
+}
+
+.footer_info .footer_info_item:first-child:before, .footer_info .footer_info_item:nth-child(4):before, .footer_info .footer_info_item:nth-child(6):before {
+  display: none;
+}
+
+.footer_info .footer_info_item address {
+  display: inline;
+}
+
+.footer_info_list {
+  margin-top: 18px;
+}
+
+.footer_info_list::after {
+  display: table;
+  table-layout: fixed;
+  clear: both;
+  content: "";
+}
+
+.footer_info_item {
+  float: left;
+  margin-bottom: 4px;
+}
+
+.footer_info_item::before {
+  display: inline-block;
+  width: 1px;
+  height: 12px;
+  margin: 0 10px;
+  background-color: #d7d7d7;
+  vertical-align: -1px;
+  content: "";
+}
+
+.footer_info_item:first-child::before {
+  display: none;
+}
+
+.footer_info_notice {
+  display: block;
+  margin-top: 12px;
+  font-size: 13px;
+}
+
+.footer_info_copyright {
+  margin-top: 18px;
+  font-size: 13px;
+}
+
+.footer_info_naver {
+  margin-right: 7px;
+}
+
+.btn_mobile {
+  display: block;
+  width: 100%;
+  height: 59px;
+  background-color: #f6f6f6;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 59px;
+  text-align: center;
+  color: #666;
+}
+
+.btn_mobile .icon_arrow {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  margin-top: 22px;
+  margin-left: 5px;
+  background: url(~svg/pc/images/mobile_btn_arrow.svg) no-repeat 0 0;
+  vertical-align: top;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
