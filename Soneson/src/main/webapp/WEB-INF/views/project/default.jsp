@@ -74,17 +74,17 @@ $(function() {
 							<a href="projectFunding">펀딩 계획</a>
 						</li>
 						<li class="write-list">
-							<a href="">리워드 구성</a>
+							<a href="projectReward">리워드 구성</a>
 						</li>
 						<li class="write-list">
-							<a href="">프로젝트 계획</a>
+							<a href="projectStory">프로젝트 계획</a>
 						</li>
 						<li class="write-list">
-							<a href="">창작자 정보</a>
+							<a href="projectCreateor">창작자 정보</a>
 						</li>
-						<li class="write-list">
-							<a href="">상품 고지</a>
-						</li>
+<!-- 						<li class="write-list"> -->
+<!-- 							<a href="">상품 고지</a> -->
+<!-- 						</li> -->
 					</ul>
 					<div class="top-menu-btn">
 						<button>저장하기</button>
