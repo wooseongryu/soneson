@@ -31,6 +31,8 @@
     
     
     <script type="text/javascript">
+    	let pointColor = "rgb(248, 100, 83)";
+    
     	function userProfile() {
     		$("#container").children().remove();
     		$.ajax({
@@ -38,7 +40,7 @@
     			url: 'userProfile',
     			dataType: 'json',
     			success: function(resp) {
-    				$("#topCateProfile h4").css("color", "red");
+    				$("#topCateProfile h4").css("color", pointColor);
     				$("#container").append(
    						'<div class="blog__details__comment">'
 							+ '<div class="blog__details__comment__item">'
@@ -155,16 +157,28 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
                         
                         <section class="blog-details spad">
 					        <div class="container" id="container">
-
 								<!-- ajax -->	
-								
-														    
-							    
 							</div>
 						</section>
+						
+<!-- 						<div class="anime__details__review"> -->
+<!--                             <div class="anime__review__item"> -->
+<!--                                 <div class="anime__review__item__text"> -->
+<!--                                     <h6>Chris Curry - <span>2022.04.25</span></h6> -->
+<!--                                     <p>whachikan Just noticed that someone categorized this as belonging to the genre -->
+<!--                                     "demons" LOL</p> -->
+                                    
+<!--                                     <div class="anime__review__item__text"> -->
+<!-- 	                                    <p>웹툰, 일러스트를 위한 [화려한 꽃 브러쉬Set]</p> -->
+<!--                                 	</div> -->
+                                	
+<!--                                 </div> -->
+<!--                             </div> -->
+<!-- 						</div> -->
                         
                     </div>
                 </div>
