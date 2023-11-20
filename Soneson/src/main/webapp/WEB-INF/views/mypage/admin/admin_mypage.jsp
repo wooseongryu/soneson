@@ -14,7 +14,7 @@
 	<title>SB Admin 2 - Dashboard</title>
 
 	<!-- Custom styles for this template-->
-	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/mypage/css/sb-admin-2.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/mypage/css/admin_mypage.css" rel="stylesheet">
 
 </head>
 
