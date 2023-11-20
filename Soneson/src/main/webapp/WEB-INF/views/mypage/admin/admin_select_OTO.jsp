@@ -18,7 +18,7 @@
     <link href="${pageContext.request.contextPath }/resources/mypage/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="${pageContext.request.contextPath }/resources/mypage/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/resources/mypage/vendor/datatables/admin_dataTables.bootstrap4.css" rel="stylesheet">
 
 
 </head>

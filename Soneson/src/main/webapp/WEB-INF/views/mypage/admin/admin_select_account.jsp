@@ -15,7 +15,7 @@
 
 
     <!-- Custom styles for this template -->
-    <link href="${pageContext.request.contextPath }/resources/mypage/css/admin_mypage.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/resources/mypage/css/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link href="${pageContext.request.contextPath }/resources/mypage/vendor/datatables/admin_dataTables.bootstrap4.css" rel="stylesheet">
@@ -129,12 +129,12 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">이벤트 조회 페이지</h1>
+					<h1 class="h3 mb-2 text-gray-800">정산 관리 페이지</h1>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">이벤트 조회 내역</h6>
+							<h6 class="m-0 font-weight-bold text-primary">정산 내역</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -150,16 +150,18 @@
 										</tr>
 									</thead>
 									<tfoot>
-                                        <tr>
-											<td colspan="6">
-												<button type="button" class="btn btn-primary" onclick="location.href='adminInsertEvent'">등록</button>&nbsp;&nbsp;
-												<button type="button" class="btn btn-primary" onclick="location.href='adminInsertEventCate'">카테고리 관리</button>
-											</td>
-                                        </tr>
+										<tr>
+											<th>Name</th>
+											<th>Position</th>
+											<th>Office</th>
+											<th>Age</th>
+											<th>Start date</th>
+											<th>Salary</th>
+										</tr>
 									</tfoot>
 									<tbody>
 										<tr>
-											<td><input type="checkbox"></td>
+											<td>Tiger Nixon</td>
 											<td>System Architect</td>
 											<td>Edinburgh</td>
 											<td>61</td>

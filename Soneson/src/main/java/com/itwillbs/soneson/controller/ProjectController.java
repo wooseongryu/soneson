@@ -24,4 +24,10 @@ public class ProjectController {
 		return "project/default";
 	}
 	
+	//펀딩계획
+	@GetMapping("projectFunding")
+	public String projectFunding() {
+		return "project/funding";
+	}
+	
 }

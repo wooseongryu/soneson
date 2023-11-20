@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
  * 2. 회원 정보 관리
  * 3. 메인페이지 관리
  * 4. 펀딩 프로젝트 관리
- * 5. 게시판관리
- * 6. 펀딩후기관리
+ * 5. 펀딩후기관리
+ * 6. 정산관리
+ * 7. 게시판관리
  * ===================================================================
  * */
 
@@ -109,7 +110,32 @@ public class AdminController {
 	}
 
 /*====================================================================
- * 5. 게시판관리
+ * 5. 펀딩후기관리
+ * ===================================================================
+ * */
+	
+	@GetMapping("adminSelectReview")
+	public String adminSelectReview() {
+		System.out.println("AdminController - adminSelectReview()");
+		
+		return "mypage/admin/admin_select_review";	
+	}
+
+/*====================================================================
+ * 6. 펀딩후기관리
+ * ===================================================================
+ * */
+	
+	@GetMapping("adminSelectAccount")
+	public String adminSelectAccount() {
+		System.out.println("AdminController - adminSelectAccount()");
+		
+		return "mypage/admin/admin_select_account";	
+	}
+
+	
+/*====================================================================
+ * 7. 게시판관리
  * ===================================================================
  * */
 	
@@ -148,18 +174,14 @@ public class AdminController {
 		
 		return "mypage/admin/admin_insert_event";	
 	}
-	
-	
-/*====================================================================
- * 6. 펀딩후기관리
- * ===================================================================
- * */
-	
-	@GetMapping("adminSelectReview")
-	public String adminSelectReview() {
-		System.out.println("AdminController - adminSelectReview()");
+
+	@GetMapping("adminInsertEventCate")
+	public String adminInsertEventCate() {
+		System.out.println("AdminController - adminInsertEventCate()");
 		
-		return "mypage/admin/admin_select_review";	
+		return "mypage/admin/admin_insert_eventCategory";	
 	}
+	
+	
 	
 }

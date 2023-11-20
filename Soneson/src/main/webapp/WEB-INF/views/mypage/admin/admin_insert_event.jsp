@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>soneson</title>
+    <title>CINEPICK</title>
 
 	<!-- 부트 스트랩 datepicker용 최신 jquery 링크 -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -21,7 +21,9 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- 부트 스트랩 datepicker css 링크 -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/mypage/css/bootstrap-datepicker.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/mypage/css/datepicker/bootstrap-datepicker.min.css">
+
+    <link href="${pageContext.request.contextPath }/resources/mypage/css/admin_mypage.css" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
     <link href="${pageContext.request.contextPath }/resources/mypage/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -29,8 +31,6 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="${pageContext.request.contextPath }/resources/mypage/css/sb-admin-2.css" rel="stylesheet">
     
     
     <style>
@@ -129,10 +129,9 @@
 	<!-- 부트 스트랩 datepicker js 링크 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js" integrity="sha512-LsnSViqQyaXpD4mBBdRYeP6sRwJiJveh2ZIbW41EBrNmKxgr/LFZIiWT6yr+nycvhvauz8c2nYMhrP80YhG7Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	
-	<script src="${pageContext.request.contextPath }/resources/mypage/js/bootstrap-datepicker.min.js"></script>
+	<script src="${pageContext.request.contextPath }/resources/mypage/js/datepicker/bootstrap-datepicker.min.js"></script>
 	
     <!-- Bootstrap core JavaScript-->
-    <script src="${pageContext.request.contextPath }/resources/mypage/vendor/jquery/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath }/resources/mypage/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
@@ -140,7 +139,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="${pageContext.request.contextPath }/resources/mypage/js/sb-admin-2.min.js"></script>
-
 
 	<script>
 	$("#fromDatepicker").datepicker({

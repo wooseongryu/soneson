@@ -30,30 +30,23 @@
 		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 		<!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin">
             	<div class="sidebar-brand-icon rotate-n-15">
             		<i class="fas fa-laugh-wink"></i>
             	</div>
             	<div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
             </a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-            	<a class="nav-link" href="index.html">
-            		<i class="fas fa-fw fa-tachometer-alt"></i>
-            		<span>Dashboard</span></a>
+            	<a class="nav-link" href="admin">
+            		<i class="fas fa-fw fa-user-secret"></i>
+            		<span>관리자페이지</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-            	Interface
-            </div>
 
             <!-- 회원관리 -->
             <li class="nav-item">
@@ -64,7 +57,6 @@
             	</a>
 				<div id="collapseUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Components:</h6>
 						<a class="collapse-item" href="adminSelectUser">회원정보관리</a>
 						<a class="collapse-item" href="adminSelectUserPay">회원결제관리</a>
 						<a class="collapse-item" href="adminSelectReport">신고회원관리</a>
@@ -81,7 +73,6 @@
             	</a>
 				<div id="collapseCate" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Components:</h6>
 						<a class="collapse-item" href="adminSelectMainCate">메인 카테고리 관리</a>
 					</div>
 				</div>
@@ -96,7 +87,6 @@
             	</a>
 				<div id="collapseProject" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Components:</h6>
 						<a class="collapse-item" href="adminSelectFundAll">등록된 전체 펀딩 관리</a>
 						<a class="collapse-item" href="adminSelectFundBefore">진행예정인 펀딩 관리</a>
 						<a class="collapse-item" href="adminSelectFundOngoing">진행중인 펀딩 관리</a>
@@ -105,6 +95,35 @@
 				</div>
 			</li>
             
+            <!-- 커뮤니티 관리 (펀딩 후기 등등) -->
+            <li class="nav-item">
+            	<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReview"
+            		aria-expanded="true" aria-controls=collapseReview>
+            		<i class="fas fa-fw fa-comment-dots"></i>
+            		<span>펀딩후기관리</span>
+            	</a>
+				<div id="collapseReview" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" href="adminSelectReview">펀딩후기관리</a>
+					</div>
+				</div>
+			</li>
+
+            <!-- 정산 관리 (프로젝트 마감 후 결제, 카드사 결제 등등) -->
+            <li class="nav-item">
+            	<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAccount"
+            		aria-expanded="true" aria-controls=collapseAccount>
+            		<i class="fas fa-fw fa-money-bill"></i>
+            		<span>정산관리</span>
+            	</a>
+				<div id="collapseAccount" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" href="adminSelectAccount">정산관리</a>
+					</div>
+				</div>
+			</li>
+
+
 
             <!-- 게시판 관련 (고객센터, 이벤트 등등) -->
             <li class="nav-item">
@@ -115,7 +134,6 @@
             	</a>
 				<div id="collapseBoard" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Components:</h6>
 						<a class="collapse-item" href="adminSelectNotice">공지사항</a>
 						<a class="collapse-item" href="adminSelectQna">자주묻는질문</a>
 						<a class="collapse-item" href="adminSelectOTO">1:1문의</a>
@@ -124,20 +142,7 @@
 				</div>
 			</li>
 
-            <!-- 게시판 관련 (고객센터, 이벤트 등등) -->
-            <li class="nav-item">
-            	<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReview"
-            		aria-expanded="true" aria-controls=collapseReview>
-            		<i class="fas fa-fw fa-comment-dots"></i>
-            		<span>펀딩후기관리</span>
-            	</a>
-				<div id="collapseReview" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Custom Components:</h6>
-						<a class="collapse-item" href="adminSelectReview">펀딩후기관리</a>
-					</div>
-				</div>
-			</li>
+
 
 
 			<!-- Divider -->
