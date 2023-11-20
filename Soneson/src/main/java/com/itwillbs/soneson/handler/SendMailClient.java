@@ -53,7 +53,7 @@ public class SendMailClient {
 			//    => 파라미터 : 발신자 주소, 발신자 이름
 			//    => 단, 상용 메일 서버(구글, 네이버 등)의 경우 스팸 정책으로 인해
 			//       기본적인 방법으로는 발신자 주소 변경 불가(= 기본 계정 주소 그대로 사용)
-			Address senderAddress = new InternetAddress("cinepick@itwillbs.co.kr", "씨네픽_아이티윌");
+			Address senderAddress = new InternetAddress("soneson@itwillbs.co.kr", "손에손_아이티윌");
 			
 			// 2) 수신자 정보 설정을 위한 javax.mail.internet.InternetAddress 객체 생성
 			//    => InternetAddress -> Address 타입으로 업캐스팅

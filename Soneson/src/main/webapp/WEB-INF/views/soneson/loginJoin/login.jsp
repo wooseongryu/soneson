@@ -40,13 +40,13 @@
 				<div class="col-lg-6">
 					<div class="login__form">
 						<h3>로그인</h3>
-						<form action="#">
+						<form action="loginPro" method="post">
 							<div class="input__item">
-								<input type="text" placeholder="이메일 주소를 입력해주세요">
-								<span class="icon_mail"></span>
-							</div>
+                                <input name="user_id" type="text" value="${cookie.cookieId.value }" placeholder="아이디를 입력하세요">
+                                <span class="icon_id"></span>
+                            </div>
 							<div class="input__item">
-								<input type="text" placeholder="비밀번호를 입력해주세요">
+								<input name="user_passwd" type="password" placeholder="비밀번호를 입력해주세요">
 								<span class="icon_lock"></span>
 							</div>
 							<button type="submit" class="site-btn">로그인</button>

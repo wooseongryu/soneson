@@ -5,7 +5,8 @@
 <configuration>
 	<!-- 마이바티스에서 접근할 사용자 정의 클래스 타입에 대한 Alias(별칭) 설정 -->
 	<typeAliases>
-
+		<typeAlias type="com.itwillbs.soneson.vo.UserVO" alias="User"/>
+		<typeAlias type="com.itwillbs.soneson.vo.AuthInfoVO" alias="AuthInfo"/>
 	</typeAliases>
 </configuration>
   
