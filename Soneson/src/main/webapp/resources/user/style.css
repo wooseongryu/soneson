@@ -1131,13 +1131,29 @@ ol {
 
 .anime__review__item__text {
 	overflow: hidden;
-	background: #1d1e39;
+/* 	background: #1d1e39; */
 	padding: 18px 30px 16px 20px;
+	border-radius: 10px;
+	border: 1px solid rgb(248, 100, 83);
+}
+
+.review_product_title {
+	overflow: hidden;
+	background: #e5e5e5;
+	padding: 5px 5px 5px 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 	border-radius: 10px;
 }
 
+.anime__review__item__text .review_product_title p {
+	color: black;
+	line-height: 23px;
+	margin-bottom: 0;
+}
+
 .anime__review__item__text h6 {
-	color: #ffffff;
+	color: black;
 	font-weight: 700;
 	margin-bottom: 10px;
 }
