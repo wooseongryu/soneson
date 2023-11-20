@@ -1995,6 +1995,23 @@ ol {
 	color: #e53637;
 }
 
+
+
+
+
+/* 추가 ============================================ */
+
+.user_top_cate {
+	float: left; 
+	padding:10px;
+}
+
+.user_top_cate h4 {
+	cursor: pointer;
+}
+
+/* 추가 끝 ============================================ */
+
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1200px) and (max-width: 1300px) {

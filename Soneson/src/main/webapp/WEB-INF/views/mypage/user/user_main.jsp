@@ -11,13 +11,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Anime | Template</title>
 
+	<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
 
     <!-- Css Styles -->
-    
    	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/elegant-icons.css" type="text/css">
@@ -28,6 +28,37 @@
     
     <!-- 류우성 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/style.css" type="text/css">
+    
+    
+    <script type="text/javascript">
+    	function userProfile() {
+    		$("#container").children().remove();
+    		$.ajax({
+    			type: 'post',
+    			url: 'userProfile',
+    			dataType: 'json',
+    			success: function(resp) {
+    				$("#topCateProfile h4").css("color", "red");
+    				$("#container").append(
+   						'<div class="blog__details__comment">'
+							+ '<div class="blog__details__comment__item">'
+							    + '<div class="blog__details__comment__item__text">'
+							        + '<p>표지 일러스트, 삽화 작업을 주로 하는 또롱입니다. 모든 분들께 예쁘고 행복한 그림을 그려드리는 게 꿈입니다.</p>'
+							    + '</div>'
+							+ '</div>'
+						+ '</div>'		
+    				);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    
+    	$(function() {
+    		userProfile();
+    	});
+    </script>
 </head>
 
 <body>
@@ -85,9 +116,10 @@
 		    <div class="blog__details__comment">
 				<div class="blog__details__comment__item">
 				    <div class="blog__details__comment__item__text">
-				        <h5>아이디</h5>
-				        <p>1년전 가입</p>
+				        <h5>또롱/Ttorong</h5>
+				        <p>3년전 가입</p>
 				        <a href="#">+ 팔로우</a>
+				        <a href="#">창작자 문의</a>
 				    </div>
 				</div>
 			</div>
@@ -104,19 +136,19 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-8 col-sm-6">
                                     <div class="section-title">
-                                        <div style="float: left; padding:10px;">
-											<h4>프로필</h4>
+                                        <div class="user_top_cate" id="topCateProfile">
+											<h4 onclick="userProfile()">프로필</h4>
 										</div>
-										<div style="float: left; padding:10px;">
+										<div class="user_top_cate">
 											<h4>프로젝트후기</h4>
 										</div>
-										<div style="float: left; padding:10px;">
+										<div class="user_top_cate">
 											<h4>올린프로젝트</h4>
 										</div>
-										<div style="float: left; padding:10px;">
+										<div class="user_top_cate">	
 											<h4>팔로워</h4>
 										</div>
-										<div style="float: left; padding:10px;">
+										<div class="user_top_cate">
 											<h4>팔로잉</h4>
 										</div>
                                     </div>
@@ -125,14 +157,12 @@
                         </div>
                         
                         <section class="blog-details spad">
-					        <div class="container">
-							    <div class="blog__details__comment">
-									<div class="blog__details__comment__item">
-									    <div class="blog__details__comment__item__text">
-									        <p>표지 일러스트, 삽화 작업을 주로 하는 또롱입니다. 모든 분들께 예쁘고 행복한 그림을 그려드리는 게 꿈입니다.</p>
-									    </div>
-									</div>
-								</div>
+					        <div class="container" id="container">
+
+								<!-- ajax -->	
+								
+														    
+							    
 							</div>
 						</section>
                         
