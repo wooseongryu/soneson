@@ -24,4 +24,28 @@ public class ProjectController {
 		return "project/default";
 	}
 	
+	//펀딩계획
+	@GetMapping("projectFunding")
+	public String projectFunding() {
+		return "project/funding";
+	}
+	
+	//리워드구성
+	@GetMapping("projectReward")
+	public String projectReward() {
+		return "project/reward";
+	}
+	
+	//프로젝트계획
+	@GetMapping("projectStory")
+	public String projectStory() {
+		return "project/story";
+	}
+	
+	//창작자정보
+	@GetMapping("projectCreateor")
+	public String projectCreateor() {
+		return "project/creator";
+	}
+	
 }

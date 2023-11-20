@@ -20,4 +20,11 @@ public class UserController {
 		System.out.println("UserController - userProfile()");
 		return "1";
 	}
+	
+	@ResponseBody
+	@PostMapping("userProfileProjectReview")
+	public String userProfileProjectReview() {
+		System.out.println("userProfileProjectReview - userProfileProjectReview()");
+		return "1";
+	}
 }

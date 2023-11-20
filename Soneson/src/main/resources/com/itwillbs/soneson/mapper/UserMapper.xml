@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwillbs.soneson.mapper.UserMapper">
+	<!-- insert  -->
+	<insert id="insertUser" >
+	INSERT INTO user(
+			user_name
+			, user_id
+			, user_email
+			, user_passwd
+			, hire_date
+			, user_is_admin
+			, mail_auth_status
+<!-- 			, kakao_id -->
+			, user_status
+	)
+  	 VALUES (
+			#{user_name}
+			, #{user_id}
+			, #{user_email} 
+			, #{user_passwd}
+			, now()
+			, 'N'
+			, 'N'
+<!-- 			, null -->
+			, '가입'
+	)
+	
+	</insert>
+	
+	<!-- 인증정보 등록 - INSERT -->
+	<insert id="insertAuthInfo">
+		INSERT
+		INTO auth_info
+		VALUES (
+			#{id}
+			, #{authCode}
+		)
+	</insert>
+	
+	<insert id="insertMyQuestion">
+		<selectKey keyProperty="myQuestion_num" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(myQuestion_num), 0) 
+			FROM myQuestion
+		</selectKey>
+		INSERT
+		INTO myQuestion
+		VALUES (
+			null
+			, #{myQuestion_id}
+			, #{myQuestion_subject}
+			, #{myQuestion_content}
+			, #{myQuestion_answer}
+			, 'N'
+			, now()
+		)
+	</insert>
+	
+	<!-- select -->
+	<select id="selectUser" resultType="User">
+		SELECT
+			user_idx
+			, user_name
+			, user_id
+			, user_email
+			, user_passwd
+<!-- 			, user_phone -->
+			, hire_date
+			, user_is_admin
+			, mail_auth_status
+<!-- 			, CASE -->
+<!-- 				WHEN kakao_id IS NULL THEN '미연동' -->
+<!-- 				ELSE '연동됨' -->
+<!-- 			  END AS kakao_id -->
+		  	, user_status
+		FROM user 
+		WHERE user_id = #{user_id}
+	</select>
+
+	<select id="selectUser2" resultType="User">
+		SELECT
+			user_email
+		FROM user 
+		WHERE user_email = #{user_email}
+	</select>
+
+	<select id="selectUserList" resultType="User">
+		SELECT * FROM user
+	</select>
+
+	<!-- 전달받은 아이디(id)에 해당하는 auth_info 테이블의 레코드 조회 -->
+	<select id="selectAuthInfo" resultType="AuthInfo">
+		SELECT *
+		FROM auth_info
+		WHERE auth_id = #{id}
+	</select>
+
+
+	<select id="checkUser" resultType="User">
+		SELECT * 
+		  FROM user 
+		 WHERE user_email = #{user_email} 
+		   AND user_passwd = #{user_passwd}
+	</select>
+	
+	<!-- 암호화 된 패스워드 조회 -->
+	<!-- member 테이블의 아이디에 해당하는 패스워드 조회 -->
+	<!-- resultType 은 MemberVO 타입 또는 string(String) 타입 활용 -->
+	<select id="selectPasswd" resultType="string">
+		SELECT passwd
+		FROM user
+		WHERE user_id = #{user_id}
+	</select>
+
+	<!-- 아이디 찾기 -->
+	<select id="selectIdSearch" resultType="User">
+		SELECT user_id
+		FROM user
+		WHERE user_name = #{user_name} 
+		AND user_email = #{user_email}
+	</select>
+
+	<!-- 비밀번호 찾기 -->
+	<select id="selectPasswdSearch" resultType="int">
+		SELECT COUNT(user_id)
+		FROM user
+		WHERE user_id = #{user_id}
+			AND user_email = #{user_email}
+	</select>
+	
+	<!-- 임시 비밀번호 변경 -->
+	<update id="updatePasswdChange">
+		UPDATE user
+		SET user_passwd = #{user_passwd}
+		WHERE user_id = #{user_id}
+			AND user_email = #{user_email}
+	</update>
+	
+    
+	
+	
+	
+	<!-- update -->
+	<!-- 기존 인증정보 갱신 - UPDATE -->
+	<!-- 아이디에 해당하는 레코드의 인증코드를 수정 -->
+	<update id="updateAuthInfo">
+		UPDATE auth_info
+		SET auth_code = #{authCode}
+		WHERE auth_id = #{id}
+	</update>
+	
+	<!-- 회원 인증상태 변경 - UPDATE -->
+	<!-- user 테이블의 아이디에 해당하는 레코드의 인증상태(member_auth_status) 컬럼값 "Y" 로 변경 -->
+	<update id="updateMailAuthStatus">
+		UPDATE user
+		SET mail_auth_status = 'Y'
+		WHERE user_id = #{id}
+	</update>
+	
+	
+	<!-- 회원 정보 변경 -->
+	<update id="updateUser">
+		UPDATE user
+		SET user_passwd = #{user_passwd}
+		WHERE user_id = #{user_id}
+	</update>
+	
+	
+	
+	<!-- delete -->
+	<!-- 인증정보 삭제 - DELETE -->
+	<!-- auth_info 테이블의 아이디에 해당하는 레코드의 인증정보 삭제 -->
+	<delete id="deleteAuthInfo">
+		DELETE FROM auth_info
+		WHERE auth_id = #{id}
+	</delete>
+
+
+	<!-- 회원 탈퇴지만 foreign키 때문에 update를 사용하여 탈퇴상태변경-->
+	<update id="deleteUser">
+		UPDATE user
+		SET user_name = ''
+			, user_phone = ''
+			, user_is_admin = 'N'
+			, kakao_id = ''
+			, user_status = '탈퇴'
+			, user_email = #{user_email}
+		WHERE user_id = #{user_id}
+	</update>
+	
+	<select id="checkDuplicateEmail" resultType="int">
+		SELECT COUNT(user_idx)
+		FROM user
+		WHERE user_email = #{deleteEmail}
+	</select>
+	
+	
+	<!-- 내가 쓴 리뷰 삭제 -->
+	<delete id="deleteMyReview">
+		DELETE FROM review
+		WHERE review_num = #{review_num}
+	</delete>
+	
+	
+	
+	
+	
+	
+	<select id="getMemberKakaoLogin" resultType="User">	
+		SELECT
+			user_id
+			, user_is_admin
+			, kakao_id
+		FROM user
+		WHERE kakao_id = #{kakao_id}
+	</select>
+	
+	<update id="updateKakaoId">
+		UPDATE user
+		SET kakao_id = #{kakao_id}
+		WHERE user_id = #{user_id}
+	</update>
+	
+	<update id="updateRandomEmail">
+		UPDATE user
+		SET user_email = #{user_email}
+		WHERE user_id = #{user_id}
+	</update>
+	
+	
+	
+	
+	
+	
+</mapper>
+

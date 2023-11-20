@@ -13,7 +13,7 @@
 	<!-- property 태그를 활용하여 DB 접속에 필요한 정보 4가지 속성 설정 -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-		<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://itwillbs.com:3306/c3d2306t1"></property>
+		<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://itwillbs.com:3306/c3d2306t1_2"></property>
 		<property name="username" value="c3d2306t1"></property>
 		<property name="password" value="1234"></property>
 	</bean>

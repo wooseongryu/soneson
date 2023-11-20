@@ -57,6 +57,7 @@
 							<li><button>스테이씨</button></li>
 							<li><button>르세라핌</button></li>
 							<li><button>(여자)아이들</button></li>
+							<li><button>비투비</button></li>
 <!-- 							스크립트로 버튼 클릭시 addclass - isActive -->
 						</ul>
 					</div>
