@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -32,7 +33,10 @@
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
-
+	
+	<!-- header 위치 -->
+<%-- 	<jsp:include page="../../inc/header.jsp"></jsp:include> --%>
+	
 	<!-- Login Section Begin -->
 	<section class="login spad">
 		<div class="container">
@@ -49,7 +53,11 @@
 								<input name="user_passwd" type="password" placeholder="비밀번호를 입력해주세요">
 								<span class="icon_lock"></span>
 							</div>
+							<input type="checkbox" name="rememberId"
+							<c:if test="${not empty cookie.cookieId.value }">checked</c:if>
+						><span>&nbsp; 아이디 저장</span><br>
 							<button type="submit" class="site-btn">로그인</button>
+							
 						</form>
 						
 					</div>
@@ -88,7 +96,9 @@
 	</section>
 	<!-- Login Section End -->
 
-
+	<!-- footer -->
+<%-- 	<jsp:include page="../../inc/footer.jsp"></jsp:include> --%>
+	
 	<!-- Search model Begin -->
 	<div class="search-model">
 		<div class="h-100 d-flex align-items-center justify-content-center">

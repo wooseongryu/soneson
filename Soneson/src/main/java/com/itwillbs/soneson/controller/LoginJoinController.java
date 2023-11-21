@@ -25,6 +25,7 @@ import com.itwillbs.soneson.vo.UserVO;
 
 @Controller
 public class LoginJoinController {
+	
 	@Autowired
 	private UserService userService;
 	
@@ -262,8 +263,9 @@ public class LoginJoinController {
 		}
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		
 		String newPasswd = RandomStringUtils.randomAlphabetic(10);
-//		System.out.println("새로운 비밀번호))))))))))))" + newPasswd);
+		
 		String securePasswd = passwordEncoder.encode(newPasswd);
 		user.setUser_passwd(securePasswd);
 		
@@ -284,33 +286,6 @@ public class LoginJoinController {
 	
 	
 	
-//	@GetMapping("login")
-//	public String login() {
-//		System.out.println("LoginJoinController - login()");
-//		
-//		return "soneson/loginJoin/login";	
-//	}
-//
-//	@GetMapping("idSearch")
-//	public String idSearch() {
-//		System.out.println("LoginJoinController - idSearch()");
-//		
-//		return "soneson/loginJoin/idSearch";	
-//	}
-//
-//	@GetMapping("idSearchResult")
-//	public String idSearchResult() {
-//		System.out.println("LoginJoinController - idSearchResult()");
-//		
-//		return "soneson/loginJoin/idSearchResult";	
-//	}
-//
-//	@GetMapping("passwdSearch")
-//	public String passwdSearch() {
-//		System.out.println("LoginJoinController - passwdSearch()");
-//		
-//		return "soneson/loginJoin/passwdSearch";	
-//	}
 	
 	
 }
