@@ -1104,7 +1104,7 @@ ol {
 }
 
 .anime__details__review {
-	margin-bottom: 55px;
+	margin-bottom: 5px;
 }
 
 .anime__review__item {
@@ -1142,6 +1142,7 @@ ol {
 	padding: 18px 30px 16px 20px;
 	border-radius: 10px;
 	border: 1px solid rgb(248, 100, 83);
+	position: relative;
 }
 
 .review_product_title {
@@ -1166,12 +1167,14 @@ ol {
 }
 
 .anime__review__item__text h6 span {
-	color: #b7b7b7;
+/* 	color: #b7b7b7; */
+	color: rgb(70, 70, 70);
 	font-weight: 400;
 }
 
 .anime__review__item__text p {
-	color: #b7b7b7;
+/* 	color: #b7b7b7; */
+	color: rgb(70, 70, 70);
 	line-height: 23px;
 	margin-bottom: 0;
 }
@@ -2032,6 +2035,24 @@ ol {
 
 .user_top_cate h5 {
 	cursor: pointer;
+}
+
+.user_follow_btn a {
+	display: inline-block;
+	color: rgb(0, 0, 0);
+	background: white;
+	padding: 6px 20px;
+	letter-spacing: 2px;
+	border-radius: 2px;
+	margin-right: 14px;
+	-webkit-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+	border: 1px solid red;
+	
+	position: absolute;
+    right: 10px;
+    bottom: 40px;
 }
 
 /* 추가 끝 ============================================ */

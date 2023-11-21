@@ -32,14 +32,13 @@
     <script type="text/javascript">
     	let pointColor = "#F86453";
 
-		function userProfile() {
+		function userProfile(id) {
     		$.ajax({
     			type: 'post',
     			url: 'userProfile',
     			dataType: 'json',
     			success: function(resp) {
-    				reset_screen();
-    				$("#topCateProfile h5").css("color", pointColor);
+    				reset_screen(id);
 
 					$("#user_content").append(
 						'<div id="user_content">'
@@ -63,14 +62,13 @@
     		});
     	}
 
-		function userProjectReview() {
+		function userProjectReview(id) {
     		$.ajax({
     			type: 'post',
     			url: 'userProfileProjectReview',
     			dataType: 'json',
     			success: function(resp) {
-    				reset_screen();
-    				$("#topProjectReview h5").css("color", pointColor);
+    				reset_screen(id);
 					
 					$("#user_content").append(
 						'<div class="row">'
@@ -106,14 +104,13 @@
     		});
     	}
 		
-		function userUploadProject() {
+		function userUploadProject(id) {
 			$.ajax({
     			type: 'post',
     			url: 'userUploadProject',
     			dataType: 'json',
     			success: function(resp) {
-    				reset_screen();
-    				$("#topUploadProject h5").css("color", pointColor);
+    				reset_screen(id);
 
 					$("#user_content").append(
 						'<section class="product-page spad">                                                                                                                                         '
@@ -159,14 +156,44 @@
     			}
     		});
 		}
+		
+		function userFollower(id) {
+			$.ajax({
+    			type: 'post',
+    			url: 'userFollower',
+    			dataType: 'json',
+    			success: function(resp) {
+    				reset_screen(id);
+
+					$("#user_content").append(
+						  '<div class="anime__details__review">'
+						+ ' 	<div class="anime__review__item">'
+                        + ' 		<div class="anime__review__item__text" id="project_review_content">'
+	                    + '     		<h6>Chris Curry</h6>'
+	                    + '     		<p>[색을 엮어 감성을 꽃 피우다.] 전통 위주의 옛것을 아름답고 독특하게 재해석합니다.</p>'
+	                    + '     		<p style="margin-top: 10px">팔로잉 1 · 후원한 프로젝트 11</p>'
+	                    + '     		<div class="user_follow_btn">'
+	                    + '     			<a href="#">+ 팔로우</a>'
+	                    + '     		</div>'
+						+ ' 		</div>'
+                    	+ ' 	</div>'
+                	 	+ '</div>'
+					);                                                                                                                                                                             
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+		}
     	
-    	function reset_screen() {
+    	function reset_screen(id) {
     		$("#section-title h5").css("color", "black");
     		$("#user_content").children().remove();
+    		$("#" + id + " h5").css("color", pointColor);
     	}
     
     	$(function() {
-    		userProfile();
+    		userProfile('topCateProfile');
     	});
     </script>
 </head>
@@ -206,19 +233,19 @@
                                 <div class="col-lg-12 col-md-8 col-sm-6">
                                     <div class="section-title" id="section-title">
                                         <div class="user_top_cate" id="topCateProfile">
-											<h5 onclick="userProfile()">프로필</h5>
+											<h5 onclick="userProfile('topCateProfile')">프로필</h5>
 										</div>
 										<div class="user_top_cate" id="topProjectReview">
-											<h5 onclick="userProjectReview()">프로젝트후기 11</h5>
+											<h5 onclick="userProjectReview('topProjectReview')">프로젝트후기 11</h5>
 										</div>
 										<div class="user_top_cate" id="topUploadProject">
-											<h5 onclick="userUploadProject()">올린프로젝트 5</h5>
+											<h5 onclick="userUploadProject('topUploadProject')">올린프로젝트 5</h5>
 										</div>
 										<div class="user_top_cate">	
 											<h5>후원한프로젝트 50</h5>
 										</div>
-										<div class="user_top_cate">	
-											<h5>팔로워 120</h5>
+										<div class="user_top_cate" id="topFollower">	
+											<h5 onclick="userFollower('topFollower')">팔로워 120</h5>
 										</div>
 										<div class="user_top_cate">
 											<h5>팔로잉 100</h5>
@@ -231,6 +258,20 @@
                         
                         <div id="user_content">
                         	<!-- ajax -->
+                        	
+<!--                         	<div class="anime__details__review"> -->
+<!-- 							 	<div class="anime__review__item"> -->
+<!-- 	                         		<div class="anime__review__item__text" id="project_review_content"> -->
+<!-- 		                         		<h6>Chris Curry</h6> -->
+<!-- 		                         		<p>[색을 엮어 감성을 꽃 피우다.] 전통 위주의 옛것을 아름답고 독특하게 재해석합니다.</p> -->
+<!-- 		                         		<p style="margin-top: 10px">팔로잉 1 · 후원한 프로젝트 11</p> -->
+<!-- 		                         		<div class="user_follow_btn"> -->
+<!-- 		                         			<a href="#">+ 팔로우</a> -->
+<!-- 		                         		</div> -->
+<!-- 							 		</div> -->
+<!-- 	                    	 	</div> -->
+<!--                     	 	</div> -->
+                        	
 						</div>
 						
 					</div>
