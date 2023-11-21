@@ -98,12 +98,12 @@
 
 
 <div class="slideWrap" id="slider">
-		<ul class="slider" id="slide">
-			<li><img alt="" src="${pageContext.request.contextPath }/resources/soneson/img/main_slider/main_slider1.jpg"></li>
-			<li><img alt="" src="${pageContext.request.contextPath }/resources/soneson/img/main_slider/main_slider2.jpg"></li>
-			<li><img alt="" src="${pageContext.request.contextPath }/resources/soneson/img/main_slider/main_slider3.jpg"></li>
-		</ul>
-	</div>
+	<ul class="slider" id="slide">
+		<li><img alt="" src="${pageContext.request.contextPath }/resources/soneson/img/main_slider/main_slider1.jpg"></li>
+		<li><img alt="" src="${pageContext.request.contextPath }/resources/soneson/img/main_slider/main_slider2.jpg"></li>
+		<li><img alt="" src="${pageContext.request.contextPath }/resources/soneson/img/main_slider/main_slider3.jpg"></li>
+	</ul>
+</div>
 	
 <!-- --------------------------board-----------------------------	 -->
 
