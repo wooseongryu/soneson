@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/soneson/img/header/son33.ico" type="image/x-icon">
+<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
 <title>손에손</title>
 
 </head>
@@ -16,8 +17,7 @@
 
 <jsp:include page="../inc/footer.jsp"></jsp:include>
 
-<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.3.1.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
+
 
 </body>
 </html>
