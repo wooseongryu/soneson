@@ -19,5 +19,18 @@ public class MainController {
 		
 		return "main/mainTest";	
 	}
+	
+	@GetMapping("mainTest2")
+	public String mainTest2() {
+		System.out.println("mainTestController - mainTest2()");
+		
+		return "main/mainTest2";	
+	}
+	@GetMapping("mainTest3")
+	public String mainTest3() {
+		System.out.println("mainTestController - mainTest3()");
+		
+		return "main/mainTest3";	
+	}
 
 }

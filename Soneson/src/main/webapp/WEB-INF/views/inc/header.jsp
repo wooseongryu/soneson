@@ -11,7 +11,8 @@
 <link rel="preconnect" href="//ssl.pstatic.net">
 <link rel="preconnect" href="//lcs.naver.com">
 <meta charset="utf-8">
-<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/soneson/img/header/son33.ico" type="image/x-icon">
+<%-- <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/soneson/img/header/son33.ico" type="image/x-icon"> --%>
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/soneson/img/header/favicon-16x16.png">
 
 <title>손에손</title>
 
@@ -20,6 +21,12 @@
 <link href="${pageContext.request.contextPath }/resources/main/css/happy/global.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/main/css/happy/header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/main/css/happy/footer.css" rel="stylesheet">
+
+<style>
+	#root {
+		height: 150px;
+	}
+</style>
 
 </head>
 <body>
