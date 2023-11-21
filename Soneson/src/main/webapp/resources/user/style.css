@@ -695,6 +695,7 @@ ol {
 
 .product__item__text {
 	padding-top: 20px;
+/* 	border-bottom: 5px solid #F86453; */
 }
 
 .product__item__text ul {
@@ -702,20 +703,26 @@ ol {
 }
 
 .product__item__text ul li {
-	list-style: none;
+	list-style: none;	
 	font-size: 10px;
-	color: #ffffff;
+	color: rgb(0, 0, 0);
 	font-weight: 700;
 	padding: 1px 10px;
-	background: rgba(255, 255, 255, 0.2);
-	border-radius: 50px;
+	background: rgb(192, 192, 192);
+	border-radius: 5px;
 	display: inline-block;
 }
 
 .product__item__text h5 a {
-	color: #ffffff;
+	color: rgb(0, 0, 0);
 	font-weight: 700;
 	line-height: 26px;
+}
+
+.product__item__text h6 {
+	color: rgb(88, 88, 88);
+	font-weight: 500;
+	line-height: 20px;
 }
 
 .product__sidebar .section-title h5 {
