@@ -9,7 +9,7 @@
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Anime | Template</title>
+    <title>손에손</title>
 
 	<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
     <!-- Google Font -->
@@ -172,6 +172,9 @@
 </head>
 
 <body>
+
+	<jsp:include page="../../inc/header.jsp"></jsp:include>
+
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -233,6 +236,8 @@
 		</div>
 	</section>
 	<!-- Product Section End -->
+	
+	<jsp:include page="../../inc/footer.jsp"></jsp:include>
 
 	<!-- Search model Begin -->
 	<div class="search-model">
