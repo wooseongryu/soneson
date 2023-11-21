@@ -10,7 +10,8 @@
 	<meta name="keywords" content="Anime, unica, creative, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Anime | Template</title>
+	<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/soneson/img/header/son33.ico" type="image/x-icon">
+	<title>손에손</title>
 
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -26,6 +27,20 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/owl.carousel.min.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/slicknav.min.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/joinLogin.css" type="text/css">
+	
+	<!-- 김주영 비번 보기/가리기 아이콘 추가 css -->
+<!-- 	<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">		 -->
+
+
+<style>
+div.main i{
+	position: absolute;
+	left: 90%;
+	top: 18px;
+	color: lightblack;
+}
+</style>
+
 </head>
 
 <body>
@@ -49,10 +64,15 @@
                                 <input name="user_id" type="text" value="${cookie.cookieId.value }" placeholder="아이디를 입력하세요">
                                 <span class="icon_id"></span>
                             </div>
-							<div class="input__item">
-								<input name="user_passwd" type="password" placeholder="비밀번호를 입력해주세요">
-								<span class="icon_lock"></span>
+                            
+                            <div class="input__item">
+                            	<div class="main">
+                        			<span class="icon_lock"></span>
+                           			<input name="user_passwd" type="password" placeholder="비밀번호를 입력해주세요" >
+                           			<i class="fa fa-eye fa-lg"></i>
+								</div>
 							</div>
+							
 							<input type="checkbox" name="rememberId"
 							<c:if test="${not empty cookie.cookieId.value }">checked</c:if>
 						><span>&nbsp; 아이디 저장</span><br>
@@ -122,6 +142,23 @@
 	<script src="${pageContext.request.contextPath }/resources/soneson/js/owl.carousel.min.js"></script>
 	<script src="${pageContext.request.contextPath }/resources/soneson/js/main.js"></script>
 
+
+
+<!-- 비번 보기/가리기 기능-->
+<script>
+	$(document).ready(function(){
+	    $('.input__item i').on('click',function(){
+	        $('input').toggleClass('active');
+	        if($('input').hasClass('active')){
+	            $(this).attr('class',"fa fa-eye-slash fa-lg")
+	            .prev('input').attr('type',"text");
+	        }else{
+	            $(this).attr('class',"fa fa-eye fa-lg")
+	            .prev('input').attr('type','password');
+	        }
+	    });
+	});
+</script>
 
 </body>
 
