@@ -10,9 +10,11 @@
 	<meta name="keywords" content="Anime, unica, creative, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/soneson/img/header/son33.ico" type="image/x-icon">
+	
 	<title>손에손</title>
-
+	<!-- 손에손 타이틀 아이콘 -->
+	<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/soneson/img/header/son33.ico" type="image/x-icon">
+	
 	<!-- Google Font -->
 	<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
@@ -29,16 +31,16 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/joinLogin.css" type="text/css">
 	
 	<!-- 김주영 비번 보기/가리기 아이콘 추가 css -->
-<!-- 	<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">		 -->
+	<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">		
 
 
 <style>
-div.main i{
-	position: absolute;
-	left: 90%;
-	top: 18px;
-	color: lightblack;
-}
+	div.main i{
+		position: absolute;
+		left: 90%;
+		top: 18px;
+		color: lightblack;
+	}
 </style>
 
 </head>

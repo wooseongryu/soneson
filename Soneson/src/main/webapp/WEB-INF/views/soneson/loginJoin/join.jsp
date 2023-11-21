@@ -9,7 +9,9 @@
 	<meta name="keywords" content="Anime, unica, creative, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Anime | Template</title>
+	<title>손에손</title>
+	<!-- 손에손 타이틀 아이콘 -->
+	<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/soneson/img/header/son33.ico" type="image/x-icon">
 	
 	<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
 
@@ -27,6 +29,19 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/owl.carousel.min.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/slicknav.min.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/joinLogin.css" type="text/css">
+	
+	<!-- 김주영 비번 보기/가리기 아이콘 추가 css -->
+	<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">	
+		
+<style>
+	div.main i{
+		position: absolute;
+		left: 90%;
+		top: 18px;
+		color: lightblack;
+	}
+</style>
+
 </head>
 <script type="text/javascript">
 	$(function() {
@@ -271,15 +286,23 @@
                                 <span id = "checkPasswdResult"></span>
                             </div>
                             <div class="input__item">
-                                <input type="password" name="user_passwd" id="user_passwd" placeholder="8 ~ 16글자 사이 입력" required="required" size="20" maxlength="16" oninput="maxLengthCheckPasswd(this)" pattern="^[A-Za-z0-9][\w]{7,15}$" title="비밀번호 8 ~ 16글자 영문자, 숫자, 특수문자(_) 조합">
-                                <span class="icon_lock"></span>
+                            	<div class="main">
+                            		<span class="icon_lock"></span>
+	                                <input type="password" name="user_passwd" id="user_passwd" placeholder="8 ~ 16글자 사이 입력" required="required" size="20" maxlength="16" oninput="maxLengthCheckPasswd(this)" pattern="^[A-Za-z0-9][\w]{7,15}$" title="비밀번호 8 ~ 16글자 영문자, 숫자, 특수문자(_) 조합">
+	                                <i class="fa fa-eye fa-lg"></i>
+                                </div>
                             </div>
                             <div>
                             	<span id="checkPasswdResult2"></span>
                             </div>
+                          
+                            
                             <div class="input__item">
-                                <input type="password" name="user_passwd2" id="user_passwd2" placeholder="비밀번호 확인" required="required" maxlength="16">
-                                <span class="icon_lock"></span>
+                           		<div class="main">
+	                            	<span class="icon_lock"></span>
+	                                <input type="password" name="user_passwd2" id="user_passwd2" placeholder="비밀번호 확인" required="required" maxlength="16">
+	                                <i class="fa fa-eye fa-lg"></i>
+	                        	</div> 
                             </div>
                             <button type="submit" class="site-btn">&nbsp;&nbsp;회원가입하기&nbsp;</button>
                         </form>
@@ -324,6 +347,23 @@
 	<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery.slicknav.js"></script>
 	<script src="${pageContext.request.contextPath }/resources/soneson/js/owl.carousel.min.js"></script>
 	<script src="${pageContext.request.contextPath }/resources/soneson/js/main.js"></script>
+	
+	
+<!-- 비번 보기/가리기 기능-->
+<script>
+	$(document).ready(function(){
+	    $('.input__item i').on('click',function(){
+	        $('input').toggleClass('active');
+	        if($('input').hasClass('active')){
+	            $(this).attr('class',"fa fa-eye-slash fa-lg")
+	            .prev('input').attr('type',"text");
+	        }else{
+	            $(this).attr('class',"fa fa-eye fa-lg")
+	            .prev('input').attr('type','password');
+	        }
+	    });
+	});
+</script>
 
 </body>
 
