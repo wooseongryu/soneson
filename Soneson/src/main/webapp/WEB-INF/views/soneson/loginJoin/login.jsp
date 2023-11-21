@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -52,7 +53,11 @@
 								<input name="user_passwd" type="password" placeholder="비밀번호를 입력해주세요">
 								<span class="icon_lock"></span>
 							</div>
+							<input type="checkbox" name="rememberId"
+							<c:if test="${not empty cookie.cookieId.value }">checked</c:if>
+						><span>&nbsp; 아이디 저장</span><br>
 							<button type="submit" class="site-btn">로그인</button>
+							
 						</form>
 						
 					</div>

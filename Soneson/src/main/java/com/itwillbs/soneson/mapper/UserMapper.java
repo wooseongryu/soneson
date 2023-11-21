@@ -45,10 +45,10 @@ public interface UserMapper {
 	// 암호화 된 패스워드 조회
 	String selectPasswd(UserVO user);
 
-	// 회원 상세정보 조회
+	// 회원 상세정보 조회 - 회원가입 아이디 확인 ajax용
 	UserVO selectUser(UserVO user);
 
-	// 회원 상세정보 조회
+	// 회원 상세정보 조회 - 회원가입 이메일 확인 ajax용
 	UserVO selectUser2(UserVO user);
 	
 	// 회원 정보 변경
@@ -77,9 +77,11 @@ public interface UserMapper {
 	UserVO getMemberKakaoLogin(String kakao_id);
 
 	int updateKakaoId(UserVO user);
-	
+
+	// 회원 탈퇴시 랜덤이메일로 이메일 변경처리
 	int updateRandomEmail(UserVO user);
 
+	// 삭제된 이메일 체크
 	int checkDuplicateEmail(String deleteEmail);
 
 	
