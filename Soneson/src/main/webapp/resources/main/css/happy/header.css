@@ -236,7 +236,8 @@
     top: 115px;
     right: 100px;
     left: 50;
-    width: 54.5%;
+/*     width: 54.5%; */
+    width: 62.5%;
 }
 .HeaderGnb_item__wcfir {
     line-height: 23px;
