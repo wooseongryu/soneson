@@ -9,7 +9,7 @@
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Anime | Template</title>
+    <title>손에손</title>
 
 	<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
     <!-- Google Font -->
@@ -32,14 +32,13 @@
     <script type="text/javascript">
     	let pointColor = "#F86453";
 
-		function userProfile() {
+		function userProfile(id) {
     		$.ajax({
     			type: 'post',
     			url: 'userProfile',
     			dataType: 'json',
     			success: function(resp) {
-    				reset_screen();
-    				$("#topCateProfile h4").css("color", pointColor);
+    				reset_screen(id);
 
 					$("#user_content").append(
 						'<div id="user_content">'
@@ -63,14 +62,13 @@
     		});
     	}
 
-		function userProjectReview() {
+		function userProjectReview(id) {
     		$.ajax({
     			type: 'post',
     			url: 'userProfileProjectReview',
     			dataType: 'json',
     			success: function(resp) {
-    				reset_screen();
-    				$("#topProjectReview h4").css("color", pointColor);
+    				reset_screen(id);
 					
 					$("#user_content").append(
 						'<div class="row">'
@@ -106,14 +104,13 @@
     		});
     	}
 		
-		function userUploadProject() {
+		function userUploadProject(id) {
 			$.ajax({
     			type: 'post',
     			url: 'userUploadProject',
     			dataType: 'json',
     			success: function(resp) {
-    				reset_screen();
-    				$("#topUploadProject h4").css("color", pointColor);
+    				reset_screen(id);
 
 					$("#user_content").append(
 						'<section class="product-page spad">                                                                                                                                         '
@@ -159,19 +156,52 @@
     			}
     		});
 		}
+		
+		function userFollower(id) {
+			$.ajax({
+    			type: 'post',
+    			url: 'userFollower',
+    			dataType: 'json',
+    			success: function(resp) {
+    				reset_screen(id);
+
+					$("#user_content").append(
+						  '<div class="anime__details__review">'
+						+ ' 	<div class="anime__review__item">'
+                        + ' 		<div class="anime__review__item__text" id="project_review_content">'
+	                    + '     		<h6>Chris Curry</h6>'
+	                    + '     		<p>[색을 엮어 감성을 꽃 피우다.] 전통 위주의 옛것을 아름답고 독특하게 재해석합니다.</p>'
+	                    + '     		<p style="margin-top: 10px">팔로잉 1 · 후원한 프로젝트 11</p>'
+	                    + '     		<div class="user_follow_btn">'
+	                    + '     			<a href="#">+ 팔로우</a>'
+	                    + '     		</div>'
+						+ ' 		</div>'
+                    	+ ' 	</div>'
+                	 	+ '</div>'
+					);                                                                                                                                                                             
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+		}
     	
-    	function reset_screen() {
-    		$("#section-title h4").css("color", "black");
+    	function reset_screen(id) {
+    		$("#section-title h5").css("color", "black");
     		$("#user_content").children().remove();
+    		$("#" + id + " h5").css("color", pointColor);
     	}
     
     	$(function() {
-    		userProfile();
+    		userProfile('topCateProfile');
     	});
     </script>
 </head>
 
 <body>
+
+	<jsp:include page="../../inc/header.jsp"></jsp:include>
+
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -182,7 +212,10 @@
 		    <div class="blog__details__comment">
 				<div class="blog__details__comment__item">
 				    <div class="blog__details__comment__item__text">
-				        <h5>또롱/Ttorong</h5>
+				        <h5>
+				        	또롱/Ttorong&nbsp;&nbsp;
+				        	<i class="fa fa-cog" onclick="location.href='#'" style="cursor: pointer;"></i>
+				        </h5>
 				        <p>3년전 가입</p>
 				        <a href="#">+ 팔로우</a>
 				        <a href="chatting" onclick="window.open(this.href, '_blank', 'width=400, height=800'); return false;">창작자 문의</a>
@@ -203,19 +236,22 @@
                                 <div class="col-lg-12 col-md-8 col-sm-6">
                                     <div class="section-title" id="section-title">
                                         <div class="user_top_cate" id="topCateProfile">
-											<h4 onclick="userProfile()">프로필</h4>
+											<h5 onclick="userProfile('topCateProfile')">프로필</h5>
 										</div>
 										<div class="user_top_cate" id="topProjectReview">
-											<h4 onclick="userProjectReview()">프로젝트후기</h4>
+											<h5 onclick="userProjectReview('topProjectReview')">프로젝트후기 11</h5>
 										</div>
 										<div class="user_top_cate" id="topUploadProject">
-											<h4 onclick="userUploadProject()">올린프로젝트</h4>
+											<h5 onclick="userUploadProject('topUploadProject')">올린프로젝트 5</h5>
 										</div>
 										<div class="user_top_cate">	
-											<h4>팔로워</h4>
+											<h5>후원한프로젝트 50</h5>
+										</div>
+										<div class="user_top_cate" id="topFollower">	
+											<h5 onclick="userFollower('topFollower')">팔로워 120</h5>
 										</div>
 										<div class="user_top_cate">
-											<h4>팔로잉</h4>
+											<h5>팔로잉 100</h5>
 										</div>
                                     </div>
                                 </div>
@@ -225,6 +261,20 @@
                         
                         <div id="user_content">
                         	<!-- ajax -->
+                        	
+<!--                         	<div class="anime__details__review"> -->
+<!-- 							 	<div class="anime__review__item"> -->
+<!-- 	                         		<div class="anime__review__item__text" id="project_review_content"> -->
+<!-- 		                         		<h6>Chris Curry</h6> -->
+<!-- 		                         		<p>[색을 엮어 감성을 꽃 피우다.] 전통 위주의 옛것을 아름답고 독특하게 재해석합니다.</p> -->
+<!-- 		                         		<p style="margin-top: 10px">팔로잉 1 · 후원한 프로젝트 11</p> -->
+<!-- 		                         		<div class="user_follow_btn"> -->
+<!-- 		                         			<a href="#">+ 팔로우</a> -->
+<!-- 		                         		</div> -->
+<!-- 							 		</div> -->
+<!-- 	                    	 	</div> -->
+<!--                     	 	</div> -->
+                        	
 						</div>
 						
 					</div>
@@ -233,6 +283,8 @@
 		</div>
 	</section>
 	<!-- Product Section End -->
+	
+	<jsp:include page="../../inc/footer.jsp"></jsp:include>
 
 	<!-- Search model Begin -->
 	<div class="search-model">
