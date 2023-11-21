@@ -1,5 +1,7 @@
 package com.itwillbs.soneson.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwillbs.soneson.service.LoginApiService;
 import com.itwillbs.soneson.service.SendMailService;
 import com.itwillbs.soneson.service.UserService;
 import com.itwillbs.soneson.vo.AuthInfoVO;
@@ -25,6 +28,7 @@ import com.itwillbs.soneson.vo.UserVO;
 
 @Controller
 public class LoginJoinController {
+	
 	@Autowired
 	private UserService userService;
 	
@@ -262,8 +266,9 @@ public class LoginJoinController {
 		}
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		
 		String newPasswd = RandomStringUtils.randomAlphabetic(10);
-//		System.out.println("새로운 비밀번호))))))))))))" + newPasswd);
+		
 		String securePasswd = passwordEncoder.encode(newPasswd);
 		user.setUser_passwd(securePasswd);
 		
@@ -282,35 +287,77 @@ public class LoginJoinController {
 	}	
 	
 	
+	// 소셜 로그인 관련 서비스
+	@Autowired
+	private LoginApiService ls;
 	
 	
-//	@GetMapping("login")
-//	public String login() {
-//		System.out.println("LoginJoinController - login()");
-//		
-//		return "soneson/loginJoin/login";	
-//	}
-//
-//	@GetMapping("idSearch")
-//	public String idSearch() {
-//		System.out.println("LoginJoinController - idSearch()");
-//		
-//		return "soneson/loginJoin/idSearch";	
-//	}
-//
-//	@GetMapping("idSearchResult")
-//	public String idSearchResult() {
-//		System.out.println("LoginJoinController - idSearchResult()");
-//		
-//		return "soneson/loginJoin/idSearchResult";	
-//	}
-//
-//	@GetMapping("passwdSearch")
-//	public String passwdSearch() {
-//		System.out.println("LoginJoinController - passwdSearch()");
-//		
-//		return "soneson/loginJoin/passwdSearch";	
-//	}
+	@GetMapping("kakao/callback")
+	public String kakaoLogin(@RequestParam(value = "code", required = false) String code
+								,Model model
+								, HttpSession session
+								, UserVO user) throws Exception {
+		System.out.println("LoginJoinController - kakao/callback()");
+		
+		String access_Token = ls.getAccessToken(code);
+		
+		HashMap<String, Object> userInfo = ls.getUserInfo(access_Token);
+		
+		if (userInfo.get("id") == null) {
+			model.addAttribute("msg", "다시 시도해주세요");
+			return "fail_back";
+		}
+		
+		String kakao_id = (String)userInfo.get("id");
+		
+    	UserVO dbMember = userService.getMemberKakaoLogin(kakao_id);
+    	
+    	String user_id = (String)session.getAttribute("sId");
+    	if (user_id != null) {  // 로그인이 된 상태에서 유저 정보에서 변경
+    		if(dbMember != null) {  // 중복 가입 방어.
+    			model.addAttribute("msg", "이미 연동된 카카오계정입니다.");
+    			return "fail_back";
+    		}
+    		
+    		user.setUser_id(user_id);
+    		user.setKakao_id(kakao_id);
+    		int updateCount = userService.updateKakaoId(user);
+    		
+    		if (updateCount < 1) {
+    			model.addAttribute("msg", "카카오 연동 실패");
+    			return "fail_back";
+    		}
+    		
+    		model.addAttribute("msg", "카카오 연동이 완료 되었습니다.");
+    		model.addAttribute("targetURL", "/soneson/userUpdate");
+    		
+    		return "forward";
+    	}
+    	
+    	if(dbMember != null) {  // 카카오 가입 되어있음. 로그인.
+    		session.setAttribute("kakao_id", kakao_id);
+            session.setAttribute("access_Token", access_Token);
+            session.setAttribute("sId", dbMember.getUser_id());
+            session.setAttribute("isAdmin", dbMember.getUser_is_admin());
+            
+			return "redirect:/";
+    	}
+		
+    	// 카카오정보 없음. 새로 가입.
+		session.setAttribute("kakao_id", (String)userInfo.get("id"));
+        session.setAttribute("access_Token", access_Token);
+        
+        model.addAttribute("msg", "입력된 정보가 없습니다. 회원가입 페이지로 이동합니다.");
+		model.addAttribute("targetURL", "/soneson/join");
+		
+		return "forward";
+	}
 	
+	@GetMapping("kakao/Logout")
+	public String kakaoLogout(HttpSession session) {
+		session.invalidate();
+		
+		return "redirect:/";
+	}
 	
 }

@@ -27,6 +27,10 @@
 	    height: 160px;
 	    background: white;
 	}
+	
+	.package_img {
+		vertical-align: top;
+	}
 </style>
 
 </head>
@@ -77,7 +81,7 @@
 						<rect x="9" y="33" width="30" height="4" fill="#1C1C1C"></rect>
 					</svg>
 					<a href="https://happybean.naver.com/donation" role="menuitem" class="HeaderGnb_item__wcfir category" aria-current="false">카테고리</a>
-					<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="true" href="/fundings/home">인기</a>
+					<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="true" href="popular">인기</a>
 					<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="true" href="/fundings/home">신규</a>
 					<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="/flower/product">마감임박</a>
 					<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="/volunteer">공개예정</a>

@@ -96,12 +96,12 @@ public class UserService {
 		return mapper.selectUserList();
 	}
 	
-	// 회원 상세정보 조회 요청
+	// 회원 상세정보 조회 요청 - 아이디 ajax 확인용
 	public UserVO getUser(UserVO user) {
 		return mapper.selectUser(user);
 	}
 
-	// 회원 상세정보 조회 요청
+	// 회원 상세정보 조회 요청 - 이메일 ajax 확인용
 	public UserVO getUser2(UserVO user) {
 		return mapper.selectUser2(user);
 	}
@@ -111,8 +111,7 @@ public class UserService {
 		return mapper.updateUser(user);
 	}
 	
-	
-	//
+	// 회원 탈퇴 정보 요청 시 조회
 	public UserVO getdeleteUser(UserVO user) {
 		return mapper.selectUser(user);
 	}
@@ -122,11 +121,7 @@ public class UserService {
 		return mapper.deleteUser(user);
 		
 	}
-
 	
-
-	
-
 	// 아이디 찾기 
 	public UserVO userIdSearch(UserVO user) {
 		return mapper.selectIdSearch(user);
@@ -139,6 +134,7 @@ public class UserService {
 		return mapper.selectPasswdSearch(user);
 	}
 
+	// 비밀번호 변경
 	public int userPasswdChange(UserVO user) {
 		System.out.println("UserService - userPasswdChange()");
 		return mapper.updatePasswdChange(user);
@@ -150,18 +146,18 @@ public class UserService {
 		return mapper.getMemberKakaoLogin(kakao_id);
 	}
 
-	// 카카오 아이디 연동하기??
+	// 카카오 아이디 연동하기
 	public int updateKakaoId(UserVO user) {
 		System.out.println("UserService - updateKakao");
 		return mapper.updateKakaoId(user);
 	}
 
-	// 이메일 랜덤으로 바꾸기 - 회원 삭제시?
+	// 이메일 랜덤으로 바꾸기 - 회원 삭제시
 	public int updateRandomEmail(UserVO user) {
 		return mapper.updateRandomEmail(user);
 	}
 
-	//
+	// 회원 삭제시 이메일 중복체크용
 	public int checkDuplicateEmail(String deleteEmail) {
 		return mapper.checkDuplicateEmail(deleteEmail);
 	}

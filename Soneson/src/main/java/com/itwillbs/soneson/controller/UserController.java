@@ -34,4 +34,11 @@ public class UserController {
 		System.out.println("userProfileProjectReview - userUploadProject()");
 		return "1";
 	}
+	
+	@ResponseBody
+	@PostMapping("userFollower")
+	public String userFollower() {
+		System.out.println("userProfileProjectReview - userFollower()");
+		return "1";
+	}
 }

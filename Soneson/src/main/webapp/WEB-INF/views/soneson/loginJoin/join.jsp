@@ -173,6 +173,7 @@
 				if(!emailRegex.exec(email)) {
 					$("#checkEmailResult").html("이메일 형식에 맞게 입력하세요! ex) abc123@naver.com");
 					$("#checkEmailResult").css("color", "red");
+					return false;
 				} else {
 					$.ajax({
 						url: "UserCheckDupEmail",
@@ -236,7 +237,8 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
-
+	<!-- header 위치 -->
+<%-- 	<jsp:include page="../../inc/header.jsp"></jsp:include> --%>
 
     <!-- Signup Section Begin -->
     <section class="signup spad">
@@ -299,6 +301,8 @@
     </section>
     <!-- Signup Section End -->
 
+	<!-- footer -->
+<%-- 	<jsp:include page="../../inc/footer.jsp"></jsp:include> --%>
 
       <!-- Search model Begin -->
       <div class="search-model">

@@ -13,7 +13,7 @@
 			, hire_date
 			, user_is_admin
 			, mail_auth_status
-<!-- 			, kakao_id -->
+			, kakao_id
 			, user_status
 	)
   	 VALUES (
@@ -24,7 +24,7 @@
 			, now()
 			, 'N'
 			, 'N'
-<!-- 			, null -->
+			, null
 			, '가입'
 	)
 	
@@ -70,10 +70,10 @@
 			, hire_date
 			, user_is_admin
 			, mail_auth_status
-<!-- 			, CASE -->
-<!-- 				WHEN kakao_id IS NULL THEN '미연동' -->
-<!-- 				ELSE '연동됨' -->
-<!-- 			  END AS kakao_id -->
+			, CASE
+				WHEN kakao_id IS NULL THEN '미연동'
+				ELSE '연동됨'
+			  END AS kakao_id
 		  	, user_status
 		FROM user 
 		WHERE user_id = #{user_id}
@@ -139,9 +139,6 @@
 	</update>
 	
     
-	
-	
-	
 	<!-- update -->
 	<!-- 기존 인증정보 갱신 - UPDATE -->
 	<!-- 아이디에 해당하는 레코드의 인증코드를 수정 -->
@@ -204,10 +201,6 @@
 	</delete>
 	
 	
-	
-	
-	
-	
 	<select id="getMemberKakaoLogin" resultType="User">	
 		SELECT
 			user_id
@@ -228,10 +221,6 @@
 		SET user_email = #{user_email}
 		WHERE user_id = #{user_id}
 	</update>
-	
-	
-	
-	
 	
 	
 </mapper>

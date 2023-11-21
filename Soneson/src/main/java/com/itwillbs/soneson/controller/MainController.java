@@ -10,8 +10,14 @@ public class MainController {
 	public String main() {
 		System.out.println("MainController - main()");
 		
-		return "main/main_happy";	
+		return "main/mainTest3";	
 	}
+//	@GetMapping("main")
+//	public String main() {
+//		System.out.println("MainController - main()");
+//		
+//		return "main/main_happy";	
+//	}
 	
 	@GetMapping("mainTest")
 	public String mainTest() {
@@ -32,5 +38,13 @@ public class MainController {
 		
 		return "main/mainTest3";	
 	}
+//	@GetMapping("popular")
+//	public String popular() {
+//		System.out.println("popularController - popular()");
+//		
+//		
+//		
+//		return "main/popular";	
+//	}
 
 }
