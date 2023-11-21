@@ -212,7 +212,10 @@
 		    <div class="blog__details__comment">
 				<div class="blog__details__comment__item">
 				    <div class="blog__details__comment__item__text">
-				        <h5>또롱/Ttorong</h5>
+				        <h5>
+				        	또롱/Ttorong&nbsp;&nbsp;
+				        	<i class="fa fa-cog" onclick="location.href='#'" style="cursor: pointer;"></i>
+				        </h5>
 				        <p>3년전 가입</p>
 				        <a href="#">+ 팔로우</a>
 				        <a href="chatting" onclick="window.open(this.href, '_blank', 'width=400, height=800'); return false;">창작자 문의</a>
