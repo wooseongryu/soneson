@@ -25,6 +25,7 @@
 <style>
 	#root {
 		height: 150px;
+		background: white;
 	}
 </style>
 
