@@ -26,7 +26,7 @@
 <body id="page-top">
 
 	<!-- header 위치 -->
-	<jsp:include page="../../inc/header.jsp"></jsp:include>			
+<%-- 	<jsp:include page="../../inc/header.jsp"></jsp:include>			 --%>
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -102,7 +102,7 @@
 	<!-- End of Page Wrapper -->
 
 	<!-- footer -->
-	<jsp:include page="../../inc/footer.jsp"></jsp:include>
+<%-- 	<jsp:include page="../../inc/footer.jsp"></jsp:include> --%>
 	<!-- Scroll to Top Button-->
 	<a class="scroll-to-top rounded" href="#page-top">
 		<i class="fas fa-angle-up"></i>

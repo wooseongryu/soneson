@@ -32,7 +32,10 @@
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
-
+	
+	<!-- header 위치 -->
+<%-- 	<jsp:include page="../../inc/header.jsp"></jsp:include> --%>
+	
 	<!-- Login Section Begin -->
 	<section class="login spad">
 		<div class="container">
@@ -88,7 +91,9 @@
 	</section>
 	<!-- Login Section End -->
 
-
+	<!-- footer -->
+<%-- 	<jsp:include page="../../inc/footer.jsp"></jsp:include> --%>
+	
 	<!-- Search model Begin -->
 	<div class="search-model">
 		<div class="h-100 d-flex align-items-center justify-content-center">
