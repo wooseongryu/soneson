@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +11,9 @@
 <script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
 <%-- <script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.3.1.min.js"></script> --%>
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
+
+<!--     개인 css 엄성윤 -->
+<link href="${pageContext.request.contextPath }/resources/soneson/css/main/main.css" rel="stylesheet">
  
  
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/soneson/img/header/son33.ico" type="image/x-icon">
@@ -104,12 +108,8 @@
 <!-- --------------------------board-----------------------------	 -->
 
 	<div class="mainList">
-		<div class="title">MOVIE</div>
+		<div class="title">인기 프로젝트</div>
 		<div class="main-movie-list">
-<!-- 			<ul class="selector"> -->
-<!-- 				<li class="">박스오피스</li> -->
-<!-- 				<li class="">상영예정작</li> -->
-<!-- 			</ul> -->
 			<div class="boardWrap">
 				<ul class="slider-bo">
 					<c:forEach var="movie" items="${movieList }">

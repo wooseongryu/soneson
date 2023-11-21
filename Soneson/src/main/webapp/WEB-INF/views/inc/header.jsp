@@ -24,8 +24,8 @@
 
 <style>
 	#root {
-		height: 150px;
-		background: white;
+	    height: 160px;
+	    background: white;
 	}
 </style>
 
