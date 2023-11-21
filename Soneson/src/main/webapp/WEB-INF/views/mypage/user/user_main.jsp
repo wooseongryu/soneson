@@ -39,7 +39,7 @@
     			dataType: 'json',
     			success: function(resp) {
     				reset_screen();
-    				$("#topCateProfile h4").css("color", pointColor);
+    				$("#topCateProfile h5").css("color", pointColor);
 
 					$("#user_content").append(
 						'<div id="user_content">'
@@ -70,7 +70,7 @@
     			dataType: 'json',
     			success: function(resp) {
     				reset_screen();
-    				$("#topProjectReview h4").css("color", pointColor);
+    				$("#topProjectReview h5").css("color", pointColor);
 					
 					$("#user_content").append(
 						'<div class="row">'
@@ -113,7 +113,7 @@
     			dataType: 'json',
     			success: function(resp) {
     				reset_screen();
-    				$("#topUploadProject h4").css("color", pointColor);
+    				$("#topUploadProject h5").css("color", pointColor);
 
 					$("#user_content").append(
 						'<section class="product-page spad">                                                                                                                                         '
@@ -161,7 +161,7 @@
 		}
     	
     	function reset_screen() {
-    		$("#section-title h4").css("color", "black");
+    		$("#section-title h5").css("color", "black");
     		$("#user_content").children().remove();
     	}
     
@@ -206,19 +206,22 @@
                                 <div class="col-lg-12 col-md-8 col-sm-6">
                                     <div class="section-title" id="section-title">
                                         <div class="user_top_cate" id="topCateProfile">
-											<h4 onclick="userProfile()">프로필</h4>
+											<h5 onclick="userProfile()">프로필</h5>
 										</div>
 										<div class="user_top_cate" id="topProjectReview">
-											<h4 onclick="userProjectReview()">프로젝트후기</h4>
+											<h5 onclick="userProjectReview()">프로젝트후기 11</h5>
 										</div>
 										<div class="user_top_cate" id="topUploadProject">
-											<h4 onclick="userUploadProject()">올린프로젝트</h4>
+											<h5 onclick="userUploadProject()">올린프로젝트 5</h5>
 										</div>
 										<div class="user_top_cate">	
-											<h4>팔로워</h4>
+											<h5>후원한프로젝트 50</h5>
+										</div>
+										<div class="user_top_cate">	
+											<h5>팔로워 120</h5>
 										</div>
 										<div class="user_top_cate">
-											<h4>팔로잉</h4>
+											<h5>팔로잉 100</h5>
 										</div>
                                     </div>
                                 </div>
