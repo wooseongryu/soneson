@@ -182,11 +182,13 @@ button:disabled {
 }
 .view-top-header {
 	height: 64px;
-	position: fixed;
+/* 	position: fixed; */
+	position: absolute;
     top: 0px;
     z-index: 100;
     width: 100%;
 	font-size: 14px;
+	background: #fff;
 }
 .top-headerWarp {
 	width: 1080px;
@@ -195,6 +197,10 @@ button:disabled {
     display: flex;
     justify-content: space-between;
     position: relative;
+}
+.top-headerWarp img {
+	margin-top: 20px;
+	width: 160px;
 }
 .top-headerWarp-left {
 	position: relative;
@@ -361,6 +367,7 @@ button:disabled {
     justify-content: space-between;
     width: 630px;
     flex-direction: column;
+    margin-top: 10px;
 }
 .select_detail {
     display: block;
@@ -610,7 +617,168 @@ button:disabled {
     border: 1px solid rgb(240, 240, 240);
     font-size: 11px !important;
 }
-
+.reward-section {
+	padding: 32px 0px;
+    border-bottom: 1px solid rgba(240, 240, 240, 0.4);
+    margin: 0px;
+    display: block;
+}
+.reward-optiondiv {
+	display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    color: rgb(61, 61, 61);
+    margin: 0px 0px 10px;
+}
+.margindiv {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.select-rewardoptionWarp {
+	display: inline-flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+}
+.select-radioWarp {
+	display: inline-flex;
+    flex: 1 0 auto;
+    margin-left: 11px;
+    position: relative;
+    padding: 0px;
+    height: 48px;
+}
+.select-radioWarp:first-child {
+	margin-left: 0px;
+}
+.radioBtn-rewardItem {
+	position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    opacity: 0;
+    cursor: pointer;
+    border-color: rgb(240, 240, 240);
+}
+.radio-inner {
+	display: inline-flex;
+    flex: 1 0 auto;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0px;
+    justify-content: flex-start;
+    position: relative;
+    box-sizing: border-box;
+    border-radius: 4px;
+    color: rgb(61, 61, 61);
+    border: 1px solid rgb(240, 240, 240);
+    background: rgb(255, 255, 255);
+    flex-direction: row;
+    padding: 10px 16px;
+}
+.radio-label {
+	width: 100%;
+    position: relative;
+    text-align: center;
+}
+radio-label label {
+	display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 0px 16px;
+    height: 26px;
+    box-sizing: border-box;
+    transition: border 0.2s ease 0s;
+    justify-content: center;
+}
+.radioBtn-rewardItem:checked ~ div {
+	border-color: rgb(248, 100, 83);
+}
+.radio-optionDiv {
+	display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: end;
+}
+.formBtnDiv {
+	display: flex;
+    flex-wrap: wrap;
+    margin: 22px 0px 0px;
+    justify-content: center;
+}
+.formBtn {
+	cursor: pointer;
+    justify-content: center;
+    height: 44px;
+    white-space: nowrap;
+    border-radius: 1px;
+    margin: 0px;
+    outline: 0px;
+    box-sizing: border-box;
+    font-weight: normal;
+    padding: 0px 24px;
+    border: 1px solid rgb(240, 240, 240);
+    color: rgb(61, 61, 61);
+    background: rgb(255, 255, 255);
+    margin: 0px 10px;
+}
+.inputAmount-form {
+	display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 1px;
+    background: rgb(255, 255, 255);
+    padding: 0px 18px;
+    border: 1px solid rgb(240, 240, 240);
+}
+.input-amountSpan {
+	max-height: 44px;
+    min-width: 100px;
+    display: flex;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: -0.015em;
+    align-items: center;
+    border-radius: 1px;
+    flex: 1 1 0%;
+    border: 0px;
+    text-align: left;
+    padding: 0px;
+    background: transparent;
+}
+.input-amountDiv {
+	min-width: 44px;
+    height: 44px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background: rgb(252, 252, 252);
+    color: rgb(109, 109, 109);
+    border-left: 1px solid rgb(242, 242, 242);
+    border-radius: 0px 2px 2px 0px;
+    margin-right: -18px;
+}
+.input_numDetail {
+	text-align: right;
+    display: block;
+    width: 630px;
+    height: calc(1.5em + 0.75rem + 2px);
+    font-size: 1rem;
+    font-size: 0.8rem;
+    border-radius: 10rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #6e707e;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: #fff;
+}
 
 
 

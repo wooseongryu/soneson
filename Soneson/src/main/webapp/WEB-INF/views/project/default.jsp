@@ -39,7 +39,9 @@ $(function() {
 						<i class="bi bi-arrow-left"></i><span>내가 만든 프로젝트</span>	
 					</a>
 					<h1>
-						<img alt="손에손로고" src="">
+						<a href="./">
+							<img src="${pageContext.request.contextPath }/resources/soneson/img/header/soneson2.jpg" class="package_img">
+						</a>
 					</h1>
 					<div class="top-headerWarp-right">
 						<a href="./"><span><i class="bi bi-person-circle"></i></span></a>

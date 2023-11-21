@@ -19,10 +19,13 @@
 						<i class="bi bi-arrow-left"></i><span>내가 만든 프로젝트</span>	
 					</a>
 					<h1>
-						<img alt="손에손로고" src="">
+						<a href="./">
+							<img src="${pageContext.request.contextPath }/resources/soneson/img/header/soneson2.jpg" class="package_img">
+						</a>
+<%-- 						<img src="${pageContext.request.contextPath }/resources/soneson/img/header/soneson2.jpg"> --%>
 					</h1>
 					<div class="top-headerWarp-right">
-						<button><span><i class="bi bi-person-circle"></i></span></button>
+						<a href="./"><span><i class="bi bi-person-circle"></i></span></a>
 					</div>
 				</div>	
 			</div>
@@ -41,31 +44,36 @@
 					</div>
 				</div>
 			</div>
-			<div class="view-top-menu">
-				<div class="top-menu-content">
-					<ul class="top-menu-list">
-						<li class="write-list">
-							<a href="">요금제 선택</a>
-						</li>
-						<li class="write-list">
-							<a href="">기본 정보</a>
-						</li>
-						<li class="write-list">
-							<a href="">펀딩 계획</a>
-						</li>
-						<li class="write-list">
-							<a href="">리워드 구성</a>
-						</li>
-						<li class="write-list">
-							<a href="">프로젝트 계획</a>
-						</li>
-						<li class="write-list">
-							<a href="">창작자 정보</a>
-						</li>
-						<li class="write-list">
-							<a href="">상품 고지</a>
-						</li>
-					</ul>
+			<div>
+				<div class="view-top-menu">
+					<div class="top-menu-content">
+						<ul class="top-menu-list">
+	<!-- 						<li class="write-list"> -->
+	<!-- 							<a href="">요금제 선택</a> -->
+	<!-- 						</li> -->
+							<li class="write-list">
+								<a href="projectInsertForm">기본 정보</a>
+							</li>
+							<li class="write-list">
+								<a href="projectFunding">펀딩 계획</a>
+							</li>
+							<li class="write-list">
+								<a href="projectReward">리워드 구성</a>
+							</li>
+							<li class="write-list">
+								<a href="projectStory">프로젝트 계획</a>
+							</li>
+							<li class="write-list on">
+								<a href="projectCreateor">창작자 정보</a>
+							</li>
+	<!-- 						<li class="write-list"> -->
+	<!-- 							<a href="">상품 고지</a> -->
+	<!-- 						</li> -->
+						</ul>
+						<div class="top-menu-btn">
+							<button>저장하기</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
