@@ -17,7 +17,7 @@
 <jsp:include page="../inc/footer.jsp"></jsp:include>
 
 <script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.3.1.min.js"></script>
-<script src="${pageContext.request.contextPath }/resources/cinepick/js/jquery-3.7.0.js"></script>
+<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
 
 </body>
 </html>
