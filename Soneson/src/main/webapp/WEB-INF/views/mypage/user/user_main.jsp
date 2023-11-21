@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/style.css" type="text/css">
     
     <script type="text/javascript">
-    	let pointColor = "rgb(248, 100, 83)";
+    	let pointColor = "#F86453";
 
 		function userProfile() {
     		$.ajax({
@@ -105,6 +105,60 @@
     			}
     		});
     	}
+		
+		function userUploadProject() {
+			$.ajax({
+    			type: 'post',
+    			url: 'userUploadProject',
+    			dataType: 'json',
+    			success: function(resp) {
+    				reset_screen();
+    				$("#topUploadProject h4").css("color", pointColor);
+
+					$("#user_content").append(
+						'<section class="product-page spad">                                                                                                                                         '
+						+ '	<div class="container">                                                                                                                                                  '
+					    + '     <div class="row">                                                                                                                                                 '
+						+ '			<div class="col-lg-12">                                                                                                                                          '
+						+ '				<div class="product__page__content">                                                                                                                         '
+                        + '					<div class="row">                                                                                                                                        '
+					    + '                     <div class="col-lg-4 col-md-6 col-sm-6" style="">                                                                                                 '
+					    + '                         <div class="product__item">                                                                                                                   '
+					    + '								<a href="#">																																'
+					    + '                                 <div class="product__item__pic set-bg" data-setbg="${pageContext.request.contextPath }/resources/soneson/img/popular/popular-1.jpg" 		 '
+					    + '										style="background-image: url(\'${pageContext.request.contextPath }/resources/soneson/img/popular/popular-1.jpg\')"></div>			 '
+					    + '								</a>																																		'
+					    + '                             <div class="product__item__text">                                                                                                         '
+					    + '                                 <ul>                                                                                                                                  '
+					    + '                                     <li>디자인 문구</li>                                                                                                              '
+					    + '                                 </ul>                                                                                                                                 '
+					    + '                                 <h5 style="margin-bottom: 7px;">                                                                                                      '
+					    + '                                 <a href="#">                                                                                                                         '
+					    + '                                 	2023년을 기록하는 100가지 질문 연말정산 9주년                                                                                    '
+					    + '                                 </a>                                                                                                                                 '
+					    + '                                 </h5>                                                                                                                                 '
+					    + '                                 <h6>벌써 9년째- 우리의 소중한 한 해를 기록하는 시간, 연말정산이 돌아왔습니다.</h6>                                                    '
+					    + '                                 <ul style="margin-top: 15px">                                                                                                         '
+					    + '                                     <li>3500%</li>                                                                                                                    '
+					    + '                                     <li>1,000,000원</li>                                                                                                              '
+					    + '                                     <li style="float: right">10일 남음</li>                                                                                           '
+					    + '                                 </ul>                                                                                                                                 '
+					    + '                               </div>                                                                                                                                    '
+					    + '                            </div>                                                                                                                                        '
+					    + '                        </div>                                                                                                                                            '
+					    + '                    </div>                                                                                                                                                '
+					    + '                </div>                                                                                                                                                    '
+					    + '            </div>                                                                                                                                                        '
+						+ '		   </div>                                                                                                                                                               '
+					    + '    </div>                                                                                                                                                                '
+						+ '</section>                                                                                                                                                                '
+					);                                                                                                                                                                             
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+		}
     	
     	function reset_screen() {
     		$("#section-title h4").css("color", "black");
@@ -112,7 +166,7 @@
     	}
     
     	$(function() {
-//     		userProfile();
+    		userProfile();
     	});
     </script>
 </head>
@@ -154,8 +208,8 @@
 										<div class="user_top_cate" id="topProjectReview">
 											<h4 onclick="userProjectReview()">프로젝트후기</h4>
 										</div>
-										<div class="user_top_cate">
-											<h4>올린프로젝트</h4>
+										<div class="user_top_cate" id="topUploadProject">
+											<h4 onclick="userUploadProject()">올린프로젝트</h4>
 										</div>
 										<div class="user_top_cate">	
 											<h4>팔로워</h4>
@@ -171,99 +225,8 @@
                         
                         <div id="user_content">
                         	<!-- ajax -->
-                        	<section class="product-page spad">
-								<div class="container">
-						            <div class="row">
-										<div class="col-lg-12">
-											<div class="product__page__content">
-	                        					<div class="row">
-						                            <div class="col-lg-4 col-md-6 col-sm-6">
-						                                <div class="product__item">
-						                                    <div class="product__item__pic set-bg" data-setbg="${pageContext.request.contextPath }/resources/soneson/img/popular/popular-1.jpg">
-						                                        <div class="ep">18 / 18</div>
-						                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-						                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-						                                    </div>
-						                                    <div class="product__item__text">
-						                                        <ul>
-						                                            <li>Active</li>
-						                                            <li>Movie</li>
-						                                        </ul>
-						                                        <h5><a href="#">Sen to Chihiro no Kamikakushi</a></h5>
-						                                    </div>
-						                                </div>
-						                            </div>
-						                            <div class="col-lg-4 col-md-6 col-sm-6">
-						                                <div class="product__item">
-						                                    <div class="product__item__pic set-bg" data-setbg="${pageContext.request.contextPath }/resources/soneson/img/popular/popular-1.jpg">
-						                                        <div class="ep">18 / 18</div>
-						                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-						                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-						                                    </div>
-						                                    <div class="product__item__text">
-						                                        <ul>
-						                                            <li>Active</li>
-						                                            <li>Movie</li>
-						                                        </ul>
-						                                        <h5><a href="#">Sen to Chihiro no Kamikakushi</a></h5>
-						                                    </div>
-						                                </div>
-						                            </div>
-						                            <div class="col-lg-4 col-md-6 col-sm-6">
-						                                <div class="product__item">
-						                                    <div class="product__item__pic set-bg" data-setbg="${pageContext.request.contextPath }/resources/soneson/img/popular/popular-1.jpg">
-						                                        <div class="ep">18 / 18</div>
-						                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-						                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-						                                    </div>
-						                                    <div class="product__item__text">
-						                                        <ul>
-						                                            <li>Active</li>
-						                                            <li>Movie</li>
-						                                        </ul>
-						                                        <h5><a href="#">Sen to Chihiro no Kamikakushi</a></h5>
-						                                    </div>
-						                                </div>
-						                            </div>
-						                            <div class="col-lg-4 col-md-6 col-sm-6">
-						                                <div class="product__item">
-						                                    <div class="product__item__pic set-bg" data-setbg="${pageContext.request.contextPath }/resources/soneson/img/popular/popular-1.jpg">
-						                                        <div class="ep">18 / 18</div>
-						                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-						                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-						                                    </div>
-						                                    <div class="product__item__text">
-						                                        <ul>
-						                                            <li>Active</li>
-						                                            <li>Movie</li>
-						                                        </ul>
-						                                        <h5><a href="#">Sen to Chihiro no Kamikakushi</a></h5>
-						                                    </div>
-						                                </div>
-						                            </div>
-						                            <div class="col-lg-4 col-md-6 col-sm-6">
-						                                <div class="product__item">
-						                                    <div class="product__item__pic set-bg" data-setbg="${pageContext.request.contextPath }/resources/soneson/img/popular/popular-1.jpg">
-						                                        <div class="ep">18 / 18</div>
-						                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-						                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-						                                    </div>
-						                                    <div class="product__item__text">
-						                                        <ul>
-						                                            <li>Active</li>
-						                                            <li>Movie</li>
-						                                        </ul>
-						                                        <h5><a href="#">Sen to Chihiro no Kamikakushi</a></h5>
-						                                    </div>
-						                                </div>
-						                            </div>
-						                        </div>
-						                    </div>
-						                </div>
-									</div>
-						        </div>
-							</section>
 						</div>
+						
 					</div>
                 </div>
 			</div>
