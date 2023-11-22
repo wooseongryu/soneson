@@ -12,6 +12,7 @@
 <link rel="preconnect" href="//lcs.naver.com">
 <meta charset="utf-8">
 <%-- <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/soneson/img/header/son33.ico" type="image/x-icon"> --%>
+<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/soneson/img/header/favicon-16x16.png">
 
 <title>손에손</title>
@@ -22,16 +23,7 @@
 <link href="${pageContext.request.contextPath }/resources/main/css/happy/header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/main/css/happy/footer.css" rel="stylesheet">
 
-<style>
-	#root {
-	    height: 160px;
-	    background: white;
-	}
-	
-	.package_img {
-		vertical-align: top;
-	}
-</style>
+
 
 </head>
 <body>
@@ -57,7 +49,7 @@
 						<a href="https://happybean.naver.com/my/home" class="HeaderUserProfile_wrap__3FD8V">
 							<img loading="lazy" src="https://phinf.pstatic.net/contact/profile/blog/58/80/bom_bomi.jpg?type=s160" width="30" height="30" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI">
 							<span class="HeaderUserProfile_id__3e8GE">
-								<span class="HeaderUserProfile_ellipsis__1iBvz">레나</span>
+								<span class="HeaderUserProfile_ellipsis__1iBvz">성윤</span>
 							</span>
 						</a>
 						<span class="HeaderUserProfile_bar__1OPU2"></span>
@@ -87,12 +79,105 @@
 					<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="/volunteer">공개예정</a>
 					<a href="https://happybean.naver.com/campaign/list" role="menuitem" class="HeaderGnb_item__wcfir" aria-current="false">가치</a>
 				</div>
+				
+				<!-- 1122 추가 -->
+				<div class="DonationTodayCategory_wrap__k2rtu">
+					<ul class="DonationTodayCategory_category_list__2WAdE">
+						<li class="DonationTodayCategory_list_item__agFbi item_1" aria-current="true">
+							<button type="button" class="DonationTodayCategory_button__1648s">
+								<span class="DonationTodayCategory_text__2oRHp">전체</span>
+							</button>
+						</li>
+						<li class="DonationTodayCategory_list_item__agFbi item_2" aria-current="false">
+							<button type="button" class="DonationTodayCategory_button__1648s">
+								<span class="DonationTodayCategory_text__2oRHp">아동•청소년</span>
+							</button>
+						</li>
+<!-- 						<li class="DonationTodayCategory_list_item__agFbi item_6" aria-current="false"> -->
+<!-- 							<button type="button" class="DonationTodayCategory_button__1648s"> -->
+<!-- 								<span class="DonationTodayCategory_text__2oRHp">지구촌</span> -->
+<!-- 							</button> -->
+<!-- 						</li> -->
+<!-- 						<li class="DonationTodayCategory_list_item__agFbi item_5" aria-current="false"> -->
+<!-- 							<button type="button" class="DonationTodayCategory_button__1648s"> -->
+<!-- 								<span class="DonationTodayCategory_text__2oRHp">다문화</span> -->
+<!-- 							</button> -->
+<!-- 						</li> -->
+						<li class="DonationTodayCategory_list_item__agFbi item_3" aria-current="false">
+							<button type="button" class="DonationTodayCategory_button__1648s">
+								<span class="DonationTodayCategory_text__2oRHp">동물</span>
+							</button>
+						</li>
+						<li class="DonationTodayCategory_list_item__agFbi item_4" aria-current="false">
+							<button type="button" class="DonationTodayCategory_button__1648s">
+								<span class="DonationTodayCategory_text__2oRHp">환경</span>
+							</button>
+						</li>
+						<li class="DonationTodayCategory_list_item__agFbi item_5" aria-current="false">
+							<button type="button" class="DonationTodayCategory_button__1648s">
+								<span class="DonationTodayCategory_text__2oRHp">장애인</span>
+							</button>
+						</li>
+						<li class="DonationTodayCategory_list_item__agFbi item_6" aria-current="false">
+							<button type="button" class="DonationTodayCategory_button__1648s">
+								<span class="DonationTodayCategory_text__2oRHp">가족•여성</span>
+							</button>
+						</li>
+						<li class="DonationTodayCategory_list_item__agFbi item_7" aria-current="false">
+							<button type="button" class="DonationTodayCategory_button__1648s">
+								<span class="DonationTodayCategory_text__2oRHp">어르신</span>
+							</button>
+						</li>
+<!-- 						<li class="DonationTodayCategory_list_item__agFbi item_8" aria-current="false"> -->
+<!-- 							<button type="button" class="DonationTodayCategory_button__1648s"> -->
+<!-- 								<span class="DonationTodayCategory_text__2oRHp">시민사회</span> -->
+<!-- 							</button> -->
+<!-- 						</li> -->
+						<li class="DonationTodayCategory_list_item__agFbi item_9" aria-current="false">
+							<button type="button" class="DonationTodayCategory_button__1648s">
+								<span class="DonationTodayCategory_text__2oRHp">기타</span>
+							</button>
+						</li>
+					</ul>
+				</div>
+				
 			</header>
 
 
 	
 		</div>
 	</div>
+
+<script>
+	var $j = jQuery.noConflict();
+
+	$j(function() {
+		
+// 		$j(".HeaderGnb_item__wcfir.category").mouseover(function() {
+// 			$j(".DonationTodayCategory_wrap__k2rtu").addClass("cateShow");
+// 		}); 
+		
+		
+		$j(".HeaderGnb_item__wcfir.category, .DonationTodayCategory_wrap__k2rtu").mouseover(function() {
+			$j(".DonationTodayCategory_wrap__k2rtu").toggle();
+		}); 
+		
+		$j(".DonationTodayCategory_wrap__k2rtu").mouseover(function() {
+			$j(".DonationTodayCategory_wrap__k2rtu").css("display", "block");
+		}); 
+		
+		$j(".DonationTodayCategory_wrap__k2rtu").mouseout(function() {
+			$j(".DonationTodayCategory_wrap__k2rtu").css("display", "none");
+		}); 
+		
+		
+		$j(".HeaderGnb_item__wcfir.category, .DonationTodayCategory_wrap__k2rtu").mouseout(function() {
+			$j(".DonationTodayCategory_wrap__k2rtu").css("display", "none");
+		}); 
+
+
+	});
+</script>
 
 </body>
 </html>

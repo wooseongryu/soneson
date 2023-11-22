@@ -77,7 +77,7 @@
 .Header_inner__3RznR {
     position: relative;
     width: 1140px;
-    height: 70px;
+/*     height: 70px; */
     margin: 0 auto;
 }
 
@@ -199,13 +199,13 @@
     color: #000;
 }
 
-.HeaderGnb_menu__1fvV3 {
-    position: absolute;
-    top: 23px;
-    right: 100px;
-    left: 100px;
-    text-align: center;
-}
+/* .HeaderGnb_menu__1fvV3 { */
+/*     position: absolute; */
+/*     top: 23px; */
+/*     right: 100px; */
+/*     left: 100px; */
+/*     text-align: center; */
+/* } */
 
 .HeaderUserProfile_wrap__3FD8V {
     display: inline-block;
@@ -223,22 +223,22 @@
 /*     color: #F86453; */
 /* } */
 
-.HeaderGnb_menu__1fvV3 {
-    position: absolute;
-    top: 110px;
-    right: 100px;
-    left: 0;
-    width: 51%;
-}
+/* .HeaderGnb_menu__1fvV3 { */
+/*     position: absolute; */
+/*     top: 110px; */
+/*     right: 100px; */
+/*     left: 0; */
+/*     width: 51%; */
+/* } */
 
-.HeaderGnb_menu__1fvV3 {
-    position: absolute;
-    top: 115px;
-    right: 100px;
-    left: 50;
+/* .HeaderGnb_menu__1fvV3 { */
+/*     position: absolute; */
+/*     top: 115px; */
+/*     right: 100px; */
+/*     left: 50; */
 /*     width: 54.5%; */
-    width: 62.5%;
-}
+/*     width: 62.5%; */
+/* } */
 .HeaderGnb_item__wcfir {
     line-height: 23px;
 /*     line-height: 43px; */
@@ -247,3 +247,246 @@
 .HeaderGnb_item__wcfir.category {
 	padding-left: 10px;
 }
+
+/* 1222 추가 */
+
+.HeaderGnb_menu__1fvV3 {
+    width: 100%;
+    float: left;
+    margin-top: 0.4em;
+    height: fit-content;
+}
+
+	#root {
+	    height: 160px;
+	    background: white;
+	}
+	
+	.package_img {
+		vertical-align: top;
+	}
+	
+	.DonationTodayCategory_wrap__k2rtu {
+/* 	    position: relative; */
+	    margin-top: 30px;
+	}
+	
+	.DonationTodayCategory_category_list__2WAdE {
+	    display: -ms-flexbox;
+	    display: flex;
+	    -ms-flex-pack: justify;
+	    justify-content: space-between;
+	    white-space: nowrap;
+	    width: 75%;
+/* 	    width: 81%; */
+	}
+	.DonationTodayCategory_button__1648s {
+	    display: block;
+	    height: 42px;
+	    padding: 0 12px 0 10px;
+	    border: 1px solid #eee;
+	    border-radius: 30px;
+	}
+	.DonationTodayCategory_text__2oRHp {
+	    display: inline-block;
+	    font-family: "NanumSquareNeo",dotum,Sans-serif;
+	    font-size: 15px;
+	    margin-top: 1px;
+	    vertical-align: middle;
+	}
+	.DonationTodayCategory_text__2oRHp {
+	    display: inline-block;
+	    font-family: "NanumSquareNeo",dotum,Sans-serif;
+	    font-size: 15px;
+	    margin-top: 1px;
+	    vertical-align: middle;
+	}
+	.DonationTodayCategory_category_list__2WAdE .item_1 .DonationTodayCategory_button__1648s:before {
+	    background-image: url(/build/static/media/icon_category_1.2f477b61.svg);
+	}
+	.DonationTodayCategory_list_item__agFbi .DonationTodayCategory_button__1648s:before {
+	    display: inline-block;
+	    width: 27px;
+	    height: 27px;
+	    margin-right: 4px;
+	    background-repeat: no-repeat;
+	    background-size: 100%;
+	    vertical-align: middle;
+	    content: "";
+	}
+	.DonationTodayCategory_list_item__agFbi[aria-current=true] .DonationTodayCategory_button__1648s {
+	    background-color: #F86453;
+	    border-color: #F86453;
+	}
+	
+	
+/* 1122 추가 */
+
+#root {
+    height: 160px;
+    background: white;
+}
+
+.Header_header__3lTua {
+    position: relative;
+    z-index: 30;
+    width: 66%;
+    margin: 0 auto;
+}
+
+.Header_gnb__122-B {
+    /* border-bottom: 1px solid #f0f0f0; */
+    background-color: #fff;
+    text-align: right;
+    height: 8em;
+}
+
+.Header_inner__3RznR {
+    /* position: relative; */
+    width: 100%;
+    height: 100px;
+    margin: 0 auto;
+    padding: 0;
+    clear: both;
+}
+
+
+.DonationTodayCategory_wrap__k2rtu {
+    position: absolute;
+    /* position: relative; */
+    /* margin-top: 30px; */
+    /* width: 85%; */
+    clear: both;
+    margin-top: 3.3em;
+    background: white;
+/*     padding-bottom: 1.3em; */
+    width: 100%;
+}
+
+.DonationTodayCategory_category_list__2WAdE {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    white-space: nowrap;
+    /* margin: 0 auto; */
+/*     width: 81%; */
+/*     width: 88%; */
+    float: left;
+    padding-bottom: 1.1em;
+}
+
+body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select {
+    margin: 0 auto;
+    padding: 0px;
+}
+
+.DonationTodayCategory_text__2oRHp {
+    display: inline-block;
+    font-family: "NanumSquareNeo",dotum,Sans-serif;
+    font-size: 13px;
+    margin-top: 1px;
+    vertical-align: middle;
+}
+
+
+.goKAXE:focus, .goKAXE:hover {
+	fill:#F86453;
+}
+
+.DonationTodayCategory_category_list__2WAdE .item_1 .DonationTodayCategory_button__1648s:before {
+    background-image: url(https://happybean.naver.com/build/static/media/icon_category_8.f2468755.svg);
+}
+.DonationTodayCategory_category_list__2WAdE .item_2 .DonationTodayCategory_button__1648s:before {
+    background-image: url(https://happybean.naver.com/build/static/media/icon_category_2.56c06e20.svg);
+}
+.DonationTodayCategory_category_list__2WAdE .item_3 .DonationTodayCategory_button__1648s:before {
+    background-image: url(https://happybean.naver.com/build/static/media/icon_category_9.c4c27110.svg);
+}
+.DonationTodayCategory_category_list__2WAdE .item_4 .DonationTodayCategory_button__1648s:before {
+    background-image: url(https://happybean.naver.com/build/static/media/icon_category_10.d63d5fa4.svg);
+}
+.DonationTodayCategory_category_list__2WAdE .item_5 .DonationTodayCategory_button__1648s:before {
+    background-image: url(https://happybean.naver.com/build/static/media/icon_category_4.77e301b7.svg);
+}
+.DonationTodayCategory_category_list__2WAdE .item_6 .DonationTodayCategory_button__1648s:before {
+    background-image: url(https://happybean.naver.com/build/static/media/icon_category_7.557e9b0b.svg);
+}
+.DonationTodayCategory_category_list__2WAdE .item_7 .DonationTodayCategory_button__1648s:before {
+    background-image: url(https://happybean.naver.com/build/static/media/icon_category_3.34a96925.svg);
+}
+.DonationTodayCategory_category_list__2WAdE .item_8 .DonationTodayCategory_button__1648s:before {
+    background-image: url(https://happybean.naver.com/build/static/media/icon_category_8.f2468755.svg);
+}
+.DonationTodayCategory_category_list__2WAdE .item_9 .DonationTodayCategory_button__1648s:before {
+    background-image: url(https://happybean.naver.com/build/static/media/icon_category_11.8b149026.svg);
+}
+
+.DonationTodayCategory_wrap__k2rtu {
+	display: none;
+}
+
+/* .DonationTodayCategory_wrap__k2rtu { */
+/*     position: absolute; */
+/*     clear: both; */
+/*     margin-top: 3.3em; */
+/*     background: white; */
+/*     width: 100%; */
+/*     max-height: 0px; */
+/*     transition: max-height 0.3s ease-in-out 0s; */
+/* } */
+
+/* .cateShow { */
+/* 	min-height: 100px; */
+/* 	position: absolute; */
+/*     clear: both; */
+/*     width: 100%; */
+/*     background: white; */
+/*     width: 100%; */
+/*     transition: max-height 0.3s ease-in-out 0s; */
+/* } */
+
+
+
+
+.ehJwom {
+    padding: 0px 6px;
+    min-height: 56px;
+    position: relative;
+    margin-right: 18px;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+    color: rgb(13, 13, 13);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s ease-in-out 0s;
+}
+
+
+.kRrXyo {
+    min-height: 56px;
+    position: relative;
+    margin-right: 18px;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0.02em;
+    color: rgb(13, 13, 13);
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s ease-in-out 0s;
+    padding: 0px 2px;
+    font-size: 14px;
+}
+
