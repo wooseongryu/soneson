@@ -130,9 +130,9 @@ public class AdminService {
 
 	// 자주묻는 질문 조회
 	// qnaIdx를 널스트링으로 전달 시 전체 질문 조회
-	public List<QnaVO> getQna(String qnaIdx) {
+	public List<QnaVO> getQna(String qna_idx) {
 		System.out.println("AdminService - getQna()");
-		return mapper.selectQna(qnaIdx);
+		return mapper.selectQna(qna_idx);
 	}
 	
 	// 자주묻는 질문 수정 
@@ -142,9 +142,9 @@ public class AdminService {
 	}
 	
 	// 자주묻는 질문 삭제
-	public int deleteQna(String qnaIdx) {
+	public int deleteQna(String qna_idx) {
 		System.out.println("AdminService - deleteQna()");
-		return mapper.deleteQna(qnaIdx);
+		return mapper.deleteQna(qna_idx);
 	}
 
 	

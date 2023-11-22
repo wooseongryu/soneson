@@ -71,9 +71,9 @@
 									<div class="col-sm-12 mb-6 mb-sm-0">
 										<label for="">카테고리</label>
 										<br>
-	                                    <select class="form-select" name="qnaCategory" aria-label="Default select example" >
+	                                    <select class="form-select" name="qna_category" aria-label="Default select example" >
 									  		<c:forEach var="qnaCategory" items="${qnaCategoryList }">
-												<option value="${qnaCategory.qnacate_idx }">${qnaCategory.qnacate_subject }</option>
+												<option value="${qnaCategory.qnaCate_idx }">${qnaCategory.qnaCate_subject }</option>
 											</c:forEach>
 										</select>
 								  	</div>

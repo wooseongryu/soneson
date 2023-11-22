@@ -81,8 +81,8 @@
 	                                            <td>${qna.qnaCate_subject }</td>
 	                                            <td>${qna.qna_title }</td>
 												<td>
-													<button type="button" class="btn btn-primary" onclick="location.href='adminQNAUpdate?qnaIdx=${qna.qnaIdx}'">수정</button>
-													<button type="button" class="btn btn-primary" onclick="location.href='adminQNADelete?qnaIdx=${qna.qnaIdx}'">삭제</button>
+													<button type="button" class="btn btn-primary" onclick="location.href='adminQNAUpdate?qna_idx=${qna.qna_idx}'">수정</button>
+													<button type="button" class="btn btn-primary" onclick="location.href='adminQNADelete?qna_idx=${qna.qna_idx}'">삭제</button>
 												</td>
 	                                        </tr>
                                         </c:forEach>

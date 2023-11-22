@@ -409,7 +409,7 @@ public class AdminController {
 	
 	// 관리자 자주묻는 질문 수정 폼
 	@GetMapping("adminQNAUpdate")
-	public String adminQNAUpdate(Model model, String qnaIdx, HttpSession session) {
+	public String adminQNAUpdate(Model model, String qna_idx, HttpSession session) {
 		System.out.println("AdminController - adminQNAUpdate()");
 		
 //		String sId = (String)session.getAttribute("sId");
@@ -421,7 +421,7 @@ public class AdminController {
 //		}
 		
 		List<QnaCateVO> categoryList = adminService.getQnaCategory();
-		QnaVO qna = adminService.getQna(qnaIdx).get(0);
+		QnaVO qna = adminService.getQna(qna_idx).get(0);
 		
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("qna", qna);
@@ -445,7 +445,7 @@ public class AdminController {
 	
 	// 관리자 자주묻는 질문 삭제
 	@GetMapping("adminQNADelete")
-	public String adminQNADelete(Model model, String qnaIdx, HttpSession session) {
+	public String adminQNADelete(Model model, String qna_idx, HttpSession session) {
 		System.out.println("AdminController - adminQNADelete()");
 		
 //		String sId = (String)session.getAttribute("sId");
@@ -456,7 +456,7 @@ public class AdminController {
 //			return "fail_back";
 //		}
 		
-		int deleteCount = adminService.deleteQna(qnaIdx);
+		int deleteCount = adminService.deleteQna(qna_idx);
 		
 		if (deleteCount == 0) {
 			model.addAttribute("msg", "삭제 실패!");
