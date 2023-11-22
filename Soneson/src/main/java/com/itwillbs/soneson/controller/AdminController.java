@@ -1,7 +1,18 @@
 package com.itwillbs.soneson.controller;
 
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,9 +21,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.soneson.service.AdminService;
 import com.itwillbs.soneson.service.UserService;
+import com.itwillbs.soneson.vo.EventCateVO;
+import com.itwillbs.soneson.vo.EventVO;
 import com.itwillbs.soneson.vo.NoticeVO;
 import com.itwillbs.soneson.vo.UserVO;
 
@@ -349,30 +364,388 @@ public class AdminController {
 		return "mypage/admin/admin_select_OTO";	
 	}
 	
-	// 게시판관리 - 이벤트 페이지로 이동
+	
+	
+	/*====================================================================
+	 * 이벤트
+	 * ===================================================================
+	 * */
+	
+	// 관리자 이벤트 목록 조회 페이지
 	@GetMapping("adminSelectEvent")
-	public String adminSelectEvent() {
-		System.out.println("AdminController - adminSelectEvent()");
+	public String adminSelectEvent(EventVO event, Model model, HttpSession session) {
+		System.out.println("AdminController - adminEventList()");
 		
-		return "mypage/admin/admin_select_event";	
-	}
+//		String sId = (String)session.getAttribute("sId");
+//		String isAdmin = (String)session.getAttribute("isAdmin");
+//		
+//		if(sId == null || isAdmin.equals("N")) {
+//			model.addAttribute("msg", "잘못된 접근입니다!");
+//			return "fail_back";
+//		}
+		
+		List<EventVO> eventList = adminService.getEvent("");
+		
+		LocalDate now = LocalDate.now();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formatedNow = now.format(dtf);
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-	
-	// 이벤트 등록 페이지로 이동
-	@GetMapping("adminInsertEvent")
-	public String adminInsertEvent() {
-		System.out.println("AdminController - adminInsertEvent()");
+        try {
+			Date nowDate = formatter.parse(formatedNow);
+
+			for (EventVO e : eventList) {
+				Date eventEndDate = formatter.parse(e.getEvent_endDt());
+				Date eventStartDate = formatter.parse(e.getEvent_startDt());
+				
+				if (eventStartDate.compareTo(nowDate) > 0) {
+					e.setEvent_status("대기");
+					continue;
+				}
+				
+				if (eventEndDate.compareTo(nowDate) < 0) {
+					e.setEvent_status("종료");
+				} else {
+					e.setEvent_status("진행중");
+				}
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("eventList", eventList);
 		
-		return "mypage/admin/admin_insert_event";	
+		return "mypage/admin/admin_select_event";
 	}
 	
-	// 이벤트 카테고리 등록 페이지로 이동
-	@GetMapping("adminInsertEventCate")
-	public String adminInsertEventCate() {
-		System.out.println("AdminController - adminInsertEventCate()");
+	// 관리자 이벤트 등록 폼
+	@GetMapping("adminEventInsert")
+	public String adminEventInsert(HttpSession session, Model model) {
+		System.out.println("AdminController - adminEventInsert()");
 		
-		return "mypage/admin/admin_insert_eventCategory";	
+//		String sId = (String)session.getAttribute("sId");
+//		String isAdmin = (String)session.getAttribute("isAdmin");
+//		
+//		if(sId == null || isAdmin.equals("N")) {
+//			model.addAttribute("msg", "잘못된 접근입니다!");
+//			return "fail_back";
+//		}
+		
+		List<EventCateVO> eventCategoryList = adminService.getEventCategory();
+		
+		model.addAttribute("eventCategoryList", eventCategoryList);
+		
+		return "mypage/admin/admin_insert_event";
 	}
+	
+	// 관리자 이벤트 등록
+	@PostMapping("adminEventInsertPro")
+	public String adminEventInsertPro(EventVO event, HttpSession session, Model model) {
+		System.out.println("AdminController - adminEventInsertPro()");
+		
+		String uploadDir = "/resources/upload"; // 가상의 경로
+		String saveDir = session.getServletContext().getRealPath(uploadDir); // 실제 업로드 경로
+		String subDir = ""; // 서브디렉토리명을 저장할 변수 선언(날짜로 구분)
+		
+		System.out.println(saveDir);
+		
+		
+		try {
+			LocalDate now = LocalDate.now();
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			subDir = now.format(dtf);
+			saveDir += "/" + subDir;
+			Path path = Paths.get(saveDir);
+			Files.createDirectories(path);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		MultipartFile mFile_poster = event.getEvent_poster_multi();
+		MultipartFile mFile_thumb = event.getEvent_thumbnail_multi();
+		
+		String uuid = UUID.randomUUID().toString();
+		event.setEvent_poster("");
+		String fileName_poster = uuid.substring(0, 8) + "_" + mFile_poster.getOriginalFilename();
+		String fileName_thumb = uuid.substring(0, 8) + "_" + mFile_thumb.getOriginalFilename();
+		
+		if(!mFile_poster.getOriginalFilename().equals("")) {
+			event.setEvent_poster(subDir + "/" + fileName_poster);
+		}
+		
+		if(!mFile_thumb.getOriginalFilename().equals("")) {
+			event.setEvent_thumbnail(subDir + "/" + fileName_thumb);
+		}
+		
+		int insertCount = adminService.insertEvent(event);
+		
+		if (insertCount == 0) {
+			model.addAttribute("msg", "등록 실패!");
+			return "fail_back";
+		}
+		
+		// 실제폴더에 저장.
+		try {
+			if(!mFile_poster.getOriginalFilename().equals("")) {
+				mFile_poster.transferTo(new File(saveDir, fileName_poster));
+			}
+			if(!mFile_thumb.getOriginalFilename().equals("")) {
+				mFile_thumb.transferTo(new File(saveDir, fileName_thumb));
+			}
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/adminSelectEvent";
+	}
+	
+	// 관리자 이벤트 수정 폼
+	@GetMapping("adminEventUpdate")
+	public String adminEventUpdate(String event_idx, Model model, HttpSession session) {
+		System.out.println("AdminController - adminEventUpdate()");
+		
+//		String sId = (String)session.getAttribute("sId");
+//		String isAdmin = (String)session.getAttribute("isAdmin");
+//		
+//		if(sId == null || isAdmin.equals("N")) {
+//			model.addAttribute("msg", "잘못된 접근입니다!");
+//			return "fail_back";
+//		}
+		
+		List<EventCateVO> eventCategoryList = adminService.getEventCategory();
+		
+		
+		EventVO event = adminService.getEvent(event_idx).get(0);
+		
+		System.out.println("eventCategoryList : " + eventCategoryList);
+		System.out.println("event : " + event);
+		
+		model.addAttribute("eventCategoryList", eventCategoryList);
+		
+		model.addAttribute("event", event);
+		
+		return "mypage/admin/admin_update_event";
+	}
+	
+	// 관리자 이벤트 수정
+	@PostMapping("adminEventUpdatePro")
+	public String adminEventUpdatePro(EventVO event, HttpSession session, Model model) {
+		System.out.println("AdminController - adminEventUpdatePro()");
+		
+		String uploadDir = "/resources/upload"; // 가상의 경로
+		String saveDir = session.getServletContext().getRealPath(uploadDir); // 실제 업로드 경로
+		String subDir = ""; // 서브디렉토리명을 저장할 변수 선언(날짜로 구분)
+		
+		try {
+			LocalDate now = LocalDate.now();
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			subDir = now.format(dtf);
+			saveDir += "/" + subDir;
+			Path path = Paths.get(saveDir);
+			Files.createDirectories(path);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		MultipartFile mFile_poster = event.getEvent_poster_multi();
+		MultipartFile mFile_thumb = event.getEvent_thumbnail_multi();
+		
+		String uuid = UUID.randomUUID().toString();
+		event.setEvent_poster("");
+		String fileName_poster = uuid.substring(0, 8) + "_" + mFile_poster.getOriginalFilename();
+		String fileName_thumb = uuid.substring(0, 8) + "_" + mFile_thumb.getOriginalFilename();
+		
+		if(!mFile_poster.getOriginalFilename().equals("")) {
+			event.setEvent_poster(subDir + "/" + fileName_poster);
+		}
+		
+		if(!mFile_thumb.getOriginalFilename().equals("")) {
+			event.setEvent_poster(subDir + "/" + fileName_thumb);
+		}
+		
+		// 수정전 기존의 파일경로 가지고 있어야됨.
+		EventVO tmpEvent = adminService.getEvent(String.valueOf(event.getEvent_idx())).get(0);
+		
+		int updateCount = adminService.updateEvent(event);
+		
+		if (updateCount == 0) {
+			model.addAttribute("msg", "수정 실패!");
+			return "fail_back";
+		}
+		
+		// 실제폴더에 저장.
+		try {
+			if(!mFile_poster.getOriginalFilename().equals("")) {
+				mFile_poster.transferTo(new File(saveDir, fileName_poster));
+			}
+			
+			if(!mFile_thumb.getOriginalFilename().equals("")) {
+				mFile_thumb.transferTo(new File(saveDir, fileName_thumb));
+			}
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		// 수정시 기존의 파일 삭제.
+		String uploadPath = "resources/upload";
+		try {
+			String realPath = session.getServletContext().getRealPath(uploadPath);
+			Path path = Paths.get(realPath + "/" + tmpEvent.getEvent_poster());
+			Files.deleteIfExists(path);
+			
+			path = Paths.get(realPath + "/" + tmpEvent.getEvent_thumbnail());
+			Files.deleteIfExists(path);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/adminSelectEvent";
+	}
+	
+	// 관리자 이벤트 삭제
+	@GetMapping("adminEventDelete")
+	public String adminEventDelete(String event_idx, HttpSession session, Model model) {
+		System.out.println("AdminController - adminEventDelete()");
+		
+//		String sId = (String)session.getAttribute("sId");
+//		String isAdmin = (String)session.getAttribute("isAdmin");
+//		
+//		if(sId == null || isAdmin.equals("N")) {
+//			model.addAttribute("msg", "잘못된 접근입니다!");
+//			return "fail_back";
+//		}
+		
+		// 삭제하기전에 파일경로를 먼저 받아와야됨.
+		EventVO tmpEvent = adminService.getEvent(event_idx).get(0);
+		
+		int deleteCount = adminService.deleteEvent(event_idx);
+		
+		if (deleteCount == 0) {
+			model.addAttribute("msg", "삭제 실패!");
+			return "fail_back";
+		}
+		
+		// 삭제시 파일 도 함께 삭제.
+		String uploadPath = "resources/upload";
+		try {
+			String realPath = session.getServletContext().getRealPath(uploadPath);
+			Path path = Paths.get(realPath + "/" + tmpEvent.getEvent_poster());
+			Files.deleteIfExists(path);
+			path = Paths.get(realPath + "/" + tmpEvent.getEvent_thumbnail());
+			Files.deleteIfExists(path);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/adminSelectEvent";
+	}
+	
+	
+	/*====================================================================
+	 *  이벤트 카테고리
+	 * ===================================================================
+	 * */
+	
+	// 관리자 이벤트 카테고리 관리 페이지 및 폼
+	@GetMapping("adminEventCategoryInsert")
+	public String adminEventCategoryInsert(Model model, HttpSession session) {
+		System.out.println("AdminController - adminEventCategoryInsert()");
+		
+//		String sId = (String)session.getAttribute("sId");
+//		String isAdmin = (String)session.getAttribute("isAdmin");
+//		
+//		if(sId == null || isAdmin.equals("N")) {
+//			model.addAttribute("msg", "잘못된 접근입니다!");
+//			return "fail_back";
+//		}
+		
+		List<EventCateVO> eventCategoryList = adminService.getEventCategory();
+		
+		model.addAttribute("eventCategoryList", eventCategoryList);
+		
+		
+		return "mypage/admin/admin_insert_eventCategory";
+	}
+	
+	// 관리자 이벤트 카테고리 등록
+	@PostMapping("adminEventCategoryInsertPro")
+	public String adminEventCategoryInsertPro(String eventCate_subject, Model model) {
+		System.out.println("AdminController - adminEventCategoryInsertPro()");
+		
+		List<EventCateVO> eventCategoryList = adminService.getEventCategory();
+		
+		for (EventCateVO eventCate : eventCategoryList) {
+			if (eventCate_subject.equals(eventCate.getEventCate_subject())) {
+				model.addAttribute("msg", "중복된 카테고리입니다!");
+				return "fail_back";
+			}
+		}
+		
+		int insertCount = adminService.insertEventCategory(eventCate_subject);
+		
+		if (insertCount == 0) {
+			model.addAttribute("msg", "등록 실패!");
+			return "fail_back";
+		}
+		
+		return "redirect:/adminEventCategoryInsert";
+	}
+	
+	// 관리자 이벤트 카테고리 삭제
+	@GetMapping("adminEventCategoryDelete")
+	public String adminEventCategoryDelete(String eventCate_subject, HttpSession session, Model model) {
+		System.out.println("AdminController - adminCategoryDelete()");
+		
+//		String sId = (String)session.getAttribute("sId");
+//		String isAdmin = (String)session.getAttribute("isAdmin");
+//		
+//		if(sId == null || isAdmin.equals("N")) {
+//			model.addAttribute("msg", "잘못된 접근입니다!");
+//			return "fail_back";
+//		}
+		
+		int deleteCount = adminService.deleteEventCategory(eventCate_subject);
+		
+		if (deleteCount == 0) {
+			model.addAttribute("msg", "삭제 실패!");
+			return "fail_back";
+		}
+		
+		return "redirect:/adminEventCategoryInsert";
+	}
+	
+	
+	
+	
+	
+	
+//	// 게시판관리 - 이벤트 페이지로 이동
+//	@GetMapping("adminSelectEvent")
+//	public String adminSelectEvent() {
+//		System.out.println("AdminController - adminSelectEvent()");
+//		
+//		return "mypage/admin/admin_select_event";	
+//	}
+//	
+//	// 이벤트 등록 페이지로 이동
+//	@GetMapping("adminInsertEvent")
+//	public String adminInsertEvent() {
+//		System.out.println("AdminController - adminInsertEvent()");
+//		
+//		return "mypage/admin/admin_insert_event";	
+//	}
+//	
+//	// 이벤트 카테고리 등록 페이지로 이동
+//	@GetMapping("adminInsertEventCate")
+//	public String adminInsertEventCate() {
+//		System.out.println("AdminController - adminInsertEventCate()");
+//		
+//		return "mypage/admin/admin_insert_eventCategory";	
+//	}
 	
 	
 	

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.itwillbs.soneson.vo.EventCateVO;
+import com.itwillbs.soneson.vo.EventVO;
 import com.itwillbs.soneson.vo.NoticeVO;
 import com.itwillbs.soneson.vo.UserVO;
 
@@ -40,6 +42,34 @@ public interface AdminMapper {
 	
 	// 메인페이지에서 조회할 때 
 	NoticeVO selectNotice(int notice_idx);
+
+	
+	
+	/*==============================================================
+	 * 이벤트
+	 * =============================================================
+	 * */
+
+	int insertEvent(EventVO event);
+
+	List<EventVO> selectEvent(String event_idx);
+
+	int updateEvent(EventVO event);
+
+	int deleteEvent(String event_idx);
+	
+	
+	/*==============================================================
+	 * 이벤트 카테고리
+	 * =============================================================
+	 * */
+	
+	int insertEventCategory(String eventCate_subject);
+
+	List<EventCateVO> selectEventCategory();
+
+	int deleteEventCategory(String eventCate_subject);
+	
 	
 	
 }

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.soneson.mapper.AdminMapper;
+import com.itwillbs.soneson.vo.EventCateVO;
+import com.itwillbs.soneson.vo.EventVO;
 import com.itwillbs.soneson.vo.NoticeVO;
 import com.itwillbs.soneson.vo.UserVO;
 
@@ -57,6 +59,66 @@ public class AdminService {
 		System.out.println("AdminService - updateNotice()");
 		return mapper.updateNotice(notice);
 	}
+	
+	
+	
+	/*==============================================================
+	 * 이벤트
+	 * =============================================================
+	 * */
+
+	// 이벤트 등록
+	public int insertEvent(EventVO event) {
+		System.out.println("AdminService - insertEvent()");
+		return mapper.insertEvent(event);
+	}
+
+	// 이벤트 조회
+	// event_idx를 널스트링으로 전달 시 전체 질문 조회
+	public List<EventVO> getEvent(String event_idx) {
+		System.out.println("AdminService - selectEvent()");
+		return mapper.selectEvent(event_idx);
+	}
+
+	// 이벤트 수정
+	public int updateEvent(EventVO event) {
+		System.out.println("AdminService - updateEvent()");
+		return mapper.updateEvent(event);
+	}
+
+	// 이벤트 삭제
+	public int deleteEvent(String event_idx) {
+		System.out.println("AdminService - deleteEvent(event_idx)");
+		return mapper.deleteEvent(event_idx);
+	}
+	
+	
+	//---------------------------------------------------------
+	
+	// 이벤트 카테고리 등록
+	public int insertEventCategory(String eventCate_subject) {
+		System.out.println("AdminService - insertEventCategory()");
+		return mapper.insertEventCategory(eventCate_subject);
+	}
+
+	// 이벤트 카테고리 조회
+	public List<EventCateVO> getEventCategory() {
+		System.out.println("AdminService - getEventCategory()");
+		return mapper.selectEventCategory();
+	}
+
+	// 이벤트 카테고리 삭제
+	public int deleteEventCategory(String eventCate_subject) {
+		System.out.println("AdminService - deleteEventCategory()");
+		return mapper.deleteEventCategory(eventCate_subject);
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

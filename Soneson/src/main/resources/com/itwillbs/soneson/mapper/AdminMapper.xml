@@ -63,7 +63,76 @@
     </update>
     <!-- 공지 끝 -->
 	
+    <!-- 이벤트 -->
+    <insert id="insertEvent">
+    	INSERT INTO event
+    	VALUES (
+    		null
+			, #{event_title}
+			, #{event_startDt}
+			, #{event_endDt}
+			, #{event_poster}
+			, #{event_thumbnail}
+			, #{event_category}
+    	)
+    </insert>
     
+    <select id="selectEvent" resultType="Event">
+    	SELECT
+    		e.event_idx
+			, e.event_title
+			, e.event_startDt
+			, e.event_endDt
+			, e.event_poster
+			, e.event_thumbnail
+			, c.eventCate_Subject
+    	FROM
+    		event e JOIN eventCate c
+			ON e.event_category = c.eventCate_Idx
+    	<if test="event_idx != null and !event_idx.equals('')">
+		WHERE event_idx = #{event_idx}
+		</if>
+    </select>
+    
+    <update id="updateEvent">
+    	UPDATE event
+    	SET
+			event_title = #{event_title}
+			, event_startDt = #{event_startDt}
+			, event_endDt = #{event_endDt}
+			, event_poster = #{event_poster}
+			, event_thumbnail = #{event_thumbnail}
+			, event_category = #{event_category}
+		WHERE event_idx = #{event_idx}
+    </update>
+    
+    <delete id="deleteEvent">
+    	DELETE FROM event
+    	WHERE event_idx = #{event_idx};
+    </delete>
+    
+    
+    <!-- 이벤트 카테고리 -->
+    <insert id="insertEventCategory">
+		INSERT INTO eventCate
+		VALUES (
+			null
+			, #{eventCate_subject}
+		)
+	</insert>
+
+	<select id="selectEventCategory" resultType="EventCate">
+          SELECT 
+          	eventCate_idx 
+          	, eventCate_subject
+          FROM eventCate
+    </select>
+    
+    <delete id="deleteEventCategory">
+    	DELETE FROM eventCate
+    	WHERE eventCate_subject = #{eventCate_subject}
+    </delete>
+    <!-- 이벤트 카테고리 끝 -->
     
     
 </mapper>

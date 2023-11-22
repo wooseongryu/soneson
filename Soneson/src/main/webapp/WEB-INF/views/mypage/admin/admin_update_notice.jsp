@@ -60,24 +60,57 @@
                     <div class="col-lg-12">
                         <div class="p-5">
                             <div class="text-center">
-                            	<h1 class="h4 text-gray-900 mb-4">공지사항 수정</h1>
+                                <h1 class="h4 text-gray-900 mb-4">이벤트 수정</h1>
                             </div>
-                            <form class="user" action="adminNoticeUpdatePro" method="post">
-                            	<input type="hidden" name="notice_idx" value="${notice.notice_idx }">
-                                <div class="form-group row">
+                            <form class="user" action="adminEventUpdatePro" method="post" enctype="multipart/form-data">
+                            	<input type="hidden" name="event_idx" value="${event.event_idx }" >
+                            	<div class="form-group row">
 									<div class="col-sm-12 mb-6 mb-sm-0">
-										<label for="">제목</label>
-										<input type="text" name="notice_title" placeholder="제목입력" value="${notice.notice_title }" maxlength="50">
+										<label for="">이벤트 카테고리</label>
+										<br>
+	                                    <select class="form-select" name="event_category" aria-label="Default select example" >
+									  		<c:forEach var="eventCategory" items="${eventCategoryList }">
+												<c:choose>
+													<c:when test="${eventCategory.eventCate_Idx eq event.event_category }">
+														<option value="${eventCategory.eventCate_Idx }" selected="selected">${eventCategory.eventCate_Subject }</option>
+													</c:when>
+													<c:otherwise>
+														<option value="${eventCategory.eventCate_Idx }">${eventCategory.eventCate_Subject }</option>
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
+										</select>
 								  	</div>
                                 </div>
-								<div class="form-group row">
+                            	<div class="form-group row">
                                     <div class="col-sm-12 mb-6 mb-sm-0">
-									  <label for="floatingTextarea">공지내용</label>
-									  <textarea rows="10" name="notice_content" class="form-control form-control-textarea" 
-									  	placeholder="공지내용작성" id="floatingTextarea" maxlength="3000">${notice.notice_content }</textarea>
-									</div>
+										<label for="">이벤트 제목</label>
+                                        <input type="text" name="event_title" class="form-control form-control-user" id="exampleFirstName"
+                                            value="${event.event_title }">
+                                    </div>
                                 </div>
 								<br>
+								<div class="form-group row">
+								  	<div class="col-sm-5 mb-2 mb-sm-0">
+										<label for="">이벤트 시작일</label>
+										<input type="text" name="event_startDt" value="${event.event_startDt }" class="form-control form-control-user" id="fromDatepicker">
+	                                </div>
+								  	<div class="col-sm-5 mb-2 mb-sm-0">
+										<label for="">이벤트 종료일</label>
+										<input type="text" name="event_endDt" value="${event.event_endDt }" class="form-control form-control-user" id="toDatepicker" >
+	                                </div>
+								</div>
+								<br>
+								<div class="form-group row">
+									<div class="col-sm-5 mb-1 mb-sm-0">
+									    <label for="">썸네일 사진</label>
+										<input type="file" name="event_thumbnail_multi" required="required"/>
+								    </div>
+									<div class="col-sm-5 mb-1 mb-sm-0">
+								    	<label for="">이벤트 사진</label>
+										<input type="file" name="event_poster_multi" required="required"/>
+								    </div>
+								</div>
 
                                 
                                 <div class="form-group row" align="center">

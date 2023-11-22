@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,31 +62,36 @@
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
-										</tr>
-									</thead>
-									<tfoot>
+                                            <th>번호</th>
+                                            <th>카테고리</th>
+                                            <th>제목</th>
+                                            <th>이벤트 기간</th>
+                                            <th>상태구분</th>
+                                            <th>수정 및 삭제</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
                                         <tr>
 											<td colspan="6">
-												<button type="button" class="btn btn-primary" onclick="location.href='adminInsertEvent'">등록</button>&nbsp;&nbsp;
-												<button type="button" class="btn btn-primary" onclick="location.href='adminInsertEventCate'">카테고리 관리</button>
+												<button type="button" class="btn btn-primary" onclick="location.href='adminEventInsert'">등록</button>&nbsp;&nbsp;
+												<button type="button" class="btn btn-primary" onclick="location.href='adminEventCategoryInsert'">카테고리 관리</button>
 											</td>
                                         </tr>
-									</tfoot>
-									<tbody>
-										<tr>
-											<td><input type="checkbox"></td>
-											<td>System Architect</td>
-											<td>Edinburgh</td>
-											<td>61</td>
-											<td>2011/04/25</td>
-											<td>$320,800</td>
-										</tr>
+                                    </tfoot>
+                                    <tbody>
+                                    	<c:forEach var="event" items="${eventList }">
+	                                        <tr>
+	                                            <td>${event.event_idx }</td>
+	                                            <td>${event.eventCate_subject }</td>
+	                                            <td>${event.event_title }</td>
+	                                            <td>${event.event_startDt } ~ ${event.event_endDt }</td>
+	                                            <td>${event.event_status }</td>
+												<td>
+													<button type="button" class="btn btn-primary" onclick="location.href='adminEventUpdate?event_idx=${event.event_idx}'">수정</button>
+													<button type="button" class="btn btn-primary" onclick="location.href='adminEventDelete?event_idx=${event.event_idx}'">삭제</button>
+												</td>
+	                                        </tr>
+                                        </c:forEach>
 									</tbody>
 								</table>
 							</div>
