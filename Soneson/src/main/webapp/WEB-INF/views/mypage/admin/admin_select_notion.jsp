@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,8 +22,18 @@
     <!-- Custom styles for this page -->
     <link href="${pageContext.request.contextPath }/resources/mypage/vendor/datatables/admin_dataTables.bootstrap4.css" rel="stylesheet">
 
-
 </head>
+
+<script>
+	function confirmDelete(notice_idx) {
+		let result = confirm(notice_idx  + "번 공지사항을 삭제하시겠습니까?");
+		
+		if(result) {
+			location.href = "adminNoticeDelete?notice_idx=" + notice_idx;
+			
+		}
+	}
+</script>
 
 <body id="page-top">
 
@@ -58,35 +70,33 @@
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
-										</tr>
-									</thead>
-									<tfoot>
-										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
-										</tr>
-									</tfoot>
-									<tbody>
-										<tr>
-											<td>Tiger Nixon</td>
-											<td>System Architect</td>
-											<td>Edinburgh</td>
-											<td>61</td>
-											<td>2011/04/25</td>
-											<td>$320,800</td>
-										</tr>
-									</tbody>
+                                        <tr>
+                                            <th>번호</th>
+                                            <th>제목</th>
+                                            <th>작성일</th>
+                                            <th>수정 및 삭제</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+											<td colspan="4">
+												<button type="button" class="btn btn-primary" onclick="location.href='adminNoticeInsert'">등록</button>&nbsp;&nbsp;
+											</td>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    	<c:forEach var="notice" items="${noticeList }">
+	                                        <tr>
+	                                            <td>${notice.notice_idx }</td>
+	                                            <td>${notice.notice_title }</td>
+	                                            <td><fmt:formatDate value="${notice.notice_writeDate }" pattern="yyyy-MM-dd"/></td>
+												<td>
+													<button type="button" class="btn btn-primary" onclick="location.href='adminNoticeUpdate?notice_idx=${notice.notice_idx }'">수정</button>
+													<button type="button" class="btn btn-primary" onclick="confirmDelete('${notice.notice_idx }')">삭제</button>
+												</td>
+	                                        </tr>
+                                        </c:forEach>
+                                    </tbody>
 								</table>
 							</div>
 						</div>

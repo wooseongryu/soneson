@@ -236,8 +236,25 @@ public class AdminController {
 		return "mypage/admin/admin_select_notion";	
 	}
 
+	// 관리자 공지사항 등록 폼으로 이동
+	@GetMapping("adminNoticeInsert")
+	public String adminNoticeInsert(HttpSession session, Model model) {
+		System.out.println("AdminController - adminNoticeInsert()");
+		
+//		String sId = (String)session.getAttribute("sId");
+//		String isAdmin = (String)session.getAttribute("isAdmin");
+//		
+//		if(sId == null || isAdmin.equals("N")) {
+//			model.addAttribute("msg", "잘못된 접근입니다!");
+//			return "fail_back";
+//		}
+		
+		return "mypage/admin/admin_insert_notice";
+	}
 	
-	// 관리자 공지사항 등록
+	
+	
+	// 관리자 공지사항 등록 처리
 	@PostMapping("adminNoticeInsertPro")
 	public String adminNoticeInsertPro(NoticeVO notice, Model model) {
 		System.out.println("AdminController - adminNoticeInsertPro()");
@@ -298,7 +315,7 @@ public class AdminController {
 		NoticeVO notice = adminService.getNotice(notice_idx).get(0);
 		model.addAttribute("notice", notice);
 		
-		return "mypage/admin/update_notion";
+		return "mypage/admin/admin_update_notice";
 	}
 	
 	// 관리자 공지사항 수정
@@ -314,17 +331,6 @@ public class AdminController {
 		
 		return "redirect:/adminSelectNotice";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	// 게시판관리 - 자주묻는 질문 페이지로 이동
