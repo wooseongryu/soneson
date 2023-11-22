@@ -17,13 +17,14 @@
 	<!-- 부트 스트랩 datepicker용 최신 jquery 링크 -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
+
 	<!-- 부트 스트랩 css cdn 링크 -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <link href="${pageContext.request.contextPath }/resources/mypage/css/admin_mypage.css" rel="stylesheet">
+
     <!-- 부트 스트랩 datepicker css 링크 -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/mypage/css/datepicker/bootstrap-datepicker.min.css">
-
-    <link href="${pageContext.request.contextPath }/resources/mypage/css/admin_mypage.css" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
     <link href="${pageContext.request.contextPath }/resources/mypage/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -106,11 +107,11 @@
                                 
                                 <div class="form-group row" align="center">
 									<div class="col-sm-12 mb-6 mb-sm-0">
-		                                <input type="submit" class="btn btn-primary btn-user" value="등록">
+		                                <button type="submit" class="btn btn-primary">등록</button>
 		                                &nbsp;
-		                                <input type="reset" class="btn btn-primary btn-user" value="초기화">
+		                                <button type="reset" class="btn btn-primary">초기화</button>
 		                                &nbsp;
-		                                <input type="button" class="btn btn-primary btn-user" onclick="history.back()" value="돌아가기">
+		                                <button type="button" class="btn btn-primary" onclick="history.back()">돌아가기</button>
 									</div>
 								</div>
                             </form>

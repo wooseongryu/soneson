@@ -298,7 +298,6 @@
 	</div>
 </body>
 
-
     <!-- Page level plugins -->
     <script src="${pageContext.request.contextPath }/resources/mypage/vendor/chart.js/Chart.min.js"></script>
 
@@ -306,6 +305,8 @@
     <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-area-demo.js"></script>
     <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-pie-demo.js"></script>
     <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-bar-demo.js"></script>
+
+
 
 
 </html>

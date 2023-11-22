@@ -20,14 +20,15 @@
 	<!-- 부트 스트랩 css cdn 링크 -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <!-- Custom styles for this template-->
+    <link href="${pageContext.request.contextPath }/resources/mypage/css/admin_mypage.css" rel="stylesheet">
+
     <!-- Custom fonts for this template-->
     <link href="${pageContext.request.contextPath }/resources/mypage/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="${pageContext.request.contextPath }/resources/mypage/css/admin_mypage.css" rel="stylesheet">
     
     
     <style>
@@ -117,11 +118,11 @@
                                 
                                 <div class="form-group row" align="center">
 									<div class="col-sm-12 mb-6 mb-sm-0">
-		                                <input type="submit" class="btn btn-primary btn-user" value="등록">
+		                                <button type="submit" class="btn btn-primary">등록</button>
 		                                &nbsp;
-		                                <input type="reset" class="btn btn-primary btn-user" value="초기화">
+		                                <button type="reset" class="btn btn-primary">초기화</button>
 		                                &nbsp;
-		                                <input type="button" class="btn btn-primary btn-user" onclick="history.back()" value="돌아가기">
+		                                <button type="button" class="btn btn-primary" onclick="history.back()">돌아가기</button>
 									</div>
 								</div>
                             </form>
