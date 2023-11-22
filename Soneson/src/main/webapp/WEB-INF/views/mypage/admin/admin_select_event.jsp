@@ -25,6 +25,18 @@
 
 </head>
 
+<script>
+	function confirmDelete(event_idx) {
+		let result = confirm(event_idx  + "번 게시글을 삭제하시겠습니까?");
+		
+		if(result) {
+			location.href = "adminEventDelete?event_idx=" + event_idx;
+			
+		}
+	}
+</script>
+
+
 <body id="page-top">
 
 	<!-- header 위치 -->
@@ -88,7 +100,7 @@
 	                                            <td>${event.event_status }</td>
 												<td>
 													<button type="button" class="btn btn-primary" onclick="location.href='adminEventUpdate?event_idx=${event.event_idx}'">수정</button>
-													<button type="button" class="btn btn-primary" onclick="location.href='adminEventDelete?event_idx=${event.event_idx}'">삭제</button>
+													<button type="button" class="btn btn-primary" onclick="confirmDelete('${event.event_idx }')">삭제</button>
 												</td>
 	                                        </tr>
                                         </c:forEach>

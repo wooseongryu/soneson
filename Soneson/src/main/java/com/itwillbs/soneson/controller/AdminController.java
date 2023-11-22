@@ -420,13 +420,13 @@ public class AdminController {
 //			return "fail_back";
 //		}
 		
-		List<QnaCateVO> categoryList = adminService.getQnaCategory();
+		List<QnaCateVO> qnaCategoryList = adminService.getQnaCategory();
 		QnaVO qna = adminService.getQna(qna_idx).get(0);
 		
-		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("qnaCategoryList", qnaCategoryList);
 		model.addAttribute("qna", qna);
 		
-		return "mypage/admin/update_question";
+		return "mypage/admin/admin_update_qna";
 	}
 	
 	// 관리자 자주묻는 질문 수정
@@ -440,7 +440,7 @@ public class AdminController {
 			return "fail_back";
 		}
 		
-		return "redirect:/adminQNAList";
+		return "redirect:/adminSelectQna";
 	}
 	
 	// 관리자 자주묻는 질문 삭제
@@ -463,7 +463,7 @@ public class AdminController {
 			return "fail_back";
 		}
 		
-		return "redirect:/adminQNAList";
+		return "redirect:/adminSelectQna";
 	}
 	
 	/*====================================================================

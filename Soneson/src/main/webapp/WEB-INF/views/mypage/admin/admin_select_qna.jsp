@@ -24,6 +24,18 @@
 
 </head>
 
+<script>
+	function confirmDelete(qna_idx) {
+		let result = confirm(qna_idx  + "번 게시글을 삭제하시겠습니까?");
+		
+		if(result) {
+			location.href = "adminEventDelete?qna_idx=" + qna_idx;
+			
+		}
+	}
+</script>
+
+
 <body id="page-top">
 
 	<!-- header 위치 -->
@@ -82,7 +94,7 @@
 	                                            <td>${qna.qna_title }</td>
 												<td>
 													<button type="button" class="btn btn-primary" onclick="location.href='adminQNAUpdate?qna_idx=${qna.qna_idx}'">수정</button>
-													<button type="button" class="btn btn-primary" onclick="location.href='adminQNADelete?qna_idx=${qna.qna_idx}'">삭제</button>
+													<button type="button" class="btn btn-primary" onclick="confirmDelete('${qna.qna_idx }')">삭제</button>
 												</td>
 	                                        </tr>
                                         </c:forEach>
