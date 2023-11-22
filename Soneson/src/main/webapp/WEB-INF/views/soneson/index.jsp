@@ -65,6 +65,7 @@
                                 <li><a href="#">Contacts</a></li>
                                 <li><a href="main">메인</a></li>
                                 <li><a href="mainTest">메인테스트</a></li>
+                                <li><a href="user">유저페이지</a></li>
                             </ul>
                         </nav>
                     </div>
