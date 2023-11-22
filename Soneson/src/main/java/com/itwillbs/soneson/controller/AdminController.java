@@ -29,6 +29,8 @@ import com.itwillbs.soneson.service.UserService;
 import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
 import com.itwillbs.soneson.vo.NoticeVO;
+import com.itwillbs.soneson.vo.QnaCateVO;
+import com.itwillbs.soneson.vo.QnaVO;
 import com.itwillbs.soneson.vo.UserVO;
 
 
@@ -348,13 +350,193 @@ public class AdminController {
 	}
 	
 	
-	// 게시판관리 - 자주묻는 질문 페이지로 이동
+	/*====================================================================
+	 *  자주 묻는 질문
+	 * ===================================================================
+	 * */
+	
+	// 관리자 자주 묻는 질문 조회 페이지
 	@GetMapping("adminSelectQna")
-	public String adminSelectQna() {
+	public String adminSelectQna(Model model, HttpSession session) {
 		System.out.println("AdminController - adminSelectQna()");
 		
-		return "mypage/admin/admin_select_qna";	
+//		String sId = (String)session.getAttribute("sId");
+//		String isAdmin = (String)session.getAttribute("isAdmin");
+//		
+//		if(sId == null || isAdmin.equals("N")) {
+//			model.addAttribute("msg", "잘못된 접근입니다!");
+//			return "fail_back";
+//		}
+		
+		List<QnaVO> qnaList = adminService.getQna("");
+		model.addAttribute("qnaList", qnaList);
+		
+		return "mypage/admin/admin_select_qna";
 	}
+	
+	// 관리자 자주 묻는 질문 등록 폼
+	@GetMapping("adminQNAInsert")
+	public String adminQNAInsert(Model model, HttpSession session) {
+		System.out.println("AdminController - adminQNAInsert()");
+		
+//		String sId = (String)session.getAttribute("sId");
+//		String isAdmin = (String)session.getAttribute("isAdmin");
+//		
+//		if(sId == null || isAdmin.equals("N")) {
+//			model.addAttribute("msg", "잘못된 접근입니다!");
+//			return "fail_back";
+//		}
+		
+		List<QnaCateVO> qnaCategoryList = adminService.getQnaCategory();
+		
+		model.addAttribute("qnaCategoryList", qnaCategoryList);
+		return "mypage/admin/admin_insert_qna";
+	}
+	
+	// 관리자 자주묻는 질문 등록
+	@PostMapping("adminQNAInsertPro")
+	public String adminQNAInsertPro(QnaVO qna, Model model) {
+		System.out.println("AdminController - adminQNAInsertPro()");
+		int insertCount = adminService.insertQna(qna);
+		
+		if (insertCount == 0) {
+			model.addAttribute("msg", "등록 실패!");
+			return "fail_back";
+		}
+		
+		return "redirect:/adminSelectQna";
+	}
+	
+	// 관리자 자주묻는 질문 수정 폼
+	@GetMapping("adminQNAUpdate")
+	public String adminQNAUpdate(Model model, String qnaIdx, HttpSession session) {
+		System.out.println("AdminController - adminQNAUpdate()");
+		
+//		String sId = (String)session.getAttribute("sId");
+//		String isAdmin = (String)session.getAttribute("isAdmin");
+//		
+//		if(sId == null || isAdmin.equals("N")) {
+//			model.addAttribute("msg", "잘못된 접근입니다!");
+//			return "fail_back";
+//		}
+		
+		List<QnaCateVO> categoryList = adminService.getQnaCategory();
+		QnaVO qna = adminService.getQna(qnaIdx).get(0);
+		
+		model.addAttribute("categoryList", categoryList);
+		model.addAttribute("qna", qna);
+		
+		return "mypage/admin/update_question";
+	}
+	
+	// 관리자 자주묻는 질문 수정
+	@PostMapping("adminQNAUpdatePro")
+	public String adminQNAUpdatePro(QnaVO qna, Model model) {
+		System.out.println("AdminController - adminQNAUpdatePro()");
+		int updateCount = adminService.updateQna(qna);
+		
+		if (updateCount == 0) {
+			model.addAttribute("msg", "수정 실패!");
+			return "fail_back";
+		}
+		
+		return "redirect:/adminQNAList";
+	}
+	
+	// 관리자 자주묻는 질문 삭제
+	@GetMapping("adminQNADelete")
+	public String adminQNADelete(Model model, String qnaIdx, HttpSession session) {
+		System.out.println("AdminController - adminQNADelete()");
+		
+//		String sId = (String)session.getAttribute("sId");
+//		String isAdmin = (String)session.getAttribute("isAdmin");
+//		
+//		if(sId == null || isAdmin.equals("N")) {
+//			model.addAttribute("msg", "잘못된 접근입니다!");
+//			return "fail_back";
+//		}
+		
+		int deleteCount = adminService.deleteQna(qnaIdx);
+		
+		if (deleteCount == 0) {
+			model.addAttribute("msg", "삭제 실패!");
+			return "fail_back";
+		}
+		
+		return "redirect:/adminQNAList";
+	}
+	
+	/*====================================================================
+	 * 8. 자주 묻는 질문 카테고리
+	 * ===================================================================
+	 * */
+	
+	// 관리자 질문카테고리 관리 페이지 및 폼
+	@GetMapping("adminQNACategoryInsert")
+	public String adminCategoryUpdate(Model model, HttpSession session) {
+		System.out.println("AdminController - adminCategoryUpdate()");
+		
+//		String sId = (String)session.getAttribute("sId");
+//		String isAdmin = (String)session.getAttribute("isAdmin");
+//		
+//		if(sId == null || isAdmin.equals("N")) {
+//			model.addAttribute("msg", "잘못된 접근입니다!");
+//			return "fail_back";
+//		}
+		
+		List<QnaCateVO> qnaCategoryList = adminService.getQnaCategory();
+		
+		model.addAttribute("qnaCategoryList", qnaCategoryList);
+		
+		return "mypage/admin/admin_insert_qnaCate";
+	}
+	
+	// 관리자 질문카테고리 등록
+	@PostMapping("adminQNACategoryInsertPro")
+	public String adminQNACategoryInsertPro(String qnaCate_subject, Model model) {
+		System.out.println("AdminController - adminQNACategoryInsertPro()");
+		
+		List<QnaCateVO> categoryList = adminService.getQnaCategory();
+		for (QnaCateVO cate : categoryList) {
+			if (qnaCate_subject.equals(cate.getQnaCate_subject())) {
+				model.addAttribute("msg", "중복된 카테고리입니다!");
+				return "fail_back";
+			}
+		}
+		
+		int insertCount = adminService.insertQnaCategory(qnaCate_subject);
+		
+		if (insertCount == 0) {
+			model.addAttribute("msg", "등록 실패!");
+			return "fail_back";
+		}
+		
+		return "redirect:/adminQNACategoryInsert";
+	}
+	
+	// 관리자 질문카테고리 삭제
+	@GetMapping("adminQNACategoryDelete")
+	public String adminQNACategoryDelete(String qnaCate_subject, HttpSession session, Model model) {
+		System.out.println("AdminController - adminQNACategoryDelete()");
+		
+//		String sId = (String)session.getAttribute("sId");
+//		String isAdmin = (String)session.getAttribute("isAdmin");
+//		
+//		if(sId == null || isAdmin.equals("N")) {
+//			model.addAttribute("msg", "잘못된 접근입니다!");
+//			return "fail_back";
+//		}
+		
+		int deleteCount = adminService.deleteQnaCategory(qnaCate_subject);
+		
+		if (deleteCount == 0) {
+			model.addAttribute("msg", "삭제 실패!");
+			return "fail_back";
+		}
+		
+		return "redirect:/adminQNACategoryInsert";
+	}
+	
 	
 	// 게시판관리 - 1:1문의 페이지로 이동
 	@GetMapping("adminSelectOTO")

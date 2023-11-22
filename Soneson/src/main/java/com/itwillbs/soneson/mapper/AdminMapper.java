@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
 import com.itwillbs.soneson.vo.NoticeVO;
+import com.itwillbs.soneson.vo.QnaCateVO;
+import com.itwillbs.soneson.vo.QnaVO;
 import com.itwillbs.soneson.vo.UserVO;
 
 
@@ -69,6 +71,31 @@ public interface AdminMapper {
 	List<EventCateVO> selectEventCategory();
 
 	int deleteEventCategory(String eventCate_subject);
+	
+	/*==============================================================
+	 * 자주 묻는 질문
+	 * =============================================================
+	 * */
+
+	int insertQna(QnaVO qna);
+	
+	List<QnaVO> selectQna(String qnaIdx);
+	
+	int updateQna(QnaVO qna);
+	
+	int deleteQna(String qnaIdx);
+	
+	/*==============================================================
+	 * 자주 묻는 질문 카테고리
+	 * =============================================================
+	 * */
+	
+	int insertQnaCategory(String qnaCate_subject);
+
+	List<QnaCateVO> selectQnaCategory();
+
+	int deleteQnaCategory(String qnaCate_subject);
+	
 	
 	
 	

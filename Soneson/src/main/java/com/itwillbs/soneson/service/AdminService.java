@@ -9,6 +9,8 @@ import com.itwillbs.soneson.mapper.AdminMapper;
 import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
 import com.itwillbs.soneson.vo.NoticeVO;
+import com.itwillbs.soneson.vo.QnaCateVO;
+import com.itwillbs.soneson.vo.QnaVO;
 import com.itwillbs.soneson.vo.UserVO;
 
 
@@ -115,6 +117,59 @@ public class AdminService {
 	
 	
 	
+	/*==============================================================
+	 * 자주 묻는 질문
+	 * =============================================================
+	 * */
+
+	// 자주묻는 질문 등록
+	public int insertQna(QnaVO qna) {
+		System.out.println("AdminService - insertQna()");
+		return mapper.insertQna(qna);
+	}
+
+	// 자주묻는 질문 조회
+	// qnaIdx를 널스트링으로 전달 시 전체 질문 조회
+	public List<QnaVO> getQna(String qnaIdx) {
+		System.out.println("AdminService - getQna()");
+		return mapper.selectQna(qnaIdx);
+	}
+	
+	// 자주묻는 질문 수정 
+	public int updateQna(QnaVO qna) {
+		System.out.println("AdminService - updateQna()");
+		return mapper.updateQna(qna);
+	}
+	
+	// 자주묻는 질문 삭제
+	public int deleteQna(String qnaIdx) {
+		System.out.println("AdminService - deleteQna()");
+		return mapper.deleteQna(qnaIdx);
+	}
+
+	
+	/*==============================================================
+	 * 자주 묻는 질문 카테고리
+	 * =============================================================
+	 * */
+	
+	// 카테고리 등록
+	public int insertQnaCategory(String qnaCate_subject) {
+		System.out.println("AdminService - insertCategory()");
+		return mapper.insertQnaCategory(qnaCate_subject);
+	}
+
+	// 카테고리 조회
+	public List<QnaCateVO> getQnaCategory() {
+		System.out.println("AdminService - getCategory()");
+		return mapper.selectQnaCategory();
+	}
+
+	// 카테고리 삭제
+	public int deleteQnaCategory(String qnaCate_subject) {
+		System.out.println("AdminService - deleteCategory()");
+		return mapper.deleteQnaCategory(qnaCate_subject);
+	}
 	
 	
 	

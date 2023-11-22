@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,34 +60,33 @@
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
-										</tr>
-									</thead>
-									<tfoot>
-										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
-										</tr>
-									</tfoot>
-									<tbody>
-										<tr>
-											<td>Tiger Nixon</td>
-											<td>System Architect</td>
-											<td>Edinburgh</td>
-											<td>61</td>
-											<td>2011/04/25</td>
-											<td>$320,800</td>
-										</tr>
-									</tbody>
+                                            <th>글번호</th>
+                                            <th>카테고리</th>
+                                            <th>제목</th>
+                                            <th>수정 및 삭제</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+											<td colspan="4">
+												<button type="button" class="btn btn-primary" onclick="location.href='adminQNAInsert'">등록</button>&nbsp;&nbsp;
+												<button type="button" class="btn btn-primary" onclick="location.href='adminQNACategoryInsert'">카테고리 관리</button>
+											</td>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    	<c:forEach var="qna" items="${qnaList }">
+	                                        <tr>
+	                                            <td>${qna.qna_idx }</td>
+	                                            <td>${qna.qnaCate_subject }</td>
+	                                            <td>${qna.qna_title }</td>
+												<td>
+													<button type="button" class="btn btn-primary" onclick="location.href='adminQNAUpdate?qnaIdx=${qna.qnaIdx}'">수정</button>
+													<button type="button" class="btn btn-primary" onclick="location.href='adminQNADelete?qnaIdx=${qna.qnaIdx}'">삭제</button>
+												</td>
+	                                        </tr>
+                                        </c:forEach>
+                                    </tbody>
 								</table>
 							</div>
 						</div>
