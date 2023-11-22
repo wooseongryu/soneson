@@ -7,6 +7,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserController {
+	/*====================================================================
+	 * - 목차 -
+	 * 1. 유저 프로필
+	 * 2. 유저 정보 수정
+	 * ===================================================================
+	 * */
+	
+	/*====================================================================
+	 * 1. 유저 프로필
+	 * ===================================================================
+	 * */
+	
 	// 유저프로필 메인 페이지
 	@GetMapping("user")
 	public String user() {
@@ -14,6 +26,7 @@ public class UserController {
 		return "mypage/user/user_main";
 	}
 	
+	// 프로필
 	@ResponseBody
 	@PostMapping("userProfile")
 	public String userProfile() {
@@ -21,24 +34,42 @@ public class UserController {
 		return "1";
 	}
 	
+	// 프로젝트 후기
 	@ResponseBody
 	@PostMapping("userProfileProjectReview")
 	public String userProfileProjectReview() {
-		System.out.println("userProfileProjectReview - userProfileProjectReview()");
+		System.out.println("UserController - userProfileProjectReview()");
 		return "1";
 	}
 	
+	// 올린 프로젝트
 	@ResponseBody
 	@PostMapping("userUploadProject")
 	public String userUploadProject() {
-		System.out.println("userProfileProjectReview - userUploadProject()");
+		System.out.println("UserController - userUploadProject()");
 		return "1";
 	}
 	
+	// 팔로워
 	@ResponseBody
 	@PostMapping("userFollower")
 	public String userFollower() {
-		System.out.println("userProfileProjectReview - userFollower()");
+		System.out.println("UserController - userFollower()");
 		return "1";
 	}
+	
+	// 유저 정보 수정 페이지 이동
+	@GetMapping("userSetting")
+	public String userSetting() {
+		System.out.println("UserController - userSetting()");
+		return "mypage/user/user_setting";
+	}
+	
+	
+	/*====================================================================
+	 * 2. 유저 정보 수정
+	 * ===================================================================
+	 * */
+	
+	
 }
