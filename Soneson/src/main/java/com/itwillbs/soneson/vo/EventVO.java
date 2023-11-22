@@ -36,5 +36,5 @@ public class EventVO {
 	private MultipartFile event_thumbnail_multi;
 	private String event_status;
 
-	private String eventCate_Subject;
+	private String eventCate_subject;
 }
