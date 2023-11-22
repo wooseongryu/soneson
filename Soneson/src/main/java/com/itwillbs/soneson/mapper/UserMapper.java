@@ -20,7 +20,6 @@ public interface UserMapper {
 
 	// 멤버 목록 조회
 	List<UserVO> selectUserList();
-
 	
 	// 기존 인증정보 조회
 	AuthInfoVO selectAuthInfo(String id);

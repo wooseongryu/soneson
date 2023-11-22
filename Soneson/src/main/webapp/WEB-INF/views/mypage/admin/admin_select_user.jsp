@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,33 +60,36 @@
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
+											<th>회원번호</th>
+                                            <th>회원아이디</th>
+                                            <th>이름</th>
+                                            <th>가입일</th>
+                                            <th>관리자유무</th>
+                                            <th>관리자권한관리</th>
 										</tr>
 									</thead>
-									<tfoot>
-										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
-										</tr>
-									</tfoot>
 									<tbody>
-										<tr>
-											<td>Tiger Nixon</td>
-											<td>System Architect</td>
-											<td>Edinburgh</td>
-											<td>61</td>
-											<td>2011/04/25</td>
-											<td>$320,800</td>
-										</tr>
+                                       <c:forEach var="user" items="${userList }">
+											<tr>
+												<td>${user.user_idx }</td>
+												<td>${user.user_id }</td>
+												<td>${user.user_name }</td>
+												<td>${user.hire_date}</td>
+												<td>${user.user_is_admin}</td>
+												<td>
+													<button type="button" class="btn btn-primary" onclick="location.href='adminUserAuthorize?user_idx=${user.user_idx }'">
+														<c:choose>
+															<c:when test="${user.user_is_admin eq 'N' }">
+																관리자 권한 부여
+															</c:when>
+															<c:otherwise>
+																관리자 권한 해제
+															</c:otherwise>
+														</c:choose>
+													</button>
+												</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -108,25 +112,6 @@
 		<i class="fas fa-angle-up"></i>
 	</a>
 
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-		aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">Ã</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
 </body>
 
 
