@@ -157,6 +157,10 @@
 
 <jsp:include page="../inc/header.jsp"></jsp:include>
 
+	<c:forEach var="project" items="${projectList }">
+   		${project.title }
+   		<img src="${project.img1 }">
+   	</c:forEach>
 
 	<section class="product-page spad">
         <div class="container">
@@ -189,29 +193,30 @@
                             </div>
                         </div>
                         <div class="row" id="movieListDiv">
-                        	<c:forEach var="movie" items="${movieList }">
+                        	<c:forEach var="project" items="${projectList }">
+<%--                         	<c:forEach var="movie" items="${movieList }"> --%>
 	                            <div class="col-lg-3 col-md-6 col-sm-6">
 	                                <div class="product__item">
-	                                	<a href="movieDetail?movie_code=${movie.movie_code }" >
-		                                    <div class="product__item__pic set-bg" data-setbg="${movie.movie_poster }">
+	                                	<a href="projectDetail?project_code=${project.project_code }" >
+		                                    <div class="product__item__pic set-bg" data-setbg="${project.img1 }">
 <%-- 		                                    <div class="product__item__pic set-bg" data-setbg="${movie.movie_poster }"> --%>
 		                                        <div class="comment">
-			                                        <span class = "${movie.movie_rated}"></span>
+<%-- 			                                        <span class = "${movie.movie_rated}"></span> --%>
 		                                        </div>
 		                                    </div>
 	                                    </a>
-	                                    <div class="product__item__text">
-	                                        <ul>
-	                                        	<c:if test="${0 ne movie.movie_audi }"><li>누적 관람객 ${movie.movie_audi }명</li></c:if>
-	                                            <li>개봉일 ${movie.movie_openDt }</li>
-	                                        	<c:if test="${movie.movie_status eq '재개봉' }"><li>${movie.movie_status }</li></c:if>
-	                                        </ul>
-	                                        <div class="reviewStarMin">
-											   <div class="bg_star" style="width: ${movie.movie_avg * 20 }%;"></div>
-											   <div>${movie.movie_avg }</div>
-											</div>
-	                                        <h5><a href="movieDetail?movie_code=${movie.movie_code }">${movie.movie_nameK }</a></h5>
-	                                    </div>
+<!-- 	                                    <div class="product__item__text"> -->
+<!-- 	                                        <ul> -->
+<%-- 	                                        	<c:if test="${0 ne movie.movie_audi }"><li>누적 관람객 ${movie.movie_audi }명</li></c:if> --%>
+<%-- 	                                            <li>개봉일 ${movie.movie_openDt }</li> --%>
+<%-- 	                                        	<c:if test="${movie.movie_status eq '재개봉' }"><li>${movie.movie_status }</li></c:if> --%>
+<!-- 	                                        </ul> -->
+<!-- 	                                        <div class="reviewStarMin"> -->
+<%-- 											   <div class="bg_star" style="width: ${movie.movie_avg * 20 }%;"></div> --%>
+<%-- 											   <div>${movie.movie_avg }</div> --%>
+<!-- 											</div> -->
+<%-- 	                                        <h5><a href="movieDetail?movie_code=${movie.movie_code }">${movie.movie_nameK }</a></h5> --%>
+<!-- 	                                    </div> -->
 	                                </div>
 	                            </div>
                         	</c:forEach>
@@ -224,7 +229,7 @@
 		</div>
 	</section>
 	
-	<img src="https://tumblbug-pci.imgix.net/4b47313543b96b2826155b31ab4f1f9a6bacb921/14bec61d57bd5c1a1f98d774245389da35067770/cf80649689edf6cb074059992b33969d03900fed/f8c70ff6-2432-4864-8b17-7102fa5fdb0e.jpeg?ixlib=rb-1.1.0&amp;w=1240&amp;h=930&amp;auto=format%2Ccompress&amp;lossless=true&amp;fit=crop&amp;s=1b09749aaaecb44055af8d7e9df0afcd" alt="프로젝트 커버 이미지">
+<!-- 	<img src="https://tumblbug-pci.imgix.net/4b47313543b96b2826155b31ab4f1f9a6bacb921/14bec61d57bd5c1a1f98d774245389da35067770/cf80649689edf6cb074059992b33969d03900fed/f8c70ff6-2432-4864-8b17-7102fa5fdb0e.jpeg?ixlib=rb-1.1.0&amp;w=1240&amp;h=930&amp;auto=format%2Ccompress&amp;lossless=true&amp;fit=crop&amp;s=1b09749aaaecb44055af8d7e9df0afcd" alt="프로젝트 커버 이미지"> -->
 	
 
 

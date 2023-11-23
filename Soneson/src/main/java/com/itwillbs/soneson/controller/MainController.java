@@ -38,6 +38,14 @@ public class MainController {
 		
 		return "main/mainTest3";	
 	}
+	
+	@GetMapping("popularTest")
+	public String popularTest() {
+		System.out.println("popularTestController - popularTest()");
+		
+		return "main/popularTest";	
+	}
+	
 //	@GetMapping("popular")
 //	public String popular() {
 //		System.out.println("popularController - popular()");
