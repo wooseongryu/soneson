@@ -133,6 +133,29 @@ $(function() {
 							<input type="text" class="input_detail">
 						</div>
 					</div>
+					<!--  -->
+					<div class="projectItemWarp">
+						<dl class="projectInfo">
+							<dt class="projectInfo-title">
+								프로젝트 요약
+								<div class="icon-asterisk"><i class="bi bi-asterisk"></i></div>
+							</dt>
+							<dd class="projectInfo-description">
+								후원자 분들이 프로젝트를 빠르게 이해할 수 있도록 명확하고 간략하게 소개해주세요.<br>
+							</dd>
+							<div class="projectInfo-notice">
+								<div class="funding-notice">
+									프로젝트 요약은 어디 표시되나요?
+								</div>
+								<div>
+									<p>프로젝트 카드형 목록에서 프로젝트 제목 하단에 표시됩니다.</p>
+								</div>
+							</div>
+						</dl>
+						<div class="projectItem-form">
+							<textarea class="plan-textarea" placeholder="프로젝트요약을 입력해 주세요"></textarea>
+						</div>
+					</div>
 					<div class="projectItemWarp">
 						<dl class="projectInfo">
 							<dt class="projectInfo-title">

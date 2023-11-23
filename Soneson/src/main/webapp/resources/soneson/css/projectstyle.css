@@ -101,6 +101,30 @@
 	display: inline-flex;
 	flex-wrap: wrap;
 }
+
+.ctRadio_label {
+	
+	border: 1px solid rgb(240, 240, 240);
+	border-radius: 52px;
+	height: 36px;
+    background: rgb(255, 255, 255);
+    cursor: pointer;
+    padding: 0px 24px;
+    display: inline-flex;
+    align-items: center;
+    
+}
+.pro_categorie {
+	display: none;
+}
+
+.plan-selectCartegories input:checked +label {
+	background: rgb(248, 100, 83);
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(248, 100, 83);
+}
+
+
 button.isActive {
 	background: rgb(248, 100, 83);
     color: rgb(255, 255, 255);
@@ -116,6 +140,20 @@ textarea {
     outline: none;
     border: 1px solid #d1d3e2;
 }
+.varchar-count {
+	font-size: 12px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    color: rgb(158, 158, 158);
+	
+}
+.alert-count {
+	color: rgb(248, 100, 83);
+}
+
 .plan-next {
 	border-top: 1px solid rgb(239, 239, 239);
     text-align: right;
