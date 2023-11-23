@@ -314,6 +314,7 @@
 	    vertical-align: middle;
 	    content: "";
 	}
+	
 	.DonationTodayCategory_list_item__agFbi[aria-current=true] .DonationTodayCategory_button__1648s {
 	    background-color: #F86453;
 	    border-color: #F86453;
@@ -422,9 +423,7 @@ body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fi
     background-image: url(https://happybean.naver.com/build/static/media/icon_category_11.8b149026.svg);
 }
 
-.DonationTodayCategory_wrap__k2rtu {
-	display: none;
-}
+
 
 /* .DonationTodayCategory_wrap__k2rtu { */
 /*     position: absolute; */
@@ -490,3 +489,10 @@ body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fi
     font-size: 14px;
 }
 
+.DonationTodayCategory_wrap__k2rtu {
+/* 	display: none; */
+}
+
+.DonationTodayCategory_button__1648s:hover {
+    border-color: #999;
+}

@@ -153,27 +153,81 @@
 
 	$j(function() {
 		
+		let timeout;
+
+        $(".HeaderGnb_item__wcfir.category, .DonationTodayCategory_wrap__k2rtu").on({
+            mouseenter: function () {
+                clearTimeout(timeout);
+                $(".DonationTodayCategory_wrap__k2rtu").show();
+            },
+            mouseleave: function () {
+                timeout = setTimeout(function () {
+                    $(".DonationTodayCategory_wrap__k2rtu").hide();
+                }, 200); // 0.2초 후에 숨김 처리
+            }
+        });
+        
+        $(".DonationTodayCategory_list_item__agFbi").click(function() {
+        	$(".DonationTodayCategory_list_item__agFbi").attr("aria-current", "false");
+        	$(this).attr("aria-current", "true");
+        });
+		
+		
+// 		// "카테고리" 텍스트에 대한 마우스 이벤트 처리
+//         $(".HeaderGnb_item__wcfir.category").on({
+//             mouseenter: function () {
+//                 // 마우스가 들어왔을 때
+//                 $(".DonationTodayCategory_wrap__k2rtu").show();
+//             },
+//             mouseleave: function () {
+//                 // 마우스가 나갔을 때
+//                 $(".DonationTodayCategory_wrap__k2rtu").on("mouseleave", function () {
+//                     // 추가 메뉴 안에서 마우스가 나갔을 때
+//                     $(this).hide();
+//                 });
+//             }
+//         });
+		
+		
+// 		$j(".HeaderGnb_item__wcfir.category").mouseover(function() {
+// 			$j(".DonationTodayCategory_wrap__k2rtu").css("display", "block");
+// 		}); 
+		
+		
+		
 // 		$j(".HeaderGnb_item__wcfir.category").mouseover(function() {
 // 			$j(".DonationTodayCategory_wrap__k2rtu").addClass("cateShow");
 // 		}); 
 		
+// 		$j(".HeaderGnb_item__wcfir.category, .DonationTodayCategory_wrap__k2rtu").mouseover(function() {
+// 			$j(".DonationTodayCategory_wrap__k2rtu").toggle();
+// 		}); 
 		
-		$j(".HeaderGnb_item__wcfir.category, .DonationTodayCategory_wrap__k2rtu").mouseover(function() {
-			$j(".DonationTodayCategory_wrap__k2rtu").toggle();
-		}); 
+// 		$j(".DonationTodayCategory_wrap__k2rtu").mouseover(function() {
+// 			$j(".DonationTodayCategory_wrap__k2rtu").css("display", "block");
+// 		}); 
 		
-		$j(".DonationTodayCategory_wrap__k2rtu").mouseover(function() {
-			$j(".DonationTodayCategory_wrap__k2rtu").css("display", "block");
-		}); 
+// 		$j(".DonationTodayCategory_wrap__k2rtu").mouseout(function() {
+// 			$j(".DonationTodayCategory_wrap__k2rtu").css("display", "none");
+// 		}); 
 		
-		$j(".DonationTodayCategory_wrap__k2rtu").mouseout(function() {
-			$j(".DonationTodayCategory_wrap__k2rtu").css("display", "none");
-		}); 
+
+// 		$j(".HeaderGnb_item__wcfir.category").mouseout(function () {
+// 		    // DonationTodayCategory_wrap__k2rtu에 마우스가 올라가 있을 때의 이벤트
+// 		    $j(".DonationTodayCategory_wrap__k2rtu").mouseover(function () {
+// 		        $j(".DonationTodayCategory_wrap__k2rtu").css("display", "block");
+// 		    });
+
+// 		    // DonationTodayCategory_wrap__k2rtu에 마우스가 올라가 있지 않을 때의 이벤트
+// 		    $j(".DonationTodayCategory_wrap__k2rtu").mouseout(function () {
+// 		        $j(".DonationTodayCategory_wrap__k2rtu").css("display", "none");
+// 		    });
+// 		});
 		
 		
-		$j(".HeaderGnb_item__wcfir.category, .DonationTodayCategory_wrap__k2rtu").mouseout(function() {
-			$j(".DonationTodayCategory_wrap__k2rtu").css("display", "none");
-		}); 
+// 		$j(".HeaderGnb_item__wcfir.category, .DonationTodayCategory_wrap__k2rtu").mouseout(function() {
+// 			$j(".DonationTodayCategory_wrap__k2rtu").css("display", "none");
+// 		}); 
 
 
 	});
