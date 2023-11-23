@@ -1,0 +1,15 @@
+package com.itwillbs.soneson.vo;
+
+import lombok.Data;
+
+@Data
+public class ProjectVO {
+	private int project_code;
+	private String title;
+	private String subtitle;
+	private String category;
+	private String creator;
+	private String img1;
+	private String startDate;
+	private String endDate;
+}
