@@ -2055,6 +2055,33 @@ ol {
     bottom: 40px;
 }
 
+.user_cancel_btn a {
+	display: inline-block;
+	color: rgb(0, 0, 0);
+	background: white;
+	padding: 6px 20px;
+	letter-spacing: 2px;
+	border-radius: 2px;
+	margin-right: 14px;
+	-webkit-transition: all, 0.3s;
+	-o-transition: all, 0.3s;
+	transition: all, 0.3s;
+	border: 1px solid red;
+	
+	position: absolute;
+    right: 100px;
+    bottom: 40px;
+}
+
+.user__setting__text {
+	overflow: hidden;
+/* 	background: #1d1e39; */
+	padding: 18px 30px 16px 20px;
+	border-radius: 10px;
+	border: 1px solid rgb(248, 100, 83);
+	position: relative;
+}
+
 /* 추가 끝 ============================================ */
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
