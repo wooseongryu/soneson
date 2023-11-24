@@ -72,4 +72,28 @@ public class UserController {
 	 * */
 	
 	
+	
+	
+	// 마이페이지에서 프로젝트 올리기 페이지 이동
+	@GetMapping("userProjectCreated")
+	public String userProjectCreated() {
+		System.out.println("UserController - userProjectCreated()");
+		return "mypage/user/user_project_created";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
