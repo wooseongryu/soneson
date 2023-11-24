@@ -14,6 +14,7 @@ CREATE TABLE user (
 	 	user_is_admin VARCHAR(10),
 	 	mail_auth_status CHAR(1) NOT NULL,
 	 	user_status VARCHAR(100) NOT NULL
+	 	kakao_id VARCHAR(100)
 	);
 */
 
@@ -28,7 +29,7 @@ public class UserVO {
 	private Date hire_date;
 	private String user_is_admin;
 	private String mail_auth_status; // 이메일 인증 여부("Y" : 인증, "N" : 미인증)
-	private String kakao_id;
 	private String user_status; // 가입, 탈퇴
+	private String kakao_id;
 }
 
