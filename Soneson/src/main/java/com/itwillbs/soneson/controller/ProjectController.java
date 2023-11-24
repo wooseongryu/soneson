@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.soneson.service.ProjectService;
@@ -38,13 +39,13 @@ public class ProjectController {
 	}
 	
 	//동의페이지이동
-	@GetMapping("projectAgreeForm")
+	@PostMapping("projectAgreeForm")
 	public String projectAgreeForm() {
 		return "project/startAgree";
 	}
 	
 	//작성페이지이동	
-	@GetMapping("projectInsertForm")
+	@PostMapping("projectInsertForm")
 	public String projectInsertForm(@RequestParam Map<String, Object> map, HttpSession session, Model model) {
 		
 		String sId = (String)session.getAttribute("sId");
@@ -55,38 +56,24 @@ public class ProjectController {
 			return "forward";
 		}
 		map.put("user_id", sId);
-		
-		System.out.println(map.get("pro_categorie"));
-		System.out.println(map.get("pro_summary"));
-		System.out.println(map.get("user_id"));
+		// ======pro_summary not null 걸려있어서 오류뜸 수정해야함 그때까지 보류=======
 //		int insertCount = service.insertStartProj(map);
+//		if(insertCount < 0) {
+//			model.addAttribute("msg", "잠시 후 다시 시도해 주세요.");
+//			model.addAttribute("targetURL", "projectStartForm");
+//			return "forward";
+//		}
 		
 		
 		return "project/default";
 	}
 	
-	//펀딩계획
-	@GetMapping("projectFunding")
-	public String projectFunding() {
-		return "project/funding";
-	}
 	
 	//리워드구성
 	@GetMapping("projectReward")
 	public String projectReward() {
 		return "project/reward";
 	}
-	
-	//프로젝트계획
-	@GetMapping("projectStory")
-	public String projectStory() {
-		return "project/story";
-	}
-	
-	//창작자정보
-	@GetMapping("projectCreateor")
-	public String projectCreateor() {
-		return "project/creator";
-	}
+
 	
 }

@@ -76,7 +76,7 @@
 				</div>
 			</c:if>
 			<!--  -->
-			<form action="projectAgreeForm" class="firstForm">
+			<form action="projectAgreeForm" class="firstForm" method="post">
 				<div>
 					<div class="pro-step1-plan">
 						<div class="plan-title">

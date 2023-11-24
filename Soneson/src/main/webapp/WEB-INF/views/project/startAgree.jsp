@@ -73,10 +73,10 @@
 							</li>
 						</ul>
 					</div>
-					<form action="projectInsertForm">
+					<form action="projectInsertForm" method="post">
 						<div class="agree-next">
 							<input type="hidden" name="pro_categorie" value="${param.pro_categorie }">
-							<input type="hidden" name="pro_summary" value="${param.pro_summary }">
+							<input type="hidden" name="pro_title" value="${param.pro_title }">
 							<button type="button" id="step2_prev" onclick="backToStart()">돌아가기</button>
 							<button id="step2_next" disabled="disabled">다음</button>
 						</div>

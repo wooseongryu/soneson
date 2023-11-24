@@ -217,6 +217,10 @@ button:disabled {
 }
 
 /*------project_step3-----*/
+.content-form {
+	display: none;
+}
+
 .write-view-container {
 	display: flex;
 	flex-direction: column;
@@ -365,12 +369,13 @@ button:disabled {
     height: 2px;
     background: rgb(248, 100, 83);
 } 
-.top-menu-list a {
+.top-menu-list span {
 	font-weight: 700;
 	align-items: center;
 	display: flex;
 	font-size: 14px;
 	color: black;
+	cursor: pointer;
 }
 
 .write-view-content {
