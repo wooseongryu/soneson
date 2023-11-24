@@ -27,7 +27,7 @@
 		
 		$("#step2_next").on("click",function() {
 			$(this).css({"background":"rgb(248, 100, 83)","color":"#ffffff"});
-			location.href="projectInsertForm";
+// 			location.href="projectInsertForm";
 		});
 		
 	});
@@ -66,15 +66,21 @@
 									<input class="plan-agree-check" id="plan-agree3" style='zoom:1.4;' type="checkbox">
 									<div>
 										펀딩 성공 후 정산을 위해 <strong>신분증 또는 사업자 등록증, 국내 은행 계좌</strong>를 준비해주세요.
+<%-- 										${param.pro_categorie } --%>
+<%-- 										${param.pro_summary } --%>
 									</div>
 								</label>
 							</li>
 						</ul>
 					</div>
-					<div class="agree-next">
-						<button id="step2_prev" onclick="backToStart()">돌아가기</button>
-						<button id="step2_next" disabled="disabled">다음</button>
-					</div>
+					<form action="projectInsertForm">
+						<div class="agree-next">
+							<input type="hidden" name="pro_categorie" value="${param.pro_categorie }">
+							<input type="hidden" name="pro_summary" value="${param.pro_summary }">
+							<button type="button" id="step2_prev" onclick="backToStart()">돌아가기</button>
+							<button id="step2_next" disabled="disabled">다음</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>

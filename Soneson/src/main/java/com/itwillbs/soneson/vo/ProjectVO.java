@@ -12,4 +12,8 @@ public class ProjectVO {
 	private String img1;
 	private String startDate;
 	private String endDate;
+	
+	//------------
+	private String pro_categorie;
+	private String pro_summary;
 }

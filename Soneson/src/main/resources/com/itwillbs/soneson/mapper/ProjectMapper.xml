@@ -9,5 +9,33 @@
 		FROM project
 	</select>
 	
+	<select id="selectIdProj" resultType="project">
+		SELECT pro_idx, user_id, pro_title
+		FROM sample_pro 
+		WHERE user_id = #{sId}
+	</select>
+	
+	
+	
+	<!-- 약관동의 후 insert -->
+	<insert id="insertStartProj">
+		INSERT INTO sample_pro(
+			pro_idx
+			, user_id
+			, pro_categorie
+			, pro_title
+			, pro_agree
+		)
+		VALUES (
+			null
+			,#{user_id}
+			, #{pro_categorie}
+			, #{pro_title}
+			, 'Y'
+		)
+	</insert>
+	
+	
+	
 </mapper>
 

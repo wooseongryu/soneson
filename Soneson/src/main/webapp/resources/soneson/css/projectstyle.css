@@ -166,6 +166,15 @@ textarea {
 	
 }
 
+#pro_title1 {
+	width: 100%;
+}
+
+.firstForm {
+	display: grid;
+    gap: 64px;
+}
+
 /*------project_step2-----*/
 .agree-list {
 	padding: 36px 0px;
