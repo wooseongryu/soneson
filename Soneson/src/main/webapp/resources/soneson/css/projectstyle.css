@@ -221,6 +221,18 @@ button:disabled {
 	display: none;
 }
 
+.standard-notice {
+	background: rgb(253, 244, 243);
+    border-radius: 8px;
+    padding: 20px 24px 20px 50px;
+    font-weight: 400;
+    color: rgb(109, 109, 109);
+    margin-top: 10px;
+    font-size: 12px !important;
+    margin: 10px 10px;
+}
+
+
 .write-view-container {
 	display: flex;
 	flex-direction: column;

@@ -7,8 +7,10 @@
 <meta charset="UTF-8">
 <title>손에손</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/projectstyle.css" type="text/css">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src= "${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
 <script>
 let now = new Date();
@@ -205,8 +207,52 @@ $(function() {
 				<div class="top-contentWarp">
 					<div class="top-content-right">
 <!--					글 달성률 할 수 이쓰까...? -->
-						<button>심사기준</button>
+<!-- 						<button>심사기준</button> -->
 						<button>등록하기</button>
+						<!-- Button trigger modal -->
+						<button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+						  심사기준
+						</button>
+						
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+						    	<div class="modal-content">
+						      		<div class="modal-header">
+						        		<h5 class="modal-title" id="exampleModalLabel">심사기준을 확인해주세요.</h5>
+						        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						      		</div>
+						      		<div class="modal-body" style="display: flex;">
+						        		<div class="standard-notice">
+											<div class="funding-notice" style="color: green;">
+												<i class="bi bi-check-circle-fill" style="color: green;"></i> 승인 가능 프로젝트
+											</div>
+											<div>
+												<p>기존에 없던 새로운 시도</p>
+												<p>기존에 없던 작품, 제품, 디지털 콘텐츠, 활동, 행사</p>
+												<p>창작자의 이전 제품 및 콘텐츠는 새로운 선물에 부수적으로 제공 가능</p>
+											</div>
+										</div>
+						        		<div class="standard-notice">
+											<div class="funding-notice">
+												<i class="bi bi-dash-circle-fill"></i> 반려 대상 프로젝트
+											</div>
+											<div>
+												<p>기존 상품· 콘텐츠의 판매 및 홍보</p>
+												<p>제3자에 후원금 또는 물품 기부</p>
+												<p>시중에 판매 및 유통되었던 제품·콘텐츠 제공</p>
+												<p>현금, 주식, 지분, 복권, 사이버머니, 상품권 등 수익성 상품 제공</p>
+												<p>추첨을 통해서만 제공되는 선물</p>
+												<p>무기, 군용장비, 라이터 등 위험 품목</p>
+											</div>
+										</div>
+						      		</div>
+						      		<div class="modal-footer">
+						        		<button type="button" data-bs-dismiss="modal">Close</button>
+						      		</div>
+						    	</div>
+							</div>
+						</div>
 					</div>
 					<div class="top-content-center">
 						<div class="top-content-img"></div>
