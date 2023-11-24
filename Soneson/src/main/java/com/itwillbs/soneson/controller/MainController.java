@@ -45,6 +45,12 @@ public class MainController {
 		
 		return "main/popularTest";	
 	}
+	@GetMapping("popularTest2")
+	public String popularTest2() {
+		System.out.println("popularTestController - popularTest2()");
+		
+		return "main/popularTest2";	
+	}
 	
 //	@GetMapping("popular")
 //	public String popular() {
