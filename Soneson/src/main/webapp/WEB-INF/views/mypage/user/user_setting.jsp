@@ -46,7 +46,7 @@
 
 <body>
 
-	<jsp:include page="../../inc/header.jsp"></jsp:include>
+<%-- 	<jsp:include page="../../inc/header.jsp"></jsp:include> --%>
 
     <!-- Page Preloder -->
     <div id="preloder">
@@ -99,19 +99,73 @@
                         <div id="user_content">
                         	<!-- ajax -->
                         	
-<!--                         	<div class="anime__details__review"> -->
-<!-- 							 	<div class="anime__review__item"> -->
-<!-- 	                         		<div class="anime__review__item__text" id="project_review_content"> -->
-<!-- 		                         		<h6>Chris Curry</h6> -->
-<!-- 		                         		<p>[색을 엮어 감성을 꽃 피우다.] 전통 위주의 옛것을 아름답고 독특하게 재해석합니다.</p> -->
-<!-- 		                         		<p style="margin-top: 10px">팔로잉 1 · 후원한 프로젝트 11</p> -->
-<!-- 		                         		<div class="user_follow_btn"> -->
-<!-- 		                         			<a href="#">+ 팔로우</a> -->
-<!-- 		                         		</div> -->
-<!-- 							 		</div> -->
-<!-- 	                    	 	</div> -->
-<!--                     	 	</div> -->
+                        	<div class="anime__details__review">
+							 	<div class="anime__review__item">
+	                         		<div class="user__setting__text" id="project_review_content">
+		                         		<h6>프로필 사진</h6>
+		                         		<p style="margin-top: 10px">홍길동</p>
+		                         		<div class="user_follow_btn">
+		                         			<a href="#">변경</a>
+		                         		</div>
+							 		</div>
+	                    	 	</div>
+	                	 	</div>
                         	
+	 						<div class="anime__details__review">
+							 	<div class="anime__review__item">
+	                         		<div class="user__setting__text" id="project_review_content">
+		                         		<h6>이름</h6>
+		                         		<p style="margin-top: 10px">홍길동</p>
+		                         		<div class="user_follow_btn">
+		                         			<a href="#">변경</a>
+		                         		</div>
+							 		</div>
+	                    	 	</div>
+	                	 	</div>
+	                	 	
+	                	 	<div class="anime__details__review">
+							 	<div class="anime__review__item">
+	                         		<div class="user__setting__text" id="project_review_content">
+		                         		<h6>이름</h6>
+		                         		<input type="text" value="홍길동" style="margin-top: 10px">
+		                         		
+		                         		<div class="user_follow_btn">
+		                         			<a href="#">저장</a>
+		                         		</div>
+		                         		<div class=user_cancel_btn>
+		                         			<a href="#">취소</a>
+		                         		</div>
+							 		</div>
+	                    	 	</div>
+	                	 	</div>
+	                	 	
+	                	 	<div class="anime__details__review">
+							 	<div class="anime__review__item">
+	                         		<div class="user__setting__text" id="project_review_content">
+		                         		<h6>소개</h6>
+		                         		<p style="margin-top: 10px; width: 700px">등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.</p>
+		                         		<div class="user_follow_btn">
+		                         			<a href="#">변경</a>
+		                         		</div>
+							 		</div>
+	                    	 	</div>
+	                	 	</div>
+	                	 	
+	                	 	<div class="anime__details__review">
+							 	<div class="anime__review__item">
+	                         		<div class="user__setting__text" id="project_review_content">
+		                         		<h6>소개</h6>
+		                         		<textarea rows="10px" cols="70px" placeholder="자기소개를 입력해주세요." style="margin-top: 10px"></textarea>
+		                         		<div class="user_follow_btn">
+		                         			<a href="#">저장</a>
+		                         		</div>
+		                         		<div class=user_cancel_btn>
+		                         			<a href="#">취소</a>
+		                         		</div>
+							 		</div>
+	                    	 	</div>
+	                	 	</div>
+	                	 	
 						</div>
 						
 					</div>
@@ -121,7 +175,7 @@
 	</section>
 	<!-- Product Section End -->
 	
-	<jsp:include page="../../inc/footer.jsp"></jsp:include>
+<%-- 	<jsp:include page="../../inc/footer.jsp"></jsp:include> --%>
 
 	<!-- Search model Begin -->
 	<div class="search-model">

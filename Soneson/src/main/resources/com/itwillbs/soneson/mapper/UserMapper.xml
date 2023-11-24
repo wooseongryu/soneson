@@ -13,8 +13,8 @@
 			, hire_date
 			, user_is_admin
 			, mail_auth_status
-			, kakao_id
 			, user_status
+			, kakao_id
 	)
   	 VALUES (
 			#{user_name}
@@ -24,8 +24,8 @@
 			, now()
 			, 'N'
 			, 'N'
-			, null
 			, '가입'
+			, null
 	)
 	
 	</insert>
@@ -70,11 +70,11 @@
 			, hire_date
 			, user_is_admin
 			, mail_auth_status
+		  	, user_status
 			, CASE
 				WHEN kakao_id IS NULL THEN '미연동'
 				ELSE '연동됨'
 			  END AS kakao_id
-		  	, user_status
 		FROM user 
 		WHERE user_id = #{user_id}
 	</select>
