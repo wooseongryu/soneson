@@ -85,6 +85,13 @@
                                             placeholder="이벤트제목입력">
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12 mb-6 mb-sm-0">
+									  <label for="floatingTextarea">공지내용</label>
+									  <textarea rows="10" name="event_content" class="form-control form-control-textarea" 
+									  	placeholder="이벤트내용작성" id="floatingTextarea" maxlength="3000"></textarea>
+									</div>
+                                </div>
 								<br>
 								<div class="form-group row">
 								  	<div class="col-sm-5 mb-2 mb-sm-0">
@@ -100,11 +107,11 @@
 								<div class="form-group row">
 									<div class="col-sm-5 mb-1 mb-sm-0">
 									    <label for="">썸네일 사진</label>
-										<input type="file" name="event_thumbnail_multi" required="required"/>
+										<input type="file" name="event_thumbnail_multi" />
 								    </div>
 									<div class="col-sm-5 mb-1 mb-sm-0">
 								    	<label for="">이벤트 사진</label>
-										<input type="file" name="event_poster_multi" required="required"/>
+										<input type="file" name="event_poster_multi" />
 								    </div>
 								</div>
 

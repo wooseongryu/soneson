@@ -77,6 +77,7 @@
                                             <th>번호</th>
                                             <th>카테고리</th>
                                             <th>제목</th>
+                                            <th>작성일</th>
                                             <th>이벤트 기간</th>
                                             <th>상태구분</th>
                                             <th>수정 및 삭제</th>
@@ -84,7 +85,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-											<td colspan="6">
+											<td colspan="7">
 												<button type="button" class="btn btn-primary" onclick="location.href='adminEventInsert'">등록</button>&nbsp;&nbsp;
 												<button type="button" class="btn btn-primary" onclick="location.href='adminEventCategoryInsert'">카테고리 관리</button>
 											</td>
@@ -96,6 +97,7 @@
 	                                            <td>${event.event_idx }</td>
 	                                            <td>${event.eventCate_subject }</td>
 	                                            <td>${event.event_title }</td>
+	                                            <td><fmt:formatDate value="${event.event_writeDate }" pattern="yyyy-MM-dd"/></td>
 	                                            <td>${event.event_startDt } ~ ${event.event_endDt }</td>
 	                                            <td>${event.event_status }</td>
 												<td>
