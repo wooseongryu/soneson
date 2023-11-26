@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.soneson.mapper.AdminMapper;
 import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
-import com.itwillbs.soneson.vo.NoticeVO;
 import com.itwillbs.soneson.vo.QnaCateVO;
 import com.itwillbs.soneson.vo.QnaVO;
 import com.itwillbs.soneson.vo.UserVO;
@@ -32,35 +31,6 @@ public class AdminService {
 		return mapper.updateUserAuthorize(user);
 	}
 	
-	
-	/*==============================================================
-	 * 공지 
-	 * =============================================================
-	 * */
-
-	// 공지 등록
-	public int insertNotice(NoticeVO notice) {
-		return mapper.insertNotice(notice);
-	}
-	
-	// 공지 조회
-	// noticeIdx를 널스트링으로 전달 시 전체 공지 조회
-	public List<NoticeVO> getNotice(String notice_idx) {
-		System.out.println("AdminService - getNotice()");
-		return mapper.selectNotice(notice_idx);
-	}
-
-	// 공지 삭제
-	public int deleteNotice(int notice_idx) {
-		System.out.println("AdminService - deleteNotice()");
-		return mapper.deleteNotice(notice_idx);
-	}
-
-	// 공지 수정
-	public int updateNotice(NoticeVO notice) {
-		System.out.println("AdminService - updateNotice()");
-		return mapper.updateNotice(notice);
-	}
 	
 	
 	

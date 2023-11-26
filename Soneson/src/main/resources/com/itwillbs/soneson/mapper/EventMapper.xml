@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.itwillbs.soneson.mapper.EventMapper">
+    
+	<select id= "selectEventList" resultType="Event">
+		-- selectEventList
+		SELECT
+			e.event_idx 
+			, e.event_title
+			, e.event_content
+			, e.event_writeDate
+			, e.event_startDt
+			, e.event_endDt
+			, e.event_poster
+			, e.event_thumbnail
+			, e.event_category
+			, ec.eventCate_subject
+		FROM 
+			event e JOIN eventCate ec 
+			ON e.event_category = ec.eventCate_idx
+		<if test="eventCate_idx != -1">
+		WHERE eventCate_idx = #{eventCate_idx}
+		</if>
+		ORDER BY e.event_startDt DESC
+		LIMIT
+			#{startRow}
+			, #{listLimit}
+		
+	</select>
+
+<!--    	이벤트 카테고리 전체 조회 -->
+	<select id="selectEventCateList" resultType="EventCate">
+		-- selectEventCateList
+		SELECT 
+			eventCate_idx
+			, eventCate_subject
+		FROM eventCate
+		ORDER BY eventCate_idx
+	</select>
+	
+	<select id="selectEvent" resultType="Event">
+		-- selectEvent
+		SELECT 
+			*
+		FROM event
+		WHERE event_idx = #{event_idx}
+	</select>
+    
+    
+   	<!-- 영화 이벤트 목록 조회 -->
+	<select id= "selectEventDetailList" resultType="Event">
+		-- selectEventDetailList
+		SELECT
+			e.event_idx 
+			, e.event_title
+			, e.event_content
+			, e.event_writeDate
+			, e.event_startDt
+			, e.event_endDt
+			, e.event_poster
+			, e.event_thumbnail
+			, e.event_category
+			, ec.eventCate_subject
+		FROM 
+			event e JOIN eventCate ec 
+			ON e.event_category = ec.eventCate_idx
+		<if test="eventCate_idx != -1">
+		WHERE eventCate_idx = #{eventCate_idx}
+		</if>
+		ORDER BY e.event_startDt DESC
+		LIMIT
+			#{startRow}
+			, #{listLimit}
+	</select>
+
+	<!-- 영화 이벤트 목록 수 조회 -->
+	<select id= "selectMovieEventListCount">
+		-- selectMovieEventListCount
+		SELECT COUNT(*)
+		FROM 
+			event e JOIN eventCate ec 
+			ON e.event_category = ec.eventCate_idx
+		<if test="eventCate_idx != -1">
+		WHERE eventCate_idx = #{eventCate_idx}
+		</if>
+	</select>
+    <!-- 이벤트 끝 -->
+
+	<!-- 메인 이벤트 페이지 목록 수 조회 -->
+	<select id= "selectEventListAllCount">
+		-- selectEventListAllCount
+		SELECT COUNT(*)
+		FROM 
+			event e JOIN eventCate ec 
+			ON e.event_category = ec.eventCate_idx
+		<if test="eventCate_idx != -1">
+		WHERE eventCate_idx = #{eventCate_idx}
+		</if>
+	</select>
+    <!-- 이벤트 끝 -->
+    
+    
+    
+    
+</mapper>

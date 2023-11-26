@@ -28,7 +28,6 @@ import com.itwillbs.soneson.service.AdminService;
 import com.itwillbs.soneson.service.UserService;
 import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
-import com.itwillbs.soneson.vo.NoticeVO;
 import com.itwillbs.soneson.vo.QnaCateVO;
 import com.itwillbs.soneson.vo.QnaVO;
 import com.itwillbs.soneson.vo.UserVO;
@@ -233,122 +232,6 @@ public class AdminController {
  * 7. 게시판관리
  * ===================================================================
  * */
-	
-	// 게시판관리 - 공지사항 페이지로 이동
-	@GetMapping("adminSelectNotice")
-	public String adminSelectNotice(Model model, HttpSession session) {
-		System.out.println("AdminController - adminSelectNotice()");
-		
-//		String sId = (String)session.getAttribute("sId");
-//		String isAdmin = (String)session.getAttribute("isAdmin");
-		
-//		if(sId == null || isAdmin.equals("N")) {
-//			model.addAttribute("msg", "잘못된 접근입니다!");
-//			return "fail_back";
-//		}
-		
-		List<NoticeVO> noticeList = adminService.getNotice("");
-		model.addAttribute("noticeList", noticeList);
-		
-		return "mypage/admin/admin_select_notion";	
-	}
-
-	// 관리자 공지사항 등록 폼으로 이동
-	@GetMapping("adminNoticeInsert")
-	public String adminNoticeInsert(HttpSession session, Model model) {
-		System.out.println("AdminController - adminNoticeInsert()");
-		
-//		String sId = (String)session.getAttribute("sId");
-//		String isAdmin = (String)session.getAttribute("isAdmin");
-//		
-//		if(sId == null || isAdmin.equals("N")) {
-//			model.addAttribute("msg", "잘못된 접근입니다!");
-//			return "fail_back";
-//		}
-		
-		return "mypage/admin/admin_insert_notice";
-	}
-	
-	
-	
-	// 관리자 공지사항 등록 처리
-	@PostMapping("adminNoticeInsertPro")
-	public String adminNoticeInsertPro(NoticeVO notice, Model model) {
-		System.out.println("AdminController - adminNoticeInsertPro()");
-		int insertCount = adminService.insertNotice(notice);
-		
-//		String sId = (String)session.getAttribute("sId");
-//		String isAdmin = (String)session.getAttribute("isAdmin");
-//		
-//		if(sId == null || isAdmin.equals("N")) {
-//			model.addAttribute("msg", "잘못된 접근입니다!");
-//			return "fail_back";
-//		}
-
-		if (insertCount == 0) {
-			model.addAttribute("msg", "등록 실패!");
-			return "fail_back";
-		}
-		
-		return "redirect:/adminSelectNotice";
-	}
-	
-	// 관리자 공지사항 삭제
-	@GetMapping("adminNoticeDelete")
-	public String adminNoticeDelete(int notice_idx, Model model, HttpSession session) {
-		System.out.println("AdminController - adminNoticeDelete()");
-		
-//		String sId = (String)session.getAttribute("sId");
-//		String isAdmin = (String)session.getAttribute("isAdmin");
-//		
-//		if(sId == null || isAdmin.equals("N")) {
-//			model.addAttribute("msg", "잘못된 접근입니다!");
-//			return "fail_back";
-//		}
-		
-		int deleteCount = adminService.deleteNotice(notice_idx);
-		
-		if (deleteCount == 0) {
-			model.addAttribute("msg", "삭제 실패!");
-			return "fail_back";
-		}
-		
-		return "redirect:/adminSelectNotice";
-	}
-	
-	// 관리자 공지사항 수정 폼
-	@GetMapping("adminNoticeUpdate")
-	public String adminNoticeUpdate(String notice_idx, Model model, HttpSession session) {
-		System.out.println("AdminController - adminNoticeUpdate()");
-		
-//		String sId = (String)session.getAttribute("sId");
-//		String isAdmin = (String)session.getAttribute("isAdmin");
-//		
-//		if(sId == null || isAdmin.equals("N")) {
-//			model.addAttribute("msg", "잘못된 접근입니다!");
-//			return "fail_back";
-//		}
-		
-		NoticeVO notice = adminService.getNotice(notice_idx).get(0);
-		model.addAttribute("notice", notice);
-		
-		return "mypage/admin/admin_update_notice";
-	}
-	
-	// 관리자 공지사항 수정
-	@PostMapping("adminNoticeUpdatePro")
-	public String adminNoticeUpdatePro(NoticeVO notice, Model model) {
-		System.out.println("AdminController - adminNoticeUpdatePro()");
-		int updateCount = adminService.updateNotice(notice);
-		
-		if (updateCount == 0) {
-			model.addAttribute("msg", "수정 실패!");
-			return "fail_back";
-		}
-		
-		return "redirect:/adminSelectNotice";
-	}
-	
 	
 	/*====================================================================
 	 *  자주 묻는 질문

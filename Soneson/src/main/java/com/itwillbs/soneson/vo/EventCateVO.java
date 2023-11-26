@@ -15,6 +15,6 @@ CREATE TABLE eventCate (
 
 @Data
 public class EventCateVO {
-	int eventCate_Idx;
+	int eventCate_idx;
 	String eventCate_subject;
 }

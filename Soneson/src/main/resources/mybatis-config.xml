@@ -11,7 +11,6 @@
 		<typeAlias type="com.itwillbs.soneson.vo.EventVO" alias="Event"/>
 		<typeAlias type="com.itwillbs.soneson.vo.QnaCateVO" alias="QnaCate"/>
 		<typeAlias type="com.itwillbs.soneson.vo.QnaVO" alias="Qna"/>
-		<typeAlias type="com.itwillbs.soneson.vo.NoticeVO" alias="Notice"/>
 		<typeAlias type="com.itwillbs.soneson.vo.ProjectVO" alias="Project"/>
 	</typeAliases>
 </configuration>

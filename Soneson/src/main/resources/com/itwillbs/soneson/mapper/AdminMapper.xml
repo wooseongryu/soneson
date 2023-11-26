@@ -24,44 +24,6 @@
 	<!-- 회원 정보 관리 끝 -->
 	
 	
-	<!-- 공지 -->
-	<insert id="insertNotice">
-		INSERT INTO notice
-		VALUES (
-			null
-			, #{notice_title}
-			, #{notice_content}
-			, now()
-		)
-	</insert>
-	
-	<select id="selectNotice" resultType="Notice">
-        SELECT
-			notice_idx
-			, notice_title
-			, notice_content
-			, notice_writeDate
-		FROM notice
-		<if test="notice_idx != null and !notice_idx.equals('')">
-		WHERE notice_idx = #{notice_idx }
-		</if>
-		ORDER BY notice_writeDate DESC
-    </select>
-
-
-    <delete id="deleteNotice">
-    	DELETE FROM notice
-    	WHERE notice_idx = #{notice_idx };
-    </delete>
-    
-    <update id="updateNotice">
-    	UPDATE notice
-    	SET 
-    		notice_title = #{notice_title }
-    		, notice_content = #{notice_content }
-    	WHERE notice_idx = #{notice_idx };
-    </update>
-    <!-- 공지 끝 -->
 	
     <!-- 이벤트 -->
     <insert id="insertEvent">
@@ -69,6 +31,8 @@
     	VALUES (
     		null
 			, #{event_title}
+			, #{event_content}
+			, now()
 			, #{event_startDt}
 			, #{event_endDt}
 			, #{event_poster}
@@ -81,6 +45,8 @@
     	SELECT
     		e.event_idx
 			, e.event_title
+			, e.event_content
+			, e.event_writeDate
 			, e.event_startDt
 			, e.event_endDt
 			, e.event_poster
@@ -98,6 +64,8 @@
     	UPDATE event
     	SET
 			event_title = #{event_title}
+			, event_content = #{event_content}
+			, event_writeDate = #{event_writeDate}
 			, event_startDt = #{event_startDt}
 			, event_endDt = #{event_endDt}
 			, event_poster = #{event_poster}

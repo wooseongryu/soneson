@@ -134,7 +134,7 @@
             	</a>
 				<div id="collapseBoard" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="adminSelectNotice">공지사항</a>
+<!-- 						<a class="collapse-item" href="adminSelectNotice">공지사항</a> -->
 						<a class="collapse-item" href="adminSelectQna">자주묻는질문</a>
 						<a class="collapse-item" href="adminSelectOTO">1:1문의</a>
 						<a class="collapse-item" href="adminSelectEvent">이벤트</a>

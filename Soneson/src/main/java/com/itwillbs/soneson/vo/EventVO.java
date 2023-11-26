@@ -1,5 +1,7 @@
 package com.itwillbs.soneson.vo;
 
+import java.util.Date;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
@@ -26,6 +28,8 @@ CREATE TABLE event (
 public class EventVO {
 	private int event_idx;
 	private String event_title;
+	private String event_content;
+	private Date event_writeDate;
 	private String event_startDt;
 	private String event_endDt;
 	private String event_poster;
