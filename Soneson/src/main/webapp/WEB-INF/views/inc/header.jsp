@@ -155,21 +155,21 @@
 		
 		let timeout;
 
-        $(".HeaderGnb_item__wcfir.category, .DonationTodayCategory_wrap__k2rtu").on({
+        $j(".HeaderGnb_item__wcfir.category, .DonationTodayCategory_wrap__k2rtu").on({
             mouseenter: function () {
                 clearTimeout(timeout);
-                $(".DonationTodayCategory_wrap__k2rtu").show();
+                $j(".DonationTodayCategory_wrap__k2rtu").show();
             },
             mouseleave: function () {
                 timeout = setTimeout(function () {
-                    $(".DonationTodayCategory_wrap__k2rtu").hide();
+                    $j(".DonationTodayCategory_wrap__k2rtu").hide();
                 }, 200); // 0.2초 후에 숨김 처리
             }
         });
         
-        $(".DonationTodayCategory_list_item__agFbi").click(function() {
-        	$(".DonationTodayCategory_list_item__agFbi").attr("aria-current", "false");
-        	$(this).attr("aria-current", "true");
+        $j(".DonationTodayCategory_list_item__agFbi").click(function() {
+        	$j(".DonationTodayCategory_list_item__agFbi").attr("aria-current", "false");
+        	$j(this).attr("aria-current", "true");
         });
 		
 		

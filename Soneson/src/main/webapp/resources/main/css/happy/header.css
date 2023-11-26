@@ -368,6 +368,7 @@
     display: -ms-flexbox;
     display: flex;
     -ms-flex-pack: justify;
+    
     justify-content: space-between;
     white-space: nowrap;
     /* margin: 0 auto; */
