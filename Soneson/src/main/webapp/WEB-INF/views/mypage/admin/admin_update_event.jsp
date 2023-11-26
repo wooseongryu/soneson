@@ -83,11 +83,11 @@
 	                                    <select class="form-select" name="event_category" aria-label="Default select example" >
 									  		<c:forEach var="eventCategory" items="${eventCategoryList }">
 												<c:choose>
-													<c:when test="${eventCategory.eventCate_Idx eq event.event_category }">
-														<option value="${eventCategory.eventCate_Idx }" selected="selected">${eventCategory.eventCate_subject }</option>
+													<c:when test="${eventCategory.eventCate_idx eq event.event_category }">
+														<option value="${eventCategory.eventCate_idx }" selected="selected">${eventCategory.eventCate_subject }</option>
 													</c:when>
 													<c:otherwise>
-														<option value="${eventCategory.eventCate_Idx }">${eventCategory.eventCate_subject }</option>
+														<option value="${eventCategory.eventCate_idx }">${eventCategory.eventCate_subject }</option>
 													</c:otherwise>
 												</c:choose>
 											</c:forEach>

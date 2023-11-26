@@ -73,7 +73,7 @@
 										<br>
 	                                    <select class="form-select" name="event_category" aria-label="Default select example" >
 									  		<c:forEach var="eventCategoryList" items="${eventCategoryList }">
-												<option value="${eventCategoryList.eventCate_Idx }">${eventCategoryList.eventCate_subject }</option>
+												<option value="${eventCategoryList.eventCate_idx }">${eventCategoryList.eventCate_subject }</option>
 											</c:forEach>
 										</select>
 								  	</div>
