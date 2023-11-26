@@ -63,16 +63,19 @@
 			<div class="row d-flex justify-content-center">
 				<div class="col-lg-8">
 					<div class="blog__details__title">
-						<h2>${event.event_title }</h2>
-						<h6>${event.event_startDt } ~ ${event.event_endDt }</h6>
-						<hr>
 						<h4>${event.event_title }</h4>
+						<c:if test="${!empty event.event_startDt }">
+							<h6>${event.event_startDt } ~ ${event.event_endDt }</h6>
+						</c:if>
+						<hr>
+<%-- 						<h4>${event.event_title }</h4> --%>
 					</div>
 				</div>
 				
 				<div class="col-lg-8">
 					<div class="blog__details__content">
 						<div class="blog__details__text">
+							<h6>${event.event_content }</h6>
 							<img src ="${pageContext.request.contextPath }/resources/upload/${event.event_poster }">
                        	</div>
                    	</div>

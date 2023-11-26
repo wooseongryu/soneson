@@ -80,11 +80,10 @@
 						<hr>
 						<div class="row">
 							<c:forEach var="eventList" items="${eventList }">
-						    <div class="col-6" onclick ="location.href = 'eventDetail?event_idx=${eventList.event_idx}'"> 
+						    <div class="col-6" onclick ="location.href ='eventDetail?event_idx=${eventList.event_idx}'"> 
 		                    	<span style="color: #F86453">${eventList.eventCate_subject}</span>
 		                    	&nbsp;<span>${eventList.event_status}</span>
 		                        <h4 style="margin: 10px 10px 10px 0px;">${eventList.event_title }</h4>
-		                        <h5 style="margin: 10px 10px 10px 0px;">${eventList.event_content }</h5>
 		                    	<span>등록일 : <fmt:formatDate value="${eventList.event_writeDate}" pattern="yyyy-MM-dd"/></span>
 							</div>
 						    <div class="col-6" align="right" onclick ="location.href = 'eventDetail?event_idx=${eventList.event_idx}'">  
@@ -94,7 +93,6 @@
 						</div>
 						
 						
-							<!-- 					페이징 처리 -->
 						<div class="product__pagination" id="pageList">
 							<c:if test="${pageNum > 1 }">
 								<a href="eventMain?pageNum=${pageNum - 1 }"><i class="fa fa-angle-double-left"></i></a>					

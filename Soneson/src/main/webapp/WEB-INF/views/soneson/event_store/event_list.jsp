@@ -55,16 +55,14 @@
 	                    </div>
 						<div class="row">
 							<div class="col">
-								<div class="customer_category" align="center" 
-									<c:if test="${eventCate.eventCate_idx eq param.eventCate_idx}"></c:if> 
-									onclick="location.href='eventMain'" >
+								<div class="customer_category" align="center" onclick="location.href='eventMain'">
 									<h6>전체</h6>
 								</div>
 							</div>
 						<c:forEach var="eventCate" items="${eventCateList }">
 							<div class="col">
 								<div class="customer_category" align="center" name="${eventCate.eventCate_subject}" 
-									<c:if test="${eventCate.eventCate_idx eq param.eventCate_idx}"></c:if> 
+									<c:if test="${eventCate.eventCate_idx eq param.eventCate_idx}">style="color: #F86453; text-decoration : underline; text-underline-offset : 18px; text-decoration-thickness : 4px" </c:if> 
 									onclick="location.href='eventList?eventCate_idx=${eventCate.eventCate_idx}'" >
 									<h6>${eventCate.eventCate_subject }</h6>
 								</div>
@@ -80,7 +78,6 @@
 					                    	<span style="color: #F86453">${eventDetail.eventCate_subject}</span>
 					                    	&nbsp;<span>${eventDetail.event_status}</span>
 					                        <h4 style="margin: 10px 10px 10px 0px;">${eventDetail.event_title }</h4>
-					                        <h5 style="margin: 10px 10px 10px 0px;">${eventDetail.event_content }</h5>
 					                    	<span>등록일 : <fmt:formatDate value="${eventDetail.event_writeDate}" pattern="yyyy-MM-dd"/></span>
 										</div>
 										<div class="col-6" align="right"  onclick="location.href='eventDetail?event_idx=${eventDetail.event_idx}'">
@@ -93,23 +90,22 @@
 							</div>
 						</div>
 						
-	<!-- 					페이징 처리 -->
 						<div class="product__pagination" id="pageList">
 							<c:if test="${pageNum > 1 }">
-								<a href="eventList?eventCate_Idx=${param.eventCate_Idx }&pageNum=${pageNum - 1 }"><i class="fa fa-angle-double-left"></i></a>					
+								<a href="eventList?eventCate_idx=${param.eventCate_idx }&pageNum=${pageNum - 1 }"><i class="fa fa-angle-double-left"></i></a>					
 							</c:if>
 							<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
 								<c:choose>
 									<c:when test="${pageNum eq i }">
-										<a class="current-page" href="eventList?eventCate_Idx=${param.eventCate_Idx }&pageNum=${i }">${i }</a>
+										<a class="current-page" href="eventList?eventCate_idx=${param.eventCate_idx }&pageNum=${i }">${i }</a>
 									</c:when>
 									<c:otherwise>
-										<a href="eventList?eventCate_Idx=${param.eventCate_Idx }&pageNum=${i }">${i }</a> 
+										<a href="eventList?eventCate_idx=${param.eventCate_idx }&pageNum=${i }">${i }</a> 
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
 							<c:if test="${pageNum < pageInfo.maxPage }">
-								<a href="eventList?eventCate_Idx=${param.eventCate_Idx }&pageNum=${pageNum + 1 }"><i class="fa fa-angle-double-right"></i></a>					
+								<a href="eventList?eventCate_idx=${param.eventCate_idx }&pageNum=${pageNum + 1 }"><i class="fa fa-angle-double-right"></i></a>					
 							</c:if>
 						</div>
 					</div>

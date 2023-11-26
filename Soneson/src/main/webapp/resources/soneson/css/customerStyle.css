@@ -984,11 +984,11 @@ ol {
 }
 
 .product__pagination a:hover {
-	color: #ffffff;
+	color: #b7b7b7;
 }
 
 .product__pagination a.current-page {
-	border: 1px solid #ffffff;
+	border: 1px solid #b7b7b7;
 }
 
 .product__pagination a i {
