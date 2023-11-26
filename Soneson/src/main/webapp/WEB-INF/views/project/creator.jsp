@@ -1,5 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script>
+	$(function() {
+		$('input[name="profile_path"]').change(function(){
+		    setImageFromFile(this, '#profileImg');
+		});
+
+		function setImageFromFile(input, expression) {
+		    if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function (e) {
+		    $(expression).attr('src', e.target.result);
+//			    $(".image-change").show();
+		  }
+		  reader.readAsDataURL(input.files[0]);
+//			    $(".image-change").hide();
+		  }
+		}
+	});
+</script>
 <!-- 카테고리에 따른 입력폼 -->
 <div>
 	<div class="write-view-content">

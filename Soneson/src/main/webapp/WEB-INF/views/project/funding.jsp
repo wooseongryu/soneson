@@ -1,5 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script>
+	$(function() {
+		$("#start-funding").attr("min", tommorrow);
+		
+		//아이템 옵션
+		$("input[type=radio][name=rewardItemOption]").on("click", function() {
+			
+			let ckv = $(this).val();
+			$.each($('.reward-section2').children(), function (index, el) {
+//					debugger;
+				var attr = ckv == index ? 'block' : 'none';
+				$(el).css('display', attr);
+				
+			});
+			
+		});
+	});
+</script>
 <div class="write-view-content">
 	<div class="view-content-form">
 		<div class="projectItemWarp">
@@ -28,18 +46,18 @@
 					<div>
 						<div class="input-fundingCost">
 							<span class="fundingInputCost">
-								<input type="text" class="InputTextFunding" inputmode="numeric">
+								<input type="number" min="500000" max="9999999999" class="InputTextFunding" inputmode="numeric" name="pro_goal">
 								원
 							</span>
 						</div>
 						<div class="alert-cost">
-							<p></p>
+							<p class=""></p>
 						</div>
 					</div>
 					<div class="projectFunding-cal">
 						<div class="totalAmount">
 							<span>목표금액 달성 시 예상 수령액</span>
-							<span>원</span>
+							<span class="">원</span>
 						</div>
 						<div class="feeWarp">
 							총 수수료
@@ -85,11 +103,11 @@
 							<div class="projectForm-date">
 								<div class="projectFormHalf-date">
 									<p class="tiny-title">시작일</p>
-									<input type="date" class="input-date" id="start-funding">
+									<input type="date" class="input-date" id="start-funding" name="pro_startDt">
 								</div>
 								<div class="projectFormHalf-date">
 									<p class="tiny-title">종료일</p>
-									<input type="date" class="input-date">
+									<input type="date" class="input-date" name="pro_EndDt">
 								</div>
 							</div>
 							<div class="projectFormHalf-date">

@@ -25,7 +25,9 @@
 9.  Contact
 10.  Footer Style
 -------------------------------------------------------------------*/
-
+*, ::after, ::before {
+    box-sizing: inherit;
+}
 /*----------------------------------------*/
 /*------project_step1-----*/
 .pro-step1-container {
@@ -913,6 +915,7 @@ radio-label label {
     background: rgb(255, 255, 255);
     align-items: center;
     padding: 24px;
+    box-sizing: border-box;
 }
 .creator-info {
 	display: flex;

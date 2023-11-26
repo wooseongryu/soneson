@@ -1,6 +1,83 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script>
+	$(function() {
+		//프로젝트 소개
+		$('input[name="info_path"]').change(function(){
+		    setImageFromFile(this, '#info_preview');
+		});
 
+		function setImageFromFile(input, expression) {
+		    if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function (e) {
+		    $(expression).attr('src', e.target.result);
+		  }
+		  reader.readAsDataURL(input.files[0]);
+		  }
+		}
+		
+		//예산
+		$('input[name="budget_path"]').change(function(){
+		    setImageFromFile(this, '#budget_preview');
+		});
+
+		function setImageFromFile(input, expression) {
+		    if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function (e) {
+		    $(expression).attr('src', e.target.result);
+		  }
+		  reader.readAsDataURL(input.files[0]);
+		  }
+		}
+		
+		//일정
+		$('input[name="sch_path"]').change(function(){
+		    setImageFromFile(this, '#sch_preview');
+		});
+
+		function setImageFromFile(input, expression) {
+		    if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function (e) {
+		    $(expression).attr('src', e.target.result);
+		  }
+		  reader.readAsDataURL(input.files[0]);
+		  }
+		}
+		
+		//팀소개
+		$('input[name="team_path"]').change(function(){
+		    setImageFromFile(this, '#team_preview');
+		});
+
+		function setImageFromFile(input, expression) {
+		    if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function (e) {
+		    $(expression).attr('src', e.target.result);
+		  }
+		  reader.readAsDataURL(input.files[0]);
+		  }
+		}
+		
+		//리워드 설명
+		$('input[name="reward_path"]').change(function(){
+		    setImageFromFile(this, '#reward_preview');
+		});
+
+		function setImageFromFile(input, expression) {
+		    if (input.files && input.files[0]) {
+		    var reader = new FileReader();
+		    reader.onload = function (e) {
+		    $(expression).attr('src', e.target.result);
+		  }
+		  reader.readAsDataURL(input.files[0]);
+		  }
+		}
+	});
+</script>
 <!-- 카테고리에 따른 입력폼 -->
 <div>
 	<div class="write-view-content">
@@ -187,7 +264,7 @@
 					</dd>
 				</dl>
 				<div class="projectItem-form">
-					<div class="style-projectFunding">
+					<div class="projectInfo-writeDIv">
 							<p class="tiny-title">프로젝트 정책</p>
 							<p class="projectInfo-description">
 								이 프로젝트의 정책을 기입해주세요.<br>

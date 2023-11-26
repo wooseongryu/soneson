@@ -32,10 +32,11 @@ $(function() {
 	
 	
 	
-	$('input[name="file_path"]').change(function(){
+	//이미지 미리보기
+	$('input[name="pro_thumbsnail"]').change(function(){
 	    setImageFromFile(this, '#preview');
 	});
-
+	
 	function setImageFromFile(input, expression) {
 	    if (input.files && input.files[0]) {
 	    var reader = new FileReader();
@@ -48,21 +49,52 @@ $(function() {
 	  }
 	}
 	
-	//funding 시작날짜선택
-	$("#start-funding").attr("min", tommorrow);
-	
-	//아이템 옵션
-	$("input[type=radio][name=rewardItemOption]").on("click", function() {
+	// 제목 글자수 제한
+	$("#pro_title").on("keyup", function() {
+		let content = $(this).val();
+		$("#pro_title + .varchar-count .count-length").text(content.length);
 		
-		let ckv = $(this).val();
-		$.each($('.reward-section2').children(), function (index, el) {
-//				debugger;
-			var attr = ckv == index ? 'block' : 'none';
-			$(el).css('display', attr);
-			
-		});
+		if(content.length <= 0) {
+// 			$(".alert-count").text("10자 이상 작성해 주세요");
+			$("#pro_title + .varchar-count .alert-count").text("필수 항목 입니다.");
+		} else {
+// 			$(".alert-count").text("");
+			$("#pro_title + .varchar-count .alert-count").text("");
+		}
+		
+		if (content.length > 32) {
+	        $(this).val($(this).val().substring(0, 32));
+	        alert('글자수는 32자까지 입력 가능합니다.');
+	    };
 		
 	});
+	
+	// 요약 글자수 제한
+	$("#pro_summary").on("keyup", function() {
+//			console.log($(this).val().length);
+		let content = $(this).val();
+		$("#pro_summary + .varchar-count .count-length").text(content.length);
+		
+		if(content.length < 10) {
+// 			$(".alert-count").text("10자 이상 작성해 주세요");
+			$("#pro_summary + .varchar-count .alert-count").text("10자 이상 작성해 주세요");
+		} else {
+			$("#pro_summary + .varchar-count .alert-count").text("");
+// 			$(".alert-count").text("");
+			
+		}
+		
+		if (content.length > 50) {
+	        $(this).val($(this).val().substring(0, 32));
+	        alert('글자수는 50자까지 입력 가능합니다.');
+	    };
+		
+	});
+	
+	
+	
+	//funding 시작날짜선택
+
 	
 	
 	//리워드수량옵션
@@ -89,96 +121,9 @@ $(function() {
 		);
 	});
 	
-	//프로젝트 소개
-	$('input[name="info_path"]').change(function(){
-	    setImageFromFile(this, '#info_preview');
-	});
 
-	function setImageFromFile(input, expression) {
-	    if (input.files && input.files[0]) {
-	    var reader = new FileReader();
-	    reader.onload = function (e) {
-	    $(expression).attr('src', e.target.result);
-	  }
-	  reader.readAsDataURL(input.files[0]);
-	  }
-	}
 	
-	//예산
-	$('input[name="budget_path"]').change(function(){
-	    setImageFromFile(this, '#budget_preview');
-	});
 
-	function setImageFromFile(input, expression) {
-	    if (input.files && input.files[0]) {
-	    var reader = new FileReader();
-	    reader.onload = function (e) {
-	    $(expression).attr('src', e.target.result);
-	  }
-	  reader.readAsDataURL(input.files[0]);
-	  }
-	}
-	
-	//일정
-	$('input[name="sch_path"]').change(function(){
-	    setImageFromFile(this, '#sch_preview');
-	});
-
-	function setImageFromFile(input, expression) {
-	    if (input.files && input.files[0]) {
-	    var reader = new FileReader();
-	    reader.onload = function (e) {
-	    $(expression).attr('src', e.target.result);
-	  }
-	  reader.readAsDataURL(input.files[0]);
-	  }
-	}
-	
-	//팀소개
-	$('input[name="team_path"]').change(function(){
-	    setImageFromFile(this, '#team_preview');
-	});
-
-	function setImageFromFile(input, expression) {
-	    if (input.files && input.files[0]) {
-	    var reader = new FileReader();
-	    reader.onload = function (e) {
-	    $(expression).attr('src', e.target.result);
-	  }
-	  reader.readAsDataURL(input.files[0]);
-	  }
-	}
-	
-	//리워드 설명
-	$('input[name="reward_path"]').change(function(){
-	    setImageFromFile(this, '#reward_preview');
-	});
-
-	function setImageFromFile(input, expression) {
-	    if (input.files && input.files[0]) {
-	    var reader = new FileReader();
-	    reader.onload = function (e) {
-	    $(expression).attr('src', e.target.result);
-	  }
-	  reader.readAsDataURL(input.files[0]);
-	  }
-	}
-	
-	$('input[name="profile_path"]').change(function(){
-	    setImageFromFile(this, '#profileImg');
-	});
-
-	function setImageFromFile(input, expression) {
-	    if (input.files && input.files[0]) {
-	    var reader = new FileReader();
-	    reader.onload = function (e) {
-	    $(expression).attr('src', e.target.result);
-//		    $(".image-change").show();
-	  }
-	  reader.readAsDataURL(input.files[0]);
-//		    $(".image-change").hide();
-	  }
-	}
 	
 });
 
@@ -207,8 +152,6 @@ $(function() {
 				<div class="top-contentWarp">
 					<div class="top-content-right">
 <!--					글 달성률 할 수 이쓰까...? -->
-<!-- 						<button>심사기준</button> -->
-						<button>등록하기</button>
 						<!-- Button trigger modal -->
 						<button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
 						  심사기준
@@ -253,6 +196,7 @@ $(function() {
 						    	</div>
 							</div>
 						</div>
+						<button>등록하기</button>
 					</div>
 					<div class="top-content-center">
 						<div class="top-content-img"></div>
@@ -311,7 +255,7 @@ $(function() {
 							</dd>
 						</dl>
 						<div class="projectItem-form">
-							<select class="select_detail">
+							<select class="select_detail" name="pro_categorie">
 								<option>아동·청소년</option>
 								<option>동물</option>
 								<option>환경</option>
@@ -333,7 +277,14 @@ $(function() {
 							</dd>
 						</dl>
 						<div class="projectItem-form">
-							<input type="text" class="input_detail">
+							<div>
+								<input type="text" class="input_detail" name="pro_title" id="pro_title">
+								<div class="varchar-count">
+									<span class="alert-count"></span>
+									<span><span class="count-length">0</span> / 32</span>
+								</div>
+							</div>
+<%-- 							value="${pro.pro_title }" 추가하기 --%>
 						</div>
 					</div>
 					<!--  -->
@@ -356,7 +307,13 @@ $(function() {
 							</div>
 						</dl>
 						<div class="projectItem-form">
-							<textarea class="plan-textarea" placeholder="프로젝트요약을 입력해 주세요"></textarea>
+							<div>
+								<textarea class="plan-textarea" placeholder="프로젝트요약을 입력해 주세요" name="pro_summary" id="pro_summary"></textarea>
+								<div class="varchar-count">
+									<span class="alert-count"></span>
+									<span><span class="count-length">0</span> / 50</span>
+								</div>
+							</div>
 						</div>
 					</div>
 					<div class="projectItemWarp">
@@ -373,7 +330,7 @@ $(function() {
 							<div class="uploadImage">
 								<div>
 									<span><i class="bi bi-upload"></i>이미지 업로드</span>
-									<input type="file" accept=".jpg, .jpeg, .png" name="file_path">
+									<input type="file" accept=".jpg, .jpeg, .png" name="pro_thumbsnail">
 								</div>
 							</div>
 							<div class="imagePreview">
