@@ -30,11 +30,14 @@ public class EventController {
 	private AdminService adminService;
 	
 	
-	// 이벤트 메인
+	// 게시판 메인
 	@GetMapping("eventMain")
 	public String eventMain(@RequestParam(defaultValue = "1") int pageNum, 
-							Model model, 
-							@RequestParam(defaultValue = "-1") int eventCate_idx) {
+							@RequestParam(defaultValue = "-1") int eventCate_idx,
+							@RequestParam(defaultValue = "") String searchType,
+//							@RequestParam(defaultValue = "") String searchKeyword,
+							Model model
+							) {
 		System.out.println("EventController - eventMain()");
 
 		int listLimit = 6; // 한 페이지에서 표시할 글 목록 갯수
@@ -101,7 +104,7 @@ public class EventController {
 		return "soneson/event_qna/event_main";
 	}
 	
-	// 이벤트 상세보기
+	// 게시판 상세보기
 	@GetMapping("eventDetail")
 	public String eventDetail(@RequestParam(defaultValue = "-1") String event_idx, 
 			Model model) {
@@ -118,7 +121,7 @@ public class EventController {
 		return "soneson/event_qna/event_detail";
 	}
 	
-	// 영화 이벤트 상세 목록
+	// 게시판 상세 목록
 	@GetMapping("eventList")
 	public String eventList(
 						@RequestParam(defaultValue = "1") int pageNum, 
@@ -165,7 +168,7 @@ public class EventController {
 		
 		
 		
-		int listCount = eventService.getMovieEventListCount(eventCate_idx);
+		int listCount = eventService.getEventListCount(eventCate_idx);
 		
 		int pageListLimit = 3;
 		

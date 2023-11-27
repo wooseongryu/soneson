@@ -5,9 +5,9 @@
     
 <mapper namespace="com.itwillbs.soneson.mapper.QnaMapper">
 
-	<!-- 자주 묻는 질문  -->
 	<!-- 자주 묻는 질문 목록 조회 -->
 	<select id= "selectQnaList" resultType="Qna">
+		-- selectQnaList
 		SELECT
 			q.qna_idx
 			, q.qna_title
@@ -27,7 +27,9 @@
 	</select>
 	
 	
+	<!-- 자주 묻는 질문 목록 수 조회 -->
 	<select id= "selectQnaListCount">
+		-- selectQnaList
 		SELECT COUNT(*)
 		FROM qna
 		<if test="qnaCate_idx != -1">
@@ -36,7 +38,9 @@
 	</select>
 	
 	
+	<!-- 자주 묻는 질문 카테고리 조회 -->
 	<select id="selectQnaCateList" resultType="QnaCate">
+		-- selectQnaList
 		SELECT 
 			qnaCate_idx
 			, qnaCate_subject

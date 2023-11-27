@@ -5,6 +5,23 @@
     
 <mapper namespace="com.itwillbs.soneson.mapper.AdminMapper">
 	
+	<!-- 관리자 메인 -->
+	
+	<!-- 가입 회원 수 조회 -->
+	<select id="countJoinUser" resultType="int">
+		SELECT COUNT(user_idx)
+		FROM user
+		WHERE user_status = '가입';
+	</select>
+
+	<!-- 탈퇴 회원 수 조회 -->
+	<select id="countDeleteUser" resultType="int">
+		SELECT COUNT(user_idx)
+		FROM user
+		WHERE user_status = '탈퇴';
+	</select>
+	
+	
 
 	<!-- 회원 정보 관리 -->
 	<update id="updateUserAuthorize">
@@ -23,9 +40,7 @@
 	</update>
 	<!-- 회원 정보 관리 끝 -->
 	
-	
-	
-    <!-- 이벤트 -->
+    <!-- 게시판 -->
     <insert id="insertEvent">
     	INSERT INTO event
     	VALUES (
@@ -80,7 +95,7 @@
     </delete>
     
     
-    <!-- 이벤트 카테고리 -->
+    <!-- 게시판 카테고리 -->
     <insert id="insertEventCategory">
 		INSERT INTO eventCate
 		VALUES (
@@ -102,7 +117,9 @@
     </delete>
     <!-- 이벤트 카테고리 끝 -->
     
-        <!-- 자주 묻는 질문 -->
+    
+    
+    <!-- 자주 묻는 질문 -->
   	<insert id="insertQna">
 		INSERT INTO qna
 		VALUES (

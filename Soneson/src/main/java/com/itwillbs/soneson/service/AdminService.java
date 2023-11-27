@@ -19,6 +19,26 @@ public class AdminService {
 	@Autowired
 	private AdminMapper mapper;	
 	
+	/*====================================================================
+	 * 관리자 메인
+	 * ===================================================================
+	 * */
+	
+	// 관리자 가입 회원 수 조회
+	public int countJoinUser() {
+		System.out.println("AdminService - countJoinUser()");
+		return mapper.countJoinUser();
+	}
+
+	// 관리자 가입 회원 수 조회
+	public int countDeleteUser() {
+		System.out.println("AdminService - countDeleteUser()");
+		return mapper.countDeleteUser();
+	}
+	
+	
+	
+	
 	
 	/*====================================================================
 	 * 관리자 회원 정보 관리 페이지
@@ -35,30 +55,30 @@ public class AdminService {
 	
 	
 	/*==============================================================
-	 * 이벤트
+	 * 게시판
 	 * =============================================================
 	 * */
 
-	// 이벤트 등록
+	// 게시판 등록
 	public int insertEvent(EventVO event) {
 		System.out.println("AdminService - insertEvent()");
 		return mapper.insertEvent(event);
 	}
 
-	// 이벤트 조회
+	// 게시판 조회
 	// event_idx를 널스트링으로 전달 시 전체 질문 조회
 	public List<EventVO> getEvent(String event_idx) {
 		System.out.println("AdminService - selectEvent()");
 		return mapper.selectEvent(event_idx);
 	}
 
-	// 이벤트 수정
+	// 게시판 수정
 	public int updateEvent(EventVO event) {
 		System.out.println("AdminService - updateEvent()");
 		return mapper.updateEvent(event);
 	}
 
-	// 이벤트 삭제
+	// 게시판 삭제
 	public int deleteEvent(String event_idx) {
 		System.out.println("AdminService - deleteEvent(event_idx)");
 		return mapper.deleteEvent(event_idx);
@@ -67,13 +87,13 @@ public class AdminService {
 	
 	//---------------------------------------------------------
 	
-	// 이벤트 카테고리 등록
+	// 게시판 카테고리 등록
 	public int insertEventCategory(String eventCate_subject) {
 		System.out.println("AdminService - insertEventCategory()");
 		return mapper.insertEventCategory(eventCate_subject);
 	}
 
-	// 이벤트 카테고리 조회
+	// 게시판 카테고리 조회
 	public List<EventCateVO> getEventCategory() {
 		System.out.println("AdminService - getEventCategory()");
 		return mapper.selectEventCategory();

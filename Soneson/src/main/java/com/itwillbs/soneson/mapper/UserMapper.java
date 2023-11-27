@@ -73,7 +73,7 @@ public interface UserMapper {
 	int updatePasswdChange(UserVO user);
 
 	// 카카오 등록된 회원 찾기
-	UserVO getMemberKakaoLogin(String kakao_id);
+	UserVO getUserKakaoLogin(String kakao_id);
 
 	int updateKakaoId(UserVO user);
 

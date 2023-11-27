@@ -15,8 +15,6 @@ public class QnaService {
 	
 	@Autowired
 	private QnaMapper mapper;
-	
-	
 
 	// 자주 묻는 질문 목록 조회
 	public List<QnaVO> getQnaList(int startRow, int listLimit, int qnaCate_idx) {
@@ -27,7 +25,6 @@ public class QnaService {
 	public int getQnaListCount(int qnaCate_idx) {
 		return mapper.selectQnaListCount(qnaCate_idx);
 	}
-
 
 	// 자주 묻는 질문 카테고리 조회
 	public List<QnaCateVO> getQnaCateList() {
