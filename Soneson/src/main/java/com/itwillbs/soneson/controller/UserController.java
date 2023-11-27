@@ -171,7 +171,10 @@ public class UserController {
 		
 		
 		
-	
+	/*====================================================================
+	 * 마이페이지에서 세부 페이지로 이동
+	 * ===================================================================
+	 * */
 	
 	// 마이페이지에서 프로젝트 올리기 페이지 이동
 	@GetMapping("userProjectsCreated")
@@ -180,12 +183,29 @@ public class UserController {
 		return "mypage/user/user_projects_created";
 	}
 	
-	// 마이페이지에서 관심 프로젝트 페이지 이동
-	@GetMapping("userProjectsLiked")
+	// 마이페이지에서 관심 프로젝트
+	@GetMapping("userProjectsInterest")
+	public String userProjectsInterest() {
+		System.out.println("UserController - userProjectsInterest()");
+		return "mypage/user/user_projects_interest";
+	}
+	
+	// 마이페이지에서 관심 프로젝트 - 좋아한 페이지 이동
+	@ResponseBody
+	@PostMapping("userProjectsLiked")
 	public String userProjectsLiked() {
 		System.out.println("UserController - userProjectsLiked()");
-		return "mypage/user/user_projects_liked";
+		return "1";
 	}
+
+	// 마이페이지에서 관심 프로젝트 - 알림신청 페이지 이동
+	@ResponseBody
+	@PostMapping("userProjectsAlarm")
+	public String userProjectsAlarm() {
+		System.out.println("UserController - userProjectsAlarm()");
+		return "1";
+	}
+		
 	
 	
 	
