@@ -31,6 +31,145 @@
     
     <script type="text/javascript">
     	let pointColor = "#F86453";
+    	
+    	function userProfile(id) {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingUserProfile',
+    			dataType: 'json',
+    			success: function(resp) {
+    				reset_screen(id);
+
+					$("#user_content").append(
+						  ' <div class="anime__details__review">                                     '
+						+ '  	<div class="anime__review__item">                                    '
+                        + '  		<div class="user__setting__text" id="user_name">    '
+	                    + '      		<h6>이름</h6>                                                '
+	                    + '      		<p style="margin-top: 10px">홍길동</p>                       '
+	                    + '      		<div class="user_follow_btn">                                '
+// 	                    + '      			<a onclick="updateUserName(\'' + id + '\')">변경</a>                                     '
+	                    + '      			<a onclick="updateUserName()">변경</a>                                     '
+	                    + '      		</div>                                                       '
+						+ '  		</div>                                                           '
+                    	+ '  	</div>                                                               '
+                	 	+ ' </div>                                                                   '
+
+                	 	+ ' <div class="anime__details__review">                                                       '
+						+ '  	<div class="anime__review__item">                                                       '
+	                    + '  		<div class="user__setting__text" id="user_intro">                       '
+	                    + '      		<h6>소개</h6>                                                                   '
+	                    + '      		<p style="margin-top: 10px; width: 700px">등록된 소개가 없습니다.</p>           '
+	                    + '      		<div class="user_follow_btn">                                                   '
+// 	                    + '      			<a onclick="updateUserIntroduction(\'' + id + '\')">변경</a>                                                        '
+	                    + '      			<a onclick="updateUserIntroduction()">변경</a>                                                        '
+	                    + '      		</div>                                                                          '
+						+ '  		</div>                                                                              '
+	                	+ '  	</div>                                                                                  '
+	            	 	+ ' </div>                                                                                     '
+					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function updateUserName() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingUpdateUserName',
+    			dataType: 'json',
+    			success: function(resp) {
+    				$("#user_name").children().remove();
+    				
+    				$("#user_name").append(
+                     		  ' <h6>이름</h6>                                                     '
+                     		+ ' <input type="text" value="홍길동" style="margin-top: 10px">       '
+                     		+ '                                                                   '
+                     		+ ' <div class="user_follow_btn">                                     '
+                     		+ ' 	<a href="#">저장</a>                                          '
+                     		+ ' </div>                                                            '
+                     		+ ' <div class=user_cancel_btn>                                       '
+                     		+ ' 	<a onclick="cancelUpdateUserName()">취소</a>                                          '
+                     		+ ' </div>                                                            '
+    				);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function cancelUpdateUserName() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingCancelUpdateUserName',
+    			dataType: 'json',
+    			success: function(resp) {
+    				$("#user_name").children().remove();
+    				
+    				$("#user_name").append(
+   						  '<h6>이름</h6>                                                '
+   	                    + '<p style="margin-top: 10px">홍길동</p>                       '
+   	                    + '<div class="user_follow_btn">                                '
+   	                    + '    <a onclick="updateUserName()">변경</a>                   '
+   	                    + '</div>                                                       '
+    				);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function updateUserIntroduction() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingUpdateUserIntro',
+    			dataType: 'json',
+    			success: function(resp) {
+					$("#user_intro").children().remove();
+    				
+    				$("#user_intro").append(
+   						  ' <h6>소개</h6>                                                                                            '
+                   		+ ' <textarea rows="10px" cols="70px" placeholder="자기소개를 입력해주세요." style="margin-top: 10px"></textarea>'
+                   		+ ' <div class="user_follow_btn">                                                                            '
+                   		+ ' 	<a href="#">저장</a>                                                                                 '
+                   		+ ' </div>                                                                                                   '
+                   		+ ' <div class=user_cancel_btn>                                                                              '
+                   		+ ' 	<a onclick="cancelUpdateUserIntroduction()">취소</a>                                                                                 '
+                   		+ ' </div>                                                                                                   '
+    				);
+
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function cancelUpdateUserIntroduction() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingcCancelUpdateUserIntro',
+    			dataType: 'json',
+    			success: function(resp) {
+					$("#user_intro").children().remove();
+    				
+    				$("#user_intro").append(
+    						  ' <h6>소개</h6>                                                                   '
+    	                    + ' <p style="margin-top: 10px; width: 700px">등록된 소개가 없습니다.</p>           '
+    	                    + ' <div class="user_follow_btn">                                                   '
+    	                    + ' 	<a onclick="updateUserIntroduction()">변경</a>                              '
+    	                    + ' </div>                                                                          '
+    				);
+
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
 
     	function reset_screen(id) {
     		$("#section-title h5").css("color", "black");
@@ -78,17 +217,17 @@
                                         <div class="user_top_cate" id="topCateProfile">
 											<h5 onclick="userProfile('topCateProfile')">프로필</h5>
 										</div>
-										<div class="user_top_cate" id="topProjectReview">
-											<h5 onclick="userProjectReview('topProjectReview')">계정</h5>
+										<div class="user_top_cate" id="topUserAccount">
+											<h5 onclick="userAccount('topUserAccount')">계정</h5>
 										</div>
-										<div class="user_top_cate" id="topUploadProject">
-											<h5 onclick="userUploadProject('topUploadProject')">결제수단</h5>
+										<div class="user_top_cate" id="topUserPayment">
+											<h5 onclick="userPayment('topUserPayment')">결제수단</h5>
 										</div>
-										<div class="user_top_cate">	
-											<h5>배송지</h5>
+										<div class="user_top_cate" id="topUserAddress">	
+											<h5 onclick="userAddress('topUserAddress')">배송지</h5>
 										</div>
-										<div class="user_top_cate" id="topFollower">	
-											<h5 onclick="userFollower('topFollower')">알림</h5>
+										<div class="user_top_cate" id="topUserAlarm">	
+											<h5 onclick="userAlarm('topUserAlarm')">알림</h5>
 										</div>
                                     </div>
                                 </div>
@@ -99,72 +238,7 @@
                         <div id="user_content">
                         	<!-- ajax -->
                         	
-                        	<div class="anime__details__review">
-							 	<div class="anime__review__item">
-	                         		<div class="user__setting__text" id="project_review_content">
-		                         		<h6>프로필 사진</h6>
-		                         		<p style="margin-top: 10px">홍길동</p>
-		                         		<div class="user_follow_btn">
-		                         			<a href="#">변경</a>
-		                         		</div>
-							 		</div>
-	                    	 	</div>
-	                	 	</div>
                         	
-	 						<div class="anime__details__review">
-							 	<div class="anime__review__item">
-	                         		<div class="user__setting__text" id="project_review_content">
-		                         		<h6>이름</h6>
-		                         		<p style="margin-top: 10px">홍길동</p>
-		                         		<div class="user_follow_btn">
-		                         			<a href="#">변경</a>
-		                         		</div>
-							 		</div>
-	                    	 	</div>
-	                	 	</div>
-	                	 	
-	                	 	<div class="anime__details__review">
-							 	<div class="anime__review__item">
-	                         		<div class="user__setting__text" id="project_review_content">
-		                         		<h6>이름</h6>
-		                         		<input type="text" value="홍길동" style="margin-top: 10px">
-		                         		
-		                         		<div class="user_follow_btn">
-		                         			<a href="#">저장</a>
-		                         		</div>
-		                         		<div class=user_cancel_btn>
-		                         			<a href="#">취소</a>
-		                         		</div>
-							 		</div>
-	                    	 	</div>
-	                	 	</div>
-	                	 	
-	                	 	<div class="anime__details__review">
-							 	<div class="anime__review__item">
-	                         		<div class="user__setting__text" id="project_review_content">
-		                         		<h6>소개</h6>
-		                         		<p style="margin-top: 10px; width: 700px">등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.등록된 소개가 없습니다.</p>
-		                         		<div class="user_follow_btn">
-		                         			<a href="#">변경</a>
-		                         		</div>
-							 		</div>
-	                    	 	</div>
-	                	 	</div>
-	                	 	
-	                	 	<div class="anime__details__review">
-							 	<div class="anime__review__item">
-	                         		<div class="user__setting__text" id="project_review_content">
-		                         		<h6>소개</h6>
-		                         		<textarea rows="10px" cols="70px" placeholder="자기소개를 입력해주세요." style="margin-top: 10px"></textarea>
-		                         		<div class="user_follow_btn">
-		                         			<a href="#">저장</a>
-		                         		</div>
-		                         		<div class=user_cancel_btn>
-		                         			<a href="#">취소</a>
-		                         		</div>
-							 		</div>
-	                    	 	</div>
-	                	 	</div>
 	                	 	
 						</div>
 						
