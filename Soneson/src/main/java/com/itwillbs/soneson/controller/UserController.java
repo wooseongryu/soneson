@@ -151,6 +151,22 @@ public class UserController {
 		return "1";
 	}
 	
+	// 유저 설정 계정 연락처 변경 취소
+	@ResponseBody
+	@PostMapping("settingUpdateUserLeave")
+	public String settingUpdateUserLeave() {
+		System.out.println("UserController - settingUpdateUserLeave()");
+		return "1";
+	}
+	
+	// 유저 설정 계정 연락처 변경 취소
+	@ResponseBody
+	@PostMapping("settingCancelUpdateUserLeave")
+	public String settingCancelUpdateUserLeave() {
+		System.out.println("UserController - settingCancelUpdateUserLeave()");
+		return "1";
+	}
+	
 	
 		
 		

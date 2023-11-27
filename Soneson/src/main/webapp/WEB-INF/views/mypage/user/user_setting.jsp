@@ -220,7 +220,7 @@
                         + '  		<div class="user__setting__text" id="user_leave">                      '
 	                    + '      		<h6>회원탈퇴</h6>                                                  '
 	                    + '      		<div class="user_follow_btn">                                      '
-	                    + '      			<a onclick="updateUserName()" style="bottom: 7px">탈퇴</a>     '
+	                    + '      			<a onclick="updateUserLeave()" style="bottom: 7px">탈퇴</a>     '
 	                    + '      		</div>                                                             '
 						+ '  		</div>                                                                 '
                     	+ '  	</div>                                                                     '
@@ -332,6 +332,53 @@
     			}
     		});
     	}
+    	
+    	function updateUserLeave() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingUpdateUserLeave',
+    			dataType: 'json',
+    			success: function(resp) {
+    				$("#user_leave").children().remove();
+
+					$("#user_leave").append(
+                   		  ' <h6>회원탈퇴</h6>                                                                '
+                		+ ' <input type="text" placeholder="비밀번호를 입력하세요." style="margin-top: 10px">'    
+                		+ '                                                                                  '
+                		+ ' <div class="user_follow_btn">                                                    '
+                		+ ' 	<a href="#">탈퇴</a>                                                         '
+                		+ ' </div>                                                                           '
+                		+ ' <div class=user_cancel_btn>                                                      '
+                		+ ' 	<a onclick="cancelUpdateUserLeave()">취소</a>                                '
+                		+ ' </div>                                                                           '
+					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function cancelUpdateUserLeave() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingCancelUpdateUserLeave',
+    			dataType: 'json',
+    			success: function(resp) {
+    				$("#user_leave").children().remove();
+
+					$("#user_leave").append(
+						  ' <h6>회원탈퇴</h6>                                                  '
+	                    + ' <div class="user_follow_btn">                                      '
+	                    + ' 	<a onclick="updateUserLeave()" style="bottom: 7px">탈퇴</a>    '
+	                    + ' </div>                                                             '
+					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
 
     	function reset_screen(id) {
     		$("#section-title h5").css("color", "black");
@@ -400,93 +447,6 @@
                         <div id="user_content">
                         	<!-- ajax -->
                         	
-	                        <div class="anime__details__review">                       
-							 	<div class="anime__review__item">                      
-	                         		<div class="user__setting__text" id="user_name">   
-		                         		<h6>비밀번호</h6>                                  
-		                         		<div class="user_follow_btn">                  
-		                         			<a onclick="updateUserName()" style="bottom: 7px">변경</a>     
-		                         		</div>                                         
-							 		</div>                                             
-	                    	 	</div>                                                 
-	                	 	</div>
-	                	 	                                                    
-	                	 	
-	                	 	<div class="anime__details__review">                       
-							 	<div class="anime__review__item">                      
-	                         		<div class="user__setting__text" id="user_name">   
-		                         		<h6>현재 비밀번호</h6>                                                
-			                     		<input type="text" placeholder="현재 비밀번호" style="margin-top: 10px">
-			                     		
-			                     		<h6 style="margin-top: 15px">변경할 비밀번호</h6>                                                
-			                     		<input type="text" placeholder="변경할 비밀번호" style="margin-top: 10px">
-			                     		<br>
-			                     		<input type="text" placeholder="변경할 비밀번호 확인" style="margin-top: 10px">
-			                     		                                                           
-			                     		<div class="user_follow_btn">                              
-			                     			<a href="#">저장</a>                                   
-			                     		</div>                                                     
-			                     		<div class=user_cancel_btn>                                
-			                     			<a onclick="cancelUpdateUserName()">취소</a>           
-			                     		</div>                                          
-							 		</div>                                             
-	                    	 	</div>                                                 
-	                	 	</div>
-	                	 	
-	                		<div class="anime__details__review">                           
-							  	<div class="anime__review__item">                               
-	                          		<div class="user__setting__text" id="user_phone">           
-		                          		<h6>연락처</h6>                                         
-		                          		<p style="margin-top: 10px">등록된 연락처가 없습니다.</p>
-		                          		<div class="user_follow_btn">                           
-		                          			<a onclick="updateUserName()">변경</a>              
-		                          		</div>                                                  
-							  		</div>                                                      
-	                    	  	</div>                                                          
-	                	 	 </div>  
-	                	 	 
-	                	 	 <div class="anime__details__review">                           
-							  	<div class="anime__review__item">                               
-	                          		<div class="user__setting__text" id="user_phone">           
-		                          		<h6>연락처</h6>                                                  
-			                     		<input type="text" placeholder="휴대폰 번호를 입력하세요." style="margin-top: 10px">    
-			                     		                                                               
-			                     		<div class="user_follow_btn">                                  
-			                     			<a href="#">저장</a>                                       
-			                     		</div>                                                         
-			                     		<div class=user_cancel_btn>                                    
-			                     			<a onclick="cancelUpdateUserName()">취소</a>               
-			                     		</div>                                                  
-							  		</div>                                                      
-	                    	  	</div>                                                          
-	                	 	 </div>
-   	                    
-	                	 	
-	                	 	<div class="anime__details__review">                       
-							 	<div class="anime__review__item">                      
-	                         		<div class="user__setting__text" id="user_name">   
-		                         		<h6>카카오 계정 연동</h6>                                  
-		                         		<p style="margin-top: 10px">연동 중입니다.</p>         
-		                         		<div class="user_follow_btn">                  
-		                         			<a onclick="updateUserName()">연동 해제</a>     
-		                         		</div>                                         
-							 		</div>                                             
-	                    	 	</div>                                                 
-	                	 	</div>
-	                	 	
-	                	 	<div class="anime__details__review">                       
-							 	<div class="anime__review__item">                      
-	                         		<div class="user__setting__text" id="user_name">   
-		                         		<h6>회원탈퇴</h6>                                  
-		                         		<div class="user_follow_btn">                  
-		                         			<a onclick="updateUserName()" style="bottom: 7px">탈퇴</a>     
-		                         		</div>                                         
-							 		</div>                                             
-	                    	 	</div>                                                 
-	                	 	</div>
-	                	 	
-	                	 	
-	                	 	
 						</div>
 						
 					</div>
