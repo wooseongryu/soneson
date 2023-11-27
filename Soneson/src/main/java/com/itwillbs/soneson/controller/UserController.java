@@ -71,6 +71,48 @@ public class UserController {
 	 * ===================================================================
 	 * */
 	
+	// 유저 설정 프로필 초기 출력 화면
+	@ResponseBody
+	@PostMapping("settingUserProfile")
+	public String settingUserProfile() {
+		System.out.println("UserController - settingUserProfile()");
+		return "1";
+	}
+	
+	// 유저 설정 이름 변경
+	@ResponseBody
+	@PostMapping("settingUpdateUserName")
+	public String settingUpdateUserName() {
+		System.out.println("UserController - settingUpdateUserName()");
+		return "1";
+	}
+	
+	// 유저 설정 이름 변경 취소
+	@ResponseBody
+	@PostMapping("settingCancelUpdateUserName")
+	public String settingCancelUpdateUserName() {
+		System.out.println("UserController - settingCancelUpdateUserName()");
+		return "1";
+	}
+	
+	// 유저 설정 소개 변경
+	@ResponseBody
+	@PostMapping("settingUpdateUserIntro")
+	public String settingUpdateUserIntro() {
+		System.out.println("UserController - settingUpdateUserIntro()");
+		return "1";
+	}
+	
+	// 유저 설정 소개 변경 취소
+	@ResponseBody
+	@PostMapping("settingcCancelUpdateUserIntro")
+	public String settingcCancelUpdateUserIntro() {
+		System.out.println("UserController - settingcCancelUpdateUserIntro()");
+		return "1";
+	}
+	
+	
+	
 	
 	
 	
