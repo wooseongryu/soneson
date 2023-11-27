@@ -19,38 +19,33 @@ public class EventService {
 
 	
 	
-	// 이벤트 카테고리 별 목록
+	// 게시판 카테고리 별 목록
 	public List<EventVO> selectEventList(int startRow, int listLimit, int eventCate_idx) {
 		return mapper.selectEventList(startRow, listLimit, eventCate_idx);
 	}
 
-	// 이벤트 카테고리 목록 
+	// 게시판 카테고리 목록 
 	public List<EventCateVO> selectEventCateList() {
 		return mapper.selectEventCateList();
 	}
 	
-	// 이벤트 상세보기 
+	// 게시판 상세보기 
 	public List<EventVO> getEvent(String event_idx) {
 		return mapper.selectEvent(event_idx);
 	}
 
-	// 영화 이벤트 상세 목록 
+	// 게시판 목록 
 	public List<EventVO> getEventDetailList(int startRow, int listLimit, int eventCate_idx) {
 		return mapper.selectEventDetailList(startRow, listLimit, eventCate_idx);
 	}
 
-	// 영화 이벤트 목록 수 조회
-	public int getMovieEventListCount(int eventCate_idx) {
-		return mapper.selectMovieEventListCount(eventCate_idx);
+	// 게시판 목록 수 조회
+	public int getEventListCount(int eventCate_idx) {
+		return mapper.selectEventListCount(eventCate_idx);
 	}
 
-	// 극장 메인 페이지에 극장 이벤트 출력
-	public List<EventVO> getEventList() {
-		return mapper.selectTheaterEventList();
-	}
-
-	// 이벤트 메인 페이징
-	public int getEventListAllCount( int eventCate_idx) {
+	// 게시판 메인 페이징처리
+	public int getEventListAllCount(int eventCate_idx) {
 		return mapper.selectEventListAllCount(eventCate_idx);
 	}
 	

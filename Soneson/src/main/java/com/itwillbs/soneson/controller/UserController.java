@@ -219,6 +219,13 @@ public class UserController {
 		System.out.println("UserController - userProjectsAlarm()");
 		return "1";
 	}
+	
+	// 마이페이지에서 후원 현황(목록) 페이지 이동
+	@GetMapping("userFundingList")
+	public String userFundingList() {
+		System.out.println("UserController - userFundingList()");
+		return "mypage/user/user_funding_list";
+	}
 		
 	
 	

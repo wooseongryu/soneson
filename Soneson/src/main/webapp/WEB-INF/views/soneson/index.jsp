@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -27,6 +28,17 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/style.css" type="text/css">
 </head>
 
+<script>
+	function logout() {
+		let result = confirm("로그아웃하시겠습니까?");
+		
+		if(result) {
+			location.href = "Logout";
+		}
+	}
+</script> 
+
+
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
@@ -35,7 +47,40 @@
 
     <!-- Header Section Begin -->
     <header class="header">
-        <div class="container">
+		<c:choose>
+			<c:when test="${empty sessionScope.sId }">
+				<a href="login" class="search-switch">
+					<span>로그인</span>
+				</a>
+				<a href="join">
+					<span>회원가입</span>
+				</a>
+				<a href="eventMain">
+					<span>게시판</span>
+				</a>
+				<a href="qna">
+					<span>자주묻는질문</span>
+				</a>
+			</c:when>
+			
+			<c:otherwise>
+				<a href="user?id=${sessionScope.sId }">${sessionScope.sId } 님</a>
+				<a href="javascript:logout()">로그아웃</a>
+				<c:if test="${sessionScope.sId eq 'admin' }">
+					<a href="admin">
+						<span class="icon_profile">관리자페이지</span>
+					</a>
+				</c:if>
+				<a href="eventMain">
+					<span>게시판</span>
+				</a>
+				<a href="qna">
+					<span>자주묻는질문</span>
+				</a>
+			</c:otherwise>
+		</c:choose>
+        
+        
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">

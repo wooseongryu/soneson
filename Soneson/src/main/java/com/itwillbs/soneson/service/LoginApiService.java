@@ -38,9 +38,8 @@ public class LoginApiService {
             
 			sb.append("&client_id=436a131f08ff59d92a8725d7841cd063"); //본인이 발급받은 key
 			sb.append("&redirect_uri=http://localhost:8081/soneson/kakao/callback"); // 본인이 설정한 주소
-//			sb.append("&redirect_uri=http://c3d2306t1.itwillbs.com/cinepick/kakao/callback"); // 본인이 설정한 주소
-            
 			sb.append("&code=" + authorize_code);
+			
 			bw.write(sb.toString());
 			bw.flush();
             
@@ -56,12 +55,12 @@ public class LoginApiService {
 			while ((line = br.readLine()) != null) {
 				result += line;
 			}
-			System.out.println("response body : " + result);
+			System.out.println("responseBody : " + result);
             
 			// Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
 			JsonParser parser = new JsonParser();
 			JsonElement element = parser.parse(result);
-            
+			
 			access_Token = element.getAsJsonObject().get("access_token").getAsString();
 			refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
             
@@ -77,6 +76,8 @@ public class LoginApiService {
 	}
 	
 	public HashMap<String, Object> getUserInfo(String access_Token) {
+		
+		System.out.println("LoginApiService - getUserInfo()");
 
 		// 요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
 		HashMap<String, Object> userInfo = new HashMap<String, Object>();
@@ -88,7 +89,7 @@ public class LoginApiService {
 
 			// 요청에 필요한 Header에 포함될 내용
 			conn.setRequestProperty("Authorization", "Bearer " + access_Token);
-
+			
 			int responseCode = conn.getResponseCode();
 			System.out.println("responseCode : " + responseCode);
 
@@ -100,21 +101,29 @@ public class LoginApiService {
 			while ((line = br.readLine()) != null) {
 				result += line;
 			}
-			System.out.println("response body : " + result);
+			System.out.println("responseBody : " + result);
 
 			JsonParser parser = new JsonParser();
-			JsonElement element = parser.parse(result);
-
-			JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
-			JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+			JsonElement element = parser.parse(result); 	
+			
+			
+//			JsonObject properties = element.getAsJsonObject().get("properties").getAsJsonObject();
+//			JsonObject kakao_account = element.getAsJsonObject().get("kakao_account").getAsJsonObject();
+			
+			System.out.println(parser + ">>>>>>>>>>>>>>>>>>>>>>");
+			
+			
 			
 			String id = element.getAsJsonObject().get("id").getAsString();
 
-			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
-			String email = kakao_account.getAsJsonObject().get("email").getAsString();
+//			String nickname = properties.getAsJsonObject().get("nickname").getAsString();
+//			String email = kakao_account.getAsJsonObject().get("email").getAsString();
 
-			userInfo.put("nickname", nickname);
-			userInfo.put("email", email);
+			System.out.println(id + ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+			
+			
+//			userInfo.put("nickname", nickname);
+//			userInfo.put("email", email);
 			userInfo.put("id", id);
 
 		} catch (IOException e) {

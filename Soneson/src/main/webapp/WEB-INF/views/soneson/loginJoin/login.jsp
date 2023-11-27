@@ -106,11 +106,6 @@
 							<ul>
 								<li><a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://localhost:8081/soneson/kakao/callback" style="margin-top:50px">
 								<img src="${pageContext.request.contextPath }/resources/soneson/img/kakao_login_medium_wide.png" style="height:48px"></a></li>
-<!-- 								<li><a href="#" class="facebook"><i class="fa fa-facebook"></i> Sign in With -->
-<!-- 								Facebook</a></li> -->
-<!-- 								<li><a href="#" class="google"><i class="fa fa-google"></i> Sign in With Google</a></li> -->
-<!-- 								<li><a href="#" class="twitter"><i class="fa fa-twitter"></i> Sign in With Twitter</a> -->
-<!-- 								</li> -->
 							</ul>
 						</div>
 					</div>

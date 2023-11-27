@@ -40,6 +40,8 @@ public class LoginJoinController {
 	public String join() {
 		System.out.println("LoginJoinController - join()");
 		
+		System.out.println();
+		
 		return "soneson/loginJoin/join";	
 	}
 	
@@ -74,11 +76,11 @@ public class LoginJoinController {
 			return "fail_back";
 		}
 		
-//		int updateCount = service.updateKakaoId(user);
-//		if (updateCount < 1) {
-//			model.addAttribute("msg", "카카오 연동 실패");
-//			return "fail_back";
-//		}
+		int updateCount = userService.updateKakaoId(user);
+		if (updateCount < 1) {
+			model.addAttribute("msg", "카카오 연동 실패");
+			return "fail_back";
+		}
 		
 		String authCode = mailService.sendAuthMail(user.getUser_id(), user.getUser_email());
 		
@@ -310,11 +312,11 @@ public class LoginJoinController {
 		
 		String kakao_id = (String)userInfo.get("id");
 		
-    	UserVO dbMember = userService.getMemberKakaoLogin(kakao_id);
+    	UserVO dbUser = userService.getUserKakaoLogin(kakao_id);
     	
     	String user_id = (String)session.getAttribute("sId");
     	if (user_id != null) {  // 로그인이 된 상태에서 유저 정보에서 변경
-    		if(dbMember != null) {  // 중복 가입 방어.
+    		if(dbUser != null) {  // 중복 가입 방어.
     			model.addAttribute("msg", "이미 연동된 카카오계정입니다.");
     			return "fail_back";
     		}
@@ -334,11 +336,11 @@ public class LoginJoinController {
     		return "forward";
     	}
     	
-    	if(dbMember != null) {  // 카카오 가입 되어있음. 로그인.
+    	if(dbUser != null) {  // 카카오 가입 되어있음. 로그인.
     		session.setAttribute("kakao_id", kakao_id);
             session.setAttribute("access_Token", access_Token);
-            session.setAttribute("sId", dbMember.getUser_id());
-            session.setAttribute("isAdmin", dbMember.getUser_is_admin());
+            session.setAttribute("sId", dbUser.getUser_id());
+            session.setAttribute("isAdmin", dbUser.getUser_is_admin());
             
 			return "redirect:/";
     	}

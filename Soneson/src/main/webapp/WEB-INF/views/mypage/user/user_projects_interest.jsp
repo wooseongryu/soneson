@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/slicknav.min.css" type="text/css">
-<%--     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/mypage/css/admin_mypage.css" rel="stylesheet"> --%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/mypage/css/admin_mypage.css" rel="stylesheet">
     <!-- 류우성 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/style.css" type="text/css">
     
@@ -49,7 +49,13 @@
      	font-size: 12px; 
      	background-color: #fff;
      	color: #F86453;
-    } 
+     }
+     
+     .alarm__signup {
+     	color: #F86453;
+     	margin-top: 15px;
+     }
+     
 
     </style>
     
@@ -58,7 +64,6 @@
 		
     	function userProjectsLiked(id) {
 			$.ajax({
-// 				debugger
     			type: 'post',
     			url: 'userProjectsLiked',
     			dataType: 'json',
@@ -75,16 +80,16 @@
 					    + '                     <div class="col-lg-4 col-md-6 col-sm-6" style="">                                                                                                 '
 					    + '                         <div class="product__item">                                                                                                                   '
 					    + '								<a href="${pageContext.request.contextPath }/popular">																																'
-					    + '                                 <div class="product__item__pic set-bg" data-setbg="${pageContext.request.contextPath }/resources/user/kindcat.jpg" 		 '
-					    + '										style="background-image: url(\'${pageContext.request.contextPath }/resources/user/kindcat.jpg\')"></div>			 '
+					    + '                                 <div class="product__item__pic set-bg" data-setbg="${pageContext.request.contextPath }/resources/user/like.jpg" 		 '
+					    + '										style="background-image: url(\'${pageContext.request.contextPath }/resources/user/like.jpg\')"></div>			 '
 					    + '								</a>																																		'
 					    + '                             <div class="product__item__text">                                                                                                         '
 					    + '                                 <ul>                                                                                                                                  '
 					    + '                                     캐릭터 굿즈 |                                                                                                      '
-					    + '                                     <a href="${pageContext.request.contextPath }/user">미뉴</a>                                                                                                              '
+					    + '                                     <a href="${pageContext.request.contextPath }/user" style="color:#000">미뉴</a>                                                                                                              '
 					    + '                                 </ul>                                                                                                                                 '
 					    + '                                 <div class="contents">                                                                                                      '
-					    + '                                 <a href="${pageContext.request.contextPath }/popular">                                                                                                                         '
+					    + '                                 <a href="${pageContext.request.contextPath }/popular" style="color:#000">                                                                                                                         '
 					    + '                                 	<b>말랑하게 안아줄게! 나의 다정한 고양이들</b>                                                                                   '
 					    + '                                 </a>                                                                                                                                 '
 					    + '                                 </div>                                                                                                                                 '
@@ -94,6 +99,57 @@
 					    + '                                     1,819,600원                                                                                                              '
 					    + '                                     <li style="float: right;">18일 남음</li>                                                                                           '
 					    + '                                 </ul>                                                                                                                                 '
+					    + '                               </div>                                                                                                                                    '
+					    + '                            </div>                                                                                                                                        '
+					    + '                        </div>                                                                                                                                            '
+					    + '                    </div>                                                                                                                                                '
+					    + '                </div>                                                                                                                                                    '
+					    + '            </div>                                                                                                                                                        '
+						+ '		   </div>                                                                                                                                                               '
+					    + '    </div>                                                                                                                                                                '
+						+ '</section>                                                                                                                                                                '
+					);                                                                                                                                                                             
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+		}
+    	
+    	function userProjectsAlarm(id) {
+			$.ajax({
+    			type: 'post',
+    			url: 'userProjectsAlarm',
+    			dataType: 'json',
+    			success: function(resp) {
+    				reset_screen(id);
+
+					$("#user_content").append(
+						'<section class="product-page spad">                                                                                                                                         '
+						+ '	<div class="container">                                                                                                                                                  '
+					    + '     <div class="row">                                                                                                                                                 '
+						+ '			<div class="col-lg-11">                                                                                                                                          '
+						+ '				<div class="product__page__content">                                                                                                                         '
+                        + '					<div class="row">                                                                                                                                        '
+					    + '                     <div class="col-lg-4 col-md-6 col-sm-6" style="">                                                                                                 '
+					    + '                         <div class="product__item">                                                                                                                   '
+					    + '								<a href="${pageContext.request.contextPath }/popular">																																'
+					    + '                                 <div class="product__item__pic set-bg" data-setbg="${pageContext.request.contextPath }/resources/user/alarm.jpg" 		 '
+					    + '										style="background-image: url(\'${pageContext.request.contextPath }/resources/user/alarm.jpg\')"></div>			 '
+					    + '								</a>																																		'
+					    + '                             <div class="product__item__text">                                                                                                         '
+					    + '                                 <ul>                                                                                                                                  '
+					    + '                                     캐릭터 굿즈 |                                                                                                      '
+					    + '                                     <a href="${pageContext.request.contextPath }/user" style="color:#000">아이돌룩</a>                                                                                                              '
+					    + '                                 </ul>                                                                                                                                 '
+					    + '                                 <div class="contents">                                                                                                      '
+					    + '                                 <a href="${pageContext.request.contextPath }/popular" style="color:#000">                                                                                                                         '
+					    + '                                 	<b>포근한 귀여움 한스푼 <우이 인형 친구들></b>                                                                                   '
+					    + '                                 </a>                                                                                                                                 '
+					    + '                                 </div>                                                                                                                                 '
+					    + '                                 <div class="sub__contents">우이작가님의 귀여운 첫번째 인형 펀딩!</div>                                                    '					   
+					    + '                                     <div class=alarm__signup><b>3985명 알림신청 중</b></div>                                                                                                                    '
+					    + '                                     <button type="button" class="btn btn-primary" onclick="location.href=" style="margin-top: 15px">알림신청 중</button>  '
 					    + '                               </div>                                                                                                                                    '
 					    + '                            </div>                                                                                                                                        '
 					    + '                        </div>                                                                                                                                            '
@@ -163,10 +219,10 @@
 								<div class="col-lg-12 col-md-8 col-sm-6">
 									<div class="section-title" id="section-title">
 										<div class="user_top_cate" id="topCateLiked">
-										<h5 onclick="userProjectsLiked('topCateLiked')">좋아한 2</h5>
+										<h5 onclick="userProjectsLiked('topCateLiked')">좋아한 1</h5>
 										</div>
 										<div class="user_top_cate" id="topCateAlarm">
-										<h5 onclick="userProjectsAlarm('topCateAlarm')">알림신청 0</h5>
+										<h5 onclick="userProjectsAlarm('topCateAlarm')">알림신청 1</h5>
 										</div>
 									</div>
 								</div>

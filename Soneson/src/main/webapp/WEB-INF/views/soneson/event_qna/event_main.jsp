@@ -79,11 +79,13 @@
 						    <div class="col-6" onclick ="location.href ='eventDetail?event_idx=${eventList.event_idx}'"> 
 		                    	<span style="color: #F86453">${eventList.eventCate_subject}</span>
 		                    	&nbsp;<span>${eventList.event_status}</span>
-		                        <h4 style="margin: 10px 10px 10px 0px;">${eventList.event_title }</h4>
+		                        <h4 style="margin: 10px 10px 10px 0px;">${eventList.event_title }<br>
 		                        <c:if test="${!empty eventList.event_startDt && !empty eventList.event_endDt }">
-									<span>${eventList.event_startDt } ~ ${eventList.event_endDt }</span><br>
+									(${eventList.event_startDt } ~ ${eventList.event_endDt })
 								</c:if>
-		                    	<span>등록일 : <fmt:formatDate value="${eventList.event_writeDate}" pattern="yyyy-MM-dd"/></span>
+								</h4>
+		                        
+		                    	<span><fmt:formatDate value="${eventList.event_writeDate}" pattern="yyyy-MM-dd"/></span>
 							</div>
 						    <div class="col-6" align="right" onclick ="location.href = 'eventDetail?event_idx=${eventList.event_idx}'">
 						    	<c:if test="${!empty eventList.event_thumbnail}"> 

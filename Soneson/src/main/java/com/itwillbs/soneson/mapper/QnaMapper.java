@@ -17,16 +17,11 @@ public interface QnaMapper {
 			@Param("listLimit") int listLimit,
 			@Param("qnaCate_idx") int qnaCate_idx);
 
-
 	// 자주묻는 질문 목록 수 조회
 	int selectQnaListCount(@Param("qnaCate_idx") int qnaCate_idx);
 
 
 	// 자주묻는 질문 카테고리 조회
 	List<QnaCateVO> selectQnaCateList();
-
-
-
-	
 
 }

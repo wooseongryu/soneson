@@ -141,9 +141,9 @@ public class UserService {
 	}
 
 	// 카카오 등록된 회원 찾기
-	public UserVO getMemberKakaoLogin(String kakao_id) {
-		System.out.println("UserService - getMemberKakaoLogin()");
-		return mapper.getMemberKakaoLogin(kakao_id);
+	public UserVO getUserKakaoLogin(String kakao_id) {
+		System.out.println("UserService - getUserKakaoLogin()");
+		return mapper.getUserKakaoLogin(kakao_id);
 	}
 
 	// 카카오 아이디 연동하기
