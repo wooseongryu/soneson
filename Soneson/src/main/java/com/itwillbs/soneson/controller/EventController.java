@@ -94,7 +94,7 @@ public class EventController {
 		
 		model.addAttribute("pageInfo", pageInfo);
 		
-		return "soneson/event_store/event_main";
+		return "soneson/event_qna/event_main";
 	}
 	
 	// 이벤트 상세보기
@@ -107,7 +107,7 @@ public class EventController {
 		
 		model.addAttribute("event", event);
 		
-		return "soneson/event_store/event_detail";
+		return "soneson/event_qna/event_detail";
 	}
 	
 	// 영화 이벤트 상세 목록
@@ -179,7 +179,7 @@ public class EventController {
 		
 		
 		
-		return "soneson/event_store/event_list";
+		return "soneson/event_qna/event_list";
 	}
 	
 }
