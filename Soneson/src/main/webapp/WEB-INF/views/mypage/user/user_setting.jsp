@@ -185,7 +185,7 @@
                         + '  		<div class="user__setting__text" id="user_password">                   '
 	                    + '      		<h6>비밀번호</h6>                                                  '
 	                    + '      		<div class="user_follow_btn">                                      '
-	                    + '      			<a onclick="updateUserName()" style="bottom: 7px">변경</a>     '
+	                    + '      			<a onclick="updateUserPassword()" style="bottom: 7px">변경</a> '
 	                    + '      		</div>                                                             '
 						+ '  		</div>                                                                 '
                     	+ '  	</div>                                                                     '
@@ -232,6 +232,58 @@
     			}
     		});
     	}
+    	
+    	function updateUserPassword() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingUpdateUserPassword',
+    			dataType: 'json',
+    			success: function(resp) {
+    				$("#user_password").children().remove();
+
+					$("#user_password").append(
+                      	  ' <h6>현재 비밀번호</h6>                                                                '
+                   		+ ' <input type="text" placeholder="현재 비밀번호" style="margin-top: 10px">              '
+                   		+ '                                                                                       '
+                   		+ ' <h6 style="margin-top: 15px">변경할 비밀번호</h6>                                     '           
+                   		+ ' <input type="text" placeholder="변경할 비밀번호" style="margin-top: 10px">            '
+                   		+ ' <br>                                                                                  '
+                   		+ ' <input type="text" placeholder="변경할 비밀번호 확인" style="margin-top: 10px">       '
+                   		+ '                                                                                       '
+                   		+ ' <div class="user_follow_btn">                                                         '
+                   		+ ' 	<a href="#">저장</a>                                                              '
+                   		+ ' </div>                                                                                '
+                   		+ ' <div class=user_cancel_btn>                                                           '
+                   		+ ' 	<a onclick="cancelupdateUserPassword()">취소</a>                                      '
+                   		+ ' </div>                                                                                '
+					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function cancelupdateUserPassword() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingCancelUpdateUserPassword',
+    			dataType: 'json',
+    			success: function(resp) {
+    				$("#user_password").children().remove();
+
+					$("#user_password").append(
+						  ' <h6>비밀번호</h6>                                                  '
+	                    + ' <div class="user_follow_btn">                                      '
+	                    + ' 	<a onclick="updateUserPassword()" style="bottom: 7px">변경</a> '
+	                    + ' </div>                                                             '
+					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
 
     	function reset_screen(id) {
     		$("#section-title h5").css("color", "black");
@@ -240,7 +292,7 @@
     	}
     
     	$(function() {
-//     		userProfile('topCateProfile');
+    		userProfile('topCateProfile');
     	});
     </script>
 </head>
@@ -310,18 +362,40 @@
 							 		</div>                                             
 	                    	 	</div>                                                 
 	                	 	</div>
+	                	 	                                                    
 	                	 	
 	                	 	<div class="anime__details__review">                       
 							 	<div class="anime__review__item">                      
 	                         		<div class="user__setting__text" id="user_name">   
-		                         		<h6>연락처</h6>                                  
-		                         		<p style="margin-top: 10px">등록된 연락처가 없습니다.</p>         
-		                         		<div class="user_follow_btn">                  
-		                         			<a onclick="updateUserName()">변경</a>     
-		                         		</div>                                         
+		                         		<h6>현재 비밀번호</h6>                                                
+			                     		<input type="text" placeholder="현재 비밀번호" style="margin-top: 10px">
+			                     		
+			                     		<h6 style="margin-top: 15px">변경할 비밀번호</h6>                                                
+			                     		<input type="text" placeholder="변경할 비밀번호" style="margin-top: 10px">
+			                     		<br>
+			                     		<input type="text" placeholder="변경할 비밀번호 확인" style="margin-top: 10px">
+			                     		                                                           
+			                     		<div class="user_follow_btn">                              
+			                     			<a href="#">저장</a>                                   
+			                     		</div>                                                     
+			                     		<div class=user_cancel_btn>                                
+			                     			<a onclick="cancelUpdateUserName()">취소</a>           
+			                     		</div>                                          
 							 		</div>                                             
 	                    	 	</div>                                                 
 	                	 	</div>
+	                	 	
+	                		<div class="anime__details__review">                           
+							  	<div class="anime__review__item">                               
+	                          		<div class="user__setting__text" id="user_phone">           
+		                          		<h6>연락처</h6>                                         
+		                          		<p style="margin-top: 10px">등록된 연락처가 없습니다.</p>
+		                          		<div class="user_follow_btn">                           
+		                          			<a onclick="updateUserName()">변경</a>              
+		                          		</div>                                                  
+							  		</div>                                                      
+	                    	  	</div>                                                          
+	                	 	 </div>  
 	                	 	
 	                	 	<div class="anime__details__review">                       
 							 	<div class="anime__review__item">                      
