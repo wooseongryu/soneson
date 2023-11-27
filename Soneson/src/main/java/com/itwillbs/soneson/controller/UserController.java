@@ -111,9 +111,18 @@ public class UserController {
 		return "1";
 	}
 	
+	// 유저 설정 계정 초기 출력 화면
+		@ResponseBody
+		@PostMapping("settingUserAccount")
+		public String settingUserAccount() {
+			System.out.println("UserController - settingUserAccount()");
+			return "1";
+		}
 	
 	
-	
+		
+		
+		
 	
 	
 	// 마이페이지에서 프로젝트 올리기 페이지 이동

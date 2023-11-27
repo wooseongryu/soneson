@@ -43,29 +43,29 @@
 					$("#user_content").append(
 						  ' <div class="anime__details__review">                                     '
 						+ '  	<div class="anime__review__item">                                    '
-                        + '  		<div class="user__setting__text" id="user_name">    '
+                        + '  		<div class="user__setting__text" id="user_name">                 '
 	                    + '      		<h6>이름</h6>                                                '
 	                    + '      		<p style="margin-top: 10px">홍길동</p>                       '
 	                    + '      		<div class="user_follow_btn">                                '
-// 	                    + '      			<a onclick="updateUserName(\'' + id + '\')">변경</a>                                     '
-	                    + '      			<a onclick="updateUserName()">변경</a>                                     '
+// 	                    + '      			<a onclick="updateUserName(\'' + id + '\')">변경</a>     '
+	                    + '      			<a onclick="updateUserName()">변경</a>                   '
 	                    + '      		</div>                                                       '
 						+ '  		</div>                                                           '
                     	+ '  	</div>                                                               '
                 	 	+ ' </div>                                                                   '
 
-                	 	+ ' <div class="anime__details__review">                                                       '
+                	 	+ ' <div class="anime__details__review">                                                        '
 						+ '  	<div class="anime__review__item">                                                       '
-	                    + '  		<div class="user__setting__text" id="user_intro">                       '
+	                    + '  		<div class="user__setting__text" id="user_intro">                                   '
 	                    + '      		<h6>소개</h6>                                                                   '
 	                    + '      		<p style="margin-top: 10px; width: 700px">등록된 소개가 없습니다.</p>           '
 	                    + '      		<div class="user_follow_btn">                                                   '
-// 	                    + '      			<a onclick="updateUserIntroduction(\'' + id + '\')">변경</a>                                                        '
-	                    + '      			<a onclick="updateUserIntroduction()">변경</a>                                                        '
+// 	                    + '      			<a onclick="updateUserIntroduction(\'' + id + '\')">변경</a>                '
+	                    + '      			<a onclick="updateUserIntroduction()">변경</a>                              '
 	                    + '      		</div>                                                                          '
 						+ '  		</div>                                                                              '
 	                	+ '  	</div>                                                                                  '
-	            	 	+ ' </div>                                                                                     '
+	            	 	+ ' </div>                                                                                      '
 					);
     			},
     			error: function() {
@@ -90,7 +90,7 @@
                      		+ ' 	<a href="#">저장</a>                                          '
                      		+ ' </div>                                                            '
                      		+ ' <div class=user_cancel_btn>                                       '
-                     		+ ' 	<a onclick="cancelUpdateUserName()">취소</a>                                          '
+                     		+ ' 	<a onclick="cancelUpdateUserName()">취소</a>                  '
                      		+ ' </div>                                                            '
     				);
     			},
@@ -131,14 +131,14 @@
 					$("#user_intro").children().remove();
     				
     				$("#user_intro").append(
-   						  ' <h6>소개</h6>                                                                                            '
+   						  ' <h6>소개</h6>                                                                                                '
                    		+ ' <textarea rows="10px" cols="70px" placeholder="자기소개를 입력해주세요." style="margin-top: 10px"></textarea>'
-                   		+ ' <div class="user_follow_btn">                                                                            '
-                   		+ ' 	<a href="#">저장</a>                                                                                 '
-                   		+ ' </div>                                                                                                   '
-                   		+ ' <div class=user_cancel_btn>                                                                              '
-                   		+ ' 	<a onclick="cancelUpdateUserIntroduction()">취소</a>                                                                                 '
-                   		+ ' </div>                                                                                                   '
+                   		+ ' <div class="user_follow_btn">                                                                                '
+                   		+ ' 	<a href="#">저장</a>                                                                                     '
+                   		+ ' </div>                                                                                                       '
+                   		+ ' <div class=user_cancel_btn>                                                                                  '
+                   		+ ' 	<a onclick="cancelUpdateUserIntroduction()">취소</a>                                                     '
+                   		+ ' </div>                                                                                                       '
     				);
 
     			},
@@ -170,6 +170,68 @@
     			}
     		});
     	}
+    	
+    	function userAccount(id) {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingUserAccount',
+    			dataType: 'json',
+    			success: function(resp) {
+    				reset_screen(id);
+
+					$("#user_content").append(
+						  ' <div class="anime__details__review">                                           '
+						+ '  	<div class="anime__review__item">                                          '
+                        + '  		<div class="user__setting__text" id="user_password">                   '
+	                    + '      		<h6>비밀번호</h6>                                                  '
+	                    + '      		<div class="user_follow_btn">                                      '
+	                    + '      			<a onclick="updateUserName()" style="bottom: 7px">변경</a>     '
+	                    + '      		</div>                                                             '
+						+ '  		</div>                                                                 '
+                    	+ '  	</div>                                                                     '
+                	 	+ ' </div>                                                                         '
+                	 	+ '                                                                                '
+                	 	+ ' <div class="anime__details__review">                                           '
+						+ '  	<div class="anime__review__item">                                          '
+                        + '  		<div class="user__setting__text" id="user_phone">                      '
+	                    + '      		<h6>연락처</h6>                                                    '
+	                    + '      		<p style="margin-top: 10px">등록된 연락처가 없습니다.</p>          '
+	                    + '      		<div class="user_follow_btn">                                      '
+	                    + '      			<a onclick="updateUserName()">변경</a>                         '
+	                    + '      		</div>                                                             '
+						+ '  		</div>                                                                 '
+                    	+ '  	</div>                                                                     '
+                	 	+ ' </div>                                                                         '
+                	 	+ '                                                                                '
+                	 	+ ' <div class="anime__details__review">                                           '
+						+ '  	<div class="anime__review__item">                                          '
+                        + '  		<div class="user__setting__text" id="user_kakao">                      '
+	                    + '      		<h6>카카오 계정 연동</h6>                                          '
+	                    + '      		<p style="margin-top: 10px">연동 중입니다.</p>                     '
+	                    + '      		<div class="user_follow_btn">                                      '
+	                    + '      			<a onclick="updateUserName()">연동 해제</a>                    '
+	                    + '      		</div>                                                             '
+						+ '  		</div>                                                                 '
+                    	+ '  	</div>                                                                     '
+                	 	+ ' </div>                                                                         '
+                	 	+ '                                                                                '
+                	 	+ ' <div class="anime__details__review">                                           '
+						+ '  	<div class="anime__review__item">                                          '
+                        + '  		<div class="user__setting__text" id="user_leave">                      '
+	                    + '      		<h6>회원탈퇴</h6>                                                  '
+	                    + '      		<div class="user_follow_btn">                                      '
+	                    + '      			<a onclick="updateUserName()" style="bottom: 7px">탈퇴</a>     '
+	                    + '      		</div>                                                             '
+						+ '  		</div>                                                                 '
+                    	+ '  	</div>                                                                     '
+                	 	+ ' </div>                                                                         '
+					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
 
     	function reset_screen(id) {
     		$("#section-title h5").css("color", "black");
@@ -178,7 +240,7 @@
     	}
     
     	$(function() {
-    		userProfile('topCateProfile');
+//     		userProfile('topCateProfile');
     	});
     </script>
 </head>
@@ -238,7 +300,51 @@
                         <div id="user_content">
                         	<!-- ajax -->
                         	
-                        	
+	                        <div class="anime__details__review">                       
+							 	<div class="anime__review__item">                      
+	                         		<div class="user__setting__text" id="user_name">   
+		                         		<h6>비밀번호</h6>                                  
+		                         		<div class="user_follow_btn">                  
+		                         			<a onclick="updateUserName()" style="bottom: 7px">변경</a>     
+		                         		</div>                                         
+							 		</div>                                             
+	                    	 	</div>                                                 
+	                	 	</div>
+	                	 	
+	                	 	<div class="anime__details__review">                       
+							 	<div class="anime__review__item">                      
+	                         		<div class="user__setting__text" id="user_name">   
+		                         		<h6>연락처</h6>                                  
+		                         		<p style="margin-top: 10px">등록된 연락처가 없습니다.</p>         
+		                         		<div class="user_follow_btn">                  
+		                         			<a onclick="updateUserName()">변경</a>     
+		                         		</div>                                         
+							 		</div>                                             
+	                    	 	</div>                                                 
+	                	 	</div>
+	                	 	
+	                	 	<div class="anime__details__review">                       
+							 	<div class="anime__review__item">                      
+	                         		<div class="user__setting__text" id="user_name">   
+		                         		<h6>카카오 계정 연동</h6>                                  
+		                         		<p style="margin-top: 10px">연동 중입니다.</p>         
+		                         		<div class="user_follow_btn">                  
+		                         			<a onclick="updateUserName()">연동 해제</a>     
+		                         		</div>                                         
+							 		</div>                                             
+	                    	 	</div>                                                 
+	                	 	</div>
+	                	 	
+	                	 	<div class="anime__details__review">                       
+							 	<div class="anime__review__item">                      
+	                         		<div class="user__setting__text" id="user_name">   
+		                         		<h6>회원탈퇴</h6>                                  
+		                         		<div class="user_follow_btn">                  
+		                         			<a onclick="updateUserName()" style="bottom: 7px">탈퇴</a>     
+		                         		</div>                                         
+							 		</div>                                             
+	                    	 	</div>                                                 
+	                	 	</div>
 	                	 	
 						</div>
 						
