@@ -60,5 +60,12 @@ public class MainController {
 //		
 //		return "main/popular";	
 //	}
+	
+	@GetMapping("popular")
+	public String popular() {
+		System.out.println("popularController - popular()");
+		
+		return "list/popular";	
+	}
 
 }

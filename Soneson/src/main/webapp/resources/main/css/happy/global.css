@@ -105,7 +105,9 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
 }
 
 body, input, textarea, select, button, table {
-  font-family: NanumBarunGothic, dotum, Sans-serif;
+  font-family: Sans-serif;
+/*   1127 헤더 충돌 나서 수정 */
+/*   font-family: NanumBarunGothic, dotum, Sans-serif; */
   font-size: 14px;
   line-height: 19px;
   color: #202020;

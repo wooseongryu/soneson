@@ -1,4 +1,4 @@
-.header {
+.headerSoneson {
   position: relative;
   z-index: 30;
 }
@@ -120,7 +120,7 @@
     white-space: nowrap;
     display: inline-block;
     max-width: 88px;
-    vertical-align: middle;
+    vertical-align: top;
 }
 
 .HeaderUserProfile_id__3e8GE .HeaderUserProfile_ellipsis__1iBvz {
@@ -129,7 +129,7 @@
     white-space: nowrap;
     display: inline-block;
     max-width: 88px;
-    vertical-align: middle;
+/*     vertical-align: middle; */
 }
 
 .HeaderUserProfile_bar__1OPU2 {
@@ -189,14 +189,15 @@
 .HeaderGnb_item__wcfir {
     display: inline-block;
     padding: 0 15px;
+/*     글씨체 1127 */
 /*     padding: 0 25px; */
 /*     font-family: NanumSquareWebFont,dotum,Sans-serif; */
-    font-family: SpoqaHanSans;
+/*     font-family: SpoqaHanSans !important; */
 /*     font-size: 20px; */
-    font-size: 15px;
-    font-weight: 700;
-    line-height: 24px;
-    color: #000;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 24px !important;
+    color: #000 !important;
 }
 
 /* .HeaderGnb_menu__1fvV3 { */
@@ -496,4 +497,15 @@ body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fi
 
 .DonationTodayCategory_button__1648s:hover {
     border-color: #999;
+}
+
+/* .package_img { */
+/*     vertical-align: middle; */
+/* } */
+
+/* 로고 올라가서 추가 */
+
+.Header_logo__3iS1b {
+    float: left;
+    margin-top: 21px !important;
 }

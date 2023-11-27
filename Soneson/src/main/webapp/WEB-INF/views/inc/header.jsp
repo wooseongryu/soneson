@@ -19,11 +19,22 @@
 
 
 <!-- 엄 추가 -->
-<link href="${pageContext.request.contextPath }/resources/main/css/happy/global.css" rel="stylesheet">
+<%-- <link href="${pageContext.request.contextPath }/resources/main/css/happy/global.css" rel="stylesheet"> --%>
 <link href="${pageContext.request.contextPath }/resources/main/css/happy/header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/main/css/happy/footer.css" rel="stylesheet">
 
+<style>
 
+.Header_logo__3iS1b {
+    float: left;
+    margin-top: 21px;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+</style>
 
 </head>
 <body>
@@ -37,7 +48,7 @@
 			</a>
 		</div>
 		<div id="wrap" class="wrap" style="">
-			<header id="header" class="Header_header__3lTua">
+			<header id="headerSoneson" class="Header_header__3lTua">
 				<div class="Header_gnb__122-B">
 					<div class="Header_inner__3RznR">
 						<h1 class="Header_logo__3iS1b">
@@ -46,11 +57,17 @@
 								<img src="${pageContext.request.contextPath }/resources/soneson/img/header/soneson2.jpg" class="package_img" width="160px">
 							</a>
 						</h1>
+						<a>
+							<span class="HeaderAdmin">
+							<span class="HeaderAdminPage">관리자</span>
+								<span class="HeaderUserProfile_bar__1OPU2"></span>
+							</span>
+						</a>
 						<a href="https://happybean.naver.com/my/home" class="HeaderUserProfile_wrap__3FD8V">
 							<img loading="lazy" src="https://phinf.pstatic.net/contact/profile/blog/58/80/bom_bomi.jpg?type=s160" width="30" height="30" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI">
-							<span class="HeaderUserProfile_id__3e8GE">
-								<span class="HeaderUserProfile_ellipsis__1iBvz">성윤</span>
-							</span>
+								<span class="HeaderUserProfile_id__3e8GE">
+									<span class="HeaderUserProfile_ellipsis__1iBvz">성윤</span>
+								</span>
 						</a>
 						<span class="HeaderUserProfile_bar__1OPU2"></span>
 						<a href="https://nid.naver.com/nidlogin.logout?returl=https%3A%2F%2Fhappybean.naver.com%2F" class="HeaderUserProfile_btn_login__F6x9v">로그아웃</a>
