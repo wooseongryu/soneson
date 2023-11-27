@@ -167,7 +167,21 @@ public class UserController {
 		return "1";
 	}
 	
+	// 유저 설정 계정 배송지 초기 출력 화면
+	@ResponseBody
+	@PostMapping("settingUserPayment")
+	public String settingUserPayment() {
+		System.out.println("UserController - settingUserPayment()");
+		return "1";
+	}
 	
+	// 유저 설정 계정 배송지 초기 출력 화면
+	@ResponseBody
+	@PostMapping("settingUserAddress")
+	public String settingUserAddress() {
+		System.out.println("UserController - settingUserAddress()");
+		return "1";
+	}
 		
 		
 		
