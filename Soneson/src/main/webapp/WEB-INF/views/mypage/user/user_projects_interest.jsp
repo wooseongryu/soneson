@@ -149,7 +149,7 @@
 					    + '                                 </div>                                                                                                                                 '
 					    + '                                 <div class="sub__contents">우이작가님의 귀여운 첫번째 인형 펀딩!</div>                                                    '					   
 					    + '                                     <div class=alarm__signup><b>3985명 알림신청 중</b></div>                                                                                                                    '
-					    + '                                     <button type="button" class="btn btn-primary" onclick="location.href=''" style="margin-top: 15px">알림신청 중</button>  '
+					    + '                                     <button type="button" class="btn btn-primary" onclick="location.href=" style="margin-top: 15px">알림신청 중</button>  '
 					    + '                               </div>                                                                                                                                    '
 					    + '                            </div>                                                                                                                                        '
 					    + '                        </div>                                                                                                                                            '
