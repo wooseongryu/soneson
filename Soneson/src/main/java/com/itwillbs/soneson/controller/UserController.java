@@ -75,10 +75,17 @@ public class UserController {
 	
 	
 	// 마이페이지에서 프로젝트 올리기 페이지 이동
-	@GetMapping("userProjectCreated")
-	public String userProjectCreated() {
-		System.out.println("UserController - userProjectCreated()");
-		return "mypage/user/user_project_created";
+	@GetMapping("userProjectsCreated")
+	public String userProjectsCreated() {
+		System.out.println("UserController - userProjectsCreated()");
+		return "mypage/user/user_projects_created";
+	}
+	
+	// 마이페이지에서 관심 프로젝트 페이지 이동
+	@GetMapping("userProjectsLiked")
+	public String userProjectsLiked() {
+		System.out.println("UserController - userProjectsLiked()");
+		return "mypage/user/user_projects_liked";
 	}
 	
 	
