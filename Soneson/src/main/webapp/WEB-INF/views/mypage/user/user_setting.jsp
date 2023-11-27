@@ -197,7 +197,7 @@
 	                    + '      		<h6>연락처</h6>                                                    '
 	                    + '      		<p style="margin-top: 10px">등록된 연락처가 없습니다.</p>          '
 	                    + '      		<div class="user_follow_btn">                                      '
-	                    + '      			<a onclick="updateUserName()">변경</a>                         '
+	                    + '      			<a onclick="updateUserPhone()">변경</a>                         '
 	                    + '      		</div>                                                             '
 						+ '  		</div>                                                                 '
                     	+ '  	</div>                                                                     '
@@ -254,7 +254,7 @@
                    		+ ' 	<a href="#">저장</a>                                                              '
                    		+ ' </div>                                                                                '
                    		+ ' <div class=user_cancel_btn>                                                           '
-                   		+ ' 	<a onclick="cancelupdateUserPassword()">취소</a>                                      '
+                   		+ ' 	<a onclick="cancelUpdateUserPassword()">취소</a>                                      '
                    		+ ' </div>                                                                                '
 					);
     			},
@@ -264,7 +264,7 @@
     		});
     	}
     	
-    	function cancelupdateUserPassword() {
+    	function cancelUpdateUserPassword() {
     		$.ajax({
     			type: 'post',
     			url: 'settingCancelUpdateUserPassword',
@@ -276,6 +276,54 @@
 						  ' <h6>비밀번호</h6>                                                  '
 	                    + ' <div class="user_follow_btn">                                      '
 	                    + ' 	<a onclick="updateUserPassword()" style="bottom: 7px">변경</a> '
+	                    + ' </div>                                                             '
+					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function updateUserPhone() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingUpdateUserPhone',
+    			dataType: 'json',
+    			success: function(resp) {
+    				$("#user_phone").children().remove();
+
+					$("#user_phone").append(
+						  ' <h6>연락처</h6>                                                                     '
+                   		+ ' <input type="text" placeholder="휴대폰 번호를 입력하세요." style="margin-top: 10px">'    
+                   		+ '                                                                                     '
+                   		+ ' <div class="user_follow_btn">                                                       '
+                   		+ ' 	<a href="#">저장</a>                                                            '
+                   		+ ' </div>                                                                              '
+                   		+ ' <div class=user_cancel_btn>                                                         '
+                   		+ ' 	<a onclick="cancelUpdateUserPhone()">취소</a>                                    '
+                   		+ ' </div>                                                                              '
+					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function cancelUpdateUserPhone() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingCancelUpdateUserPhone',
+    			dataType: 'json',
+    			success: function(resp) {
+    				$("#user_phone").children().remove();
+
+					$("#user_phone").append(
+						  ' <h6>연락처</h6>                                                    '
+	                    + ' <p style="margin-top: 10px">등록된 연락처가 없습니다.</p>          '
+	                    + ' <div class="user_follow_btn">                                      '
+	                    + ' 	<a onclick="updateUserPhone()">변경</a>                        '
 	                    + ' </div>                                                             '
 					);
     			},
@@ -396,6 +444,23 @@
 							  		</div>                                                      
 	                    	  	</div>                                                          
 	                	 	 </div>  
+	                	 	 
+	                	 	 <div class="anime__details__review">                           
+							  	<div class="anime__review__item">                               
+	                          		<div class="user__setting__text" id="user_phone">           
+		                          		<h6>연락처</h6>                                                  
+			                     		<input type="text" placeholder="휴대폰 번호를 입력하세요." style="margin-top: 10px">    
+			                     		                                                               
+			                     		<div class="user_follow_btn">                                  
+			                     			<a href="#">저장</a>                                       
+			                     		</div>                                                         
+			                     		<div class=user_cancel_btn>                                    
+			                     			<a onclick="cancelUpdateUserName()">취소</a>               
+			                     		</div>                                                  
+							  		</div>                                                      
+	                    	  	</div>                                                          
+	                	 	 </div>
+   	                    
 	                	 	
 	                	 	<div class="anime__details__review">                       
 							 	<div class="anime__review__item">                      
@@ -419,6 +484,8 @@
 							 		</div>                                             
 	                    	 	</div>                                                 
 	                	 	</div>
+	                	 	
+	                	 	
 	                	 	
 						</div>
 						
