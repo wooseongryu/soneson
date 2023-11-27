@@ -69,16 +69,22 @@
 						</c:forEach>
 						</div>
 						<hr>
+						
 						<div class="row">
 						    <div class="col-lg-12">
-								<div class="row" style="justify-content: center">
-									<c:forEach var="qna" items="${qnaList }">
+								<c:forEach var="qna" items="${qnaList }">
+									<div class="row" style="justify-content: center; 
+															border-bottom-style: solid;
+															border-bottom-width: 1px;
+															border-bottom-color: rgba(0,0,0,0.1);
+															padding-bottom: 30px;
+															margin-bottom: 30px;">
 										<div class="col-12" align="left" onclick="location.href='qnaDetail?qna_idx=${qna.qna_idx}'">
 					                    	<span style="color: #F86453">${qna.qnaCate_subject}</span>
 					                        <h4 style="margin: 10px 10px 10px 0px;">${qna.qna_title }</h4>
 										</div>
-									</c:forEach>
-								</div>
+									</div>
+								</c:forEach>
 							</div>
 						</div>
 						<div class="product__pagination" id="pageList">
