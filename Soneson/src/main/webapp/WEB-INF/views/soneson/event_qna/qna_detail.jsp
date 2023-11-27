@@ -45,17 +45,15 @@
 			<div class="row">
 				<div class="col-lg-10 col-md-8" style="float: none; margin: 0 auto;">
 					<div class="anime__details__review">
-						<div class="section-title">
-							<h5>자주묻는질문</h5>
-						</div>
-						<div class="test" id="order_comment">
-							<h5>
-								<a href="qna" style="color: #503396;">자주묻는질문</a>
-								&nbsp;&nbsp;
-								<a href="notice" >공지사항</a>
-								&nbsp;&nbsp;
-								<a href="oneToOneQna">1:1문의</a>
-							</h5>
+						<div class="row justify-content-end">
+							<c:forEach var="qnaCate" items="${qnaCateList }">
+								<div class="col-2">
+									<div class="customer_category" align="center" name="${qnaCate.qnaCate_subject}" 
+										onclick="location.href='qna?qnaCate_idx=${qnaCate.qnaCate_idx}'" >
+										<h6>${qnaCate.qnaCate_subject }</h6>
+									</div>
+								</div>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
@@ -63,15 +61,15 @@
 			<div class="row d-flex justify-content-center">
 				<div class="col-lg-8">
 					<div class="blog__details__title">
-						<h6>${qna.qnaCateSubject }</h6>
-						<h2>${qna.qnaTitle }</h2>
+						<h6 style="color: #F86453;">${qna.qnaCate_subject }</h6>
+						<h2>${qna.qna_title }</h2>
+						<hr>
 					</div>
 				</div>
-				
 				<div class="col-lg-8">
 					<div class="blog__details__content">
 						<div class="blog__details__text">
-							<p>${fn:replace(qna.qnaContent, replaceChar, "<br/>")}</p>
+							<p>${fn:replace(qna.qna_content, replaceChar, "<br/>")}</p>
                        	</div>
                    	</div>
                 </div>

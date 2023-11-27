@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwillbs.soneson.service.AdminService;
 import com.itwillbs.soneson.service.EventService;
 import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
@@ -24,6 +25,9 @@ public class EventController {
 	
 	@Autowired
 	private EventService eventService;
+	
+	@Autowired
+	private AdminService adminService;
 	
 	
 	// 이벤트 메인
@@ -103,9 +107,13 @@ public class EventController {
 			Model model) {
 		System.out.println("EventController - eventDetail()");
 		
-		EventVO event = eventService.getEvent(event_idx).get(0);
+		EventVO event = adminService.getEvent(event_idx).get(0);
+		List<EventCateVO> eventCateList = eventService.selectEventCateList();
 		
 		model.addAttribute("event", event);
+		model.addAttribute("eventCateList", eventCateList);
+		model.addAttribute("replaceChar", "\n");
+		
 		
 		return "soneson/event_qna/event_detail";
 	}

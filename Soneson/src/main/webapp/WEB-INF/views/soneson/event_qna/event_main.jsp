@@ -87,7 +87,7 @@
 							</div>
 						    <div class="col-6" align="right" onclick ="location.href = 'eventDetail?event_idx=${eventList.event_idx}'">
 						    	<c:if test="${!empty eventList.event_thumbnail}"> 
-									<img src ="${pageContext.request.contextPath }/resources/upload/${eventList.event_thumbnail }" width="240" height="240" style="margin: 10px 10px 10px 10px;">
+									<img src ="${pageContext.request.contextPath }/resources/upload/${eventList.event_thumbnail }" width="150" height="150" style="margin: 10px 10px 10px 10px;">
 	                        	</c:if>
 	                        </div>
 							</c:forEach>

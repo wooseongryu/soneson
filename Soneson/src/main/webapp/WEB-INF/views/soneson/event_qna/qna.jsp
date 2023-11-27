@@ -73,7 +73,7 @@
 						    <div class="col-lg-12">
 								<div class="row" style="justify-content: center">
 									<c:forEach var="qna" items="${qnaList }">
-										<div class="col-12" align="left" onclick="location.href='qna?qna_idx=${qna.qna_idx}'">
+										<div class="col-12" align="left" onclick="location.href='qnaDetail?qna_idx=${qna.qna_idx}'">
 					                    	<span style="color: #F86453">${qna.qnaCate_subject}</span>
 					                        <h4 style="margin: 10px 10px 10px 0px;">${qna.qna_title }</h4>
 										</div>
@@ -91,7 +91,6 @@
 										<a class="current-page" href="qna?qnaCate_idx=${param.qnaCate_idx }&pageNum=${i }">${i }</a>
 									</c:when>
 									<c:otherwise>
-		<!-- 									<a class="#"> -->
 										<a href="qna?qnaCate_idx=${param.qnaCate_idx }&pageNum=${i }">${i }</a> 
 									</c:otherwise>
 								</c:choose>

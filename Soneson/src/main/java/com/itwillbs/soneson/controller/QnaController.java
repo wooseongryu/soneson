@@ -86,8 +86,11 @@ public class QnaController {
 		System.out.println("event_qnaController - qnaDetail");
 		
 		QnaVO qna = adminService.getQna(qnaCate_idx).get(0);
+
+		List<QnaCateVO> qnaCateList = qnaService.getQnaCateList();
 		
 		model.addAttribute("qna", qna);
+		model.addAttribute("qnaCateList", qnaCateList);
 		model.addAttribute("replaceChar", "\n");
 		
 		return "soneson/event_qna/qna_detail";

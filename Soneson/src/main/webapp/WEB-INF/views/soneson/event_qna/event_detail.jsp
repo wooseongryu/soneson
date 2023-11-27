@@ -45,25 +45,24 @@
 			<div class="row">
 				<div class="col-lg-10 col-md-8" style="float: none; margin: 0 auto;">
 					<div class="anime__details__review">
-<!-- 						<div class="section-title"> -->
-<!-- 							<h2>이벤트</h5> -->
-<!-- 						</div> -->
-						<div class="test" id="order_comment">
-	                        <h5>
-	                            <a href="eventList?eventCate_idx=1">공지</a>
-	                             &nbsp;&nbsp;
-	                            <a href="eventList?eventCate_idx=2">이벤트</a>
-	                             &nbsp;&nbsp;
-	                            <a href="eventList?eventCate_idx=3">보도자료</a>
-	                        </h5>
-	                    </div>
+						<div class="row justify-content-end">
+							<c:forEach var="eventCate" items="${eventCateList }">
+								<div class="col-2">
+									<div class="customer_category" align="center" name="${eventCate.eventCate_subject}" 
+										onclick="location.href='eventList?eventCate_idx=${eventCate.eventCate_idx}'" >
+										<h6>${eventCate.eventCate_subject }</h6>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row d-flex justify-content-center">
 				<div class="col-lg-8">
 					<div class="blog__details__title">
-						<h4>${event.event_title }</h4>
+						<h6>${event.eventCate_subject }</h6>
+						<h2>${event.event_title }</h2>
 						<c:if test="${!empty event.event_startDt }">
 							<h6>${event.event_startDt } ~ ${event.event_endDt }</h6>
 						</c:if>
@@ -73,7 +72,13 @@
 				<div class="col-lg-8">
 					<div class="blog__details__content">
 						<div class="blog__details__text">
-							<h6>${event.event_content }</h6><br>
+							<p>${fn:replace(event.event_content, replaceChar, "<br/>")}</p>
+                       	</div>
+                   	</div>
+                </div>
+				<div class="col-lg-8">
+					<div class="blog__details__content">
+						<div class="blog__details__text">
 							<c:if test="${!empty event.event_poster}"> 
 								<img src ="${pageContext.request.contextPath }/resources/upload/${event.event_poster }">
                         	</c:if>

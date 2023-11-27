@@ -54,7 +54,7 @@
 			, c.eventCate_Subject
     	FROM
     		event e JOIN eventCate c
-			ON e.event_category = c.eventCate_Idx
+			ON e.event_category = c.eventCate_idx
     	<if test="event_idx != null and !event_idx.equals('')">
 		WHERE event_idx = #{event_idx}
 		</if>
