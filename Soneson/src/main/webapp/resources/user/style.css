@@ -2082,6 +2082,12 @@ ol {
 	position: relative;
 }
 
+.user__setting__head {
+	overflow: hidden;
+	padding: 18px 30px 16px 20px;
+	position: relative;
+}
+
 /* 추가 끝 ============================================ */
 
 /*--------------------------------- Responsive Media Quaries -----------------------------*/

@@ -379,6 +379,45 @@
     			}
     		});
     	}
+    	
+    	function userPayment(id) {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingUserAccount',
+    			dataType: 'json',
+    			success: function(resp) {
+    				reset_screen(id);
+
+					$("#user_content").append(
+						  ' <div class="anime__details__review">                                                   '
+						+ '  	<div class="anime__review__item">                                                  '
+                        + '  		<div class="user__setting__head">                                              '
+	                    + '      		<h6>등록된 결제수단</h6>                                                   '
+	                    + '      		<div class="user_follow_btn">                                              '
+	                    + '      			<a onclick="" style="bottom: 7px">+ 추가</a>       '
+	                    + '      		</div>                                                                     '
+						+ '  		</div>                                                                         '
+                    	+ '  	</div>                                                                             '
+                	 	+ ' </div>                                                                                 '
+                	 	+ '                                                                                        '
+                	 	+ ' <div class="anime__details__review">                                                   '
+						+ '  	<div class="anime__review__item">                                                  '
+                        + '  		<div class="user__setting__text">                                              '
+	                    + '      		<h6>비씨카드</h6>                                                          '
+	                    + '      		<div class="user_follow_btn">                                              '
+	                    + '      			<a onclick="">삭제</a>                             '
+	                    + '      			<p style="margin-top: 10px">************ 4776</p>                      '
+	                    + '      		</div>                                                                     '
+						+ '  		</div>                                                                         '
+                    	+ '  	</div>                                                                             '
+                	 	+ ' </div>                                                                                 '
+					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
 
     	function reset_screen(id) {
     		$("#section-title h5").css("color", "black");
@@ -446,6 +485,29 @@
                         
                         <div id="user_content">
                         	<!-- ajax -->
+                        	
+<!-- 	                        <div class="anime__details__review">                                          -->
+<!-- 							 	<div class="anime__review__item">                                         -->
+<!-- 	                         		<div class="user__setting__head">                  -->
+<!-- 		                         		<h6>등록된 결제수단</h6>                                                 -->
+<!-- 		                         		<div class="user_follow_btn">                                     -->
+<!-- 		                         			<a onclick="updateUserPassword()" style="bottom: 7px">+ 추가</a> -->
+<!-- 		                         		</div>                                                            -->
+<!-- 							 		</div>                                                                -->
+<!-- 	                    	 	</div>                                                                    -->
+<!-- 	                	 	</div> -->
+	                	 	
+<!-- 	                	 	<div class="anime__details__review">                                          -->
+<!-- 							 	<div class="anime__review__item">                                         -->
+<!-- 	                         		<div class="user__setting__text">                  -->
+<!-- 		                         		<h6>비씨카드</h6>                                                 -->
+<!-- 		                         		<div class="user_follow_btn">                                     -->
+<!-- 		                         			<a onclick="updateUserPassword()">삭제</a> -->
+<!-- 		                         			<p style="margin-top: 10px">************ 4776</p> -->
+<!-- 		                         		</div>                                                            -->
+<!-- 							 		</div>                                                                -->
+<!-- 	                    	 	</div>                                                                    -->
+<!-- 	                	 	</div>  -->
                         	
 						</div>
 						
