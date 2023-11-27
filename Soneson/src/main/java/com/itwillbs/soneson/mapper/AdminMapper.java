@@ -57,11 +57,11 @@ public interface AdminMapper {
 
 	int insertQna(QnaVO qna);
 	
-	List<QnaVO> selectQna(String qnaIdx);
+	List<QnaVO> selectQna(String qna_idx);
 	
 	int updateQna(QnaVO qna);
 	
-	int deleteQna(String qnaIdx);
+	int deleteQna(String qna_idx);
 	
 	/*==============================================================
 	 * 자주 묻는 질문 카테고리

@@ -12,7 +12,7 @@
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CINEPICK</title>
+    <title>손에손</title>
 
 	<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
 
@@ -29,14 +29,10 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/nice-select.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/owl.carousel.min.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/slicknav.min.css" type="text/css">
-<%-- 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/joinLogin.css" type="text/css"> --%>
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/customerStyle.css" type="text/css">
+
 </head>
 
-<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
-<script type="text/javascript">
-
-</script>
 
 
 <body>
@@ -84,10 +80,15 @@
 		                    	<span style="color: #F86453">${eventList.eventCate_subject}</span>
 		                    	&nbsp;<span>${eventList.event_status}</span>
 		                        <h4 style="margin: 10px 10px 10px 0px;">${eventList.event_title }</h4>
+		                        <c:if test="${!empty eventList.event_startDt && !empty eventList.event_endDt }">
+									<span>${eventList.event_startDt } ~ ${eventList.event_endDt }</span><br>
+								</c:if>
 		                    	<span>등록일 : <fmt:formatDate value="${eventList.event_writeDate}" pattern="yyyy-MM-dd"/></span>
 							</div>
-						    <div class="col-6" align="right" onclick ="location.href = 'eventDetail?event_idx=${eventList.event_idx}'">  
-								<img src ="${pageContext.request.contextPath }/resources/upload/${eventList.event_thumbnail }" width="240" height="240" style="margin: 10px 10px 10px 10px;">
+						    <div class="col-6" align="right" onclick ="location.href = 'eventDetail?event_idx=${eventList.event_idx}'">
+						    	<c:if test="${!empty eventList.event_thumbnail}"> 
+									<img src ="${pageContext.request.contextPath }/resources/upload/${eventList.event_thumbnail }" width="150" height="150" style="margin: 10px 10px 10px 10px;">
+	                        	</c:if>
 	                        </div>
 							</c:forEach>
 						</div>

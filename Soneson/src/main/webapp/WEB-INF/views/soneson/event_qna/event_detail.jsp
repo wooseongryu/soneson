@@ -14,22 +14,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>soneson</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+	<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/plyr.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/style.css" type="text/css">
-    
-   	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/customerStyle.css" type="text/css">
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+	rel="stylesheet">
+
+	<!-- Css Styles -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/elegant-icons.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/plyr.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/nice-select.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/owl.carousel.min.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/slicknav.min.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/customerStyle.css" type="text/css">
 </head>
 
 <body>
@@ -45,38 +45,43 @@
 			<div class="row">
 				<div class="col-lg-10 col-md-8" style="float: none; margin: 0 auto;">
 					<div class="anime__details__review">
-<!-- 						<div class="section-title"> -->
-<!-- 							<h2>이벤트</h5> -->
-<!-- 						</div> -->
-						<div class="test" id="order_comment">
-	                        <h5>
-	                            <a href="eventList?eventCate_idx=1">공지</a>
-	                             &nbsp;&nbsp;
-	                            <a href="eventList?eventCate_idx=2">이벤트</a>
-	                             &nbsp;&nbsp;
-	                            <a href="eventList?eventCate_idx=3">보도자료</a>
-	                        </h5>
-	                    </div>
+						<div class="row justify-content-end">
+							<c:forEach var="eventCate" items="${eventCateList }">
+								<div class="col-2">
+									<div class="customer_category" align="center" name="${eventCate.eventCate_subject}" 
+										onclick="location.href='eventList?eventCate_idx=${eventCate.eventCate_idx}'" >
+										<h6>${eventCate.eventCate_subject }</h6>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row d-flex justify-content-center">
 				<div class="col-lg-8">
 					<div class="blog__details__title">
-						<h4>${event.event_title }</h4>
+						<h6>${event.eventCate_subject }</h6>
+						<h2>${event.event_title }</h2>
 						<c:if test="${!empty event.event_startDt }">
 							<h6>${event.event_startDt } ~ ${event.event_endDt }</h6>
 						</c:if>
 						<hr>
-<%-- 						<h4>${event.event_title }</h4> --%>
 					</div>
 				</div>
-				
 				<div class="col-lg-8">
 					<div class="blog__details__content">
 						<div class="blog__details__text">
-							<h6>${event.event_content }</h6>
-							<img src ="${pageContext.request.contextPath }/resources/upload/${event.event_poster }">
+							<p>${fn:replace(event.event_content, replaceChar, "<br/>")}</p>
+                       	</div>
+                   	</div>
+                </div>
+				<div class="col-lg-8">
+					<div class="blog__details__content">
+						<div class="blog__details__text">
+							<c:if test="${!empty event.event_poster}"> 
+								<img src ="${pageContext.request.contextPath }/resources/upload/${event.event_poster }">
+                        	</c:if>
                        	</div>
                    	</div>
                 </div>

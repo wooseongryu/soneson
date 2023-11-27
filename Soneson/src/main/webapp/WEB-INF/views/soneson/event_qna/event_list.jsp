@@ -13,21 +13,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>soneson</title>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+	<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
 
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/plyr.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/slicknav.min.css" type="text/css">
-    
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/customerStyle.css" type="text/css">
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
+	rel="stylesheet">
+
+	<!-- Css Styles -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/elegant-icons.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/plyr.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/nice-select.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/owl.carousel.min.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/slicknav.min.css" type="text/css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/customerStyle.css" type="text/css">
+
 </head>
 
 
@@ -78,12 +80,15 @@
 					                    	<span style="color: #F86453">${eventDetail.eventCate_subject}</span>
 					                    	&nbsp;<span>${eventDetail.event_status}</span>
 					                        <h4 style="margin: 10px 10px 10px 0px;">${eventDetail.event_title }</h4>
+											<c:if test="${!empty eventDetail.event_startDt && !empty eventDetail.event_endDt }">
+												<span>${eventDetail.event_startDt } ~ ${eventDetail.event_endDt }</span><br>
+											</c:if>
 					                    	<span>등록일 : <fmt:formatDate value="${eventDetail.event_writeDate}" pattern="yyyy-MM-dd"/></span>
 										</div>
 										<div class="col-6" align="right"  onclick="location.href='eventDetail?event_idx=${eventDetail.event_idx}'">
-									    	<a href="eventDetail?event_idx=${eventDetail.event_idx} ">
-												<img src ="${pageContext.request.contextPath }/resources/upload/${eventDetail.event_thumbnail }"width="240" height="240" style="margin: 10px 10px 10px 10px;"> 
-											</a>
+									    	<c:if test="${!empty eventDetail.event_thumbnail}"> 
+												<img src ="${pageContext.request.contextPath }/resources/upload/${eventDetail.event_thumbnail }" width="150" height="150" style="margin: 10px 10px 10px 10px;">
+				                        	</c:if>
 										</div>
 									</c:forEach>
 								</div>
