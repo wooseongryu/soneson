@@ -513,3 +513,8 @@ body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fi
 .DonationTodayCategory_wrap__k2rtu {
 	z-index: 1000 !important;	
 }
+
+/* 헤더 사이즈 줄임 */
+.Header_header__3lTua {
+    width: 61%;
+}
