@@ -26,19 +26,38 @@ public class ProjectListController {
 //		return "main/popular";	
 //	}
 	
-	@GetMapping("projectInfo")
-	public String projectInfo(Model model) {
-		System.out.println("projectInfoController - projectInfo()");
+//	@GetMapping("projectInfo")
+//	public String projectInfo(Model model) {
+//		System.out.println("projectInfoController - projectInfo()");
+//		
+//		
+//		return "main/projectInfo";	
+//	}
+//	@GetMapping("projectInfo3")
+//	public String projectInfo3(Model model) {
+//		System.out.println("projectInfo3Controller - projectInfo3()");
+//		
+//		
+//		return "main/projectInfo3";	
+//	}
+	
+	// ============== 아래부터 진짜 시작 ========================
+	
+	@GetMapping("popular")
+	public String popular() {
+		System.out.println("popularController - popular()");
 		
-		
-		return "main/projectInfo";	
+		return "list/popular";	
 	}
-	@GetMapping("projectInfo3")
-	public String projectInfo3(Model model) {
-		System.out.println("projectInfo3Controller - projectInfo3()");
+	
+	@GetMapping("projectDetail")
+	public String projectDetail(Model model) {
+		System.out.println("projectDetailController - projectDetail()");
 		
 		
-		return "main/projectInfo3";	
+		return "list/projectDetail";	
 	}
+	
+	
 
 }
