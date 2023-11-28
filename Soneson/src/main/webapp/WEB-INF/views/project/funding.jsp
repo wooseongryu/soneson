@@ -1,21 +1,118 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script>
+	let now = new Date();
+	now.setDate(now.getDate() + 1);
+	let tommorrow = String(now.toISOString().slice(0,10));
+	console.log(tommorrow);
+	
 	$(function() {
-		$("#start-funding").attr("min", tommorrow);
 		
-		//아이템 옵션
-		$("input[type=radio][name=rewardItemOption]").on("click", function() {
+		//수수료 계산하기
+		$('#pro_goal').on('keydown keyup', function(){
+// 		$("#pro_goal").keydown(function() {
+// 			debugger;
+			let goal = "";
+			goal = $(this).val().replace(/^0+|[^0-9]/g, ''); //숫자만 입력
+// 			goal = $(this).val().replaceAll(/[^-0-9]/g,''); //숫자만 입력
+			console.log("숫자길이"+ goal.length);
+			$(this).val(goal.replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+// 			$(this).val(goal.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'));
 			
-			let ckv = $(this).val();
-			$.each($('.reward-section2').children(), function (index, el) {
-//					debugger;
-				var attr = ckv == index ? 'block' : 'none';
-				$(el).css('display', attr);
-				
-			});
+			let creditFee = Math.floor(Number(goal) * 0.033);
+			let sonFee = Math.floor(Number(goal) * 0.055);
+			let total = sonFee + creditFee;
+			let totalAmount = goal - (sonFee + creditFee);
+			
+			$("#creditFee").text(String(creditFee).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+			$("#sonFee").text(String(sonFee).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+			$("#totalFee").text(String(total).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+			$("#totalAmount").text(String(totalAmount).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+			
+			
+			let amountAlert = "";
+			if(Number(goal) < 500000) {
+				$(".input-fundingCost").css("border", "1px solid rgb(248, 100, 83)");
+				amountAlert = "50만원 이상의 금액을 입력해 주세요.";
+			} else if(goal.length > 10) {
+				$(".input-fundingCost").css("border", "1px solid rgb(248, 100, 83)");
+				amountAlert = "9,999,999,999원 이하인 금액을 입력해주세요..";
+			} else {
+				$(".input-fundingCost").css("border", "1px solid rgb(240, 240, 240)");
+				amountAlert = "";
+			}
+			
+			$(".amount-alert").text(amountAlert);
+			
 			
 		});
+		
+		//날짜 선택하기
+		$("#start-funding").attr("min", tommorrow);
+		if(!$("#start-funding").val() == "") {
+			$("#end-funding").attr("disabled", false);
+		}
+		
+// 		$("#end-funding").click(function() {
+// 			let startDt = $("#start-funding").val();
+// 			console.log($("#start-funding").val());
+// 			if(startDt == "" || startDt == null ) {
+// 				alert("시작일을 먼저 설정해 주세요.");
+// 				return;	
+// 			}
+// 			$("#end-funding").attr("min", $("#start-funding").val());
+			
+// 		});
+		
+// 		$("#end-funding").change(function() {
+// 			let startDt = $("#start-funding").val();
+// 		});
+
+		//날짜 계산하기
+		
+		$("#end-funding").on('click change', function() {
+			let startDt = $("#start-funding").val();
+			console.log($("#start-funding").val());
+			if(startDt == "" || startDt == null ) {
+				alert("시작일을 먼저 설정해 주세요.");
+				return;	
+			}
+			$("#end-funding").attr("min", $("#start-funding").val());
+			let endDt = $(this).val();
+			console.log(endDt);
+			
+		});
+		
+		
+		
+		
+// 		$("#pro_goal").keyup(function() {
+// 			let goal = $(this).val();
+// 			let creditFee = Math.floor(goal * 0.033);
+// 			let sonFee = Math.floor(goal * 0.055);
+// 			let amountAlert = "";
+			
+// 			if(goal < 500000) {
+// 				amountAlert = "50만원 이상의 금액을 입력해 주세요.";
+// 			} else if(goal > 9999999999) {
+// 				amountAlert = "9,999,999,999원 이하인 금액을 입력해주세요..";
+// 			}
+			
+// 			$(".amount-alert").text(amountAlert);
+			
+			
+// 			$("#creditFee").text(creditFee);
+// 			$("#sonFee").text(sonFee);
+// 			$("#totalFee").text(sonFee + creditFee);
+// 			$("#totalAmount").text(goal - (sonFee + creditFee));
+			
+			
+			
+			
+// 		});
+		
+		
+		
 	});
 </script>
 <div class="write-view-content">
@@ -46,30 +143,32 @@
 					<div>
 						<div class="input-fundingCost">
 							<span class="fundingInputCost">
-								<input type="number" min="500000" max="9999999999" class="InputTextFunding" inputmode="numeric" name="pro_goal">
+								<input type="text" maxlength="14" class="InputTextFunding" name="pro_goal" id="pro_goal" >
+<!-- 								<input type="text" maxlength="13" class="InputTextFunding" name="pro_goal" id="pro_goal"  oninput="maxLengthCheck(this)"> -->
+<!-- 								<input type="number" min="500000" max="9999999999" class="InputTextFunding" inputmode="numeric" name="pro_goal" id="pro_goal"> -->
 								원
 							</span>
 						</div>
 						<div class="alert-cost">
-							<p class=""></p>
+							<p class="amount-alert"></p>
 						</div>
 					</div>
 					<div class="projectFunding-cal">
 						<div class="totalAmount">
 							<span>목표금액 달성 시 예상 수령액</span>
-							<span class="">원</span>
+							<span class="totalSpan"><span id="totalAmount">0</span>원</span>
 						</div>
 						<div class="feeWarp">
 							총 수수료
-							<span>원</span>
+							<span><span id="totalFee">0</span>원</span>
 						</div>
 						<div class="feeWarp">
 							결제대행 수수료(총 결제 성공금액의 3% + VAT)
-							<span>원</span>
+							<span><span id="creditFee">0</span>원</span>
 						</div>
 						<div class="feeWarp">
 							손에손 수수료(총 결제 성공금액의 5% + VAT)
-							<span>원</span>
+							<span><span id="sonFee">0</span>원</span>
 						</div>
 					</div>
 				</div>
@@ -107,19 +206,19 @@
 								</div>
 								<div class="projectFormHalf-date">
 									<p class="tiny-title">종료일</p>
-									<input type="date" class="input-date" name="pro_EndDt">
+									<input type="date" class="input-date" name="pro_EndDt" id="end-funding">
 								</div>
 							</div>
 							<div class="projectFormHalf-date">
 								<p class="tiny-title">펀딩기간</p>
-								일
+								<span><span id="fundingDays">0</span>일</span>
 							</div>
 						</li>
 						<li class="project-date">
 							<div class="projectForm-date">
 								<div class="projectFormHalf-date">
 									<p class="tiny-title">후원자 결제종료</p>
-									2023.10.23
+									<span id="paymentDt">2023.10.23</span>
 								</div>
 							</div>
 						</li>
@@ -127,7 +226,7 @@
 							<div class="projectForm-date">
 								<div class="projectFormHalf-date">
 									<p class="tiny-title">정산일</p>
-									2023.10.30	
+									<span id="calculateDt">2023.10.23</span>	
 								</div>
 							</div>
 						</li>

@@ -31,6 +31,7 @@ public class ProjectController {
 			model.addAttribute("targetURL", "login");
 			return "forward";
 		}
+		System.out.println(sId + "==========");
 		pro = service.selectIdProj(sId);
 		System.out.println(pro);
 		model.addAttribute("pro", pro);
@@ -43,6 +44,24 @@ public class ProjectController {
 	public String projectAgreeForm() {
 		return "project/startAgree";
 	}
+	
+	
+	//이미 작성 중인 프로젝트가 있을 경우
+	@PostMapping("projectUpdateForm")
+	public String projectUpdateForm(@RequestParam Map<String, String> map, HttpSession session, ProjectVO pro, Model model) {
+		String sId = (String)session.getAttribute("sId");
+		
+		if(sId == null) {
+			model.addAttribute("msg", "로그인 후 이용 가능 합니다.");
+			model.addAttribute("targetURL", "login");
+			return "forward";
+		}
+		pro = service.selectProject(map);
+		model.addAttribute("pro", pro);
+		
+		return "project/default";
+	}
+	
 	
 	//작성페이지이동	
 	@PostMapping("projectInsertForm")
@@ -57,16 +76,35 @@ public class ProjectController {
 		}
 		map.put("user_id", sId);
 		// ======pro_summary not null 걸려있어서 오류뜸 수정해야함 그때까지 보류=======
-//		int insertCount = service.insertStartProj(map);
-//		if(insertCount < 0) {
-//			model.addAttribute("msg", "잠시 후 다시 시도해 주세요.");
-//			model.addAttribute("targetURL", "projectStartForm");
-//			return "forward";
-//		}
+		int insertCount = service.insertStartProj(map);
+		if(insertCount < 0) {
+			model.addAttribute("msg", "잠시 후 다시 시도해 주세요.");
+			model.addAttribute("targetURL", "projectStartForm");
+			return "forward";
+		}
+		
+		model.addAttribute("pro", map);
+		return "project/default";
+	}
+	
+	//작성 중 저장하기 버튼
+	@PostMapping("updateProject")
+	public String updateProject(HttpSession session, Model model, ProjectVO pro) {
+		String sId = (String)session.getAttribute("sId");
+		
+		if(sId == null) {
+			model.addAttribute("msg", "로그인 후 이용 가능 합니다.");
+			model.addAttribute("targetURL", "login");
+			return "forward";
+		}
+		
+		int updateCount = service.updateProject(pro);
+		
 		
 		
 		return "project/default";
 	}
+	
 	
 	
 	//리워드구성

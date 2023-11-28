@@ -1,6 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script>
+	$(function() {
+		//아이템 옵션
+		$("input[type=radio][name=rewardItemOption]").on("click", function() {
+			
+			let ckv = $(this).val();
+			$.each($('.reward-section2').children(), function (index, el) {
+//					debugger;
+				var attr = ckv == index ? 'block' : 'none';
+				$(el).css('display', attr);
+				
+			});
+			
+		});
+	});
+</script>
 <!-- 카테고리에 따른 입력폼 -->
+
 <div>
 	<div class="write-view-content">
 		<div class="view-content-form">

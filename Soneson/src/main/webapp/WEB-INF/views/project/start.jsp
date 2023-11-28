@@ -48,13 +48,16 @@
 			$(this).css({"background":"rgb(248, 100, 83)","color":"#ffffff"});
 // 			location.href="projectAgreeForm";
 		});
+		
+		
+		
 	});
 </script>
  
 </head>	
 <body>
 	<!-- header 위치 -->
-<%-- 	<jsp:include page="../inc/header.jsp"></jsp:include>	 --%>
+	<jsp:include page="../inc/header.jsp"></jsp:include>	
 	
 	<div class="pro-step1-container">
 		<div class="pro-step1-start">
@@ -70,8 +73,12 @@
 							</span>
 							<p>${pro.pro_title }</p>
 						</div>
-						<button class="ing-probtn">이어서 작성</button>
-	<!-- 					<input type="button" value="이어서 작성 →" class="ing-probtn"> -->
+						<form action="projectUpdateForm" method="post">
+							<input type="hidden" value="${pro.pro_idx }" name="pro_idx">
+							<input type="hidden" value="${pro.user_id }" name="user_id">
+<!-- 							<button class="ing-probtn">이어서 작성</button> -->
+							<input type="submit" value="이어서 작성 →" class="ing-probtn">
+						</form>
 					</div>
 				</div>
 			</c:if>
@@ -145,6 +152,6 @@
 		</div>
 	</div>
 	<!-- footer -->
-<%-- 	<jsp:include page="../inc/footer.jsp"></jsp:include> --%>
+	<jsp:include page="../inc/footer.jsp"></jsp:include>
 </body>
 </html>

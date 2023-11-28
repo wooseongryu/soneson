@@ -9,10 +9,20 @@
 		FROM project
 	</select>
 	
-	<select id="selectIdProj" resultType="project">
+	<!-- 프로젝트 등록 start페이지 -->
+	<select id="selectIdProj" resultType="Project">
 		SELECT pro_idx, user_id, pro_title
 		FROM sample_pro 
 		WHERE user_id = #{sId}
+		ORDER BY pro_idx asc
+		Limit 1
+	</select>
+	
+	<!-- 이어쓰기 -->
+	<select id="selectProject" resultType="Project">
+		SELECT *
+		FROM sample_pro
+		WHERE user_id = #{user_id} AND pro_idx = #{pro_idx}
 	</select>
 	
 	
@@ -34,6 +44,11 @@
 			, 'Y'
 		)
 	</insert>
+	
+	<!-- 저장하기 -->
+	<update id="updateProject">
+		
+	</update>
 	
 	
 	

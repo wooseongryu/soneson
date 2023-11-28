@@ -14,6 +14,9 @@ public class ProjectVO {
 	private String endDate;
 	
 	//------------
+	private String pro_idx;
 	private String pro_categorie;
 	private String pro_summary;
+	private String pro_title;
+	private String user_id;
 }

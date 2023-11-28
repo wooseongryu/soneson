@@ -35,6 +35,8 @@
 
 </head>
 <body>
+	<!-- header 위치 -->
+	<jsp:include page="../inc/header.jsp"></jsp:include>	
 	<div class="pro-step1-container">
 		<div class="pro-step1-start">
 			<div>
@@ -85,5 +87,7 @@
 			</div>
 		</div>
 	</div>
+		<!-- footer -->
+	<jsp:include page="../inc/footer.jsp"></jsp:include>
 </body>
 </html>
