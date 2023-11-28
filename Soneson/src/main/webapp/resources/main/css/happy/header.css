@@ -354,7 +354,9 @@
     margin: 0 auto;
     padding: 0;
     clear: both;
-    font-size: 0.9em;
+/*     헤더 폰트 사이즈 */
+/*     font-size: 0.9em; */
+    font-size: 13px;
 }
 
 
@@ -547,7 +549,7 @@ body {
 
 /* extended 메뉴 */
 .DonationTodayCategory_wrap__k2rtu {
-	display: none;
+/* 	display: none; */
 }
 .DonationTodayCategory_wrap__k2rtu {
 	margin-top: 2.5em;

@@ -44,8 +44,11 @@ public class ProjectListController {
 	// ============== 아래부터 진짜 시작 ========================
 	
 	@GetMapping("popular")
-	public String popular() {
+	public String popular(Model model) {
 		System.out.println("popularController - popular()");
+		
+		List<ProjectVO> projectList = service.getProjectList();
+		model.addAttribute("projectList", projectList);
 		
 		return "list/popular";	
 	}

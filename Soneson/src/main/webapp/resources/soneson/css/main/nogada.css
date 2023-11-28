@@ -341,7 +341,8 @@
 
 .ieWwZH .title-wrapper {
     display: inline;
-    font-size: 1.07rem;
+/*     에디터만 너무 커서 */
+/*     font-size: 1.07rem; */
     position: relative;
 }
 
@@ -1211,5 +1212,38 @@
 	padding-top: 30px;
 }
 
+/* 집 모니터랑 달라서 */
+.cXaiVs {
+    width: 61%;
+}
 
+.QBCRz {
+    width: 61%;
+}
+
+.gylNpn::before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: url(https://tumblbug.com/wpa/2d61acb1947426fe50825e64c51e61db.png) 0px 0px / cover no-repeat;
+}
+
+.hfSMxY {
+    position: absolute;
+    z-index: 9;
+    right: 8px;
+    bottom: 8px;
+    width: 24px;
+    height: 24px;
+}
+
+.hfSMxY {
+    right: 12px;
+    bottom: 12px;
+}
 
