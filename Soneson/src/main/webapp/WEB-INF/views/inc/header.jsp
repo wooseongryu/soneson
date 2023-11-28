@@ -63,6 +63,12 @@
 								<span class="HeaderUserProfile_bar__1OPU2"></span>
 							</span>
 						</a>
+						<a>
+							<span class="">
+							<span class="">프로젝트 올리기</span>
+								<span class="HeaderUserProfile_bar__1OPU2"></span>
+							</span>
+						</a>
 						<a href="https://happybean.naver.com/my/home" class="HeaderUserProfile_wrap__3FD8V">
 							<img loading="lazy" src="https://phinf.pstatic.net/contact/profile/blog/58/80/bom_bomi.jpg?type=s160" width="30" height="30" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI">
 								<span class="HeaderUserProfile_id__3e8GE">
