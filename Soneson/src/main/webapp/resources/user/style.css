@@ -2095,7 +2095,65 @@ ol {
 	position: relative;
 }
 
+.uploadImage {
+	width: 100%;
+    padding: 13px;
+    margin-bottom: 25px;
+    background: rgb(255, 255, 255);
+    border: 1px solid #d1d3e2;
+    box-sizing: border-box;
+    border-radius: 4px;
+    position: relative;
+    transition: border 0.4s ease 0s;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
 
+.uploadDiv {
+	width: 150px;
+	cursor: pointer;
+}
+
+.profileImgDiv {
+	width: 70px;
+    height: 70px;
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+/* .profileImg { */
+/* 	width: 100px;  */
+/* 	height: 100px;  */
+/* 	border-radius: 50%;  */
+/* 	margin-top: 15px; */
+/* } */
+
+.profileImg {
+	width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.uploadImage input[type="file"] {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.profile-right {
+	font-size: 12px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color: rgb(158, 158, 158);
+    padding-top: 15px;
+}
 
 /* 추가 끝 ============================================ */
 

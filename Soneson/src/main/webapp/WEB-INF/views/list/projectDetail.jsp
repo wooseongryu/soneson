@@ -28,25 +28,7 @@
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
       <div id="react-view" class="tbb-only-ff">
 <div class="ProjectIntroduction__ProjectIntroductionBackground-sc-1kf21am-0 eGtYeZ">

@@ -289,7 +289,7 @@
                             <div class="input__item">
                             	<div class="main">
                             		<span class="icon_lock"></span>
-	                                <input type="password" name="user_passwd" id="user_passwd" placeholder="8 ~ 16글자 사이 입력" required="required" size="20" maxlength="16" oninput="maxLengthCheckPasswd(this)" pattern="^[A-Za-z0-9][\w]{7,15}$" title="비밀번호 8 ~ 16글자 영문자, 숫자, 특수문자(_) 조합">
+	                                <input type="password" name="user_passwd" id="user_passwd" placeholder="8 ~ 16글자 사이 입력" required="required" size="20" maxlength="16" oninput="maxLengthCheckPasswd(this)">
 	                                <i class="fa fa-eye fa-lg"></i>
                                 </div>
                             </div>

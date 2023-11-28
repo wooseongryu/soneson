@@ -27,65 +27,64 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/nice-select.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/mypage/css/admin_mypage.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/main/css/happy/global.css">
+<%--     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/mypage/css/admin_mypage.css" rel="stylesheet"> --%>
     <!-- 류우성 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/style.css" type="text/css">
     
+    <style>
+    
+   	h6  {
+   		display: flex;
+   	} 
+   	
+   	.contents {
+   		font-size: 15px;
+   		color: lightblack;
+   		margin-bottom: 7px;
+   	}
+   	
+   	p {
+   		color: #F86453;
+   	}
+   	
+   	.anime__review__item__text{
+   		border: 1px solid rgba(0, 0, 0, 0.3);
+   	}
+   	
+   	.anime__review__item__text span {
+   		color: #F86453;
+   		font-weight: bold;
+   	}
+   	
+   	.user_follow_btn a {
+   		bottom: 65px;
+   		display: inline-block;
+	    background: white;
+	    padding: 6px 20px;
+	    letter-spacing: 2px;
+	    border-radius: 2px;
+	    margin-right: 14px;
+	    -webkit-transition: all, 0.3s;
+	    -o-transition: all, 0.3s;
+	    transition: all, 0.3s;
+	    border: 1px solid red;
+	   	color: #F86453;
+	   	font-weight: bold;
+   	}	
+   
+    
+    </style>
+    
     <script type="text/javascript">
     	let pointColor = "#F86453";
-	
-    </script>
     
-<style>
-	.Category {
-	 	margin-top: 30px;
-	 }
-	.Category_ul {
-	    display: -ms-flexbox; 
-	    display: flex;
-	    -ms-flex-pack: justify;  
- 	    justify-content: space-between;  
-	    white-space: nowrap;
-	    float: center;
-	    width: 50%;
-	    padding-bottom: 1.1em;
-	}
-	.Category_button {
-	    display: block;
-	    height: 42px;
-	    padding: 0 12px 0 10px;
-	    border: 1px solid #eee;
-	    border-radius: 30px;
-	}
-	.Category_text {
-	    display: inline-block;
-	    font-family: "NanumSquareNeo",dotum,Sans-serif;
-	    font-size: 15px;
-	    margin-top: 1px;
-	    vertical-align: middle;
-	}
-	.DonationTodayCategory_list_item__agFbi .item_1:before {
-	    background-image: url(/build/static/media/icon_category_1.2f477b61.svg);
-	}
-	.DonationTodayCategory_list_item__agFbi .Category_button_:before {
-	    display: inline-block;
-	    width: 27px;
-	    height: 27px;
-	    margin-right: 4px;
-	    background-repeat: no-repeat;
-	    background-size: 100%;
-	    vertical-align: middle;
-	    content: "";
-	}
+    	
+    	
+		
+		
+	</script>
 	
-	.DonationTodayCategory_list_item__agFbi[aria-current=true] .Category_button {
-	    background-color: #F86453;
-	    border-color: #F86453;
-	}
-	
-	
-</style>
-
 </head>
 
 <body>
@@ -105,83 +104,103 @@
 				<div class="blog__details__comment__item">
 				    <div class="blog__details__comment__item__text">
 				        <h3>
-				        	<b>내가 만든 프로젝트</b>
+				        	<b>후원 현황</b>
 				        </h3>
-				        
 				    </div>
 				</div>
 			</div>
 		</div>
 	</section>
+	
 
     <!-- Product Section Begin -->
-    <section class="product-page spad">
-	    <div class="Category">
-			<ul class="Category_ul">
-				<li class="DonationTodayCategory_list_item__agFbi item_1" aria-current="true">
-					<button type="button" class="Category_button">
-						<span class="Category_text">&nbsp;&nbsp;전체&nbsp;&nbsp;</span>
-					</button>
-				</li>
-				<li class="DonationTodayCategory_list_item__agFbi item_2" aria-current="false">
-					<button type="button" class="Category_button">
-						<span class="Category_text">&nbsp;&nbsp;작성중&nbsp;&nbsp;</span>
-					</button>
-				</li>
-				<li class="DonationTodayCategory_list_item__agFbi item_3" aria-current="false">
-					<button type="button" class="Category_button">
-						<span class="Category_text">&nbsp;&nbsp;심사중&nbsp;&nbsp;</span>
-					</button>
-				</li>
-				<li class="DonationTodayCategory_list_item__agFbi item_4" aria-current="false">
-					<button type="button" class="Category_button">
-						<span class="Category_text">&nbsp;&nbsp;승인됨&nbsp;&nbsp;</span>
-					</button>
-				</li>
-				<li class="DonationTodayCategory_list_item__agFbi item_5" aria-current="false">
-					<button type="button" class="Category_button">
-						<span class="Category_text">&nbsp;&nbsp;반려됨&nbsp;&nbsp;</span>
-					</button>
-				</li>
-				<li class="DonationTodayCategory_list_item__agFbi item_6" aria-current="false">
-					<button type="button" class="Category_button">
-						<span class="Category_text">&nbsp;&nbsp;공개예정&nbsp;&nbsp;</span>
-					</button>
-				</li>
-				<li class="DonationTodayCategory_list_item__agFbi item_7" aria-current="false">
-					<button type="button" class="Category_button">
-						<span class="Category_text">&nbsp;&nbsp;진행중&nbsp;&nbsp;</span>
-					</button>
-				</li>
-				<li class="DonationTodayCategory_list_item__agFbi item_9" aria-current="false">
-					<button type="button" class="Category_button">
-						<span class="Category_text">&nbsp;&nbsp;종료&nbsp;&nbsp;</span>
-					</button>
-				</li>
-			</ul>
-		</div>	
-	</section>
-	
-	<br>
-	<div class="Container__ContainerComponent">
-		<div class="MyProjectListWrapper">
-			<div align="center">
-				<br>
-				<img src="${pageContext.request.contextPath }/resources/user/writer.png" class="writer.png" width="180">
-				<br>
-				<br>
-				<div class=""><h4>작성한 프로젝트가 없습니다.</h4></div>
-				<br>
-				<button type="button" class="btn btn-primary"
-				onclick="location.href='projectStartForm'">&nbsp;&nbsp;&nbsp;&nbsp;프로젝트 올리기&nbsp;&nbsp;&nbsp;&nbsp;</button>
-				<br>
+	<section class="product-page spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-11">
+					<div class="product__page__content">
+					
+				        <div class="container">
+						    <div class="blog__details__comment">
+								<div class="blog__details__comment__item">
+								    <div class="blog__details__comment__item__text">
+								        <h6><span style="color: #F86453">3</span>건의 후원 내역이 있습니다.</h6>
+								    </div>
+								</div>
+							</div>
+						</div>
+						<br>
+						
+						<div class="anime__details__review">
+							<h6><b>후원 진행중(1)</b></h6>
+							<br>
+							<div class="anime__review__item">
+								<div class="anime__review__item__text" id="project_review_content">
+									<div class="contents">
+										후원일 2023.11.27 | 후원번호 1000001
+									</div>
+									<h6>내 옆에 고양이 다이어리 2024</h6>
+										• [선물A] 고양이 다이어리 + 다꾸 고양이 스티커 2매
+									<br>
+									<br>
+									<span>39,000원 결제 예정</span>
+								</div>
+							</div>
+						</div>
+						<br>
+						
+						<div class="anime__details__review">
+							<h6><b>후원 성공(1)</b></h6>
+							<br>
+							<div class="anime__review__item">
+								<div class="anime__review__item__text" id="project_review_content">
+									<div class="contents">
+										후원일 2023.11.01 | 후원번호 2000001
+									</div>
+									<h6>길냥이 유메의 냥생역전을 위한 첫걸음!</h6>
+									• 화이트&블랙 머그컵(x 1)<br>
+									42,000원 결제 완료
+									<br>
+									<br>	
+									<span>선물 전달 완료일 2023. 11. 22</span>
+									<div class="user_follow_btn">
+										<a href="#">후기 작성</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+						
+						<div class="anime__details__review">
+							<h6><b>후원 실패(1)</b></h6>
+							<br>
+							<div class="anime__review__item">
+								<div class="anime__review__item__text" id="project_review_content">
+									<div class="contents">
+										후원일 2023.10.31 | 후원번호 3000001
+									</div>
+									<h6>일상 속 '향기 한 잔 [캄파눌라]'</h6>
+									• 캄파눌라 고블렛(x 1) 옵션 : 화이트<br>
+									54,000원 결제 예약 취소
+									<br>
+									<br>
+									결제 예약 취소일 2023. 11. 01
+								</div>
+							</div>
+						</div>
+						<br>
+												
+						
+					                        
+						<div id="user_content">
+						<!-- ajax -->
+						</div>
+											
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	
-	
-	
-	
+	</section>
 	
 	
 	<!-- Product Section End -->

@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/soneson/img/header/son33.ico" type="image/x-icon">
+<title>손에손</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/projectstyle.css" type="text/css">
 <script src= "${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
 <script>
@@ -48,8 +49,12 @@
 			$(this).css({"background":"rgb(248, 100, 83)","color":"#ffffff"});
 // 			location.href="projectAgreeForm";
 		});
+		
+		
+		
 	});
 </script>
+
  
 </head>	
 <body>
@@ -70,8 +75,12 @@
 							</span>
 							<p>${pro.pro_title }</p>
 						</div>
-						<button class="ing-probtn">이어서 작성</button>
-	<!-- 					<input type="button" value="이어서 작성 →" class="ing-probtn"> -->
+						<form action="projectUpdateForm" method="post">
+							<input type="hidden" value="${pro.pro_code }" name="pro_code">
+							<input type="hidden" value="${pro.user_id }" name="user_id">
+<!-- 							<button class="ing-probtn">이어서 작성</button> -->
+							<input type="submit" value="이어서 작성 →" class="ing-probtn">
+						</form>
 					</div>
 				</div>
 			</c:if>

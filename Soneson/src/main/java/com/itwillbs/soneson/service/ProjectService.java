@@ -25,6 +25,17 @@ public class ProjectService {
 		return mapper.insertStartProj(map);
 	}
 
+	//이어쓰기 버튼
+	public ProjectVO selectProject(Map<String, String> map) {
+		return mapper.selectProject(map);
+	}
+	
+	
+	//저장버튼
+	public int updateProject(ProjectVO pro) {
+		return mapper.updateProject(pro);
+	}
+
 
 	
 	

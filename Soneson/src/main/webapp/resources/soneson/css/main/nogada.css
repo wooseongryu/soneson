@@ -1206,3 +1206,10 @@
     width: 24px;
 }
 
+/* popular 달성률 버튼이랑 extended menu 겹쳐서 일단 패딩 탑 주기 */
+.dLDRoD {
+	padding-top: 30px;
+}
+
+
+

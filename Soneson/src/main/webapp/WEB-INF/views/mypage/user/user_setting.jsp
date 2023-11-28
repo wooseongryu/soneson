@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/slicknav.min.css" type="text/css">
     
+<%--     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/main/css/happy/global.css" rel="sytlesheet"> --%>
+    
     <!-- 류우성 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/style.css" type="text/css">
     
@@ -41,7 +43,21 @@
     				reset_screen(id);
 
 					$("#user_content").append(
-						  ' <div class="anime__details__review">                                     '
+						  ' <div class="anime__details__review">                                                                                    '
+						+ '  	<div class="anime__review__item">                                                                                   '
+                        + '  		<div class="user__setting__text" id="user_profile_pic">                                                                '
+	                    + '      		<h6>프로필 사진</h6>                                                                                        '
+	                    + '      		<div class="profileImgDiv">                                                                                 '
+						+ ' 				<img alt="" src="${pageContext.request.contextPath }/resources/user/alarm.jpg" class="profileImg">      '
+						+ ' 			</div>                                                                                                      '
+	                    + '      		<div class="user_follow_btn">                                                                               '
+	                    + '      			<a onclick="updateUserProfilePic()">변경</a>                                                                  '
+	                    + '      		</div>                                                                                                      '
+						+ '  		</div>                                                                                                          '
+                    	+ '  	</div>                                                                                                              '
+                	 	+ ' </div>                                                                                                                  '
+							
+						+  ' <div class="anime__details__review">                                     '
 						+ '  	<div class="anime__review__item">                                    '
                         + '  		<div class="user__setting__text" id="user_name">                 '
 	                    + '      		<h6>이름</h6>                                                '
@@ -67,6 +83,55 @@
 	                	+ '  	</div>                                                                                  '
 	            	 	+ ' </div>                                                                                      '
 					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function updateUserProfilePic() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingUpdateUserName',
+    			dataType: 'json',
+    			success: function(resp) {
+    				$("#user_profile_pic").children().remove();
+    				
+    				$("#user_profile_pic").append(
+   						  ' <h6>프로필 사진</h6>                                                                                                          '
+	                    + '                                                                                                                               '
+						+ ' <div class="profileImgDiv">                                                                                                   '
+						+ ' 	<img alt="" src="${pageContext.request.contextPath }/resources/user/alarm.jpg" id="profileImg" class="profileImg">        '
+						+ ' </div>                                                                                                                        '
+                        + '                                                                                                                               '
+						+ ' <div class="profile-right">                                                                                                   '
+						+ ' 	<div class="uploadDiv">                                                                                                   '
+						+ ' 		<div class="uploadImage">                                                                                             '
+						+ ' 			<div>                                                                                                             '
+						+ ' 				<span><i class="bi bi-upload"></i>이미지 업로드</span>                                                        '
+						+ ' 				<input type="file" accept=".jpg, .jpeg, .png" name="profile_path">                                            '
+						+ ' 			</div>                                                                                                            '
+						+ ' 		</div>                                                                                                                '
+						+ ' 	</div>                                                                                                                    '
+						+ ' 	<p>                                                                                                                       '
+						+ ' 		파일 형식은 jpg 또는 png 또는 gif로,<br>                                                                              '
+						+ ' 		사이즈는 가로 200px, 세로 200px 이상으로 올려주세요.                                                                  '
+						+ ' 	</p>                                                                                                                      '
+						+ ' </div>                                                                                                                        '
+						+ ' 	                                                                                                                          '
+                		+ ' <div class=user_cancel_btn>                                                                                                   '
+                		+ ' 	<a onclick="">취소</a>                                                                                                    '
+                		+ ' </div>                                                                                                                        '
+	                    + '                                                                                                                               '
+                    	+ ' 	<div class="user_follow_btn">                                                                                             '
+                    	+ ' 		<a onclick="">변경</a>                                                                                                '
+                    	+ ' 	</div>                                                                                                                    '
+    				);
+    				
+    				$('input[name="profile_path"]').change(function(){
+    	    		    setImageFromFile(this);
+    	    		});
     			},
     			error: function() {
     				alert("에러!");
@@ -467,13 +532,29 @@
     
     	$(function() {
     		userProfile('topCateProfile');
+    		
+    		$('input[name="profile_path"]').change(function(){
+    		    setImageFromFile(this);
+    		});
+    		
     	});
+    	
+    	function setImageFromFile(input) {
+		    if (input.files && input.files[0]) {
+    		    var reader = new FileReader();
+    		    
+    		    reader.onload = function (e) {
+    		    	$('#profileImg').attr('src', e.target.result);
+    		  	}
+    		    
+    		  	reader.readAsDataURL(input.files[0]);
+		  	}
+		}
     </script>
 </head>
 
 <body>
-
-<%-- 	<jsp:include page="../../inc/header.jsp"></jsp:include> --%>
+	<jsp:include page="../../inc/header.jsp"></jsp:include>
 
     <!-- Page Preloder -->
     <div id="preloder">
@@ -534,7 +615,7 @@
 	</section>
 	<!-- Product Section End -->
 	
-<%-- 	<jsp:include page="../../inc/footer.jsp"></jsp:include> --%>
+	<jsp:include page="../../inc/footer.jsp"></jsp:include>
 
 	<!-- Search model Begin -->
 	<div class="search-model">
