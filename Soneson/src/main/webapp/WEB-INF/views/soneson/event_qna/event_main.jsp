@@ -31,11 +31,49 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/slicknav.min.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/customerStyle.css" type="text/css">
 
+
+
+<%-- 	<link href="${pageContext.request.contextPath }/resources/main/css/happy/global.css" rel="stylesheet"> --%>
+
 </head>
+
+<style>
+	#eventCate_subject {
+		color: #F86453; 
+		font-weight: bold;
+	}
+	
+	#event_status {
+		 border: none;
+		 color: #fff; 
+		 background: #F86453;
+	}
+	#event_Dt {
+		 font-size: small;
+	}
+	#eventList_row {
+	 	border-bottom-style: solid;
+		border-bottom-width: 1px;
+		border-bottom-color: rgba(0,0,0,0.1);
+		padding-bottom: 30px;
+		margin-bottom: 30px;"
+	}
+	#event_title {
+	 	margin: 10px 10px 10px 0px;
+	}
+	
+	#eventCate_category {
+		padding-right: 0px !important;
+	}
+</style>
 
 
 
 <body>
+	<!-- header 위치 -->
+	<jsp:include page="../../inc/header.jsp"></jsp:include>
+
+
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -56,7 +94,7 @@
 	                        <h2 align="center">공지사항</h2>
 	                    </div>
 						<div class="row">
-							<div class="col">
+							<div class="col-1" id="eventCate_category">
 								<div class="customer_category" align="center" 
 									<c:if test="${eventCate.eventCate_idx eq param.eventCate_idx}"></c:if> 
 									onclick="location.href='eventMain'" >
@@ -64,7 +102,7 @@
 								</div>
 							</div>
 						<c:forEach var="eventCate" items="${eventCateList }">
-							<div class="col">
+							<div class="col-1" id="eventCate_category">
 								<div class="customer_category" align="center" name="${eventCate.eventCate_subject}" 
 									<c:if test="${eventCate.eventCate_idx eq param.eventCate_idx}"></c:if> 
 									onclick="location.href='eventList?eventCate_idx=${eventCate.eventCate_idx}'" >
@@ -75,18 +113,16 @@
 						</div>
 						<hr>
 						<c:forEach var="eventList" items="${eventList }">
-							<div class="row" style="border-bottom-style: solid;
-													border-bottom-width: 1px;
-													border-bottom-color: rgba(0,0,0,0.1);
-													padding-bottom: 30px;
-													margin-bottom: 30px;">
+							<div class="row" id="eventList_row">
 							    <div class="col-6" onclick ="location.href ='eventDetail?event_idx=${eventList.event_idx}'"> 
-			                    	<span style="color: #F86453">${eventList.eventCate_subject}</span>
-			                    	&nbsp;<span>${eventList.event_status}</span>
+			                    	<span id="eventCate_subject">${eventList.eventCate_subject}</span>
+			                    	<c:if test="${!empty eventList.event_status}">
+			                    		<span><button type="button" id="event_status">&nbsp;${eventList.event_status}&nbsp;</button></span><br>
+			                    	</c:if>
 			                        <c:if test="${!empty eventList.event_startDt && !empty eventList.event_endDt }">
-									&nbsp;<span>${eventList.event_startDt } ~ ${eventList.event_endDt }</span>
+									<span id="event_Dt">이벤트 기간 : ${eventList.event_startDt } ~ ${eventList.event_endDt }</span>
 									</c:if>
-			                        <h5 style="margin: 10px 10px 10px 0px;">${eventList.event_title }</h5>
+			                        <h5 id="event_title">${eventList.event_title }</h5>
 			                        
 			                    	<span><fmt:formatDate value="${eventList.event_writeDate}" pattern="yyyy-MM-dd"/></span>
 								</div>
@@ -122,7 +158,9 @@
 			</div>
 		</div>
 	</section>
-
+	
+	<!-- footer -->
+<%-- 	<jsp:include page="../../inc/footer.jsp"></jsp:include> --%>
 
     <!-- Js Plugins -->
 	<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.3.1.min.js"></script>

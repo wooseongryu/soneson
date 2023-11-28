@@ -30,9 +30,34 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/slicknav.min.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/customerStyle.css" type="text/css">
 </head>
+<style>
+	#qnaCate_subject {
+		color: #F86453; 
+		font-weight: bold;
+	}
+	
+	#qna_row {
+	 	border-bottom-style: solid;
+		border-bottom-width: 1px;
+		border-bottom-color: rgba(0,0,0,0.1);
+		padding-bottom: 30px;
+		margin-bottom: 30px;"
+	}
+	#qna_title {
+	 	margin: 10px 10px 10px 0px;
+	}
+	
+	#qna_category {
+		padding-right: 0px !important;
+	}
+</style>
+
+
 
 
 <body>
+	<!-- header 위치 -->
+	<jsp:include page="../../inc/header.jsp"></jsp:include>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -53,13 +78,13 @@
 	                        <h2 align="center">자주묻는질문</h2>
 	                    </div>
 	                    <div class="row">
-							<div class="col">
+							<div class="col-2" id="qna_category">
 								<div class="customer_category" align="center" onclick="location.href='qna'">
 									<h6>전체</h6>
 								</div>
 							</div>
 						<c:forEach var="qnaCate" items="${qnaCateList }">
-							<div class="col">
+							<div class="col-2" id="qna_category">
 								<div class="customer_category" align="center" name="${qnaCate.qnaCate_subject}" 
 									<c:if test="${qnaCate.qnaCate_idx eq param.qnaCate_idx}">style="color: #F86453; text-decoration : underline; text-underline-offset : 18px; text-decoration-thickness : 4px" </c:if> 
 									onclick="location.href='qna?qnaCate_idx=${qnaCate.qnaCate_idx}'" >
@@ -73,15 +98,10 @@
 						<div class="row">
 						    <div class="col-lg-12">
 								<c:forEach var="qna" items="${qnaList }">
-									<div class="row" style="justify-content: center; 
-															border-bottom-style: solid;
-															border-bottom-width: 1px;
-															border-bottom-color: rgba(0,0,0,0.1);
-															padding-bottom: 30px;
-															margin-bottom: 30px;">
+									<div class="row" id="qna_row">
 										<div class="col-12" align="left" onclick="location.href='qnaDetail?qna_idx=${qna.qna_idx}'">
-					                    	<span style="color: #F86453">${qna.qnaCate_subject}</span>
-					                        <h4 style="margin: 10px 10px 10px 0px;">${qna.qna_title }</h4>
+					                    	<span id="qnaCate_subject">${qna.qnaCate_subject}</span>
+					                        <h4 id="qna_title" >${qna.qna_title }</h4>
 										</div>
 									</div>
 								</c:forEach>
@@ -110,6 +130,9 @@
 			</div>
 		</div>
 	</section>
+
+	<!-- footer -->
+	<jsp:include page="../../inc/footer.jsp"></jsp:include>
 
    <!-- Js Plugins -->
 	<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.3.1.min.js"></script>

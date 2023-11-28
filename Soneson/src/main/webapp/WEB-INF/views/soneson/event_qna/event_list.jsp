@@ -32,9 +32,40 @@
 
 </head>
 
+<style>
+	#eventCate_subject {
+		color: #F86453; 
+		font-weight: bold;
+	}
+	#eventDetail_row {
+	 	border-bottom-style: solid;
+		border-bottom-width: 1px;
+		border-bottom-color: rgba(0,0,0,0.1);
+		padding-bottom: 30px;
+		margin-bottom: 30px;"
+	}
+	#event_title {
+	 	margin: 10px 10px 10px 0px;
+	}
+
+	#event_status {
+		 border: none;
+		 color: #fff; 
+		 background: #F86453;
+	}
+	#event_Dt {
+		 font-size: small;
+	}
+	
+	#eventCate_category {
+		padding-right: 0px !important;
+	}
+</style>
 
 
 <body>
+	<!-- header 위치 -->
+	<jsp:include page="../../inc/header.jsp"></jsp:include>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -56,13 +87,13 @@
 	                        <h2 align="center">공지사항</h2>
 	                    </div>
 						<div class="row">
-							<div class="col">
+							<div class="col-1" id="eventCate_category">
 								<div class="customer_category" align="center" onclick="location.href='eventMain'">
 									<h6>전체</h6>
 								</div>
 							</div>
 						<c:forEach var="eventCate" items="${eventCateList }">
-							<div class="col">
+							<div class="col-1" id="eventCate_category">
 								<div class="customer_category" align="center" name="${eventCate.eventCate_subject}" 
 									<c:if test="${eventCate.eventCate_idx eq param.eventCate_idx}">style="color: #F86453; text-decoration : underline; text-underline-offset : 18px; text-decoration-thickness : 4px" </c:if> 
 									onclick="location.href='eventList?eventCate_idx=${eventCate.eventCate_idx}'" >
@@ -72,21 +103,17 @@
 						</c:forEach>
 						</div>
 						<hr>
-						
-						
 						<c:forEach var="eventDetail" items="${eventDetailList }">
-							<div class="row" style="border-bottom-style: solid;
-													border-bottom-width: 1px;
-													border-bottom-color: rgba(0,0,0,0.1);
-													padding-bottom: 30px;
-													margin-bottom: 30px;">
+							<div class="row" id="eventDetail_row">
 							    <div class="col-6" onclick ="location.href ='eventDetail?event_idx=${eventDetail.event_idx}'"> 
-			                    	<span style="color: #F86453">${eventDetail.eventCate_subject}</span>
-			                    	&nbsp;<span>${eventDetail.event_status}</span>
+			                    	<span id="eventCate_subject">${eventDetail.eventCate_subject}</span>
+			                    	<c:if test="${!empty eventDetail.event_status}">
+			                    		<span><button type="button" id="event_status">&nbsp;${eventDetail.event_status}&nbsp;</button></span><br>
+			                    	</c:if>
 			                        <c:if test="${!empty eventDetail.event_startDt && !empty eventDetail.event_endDt }">
-									&nbsp;<span>${eventDetail.event_startDt } ~ ${eventDetail.event_endDt }</span>
+									<span id="event_Dt">이벤트 기간 : ${eventDetail.event_startDt } ~ ${eventDetail.event_endDt }</span>
 									</c:if>
-			                        <h5 style="margin: 10px 10px 10px 0px;">${eventDetail.event_title }</h5>
+			                        <h5 id="event_title">${eventDetail.event_title }</h5>
 			                        
 			                    	<span><fmt:formatDate value="${eventDetail.event_writeDate}" pattern="yyyy-MM-dd"/></span>
 								</div>
@@ -122,6 +149,9 @@
 			</div>
 		</div>
 	</section>
+
+	<!-- footer -->
+<%-- 	<jsp:include page="../../inc/footer.jsp"></jsp:include> --%>
 
 	<!-- Js Plugins -->
 	<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.3.1.min.js"></script>
