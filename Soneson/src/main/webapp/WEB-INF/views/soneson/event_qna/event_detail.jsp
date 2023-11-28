@@ -31,8 +31,26 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/slicknav.min.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/customerStyle.css" type="text/css">
 </head>
+<style>
+	#eventCate_subject {
+		color: #F86453; 
+		font-weight: bold;
+	}
+	#eventCate_category {
+		padding-right: 0px !important;
+	}
+	
+	#eventCate_subject_category {
+		font-weight: bold;
+		color: rgba(0,0,0,0.7);
+	}
+</style>
+
+
 
 <body>
+	<!-- header 위치 -->
+	<jsp:include page="../../inc/header.jsp"></jsp:include>
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -47,10 +65,10 @@
 					<div class="anime__details__review">
 						<div class="row justify-content-end">
 							<c:forEach var="eventCate" items="${eventCateList }">
-								<div class="col-2">
+								<div class="col-1" id="eventCate_category">
 									<div class="customer_category" align="center" name="${eventCate.eventCate_subject}" 
 										onclick="location.href='eventList?eventCate_idx=${eventCate.eventCate_idx}'" >
-										<h6>${eventCate.eventCate_subject }</h6>
+										<h6 id="eventCate_subject_category">${eventCate.eventCate_subject }</h6>
 									</div>
 								</div>
 							</c:forEach>
@@ -61,10 +79,10 @@
 			<div class="row d-flex justify-content-center">
 				<div class="col-lg-8">
 					<div class="blog__details__title">
-						<h6>${event.eventCate_subject }</h6>
 						<h2>${event.event_title }</h2>
+						<span id="eventCate_subject">${event.eventCate_subject }</span>
 						<c:if test="${!empty event.event_startDt }">
-							<h6>${event.event_startDt } ~ ${event.event_endDt }</h6>
+							<span>${event.event_startDt } ~ ${event.event_endDt }</span>
 						</c:if>
 						<hr>
 					</div>
@@ -89,7 +107,9 @@
         </div>
     </section>
     <!-- Blog Details Section End -->
-
+    
+	<!-- footer -->
+	<jsp:include page="../../inc/footer.jsp"></jsp:include>
 
 
     <!-- Js Plugins -->
