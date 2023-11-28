@@ -18,8 +18,36 @@
 
 <!-- 엄 추가 -->
 <link href="${pageContext.request.contextPath }/resources/main/css/happy/global.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath }/resources/main/css/happy/header.css" rel="stylesheet">
+<%-- <link href="${pageContext.request.contextPath }/resources/main/css/happy/header.css" rel="stylesheet"> --%>
 <link href="${pageContext.request.contextPath }/resources/main/css/happy/footer.css" rel="stylesheet">
+
+<style>
+
+ul, ol {
+  list-style: none;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+dl {
+	margin: 0;
+	padding: 0;
+}
+
+.notice_wrap, .service_info_grid, .service_info_grid {
+/*   margin: 0; */
+/*   padding: 0; */
+}
+
+
+/* footer { */
+/*   display: block; */
+/* } */
+
+</style>
 
 </head>
 <body>

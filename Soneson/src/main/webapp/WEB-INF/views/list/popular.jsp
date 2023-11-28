@@ -1125,7 +1125,7 @@
 <!-- <img src="https://analytics.twitter.com/1/i/adsct?bci=4&amp;eci=4&amp;event=%7B%7D&amp;event_id=8d15f66f-8328-4ed4-ae9f-783d15075f9d&amp;integration=gtm&amp;p_id=Twitter&amp;p_user_id=0&amp;pl_id=d2d2b5ae-e4c4-41a1-a41c-7adbf60ac643&amp;tw_document_href=https%3A%2F%2Ftumblbug.com%2Fdiscover%3FprojectSort%3Dpopular%26ongoing%3DonGoing&amp;tw_iframe_status=0&amp;txn_id=tw-o4eav-odm20&amp;type=javascript&amp;version=2.3.29" height="1" width="1" style="display: none;"> -->
 
 
-
+<jsp:include page="../inc/footer.jsp"></jsp:include>
 
 </body>
 </html>

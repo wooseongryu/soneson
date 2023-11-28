@@ -95,23 +95,27 @@
   src: url("https://webfontworld.github.io/NanumSquareNeo/NanumSquareNeo-dEb.eot?#iefix") format("embedded-opentype"), url("https://webfontworld.github.io/NanumSquareNeo/NanumSquareNeo-dEb.woff2") format("woff2"), url("https://webfontworld.github.io/NanumSquareNeo/NanumSquareNeo-dEb.woff") format("woff"), url("https://webfontworld.github.io/NanumSquareNeo/NanumSquareNeo-dEb.ttf") format("truetype");
   font-display: fallback;
 }
-body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select {
-  margin: 0;
-  padding: 0;
-}
+
+/* 충돌 */
+/* body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select { */
+/*   margin: 0; */
+/*   padding: 0; */
+/* } */
 
 article, aside, details, figcaption, figure, footer, header, main, menu, nav, section, summary {
   display: block;
 }
 
-body, input, textarea, select, button, table {
-  font-family: Sans-serif;
-/*   1127 헤더 충돌 나서 수정 */
+/* body, input, textarea, select, button, table { */
+/*   font-family: Sans-serif; */
+
+/*  1127 헤더 충돌 나서 수정 */
 /*   font-family: NanumBarunGothic, dotum, Sans-serif; */
-  font-size: 14px;
-  line-height: 19px;
-  color: #202020;
-}
+
+/*   font-size: 14px; */
+/*   line-height: 19px; */
+/*   color: #202020; */
+/* } */
 
 body {
   position: relative;
@@ -147,46 +151,46 @@ i {
   box-sizing: border-box;
 }
 
-input, textarea, select, button {
-  border: 0;
-  border-radius: 0;
-  background-color: transparent;
-  box-shadow: none;
-  appearance: none;
-}
+/* input, textarea, select, button { */
+/*   border: 0; */
+/*   border-radius: 0; */
+/*   background-color: transparent; */
+/*   box-shadow: none; */
+/*   appearance: none; */
+/* } */
 
-button, input[type=button], input[type=reset], input[type=submit], input[type=checkbox] + label, input[type=radio] + label {
-  cursor: pointer;
-}
+/* button, input[type=button], input[type=reset], input[type=submit], input[type=checkbox] + label, input[type=radio] + label { */
+/*   cursor: pointer; */
+/* } */
 
-button:disabled, input[type=button]:disabled, input[type=reset]:disabled, input[type=submit]:disabled {
-  cursor: default;
-}
+/* button:disabled, input[type=button]:disabled, input[type=reset]:disabled, input[type=submit]:disabled { */
+/*   cursor: default; */
+/* } */
 
-input[type=checkbox]:disabled + label, input[type=radio]:disabled + label {
-  cursor: default;
-}
+/* input[type=checkbox]:disabled + label, input[type=radio]:disabled + label { */
+/*   cursor: default; */
+/* } */
 
-input[type=checkbox]:focus + label {
-  outline: -webkit-focus-ring-color auto 5px;
-}
+/* input[type=checkbox]:focus + label { */
+/*   outline: -webkit-focus-ring-color auto 5px; */
+/* } */
 
-input[type=checkbox], input[type=radio], .blind {
-  overflow: hidden;
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  clip: rect(0 0 0 0);
-}
+/* input[type=checkbox], input[type=radio], .blind { */
+/*   overflow: hidden; */
+/*   position: absolute; */
+/*   width: 1px; */
+/*   height: 1px; */
+/*   margin: -1px; */
+/*   clip: rect(0 0 0 0); */
+/* } */
 
-[aria-hidden=true]:not(svg) {
-  display: none;
-}
+/* [aria-hidden=true]:not(svg) { */
+/*   display: none; */
+/* } */
 
-svg {
-  vertical-align: top;
-}
+/* svg { */
+/*   vertical-align: top; */
+/* } */
 
 .u_skip {
   position: relative;

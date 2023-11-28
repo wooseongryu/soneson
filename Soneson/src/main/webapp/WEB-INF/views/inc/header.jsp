@@ -30,23 +30,31 @@
     margin-top: 21px;
 }
 
-*, *:before, *:after {
-    box-sizing: border-box;
+ul {
+	list-style: none;
 }
+
+.goKAXE {
+	vertical-align: middle;
+}
+
+/* *, *:before, *:after { */
+/*     box-sizing: border-box; */
+/* } */
 
 </style>
 
 </head>
 <body>
 	<div id="root">
-		<div class="u_skip" style="">
-			<a href="#header">
-				<span>메뉴 바로가기</span>
-			</a>
-			<a href="#content">
-				<span>본문 바로가기</span>
-			</a>
-		</div>
+<!-- 		<div class="u_skip" style=""> -->
+<!-- 			<a href="#header"> -->
+<!-- 				<span>메뉴 바로가기</span> -->
+<!-- 			</a> -->
+<!-- 			<a href="#content"> -->
+<!-- 				<span>본문 바로가기</span> -->
+<!-- 			</a> -->
+<!-- 		</div> -->
 		<div id="wrap" class="wrap" style="">
 			<header id="headerSoneson" class="Header_header__3lTua">
 				<div class="Header_gnb__122-B">
@@ -194,6 +202,8 @@
         	$j(".DonationTodayCategory_list_item__agFbi").attr("aria-current", "false");
         	$j(this).attr("aria-current", "true");
         });
+        
+        // 위는 전부 맞음
 		
 		
 // 		// "카테고리" 텍스트에 대한 마우스 이벤트 처리

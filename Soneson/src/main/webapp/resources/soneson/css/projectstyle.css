@@ -41,6 +41,8 @@ input[type="number"]::-webkit-inner-spin-button {
 	flex-direction: column;
 	align-items: center;
 	height: 100%;
+/* 	헤더 충돌, 엄성윤 추가 */
+	clear: both;
 }
 .pro-step1-start {
 	display: flex;

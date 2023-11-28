@@ -89,6 +89,14 @@
 /* 		width: 1092px; */
 		margin: 0 auto;
 	}
+	
+/* 	슬라이더 너무 위에 붙어서 1128 */
+	.slideWrap {
+	    margin-top: 20px;
+	}
+	
+	
+	
 </style>
 
 </head>

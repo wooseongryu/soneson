@@ -84,6 +84,8 @@
 .Header_logo__3iS1b {
     float: left;
     margin-top: 21px;
+/*     20231128 추가 */
+    clear: both;
 }
 
 .Header_btn_search__2NxHd, .Header_logo__3iS1b svg {
@@ -91,10 +93,10 @@
     vertical-align: top;
 }
 
-.Header_logo__3iS1b {
-    float: left;
-    margin-top: 21px;
-}
+/* .Header_logo__3iS1b { */
+/*     float: left; */
+/*     margin-top: 21px; */
+/* } */
 
 
 
@@ -168,14 +170,15 @@
     vertical-align: top;
 }
 
-.blind, input[type=checkbox], input[type=radio] {
-    overflow: hidden;
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    clip: rect(0 0 0 0);
-}
+/* startAgree 체크박스 안보여서 지움 1128 */
+/* .blind, input[type=checkbox], input[type=radio] { */
+/*     overflow: hidden; */
+/*     position: absolute; */
+/*     width: 1px; */
+/*     height: 1px; */
+/*     margin: -1px; */
+/*     clip: rect(0 0 0 0); */
+/* } */
 
 .Header_btn_search__2NxHd {
     margin-top: 24px;
@@ -197,7 +200,7 @@
     font-size: 15px !important;
     font-weight: 700 !important;
     line-height: 24px !important;
-    color: #000 !important;
+    color: #000;
 }
 
 /* .HeaderGnb_menu__1fvV3 { */
@@ -254,7 +257,7 @@
 .HeaderGnb_menu__1fvV3 {
     width: 100%;
     float: left;
-    margin-top: 0.4em;
+/*     margin-top: 0.4em; */
     height: fit-content;
 }
 
@@ -340,7 +343,8 @@
     /* border-bottom: 1px solid #f0f0f0; */
     background-color: #fff;
     text-align: right;
-    height: 8em;
+/*     1128 수정 */
+/*     height: 8em; */
 }
 
 .Header_inner__3RznR {
@@ -350,6 +354,7 @@
     margin: 0 auto;
     padding: 0;
     clear: both;
+    font-size: 0.9em;
 }
 
 
@@ -376,12 +381,19 @@
 /*     width: 81%; */
 /*     width: 88%; */
     float: left;
-    padding-bottom: 1.1em;
+/*     1128 삭제 */
+/*     padding-bottom: 1.1em; */
 }
 
-body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select {
-    margin: 0 auto;
-    padding: 0px;
+/* 1128 충돌 나서 삭제 */
+/* body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select { */
+/*     margin: 0 auto; */
+/*     padding: 0px; */
+/* } */
+
+body {
+/* 	margin: 0 auto; */
+/* 	padding: 0px; */
 }
 
 .DonationTodayCategory_text__2oRHp {
@@ -491,9 +503,7 @@ body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fi
     font-size: 14px;
 }
 
-.DonationTodayCategory_wrap__k2rtu {
-	display: none;
-}
+
 
 .DonationTodayCategory_button__1648s:hover {
     border-color: #999;
@@ -508,6 +518,8 @@ body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fi
 .Header_logo__3iS1b {
     float: left;
     margin-top: 21px !important;
+    
+    clear: both;
 }
 
 .DonationTodayCategory_wrap__k2rtu {
@@ -517,4 +529,30 @@ body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fi
 /* 헤더 사이즈 줄임 */
 .Header_header__3lTua {
     width: 61%;
+}
+
+/* 왜 자꾸 오른쪽으로 갈까? */
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+#wrapper {
+	clear:both;
+}
+
+.blind {
+	display: none;
+}
+
+
+/* extended 메뉴 */
+.DonationTodayCategory_wrap__k2rtu {
+	display: none;
+}
+.DonationTodayCategory_wrap__k2rtu {
+	margin-top: 2.5em;
+}
+
+#root {
+	width: 100%;
 }

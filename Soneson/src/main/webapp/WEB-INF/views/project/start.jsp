@@ -59,7 +59,7 @@
 </head>	
 <body>
 	<!-- header 위치 -->
-<%-- 	<jsp:include page="../inc/header.jsp"></jsp:include>	 --%>
+	<jsp:include page="../inc/header.jsp"></jsp:include>	
 	
 	<div class="pro-step1-container">
 		<div class="pro-step1-start">
