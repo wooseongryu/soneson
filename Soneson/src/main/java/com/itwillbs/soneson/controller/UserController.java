@@ -79,6 +79,22 @@ public class UserController {
 		return "1";
 	}
 	
+	// 유저 설정 프로필 사진 변경
+	@ResponseBody
+	@PostMapping("settingUpdateUserProfilePic")
+	public String settingUpdateUserProfilePic() {
+		System.out.println("UserController - settingUpdateUserProfilePic()");
+		return "1";
+	}
+	
+	// 유저 설정 프로필 사진 변경 취소
+	@ResponseBody
+	@PostMapping("settingCancelUpdateUserProfilePic")
+	public String settingCancelUpdateUserProfilePic() {
+		System.out.println("UserController - settingCancelUpdateUserProfilePic()");
+		return "1";
+	}
+	
 	// 유저 설정 이름 변경
 	@ResponseBody
 	@PostMapping("settingUpdateUserName")
@@ -182,6 +198,8 @@ public class UserController {
 		System.out.println("UserController - settingUserAddress()");
 		return "1";
 	}
+	
+
 		
 		
 		

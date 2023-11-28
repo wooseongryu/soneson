@@ -93,7 +93,7 @@
     	function updateUserProfilePic() {
     		$.ajax({
     			type: 'post',
-    			url: 'settingUpdateUserName',
+    			url: 'settingUpdateUserProfilePic',
     			dataType: 'json',
     			success: function(resp) {
     				$("#user_profile_pic").children().remove();
@@ -121,7 +121,7 @@
 						+ ' </div>                                                                                                                        '
 						+ ' 	                                                                                                                          '
                 		+ ' <div class=user_cancel_btn>                                                                                                   '
-                		+ ' 	<a onclick="">취소</a>                                                                                                    '
+                		+ ' 	<a onclick="cancelUpdateUserProfilePic()">취소</a>                                                                                                    '
                 		+ ' </div>                                                                                                                        '
 	                    + '                                                                                                                               '
                     	+ ' 	<div class="user_follow_btn">                                                                                             '
@@ -132,6 +132,31 @@
     				$('input[name="profile_path"]').change(function(){
     	    		    setImageFromFile(this);
     	    		});
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function cancelUpdateUserProfilePic() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingCancelUpdateUserProfilePic',
+    			dataType: 'json',
+    			success: function(resp) {
+    				console.log("test");
+    				$("#user_profile_pic").children().remove();
+    				
+    				$("#user_profile_pic").append(
+   						  ' <h6>프로필 사진</h6>                                                                                        '
+   	                    + ' <div class="profileImgDiv">                                                                                 '
+   						+ ' 	<img alt="" src="${pageContext.request.contextPath }/resources/user/alarm.jpg" class="profileImg">      '
+   						+ ' </div>                                                                                                      '
+   	                    + ' <div class="user_follow_btn">                                                                               '
+   	                    + ' 	<a onclick="updateUserProfilePic()">변경</a>                                                            '
+   	                    + ' </div>                                                                                                      '
+    				);
     			},
     			error: function() {
     				alert("에러!");
