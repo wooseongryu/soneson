@@ -44,10 +44,6 @@
    		margin-bottom: 7px;
    	}
    	
-   	p {
-   		color: #F86453;
-   	}
-   	
    	.anime__review__item__text{
    		border: 1px solid rgba(0, 0, 0, 0.3);
    	}
@@ -73,7 +69,14 @@
 	   	font-weight: bold;
    	}	
    
-    
+   
+   .success_jpg {
+	    width: 160px;
+	    height: 120px;
+	    font-size: 88px;
+	    margin: 0px 20px 0px 0px;
+	}
+	    
     </style>
     
     <script type="text/javascript">
@@ -137,13 +140,19 @@
 							<div class="anime__review__item">
 								<div class="anime__review__item__text" id="project_review_content">
 									<div class="contents">
-										후원일 2023.11.27 | 후원번호 1000001
-									</div>
-									<h6>내 옆에 고양이 다이어리 2024</h6>
+									<a href="${pageContext.request.contextPath }/soneson/popular">
+										<img src="${pageContext.request.contextPath }/resources/user/success.jpg" class="success_jpg">		
+									</a>
+									
+										후원일 2023.11.27 | 후원번호 1000001<br>
+										내 옆에 고양이 다이어리 2024<br>
 										• [선물A] 고양이 다이어리 + 다꾸 고양이 스티커 2매
-									<br>
-									<br>
+										
+									
 									<span>39,000원 결제 예정</span>
+									
+									
+									</div>
 								</div>
 							</div>
 						</div>

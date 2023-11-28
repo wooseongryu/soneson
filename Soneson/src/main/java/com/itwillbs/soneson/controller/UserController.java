@@ -244,6 +244,28 @@ public class UserController {
 		System.out.println("UserController - userFundingList()");
 		return "mypage/user/user_funding_list";
 	}
+	
+	
+	/*====================================================================
+	 * 후원 관련 세부 페이지
+	 * ===================================================================
+	 * */
+	
+	// 후원(결제) 완료 페이지
+	@GetMapping("userFundingSuccess")
+	public String userFundingSuccess() {
+		System.out.println("UserController - userFundingSuccess()");
+		return "mypage/user/user_funding_success";
+	}
+	
+	// 후원 상세 페이지
+	@GetMapping("userFundingDetail")
+	public String userFundingDetail() {
+		System.out.println("UserController - userFundingDetail()");
+		return "mypage/user/user_funding_detail";
+	}
+		
+	
 		
 	
 	
