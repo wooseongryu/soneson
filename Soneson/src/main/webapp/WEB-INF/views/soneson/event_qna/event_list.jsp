@@ -72,28 +72,32 @@
 						</c:forEach>
 						</div>
 						<hr>
-						<div class="row">
-						    <div class="col-lg-12">
-								<div class="row" style="justify-content: center">
-									<c:forEach var="eventDetail" items="${eventDetailList }">
-										<div class="col-6" align="left" onclick="location.href='eventDetail?event_idx=${eventDetail.event_idx}'">
-					                    	<span style="color: #F86453">${eventDetail.eventCate_subject}</span>
-					                    	&nbsp;<span>${eventDetail.event_status}</span>
-					                        <h4 style="margin: 10px 10px 10px 0px;">${eventDetail.event_title }</h4>
-											<c:if test="${!empty eventDetail.event_startDt && !empty eventDetail.event_endDt }">
-												<span>${eventDetail.event_startDt } ~ ${eventDetail.event_endDt }</span><br>
-											</c:if>
-					                    	<span>등록일 : <fmt:formatDate value="${eventDetail.event_writeDate}" pattern="yyyy-MM-dd"/></span>
-										</div>
-										<div class="col-6" align="right"  onclick="location.href='eventDetail?event_idx=${eventDetail.event_idx}'">
-									    	<c:if test="${!empty eventDetail.event_thumbnail}"> 
-												<img src ="${pageContext.request.contextPath }/resources/upload/${eventDetail.event_thumbnail }" width="150" height="150" style="margin: 10px 10px 10px 10px;">
-				                        	</c:if>
-										</div>
-									</c:forEach>
+						
+						
+						<c:forEach var="eventDetail" items="${eventDetailList }">
+							<div class="row" style="border-bottom-style: solid;
+													border-bottom-width: 1px;
+													border-bottom-color: rgba(0,0,0,0.1);
+													padding-bottom: 30px;
+													margin-bottom: 30px;">
+							    <div class="col-6" onclick ="location.href ='eventDetail?event_idx=${eventDetail.event_idx}'"> 
+			                    	<span style="color: #F86453">${eventDetail.eventCate_subject}</span>
+			                    	&nbsp;<span>${eventDetail.event_status}</span>
+			                        <c:if test="${!empty eventDetail.event_startDt && !empty eventDetail.event_endDt }">
+									&nbsp;<span>${eventDetail.event_startDt } ~ ${eventDetail.event_endDt }</span>
+									</c:if>
+			                        <h5 style="margin: 10px 10px 10px 0px;">${eventDetail.event_title }</h5>
+			                        
+			                    	<span><fmt:formatDate value="${eventDetail.event_writeDate}" pattern="yyyy-MM-dd"/></span>
 								</div>
+							    <div class="col-6" align="right" onclick ="location.href ='eventDetail?event_idx=${eventDetail.event_idx}'">
+							    	<c:if test="${!empty eventDetail.event_thumbnail}"> 
+										<img src ="${pageContext.request.contextPath }/resources/upload/${eventDetail.event_thumbnail }" width="150" height="150" style="margin: 10px 10px 10px 10px;">
+		                        	</c:if>
+		                        </div>
 							</div>
-						</div>
+						</c:forEach>
+						
 						
 						<div class="product__pagination" id="pageList">
 							<c:if test="${pageNum > 1 }">

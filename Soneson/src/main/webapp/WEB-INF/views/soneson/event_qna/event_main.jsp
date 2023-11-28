@@ -74,26 +74,29 @@
 						</c:forEach>
 						</div>
 						<hr>
-						<div class="row">
-							<c:forEach var="eventList" items="${eventList }">
-						    <div class="col-6" onclick ="location.href ='eventDetail?event_idx=${eventList.event_idx}'"> 
-		                    	<span style="color: #F86453">${eventList.eventCate_subject}</span>
-		                    	&nbsp;<span>${eventList.event_status}</span>
-		                        <h4 style="margin: 10px 10px 10px 0px;">${eventList.event_title }<br>
-		                        <c:if test="${!empty eventList.event_startDt && !empty eventList.event_endDt }">
-									(${eventList.event_startDt } ~ ${eventList.event_endDt })
-								</c:if>
-								</h4>
-		                        
-		                    	<span><fmt:formatDate value="${eventList.event_writeDate}" pattern="yyyy-MM-dd"/></span>
+						<c:forEach var="eventList" items="${eventList }">
+							<div class="row" style="border-bottom-style: solid;
+													border-bottom-width: 1px;
+													border-bottom-color: rgba(0,0,0,0.1);
+													padding-bottom: 30px;
+													margin-bottom: 30px;">
+							    <div class="col-6" onclick ="location.href ='eventDetail?event_idx=${eventList.event_idx}'"> 
+			                    	<span style="color: #F86453">${eventList.eventCate_subject}</span>
+			                    	&nbsp;<span>${eventList.event_status}</span>
+			                        <c:if test="${!empty eventList.event_startDt && !empty eventList.event_endDt }">
+									&nbsp;<span>${eventList.event_startDt } ~ ${eventList.event_endDt }</span>
+									</c:if>
+			                        <h5 style="margin: 10px 10px 10px 0px;">${eventList.event_title }</h5>
+			                        
+			                    	<span><fmt:formatDate value="${eventList.event_writeDate}" pattern="yyyy-MM-dd"/></span>
+								</div>
+							    <div class="col-6" align="right" onclick ="location.href = 'eventDetail?event_idx=${eventList.event_idx}'">
+							    	<c:if test="${!empty eventList.event_thumbnail}"> 
+										<img src ="${pageContext.request.contextPath }/resources/upload/${eventList.event_thumbnail }" width="150" height="150" style="margin: 10px 10px 10px 10px;">
+		                        	</c:if>
+		                        </div>
 							</div>
-						    <div class="col-6" align="right" onclick ="location.href = 'eventDetail?event_idx=${eventList.event_idx}'">
-						    	<c:if test="${!empty eventList.event_thumbnail}"> 
-									<img src ="${pageContext.request.contextPath }/resources/upload/${eventList.event_thumbnail }" width="150" height="150" style="margin: 10px 10px 10px 10px;">
-	                        	</c:if>
-	                        </div>
-							</c:forEach>
-						</div>
+						</c:forEach>
 						
 						
 						<div class="product__pagination" id="pageList">
