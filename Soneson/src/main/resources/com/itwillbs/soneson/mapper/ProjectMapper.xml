@@ -11,10 +11,10 @@
 	
 	<!-- 프로젝트 등록 start페이지 -->
 	<select id="selectIdProj" resultType="Project">
-		SELECT pro_idx, user_id, pro_title
+		SELECT pro_code, user_id, pro_title
 		FROM sample_pro 
 		WHERE user_id = #{sId}
-		ORDER BY pro_idx asc
+		ORDER BY pro_code asc
 		Limit 1
 	</select>
 	
@@ -22,7 +22,7 @@
 	<select id="selectProject" resultType="Project">
 		SELECT *
 		FROM sample_pro
-		WHERE user_id = #{user_id} AND pro_idx = #{pro_idx}
+		WHERE user_id = #{user_id} AND pro_code = #{pro_code}
 	</select>
 	
 	
@@ -30,7 +30,7 @@
 	<!-- 약관동의 후 insert -->
 	<insert id="insertStartProj">
 		INSERT INTO sample_pro(
-			pro_idx
+			pro_code
 			, user_id
 			, pro_categorie
 			, pro_title
