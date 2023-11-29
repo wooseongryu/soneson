@@ -226,7 +226,9 @@
 <!-- 	====================================================== -->
 
 	<select id="getUserProfile" resultType="User">
-		SELECT user_name 
+		SELECT 
+			user_name
+			, user_info 
 		FROM user
 		WHERE user_id = #{sId}
 	</select>

@@ -43,6 +43,11 @@
     				reset_screen(id);
     				
     				console.log(resp);
+    				
+					let info = resp.user_info;
+    				if (info == "" || info == null) {
+    					info = "등록된 소개가 없습니다.";
+    				}
 
 					$("#user_content").append(
 						  ' <div class="anime__details__review">                                                                                    '
@@ -75,7 +80,7 @@
 						+ '  	<div class="anime__review__item">                                                       '
 	                    + '  		<div class="user__setting__text" id="user_intro">                                   '
 	                    + '      		<h6>소개</h6>                                                                   '
-	                    + '      		<p style="margin-top: 10px; width: 700px">등록된 소개가 없습니다.</p>           '
+	                    + '      		<p style="margin-top: 10px; width: 700px">' + info + '</p>           '
 	                    + '      		<div class="user_follow_btn">                                                   '
 // 	                    + '      			<a onclick="updateUserIntroduction(\'' + id + '\')">변경</a>                '
 	                    + '      			<a onclick="updateUserIntroduction()">변경</a>                              '
@@ -258,7 +263,7 @@
     				
     				$("#user_intro").append(
    						  ' <h6>소개</h6>                                                                                                '
-                   		+ ' <textarea rows="10px" cols="70px" placeholder="자기소개를 입력해주세요." style="margin-top: 10px"></textarea>'
+                   		+ ' <textarea rows="10px" cols="70px" placeholder="자기소개를 입력해주세요." maxlength="3000" style="margin-top: 10px"></textarea>'
                    		+ ' <div class="user_follow_btn">                                                                                '
                    		+ ' 	<a href="#">저장</a>                                                                                     '
                    		+ ' </div>                                                                                                       '
