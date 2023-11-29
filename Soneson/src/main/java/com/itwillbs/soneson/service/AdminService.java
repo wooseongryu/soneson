@@ -160,6 +160,7 @@ public class AdminService {
 		System.out.println("AdminService - deleteCategory()");
 		return mapper.deleteQnaCategory(qnaCate_subject);
 	}
+
 	
 	
 	

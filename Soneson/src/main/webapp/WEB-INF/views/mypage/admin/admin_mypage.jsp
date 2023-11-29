@@ -32,7 +32,7 @@
 		<!-- End of Sidebar -->
 		
 		<!-- Content Wrapper -->
-		<div id="content-wrapper" class="d-flex flex-column" style="padding-top: 20px">
+		<div id="content-wrapper" class="d-flex flex-column">
 
 			<!-- Main Content -->
 			<div id="content">
