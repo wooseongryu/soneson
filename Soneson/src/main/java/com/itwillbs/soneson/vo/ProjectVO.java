@@ -1,5 +1,7 @@
 package com.itwillbs.soneson.vo;
 
+import java.time.LocalDateTime;
+
 import lombok.Data;
 
 @Data
@@ -11,7 +13,7 @@ public class ProjectVO {
 	private String creator;
 	private String img1;
 	private String startDate;
-	private String endDate;
+	private LocalDateTime end_date;
 	
 	//------------
 	private String pro_code;

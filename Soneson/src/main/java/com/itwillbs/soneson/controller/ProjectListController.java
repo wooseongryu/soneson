@@ -62,5 +62,13 @@ public class ProjectListController {
 	}
 	
 	
+	// ============ 아래는 엄성윤 테스트 =======================
+	
+	@GetMapping("dayTest")
+	public String dayTest() {
+		
+		return "test/dayTest";
+	}
+	
 
 }

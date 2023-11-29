@@ -20,6 +20,7 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/soneson/img/header/son33.ico" type="image/x-icon">
 <title>손에손</title>
 
+
 </head>
 <body>
 
@@ -117,7 +118,8 @@
 								<span>
 									<a href="/discover?tab=category&amp;category=board-games">${project.category }</a>
 								</span>
-								<span>
+<!-- 								1129 추가 -->
+								<span class="barBefore">
 									<a href="/u/delight">${project.creator }</a>
 								</span>
 							</dd>
@@ -133,7 +135,9 @@
 									<em>6,584,799</em>원
 								</span>
 							</div>
+<!-- 							<span class="rest-day">20일 남음</span> -->
 							<span class="rest-day">20일 남음</span>
+							<strong class="roboto dday rest-day" data-end_date="${project.end_date}"></strong>
 						</div>
 						<div class="ProjectCard__PercentageBar-opxl0a-11 lcwTLC"></div>
 					</div>
@@ -905,6 +909,75 @@
 <div id="criteo-tags-div" style="display: none;"></div>
 
 <jsp:include page="../inc/footer.jsp"></jsp:include>
+
+<script>
+
+// $(function() {
+// 	dday();
+// });
+
+// function dday() {
+// 	$(".dday").each(function() {
+// 		let dday = new Date($(this).data("end_date"));
+// 		let now = new Date();
+// 		console.log(now);
+// 		let distance = dday - now;
+// 		let d = Math.floor(distance / (1000 * 60 * 60 * 24)) + 1;
+// //			$(this).html('D-' + d);
+// 		$(this).html(d + '일');
+		
+// 	});
+	
+// }
+
+	function dday() {
+		$(".dday").each(function() {
+			let endDate = new Date($(this).data("end_date"));
+			let now = new Date();
+			let timeDifference = endDate - now;
+			console.log("얼마나 남았나?" + timeDifference);
+			
+			let days = Math.floor(timeDifference / (1--- * ))
+			
+		})
+	}
+	
+	$(function() {
+		dday();
+	});
+
+  $(document).ready(function() {
+    var endDate = new Date("${project.end_date}"); // endDate를 JSP에서 전달한 변수로 변경
+
+    function updateRemainingTime() {
+      var now = new Date();
+      var timeDifference = endDate - now;
+
+      var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+      // 표시할 내용에 따라 조절
+      var remainingTime = "";
+      if (days > 0) {
+        remainingTime += days + "일 ";
+      }
+      remainingTime += hours + "시간 " + minutes + "분";
+
+      $(".dday").text(remainingTime);
+    }
+
+    // 초기 로딩 시 업데이트
+    updateRemainingTime();
+
+    // 1분마다 업데이트
+    setInterval(updateRemainingTime, 60000);
+    
+    
+    
+    
+
+</script>
 
 </body>
 </html>
