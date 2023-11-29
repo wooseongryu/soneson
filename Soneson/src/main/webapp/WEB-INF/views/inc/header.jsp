@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="ko" data-useragent="mozilla/5.0 (windows nt 10.0; win64; x64) applewebkit/537.36 (khtml, like gecko) chrome/119.0.0.0 safari/537.36">
 <head>
@@ -24,6 +25,16 @@
 
 <link href="${pageContext.request.contextPath }/resources/main/css/happy/header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/main/css/happy/footer.css" rel="stylesheet">
+
+<script>
+	function logout() {
+		let result = confirm("로그아웃하시겠습니까?");
+		
+		if(result) {
+			location.href = "Logout";
+		}
+	}
+</script>  
 
 <style>
 
@@ -67,12 +78,18 @@ ul {
 								<img src="${pageContext.request.contextPath }/resources/soneson/img/header/soneson2.jpg" class="package_img" width="160px">
 							</a>
 						</h1>
-						<a>
-							<span class="HeaderAdmin">
-							<span class="HeaderAdminPage">관리자</span>
+<!-- 						<a> -->
+<!-- 							<span class="HeaderAdmin"> -->
+<!-- 							<span class="HeaderAdminPage">관리자</span> -->
+<!-- 								<span class="HeaderUserProfile_bar__1OPU2"></span> -->
+<!-- 							</span> -->
+<!-- 						</a> -->
+						<c:if test="${sessionScope.sId eq 'admin' }">
+							<a href="admin">
+								<span class="icon_profile">관리자페이지</span>
 								<span class="HeaderUserProfile_bar__1OPU2"></span>
-							</span>
-						</a>
+							</a>
+						</c:if>
 						<a href="projectStartForm">
 							<span class="">
 							<span class="">프로젝트 올리기</span>
@@ -81,12 +98,30 @@ ul {
 						</a>
 						<a href="https://happybean.naver.com/my/home" class="HeaderUserProfile_wrap__3FD8V">
 							<img loading="lazy" src="https://phinf.pstatic.net/contact/profile/blog/58/80/bom_bomi.jpg?type=s160" width="30" height="30" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI">
-								<span class="HeaderUserProfile_id__3e8GE">
-									<span class="HeaderUserProfile_ellipsis__1iBvz">성윤</span>
-								</span>
+<!-- 								<span class="HeaderUserProfile_id__3e8GE"> -->
+<!-- 									<span class="HeaderUserProfile_ellipsis__1iBvz"></span> -->
+<!-- 								</span> -->
 						</a>
-						<span class="HeaderUserProfile_bar__1OPU2"></span>
-						<a href="https://nid.naver.com/nidlogin.logout?returl=https%3A%2F%2Fhappybean.naver.com%2F" class="HeaderUserProfile_btn_login__F6x9v">로그아웃</a>
+						<c:choose>
+							<c:when test="${empty sessionScope.sId }">
+								<a href="login" class="search-switch">
+									<span>로그인</span>
+								</a>
+								<a href="join">
+									<span class="HeaderUserProfile_bar__1OPU2"></span>
+									<span>회원가입</span>
+								</a>
+							</c:when>
+							<c:otherwise>
+								<span class="HeaderUserProfile_ellipsis__1iBvz"><a href="user?id=${sessionScope.sId }">${sessionScope.sId } 님</a></span>
+								<span class="HeaderUserProfile_bar__1OPU2"></span>
+								<a href="javascript:logout()">로그아웃</a>
+								 
+							</c:otherwise>
+						</c:choose>
+						
+<!-- 						<span class="HeaderUserProfile_bar__1OPU2"></span> -->
+<!-- 						<a href="https://nid.naver.com/nidlogin.logout?returl=https%3A%2F%2Fhappybean.naver.com%2F" class="HeaderUserProfile_btn_login__F6x9v">로그아웃</a> -->
 							<span class="HeaderUserProfile_bar__1OPU2"></span>
 							<a class="Header_btn_search__2NxHd" href="/search">
 								<span class="blind">검색</span>
