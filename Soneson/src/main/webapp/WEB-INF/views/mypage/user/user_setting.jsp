@@ -193,6 +193,39 @@
     		});
     	}
     	
+    	function updateUserNamePro() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingUpdateUserNamePro',
+    			data: {
+    				user_name: $('#userName').val()
+    			},
+    			dataType: 'json',
+    			success: function(resp) {
+    				if (resp.isUpdated == "false") {
+    					alert("이름 수정 실패!");
+    					userProfile('topCateProfile');
+    					return;
+    				}
+    				
+    				let name = resp.user_name;
+    				
+    				$("#user_name").children().remove();
+    				
+    				$("#user_name").append(
+   						  '<h6>이름</h6>                                                '
+   	                    + '<p style="margin-top: 10px">' + name + '</p>                 '
+   	                    + '<div class="user_follow_btn">                                '
+   	                    + '    <a onclick="updateUserName(\'' + name + '\')">변경</a>   '
+   	                    + '</div>                                                       '
+    				);
+    			},
+    			error: function() {
+    				alert("에러!7");
+    			}
+    		});
+    	}
+    	
     	function cancelUpdateUserName(user_name) {
     		$.ajax({
     			type: 'post',
@@ -211,33 +244,6 @@
     			},
     			error: function() {
     				alert("에러!");
-    			}
-    		});
-    	}
-    	
-    	function updateUserNamePro() {
-    		$.ajax({
-    			type: 'post',
-    			url: 'settingUpdateUserNamePro',
-    			data: {
-    				user_name: $('#userName').val()
-    			},
-    			dataType: 'json',
-    			success: function(resp) {
-    				let name = resp.user_name;
-    				
-    				$("#user_name").children().remove();
-    				
-    				$("#user_name").append(
-   						  '<h6>이름</h6>                                                '
-   	                    + '<p style="margin-top: 10px">' + name + '</p>                 '
-   	                    + '<div class="user_follow_btn">                                '
-   	                    + '    <a onclick="updateUserName(\'' + name + '\')">변경</a>   '
-   	                    + '</div>                                                       '
-    				);
-    			},
-    			error: function() {
-    				alert("에러!7");
     			}
     		});
     	}

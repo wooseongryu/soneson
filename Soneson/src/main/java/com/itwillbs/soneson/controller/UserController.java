@@ -144,11 +144,12 @@ public class UserController {
 		
 		int updateCount = userService.updateUserName(map);
 		
-//		if (updateCount == 0) {
-//			model.addAttribute("msg", "등록 실패!");
-//			return "fail_back";
-//		}
+		if (updateCount == 0) {
+			map.put("isUpdated", "false");
+			return gson.toJson(map);
+		}
 		
+		map.put("isUpdated", "true");
 		return gson.toJson(map);
 	}
 	
