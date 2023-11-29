@@ -31,6 +31,7 @@
 /* Template default CSS
 /*----------------------------------------*/
 
+
 html,
 body {
 	height: 100%;
@@ -2341,4 +2342,14 @@ ol {
 	.anime__review__item__text {
 		padding: 18px 20px 20px;
 	}
+}
+
+/* 1129 엄 */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* 폰트 냅다 박음 */
+*, body {
+/* 	font-family: NotoSansKR, "SF Pro Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif !important */
+	font-family: 'Noto Sans KR', sans-serif !important;
 }

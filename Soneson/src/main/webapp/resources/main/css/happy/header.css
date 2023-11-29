@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* 폰트 냅다 박음 */
+*, body {
+	font-family: NotoSansKR, 'Noto Sans KR', "SF Pro Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif !important
+/* 	font-family: 'Noto Sans KR', sans-serif; */
+}
+
+
+
 .headerSoneson {
   position: relative;
   z-index: 30;
@@ -386,7 +396,7 @@ body {
 
 .DonationTodayCategory_text__2oRHp {
     display: inline-block;
-    font-family: "NanumSquareNeo";
+    font-family: "NanumSquareNeo"!important;
 /*     1129 폰트 수정 */
     font-size: 13px;
     margin-top: 1px;
@@ -536,7 +546,7 @@ body {
 
 /* extended 메뉴 */
 .DonationTodayCategory_wrap__k2rtu {
-	display: none;
+/* 	display: none; */
 }
 .DonationTodayCategory_wrap__k2rtu {
 	margin-top: 2.5em;
@@ -546,3 +556,4 @@ body {
 #root {
 	width: 100%;
 }
+
