@@ -73,7 +73,7 @@ ul {
 								<span class="HeaderUserProfile_bar__1OPU2"></span>
 							</span>
 						</a>
-						<a>
+						<a href="projectStartForm">
 							<span class="">
 							<span class="">프로젝트 올리기</span>
 								<span class="HeaderUserProfile_bar__1OPU2"></span>
