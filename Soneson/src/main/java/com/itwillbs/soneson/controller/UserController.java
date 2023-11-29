@@ -1,12 +1,26 @@
 package com.itwillbs.soneson.controller;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
+import com.itwillbs.soneson.service.UserService;
+import com.itwillbs.soneson.vo.UserVO;
 
 @Controller
 public class UserController {
+	@Autowired
+	private UserService userService;
+	
 	/*====================================================================
 	 * - 목차 -
 	 * 1. 유저 프로필
@@ -74,9 +88,18 @@ public class UserController {
 	// 유저 설정 프로필 초기 출력 화면
 	@ResponseBody
 	@PostMapping("settingUserProfile")
-	public String settingUserProfile() {
+	public String settingUserProfile(HttpSession session, Gson gson, UserVO user) {
 		System.out.println("UserController - settingUserProfile()");
-		return "1";
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		// TODO
+		// 나머지값 컬럼 생성 후 받아와야 됨.
+		user = userService.getUserProfile(sId);
+		
+//		System.out.println(")))))))))" + user);
+		
+		return gson.toJson(user);
 	}
 	
 	// 유저 설정 프로필 사진 변경
@@ -111,12 +134,52 @@ public class UserController {
 		return "1";
 	}
 	
+	// 유저 설정 이름 변경 pro
+	@ResponseBody
+	@PostMapping("settingUpdateUserNamePro")
+	public String settingUpdateUserNamePro(@RequestParam Map<String, String> map, Gson gson, HttpSession session, Model model) {
+		System.out.println("UserController - settingUpdateUserNamePro()");
+		
+		map.put("sId", (String)session.getAttribute("sId"));
+		
+		int updateCount = userService.updateUserInfo(map);
+		
+		if (updateCount == 0) {
+			map.put("isUpdated", "false");
+			return gson.toJson(map);
+		}
+		
+		map.put("isUpdated", "true");
+		return gson.toJson(map);
+	}
+	
+	
 	// 유저 설정 소개 변경
 	@ResponseBody
 	@PostMapping("settingUpdateUserIntro")
 	public String settingUpdateUserIntro() {
 		System.out.println("UserController - settingUpdateUserIntro()");
 		return "1";
+	}
+	
+	
+	// 유저 설정 소개 변경 pro
+	@ResponseBody
+	@PostMapping("settingUpdateUserIntroPro")
+	public String settingUpdateUserIntroPro(@RequestParam Map<String, String> map, Gson gson, HttpSession session, Model model) {
+		System.out.println("UserController - settingUpdateUserIntroPro()");
+		
+		map.put("sId", (String)session.getAttribute("sId"));
+		
+		int updateCount = userService.updateUserInfo(map);
+		
+		if (updateCount == 0) {
+			map.put("isUpdated", "false");
+			return gson.toJson(map);
+		}
+		
+		map.put("isUpdated", "true");
+		return gson.toJson(map);
 	}
 	
 	// 유저 설정 소개 변경 취소

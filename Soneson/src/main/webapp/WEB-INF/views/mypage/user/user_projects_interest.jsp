@@ -56,6 +56,12 @@
      	margin-top: 15px;
      }
      
+     .set-bg:hover{
+      	transform: scale(1.1, 1.1);  
+/* 		overflow: hidden; */
+	
+     }
+     
 
     </style>
     

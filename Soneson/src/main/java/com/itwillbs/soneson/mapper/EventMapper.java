@@ -31,6 +31,9 @@ public interface EventMapper {
 
 	// 게시판 메인 페이징
 	int selectEventListAllCount(int eventCate_idx);
+
+	// 게시판 디테일 상세보기 관련
+	EventVO selectEventDetail(String event_idx);
 	
 
 

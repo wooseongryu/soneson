@@ -31,7 +31,7 @@ public class EventController {
 	
 	
 	// 게시판 메인
-	@GetMapping("eventMain")
+	@GetMapping("event")
 	public String eventMain(@RequestParam(defaultValue = "1") int pageNum, 
 							@RequestParam(defaultValue = "-1") int eventCate_idx,
 							@RequestParam(defaultValue = "") String searchType,
@@ -111,9 +111,40 @@ public class EventController {
 		System.out.println("EventController - eventDetail()");
 		
 		EventVO event = adminService.getEvent(event_idx).get(0);
+		
+		EventVO eventDetail = eventService.selectEventDetail(event_idx);
+		
 		List<EventCateVO> eventCateList = eventService.selectEventCateList();
 		
+		LocalDate now = LocalDate.now();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formatedNow = now.format(dtf);
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+			Date nowDate = formatter.parse(formatedNow);
+
+				Date eventEndDate = formatter.parse(eventDetail.getEvent_endDt());
+				Date eventStartDate = formatter.parse(eventDetail.getEvent_startDt());
+				
+				if (eventStartDate.compareTo(nowDate) > 0) {
+					eventDetail.setEvent_status("대기");
+				} else if (eventEndDate.compareTo(nowDate) < 0) {
+					eventDetail.setEvent_status("종료");
+				} else {
+					eventDetail.setEvent_status("진행중");
+				}
+				
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
+		
 		model.addAttribute("event", event);
+		model.addAttribute("eventDetail", eventDetail);
 		model.addAttribute("eventCateList", eventCateList);
 		model.addAttribute("replaceChar", "\n");
 		

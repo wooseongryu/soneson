@@ -165,6 +165,25 @@ public class UserService {
 
 	
 	
+	
+
+//	=======================================================
+	
+	// 유저 설정 페이지 초기값
+	public UserVO getUserProfile(String sId) {
+		System.out.println("UserService - getUserProfile()");
+		
+		return mapper.getUserProfile(sId);
+	}
+
+	// 유저 설정 변경 pro
+	public int updateUserInfo(Map<String, String> map) {
+		System.out.println("UserService - updateUserInfo()");
+		
+		return mapper.updateUserInfo(map);
+	}
+
+	
 }
 
 

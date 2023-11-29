@@ -1764,7 +1764,7 @@ ol {
 	font-size: 15px;
 	color: #b7b7b7;
 	background: #ffffff;
-/* 	border: none; */
+	border: 1px solid rgba(0,0,0,0.5);
 	padding-left: 76px;
 }
 

@@ -1,6 +1,7 @@
 package com.itwillbs.soneson.vo;
 
 import org.springframework.web.multipart.MultipartFile;
+import java.time.LocalDateTime;
 
 import lombok.Data;
 /*
@@ -42,6 +43,14 @@ public class ProjectVO {
 //	private String img1;
 //	private String startDate;
 //	private String endDate;
+	private int project_code;
+	private String title;
+	private String subtitle;
+	private String category;
+	private String creator;
+	private String img1;
+	private String startDate;
+	private LocalDateTime end_date;
 	
 	//------------
 	private int pro_code;

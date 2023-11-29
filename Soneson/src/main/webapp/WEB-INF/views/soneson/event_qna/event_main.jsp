@@ -16,10 +16,6 @@
 
 	<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
 
-	<!-- Google Font -->
-	<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
-	rel="stylesheet">
 
 	<!-- Css Styles -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/bootstrap.min.css" type="text/css">
@@ -33,7 +29,6 @@
 
 
 
-<%-- 	<link href="${pageContext.request.contextPath }/resources/main/css/happy/global.css" rel="stylesheet"> --%>
 
 </head>
 
@@ -88,7 +83,7 @@
     <section class="product-page spad">
 		<div class="container">
 			<div class="row">
-	            <div class="col-lg-10 col-md-8" style="float: none; margin: 0 auto;">
+	            <div class="col-lg-12 col-md-12" style="float: none; margin: 0 auto;">
 	                <div class="anime__details__review">
 	                    <div class="section-title">
 	                        <h2 align="center">공지사항</h2>
@@ -160,7 +155,7 @@
 	</section>
 	
 	<!-- footer -->
-<%-- 	<jsp:include page="../../inc/footer.jsp"></jsp:include> --%>
+	<jsp:include page="../../inc/footer.jsp"></jsp:include>
 
     <!-- Js Plugins -->
 	<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.3.1.min.js"></script>

@@ -466,23 +466,29 @@ public class AdminController {
         
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
+        
         try {
 			Date nowDate = formatter.parse(formatedNow);
 
 			for (EventVO e : eventList) {
-				Date eventEndDate = formatter.parse(e.getEvent_endDt());
-				Date eventStartDate = formatter.parse(e.getEvent_startDt());
+				if(!e.getEvent_startDt().equals("") && !e.getEvent_startDt().equals("")) {
+					Date eventEndDate = formatter.parse(e.getEvent_endDt());
+					Date eventStartDate = formatter.parse(e.getEvent_startDt());
+					
+					if (eventStartDate.compareTo(nowDate) > 0) {
+						e.setEvent_status("대기");
+						continue;
+					}
 				
-				if (eventStartDate.compareTo(nowDate) > 0) {
-					e.setEvent_status("대기");
-					continue;
+					if (eventEndDate.compareTo(nowDate) < 0) {
+						e.setEvent_status("종료");
+					} else {
+						e.setEvent_status("진행중");
+					}
 				}
+			
+			
 				
-				if (eventEndDate.compareTo(nowDate) < 0) {
-					e.setEvent_status("종료");
-				} else {
-					e.setEvent_status("진행중");
-				}
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();

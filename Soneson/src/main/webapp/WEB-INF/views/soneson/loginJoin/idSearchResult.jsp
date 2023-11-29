@@ -41,7 +41,8 @@
         <div class="loader"></div>
     </div>
     
-
+	<!-- header 위치 -->
+	<jsp:include page="../../inc/header.jsp"></jsp:include>
 
     <!-- Login Section Begin -->
     <section class="login spad">
@@ -94,6 +95,8 @@
     </section>
     <!-- Login Section End -->
     
+	<!-- footer -->
+	<jsp:include page="../../inc/footer.jsp"></jsp:include>
 
 	<!-- Js Plugins -->
 	<script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.3.1.min.js"></script>
