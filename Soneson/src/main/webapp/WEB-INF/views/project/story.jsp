@@ -3,7 +3,7 @@
 <script>
 	$(function() {
 		//프로젝트 소개
-		$('input[name="info_path"]').change(function(){
+		$('input[name="pro_content"]').change(function(){
 		    setImageFromFile(this, '#info_preview');
 		});
 
@@ -18,7 +18,7 @@
 		}
 		
 		//예산
-		$('input[name="budget_path"]').change(function(){
+		$('input[name="pro_budget"]').change(function(){
 		    setImageFromFile(this, '#budget_preview');
 		});
 
@@ -33,7 +33,7 @@
 		}
 		
 		//일정
-		$('input[name="sch_path"]').change(function(){
+		$('input[name="pro_sch"]').change(function(){
 		    setImageFromFile(this, '#sch_preview');
 		});
 
@@ -48,7 +48,7 @@
 		}
 		
 		//팀소개
-		$('input[name="team_path"]').change(function(){
+		$('input[name="pro_team"]').change(function(){
 		    setImageFromFile(this, '#team_preview');
 		});
 
@@ -63,7 +63,7 @@
 		}
 		
 		//리워드 설명
-		$('input[name="reward_path"]').change(function(){
+		$('input[name="pro_reward"]').change(function(){
 		    setImageFromFile(this, '#reward_preview');
 		});
 
@@ -107,7 +107,7 @@
 					<div class="uploadImage">
 						<div>
 							<span><i class="bi bi-upload"></i>소개 이미지 업로드</span>
-							<input type="file" accept=".jpg, .jpeg, .png" name="info_path">
+							<input type="file" accept=".jpg, .jpeg, .png" name="pro_content_multi">
 						</div>
 					</div>
 					<div class="imagePreview">
@@ -149,7 +149,7 @@
 					<div class="uploadImage">
 						<div>
 							<span><i class="bi bi-upload"></i>예산 이미지 업로드</span>
-							<input type="file" accept=".jpg, .jpeg, .png" name="budget_path">
+							<input type="file" accept=".jpg, .jpeg, .png" name="pro_budget_multi">
 						</div>
 					</div>
 					<div class="imagePreview">
@@ -191,7 +191,7 @@
 					<div class="uploadImage">
 						<div>
 							<span><i class="bi bi-upload"></i>일정 이미지 업로드</span>
-							<input type="file" accept=".jpg, .jpeg, .png" name="sch_path">
+							<input type="file" accept=".jpg, .jpeg, .png" name="pro_sch_multi">
 						</div>
 					</div>
 					<div class="imagePreview">
@@ -217,7 +217,7 @@
 					<div class="uploadImage">
 						<div>
 							<span><i class="bi bi-upload"></i>팀소개 이미지 업로드</span>
-							<input type="file" accept=".jpg, .jpeg, .png" name="team_path">
+							<input type="file" accept=".jpg, .jpeg, .png" name="pro_team_multi">
 						</div>
 					</div>
 					<div class="imagePreview">
@@ -242,7 +242,7 @@
 					<div class="uploadImage">
 						<div>
 							<span><i class="bi bi-upload"></i>리워드설명 이미지 업로드</span>
-							<input type="file" accept=".jpg, .jpeg, .png" name="reward_path">
+							<input type="file" accept=".jpg, .jpeg, .png" name="pro_reward_multi">
 						</div>
 					</div>
 					<div class="imagePreview">
@@ -270,7 +270,7 @@
 								이 프로젝트의 정책을 기입해주세요.<br>
 							</p>
 							<section class="reward-section">
-								<textarea rows="10" cols="" class="plan-textarea" style="height: 300px;"></textarea>
+								<textarea rows="10" cols="" class="plan-textarea" style="height: 300px;" name="pro_notice"></textarea>
 							</section>
 							<div class="formBtnDiv">
 								<input class="formBtn" type="reset" value="초기화">

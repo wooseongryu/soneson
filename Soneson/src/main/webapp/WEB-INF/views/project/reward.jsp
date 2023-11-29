@@ -3,7 +3,7 @@
 <script>
 	$(function() {
 		//아이템 옵션
-		$("input[type=radio][name=rewardItemOption]").on("click", function() {
+		$("input[type=radio][name=item_condition]").on("click", function() {
 			
 			let ckv = $(this).val();
 			$.each($('.reward-section2').children(), function (index, el) {
@@ -13,6 +13,17 @@
 				
 			});
 			
+		});
+		
+		//객관식 옵션추가
+		$("#add-rewardItemOption").click(function() {
+//				debugger;
+			console.log("왜안돼");
+			$("#radio-value2").append(
+				'<div class="projectItem-form">'
+				+ '<input type="text" class="input_detail" name="item_option">'
+				+ '</div>'
+			);
 		});
 	});
 </script>
@@ -35,7 +46,7 @@
 						</li>
 					</ul>
 				</div>
-				<form action="" name="project-item">
+<!-- 				<form action="" name="project-item"> -->
 					<div class="projectItem-form">
 						<div class="style-projectFunding">
 							<p class="tiny-title">아이템 만들기</p>
@@ -48,7 +59,7 @@
 									<p class="tiny-title">아이템 이름</p>
 								</div>
 								<div class="projectItem-form">
-									<input type="text" class="input_detail">
+									<input type="text" class="input_detail" name="item_name">
 								</div>
 								<div class="alert-title">
 									<p></p>
@@ -65,7 +76,7 @@
 								</div>
 								<div class="select-rewardoptionWarp">
 									<div class="select-radioWarp">
-										<input type="radio" class="radioBtn-rewardItem" name="rewardItemOption" id="reward-option0" value="0">
+										<input type="radio" class="radioBtn-rewardItem" name="item_condition" id="reward-option0" value="0">
 										<div class="radio-inner">
 											<div class="radio-label">
 												<label for="reward-option0">없음</label>
@@ -73,7 +84,7 @@
 										</div>
 									</div>
 									<div class="select-radioWarp">
-										<input type="radio" class="radioBtn-rewardItem" name="rewardItemOption" id="reward-option1" value="1">
+										<input type="radio" class="radioBtn-rewardItem" name="item_condition" id="reward-option1" value="1">
 										<div class="radio-inner">
 											<div class="radio-label">
 												<label for="reward-option1">주관식</label>
@@ -81,7 +92,7 @@
 										</div>
 									</div>
 									<div class="select-radioWarp">
-										<input type="radio" class="radioBtn-rewardItem" name="rewardItemOption"  id="reward-option2" value="2">
+										<input type="radio" class="radioBtn-rewardItem" name="item_condition"  id="reward-option2" value="2">
 										<div class="radio-inner">
 											<div class="radio-label">
 												<label for="reward-option2">객관식</label>
@@ -118,16 +129,16 @@
 										<p></p>
 									</div>
 									<div class="projectItem-form">
-										<input type="text" class="input_detail" placeholder="예) 블랙-220mm">
+										<input type="text" class="input_detail" placeholder="예) 블랙-220mm" name="item_option">
 									</div>
 									<div class="projectItem-form">
-										<input type="text" class="input_detail">
+										<input type="text" class="input_detail" name="item_option">
 									</div>
 								</div>
 							</section>
 							<div class="formBtnDiv">
-								<input class="formBtn" type="reset" value="초기화">
-								<input class="formBtn" type="submit" value="등록" id="itemFormSubmitBtn">
+<!-- 								<input class="formBtn" type="reset" value="초기화"> -->
+<!-- 								<input class="formBtn" type="submit" value="등록" id="itemFormSubmitBtn"> -->
 							</div>
 						</div>
 					</div>
@@ -148,7 +159,7 @@
 						</li>
 					</ul>
 				</div>
-				<form action="" name="project-reward">
+<!-- 				<form action="" name="project-reward"> -->
 					<div class="projectItem-form">
 						<div class="style-projectFunding">
 							<p class="tiny-title">리워드 구성하기</p>
@@ -218,7 +229,7 @@
 										<div class="projectItem-form">
 											<div class="inputAmount-form">
 												<span class="input-amountSpan">
-													<input type="number" min="1000" class="input_numDetail" placeholder="수량을 입력해주세요.">
+													<input type="number" min="1000" class="input_numDetail" placeholder="수량을 입력해주세요." name="reward_count">
 													<div class="input-amountDiv">개</div>
 												</span>
 											</div>
@@ -278,8 +289,8 @@
 								</div>
 							</section>
 							<div class="formBtnDiv">
-								<input class="formBtn" type="reset" value="초기화">
-								<input class="formBtn" type="submit" value="등록" id="rewardFormSubmitBtn">
+<!-- 								<input class="formBtn" type="reset" value="초기화"> -->
+<!-- 								<input class="formBtn" type="submit" value="등록" id="rewardFormSubmitBtn"> -->
 							</div>
 						</div>
 					</div>

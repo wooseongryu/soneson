@@ -49,9 +49,10 @@
 		
 		//날짜 선택하기
 		$("#start-funding").attr("min", tommorrow);
-		if(!$("#start-funding").val() == "") {
-			$("#end-funding").attr("disabled", false);
-		}
+		$("#start-funding").on('click change', function() {
+			let startDt = $(this).val();
+		});
+		
 		
 // 		$("#end-funding").click(function() {
 // 			let startDt = $("#start-funding").val();
@@ -72,7 +73,6 @@
 		
 		$("#end-funding").on('click change', function() {
 			let startDt = $("#start-funding").val();
-			console.log($("#start-funding").val());
 			if(startDt == "" || startDt == null ) {
 				alert("시작일을 먼저 설정해 주세요.");
 				return;	
@@ -82,6 +82,11 @@
 			console.log(endDt);
 			
 		});
+		
+// 		$("#start-funding, #end-funding").change(function() {
+// 			let startDt = $("#start-funding").val();
+// 			let endDt = $("#end-funding").val();
+// 		});
 		
 		
 		

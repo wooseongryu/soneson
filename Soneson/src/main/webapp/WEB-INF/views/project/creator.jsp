@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <script>
 	$(function() {
-		$('input[name="profile_path"]').change(function(){
+		$('input[name="pro_profile"]').change(function(){
 		    setImageFromFile(this, '#profileImg');
 		});
 
@@ -34,7 +34,7 @@
 					</dd>
 				</dl>
 				<div class="projectItem-form">
-					<input type="text" class="input_detail">
+					<input type="text" class="input_detail" name="pro_creator">
 				</div>
 			</div>	
 		</div>
@@ -65,7 +65,7 @@
 								<div class="uploadImage">
 									<div>
 										<span><i class="bi bi-upload"></i>이미지 업로드</span>
-										<input type="file" accept=".jpg, .jpeg, .png" name="profile_path">
+										<input type="file" accept=".jpg, .jpeg, .png" name="pro_profile_multi">
 									</div>
 								</div>
 <!-- 										<input type="file" accept="jpg, .png, .gif, .jpeg" style="display: none;"> -->
@@ -95,7 +95,7 @@
 					</dd>
 				</dl>
 				<div class="projectItem-form">
-					<textarea class="plan-textarea" placeholder="간단한 소개를 써주세요"></textarea>
+					<textarea class="plan-textarea" placeholder="간단한 소개를 써주세요" name="pro_createrInfo"></textarea>
 				</div>
 			</div>	
 		</div>

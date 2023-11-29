@@ -24,5 +24,7 @@ public interface ProjectMapper {
 	//저장버튼
 	int updateProject(ProjectVO pro);
 
+	ProjectVO selectFileName(int pro_code);
+
 	
 }

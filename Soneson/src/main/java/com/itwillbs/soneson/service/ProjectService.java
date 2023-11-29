@@ -36,6 +36,10 @@ public class ProjectService {
 		return mapper.updateProject(pro);
 	}
 
+	public ProjectVO selectFileName(int pro_code) {
+		return mapper.selectFileName(pro_code);
+	}
+
 
 	
 	

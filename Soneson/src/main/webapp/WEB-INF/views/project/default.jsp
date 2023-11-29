@@ -13,6 +13,41 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src= "${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
 <script>
+function updateProject(pro_code) {
+	alert("저장버튼!");
+	let user_id =  "${sessionScope.sId}";
+	console.log("id: " + user_id + " pro_code: " + pro_code);
+	var form = $('#uploadProjectForm')[0];
+	var formData = new FormData(form);
+// 	let data = $("#form-dataDiv").serialize();
+// 	formData.append('user_id', user_id);
+// 	formData.append('pro_code', pro_code);
+	for (let key of formData.keys()) {
+		console.log(key, ":", formData.get(key));
+	}
+// 	console.log("data: " + formData); //data: [object FormData]
+	
+	
+	$.ajax({
+		type: "POST",
+// 		enctype: 'multipart/form-data', 
+		url: "updateProject", //안넘어가고 계속 404 뜨는 중
+// 		url: $("#uploadProjectForm").attr("action"),
+// 		data: $("#form-dataDiv").serialize(), //"formData"
+		data: formData,
+		cache: false,
+		processData: false,
+		contentType: false,
+		dataType: "text",
+		success: function(result) {
+			console.log(result);
+			alert("저장하였습니다.");
+		},
+		error:function(request,error){
+			alert("저장을 실패하였습니다. 잠시 후 다시 시도해주세요.");
+		}
+	});
+}
 
 
 $(function() {
@@ -30,7 +65,7 @@ $(function() {
 	
 	
 	//이미지 미리보기
-	$('input[name="pro_thumbsnail"]').change(function(){
+	$('input[name="pro_thumb_multi"]').change(function(){
 	    setImageFromFile(this, '#preview');
 	});
 	
@@ -91,46 +126,37 @@ $(function() {
 	});
 	
 	
-	
-	//funding 시작날짜선택
-
-	
-	
-	//리워드수량옵션
-	$("input[type=radio][name=rewardItem_total]").on("click", function() {
+	$("#btnSubmit").click(function() {
+		var url = $("#testProject").attr('action');
+		var form = $('#testProject')[0];
+		var formData = new FormData(form);
 		
-//				debugger;
-		let ckv = $(this).val();
-		$.each($('.totalItemDiv').children(), function (index, el) {
-			var attr = ckv == index ? 'block' : 'none';
-			$(el).css('display', attr);
-			
+		$.ajax({
+			type: "POST",
+			url: url,
+			data: formData,
+			cache: false,
+			processData: false,
+			contentType: false,
+			success: function(result) {
+				console.log(result);
+				
+			},
+			error:function(request,error){
+				alert("message:"+request.responseText);
+			}
 		});
-		
 	});
-	
-	//객관식 옵션추가
-	$("#add-rewardItemOption").click(function() {
-//			debugger;
-		console.log("왜안돼");
-		$("#radio-value2").append(
-			'<div class="projectItem-form">'
-			+ '<input type="text" class="input_detail">'
-			+ '</div>'
-		);
-	});
-	
 
-	
-
-	
 });
 
 </script>
 
 </head>
 <body>
-	<form method="post">
+	<form method="post" enctype="multipart/form-data" action="submitProject" id="uploadProjectForm">
+		<input type="hidden" name="pro_code" value="${pro.pro_code }">
+		<input type="hidden" name="user_id" value="${pro.user_id }">
 		<div class="write-view-container">
 			<div class="write-view-top">
 				<div class="view-top-header">
@@ -196,7 +222,8 @@ $(function() {
 							    	</div>
 								</div>
 							</div>
-							<button>등록하기</button>
+							<!-- 등록버튼 submit!! -->
+							<button formaction="submitProject">등록하기</button>
 						</div>
 						<div class="top-content-center">
 							<div class="top-content-img"></div>
@@ -233,136 +260,147 @@ $(function() {
 	<!-- 						</li> -->
 						</ul>
 						<div class="top-menu-btn">
-							<button formaction="updateProject">저장하기</button>
+<%-- 							<button formaction="updateProject" onclick="updateProject(${pro.pro_code})">저장하기</button> --%>
+							<button type="button" onclick="updateProject(${pro.pro_code})">저장하기</button>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- 카테고리에 따른 입력폼 -->
 			<!-- default -->
-			<div class="content-form">
-				<div class="write-view-content">
-					<div class="view-content-form">
-						<div class="projectItemWarp">
-							<dl class="projectInfo">
-								<dt class="projectInfo-title">
-									프로젝트 카테고리
-									<div class="icon-asterisk"><i class="bi bi-asterisk"></i></div>
-								</dt>
-								<dd class="projectInfo-description">
-									프로젝트 성격과 가장 일치하는 카테고리를 선택해 주세요.<br>
-									적합하지 않을 경우 운영자에 의해 조정될 수 있습니다.
-								</dd>
-							</dl>
-							<div class="projectItem-form">
-								<select class="select_detail" name="pro_categorie">
-									<option value="아동·청소년" <c:if test="${pro.pro_categorie eq '아동·청소년' }">selected</c:if>>아동·청소년</option>
-									<option value="동물" <c:if test="${pro.pro_categorie eq '동물' }">selected</c:if>>동물</option>
-									<option value="환경" <c:if test="${pro.pro_categorie eq '환경' }">selected</c:if>>환경</option>
-									<option value="장애인" <c:if test="${pro.pro_categorie eq '아동·청소년' }">selected</c:if>>장애인</option>
-									<option value="가족·여성" <c:if test="${pro.pro_categorie eq '가족·여성' }">selected</c:if>>가족·여성</option>
-									<option value="어르신" <c:if test="${pro.pro_categorie eq '어르신' }">selected</c:if>>어르신</option>
-									<option value="기타" <c:if test="${pro.pro_categorie eq '기타' }">selected</c:if>>기타</option>
-								</select>
-							</div>
-						</div>
-						<div class="projectItemWarp">
-							<dl class="projectInfo">
-								<dt class="projectInfo-title">
-									프로젝트 제목
-									<div class="icon-asterisk"><i class="bi bi-asterisk"></i></div>
-								</dt>
-								<dd class="projectInfo-description">
-									프로젝트 제목을 작성해 주세요.<br>
-								</dd>
-							</dl>
-							<div class="projectItem-form">
-								<div class="textDiv">
-									<input type="text" class="input_detail" name="pro_title" id="pro_title" value="${pro.pro_title }">
-									<div class="varchar-count">
-										<span class="alert-count"></span>
-										<span><span class="count-length">0</span> / 32</span>
-									</div>
+			<div id="form-dataDiv">
+				<div class="content-form">
+					<div class="write-view-content">
+						<div class="view-content-form">
+							<div class="projectItemWarp">
+								<dl class="projectInfo">
+									<dt class="projectInfo-title">
+										프로젝트 카테고리
+										<div class="icon-asterisk"><i class="bi bi-asterisk"></i></div>
+									</dt>
+									<dd class="projectInfo-description">
+										프로젝트 성격과 가장 일치하는 카테고리를 선택해 주세요.<br>
+										적합하지 않을 경우 운영자에 의해 조정될 수 있습니다.
+									</dd>
+								</dl>
+								<div class="projectItem-form">
+									<select class="select_detail" name="pro_categorie">
+										<option value="아동·청소년" <c:if test="${pro.pro_categorie eq '아동·청소년' }">selected</c:if>>아동·청소년</option>
+										<option value="동물" <c:if test="${pro.pro_categorie eq '동물' }">selected</c:if>>동물</option>
+										<option value="환경" <c:if test="${pro.pro_categorie eq '환경' }">selected</c:if>>환경</option>
+										<option value="장애인" <c:if test="${pro.pro_categorie eq '아동·청소년' }">selected</c:if>>장애인</option>
+										<option value="가족·여성" <c:if test="${pro.pro_categorie eq '가족·여성' }">selected</c:if>>가족·여성</option>
+										<option value="어르신" <c:if test="${pro.pro_categorie eq '어르신' }">selected</c:if>>어르신</option>
+										<option value="기타" <c:if test="${pro.pro_categorie eq '기타' }">selected</c:if>>기타</option>
+									</select>
 								</div>
-	<%-- 							value="${pro.pro_title }" 추가하기 --%>
 							</div>
-						</div>
-						<!--  -->
-						<div class="projectItemWarp">
-							<dl class="projectInfo">
-								<dt class="projectInfo-title">
-									프로젝트 요약
-									<div class="icon-asterisk"><i class="bi bi-asterisk"></i></div>
-								</dt>
-								<dd class="projectInfo-description">
-									후원자 분들이 프로젝트를 빠르게 이해할 수 있도록 명확하고 간략하게 소개해주세요.<br>
-								</dd>
-								<div class="projectInfo-notice">
-									<div class="funding-notice">
-										프로젝트 요약은 어디 표시되나요?
+							<div class="projectItemWarp">
+								<dl class="projectInfo">
+									<dt class="projectInfo-title">
+										프로젝트 제목
+										<div class="icon-asterisk"><i class="bi bi-asterisk"></i></div>
+									</dt>
+									<dd class="projectInfo-description">
+										프로젝트 제목을 작성해 주세요.<br>
+									</dd>
+								</dl>
+								<div class="projectItem-form">
+									<div class="textDiv">
+										<input type="text" class="input_detail" name="pro_title" id="pro_title" value="${pro.pro_title }">
+										<div class="varchar-count">
+											<span class="alert-count"></span>
+											<span><span class="count-length">0</span> / 32</span>
+										</div>
 									</div>
+		<%-- 							value="${pro.pro_title }" 추가하기 --%>
+								</div>
+							</div>
+							<!--  -->
+							<div class="projectItemWarp">
+								<dl class="projectInfo">
+									<dt class="projectInfo-title">
+										프로젝트 요약
+										<div class="icon-asterisk"><i class="bi bi-asterisk"></i></div>
+									</dt>
+									<dd class="projectInfo-description">
+										후원자 분들이 프로젝트를 빠르게 이해할 수 있도록 명확하고 간략하게 소개해주세요.<br>
+									</dd>
+									<div class="projectInfo-notice">
+										<div class="funding-notice">
+											프로젝트 요약은 어디 표시되나요?
+										</div>
+										<div>
+											<p>프로젝트 카드형 목록에서 프로젝트 제목 하단에 표시됩니다.</p>
+										</div>
+									</div>
+								</dl>
+								<div class="projectItem-form">
 									<div>
-										<p>프로젝트 카드형 목록에서 프로젝트 제목 하단에 표시됩니다.</p>
-									</div>
-								</div>
-							</dl>
-							<div class="projectItem-form">
-								<div>
-									<textarea class="plan-textarea" placeholder="프로젝트요약을 입력해 주세요" name="pro_summary" id="pro_summary">${pro_summmary }</textarea>
-									<div class="varchar-count">
-										<span class="alert-count"></span>
-										<span><span class="count-length">0</span> / 50</span>
+										<textarea class="plan-textarea" placeholder="프로젝트요약을 입력해 주세요" name="pro_summary" id="pro_summary">${pro.pro_summary }</textarea>
+										<div class="varchar-count">
+											<span class="alert-count"></span>
+											<span><span class="count-length">0</span> / 50</span>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="projectItemWarp">
-							<dl class="projectInfo">
-								<dt class="projectInfo-title">
-									프로젝트 대표이미지
-									<div class="icon-asterisk"><i class="bi bi-asterisk"></i></div>
-								</dt>
-								<dd class="projectInfo-description">
-									프로젝트를 나타낼 이미지를 등록해 주세요.<br>
-								</dd>
-							</dl>
-							<div class="projectItem-form">
-								<div class="uploadImage">
-									<div>
-										<span><i class="bi bi-upload"></i>이미지 업로드</span>
-										<input type="file" accept=".jpg, .jpeg, .png" name="pro_thumbsnail">
+							<div class="projectItemWarp">
+								<dl class="projectInfo">
+									<dt class="projectInfo-title">
+										프로젝트 대표이미지
+										<div class="icon-asterisk"><i class="bi bi-asterisk"></i></div>
+									</dt>
+									<dd class="projectInfo-description">
+										프로젝트를 나타낼 이미지를 등록해 주세요.<br>
+									</dd>
+								</dl>
+								<div class="projectItem-form">
+									<div class="uploadImage">
+										<div>
+											<span><i class="bi bi-upload"></i>이미지 업로드</span>
+											<input type="file" accept=".jpg, .jpeg, .png" name="pro_thumb_multi">
+										</div>
 									</div>
-								</div>
-								<div class="imagePreview">
-									<div class="image-preview">
-										<img src="" id="preview" width="180px">
+									<div class="imagePreview">
+										<div class="image-preview">
+											<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }" id="preview" width="180px">
+										</div>
+		<!-- 								<div class="image-change" style="display: none;"> -->
+		<!-- 									<button id="changeBtn"><i class="bi bi-upload"></i>변경</button> -->
+		<!-- 								</div> -->
 									</div>
-	<!-- 								<div class="image-change" style="display: none;"> -->
-	<!-- 									<button id="changeBtn"><i class="bi bi-upload"></i>변경</button> -->
-	<!-- 								</div> -->
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- funding -->
-			<div class="content-form">
-				<jsp:include page="./funding.jsp"></jsp:include>
-			</div>
-			<!-- reward -->
-			<div class="content-form">
-				<jsp:include page="./reward.jsp"></jsp:include>
-			</div>
-			<!-- story -->
-			<div class="content-form">
-				<jsp:include page="./story.jsp"></jsp:include>
-			</div>
-			<!-- creator -->
-			<div class="content-form">
-				<jsp:include page="./creator.jsp"></jsp:include>
+				<!-- funding -->
+				<div class="content-form">
+					<jsp:include page="./funding.jsp"></jsp:include>
+				</div>
+				<!-- reward -->
+				<div class="content-form">
+<%-- 					<jsp:include page="./reward.jsp"></jsp:include> --%>
+				</div>
+				<!-- story -->
+				<div class="content-form">
+<%-- 					<jsp:include page="./story.jsp"></jsp:include> --%>
+				</div>
+				<!-- creator -->
+				<div class="content-form">
+<%-- 					<jsp:include page="./creator.jsp"></jsp:include> --%>
+				</div>
 			</div>
 		</div>
 	</form>
+<!-- 	<div> -->
+<!-- 	<hr> -->
+<!-- 		<form action="testProject" id="testProject"> -->
+<!-- 			<input type="text" name="test"> -->
+<!-- 			<input type="file" accept=".jpg, .jpeg, .png" name="pro_thumbsnail"> -->
+<!-- 			<input type="button" id="btnSubmit" value="폼확인"> -->
+<!-- 		</form> -->
+<!-- 	</div> -->
 </body>
 </html>

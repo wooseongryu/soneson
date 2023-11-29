@@ -45,9 +45,44 @@
 		)
 	</insert>
 	
+	
+	<!-- 저장 전 파일명 가져오기 -->
+	<select id="selectFileName" resultType="Project">
+		SELECT pro_thumbsnail
+				,pro_content
+				,pro_budget
+				,pro_sch
+				,pro_team
+				,pro_reward
+				,pro_profile
+		FROM sample_pro
+		WHERE pro_code = #{pro_code}
+	</select>
+	
+	
 	<!-- 저장하기 -->
 	<update id="updateProject">
-		
+		UPDATE sample_pro
+		SET
+			pro_title = #{pro_title}
+			, pro_categorie = #{pro_categorie}
+			, pro_summary = #{pro_summary}
+			, pro_thumbsnail = #{pro_thumbsnail}
+			, pro_goal = #{pro_goal}
+			, pro_startDt = #{pro_startDt}
+			, pro_EndDt = #{pro_EndDt}
+			, pro_content = #{pro_content}
+			, pro_budget = #{pro_budget}
+			, pro_sch = #{pro_sch}
+			, pro_team = #{pro_team}
+			, pro_reward = #{pro_reward}
+			, pro_notice = #{pro_notice}
+			, pro_creator = #{pro_creator}
+			, pro_profile = #{pro_profile}
+			, pro_createrInfo = #{pro_createrInfo}
+			, pro_userAuth = #{pro_userAuth}
+		WHERE pro_code = #{pro_code}
+			
 	</update>
 	
 	
