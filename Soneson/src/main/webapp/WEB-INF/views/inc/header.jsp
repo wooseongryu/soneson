@@ -20,6 +20,8 @@
 
 <!-- 엄 추가 -->
 <%-- <link href="${pageContext.request.contextPath }/resources/main/css/happy/global.css" rel="stylesheet"> --%>
+
+
 <link href="${pageContext.request.contextPath }/resources/main/css/happy/header.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/main/css/happy/footer.css" rel="stylesheet">
 
@@ -184,24 +186,24 @@ ul {
 
 	$j(function() {
 		
-// 		let timeout;
+		let timeout;
 
-//         $j(".HeaderGnb_item__wcfir.category, .DonationTodayCategory_wrap__k2rtu").on({
-//             mouseenter: function () {
-//                 clearTimeout(timeout);
-//                 $j(".DonationTodayCategory_wrap__k2rtu").show();
-//             },
-//             mouseleave: function () {
-//                 timeout = setTimeout(function () {
-//                     $j(".DonationTodayCategory_wrap__k2rtu").hide();
-//                 }, 200); // 0.2초 후에 숨김 처리
-//             }
-//         });
+        $j(".HeaderGnb_item__wcfir.category, .DonationTodayCategory_wrap__k2rtu").on({
+            mouseenter: function () {
+                clearTimeout(timeout);
+                $j(".DonationTodayCategory_wrap__k2rtu").show();
+            },
+            mouseleave: function () {
+                timeout = setTimeout(function () {
+                    $j(".DonationTodayCategory_wrap__k2rtu").hide();
+                }, 200); // 0.2초 후에 숨김 처리
+            }
+        });
         
-//         $j(".DonationTodayCategory_list_item__agFbi").click(function() {
-//         	$j(".DonationTodayCategory_list_item__agFbi").attr("aria-current", "false");
-//         	$j(this).attr("aria-current", "true");
-//         });
+        $j(".DonationTodayCategory_list_item__agFbi").click(function() {
+        	$j(".DonationTodayCategory_list_item__agFbi").attr("aria-current", "false");
+        	$j(this).attr("aria-current", "true");
+        });
         
         // 위는 전부 맞음
 		

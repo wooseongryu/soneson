@@ -17,8 +17,9 @@
 
 
 <!-- 엄 추가 -->
-<link href="${pageContext.request.contextPath }/resources/main/css/happy/global.css" rel="stylesheet">
 <%-- <link href="${pageContext.request.contextPath }/resources/main/css/happy/header.css" rel="stylesheet"> --%>
+
+<link href="${pageContext.request.contextPath }/resources/main/css/happy/global.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/main/css/happy/footer.css" rel="stylesheet">
 
 <style>

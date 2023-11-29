@@ -13,6 +13,7 @@
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
 
 <!--     개인 css 엄성윤 -->
+
 <link href="${pageContext.request.contextPath }/resources/soneson/css/main/nogada.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/soneson/css/main/infoNogada.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/soneson/css/main/detailNogada.css" rel="stylesheet">
@@ -2978,5 +2979,8 @@
 <!-- <img src="https://analytics.twitter.com/1/i/adsct?bci=4&amp;eci=4&amp;event=%7B%22value%22%3A15000%2C%22currency%22%3A%22KRW%22%2C%22contents%22%3A%5B%7B%22content_id%22%3A%222cd15f2a-93d1-4d0a-bda7-a9464b4e75ed%20-%2010a150cb-8461-4052-9548-538bef611104%22%2C%22content_price%22%3A15000%2C%22num_items%22%3A1%2C%22content_name%22%3A%22%EA%B8%B8%EA%B3%A0%EC%96%91%EC%9D%B4%EC%99%80%20%EC%82%AC%EA%B3%84%EC%A0%88%202024%20%ED%83%81%EC%83%81%EB%8B%AC%EB%A0%A5%20%5B%EB%B0%B0%EC%9D%80%EB%A7%9D%EB%8D%95%EA%B3%A0%EC%96%91%EC%9D%B4%EB%93%A4%5D%22%2C%22content_group_id%22%3A%22%EB%94%94%EC%9E%90%EC%9D%B8%20%EB%AC%B8%EA%B5%AC%20%3E%20%EB%94%94%EC%9E%90%EC%9D%B8%20%EB%AC%B8%EA%B5%AC%22%7D%5D%7D&amp;event_id=76ad76da-993e-44ab-9243-d9b005409c4f&amp;integration=gtm&amp;p_id=Twitter&amp;p_user_id=0&amp;pl_id=2ee8cdfc-3c91-4648-bf0d-f05e35699425&amp;tw_document_href=https%3A%2F%2Ftumblbug.com%2Fbaeunmangdeokcats%3Fref%3D%25EA%25B2%2580%25EC%2583%2589%252F%25ED%2582%25A4%25EC%259B%258C%25EB%2593%259C&amp;tw_iframe_status=0&amp;txn_id=tw-o4eav-odoml&amp;type=javascript&amp;version=2.3.29" height="1" width="1" style="display: none;"> -->
 <!-- <iframe height="0" width="0" title="Criteo DIS iframe" style="display: none;"> -->
 <!-- </iframe> -->
+
+<jsp:include page="../inc/footer.jsp"></jsp:include>
+
 </body>
 </html>

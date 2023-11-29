@@ -13,6 +13,7 @@
 <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script> 
 
 <!--     개인 css 엄성윤 -->
+
 <link href="${pageContext.request.contextPath }/resources/main/css/happy/global.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath }/resources/soneson/css/main/nogada.css" rel="stylesheet">
  
@@ -101,7 +102,7 @@
 					<div class="ProjectCard__StyledImageBox-opxl0a-2 dNCkN">
 						<div class="image-wrapper">
 							<a target="_self" href="projectDetail?project_code=${project.project_code }">
-								<img src="${project.img1 }" style="width:210px; height:210px">
+								<img src="${project.img1 }" style="width:100%; height:100%">
 							</a>
 							<div class="LikeButton__Wrapper-whittq-0 kiaOkh ProjectCard__StyledLikeButton-opxl0a-8 hfSMxY">
 								<button type="button" class="LikeButton__LikedBtn-whittq-1 gylNpn">

@@ -246,3 +246,8 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+.footer_info_list {
+/* 	margin: 0; */
+	padding: 0;
+}

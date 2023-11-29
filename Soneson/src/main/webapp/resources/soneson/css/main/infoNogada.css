@@ -1978,3 +1978,16 @@ dsitt:not(:first-child) {
     margin: 0px 9px 2px 0px;
 }
 
+/* 1129 푸터 고정 */
+
+#react-view {
+	height: auto;
+	min-height: 100%;
+	padding-bottom: 510px;
+}
+
+footer {
+	heihgt:510px;
+	position: relative;
+	transform: translateY(-100%);
+}

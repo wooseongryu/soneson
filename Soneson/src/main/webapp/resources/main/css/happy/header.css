@@ -291,20 +291,6 @@
 	    border: 1px solid #eee;
 	    border-radius: 30px;
 	}
-	.DonationTodayCategory_text__2oRHp {
-	    display: inline-block;
-	    font-family: "NanumSquareNeo",dotum,Sans-serif;
-	    font-size: 15px;
-	    margin-top: 1px;
-	    vertical-align: middle;
-	}
-	.DonationTodayCategory_text__2oRHp {
-	    display: inline-block;
-	    font-family: "NanumSquareNeo",dotum,Sans-serif;
-	    font-size: 15px;
-	    margin-top: 1px;
-	    vertical-align: middle;
-	}
 	.DonationTodayCategory_category_list__2WAdE .item_1 .DonationTodayCategory_button__1648s:before {
 	    background-image: url(/build/static/media/icon_category_1.2f477b61.svg);
 	}
@@ -400,7 +386,8 @@ body {
 
 .DonationTodayCategory_text__2oRHp {
     display: inline-block;
-    font-family: "NanumSquareNeo",dotum,Sans-serif;
+    font-family: "NanumSquareNeo";
+/*     1129 폰트 수정 */
     font-size: 13px;
     margin-top: 1px;
     vertical-align: middle;
@@ -549,12 +536,13 @@ body {
 
 /* extended 메뉴 */
 .DonationTodayCategory_wrap__k2rtu {
-/* 	display: none; */
+	display: none;
 }
 .DonationTodayCategory_wrap__k2rtu {
 	margin-top: 2.5em;
 }
 
+/* 승철 */
 #root {
 	width: 100%;
 }
