@@ -530,7 +530,7 @@ body {
     width: 61%;
 }
 
-/* 왜 자꾸 오른쪽으로 갈까? */
+/* 왜 자꾸 오른쪽으로 갈까? -> clear:both 안해줘서 ㅎㅎ*/
 *, *:before, *:after {
   box-sizing: border-box;
 }

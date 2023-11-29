@@ -1247,3 +1247,14 @@
     bottom: 12px;
 }
 
+
+.klQtEn dl dd.project-sub-info > .barBefore ::before {
+    content: "|";
+    display: inline-block;
+    margin: 0px 6px;
+    position: relative;
+    z-index: 1;
+    top: -1px;
+    font-size: 9px;
+    color: rgb(208, 208, 208);
+}

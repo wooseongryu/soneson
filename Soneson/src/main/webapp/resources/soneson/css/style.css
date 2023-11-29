@@ -1,3 +1,4 @@
+
 /******************************************************************
   Theme Name: Anime
   Description: Anime video tamplate
@@ -36,6 +37,7 @@ html,
 body {
 	height: 100%;
 	font-family: "Mulish", sans-serif;
+/* 	font-family: "Mulish", sans-serif; */
 	-webkit-font-smoothing: antialiased;
 	background: white;
 /* 	background: #0b0c2a; */
@@ -51,6 +53,7 @@ h6 {
 	color: #111111;
 	font-weight: 400;
 	font-family: "Mulish", sans-serif;
+/* 	font-family: "Mulish", sans-serif; */
 }
 
 h1 {
@@ -80,6 +83,7 @@ h6 {
 p {
 	font-size: 15px;
 	font-family: "Mulish", sans-serif;
+/* 	font-family: "Mulish", sans-serif; */
 	color: #3d3d3d;
 	font-weight: 400;
 	line-height: 25px;
@@ -2344,12 +2348,6 @@ ol {
 	}
 }
 
-/* 1129 엄 */
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-/* 폰트 냅다 박음 */
-*, body {
-/* 	font-family: NotoSansKR, "SF Pro Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif !important */
-	font-family: 'Noto Sans KR', sans-serif !important;
-}
+

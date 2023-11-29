@@ -44,6 +44,12 @@
 		font-weight: bold;
 		color: rgba(0,0,0,0.7);
 	}
+	#event_status {
+		 border: none;
+		 color: #fff; 
+		 background: #F86453;
+	}
+	
 </style>
 
 
@@ -82,6 +88,7 @@
 						<h2>${event.event_title }</h2>
 						<span id="eventCate_subject">${event.eventCate_subject }</span>
 						<c:if test="${!empty event.event_startDt }">
+							<span><button type="button" id="event_status">&nbsp;${eventDetail.event_status}&nbsp;</button></span><br>
 							<span>${event.event_startDt } ~ ${event.event_endDt }</span>
 						</c:if>
 						<hr>

@@ -72,12 +72,12 @@
     <section class="product-page spad">
 		<div class="container">
 			<div class="row">
-	            <div class="col-lg-10 col-md-8" style="float: none; margin: 0 auto;">
+	            <div class="col-lg-12 col-md-8" style="float: none; margin: 0 auto;">
 	                <div class="anime__details__review">
 	                    <div class="section-title">
 	                        <h2 align="center">자주묻는질문</h2>
 	                    </div>
-	                    <div class="row">
+	                    <div class="row" style="justify-content: space-evenly">
 							<div class="col-2" id="qna_category">
 								<div class="customer_category" align="center" onclick="location.href='qna'">
 									<h6>전체</h6>

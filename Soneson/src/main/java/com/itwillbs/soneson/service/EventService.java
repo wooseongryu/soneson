@@ -48,6 +48,13 @@ public class EventService {
 	public int getEventListAllCount(int eventCate_idx) {
 		return mapper.selectEventListAllCount(eventCate_idx);
 	}
+
+	
+	// 게시판 상세보기 관련
+	public EventVO selectEventDetail(String event_idx) {
+		return mapper.selectEventDetail(event_idx);
+	}
+
 	
 	
 	
