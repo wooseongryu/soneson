@@ -134,6 +134,7 @@ public class ProjectController {
 		System.out.println("데이터 넘어왔니~~~~~~?" + pro);
 //		System.out.println("데이터 넘어왔니~~~~~~?" + pro_title + ", " + pro_categorie + ", " +pro_thumbsnail.getOriginalFilename());
 		
+		
 //		/*
 		//파일 수정
 		String uploadDir = "/resources/upload"; // 가상의 경로

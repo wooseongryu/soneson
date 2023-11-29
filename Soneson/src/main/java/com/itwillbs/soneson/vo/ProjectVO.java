@@ -14,7 +14,7 @@ pro_summary	-- 프젝 요약
 pro_thumbsnail	-- 썸네일
 pro_goal		-- 목표금액
 pro_startDt	-- 펀딩 시작일
-pro_EndDt	-- 펀딩 마감일
+pro_endDt	-- 펀딩 마감일
 (후원자 결제일과 정산일은 각각 +7일 따로 컬럼은 X)
 pro_content	-- 프젝소개
 pro_budget	-- 프젝예산
@@ -62,7 +62,7 @@ public class ProjectVO {
 	private String pro_thumbsnail;
 	private String pro_goal;
 	private String pro_startDt;
-	private String pro_EndDt;
+	private String pro_endDt;
 	private String pro_content;
 	private String pro_budget;
 	private String pro_sch;

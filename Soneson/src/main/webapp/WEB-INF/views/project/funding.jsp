@@ -1,28 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script>
+	//시작일 선택날짜 제한
 	let now = new Date();
 	now.setDate(now.getDate() + 1);
+	console.log(now);
 	let tommorrow = String(now.toISOString().slice(0,10));
-	console.log(tommorrow);
+	
+	//수수료계산
 	
 	$(function() {
+		let goal = "${pro.pro_goal}".replaceAll(",", "");
+// 		console.log("goal: "+ goal + "타입: " + typeof goal);
+		let creditFee = Math.floor(Number(goal) * 0.033);
+		let sonFee = Math.floor(Number(goal) * 0.055);
+		let total = sonFee + creditFee;
+		let totalAmount = goal - (sonFee + creditFee);
+// 		console.log("creditFee: " + creditFee + " 타입: " + typeof creditFee);
+		console.log(String(creditFee).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+		$("#creditFee").text(String(creditFee).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+		$("#sonFee").text(String(sonFee).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+		$("#totalFee").text(String(total).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+		$("#totalAmount").text(String(totalAmount).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 		
 		//수수료 계산하기
 		$('#pro_goal').on('keydown keyup', function(){
 // 		$("#pro_goal").keydown(function() {
 // 			debugger;
-			let goal = "";
+// 			let goal = "";
 			goal = $(this).val().replace(/^0+|[^0-9]/g, ''); //숫자만 입력
-// 			goal = $(this).val().replaceAll(/[^-0-9]/g,''); //숫자만 입력
-			console.log("숫자길이"+ goal.length);
 			$(this).val(goal.replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+// 			goal = $(this).val().replaceAll(/[^-0-9]/g,''); //숫자만 입력
+			console.log("goal: "+ goal + "타입: " + typeof goal);
 // 			$(this).val(goal.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,'));
 			
-			let creditFee = Math.floor(Number(goal) * 0.033);
-			let sonFee = Math.floor(Number(goal) * 0.055);
-			let total = sonFee + creditFee;
-			let totalAmount = goal - (sonFee + creditFee);
+// 			let creditFee = Math.floor(Number(goal) * 0.033);
+// 			let sonFee = Math.floor(Number(goal) * 0.055);
+// 			let total = sonFee + creditFee;
+// 			let totalAmount = goal - (sonFee + creditFee);
+			creditFee = Math.floor(Number(goal) * 0.033);
+			sonFee = Math.floor(Number(goal) * 0.055);
+			total = sonFee + creditFee;
+			totalAmount = goal - (sonFee + creditFee);
 			
 			$("#creditFee").text(String(creditFee).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 			$("#sonFee").text(String(sonFee).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
@@ -48,11 +67,53 @@
 		});
 		
 		//날짜 선택하기
+		$("#start-funding").val("${pro.pro_startDt}");
+		$("#end-funding").val("${pro.pro_endDt}");
 		$("#start-funding").attr("min", tommorrow);
+		let startDt = new Date("${pro.pro_startDt}");
+		let endDt = new Date("${pro.pro_endDt}");
+		let fundingDays = Math.round((endDt - startDt) / 1000 / 60 / 60 / 24);
+		let paymentDt = endDt.getFullYear() + "-" + endDt.getMonth() + "-" + (endDt.getDate() + 7);
+		let calculateDt = endDt.getFullYear() + "-" + endDt.getMonth() + "-" + (endDt.getDate() + 14);
+		$("#fundingDays").text(fundingDays);
+		$("#paymentDt").text(paymentDt);
+		$("#calculateDt").text(calculateDt);
+		
+		//시작날짜 변경 시
 		$("#start-funding").on('click change', function() {
-			let startDt = $(this).val();
+			startDt = new Date($(this).val()); //String
+			endDt = new Date($("#end-funding").val());
+			if(startDt > endDt) {
+				alert("마감일 이전으로 선택해 주세요.");
+				$(this).val("");
+				return;
+			}
+			console.log(startDt + ", " + typeof startDt);
+			fundingDays = Math.round((endDt - startDt) / 1000 / 60 / 60 / 24);
+			console.log(fundingDays + ", " + typeof fundingDays);
+			$("#fundingDays").text(fundingDays);
+			
 		});
 		
+		//마감날짜 변경 시 
+		$("#end-funding").on('click change', function() {
+			let startDt = $("#start-funding").val();
+			if(startDt == "" || startDt == null ) {
+				alert("시작일을 먼저 설정해 주세요.");
+				return;	
+			}
+			$("#end-funding").attr("min", $("#start-funding").val());
+			endDt = new Date($(this).val());
+			startDt = new Date($("#start-funding").val());
+			fundingDays = Math.round((endDt - startDt) / 1000 / 60 / 60 / 24);
+			$("#fundingDays").text(fundingDays);
+			paymentDt = endDt.getFullYear() + "-" + endDt.getMonth() + "-" + (endDt.getDate() + 7);
+			calculateDt = endDt.getFullYear() + "-" + endDt.getMonth() + "-" + (endDt.getDate() + 14);
+// 			console.log("결제마감일" + paymentDt);
+			$("#paymentDt").text(paymentDt);
+			$("#calculateDt").text(calculateDt);
+			
+		});
 		
 // 		$("#end-funding").click(function() {
 // 			let startDt = $("#start-funding").val();
@@ -71,17 +132,6 @@
 
 		//날짜 계산하기
 		
-		$("#end-funding").on('click change', function() {
-			let startDt = $("#start-funding").val();
-			if(startDt == "" || startDt == null ) {
-				alert("시작일을 먼저 설정해 주세요.");
-				return;	
-			}
-			$("#end-funding").attr("min", $("#start-funding").val());
-			let endDt = $(this).val();
-			console.log(endDt);
-			
-		});
 		
 // 		$("#start-funding, #end-funding").change(function() {
 // 			let startDt = $("#start-funding").val();
@@ -148,7 +198,7 @@
 					<div>
 						<div class="input-fundingCost">
 							<span class="fundingInputCost">
-								<input type="text" maxlength="14" class="InputTextFunding" name="pro_goal" id="pro_goal" >
+								<input type="text" maxlength="14" class="InputTextFunding" name="pro_goal" id="pro_goal" value="${pro.pro_goal }">
 <!-- 								<input type="text" maxlength="13" class="InputTextFunding" name="pro_goal" id="pro_goal"  oninput="maxLengthCheck(this)"> -->
 <!-- 								<input type="number" min="500000" max="9999999999" class="InputTextFunding" inputmode="numeric" name="pro_goal" id="pro_goal"> -->
 								원
@@ -196,7 +246,7 @@
 					<div>
 						<p>선택하신 종료일 다음 날 0시에 펀딩이 종료됩니다.</p>
 						<p>프로젝트가 성공하면 펀딩 종료 다음 날 후원금이 결제됩니다. 결제가 이루어지지 않은 경우 24시간 간격으로 7일 동안 결제를 시도합니다.</p>
-						<p>모금액은 후원자 결제 종료 다음 날부터 영업일 기준(주말 및 공휴일 제외) 7일째 되는 날 입금됩니다.</p>
+						<p>모금액은 후원자 결제 종료 후 7일 뒤 입금됩니다.<br>(주말·공휴일은 다음날 입금됩니다.)</p>
 					</div>
 				</div>
 			</dl>
@@ -211,7 +261,7 @@
 								</div>
 								<div class="projectFormHalf-date">
 									<p class="tiny-title">종료일</p>
-									<input type="date" class="input-date" name="pro_EndDt" id="end-funding">
+									<input type="date" class="input-date" name="pro_endDt" id="end-funding">
 								</div>
 							</div>
 							<div class="projectFormHalf-date">
@@ -223,7 +273,7 @@
 							<div class="projectForm-date">
 								<div class="projectFormHalf-date">
 									<p class="tiny-title">후원자 결제종료</p>
-									<span id="paymentDt">2023.10.23</span>
+									<span id="paymentDt">종료일 다음날부터 7일</span>
 								</div>
 							</div>
 						</li>
@@ -231,7 +281,7 @@
 							<div class="projectForm-date">
 								<div class="projectFormHalf-date">
 									<p class="tiny-title">정산일</p>
-									<span id="calculateDt">2023.10.23</span>	
+									<span id="calculateDt">결제종료 다음날부터 7일</span>	
 								</div>
 							</div>
 						</li>
