@@ -28,8 +28,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/main/css/happy/global.css">
-    
-<%--     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/mypage/css/admin_mypage.css" rel="stylesheet"> --%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/mypage/css/admin_mypage.css" rel="stylesheet">
     <!-- 류우성 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/style.css" type="text/css">
     
@@ -76,7 +75,21 @@
 	    height: 120px;
 	    font-size: 88px;
 	    margin: 0px 20px 0px 0px;
-	}	
+	}
+	
+	.anime__review__item__text {
+	    padding: 18px 30px 16px 20px;
+	    border: 1px solid rgba(0, 0, 0, 0.3);
+	    position: relative;
+	    border-radius: 0px;
+	}
+	
+	.InfoBox__InfoTitle {
+    	gap: 40px;
+	}
+	
+	
+	
 	    
     </style>
     
@@ -102,19 +115,19 @@
     
 
     
-    <section class="blog-details spad">
-        <div class="container">
-		    <div class="blog__details__comment">
-				<div class="blog__details__comment__item">
-				    <div class="blog__details__comment__item__text">
-				        <h3>
-				        	<b>후원 현황</b>
-				        </h3>
-				    </div>
-				</div>
-			</div>
-		</div>
-	</section>
+<!--     <section class="blog-details spad"> -->
+<!--         <div class="container"> -->
+<!-- 		    <div class="blog__details__comment"> -->
+<!-- 				<div class="blog__details__comment__item"> -->
+<!-- 				    <div class="blog__details__comment__item__text"> -->
+<!-- 				        <h3> -->
+<!-- 				        	<b>후원 상세 페이지</b> -->
+<!-- 				        </h3> -->
+<!-- 				    </div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</section> -->
 	
 
     <!-- Product Section Begin -->
@@ -124,34 +137,15 @@
 				<div class="col-lg-11">
 					<div class="product__page__content">
 					
-				        <div class="container">
-						    <div class="blog__details__comment">
-								<div class="blog__details__comment__item">
-								    <div class="blog__details__comment__item__text">
-								        <h6>
-								        <span style="color: #F86453">3</span>건의 후원 내역이 있습니다.
-		                           		<input name="search_projects_list_item" type="text" placeholder="프로젝트, 선물, 창작자를 입력하세요" >
-		                           		
-		                           		</h6>
-									</div>
-								</div>
-							</div>
-						</div>
-						<br>
-						
-						<div class="anime__details__review">
-							<h6><b>후원 진행중(1)</b></h6>
-							<br>
+				        <div class="anime__details__review">
 							<div class="anime__review__item">
-								<div class="anime__review__item__text" id="project_review_content">
-									<div class="contents">
+								<div class="" id="project_review_content">
+									<div class="">
 									<a href="${pageContext.request.contextPath }/soneson/popular">
 										<img src="${pageContext.request.contextPath }/resources/user/success.jpg" class="success_jpg">		
 									</a>
-									
-										후원일 2023.11.27 | 후원번호 1000001<br>
-										내 옆에 고양이 다이어리 2024<br>
-										• [선물A] 고양이 다이어리 + 다꾸 고양이 스티커 2매
+										
+									후원일 2023.11.27 | 후원번호 1000001<br>내 옆에 고양이 다이어리 2024<br>• [선물A] 고양이 다이어리 + 다꾸 고양이 스티커 2매
 									<span>39,000원 결제 예정</span>
 									</div>
 								</div>
@@ -159,47 +153,128 @@
 						</div>
 						<br>
 						
+						
 						<div class="anime__details__review">
-							<h6><b>후원 성공(1)</b></h6>
-							<br>
 							<div class="anime__review__item">
 								<div class="anime__review__item__text" id="project_review_content">
 									<div class="contents">
-										후원일 2023.11.01 | 후원번호 2000001
-									</div>
-									<h6>길냥이 유메의 냥생역전을 위한 첫걸음!</h6>
-									• 화이트&블랙 머그컵(x 1)<br>
-									42,000원 결제 완료
+									<h6><b>후원 정보</b></h6>
 									<br>
-									<br>	
-									<span>선물 전달 완료일 2023. 11. 22</span>
-									<div class="user_follow_btn">
-										<a href="#">후기 작성</a>
+										<div class="contents__InfoBox__InfoItem">
+											<dl class="InfoBox__InfoItem">
+												<dt class="InfoBox__InfoTitle">펀딩 상태</dt>
+												<dd class="InfoBox__InfoContentWrap"><span>펀딩 성공</span></dd>
+											</dl>
+											<dl class="InfoBox__InfoItem">
+												<dt class="InfoBox__InfoTitle">후원 번호</dt>
+												<dd class="InfoBox__InfoContentWrap">2000001</dd>
+											</dl>
+											<dl class="InfoBox__InfoItem">
+												<dt class="InfoBox__InfoTitle">후원 날짜</dt>
+												<dd class="InfoBox__InfoContentWrap">2023. 11. 01</dd>
+											</dl>
+											<dl class="InfoBox__InfoItem">
+												<dt class="InfoBox__InfoTitle">펀딩 마감일</dt>
+												<dd class="InfoBox__InfoContentWrap">2023. 11. 08</dd>
+											</dl>
+										
+										</div>	
 									</div>
 								</div>
 							</div>
 						</div>
 						<br>
 						
+						
 						<div class="anime__details__review">
-							<h6><b>후원 실패(1)</b></h6>
-							<br>
 							<div class="anime__review__item">
 								<div class="anime__review__item__text" id="project_review_content">
 									<div class="contents">
-										후원일 2023.10.31 | 후원번호 3000001
+									<h6><b>선물 정보</b></h6>
+									<br>
+										<div class="contents__InfoBox__InfoItem">
+											<dl class="InfoBox__InfoItem">
+												<dt class="InfoBox__InfoTitle">선물 구성</dt>
+												<dd class="InfoBox__InfoContentWrap">• 화이트&블랙 머그컵(x 1)<br></dd>
+											</dl>
+											<dl class="InfoBox__InfoItem">
+												<dt class="InfoBox__InfoTitle">후원 금액</dt>
+												<dd class="InfoBox__InfoContentWrap">27,000원</dd>
+											</dl>
+											<dl class="InfoBox__InfoItem">
+												<dt class="InfoBox__InfoTitle">추가 후원금</dt>
+												<dd class="InfoBox__InfoContentWrap">15,000원</dd>
+											</dl>
+											<dl class="InfoBox__InfoItem">
+												<dt class="InfoBox__InfoTitle">전달 상태</dt>
+												<dd class="InfoBox__InfoContentWrap">2023. 11. 22 전달 완료</dd>
+											</dl>
+										
+										</div>	
 									</div>
-									<h6>일상 속 '향기 한 잔 [캄파눌라]'</h6>
-									• 캄파눌라 고블렛(x 1) 옵션 : 화이트<br>
-									54,000원 결제 예약 취소
-									<br>
-									<br>
-									결제 예약 취소일 2023. 11. 01
 								</div>
 							</div>
 						</div>
 						<br>
-												
+						
+						
+						<div class="anime__details__review">
+							<div class="anime__review__item">
+								<div class="anime__review__item__text" id="project_review_content">
+									<div class="contents">
+									<h6><b>결제 정보</b></h6>
+									<br>
+										<div class="contents__InfoBox__InfoItem">
+											<dl class="InfoBox__InfoItem">
+												<dt class="InfoBox__InfoTitle">결제 수단</dt>
+												<dd class="InfoBox__InfoContentWrap">신한카드(***1) 일시불<br></dd>
+											</dl>
+											<dl class="InfoBox__InfoItem">
+												<dt class="InfoBox__InfoTitle">결제 금액</dt>
+												<dd class="InfoBox__InfoContentWrap">42,000원</dd>
+											</dl>
+											<dl class="InfoBox__InfoItem">
+												<dt class="InfoBox__InfoTitle">결제 상태</dt>
+												<dd class="InfoBox__InfoContentWrap">2023. 11. 09 결제 완료</dd>
+											</dl>
+										</div>	
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+						
+						
+						<div class="anime__details__review">
+							<div class="anime__review__item">
+								<div class="anime__review__item__text" id="project_review_content">
+									<div class="contents">
+									<h6><b>배송 정보</b></h6>
+									<br>
+										<div class="contents__InfoBox__InfoItem">
+											<dl class="InfoBox__InfoItem">
+												<dt class="InfoBox__InfoTitle">받는 사람</dt>
+												<dd class="InfoBox__InfoContentWrap">춘식이<br></dd>
+											</dl>
+											<dl class="InfoBox__InfoItem">
+												<dt class="InfoBox__InfoTitle">연락처</dt>
+												<dd class="InfoBox__InfoContentWrap">010-1111-2222</dd>
+											</dl>
+											<dl class="InfoBox__InfoItem">
+												<dt class="InfoBox__InfoTitle">주소</dt>
+												<dd class="InfoBox__InfoContentWrap">(47246) 부산광역시 부산진구 동천로 109 (부전동) 삼한골든게이트 7층</dd>
+											</dl>
+										</div>	
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+						
+						<div align="center">
+							<button type="button" class="btn btn-primary"
+							onclick="location.href='userFundingList'">&nbsp;&nbsp;&nbsp;&nbsp;후원 목록 보기&nbsp;&nbsp;&nbsp;&nbsp;</button>
+						</div>							
 						
 					                        
 						<div id="user_content">
