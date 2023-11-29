@@ -55,7 +55,7 @@
 							<div class="profile-imageDiv">
 								<div  class="profile-image">
 <%-- 										<div class="profile-image" style="background-image: url('${pageContext.request.contextPath }/resources/soneson/img/project/sample.jpg')"> --%>
-									<img alt="" src="" id="profileImg">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_profile }" id="profileImg">
 <%-- 											<img alt="" src="${pageContext.request.contextPath }/resources/soneson/img/project/sample.jpg"> --%>
 								</div>
 							</div>

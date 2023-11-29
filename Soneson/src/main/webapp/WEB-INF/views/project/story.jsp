@@ -3,7 +3,7 @@
 <script>
 	$(function() {
 		//프로젝트 소개
-		$('input[name="pro_content"]').change(function(){
+		$('input[name="pro_content_multi"]').change(function(){
 		    setImageFromFile(this, '#info_preview');
 		});
 
@@ -18,7 +18,7 @@
 		}
 		
 		//예산
-		$('input[name="pro_budget"]').change(function(){
+		$('input[name="pro_budget_multi"]').change(function(){
 		    setImageFromFile(this, '#budget_preview');
 		});
 
@@ -33,7 +33,7 @@
 		}
 		
 		//일정
-		$('input[name="pro_sch"]').change(function(){
+		$('input[name="pro_sch_multi"]').change(function(){
 		    setImageFromFile(this, '#sch_preview');
 		});
 
@@ -48,7 +48,7 @@
 		}
 		
 		//팀소개
-		$('input[name="pro_team"]').change(function(){
+		$('input[name="pro_team_multi"]').change(function(){
 		    setImageFromFile(this, '#team_preview');
 		});
 
@@ -63,7 +63,7 @@
 		}
 		
 		//리워드 설명
-		$('input[name="pro_reward"]').change(function(){
+		$('input[name="pro_reward_multi"]').change(function(){
 		    setImageFromFile(this, '#reward_preview');
 		});
 
@@ -112,7 +112,7 @@
 					</div>
 					<div class="imagePreview">
 						<div class="image-preview">
-							<img src="" id="info_preview" width="630px">
+							<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_content }" id="info_preview" width="630px">
 						</div>
 					</div>
 				</div>
@@ -154,7 +154,7 @@
 					</div>
 					<div class="imagePreview">
 						<div class="image-preview">
-							<img src="" id="budget_preview" width="630px">
+							<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_budget }" id="budget_preview" width="630px">
 						</div>
 					</div>
 				</div>
@@ -196,7 +196,7 @@
 					</div>
 					<div class="imagePreview">
 						<div class="image-preview">
-							<img src="" id="sch_preview" width="630px">
+							<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_sch }" id="sch_preview" width="630px">
 						</div>
 					</div>
 				</div>
@@ -222,7 +222,7 @@
 					</div>
 					<div class="imagePreview">
 						<div class="image-preview">
-							<img src="" id="team_preview" width="630px">
+							<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_team }" id="team_preview" width="630px">
 						</div>
 					</div>
 				</div>
@@ -247,7 +247,7 @@
 					</div>
 					<div class="imagePreview">
 						<div class="image-preview">
-							<img src="" id="reward_preview" width="630px">
+							<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_reward }" id="reward_preview" width="630px">
 						</div>
 					</div>
 				</div>
@@ -272,10 +272,6 @@
 							<section class="reward-section">
 								<textarea rows="10" cols="" class="plan-textarea" style="height: 300px;" name="pro_notice"></textarea>
 							</section>
-							<div class="formBtnDiv">
-								<input class="formBtn" type="reset" value="초기화">
-								<input class="formBtn" type="submit" value="등록" id="itemFormSubmitBtn">
-							</div>
 						</div>
 				</div>
 			</div>

@@ -70,7 +70,7 @@
 			, pro_thumbsnail = #{pro_thumbsnail}
 			, pro_goal = #{pro_goal}
 			, pro_startDt = #{pro_startDt}
-			, pro_EndDt = #{pro_EndDt}
+			, pro_endDt = #{pro_endDt}
 			, pro_content = #{pro_content}
 			, pro_budget = #{pro_budget}
 			, pro_sch = #{pro_sch}

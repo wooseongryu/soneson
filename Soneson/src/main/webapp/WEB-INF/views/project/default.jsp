@@ -385,7 +385,7 @@ $(function() {
 				</div>
 				<!-- story -->
 				<div class="content-form">
-<%-- 					<jsp:include page="./story.jsp"></jsp:include> --%>
+					<jsp:include page="./story.jsp"></jsp:include>
 				</div>
 				<!-- creator -->
 				<div class="content-form">
