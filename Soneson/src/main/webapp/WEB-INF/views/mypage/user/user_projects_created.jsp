@@ -39,6 +39,11 @@
 <style>
 	.Category {
 	 	margin-top: 30px;
+	 	float: inherit;
+ 	    width: 60%; 
+ 	    margin: auto; 
+        display: flex; 
+
 	 }
 	.Category_ul {
 	    display: -ms-flexbox; 
@@ -46,9 +51,10 @@
 	    -ms-flex-pack: justify;  
  	    justify-content: space-between;  
 	    white-space: nowrap;
-	    float: center;
-	    width: 50%;
+	    float: inherit;
+ 	    width: 70%; 
 	    padding-bottom: 1.1em;
+	    
 	}
 	.Category_button {
 	    display: block;
@@ -56,6 +62,7 @@
 	    padding: 0 12px 0 10px;
 	    border: 1px solid #eee;
 	    border-radius: 30px;
+	   
 	}
 	.Category_text {
 	    display: inline-block;
