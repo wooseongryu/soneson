@@ -212,6 +212,14 @@
 		    <div class="blog__details__comment">
 				<div class="blog__details__comment__item">
 				    <div class="blog__details__comment__item__text">
+				    	
+				    	<!-- TODO -->
+				    	<div>
+					    	<div class="profileImgDiv">                                                                             
+	   							<img alt="" src="${pageContext.request.contextPath }/resources/user/alarm.jpg" class="profileImg">  
+	   						</div>
+   						</div>
+				    
 				        <h5>
 				        	또롱/Ttorong&nbsp;&nbsp;
 				        	<i class="fa fa-cog" onclick="location.href='userSetting'" style="cursor: pointer;"></i>

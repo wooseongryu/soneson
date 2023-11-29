@@ -41,6 +41,8 @@
     			dataType: 'json',
     			success: function(resp) {
     				reset_screen(id);
+    				
+    				console.log(resp);
 
 					$("#user_content").append(
 						  ' <div class="anime__details__review">                                                                                    '
@@ -61,10 +63,9 @@
 						+ '  	<div class="anime__review__item">                                    '
                         + '  		<div class="user__setting__text" id="user_name">                 '
 	                    + '      		<h6>이름</h6>                                                '
-	                    + '      		<p style="margin-top: 10px">홍길동</p>                       '
+	                    + '      		<p style="margin-top: 10px">' + resp.user_name + '</p>                       '
 	                    + '      		<div class="user_follow_btn">                                '
-// 	                    + '      			<a onclick="updateUserName(\'' + id + '\')">변경</a>     '
-	                    + '      			<a onclick="updateUserName()">변경</a>                   '
+	                    + '      			<a onclick="updateUserName(\'' + resp.user_name + '\')">변경</a>     '
 	                    + '      		</div>                                                       '
 						+ '  		</div>                                                           '
                     	+ '  	</div>                                                               '
@@ -164,7 +165,7 @@
     		});
     	}
     	
-    	function updateUserName() {
+    	function updateUserName(user_name) {
     		$.ajax({
     			type: 'post',
     			url: 'settingUpdateUserName',
@@ -174,15 +175,17 @@
     				
     				$("#user_name").append(
                      		  ' <h6>이름</h6>                                                     '
-                     		+ ' <input type="text" placeholder="변경할 이름" style="margin-top: 10px">       '
+                     		+ ' <input type="text" value="' + user_name + '" id="userName" style="margin-top: 10px">       '
                      		+ '                                                                   '
                      		+ ' <div class="user_follow_btn">                                     '
-                     		+ ' 	<a href="#">저장</a>                                          '
+                     		+ ' 	<a id="updateUserNameSave">저장</a>                                          '
                      		+ ' </div>                                                            '
                      		+ ' <div class=user_cancel_btn>                                       '
-                     		+ ' 	<a onclick="cancelUpdateUserName()">취소</a>                  '
-                     		+ ' </div>                                                            '
+                     		+ ' 	<a onclick="cancelUpdateUserName(\'' + user_name + '\')">취소</a>                  '
+                     		+ ' </div>      	                                                      '
     				);
+    				
+    				$("#updateUserNameSave").on("click", updateUserNamePro);
     			},
     			error: function() {
     				alert("에러!");
@@ -190,7 +193,7 @@
     		});
     	}
     	
-    	function cancelUpdateUserName() {
+    	function cancelUpdateUserName(user_name) {
     		$.ajax({
     			type: 'post',
     			url: 'settingCancelUpdateUserName',
@@ -200,14 +203,41 @@
     				
     				$("#user_name").append(
    						  '<h6>이름</h6>                                                '
-   	                    + '<p style="margin-top: 10px">홍길동</p>                       '
+   	                    + '<p style="margin-top: 10px">' + user_name + '</p>                       '
    	                    + '<div class="user_follow_btn">                                '
-   	                    + '    <a onclick="updateUserName()">변경</a>                   '
+   	                    + '    <a onclick="updateUserName(\'' + user_name + '\')">변경</a>                   '
    	                    + '</div>                                                       '
     				);
     			},
     			error: function() {
     				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function updateUserNamePro() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingUpdateUserNamePro',
+    			data: {
+    				user_name: $('#userName').val()
+    			},
+    			dataType: 'json',
+    			success: function(resp) {
+    				let name = resp.user_name;
+    				
+    				$("#user_name").children().remove();
+    				
+    				$("#user_name").append(
+   						  '<h6>이름</h6>                                                '
+   	                    + '<p style="margin-top: 10px">' + name + '</p>                 '
+   	                    + '<div class="user_follow_btn">                                '
+   	                    + '    <a onclick="updateUserName(\'' + name + '\')">변경</a>   '
+   	                    + '</div>                                                       '
+    				);
+    			},
+    			error: function() {
+    				alert("에러!7");
     			}
     		});
     	}
@@ -632,6 +662,8 @@
                         <div id="user_content">
                         	<!-- ajax -->
 						</div>
+						
+						
 						
 					</div>
                 </div>

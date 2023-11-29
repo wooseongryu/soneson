@@ -223,5 +223,19 @@
 	</update>
 	
 	
+<!-- 	====================================================== -->
+
+	<select id="getUserProfile" resultType="User">
+		SELECT user_name 
+		FROM user
+		WHERE user_id = #{sId}
+	</select>
+	
+	<update id="updateUserName">
+		UPDATE user
+		SET user_name = #{user_name}
+		WHERE user_id = #{sId};
+	</update>
+	
 </mapper>
 

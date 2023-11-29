@@ -1,9 +1,11 @@
 package com.itwillbs.soneson.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.soneson.vo.AuthInfoVO;
 import com.itwillbs.soneson.vo.UserVO;
@@ -82,6 +84,17 @@ public interface UserMapper {
 
 	// 삭제된 이메일 체크
 	int checkDuplicateEmail(String deleteEmail);
+
+	
+	
+	
+	// ===================================================
+	
+	// 유저 설정 페이지 초기값
+	UserVO getUserProfile(String sId);
+
+	// 유저 설정 이름 변경 pro
+	int updateUserName(Map<String, String> map);
 
 	
 
