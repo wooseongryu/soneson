@@ -93,8 +93,8 @@ public interface UserMapper {
 	// 유저 설정 페이지 초기값
 	UserVO getUserProfile(String sId);
 
-	// 유저 설정 이름 변경 pro
-	int updateUserName(Map<String, String> map);
+	// 유저 설정 변경 pro
+	int updateUserInfo(Map<String, String> map);
 
 	
 

@@ -142,7 +142,7 @@ public class UserController {
 		
 		map.put("sId", (String)session.getAttribute("sId"));
 		
-		int updateCount = userService.updateUserName(map);
+		int updateCount = userService.updateUserInfo(map);
 		
 		if (updateCount == 0) {
 			map.put("isUpdated", "false");
@@ -160,6 +160,26 @@ public class UserController {
 	public String settingUpdateUserIntro() {
 		System.out.println("UserController - settingUpdateUserIntro()");
 		return "1";
+	}
+	
+	
+	// 유저 설정 소개 변경 pro
+	@ResponseBody
+	@PostMapping("settingUpdateUserIntroPro")
+	public String settingUpdateUserIntroPro(@RequestParam Map<String, String> map, Gson gson, HttpSession session, Model model) {
+		System.out.println("UserController - settingUpdateUserIntroPro()");
+		
+		map.put("sId", (String)session.getAttribute("sId"));
+		
+		int updateCount = userService.updateUserInfo(map);
+		
+		if (updateCount == 0) {
+			map.put("isUpdated", "false");
+			return gson.toJson(map);
+		}
+		
+		map.put("isUpdated", "true");
+		return gson.toJson(map);
 	}
 	
 	// 유저 설정 소개 변경 취소

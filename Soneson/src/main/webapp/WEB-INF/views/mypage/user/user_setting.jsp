@@ -82,8 +82,8 @@
 	                    + '      		<h6>소개</h6>                                                                   '
 	                    + '      		<p style="margin-top: 10px; width: 700px">' + info + '</p>           '
 	                    + '      		<div class="user_follow_btn">                                                   '
-// 	                    + '      			<a onclick="updateUserIntroduction(\'' + id + '\')">변경</a>                '
-	                    + '      			<a onclick="updateUserIntroduction()">변경</a>                              '
+	                    + '      			<a onclick="updateUserIntroduction(\'' + info + '\')">변경</a>                '
+// 	                    + '      			<a onclick="updateUserIntroduction()">변경</a>                              '
 	                    + '      		</div>                                                                          '
 						+ '  		</div>                                                                              '
 	                	+ '  	</div>                                                                                  '
@@ -253,25 +253,33 @@
     		});
     	}
     	
-    	function updateUserIntroduction() {
+    	function updateUserIntroduction(info) {
     		$.ajax({
     			type: 'post',
     			url: 'settingUpdateUserIntro',
     			dataType: 'json',
     			success: function(resp) {
 					$("#user_intro").children().remove();
-    				
+					
     				$("#user_intro").append(
-   						  ' <h6>소개</h6>                                                                                                '
-                   		+ ' <textarea rows="10px" cols="70px" placeholder="자기소개를 입력해주세요." maxlength="3000" style="margin-top: 10px"></textarea>'
-                   		+ ' <div class="user_follow_btn">                                                                                '
-                   		+ ' 	<a href="#">저장</a>                                                                                     '
-                   		+ ' </div>                                                                                                       '
-                   		+ ' <div class=user_cancel_btn>                                                                                  '
-                   		+ ' 	<a onclick="cancelUpdateUserIntroduction()">취소</a>                                                     '
-                   		+ ' </div>                                                                                                       '
+   						  ' <h6>소개</h6>                                                                                                                             '
+                   		+ ' <textarea rows="10px" cols="70px" id="userInfo" placeholder="자기소개를 입력해주세요." maxlength="3000" style="margin-top: 10px">' + info + '</textarea>'
+                   		+ ' <div class="user_follow_btn">                                                                                                             '
+                   		+ ' 	<a id="updateUserIntroductionSave">저장</a>                                                                                                                  '
+                   		+ ' </div>                                                                                                                                    '
+                   		+ ' <div class=user_cancel_btn>                                                                                                               '
+                   		+ ' 	<a onclick="cancelUpdateUserIntroduction(\'' + info + '\')">취소</a>                                                                                  '
+                   		+ ' </div>                                                                                                                                    '
     				);
 
+//     				$("#updateUserIntroductionSave").on("click", updateUserIntroductionPro);
+    				$("#updateUserIntroductionSave").on("click", function() {
+    					if ($("#userInfo").val() == "") {
+    						alert("1자 이상 입력하세요.");
+    						return;
+    					}
+    					updateUserIntroductionPro();
+    				});
     			},
     			error: function() {
     				alert("에러!");
@@ -279,7 +287,38 @@
     		});
     	}
     	
-    	function cancelUpdateUserIntroduction() {
+    	// TODO
+    	function updateUserIntroductionPro() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingUpdateUserIntroPro',
+    			data: {
+    				user_info: $('#userInfo').val()
+    			},
+    			dataType: 'json',
+    			success: function(resp) {
+    				console.log(resp);
+    				
+    				let info = resp.user_info;
+    				
+					$("#user_intro").children().remove();
+    				
+    				$("#user_intro").append(
+   						  ' <h6>소개</h6>                                                        '
+   	                    + ' <p style="margin-top: 10px; width: 700px">' + info + '</p>           '
+   	                    + ' <div class="user_follow_btn">                                        '
+   	                    + ' 	<a onclick="updateUserIntroduction(\'' + info + '\')">변경</a>   '
+   	                    + ' </div>                                                               '                                                     
+    				);
+    				
+    			},
+    			error: function() {
+    				alert("에러! 유저 소개 업데이트 실패.");
+    			}
+    		});
+    	}
+    	
+    	function cancelUpdateUserIntroduction(info) {
     		$.ajax({
     			type: 'post',
     			url: 'settingcCancelUpdateUserIntro',
@@ -289,9 +328,9 @@
     				
     				$("#user_intro").append(
     						  ' <h6>소개</h6>                                                                   '
-    	                    + ' <p style="margin-top: 10px; width: 700px">등록된 소개가 없습니다.</p>           '
+    	                    + ' <p style="margin-top: 10px; width: 700px">' + info + '</p>           '
     	                    + ' <div class="user_follow_btn">                                                   '
-    	                    + ' 	<a onclick="updateUserIntroduction()">변경</a>                              '
+    	                    + ' 	<a onclick="updateUserIntroduction(\'' + info + '\')">변경</a>                              '
     	                    + ' </div>                                                                          '
     				);
 

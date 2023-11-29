@@ -176,11 +176,11 @@ public class UserService {
 		return mapper.getUserProfile(sId);
 	}
 
-	// 유저 설정 이름 변경 pro
-	public int updateUserName(Map<String, String> map) {
-		System.out.println("UserService - updateUserName()");
+	// 유저 설정 변경 pro
+	public int updateUserInfo(Map<String, String> map) {
+		System.out.println("UserService - updateUserInfo()");
 		
-		return mapper.updateUserName(map);
+		return mapper.updateUserInfo(map);
 	}
 
 	
