@@ -96,7 +96,14 @@
     <script type="text/javascript">
     	let pointColor = "#F86453";
     
-    	
+    	function confirmCancel(fund_idx) {
+    		let result = confirm(fund_idx  + "번 후원 취소를 원하시나요?");
+    		
+    		if(result) {
+    			location.href = "fundingCancel?fund_idx=" + fund_idx;
+    			
+    		}
+    	}
     	
 		
 		
@@ -274,7 +281,14 @@
 						<div align="center">
 							<button type="button" class="btn btn-primary"
 							onclick="location.href='fundingList'">&nbsp;&nbsp;&nbsp;&nbsp;후원 목록 보기&nbsp;&nbsp;&nbsp;&nbsp;</button>
-						</div>							
+						</div>			
+						
+						<div align="center">
+							<a class="cancel" href=fundingCancel
+							onclick='return confirm("후원을 취소하시겠어요? 선착순 마감된 선물은 취소 후 다시 후원할 수 없습니다. 신중하게 고민하고 취소를 결정해주세요.");'>
+							   	후원을 취소하시겠어요?
+							</a>
+						</div>				
 						
 					                        
 						<div id="user_content">

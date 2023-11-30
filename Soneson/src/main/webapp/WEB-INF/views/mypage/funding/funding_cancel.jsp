@@ -84,6 +84,10 @@
 	    bottom: 40px;
 	}
 	
+	.funding_list {
+		margin-right: 100px;
+	}
+	
 	
 </style>
 
@@ -130,7 +134,7 @@
 									<div class="contents">
 										후원번호 3000001가 취소되었습니다.
 										<div class="funding_detail_btn">
-											<a href="userFundingDetail">후원 상세</a>
+											<a href="fundingDetail">후원 상세</a>
 										</div>
 										<hr>
 										프로젝트 &nbsp;&nbsp; 일상 속 '향기 한 잔 [캄파눌라]'<br>
@@ -169,14 +173,12 @@
 	</section>
 
 	<br>
-	<div class="Container__ContainerComponent">
-		<div class="MyProjectListWrapper">
-			<div align="center">
-				<button type="button" class="btn btn-primary"
-				onclick="location.href='fundingList'">&nbsp;&nbsp;&nbsp;&nbsp;후원 목록&nbsp;&nbsp;&nbsp;&nbsp;</button>
-			</div>
-		</div>
+	
+	<div class="funding_list" align="center">
+		<button type="button" class="btn btn-primary"
+		onclick="location.href='fundingList'">&nbsp;&nbsp;&nbsp;&nbsp;후원 목록&nbsp;&nbsp;&nbsp;&nbsp;</button>
 	</div>
+	
 	
 	
 	
