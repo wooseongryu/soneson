@@ -32,35 +32,6 @@
 
 </head>
 
-<style>
-	#eventCate_subject {
-		color: #F86453; 
-		font-weight: bold;
-	}
-	
-	#event_status {
-		 border: none;
-		 color: #fff; 
-		 background: #F86453;
-	}
-	#event_Dt {
-		 font-size: small;
-	}
-	#eventList_row {
-	 	border-bottom-style: solid;
-		border-bottom-width: 1px;
-		border-bottom-color: rgba(0,0,0,0.1);
-		padding-bottom: 30px;
-		margin-bottom: 30px;"
-	}
-	#event_title {
-	 	margin: 10px 10px 10px 0px;
-	}
-	
-	#eventCate_category {
-		padding-right: 0px !important;
-	}
-</style>
 
 
 
@@ -92,8 +63,8 @@
 							<div class="col-1" id="eventCate_category">
 								<div class="customer_category" align="center" 
 									<c:if test="${eventCate.eventCate_idx eq param.eventCate_idx}"></c:if> 
-									onclick="location.href='eventMain'" >
-									<h6>전체</h6>
+									onclick="location.href='event'" >
+									<h6 id="eventCate_subject_category">전체</h6>
 								</div>
 							</div>
 						<c:forEach var="eventCate" items="${eventCateList }">
@@ -101,7 +72,7 @@
 								<div class="customer_category" align="center" name="${eventCate.eventCate_subject}" 
 									<c:if test="${eventCate.eventCate_idx eq param.eventCate_idx}"></c:if> 
 									onclick="location.href='eventList?eventCate_idx=${eventCate.eventCate_idx}'" >
-									<h6>${eventCate.eventCate_subject }</h6>
+									<h6 id="eventCate_subject_category">${eventCate.eventCate_subject }</h6>
 								</div>
 							</div>
 						</c:forEach>
@@ -132,20 +103,20 @@
 						
 						<div class="product__pagination" id="pageList">
 							<c:if test="${pageNum > 1 }">
-								<a href="eventMain?pageNum=${pageNum - 1 }"><i class="fa fa-angle-double-left"></i></a>					
+								<a href="event?pageNum=${pageNum - 1 }"><i class="fa fa-angle-double-left"></i></a>					
 							</c:if>
 							<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
 								<c:choose>
 									<c:when test="${pageNum eq i }">
-										<a class="current-page" href="eventMain?pageNum=${i }">${i }</a>
+										<a class="current-page" href="event?pageNum=${i }">${i }</a>
 									</c:when>
 									<c:otherwise>
-										<a href="eventMain?pageNum=${i }">${i }</a> 
+										<a href="event?pageNum=${i }">${i }</a> 
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
 							<c:if test="${pageNum < pageInfo.maxPage }">
-								<a href="eventMain?pageNum=${pageNum + 1 }"><i class="fa fa-angle-double-right"></i></a>					
+								<a href="event?pageNum=${pageNum + 1 }"><i class="fa fa-angle-double-right"></i></a>					
 							</c:if>
 						</div>
 					</div>

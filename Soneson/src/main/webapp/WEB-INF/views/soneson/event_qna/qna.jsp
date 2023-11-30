@@ -30,27 +30,6 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/slicknav.min.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/customerStyle.css" type="text/css">
 </head>
-<style>
-	#qnaCate_subject {
-		color: #F86453; 
-		font-weight: bold;
-	}
-	
-	#qna_row {
-	 	border-bottom-style: solid;
-		border-bottom-width: 1px;
-		border-bottom-color: rgba(0,0,0,0.1);
-		padding-bottom: 30px;
-		margin-bottom: 30px;"
-	}
-	#qna_title {
-	 	margin: 10px 10px 10px 0px;
-	}
-	
-	#qna_category {
-		padding-right: 0px !important;
-	}
-</style>
 
 
 
@@ -80,7 +59,7 @@
 	                    <div class="row" style="justify-content: space-evenly">
 							<div class="col-2" id="qna_category">
 								<div class="customer_category" align="center" onclick="location.href='qna'">
-									<h6>전체</h6>
+									<h6 id="qnaCate_subject_category">전체</h6>
 								</div>
 							</div>
 						<c:forEach var="qnaCate" items="${qnaCateList }">
@@ -88,7 +67,7 @@
 								<div class="customer_category" align="center" name="${qnaCate.qnaCate_subject}" 
 									<c:if test="${qnaCate.qnaCate_idx eq param.qnaCate_idx}">style="color: #F86453; text-decoration : underline; text-underline-offset : 18px; text-decoration-thickness : 4px" </c:if> 
 									onclick="location.href='qna?qnaCate_idx=${qnaCate.qnaCate_idx}'" >
-									<h6>${qnaCate.qnaCate_subject }</h6>
+									<h6 id="qnaCate_subject_category">${qnaCate.qnaCate_subject }</h6>
 								</div>
 							</div>
 						</c:forEach>

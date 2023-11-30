@@ -32,35 +32,6 @@
 
 </head>
 
-<style>
-	#eventCate_subject {
-		color: #F86453; 
-		font-weight: bold;
-	}
-	#eventDetail_row {
-	 	border-bottom-style: solid;
-		border-bottom-width: 1px;
-		border-bottom-color: rgba(0,0,0,0.1);
-		padding-bottom: 30px;
-		margin-bottom: 30px;"
-	}
-	#event_title {
-	 	margin: 10px 10px 10px 0px;
-	}
-
-	#event_status {
-		 border: none;
-		 color: #fff; 
-		 background: #F86453;
-	}
-	#event_Dt {
-		 font-size: small;
-	}
-	
-	#eventCate_category {
-		padding-right: 0px !important;
-	}
-</style>
 
 
 <body>
@@ -88,8 +59,8 @@
 	                    </div>
 						<div class="row">
 							<div class="col-1" id="eventCate_category">
-								<div class="customer_category" align="center" onclick="location.href='eventMain'">
-									<h6>전체</h6>
+								<div class="customer_category" align="center" onclick="location.href='event'">
+									<h6 id="eventCate_subject_category">전체</h6>
 								</div>
 							</div>
 						<c:forEach var="eventCate" items="${eventCateList }">
@@ -97,7 +68,7 @@
 								<div class="customer_category" align="center" name="${eventCate.eventCate_subject}" 
 									<c:if test="${eventCate.eventCate_idx eq param.eventCate_idx}">style="color: #F86453; text-decoration : underline; text-underline-offset : 18px; text-decoration-thickness : 4px" </c:if> 
 									onclick="location.href='eventList?eventCate_idx=${eventCate.eventCate_idx}'" >
-									<h6>${eventCate.eventCate_subject }</h6>
+									<h6 id="eventCate_subject_category">${eventCate.eventCate_subject }</h6>
 								</div>
 							</div>
 						</c:forEach>
