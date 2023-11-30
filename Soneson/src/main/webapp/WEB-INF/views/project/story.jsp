@@ -154,7 +154,7 @@
 					</div>
 					<div class="imagePreview">
 						<div class="image-preview">
-							<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_budget }" id="budget_preview" width="630px">
+							<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_budget }" id="budget_preview" width="630px" alt="사진을 등록해주세요.">
 						</div>
 					</div>
 				</div>
