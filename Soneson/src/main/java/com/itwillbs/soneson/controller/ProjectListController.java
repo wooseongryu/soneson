@@ -1,6 +1,7 @@
 package com.itwillbs.soneson.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,11 +48,22 @@ public class ProjectListController {
 	public String popular(Model model) {
 		System.out.println("popularController - popular()");
 		
-		List<ProjectVO> projectList = service.getProjectList();
+		List<Map<String, Object>> projectList = service.selectProjectList();
 		model.addAttribute("projectList", projectList);
 		
 		return "list/popular";	
 	}
+//	@GetMapping("popular")
+//	public String popular(Model model) {
+//		System.out.println("popularController - popular()");
+//		
+//		
+//		
+//		List<ProjectVO> projectList = service.getProjectList();
+//		model.addAttribute("projectList", projectList);
+//		
+//		return "list/popular";	
+//	}
 	
 	@GetMapping("projectDetail")
 	public String projectDetail(Model model) {
