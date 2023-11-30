@@ -78,6 +78,12 @@ dl {
 							<dd class="service_info_item">
 								<a href="/congstore/congcoupon/CongCouponTransfer">수수료 안내</a>
 							</dd>
+							<dd class="service_info_item">
+								<a href="event">공지사항</a>
+							</dd>
+							<dd class="service_info_item">
+								<a href="qna">자주묻는질문</a>
+							</dd>
 						</dl>
 						<dl class="service_info_grid">
 							<dt class="service_info_title">제휴∙단체 안내</dt>
