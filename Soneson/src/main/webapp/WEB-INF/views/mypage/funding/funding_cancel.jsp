@@ -173,7 +173,7 @@
 		<div class="MyProjectListWrapper">
 			<div align="center">
 				<button type="button" class="btn btn-primary"
-				onclick="location.href='userFundingList'">&nbsp;&nbsp;&nbsp;&nbsp;후원 목록&nbsp;&nbsp;&nbsp;&nbsp;</button>
+				onclick="location.href='fundingList'">&nbsp;&nbsp;&nbsp;&nbsp;후원 목록&nbsp;&nbsp;&nbsp;&nbsp;</button>
 			</div>
 		</div>
 	</div>

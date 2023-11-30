@@ -284,39 +284,8 @@ public class UserController {
 		return "1";
 	}
 	
-	// 마이페이지에서 후원 현황(목록) 페이지 이동
-	@GetMapping("userFundingList")
-	public String userFundingList() {
-		System.out.println("UserController - userFundingList()");
-		return "mypage/user/user_funding_list";
-	}
 	
-	
-	/*====================================================================
-	 * 후원 관련 세부 페이지
-	 * ===================================================================
-	 * */
-	
-	// 후원(결제) 완료 페이지
-	@GetMapping("userFundingSuccess")
-	public String userFundingSuccess() {
-		System.out.println("UserController - userFundingSuccess()");
-		return "mypage/user/user_funding_success";
-	}
-	
-	// 후원(결제) 취소 확인 페이지
-	@GetMapping("userFundingCancel")
-	public String userFundingCancel() {
-		System.out.println("UserController - userFundingCancel()");
-		return "mypage/user/user_funding_cancel";
-	}
-	
-	// 후원 상세 페이지
-	@GetMapping("userFundingDetail")
-	public String userFundingDetail() {
-		System.out.println("UserController - userFundingDetail()");
-		return "mypage/user/user_funding_detail";
-	}
+
 		
 	
 		
