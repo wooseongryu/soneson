@@ -13,6 +13,7 @@
 		<typeAlias type="com.itwillbs.soneson.vo.QnaVO" alias="Qna"/>
 		<typeAlias type="com.itwillbs.soneson.vo.ProjectVO" alias="Project"/>
 		<typeAlias type="com.itwillbs.soneson.vo.FundingVO" alias="Funding"/>
+		<typeAlias type="com.itwillbs.soneson.vo.ProItemVO" alias="Item"/>
 	</typeAliases>
 </configuration>
   

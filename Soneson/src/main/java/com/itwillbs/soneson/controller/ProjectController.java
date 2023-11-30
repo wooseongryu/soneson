@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itwillbs.soneson.service.ItemService;
 import com.itwillbs.soneson.service.ProjectService;
 import com.itwillbs.soneson.vo.ProjectVO;
 
@@ -32,6 +33,8 @@ import com.itwillbs.soneson.vo.ProjectVO;
 public class ProjectController {
 	@Autowired
 	private ProjectService service;
+	@Autowired
+	private ItemService itemService;
 	
 	
 	
@@ -345,15 +348,24 @@ public class ProjectController {
 				
 				
 			}
-			return "됐나";
+			return "저장되었습니다.";
 		} else { // DB 작업 처리 실패
-			return "안됐나";
+			return "저장에 실패하였습니다.";
 		}
 //		*/
 		
 //		return "project/default";
 	}
 	
+	
+	//아이템저장
+	@ResponseBody
+	@PostMapping("insertItem")
+	public String insertItem(@RequestParam Map<String, Object>map) {
+		System.out.println("아이템 저장하러 가는중~~~~~");
+		System.out.println(map);
+		return "";
+	}
 	
 
 

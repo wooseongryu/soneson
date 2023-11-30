@@ -41,7 +41,7 @@ function updateProject(pro_code) {
 		dataType: "text",
 		success: function(result) {
 			console.log(result);
-			alert("저장하였습니다.");
+			alert(result);
 		},
 		error:function(request,error){
 			alert("저장을 실패하였습니다. 잠시 후 다시 시도해주세요.");
@@ -390,7 +390,7 @@ $(function() {
 				</div>
 				<!-- reward -->
 				<div class="content-form">
-<%-- 					<jsp:include page="./reward.jsp"></jsp:include> --%>
+					<jsp:include page="./reward.jsp"></jsp:include>
 				</div>
 				<!-- story -->
 				<div class="content-form">

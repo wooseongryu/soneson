@@ -26,6 +26,49 @@
 			);
 		});
 	});
+	
+	//데이터 가져오기
+	function insertItem(pro_code) {
+		let item_name = $("#item_name").val();
+		let item_condition = $("input[name=item_condition]:checked").val();
+		console.log("item_name: " + item_name);
+		console.log("item_condition: " + item_condition);
+		
+		let get_option = $(".reward-section2 input[type=text]");
+		let item_option = "";
+		$.each(get_option, function (index, value) {
+			console.log(value);
+			console.log('value =' + $(value).val());
+			item_option += $(value).val() + '/';
+		});
+		console.log(item_option);
+		
+		$.ajax({
+			type: "POST",
+			url: "insertItem",
+			data: {
+				"pro_code": pro_code,
+				"item_name": item_name,
+				"item_condition": item_condition,
+				"item_option": item_option
+			},
+			dataType: "json",
+			success: function(data) {
+				
+			},
+			error: function() {
+				console.log("에러");
+			}
+			
+		});
+		
+		
+		
+		
+		
+	}
+	
+	
 </script>
 <!-- 카테고리에 따른 입력폼 -->
 
@@ -40,7 +83,7 @@
 							<div class="previewItem-btn">
 								아이템~~~
 							</div>
-							<button class="preivewItem-removeBtn">
+							<button class="preivewItem-removeBtn" type="button">
 								<i class="bi bi-trash3"></i>
 							</button>
 						</li>
@@ -48,7 +91,7 @@
 				</div>
 <!-- 				<form action="" name="project-item"> -->
 					<div class="projectItem-form">
-						<div class="style-projectFunding">
+						<div class="style-projectFunding" id="registItem">
 							<p class="tiny-title">아이템 만들기</p>
 							<p class="projectInfo-description">
 								아이템은 리워드에 포함되는 구성품목입니다.<br>
@@ -59,7 +102,7 @@
 									<p class="tiny-title">아이템 이름</p>
 								</div>
 								<div class="projectItem-form">
-									<input type="text" class="input_detail" name="item_name">
+									<input type="text" class="input_detail" name="item_name" id="item_name">
 								</div>
 								<div class="alert-title">
 									<p></p>
@@ -109,7 +152,7 @@
 										<p class="tiny-title">옵션 항목</p>
 									</div>
 									<div class="projectItem-form">
-										<input type="text" class="input_detail" placeholder="예) 각인문구를 작성해주세요.">
+										<input type="text" class="input_detail" placeholder="예) 각인문구를 작성해주세요." name="item_option">
 									</div>
 								</div>
 								<div id="radio-value2" style="display: none;">
@@ -138,6 +181,7 @@
 							</section>
 							<div class="formBtnDiv">
 <!-- 								<input class="formBtn" type="reset" value="초기화"> -->
+								<button type="button" onclick="insertItem('${pro.pro_code }')">등록</button>
 <!-- 								<input class="formBtn" type="submit" value="등록" id="itemFormSubmitBtn"> -->
 							</div>
 						</div>
