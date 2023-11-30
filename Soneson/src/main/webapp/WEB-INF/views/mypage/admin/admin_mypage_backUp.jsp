@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,28 +17,6 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/mypage/css/admin_mypage.css" rel="stylesheet">
 
 </head>
-
-<script type="text/javascript">
-	function authAccount() {
-		// 새 창에서 사용자 인증 페이지 요청
-		let requestUri = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
-							+ "response_type=code"
-							+ "&client_id=4066d795-aa6e-4720-9383-931d1f60d1a9"
-							+ "&redirect_uri=http://localhost:8081/soneson/callback"
-// 							+ "&scope=login inquiry transfer oob"
-							+ "&scope=login inquiry transfer"
-							+ "&state=12345678901234567890123456789012"
-							+ "&auth_type=0";
-		window.open(requestUri, "authWindow", "width=600, height=800");
-	}
-	// 임시. GET 방식 요청을 RestTemplate 객체를 활용하여 수행하도록 새 창 열기
-	function authAccount2() {
-		// 새 창에서 사용자 인증 페이지 요청
-		// => GET 방식의 REST API 요청 연습을 위한 임시 창(서블릿 주소 요청)
-		window.open("RequestAuth", "authWindow", "width=600, height=800");
-	}
-	
-</script>
 
 <!-- header -->
 <body id="page-top">
@@ -66,25 +43,6 @@
 					<!-- Page Heading -->
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">관리자 마이페이지</h1>
-					</div>
-					<div>
-						<c:choose>
-							<c:when test="${empty sessionScope.sId}">
-								<script type="text/javascript">
-									alert("로그인 후 사용 가능합니다!");
-									location.href = "login";
-								</script>
-							</c:when>
-							<c:when test="${empty sessionScope.access_token}">
-								<input type="button" value="계좌인증" onclick="authAccount()">
-				<!-- 				<input type="button" value="계좌인증2" onclick="authAccount2()"> -->
-							</c:when>
-							<c:otherwise>
-								<input type="button" value="계좌인증(임시_계좌등록용)" onclick="authAccount()">
-								<input type="button" value="핀테크사용자정보" onclick="location.href = 'FintechUserInfo'">
-								<input type="button" value="핀테크등록계좌정보" onclick="location.href = 'FintechAccountList'">
-							</c:otherwise>
-						</c:choose>
 					</div>
 
 					<!-- Content Row -->
