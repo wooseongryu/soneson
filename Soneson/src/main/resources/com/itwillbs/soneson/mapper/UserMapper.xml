@@ -228,7 +228,8 @@
 	<select id="getUserProfile" resultType="User">
 		SELECT 
 			user_name
-			, user_info 
+			, user_info
+			, user_picture 
 		FROM user
 		WHERE user_id = #{sId}
 	</select>

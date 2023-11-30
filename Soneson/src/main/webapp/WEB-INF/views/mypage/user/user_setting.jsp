@@ -34,6 +34,8 @@
     <script type="text/javascript">
     	let pointColor = "#F86453";
     	
+    	let picture = "";
+    	
     	function userProfile(id) {
     		$.ajax({
     			type: 'post',
@@ -44,9 +46,15 @@
     				
     				console.log(resp);
     				
+    				// 등록된 소개가 없을 경우 입력폼 출력값 수정 필요.
 					let info = resp.user_info;
     				if (info == "" || info == null) {
     					info = "등록된 소개가 없습니다.";
+    				}
+    				
+    				picture = resp.user_picture;
+    				if (picture == "" || picture == null) {
+    					picture = "${pageContext.request.contextPath }/resources/user/prifile.png";
     				}
 
 					$("#user_content").append(
@@ -55,7 +63,8 @@
                         + '  		<div class="user__setting__text" id="user_profile_pic">                                                                '
 	                    + '      		<h6>프로필 사진</h6>                                                                                        '
 	                    + '      		<div class="profileImgDiv">                                                                                 '
-						+ ' 				<img alt="" src="${pageContext.request.contextPath }/resources/user/alarm.jpg" class="profileImg">      '
+// 						+ ' 				<img alt="" src="${pageContext.request.contextPath }/resources/user/alarm.jpg" class="profileImg">      '
+						+ ' 				<img alt="" src="' + picture + '" class="profileImg">      '
 						+ ' 			</div>                                                                                                      '
 	                    + '      		<div class="user_follow_btn">                                                                               '
 	                    + '      			<a onclick="updateUserProfilePic()">변경</a>                                                                  '
@@ -64,7 +73,7 @@
                     	+ '  	</div>                                                                                                              '
                 	 	+ ' </div>                                                                                                                  '
 							
-						+  ' <div class="anime__details__review">                                     '
+						+ ' <div class="anime__details__review">                                     '
 						+ '  	<div class="anime__review__item">                                    '
                         + '  		<div class="user__setting__text" id="user_name">                 '
 	                    + '      		<h6>이름</h6>                                                '
@@ -83,7 +92,6 @@
 	                    + '      		<p style="margin-top: 10px; width: 700px">' + info + '</p>           '
 	                    + '      		<div class="user_follow_btn">                                                   '
 	                    + '      			<a onclick="updateUserIntroduction(\'' + info + '\')">변경</a>                '
-// 	                    + '      			<a onclick="updateUserIntroduction()">변경</a>                              '
 	                    + '      		</div>                                                                          '
 						+ '  		</div>                                                                              '
 	                	+ '  	</div>                                                                                  '
@@ -98,17 +106,19 @@
     	
     	function updateUserProfilePic() {
     		$.ajax({
-    			type: 'post',
-    			url: 'settingUpdateUserProfilePic',
-    			dataType: 'json',
+//     			type: 'post',
+//     			url: 'settingUpdateUserProfilePic',
+//     			dataType: 'json',
     			success: function(resp) {
+    				console.log(sessionStorage.getItem('sId'));
+    				
     				$("#user_profile_pic").children().remove();
     				
     				$("#user_profile_pic").append(
    						  ' <h6>프로필 사진</h6>                                                                                                          '
 	                    + '                                                                                                                               '
 						+ ' <div class="profileImgDiv">                                                                                                   '
-						+ ' 	<img alt="" src="${pageContext.request.contextPath }/resources/user/alarm.jpg" id="profileImg" class="profileImg">        '
+						+ ' 	<img alt="" src="' + picture + '" id="profileImg" class="profileImg">        '
 						+ ' </div>                                                                                                                        '
                         + '                                                                                                                               '
 						+ ' <div class="profile-right">                                                                                                   '
@@ -157,7 +167,7 @@
     				$("#user_profile_pic").append(
    						  ' <h6>프로필 사진</h6>                                                                                        '
    	                    + ' <div class="profileImgDiv">                                                                                 '
-   						+ ' 	<img alt="" src="${pageContext.request.contextPath }/resources/user/alarm.jpg" class="profileImg">      '
+   						+ ' 	<img alt="" src="' + picture + '" class="profileImg">      '
    						+ ' </div>                                                                                                      '
    	                    + ' <div class="user_follow_btn">                                                                               '
    	                    + ' 	<a onclick="updateUserProfilePic()">변경</a>                                                            '
@@ -179,15 +189,14 @@
     				$("#user_name").children().remove();
     				
     				$("#user_name").append(
-                     		  ' <h6>이름</h6>                                                     '
+                     		  ' <h6>이름</h6>                                                                              '
                      		+ ' <input type="text" value="' + user_name + '" id="userName" style="margin-top: 10px">       '
-                     		+ '                                                                   '
-                     		+ ' <div class="user_follow_btn">                                     '
-                     		+ ' 	<a id="updateUserNameSave">저장</a>                                          '
-                     		+ ' </div>                                                            '
-                     		+ ' <div class=user_cancel_btn>                                       '
-                     		+ ' 	<a onclick="cancelUpdateUserName(\'' + user_name + '\')">취소</a>                  '
-                     		+ ' </div>      	                                                      '
+                     		+ ' <div class="user_follow_btn">                                                              '
+                     		+ ' 	<a id="updateUserNameSave">저장</a>                                                    '
+                     		+ ' </div>                                                                                     '
+                     		+ ' <div class=user_cancel_btn>                                                                '
+                     		+ ' 	<a onclick="cancelUpdateUserName(\'' + user_name + '\')">취소</a>                      '
+                     		+ ' </div>      	                                                                           '
     				);
     				
     				$("#updateUserNameSave").on("click", updateUserNamePro);
@@ -201,7 +210,7 @@
     	function updateUserNamePro() {
     		$.ajax({
     			type: 'post',
-    			url: 'settingUpdateUserNamePro',
+    			url: 'settingUpdateUserProfilePro',
     			data: {
     				user_name: $('#userName').val()
     			},
@@ -226,7 +235,7 @@
     				);
     			},
     			error: function() {
-    				alert("에러!7");
+    				alert("유저 이름 수정 실패");
     			}
     		});
     	}
@@ -240,11 +249,11 @@
     				$("#user_name").children().remove();
     				
     				$("#user_name").append(
-   						  '<h6>이름</h6>                                                '
-   	                    + '<p style="margin-top: 10px">' + user_name + '</p>                       '
-   	                    + '<div class="user_follow_btn">                                '
-   	                    + '    <a onclick="updateUserName(\'' + user_name + '\')">변경</a>                   '
-   	                    + '</div>                                                       '
+   						  '<h6>이름</h6>                                                  '
+   	                    + '<p style="margin-top: 10px">' + user_name + '</p>              '
+   	                    + '<div class="user_follow_btn">                                  '
+   	                    + '    <a onclick="updateUserName(\'' + user_name + '\')">변경</a>'
+   	                    + '</div>                                                         '
     				);
     			},
     			error: function() {
@@ -262,17 +271,18 @@
 					$("#user_intro").children().remove();
 					
     				$("#user_intro").append(
-   						  ' <h6>소개</h6>                                                                                                                             '
-                   		+ ' <textarea rows="10px" cols="70px" id="userInfo" placeholder="자기소개를 입력해주세요." maxlength="3000" style="margin-top: 10px">' + info + '</textarea>'
-                   		+ ' <div class="user_follow_btn">                                                                                                             '
-                   		+ ' 	<a id="updateUserIntroductionSave">저장</a>                                                                                                                  '
-                   		+ ' </div>                                                                                                                                    '
-                   		+ ' <div class=user_cancel_btn>                                                                                                               '
-                   		+ ' 	<a onclick="cancelUpdateUserIntroduction(\'' + info + '\')">취소</a>                                                                                  '
-                   		+ ' </div>                                                                                                                                    '
+   						  ' <h6>소개</h6>                                                                                                                    '
+                   		+ ' <textarea rows="10px" cols="70px" id="userInfo" placeholder="자기소개를 입력해주세요." maxlength="3000" style="margin-top: 10px">'
+                   		+ 		info.replaceAll("<br>", "\n") 
+                   		+ '</textarea>                                                                                                                           '
+                   		+ ' <div class="user_follow_btn">                                                                                                         '
+                   		+ ' 	<a id="updateUserIntroductionSave">저장</a>                                                                                       '
+                   		+ ' </div>                                                                                                                                '
+                   		+ ' <div class=user_cancel_btn>                                                                                                           '
+                   		+ ' 	<a onclick="cancelUpdateUserIntroduction(\'' + info + '\')">취소</a>                                                              '
+                   		+ ' </div>                                                                                                                                '
     				);
 
-//     				$("#updateUserIntroductionSave").on("click", updateUserIntroductionPro);
     				$("#updateUserIntroductionSave").on("click", function() {
     					if ($("#userInfo").val() == "") {
     						alert("1자 이상 입력하세요.");
@@ -287,17 +297,20 @@
     		});
     	}
     	
-    	// TODO
     	function updateUserIntroductionPro() {
     		$.ajax({
     			type: 'post',
-    			url: 'settingUpdateUserIntroPro',
+    			url: 'settingUpdateUserProfilePro',
     			data: {
     				user_info: $('#userInfo').val()
     			},
     			dataType: 'json',
     			success: function(resp) {
-    				console.log(resp);
+    				if (resp.isUpdated == "false") {
+    					alert("소개 수정 실패!");
+    					userProfile('topCateProfile');
+    					return;
+    				}
     				
     				let info = resp.user_info;
     				
@@ -413,20 +426,152 @@
 
 					$("#user_password").append(
                       	  ' <h6>현재 비밀번호</h6>                                                                '
-                   		+ ' <input type="text" placeholder="현재 비밀번호" style="margin-top: 10px">              '
-                   		+ '                                                                                       '
+                   		+ ' <input type="password" id="nowPass" placeholder="현재 비밀번호" style="margin-top: 10px">              '
+                   		
                    		+ ' <h6 style="margin-top: 15px">변경할 비밀번호</h6>                                     '           
-                   		+ ' <input type="text" placeholder="변경할 비밀번호" style="margin-top: 10px">            '
+                   		
+                   		+ ' <input type="password" id="changePass" placeholder="변경할 비밀번호" maxlength="16" style="margin-top: 10px">            '
+                   		+ ' <span id = "checkPasswdResult"></span>'
                    		+ ' <br>                                                                                  '
-                   		+ ' <input type="text" placeholder="변경할 비밀번호 확인" style="margin-top: 10px">       '
-                   		+ '                                                                                       '
+                   		+ ' <input type="password" id="changePassCheck" placeholder="변경할 비밀번호 확인" maxlength="16" style="margin-top: 10px">       '
+                   		+ ' <span id = "checkPasswdResult2"></span>'
+                   		
                    		+ ' <div class="user_follow_btn">                                                         '
-                   		+ ' 	<a href="#">저장</a>                                                              '
+                   		+ ' 	<a onclick="checkValid()">저장</a>                                                              '
                    		+ ' </div>                                                                                '
                    		+ ' <div class=user_cancel_btn>                                                           '
                    		+ ' 	<a onclick="cancelUpdateUserPassword()">취소</a>                                      '
                    		+ ' </div>                                                                                '
 					);
+					
+					$("#changePass").on("blur", function() {
+						isPassSafe();
+						isPassEqual();
+					});
+					
+					$("#changePassCheck").on("blur", isPassEqual);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function isPassSafe() {
+    		let isSafe = false;
+    		
+    		let passwd = $("#changePass").val();
+			
+			let msg = "";
+			let color = "";
+			
+			let lengthRegex = /^[A-Za-z0-9!@#$%]{8,16}$/;
+			
+			if(passwd == "") {
+				msg = "비밀번호 입력 필수!";
+				color = "red";
+			} else if(!lengthRegex.exec(passwd)) {
+				msg = "비밀번호 길이 8 ~ 16글자 필수!";
+				color = "red";
+			} else {
+				let engUpperRegex = /[A-Z]/;
+				let engLowerRegex = /[a-z]/;
+				let numRegex = /[\d]/;
+				let specRegex = /[!@#$%]/;
+				
+				let count = 0;
+				
+				if(engUpperRegex.exec(passwd)) {  // 대문자가 포함되어 있을 경우
+					count++; 
+				}
+				if(engLowerRegex.exec(passwd)) {  // 소문자가 포함되어 있을 경우
+					count++; 
+				}
+				if(numRegex.exec(passwd)) {  // 숫자가 포함되어 있을 경우
+					count++; 
+				}
+				if(specRegex.exec(passwd)) {  // 특수문자가 포함되어 있을 경우
+					count++; 
+				}
+				
+				switch(count) {
+					case 4 : 
+						msg = "안전";
+						color = "green";
+						isSafe = true;
+						break;
+					case 3 : 
+						msg = "보통";
+						color = "blue";
+						isSafe = true;
+						break;
+					case 2 : 
+						msg = "위험";
+						color = "orange";
+						isSafe = true;
+						break;
+					case 1 :
+					case 0 :
+						msg = "사용 불가능한 패스워드!";
+						color = "red";
+				}
+				
+			}
+			
+			$("#checkPasswdResult").html(msg);
+			$("#checkPasswdResult").css("color", color);
+			
+			return isSafe;
+    	}
+    	
+    	function isPassEqual() {
+    		let isEqual = false;
+    		
+    		let passwd = $("#changePass").val();
+			let passwd2 = $("#changePassCheck").val();
+			
+			let msg = "";
+			let color = "";
+			
+			if(passwd2 == "") {
+				msg = "비밀번호 확인 입력 필수!";
+				color = "red";
+			} else if(passwd != passwd2) {
+				msg = "비밀번호 불일치!";
+				color = "red";
+			} else {
+				msg = "비밀번호 일치!";
+				color = "green";
+				isEqual = true;
+			}
+			
+			$("#checkPasswdResult2").html(msg);
+			$("#checkPasswdResult2").css("color", color);
+			
+			return isEqual;
+    	}
+    	
+    	function checkValid() {
+    		let isEqual = isPassEqual();
+    		let isSafe = isPassSafe();
+    		
+			if (!isEqual) {
+				alert("비밀번호가 일치하지 않습니다.");
+				return;
+			}
+			
+			if (!isSafe) {
+				alert("안전하지 않은 비밀번호입니다.");
+				return;
+			}
+			
+			// TODO
+			$.ajax({
+    			type: 'post',
+    			url: 'isPassEqual',
+    			dataType: 'json',
+    			success: function(resp) {
+    				console.log("비밀번호 일치 여부 : " + resp);
     			},
     			error: function() {
     				alert("에러!");
@@ -711,6 +856,28 @@
                         
                         <div id="user_content">
                         	<!-- ajax -->
+                        	
+                        	<div class="anime__details__review">                                       
+						  		<div class="anime__review__item">                                          
+	                          		<div class="user__setting__text" id="user_password">                   
+		                          		<h6>현재 비밀번호</h6>          
+				                   		 <input type="password" placeholder="현재 비밀번호" id="nowPass" style="margin-top: 10px">      
+				                   		                                                                               
+				                   		 <h6 style="margin-top: 15px">변경할 비밀번호</h6>                             
+				                   		 <input type="password" placeholder="변경할 비밀번호" id="changePass" style="margin-top: 10px">    
+				                   		 <br>                                                                          
+				                   		 <input type="password" placeholder="변경할 비밀번호 확인" id="changePassCheck" style="margin-top: 10px">
+				                   		                                                                               
+				                   		 <div class="user_follow_btn">                                                 
+					                   		 	<a href="#">저장</a>                                                       
+				                   		 </div>                                                                        
+				                   		 <div class=user_cancel_btn>                                                   
+				                   		 	<a onclick="cancelUpdateUserPassword()">취소</a>                      
+				                   		 </div>                                                             
+						  			</div>                                                            
+	                    	  	</div>                                                                
+	                	 	 </div>
+                        	
 						</div>
 						
 						

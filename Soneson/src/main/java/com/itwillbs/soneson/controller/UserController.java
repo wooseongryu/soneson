@@ -97,7 +97,7 @@ public class UserController {
 		// 나머지값 컬럼 생성 후 받아와야 됨.
 		user = userService.getUserProfile(sId);
 		
-//		System.out.println(")))))))))" + user);
+//		System.out.println("************" + user);
 		
 		return gson.toJson(user);
 	}
@@ -134,26 +134,6 @@ public class UserController {
 		return "1";
 	}
 	
-	// 유저 설정 이름 변경 pro
-	@ResponseBody
-	@PostMapping("settingUpdateUserNamePro")
-	public String settingUpdateUserNamePro(@RequestParam Map<String, String> map, Gson gson, HttpSession session, Model model) {
-		System.out.println("UserController - settingUpdateUserNamePro()");
-		
-		map.put("sId", (String)session.getAttribute("sId"));
-		
-		int updateCount = userService.updateUserInfo(map);
-		
-		if (updateCount == 0) {
-			map.put("isUpdated", "false");
-			return gson.toJson(map);
-		}
-		
-		map.put("isUpdated", "true");
-		return gson.toJson(map);
-	}
-	
-	
 	// 유저 설정 소개 변경
 	@ResponseBody
 	@PostMapping("settingUpdateUserIntro")
@@ -162,14 +142,17 @@ public class UserController {
 		return "1";
 	}
 	
-	
 	// 유저 설정 소개 변경 pro
 	@ResponseBody
-	@PostMapping("settingUpdateUserIntroPro")
-	public String settingUpdateUserIntroPro(@RequestParam Map<String, String> map, Gson gson, HttpSession session, Model model) {
-		System.out.println("UserController - settingUpdateUserIntroPro()");
-		
+	@PostMapping("settingUpdateUserProfilePro")
+	public String settingUpdateUserProfilePro(@RequestParam Map<String, String> map, Gson gson, HttpSession session, Model model) {
+		System.out.println("UserController - settingUpdateUserProfilePro()");
+			
 		map.put("sId", (String)session.getAttribute("sId"));
+		
+		if (map.containsKey("user_info")) {
+			map.replace("user_info", map.get("user_info").replaceAll("\n", "<br>"));
+		}
 		
 		int updateCount = userService.updateUserInfo(map);
 		
@@ -198,7 +181,7 @@ public class UserController {
 		return "1";
 	}
 	
-	// 유저 설정 계정 초기 출력 화면
+	// 유저 설정 계정 비밀번호 변경
 	@ResponseBody
 	@PostMapping("settingUpdateUserPassword")
 	public String settingUpdateUserPassword() {
@@ -206,7 +189,31 @@ public class UserController {
 		return "1";
 	}
 	
-	// 유저 설정 계정 초기 출력 화면
+	// 유저 설정 계정 비밀번호 변경 pro
+	@ResponseBody
+	@PostMapping("isPassEqual")
+	public String isPassEqual() {
+		System.out.println("UserController - isPassEqual()");
+		
+		// TODO
+//		비번 일치 확인
+//		loginjoin컨트롤러 loginPro() 참조
+		
+		return "1";
+	}
+	
+	// 유저 설정 계정 비밀번호 변경 pro
+	@ResponseBody
+	@PostMapping("settingUpdateUserPasswordPro")
+	public String settingUpdateUserPasswordPro() {
+		System.out.println("UserController - settingUpdateUserPasswordPro()");
+		
+		System.out.println("비번 변경 컨트롤러");
+		
+		return "1";
+	}
+	
+	// 유저 설정 계정 비밀번호 변경 취소
 	@ResponseBody
 	@PostMapping("settingCancelUpdateUserPassword")
 	public String settingCancelUpdateUserPassword() {
@@ -301,32 +308,8 @@ public class UserController {
 		return "1";
 	}
 	
-	// 마이페이지에서 후원 현황(목록) 페이지 이동
-	@GetMapping("userFundingList")
-	public String userFundingList() {
-		System.out.println("UserController - userFundingList()");
-		return "mypage/user/user_funding_list";
-	}
 	
-	
-	/*====================================================================
-	 * 후원 관련 세부 페이지
-	 * ===================================================================
-	 * */
-	
-	// 후원(결제) 완료 페이지
-	@GetMapping("userFundingSuccess")
-	public String userFundingSuccess() {
-		System.out.println("UserController - userFundingSuccess()");
-		return "mypage/user/user_funding_success";
-	}
-	
-	// 후원 상세 페이지
-	@GetMapping("userFundingDetail")
-	public String userFundingDetail() {
-		System.out.println("UserController - userFundingDetail()");
-		return "mypage/user/user_funding_detail";
-	}
+
 		
 	
 		

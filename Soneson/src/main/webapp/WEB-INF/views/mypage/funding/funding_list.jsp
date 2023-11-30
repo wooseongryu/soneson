@@ -47,6 +47,7 @@
    	
    	.anime__review__item__text{
    		border: 1px solid rgba(0, 0, 0, 0.3);
+   		border-radius: 0px;
    	}
    	
    	.anime__review__item__text span {
@@ -149,10 +150,16 @@
 										<img src="${pageContext.request.contextPath }/resources/user/success.jpg" class="success_jpg">		
 									</a>
 									
-										후원일 2023.11.27 | 후원번호 1000001<br>
-										내 옆에 고양이 다이어리 2024<br>
+										후원일 2023.11.27 | 후원번호 1000001
+										<br>
+										내 옆에 고양이 다이어리 2024
+										<br>
 										• [선물A] 고양이 다이어리 + 다꾸 고양이 스티커 2매
-									<span>39,000원 결제 예정</span>
+										
+										<br>
+										<b>39,000원 결제 예정</b>
+										<br>
+									<span>결제 예정일 2023. 12. 15</span>
 									</div>
 								</div>
 							</div>
