@@ -170,6 +170,7 @@ public class UserController {
 		System.out.println("UserController - settingUpdateUserIntroPro()");
 		
 		map.put("sId", (String)session.getAttribute("sId"));
+		map.replace("user_info", map.get("user_info").replaceAll("\n", "<br>"));
 		
 		int updateCount = userService.updateUserInfo(map);
 		

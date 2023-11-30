@@ -262,17 +262,18 @@
 					$("#user_intro").children().remove();
 					
     				$("#user_intro").append(
-   						  ' <h6>소개</h6>                                                                                                                             '
-                   		+ ' <textarea rows="10px" cols="70px" id="userInfo" placeholder="자기소개를 입력해주세요." maxlength="3000" style="margin-top: 10px">' + info + '</textarea>'
-                   		+ ' <div class="user_follow_btn">                                                                                                             '
-                   		+ ' 	<a id="updateUserIntroductionSave">저장</a>                                                                                                                  '
-                   		+ ' </div>                                                                                                                                    '
-                   		+ ' <div class=user_cancel_btn>                                                                                                               '
-                   		+ ' 	<a onclick="cancelUpdateUserIntroduction(\'' + info + '\')">취소</a>                                                                                  '
-                   		+ ' </div>                                                                                                                                    '
+   						  ' <h6>소개</h6>                                                                                                                         '
+                   		+ ' <textarea rows="10px" cols="70px" id="userInfo" placeholder="자기소개를 입력해주세요." maxlength="3000" style="margin-top: 10px">     '
+                   		+ 		info.replaceAll("<br>", "\n") 
+                   		+ ' </textarea>                                                                                                                           '
+                   		+ ' <div class="user_follow_btn">                                                                                                         '
+                   		+ ' 	<a id="updateUserIntroductionSave">저장</a>                                                                                       '
+                   		+ ' </div>                                                                                                                                '
+                   		+ ' <div class=user_cancel_btn>                                                                                                           '
+                   		+ ' 	<a onclick="cancelUpdateUserIntroduction(\'' + info + '\')">취소</a>                                                              '
+                   		+ ' </div>                                                                                                                                '
     				);
 
-//     				$("#updateUserIntroductionSave").on("click", updateUserIntroductionPro);
     				$("#updateUserIntroductionSave").on("click", function() {
     					if ($("#userInfo").val() == "") {
     						alert("1자 이상 입력하세요.");
@@ -287,7 +288,6 @@
     		});
     	}
     	
-    	// TODO
     	function updateUserIntroductionPro() {
     		$.ajax({
     			type: 'post',
@@ -298,6 +298,12 @@
     			dataType: 'json',
     			success: function(resp) {
     				console.log(resp);
+    				
+    				if (resp.isUpdated == "false") {
+    					alert("소개 수정 실패!");
+    					userProfile('topCateProfile');
+    					return;
+    				}
     				
     				let info = resp.user_info;
     				
