@@ -97,7 +97,7 @@ public class UserController {
 		// 나머지값 컬럼 생성 후 받아와야 됨.
 		user = userService.getUserProfile(sId);
 		
-//		System.out.println(")))))))))" + user);
+		System.out.println("************" + user);
 		
 		return gson.toJson(user);
 	}
@@ -147,7 +147,7 @@ public class UserController {
 	@PostMapping("settingUpdateUserProfilePro")
 	public String settingUpdateUserProfilePro(@RequestParam Map<String, String> map, Gson gson, HttpSession session, Model model) {
 		System.out.println("UserController - settingUpdateUserProfilePro()");
-		
+			
 		map.put("sId", (String)session.getAttribute("sId"));
 		
 		if (map.containsKey("user_info")) {

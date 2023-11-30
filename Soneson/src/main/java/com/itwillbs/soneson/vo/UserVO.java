@@ -32,5 +32,6 @@ public class UserVO {
 	private String user_status; // 가입, 탈퇴
 	private String kakao_id;
 	private String user_info;
+	private String user_picture;
 }
 

@@ -64,7 +64,7 @@
                     	+ '  	</div>                                                                                                              '
                 	 	+ ' </div>                                                                                                                  '
 							
-						+  ' <div class="anime__details__review">                                     '
+						+ ' <div class="anime__details__review">                                     '
 						+ '  	<div class="anime__review__item">                                    '
                         + '  		<div class="user__setting__text" id="user_name">                 '
 	                    + '      		<h6>이름</h6>                                                '
@@ -83,7 +83,6 @@
 	                    + '      		<p style="margin-top: 10px; width: 700px">' + info + '</p>           '
 	                    + '      		<div class="user_follow_btn">                                                   '
 	                    + '      			<a onclick="updateUserIntroduction(\'' + info + '\')">변경</a>                '
-// 	                    + '      			<a onclick="updateUserIntroduction()">변경</a>                              '
 	                    + '      		</div>                                                                          '
 						+ '  		</div>                                                                              '
 	                	+ '  	</div>                                                                                  '
@@ -98,10 +97,12 @@
     	
     	function updateUserProfilePic() {
     		$.ajax({
-    			type: 'post',
-    			url: 'settingUpdateUserProfilePic',
-    			dataType: 'json',
+//     			type: 'post',
+//     			url: 'settingUpdateUserProfilePic',
+//     			dataType: 'json',
     			success: function(resp) {
+    				console.log(sessionStorage.getItem('sId'));
+    				
     				$("#user_profile_pic").children().remove();
     				
     				$("#user_profile_pic").append(
@@ -179,15 +180,14 @@
     				$("#user_name").children().remove();
     				
     				$("#user_name").append(
-                     		  ' <h6>이름</h6>                                                     '
+                     		  ' <h6>이름</h6>                                                                              '
                      		+ ' <input type="text" value="' + user_name + '" id="userName" style="margin-top: 10px">       '
-                     		+ '                                                                   '
-                     		+ ' <div class="user_follow_btn">                                     '
-                     		+ ' 	<a id="updateUserNameSave">저장</a>                                          '
-                     		+ ' </div>                                                            '
-                     		+ ' <div class=user_cancel_btn>                                       '
-                     		+ ' 	<a onclick="cancelUpdateUserName(\'' + user_name + '\')">취소</a>                  '
-                     		+ ' </div>      	                                                      '
+                     		+ ' <div class="user_follow_btn">                                                              '
+                     		+ ' 	<a id="updateUserNameSave">저장</a>                                                    '
+                     		+ ' </div>                                                                                     '
+                     		+ ' <div class=user_cancel_btn>                                                                '
+                     		+ ' 	<a onclick="cancelUpdateUserName(\'' + user_name + '\')">취소</a>                      '
+                     		+ ' </div>      	                                                                           '
     				);
     				
     				$("#updateUserNameSave").on("click", updateUserNamePro);
@@ -240,11 +240,11 @@
     				$("#user_name").children().remove();
     				
     				$("#user_name").append(
-   						  '<h6>이름</h6>                                                '
-   	                    + '<p style="margin-top: 10px">' + user_name + '</p>                       '
-   	                    + '<div class="user_follow_btn">                                '
-   	                    + '    <a onclick="updateUserName(\'' + user_name + '\')">변경</a>                   '
-   	                    + '</div>                                                       '
+   						  '<h6>이름</h6>                                                  '
+   	                    + '<p style="margin-top: 10px">' + user_name + '</p>              '
+   	                    + '<div class="user_follow_btn">                                  '
+   	                    + '    <a onclick="updateUserName(\'' + user_name + '\')">변경</a>'
+   	                    + '</div>                                                         '
     				);
     			},
     			error: function() {
@@ -297,8 +297,6 @@
     			},
     			dataType: 'json',
     			success: function(resp) {
-    				console.log(resp);
-    				
     				if (resp.isUpdated == "false") {
     					alert("소개 수정 실패!");
     					userProfile('topCateProfile');
