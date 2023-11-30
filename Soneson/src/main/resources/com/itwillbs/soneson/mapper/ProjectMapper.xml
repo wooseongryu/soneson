@@ -25,6 +25,14 @@
 		WHERE user_id = #{user_id} AND pro_code = #{pro_code}
 	</select>
 	
+	<select id="selectNewProject" resultType="Project">
+		SELECT *
+		FROM sample_pro
+		WHERE user_id = #{user_id}
+		ORDER BY pro_insertDt DESC
+		LIMIT 1
+	</select>
+	
 	
 	
 	<!-- 약관동의 후 insert -->
@@ -35,6 +43,7 @@
 			, pro_categorie
 			, pro_title
 			, pro_agree
+			, pro_insertDt
 		)
 		VALUES (
 			null
@@ -42,6 +51,7 @@
 			, #{pro_categorie}
 			, #{pro_title}
 			, 'Y'
+			, now()
 		)
 	</insert>
 	
@@ -67,18 +77,36 @@
 			pro_title = #{pro_title}
 			, pro_categorie = #{pro_categorie}
 			, pro_summary = #{pro_summary}
-			, pro_thumbsnail = #{pro_thumbsnail}
+			<if test="pro_thumbsnail != null and !pro_thumbsnail.equals('')">
+				, pro_thumbsnail = #{pro_thumbsnail}
+			</if>
 			, pro_goal = #{pro_goal}
-			, pro_startDt = #{pro_startDt}
-			, pro_endDt = #{pro_endDt}
-			, pro_content = #{pro_content}
-			, pro_budget = #{pro_budget}
-			, pro_sch = #{pro_sch}
-			, pro_team = #{pro_team}
-			, pro_reward = #{pro_reward}
+			<if test="pro_startDt != null and !pro_startDt.equals('')">
+				, pro_startDt = #{pro_startDt}
+			</if>
+			<if test="pro_endDt != null and !pro_endDt.equals('')">
+				, pro_endDt = #{pro_endDt}
+			</if>
+			<if test="pro_content != null and !pro_content.equals('')">
+				, pro_content = #{pro_content}
+			</if>
+			<if test="pro_budget != null and !pro_budget.equals('')">
+				, pro_budget = #{pro_budget}
+			</if>
+			<if test="pro_sch != null and !pro_sch.equals('')">
+				, pro_sch = #{pro_sch}
+			</if>
+			<if test="pro_team != null and !pro_team.equals('')">
+				, pro_team = #{pro_team}
+			</if>
+			<if test="pro_reward != null and !pro_reward.equals('')">
+				, pro_reward = #{pro_reward}
+			</if>
 			, pro_notice = #{pro_notice}
 			, pro_creator = #{pro_creator}
-			, pro_profile = #{pro_profile}
+			<if test="pro_profile != null and !pro_profile.equals('')">
+				, pro_profile = #{pro_profile}
+			</if>
 			, pro_createrInfo = #{pro_createrInfo}
 			, pro_userAuth = #{pro_userAuth}
 		WHERE pro_code = #{pro_code}

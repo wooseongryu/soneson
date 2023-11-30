@@ -72,12 +72,16 @@
 		$("#start-funding").attr("min", tommorrow);
 		let startDt = new Date("${pro.pro_startDt}");
 		let endDt = new Date("${pro.pro_endDt}");
-		let fundingDays = Math.round((endDt - startDt) / 1000 / 60 / 60 / 24);
-		let paymentDt = endDt.getFullYear() + "-" + endDt.getMonth() + "-" + (endDt.getDate() + 7);
-		let calculateDt = endDt.getFullYear() + "-" + endDt.getMonth() + "-" + (endDt.getDate() + 14);
-		$("#fundingDays").text(fundingDays);
-		$("#paymentDt").text(paymentDt);
-		$("#calculateDt").text(calculateDt);
+		
+		if(${not empty pro.pro_startDt} && ${not empty pro.pro_startDt}) {
+			let fundingDays = Math.round((endDt - startDt) / 1000 / 60 / 60 / 24);
+			let paymentDt = endDt.getFullYear() + "-" + endDt.getMonth() + "-" + (endDt.getDate() + 7);
+			let calculateDt = endDt.getFullYear() + "-" + endDt.getMonth() + "-" + (endDt.getDate() + 14);
+			$("#fundingDays").text(fundingDays);
+			$("#paymentDt").text(paymentDt);
+			$("#calculateDt").text(calculateDt);
+			
+		};
 		
 		//시작날짜 변경 시
 		$("#start-funding").on('click change', function() {
@@ -89,10 +93,13 @@
 				return;
 			}
 			console.log(startDt + ", " + typeof startDt);
-			fundingDays = Math.round((endDt - startDt) / 1000 / 60 / 60 / 24);
-			console.log(fundingDays + ", " + typeof fundingDays);
-			$("#fundingDays").text(fundingDays);
 			
+			if(endDt != "" || endDt != null) {
+				fundingDays = Math.round((endDt - startDt) / 1000 / 60 / 60 / 24);
+				console.log(fundingDays + ", " + typeof fundingDays);
+				$("#fundingDays").text(fundingDays);
+				return;
+			}
 		});
 		
 		//마감날짜 변경 시 
@@ -106,12 +113,15 @@
 			endDt = new Date($(this).val());
 			startDt = new Date($("#start-funding").val());
 			fundingDays = Math.round((endDt - startDt) / 1000 / 60 / 60 / 24);
-			$("#fundingDays").text(fundingDays);
 			paymentDt = endDt.getFullYear() + "-" + endDt.getMonth() + "-" + (endDt.getDate() + 7);
 			calculateDt = endDt.getFullYear() + "-" + endDt.getMonth() + "-" + (endDt.getDate() + 14);
 // 			console.log("결제마감일" + paymentDt);
-			$("#paymentDt").text(paymentDt);
-			$("#calculateDt").text(calculateDt);
+			if(endDt != "" || endDt != null) {
+				$("#fundingDays").text(fundingDays);
+				$("#paymentDt").text(paymentDt);
+				$("#calculateDt").text(calculateDt);
+				return;
+			}
 			
 		});
 		

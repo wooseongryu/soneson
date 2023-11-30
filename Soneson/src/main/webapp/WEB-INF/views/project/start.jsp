@@ -76,6 +76,7 @@
 							<p>${pro.pro_title }</p>
 						</div>
 						<form action="projectUpdateForm" method="post">
+							<input type="hidden" name="isNewInsert" value="N"> 
 							<input type="hidden" value="${pro.pro_code }" name="pro_code">
 							<input type="hidden" value="${pro.user_id }" name="user_id">
 <!-- 							<button class="ing-probtn">이어서 작성</button> -->

@@ -21,7 +21,7 @@ public class ProjectService {
 	}
 	
 	//기본정보 insert
-	public int insertStartProj(Map<String, Object> map) {
+	public int insertStartProj(Map<String, String> map) {
 		return mapper.insertStartProj(map);
 	}
 
@@ -38,6 +38,10 @@ public class ProjectService {
 
 	public ProjectVO selectFileName(int pro_code) {
 		return mapper.selectFileName(pro_code);
+	}
+
+	public ProjectVO selectNewProject(Map<String, String> map) {
+		return mapper.selectNewProject(map);
 	}
 
 

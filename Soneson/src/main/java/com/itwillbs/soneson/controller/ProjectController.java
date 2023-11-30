@@ -10,10 +10,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,7 +45,6 @@ public class ProjectController {
 			model.addAttribute("targetURL", "login");
 			return "forward";
 		}
-		System.out.println(sId + "==========");
 		pro = service.selectIdProj(sId);
 		System.out.println(pro);
 		model.addAttribute("pro", pro);
@@ -61,6 +62,7 @@ public class ProjectController {
 	//이미 작성 중인 프로젝트가 있을 경우
 	@PostMapping("projectUpdateForm")
 	public String projectUpdateForm(@RequestParam Map<String, String> map, HttpSession session, ProjectVO pro, Model model) {
+		System.out.println(">>>>>>>>>projectUpdateForm<<<<<<<<<<<<");
 		String sId = (String)session.getAttribute("sId");
 		
 		if(sId == null) {
@@ -68,13 +70,36 @@ public class ProjectController {
 			model.addAttribute("targetURL", "login");
 			return "forward";
 		}
+		
+		System.out.println(map);
 		pro = service.selectProject(map);
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>pro"+ pro);
+			
 		
-//		if(!pro.getPro_thumbsnail().equals("")) { 
+		
+//		if(!pro.getPro_thumbsnail().equals("") || pro.getPro_thumbsnail() != null) { 
 //			pro.setPro_thumbsnail(pro.getPro_thumbsnail().substring(20));
+//			System.out.println(pro.getPro_thumbsnail());
 //		}
-		
-		
+//		if(!pro.getPro_content().equals("") || pro.getPro_content() != null) { 
+//			pro.setPro_content(pro.getPro_content().substring(20));
+//		}
+//		if(!pro.getPro_budget().equals("") || pro.getPro_budget() != null) { 
+//			pro.setPro_budget(pro.getPro_budget().substring(20));
+//		}
+//		if(!pro.getPro_sch().equals("") || pro.getPro_sch() != null) { 
+//			pro.setPro_sch(pro.getPro_sch().substring(20));
+//		}
+//		if(!pro.getPro_team().equals("") || pro.getPro_team() != null) { 
+//			pro.setPro_team(pro.getPro_team().substring(20));
+//			System.out.println(pro.getPro_team());
+//		}
+//		if(!pro.getPro_reward().equals("") || pro.getPro_reward() != null) { 
+//			pro.setPro_reward(pro.getPro_reward().substring(20));
+//		}
+//		if(!pro.getPro_profile().equals("") || pro.getPro_profile() != null) { 
+//			pro.setPro_profile(pro.getPro_profile().substring(20));
+//		}
 		
 		
 		model.addAttribute("pro", pro);
@@ -85,8 +110,7 @@ public class ProjectController {
 	
 	//작성페이지이동	
 	@PostMapping("projectInsertForm")
-	public String projectInsertForm(@RequestParam Map<String, Object> map, HttpSession session, Model model
-									) {
+	public String projectInsertForm(@RequestParam Map<String, String> map, HttpSession session, Model model) {
 		
 		String sId = (String)session.getAttribute("sId");
 		
@@ -95,18 +119,56 @@ public class ProjectController {
 			model.addAttribute("targetURL", "login");
 			return "forward";
 		}
+		
 		map.put("user_id", sId);
-		// ======pro_summary not null 걸려있어서 오류뜸 수정해야함 그때까지 보류=======
 		int insertCount = service.insertStartProj(map);
-		if(insertCount < 0) {
+		
+		if(insertCount <= 0) {
 			model.addAttribute("msg", "잠시 후 다시 시도해 주세요.");
 			model.addAttribute("targetURL", "projectStartForm");
 			return "forward";
-		}
+		} 
 		
-		model.addAttribute("pro", map);
-//		return "project/default";
-		return "redirect:/projectUpdateForm";
+		System.out.println(map); //{isNewInsert=Y, pro_categorie=동물, pro_title=건강한 지구, user_id=admin}
+		return "redirect:/updateProjectForm";
+		
+	}
+	
+	//INSERT리다이렉트
+	@GetMapping("updateProjectForm")
+	public String updateProjectForm(HttpSession session, Model model, ProjectVO pro, Map<String, String> map) {
+		System.out.println("updateProjectForm");
+		String sId = (String)session.getAttribute("sId");
+		map.put("user_id", sId);
+		pro = service.selectNewProject(map);
+		
+//		if(!pro.getPro_thumbsnail().equals("") || pro.getPro_thumbsnail() != null) { 
+//			pro.setPro_thumbsnail(pro.getPro_thumbsnail().substring(11));
+//			System.out.println(pro.getPro_thumbsnail());
+//		}
+//		if(!pro.getPro_content().equals("") || pro.getPro_content() != null) { 
+//			pro.setPro_content(pro.getPro_content().substring(20));
+//		}
+//		if(!pro.getPro_budget().equals("") || pro.getPro_budget() != null) { 
+//			pro.setPro_budget(pro.getPro_budget().substring(20));
+//		}
+//		if(!pro.getPro_sch().equals("") || pro.getPro_sch() != null) { 
+//			pro.setPro_sch(pro.getPro_sch().substring(20));
+//		}
+//		if(!pro.getPro_team().equals("") || pro.getPro_team() != null) { 
+//			pro.setPro_team(pro.getPro_team().substring(20));
+//			System.out.println(pro.getPro_team());
+//		}
+//		if(!pro.getPro_reward().equals("") || pro.getPro_reward() != null) { 
+//			pro.setPro_reward(pro.getPro_reward().substring(20));
+//		}
+//		if(!pro.getPro_profile().equals("") || pro.getPro_profile() != null) { 
+//			pro.setPro_profile(pro.getPro_profile().substring(20));
+//		}
+		
+		model.addAttribute("pro", pro);
+		
+		return "project/default";
 	}
 	
 	@PostMapping("submitProject")
@@ -155,29 +217,29 @@ public class ProjectController {
 		MultipartFile p_thumb = pro.getPro_thumb_multi();
 		MultipartFile p_content = pro.getPro_content_multi();
 		MultipartFile p_budget = pro.getPro_budget_multi();
-//		MultipartFile p_sch = pro.getPro_sch_multi();
-//		MultipartFile p_team = pro.getPro_team_multi();
-//		MultipartFile p_reward = pro.getPro_reward_multi();
-//		MultipartFile p_profile = pro.getPro_profile_multi();
+		MultipartFile p_sch = pro.getPro_sch_multi();
+		MultipartFile p_team = pro.getPro_team_multi();
+		MultipartFile p_reward = pro.getPro_reward_multi();
+		MultipartFile p_profile = pro.getPro_profile_multi();
 		
 		String uuid = UUID.randomUUID().toString();
 		pro.setPro_thumbsnail("");
 		pro.setPro_content("");
 		pro.setPro_budget("");
-//		pro.setPro_sch("");
-//		pro.setPro_team("");
-//		pro.setPro_reward("");
-//		pro.setPro_profile("");
+		pro.setPro_sch("");
+		pro.setPro_team("");
+		pro.setPro_reward("");
+		pro.setPro_profile("");
 		
 		boolean isUploadProcess = false;
 		
 		String fileName_thumbsnail = "";
 		String fileName_content = "";
 		String fileName_budget = "";
-//		String fileName_sch = "";
-//		String fileName_team = "";
-//		String fileName_reward = "";
-//		String fileName_profile = "";
+		String fileName_sch = "";
+		String fileName_team = "";
+		String fileName_reward = "";
+		String fileName_profile = "";
 		
 		if(pro.getPro_thumb_multi() != null && !p_thumb.getOriginalFilename().equals("")) {
 			fileName_thumbsnail = uuid.substring(0,8) + "_" + p_thumb.getOriginalFilename();
@@ -189,31 +251,31 @@ public class ProjectController {
 			pro.setPro_content(subDir + "/" + fileName_content);
 			isUploadProcess = true;
 		}
-		if(!p_budget.getOriginalFilename().equals("")) {
+		if(pro.getPro_budget_multi() != null && !p_budget.getOriginalFilename().equals("")) {
 			fileName_budget = uuid.substring(0,8) + "_" + p_budget.getOriginalFilename();
 			pro.setPro_budget(subDir + "/" + fileName_budget);
 			isUploadProcess = true;
 		}
-//		if(!p_sch.getOriginalFilename().equals("")) {
-//			fileName_sch = uuid.substring(0,8) + "_" + p_sch.getOriginalFilename();
-//			pro.setPro_sch(subDir + "/" + fileName_profile);
-//			isUploadProcess = true;
-//		}
-//		if(!p_team.getOriginalFilename().equals("")) {
-//			fileName_team = uuid.substring(0,8) + "_" + p_team.getOriginalFilename();
-//			pro.setPro_team(subDir + "/" + fileName_team);
-//			isUploadProcess = true;
-//		}
-//		if(!p_reward.getOriginalFilename().equals("")) {
-//			fileName_reward = uuid.substring(0,8) + "_" + p_reward.getOriginalFilename();
-//			pro.setPro_reward(subDir + "/" + fileName_reward);
-//			isUploadProcess = true;
-//		}
-//		if(!p_profile.getOriginalFilename().equals("")) {
-//			fileName_profile = uuid.substring(0,8) + "_" + p_profile.getOriginalFilename();
-//			pro.setPro_profile(subDir + "/" + fileName_profile);
-//			isUploadProcess = true;
-//		}
+		if(pro.getPro_sch_multi() != null && !p_sch.getOriginalFilename().equals("")) {
+			fileName_sch = uuid.substring(0,8) + "_" + p_sch.getOriginalFilename();
+			pro.setPro_sch(subDir + "/" + fileName_sch);
+			isUploadProcess = true;
+		}
+		if(pro.getPro_team_multi() != null && !p_team.getOriginalFilename().equals("")) {
+			fileName_team = uuid.substring(0,8) + "_" + p_team.getOriginalFilename();
+			pro.setPro_team(subDir + "/" + fileName_team);
+			isUploadProcess = true;
+		}
+		if(pro.getPro_reward_multi() != null && !p_reward.getOriginalFilename().equals("")) {
+			fileName_reward = uuid.substring(0,8) + "_" + p_reward.getOriginalFilename();
+			pro.setPro_reward(subDir + "/" + fileName_reward);
+			isUploadProcess = true;
+		}
+		if(pro.getPro_profile_multi() != null && !p_profile.getOriginalFilename().equals("")) {
+			fileName_profile = uuid.substring(0,8) + "_" + p_profile.getOriginalFilename();
+			pro.setPro_profile(subDir + "/" + fileName_profile);
+			isUploadProcess = true;
+		}
 		
 		//수정 전 기존파일저장
 		ProjectVO prevPro = service.selectFileName(pro.getPro_code());
@@ -236,18 +298,18 @@ public class ProjectController {
 					if(!fileName_budget.equals("")) {
 						p_budget.transferTo(new File(saveDir,fileName_budget));
 					} 
-//					if(!fileName_sch.equals("")) {
-//						p_sch.transferTo(new File(saveDir,fileName_sch));
-//					} 
-//					if(!fileName_team.equals("")) {
-//						p_team.transferTo(new File(saveDir,fileName_team));
-//					} 
-//					if(!fileName_reward.equals("")) {
-//						p_reward.transferTo(new File(saveDir,fileName_reward));
-//					} 
-//					if(!fileName_profile.equals("")) {
-//						p_profile.transferTo(new File(saveDir,fileName_profile));
-//					} 
+					if(!fileName_sch.equals("")) {
+						p_sch.transferTo(new File(saveDir,fileName_sch));
+					} 
+					if(!fileName_team.equals("")) {
+						p_team.transferTo(new File(saveDir,fileName_team));
+					} 
+					if(!fileName_reward.equals("")) {
+						p_reward.transferTo(new File(saveDir,fileName_reward));
+					} 
+					if(!fileName_profile.equals("")) {
+						p_profile.transferTo(new File(saveDir,fileName_profile));
+					} 
 					
 					
 					// 중복 코드 제거를 위한 배열 + 반복문 활용 > 기존파일 삭제

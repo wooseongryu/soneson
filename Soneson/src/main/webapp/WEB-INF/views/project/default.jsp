@@ -230,6 +230,7 @@ $(function() {
 							<div class="plan-title">
 								<h2>${pro.pro_title }</h2>
 								<p>${pro.pro_categorie} · ${pro.user_id }</p>
+								<P>${pro.pro_code }</P>
 							</div>
 						</div>
 					</div>
@@ -262,6 +263,7 @@ $(function() {
 						<div class="top-menu-btn">
 <%-- 							<button formaction="updateProject" onclick="updateProject(${pro.pro_code})">저장하기</button> --%>
 							<button type="button" onclick="updateProject(${pro.pro_code})">저장하기</button>
+							<input type="hidden" name="isNewInsert" value="N">
 						</div>
 					</div>
 				</div>
@@ -364,7 +366,14 @@ $(function() {
 									</div>
 									<div class="imagePreview">
 										<div class="image-preview">
-											<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }" id="preview" width="180px">
+										<c:choose>
+											<c:when test="${not empty pro.pro_thumbsnail }">
+												<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }" id="preview" width="180px">
+											</c:when>
+											<c:otherwise>
+												<img src="" id="preview" width="180px">
+											</c:otherwise>
+										</c:choose>
 										</div>
 		<!-- 								<div class="image-change" style="display: none;"> -->
 		<!-- 									<button id="changeBtn"><i class="bi bi-upload"></i>변경</button> -->
@@ -389,7 +398,7 @@ $(function() {
 				</div>
 				<!-- creator -->
 				<div class="content-form">
-<%-- 					<jsp:include page="./creator.jsp"></jsp:include> --%>
+					<jsp:include page="./creator.jsp"></jsp:include>
 				</div>
 			</div>
 		</div>

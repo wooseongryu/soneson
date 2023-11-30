@@ -13,7 +13,7 @@ public interface ProjectMapper {
 	List<ProjectVO> selectProjectList();
 	
 	//새 프로젝트 insert
-	int insertStartProj(Map<String, Object> map);
+	int insertStartProj(Map<String, String> map);
 	
 	//startForm select
 	ProjectVO selectIdProj(String sId);
@@ -25,6 +25,8 @@ public interface ProjectMapper {
 	int updateProject(ProjectVO pro);
 
 	ProjectVO selectFileName(int pro_code);
+
+	ProjectVO selectNewProject(Map<String, String> map);
 
 	
 }

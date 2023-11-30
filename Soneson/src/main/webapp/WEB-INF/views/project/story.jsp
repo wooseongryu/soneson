@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <script>
 	$(function() {
 		//프로젝트 소개
@@ -112,7 +113,14 @@
 					</div>
 					<div class="imagePreview">
 						<div class="image-preview">
-							<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_content }" id="info_preview" width="630px">
+							<c:choose>
+								<c:when test="${not empty pro.pro_content }">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_content }" id="info_preview" width="630px">
+								</c:when>
+								<c:otherwise>
+									<img src="" id="info_preview" width="180px">
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 				</div>
@@ -154,7 +162,14 @@
 					</div>
 					<div class="imagePreview">
 						<div class="image-preview">
-							<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_budget }" id="budget_preview" width="630px" alt="사진을 등록해주세요.">
+							<c:choose>
+								<c:when test="${not empty pro.pro_budget }">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_budget }" id="budget_preview" width="630px" alt="사진을 등록해주세요.">
+								</c:when>
+								<c:otherwise>
+									<img src="" id="budget_preview" width="180px">
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 				</div>
@@ -196,7 +211,14 @@
 					</div>
 					<div class="imagePreview">
 						<div class="image-preview">
-							<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_sch }" id="sch_preview" width="630px">
+							<c:choose>
+								<c:when test="${not empty pro.pro_sch }">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_sch }" id="sch_preview" width="630px">
+								</c:when>
+								<c:otherwise>
+									<img src="" id="sch_preview" width="180px">
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 				</div>
@@ -222,7 +244,14 @@
 					</div>
 					<div class="imagePreview">
 						<div class="image-preview">
-							<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_team }" id="team_preview" width="630px">
+							<c:choose>
+								<c:when test="${not empty pro.pro_team }">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_team }" id="team_preview" width="630px">
+								</c:when>
+								<c:otherwise>
+									<img src="" id="team_preview" width="180px">
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 				</div>
@@ -247,7 +276,14 @@
 					</div>
 					<div class="imagePreview">
 						<div class="image-preview">
-							<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_reward }" id="reward_preview" width="630px">
+							<c:choose>
+								<c:when test="${not empty pro.pro_reward }">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_reward }" id="reward_preview" width="630px">
+								</c:when>
+								<c:otherwise>
+									<img src="" id="reward_preview" width="180px">
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 				</div>
@@ -270,7 +306,7 @@
 								이 프로젝트의 정책을 기입해주세요.<br>
 							</p>
 							<section class="reward-section">
-								<textarea rows="10" cols="" class="plan-textarea" style="height: 300px;" name="pro_notice"></textarea>
+								<textarea rows="10" cols="" class="plan-textarea" style="height: 300px;" name="pro_notice">${pro.pro_notice }</textarea>
 							</section>
 						</div>
 				</div>

@@ -77,6 +77,7 @@
 					</div>
 					<form action="projectInsertForm" method="post">
 						<div class="agree-next">
+							<input type="hidden" name="isNewInsert" value="Y"> 
 							<input type="hidden" name="pro_categorie" value="${param.pro_categorie }">
 							<input type="hidden" name="pro_title" value="${param.pro_title }">
 							<button type="button" id="step2_prev" onclick="backToStart()">돌아가기</button>

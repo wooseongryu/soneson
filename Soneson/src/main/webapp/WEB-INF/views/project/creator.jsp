@@ -1,9 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
+	//본인인증
+	function authInfo() {
+		window.open("RequestAuth", "authWindow", "width=600, height=800");
+	}
+	
+	//계좌등록
+	function authAccount() {
+		window.open("RequestAuth", "authWindow", "width=600, height=800");
+	}
+	
+	//할라나...세금계산서발행
+	function taxInfo() {
+		window.open("RequestAuth", "authWindow", "width=600, height=800");
+	}
+
+
 	$(function() {
 		$('input[name="pro_profile"]').change(function(){
-		    setImageFromFile(this, '#profileImg');
+		    setImageFromFile(this, '#profile_preview');
 		});
 
 		function setImageFromFile(input, expression) {
@@ -34,7 +51,7 @@
 					</dd>
 				</dl>
 				<div class="projectItem-form">
-					<input type="text" class="input_detail" name="pro_creator">
+					<input type="text" class="input_detail" name="pro_creator" value="${pro.pro_creator }">
 				</div>
 			</div>	
 		</div>
@@ -54,9 +71,14 @@
 						<div class="profile-left">
 							<div class="profile-imageDiv">
 								<div  class="profile-image">
-<%-- 										<div class="profile-image" style="background-image: url('${pageContext.request.contextPath }/resources/soneson/img/project/sample.jpg')"> --%>
-									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_profile }" id="profileImg">
-<%-- 											<img alt="" src="${pageContext.request.contextPath }/resources/soneson/img/project/sample.jpg"> --%>
+									<c:choose>
+										<c:when test="${not empty pro.pro_profile }">
+											<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_profile }" id="profile_preview" width="630px" alt="사진을 등록해주세요.">
+										</c:when>
+										<c:otherwise>
+											<img src="" id="profile_preview" width="180px">
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
 						</div>
@@ -95,7 +117,7 @@
 					</dd>
 				</dl>
 				<div class="projectItem-form">
-					<textarea class="plan-textarea" placeholder="간단한 소개를 써주세요" name="pro_createrInfo"></textarea>
+					<textarea class="plan-textarea" placeholder="간단한 소개를 써주세요" name="pro_createrInfo">${pro.pro_createrInfo }</textarea>
 				</div>
 			</div>	
 		</div>
@@ -118,7 +140,7 @@
 								<i class="bi bi-person-fill"></i>	
 								<p>본인인증을 해주세요.</p>
 							</div>
-							<button class="authInfoBtn">인증하기</button>
+							<button class="authInfoBtn" type="button" onclick="authInfo()">인증하기</button>
 						</div>
 					</div>
 				</div>
@@ -143,7 +165,7 @@
 								<i class="bi bi-coin"></i>
 								<p>후원금을 수령할 계좌를 등록해주세요.</p>
 							</div>
-							<button class="authInfoBtn">등록하기</button>
+							<button class="authInfoBtn" type="button" onclick="authAccount()">등록하기</button>
 						</div>
 					</div>
 				</div>
@@ -167,7 +189,7 @@
 								<i class="bi bi-cash"></i>
 								<p>세금계산서 발행을 위한 정보를 등록해주세요.</p>
 							</div>
-							<button class="authInfoBtn">등록하기</button>
+							<button class="authInfoBtn" type="button" onclick="taxInfo()">등록하기</button>
 						</div>
 					</div>
 				</div>
