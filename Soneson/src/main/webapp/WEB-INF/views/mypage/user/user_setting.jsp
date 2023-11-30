@@ -34,6 +34,8 @@
     <script type="text/javascript">
     	let pointColor = "#F86453";
     	
+    	let picture = "";
+    	
     	function userProfile(id) {
     		$.ajax({
     			type: 'post',
@@ -44,9 +46,15 @@
     				
     				console.log(resp);
     				
+    				// 등록된 소개가 없을 경우 입력폼 출력값 수정 필요.
 					let info = resp.user_info;
     				if (info == "" || info == null) {
     					info = "등록된 소개가 없습니다.";
+    				}
+    				
+    				picture = resp.user_picture;
+    				if (picture == "" || picture == null) {
+    					picture = "${pageContext.request.contextPath }/resources/user/prifile.png";
     				}
 
 					$("#user_content").append(
@@ -55,7 +63,8 @@
                         + '  		<div class="user__setting__text" id="user_profile_pic">                                                                '
 	                    + '      		<h6>프로필 사진</h6>                                                                                        '
 	                    + '      		<div class="profileImgDiv">                                                                                 '
-						+ ' 				<img alt="" src="${pageContext.request.contextPath }/resources/user/alarm.jpg" class="profileImg">      '
+// 						+ ' 				<img alt="" src="${pageContext.request.contextPath }/resources/user/alarm.jpg" class="profileImg">      '
+						+ ' 				<img alt="" src="' + picture + '" class="profileImg">      '
 						+ ' 			</div>                                                                                                      '
 	                    + '      		<div class="user_follow_btn">                                                                               '
 	                    + '      			<a onclick="updateUserProfilePic()">변경</a>                                                                  '
@@ -109,7 +118,7 @@
    						  ' <h6>프로필 사진</h6>                                                                                                          '
 	                    + '                                                                                                                               '
 						+ ' <div class="profileImgDiv">                                                                                                   '
-						+ ' 	<img alt="" src="${pageContext.request.contextPath }/resources/user/alarm.jpg" id="profileImg" class="profileImg">        '
+						+ ' 	<img alt="" src="' + picture + '" id="profileImg" class="profileImg">        '
 						+ ' </div>                                                                                                                        '
                         + '                                                                                                                               '
 						+ ' <div class="profile-right">                                                                                                   '
@@ -158,7 +167,7 @@
     				$("#user_profile_pic").append(
    						  ' <h6>프로필 사진</h6>                                                                                        '
    	                    + ' <div class="profileImgDiv">                                                                                 '
-   						+ ' 	<img alt="" src="${pageContext.request.contextPath }/resources/user/alarm.jpg" class="profileImg">      '
+   						+ ' 	<img alt="" src="' + picture + '" class="profileImg">      '
    						+ ' </div>                                                                                                      '
    	                    + ' <div class="user_follow_btn">                                                                               '
    	                    + ' 	<a onclick="updateUserProfilePic()">변경</a>                                                            '

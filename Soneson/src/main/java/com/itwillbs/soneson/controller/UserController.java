@@ -97,7 +97,7 @@ public class UserController {
 		// 나머지값 컬럼 생성 후 받아와야 됨.
 		user = userService.getUserProfile(sId);
 		
-		System.out.println("************" + user);
+//		System.out.println("************" + user);
 		
 		return gson.toJson(user);
 	}
