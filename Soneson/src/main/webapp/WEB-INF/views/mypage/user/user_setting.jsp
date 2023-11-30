@@ -201,7 +201,7 @@
     	function updateUserNamePro() {
     		$.ajax({
     			type: 'post',
-    			url: 'settingUpdateUserNamePro',
+    			url: 'settingUpdateUserProfilePro',
     			data: {
     				user_name: $('#userName').val()
     			},
@@ -226,7 +226,7 @@
     				);
     			},
     			error: function() {
-    				alert("에러!7");
+    				alert("유저 이름 수정 실패");
     			}
     		});
     	}
@@ -262,10 +262,10 @@
 					$("#user_intro").children().remove();
 					
     				$("#user_intro").append(
-   						  ' <h6>소개</h6>                                                                                                                         '
-                   		+ ' <textarea rows="10px" cols="70px" id="userInfo" placeholder="자기소개를 입력해주세요." maxlength="3000" style="margin-top: 10px">     '
+   						  ' <h6>소개</h6>                                                                                                                    '
+                   		+ ' <textarea rows="10px" cols="70px" id="userInfo" placeholder="자기소개를 입력해주세요." maxlength="3000" style="margin-top: 10px">'
                    		+ 		info.replaceAll("<br>", "\n") 
-                   		+ ' </textarea>                                                                                                                           '
+                   		+ '</textarea>                                                                                                                           '
                    		+ ' <div class="user_follow_btn">                                                                                                         '
                    		+ ' 	<a id="updateUserIntroductionSave">저장</a>                                                                                       '
                    		+ ' </div>                                                                                                                                '
@@ -291,7 +291,7 @@
     	function updateUserIntroductionPro() {
     		$.ajax({
     			type: 'post',
-    			url: 'settingUpdateUserIntroPro',
+    			url: 'settingUpdateUserProfilePro',
     			data: {
     				user_info: $('#userInfo').val()
     			},

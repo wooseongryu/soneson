@@ -134,26 +134,6 @@ public class UserController {
 		return "1";
 	}
 	
-	// 유저 설정 이름 변경 pro
-	@ResponseBody
-	@PostMapping("settingUpdateUserNamePro")
-	public String settingUpdateUserNamePro(@RequestParam Map<String, String> map, Gson gson, HttpSession session, Model model) {
-		System.out.println("UserController - settingUpdateUserNamePro()");
-		
-		map.put("sId", (String)session.getAttribute("sId"));
-		
-		int updateCount = userService.updateUserInfo(map);
-		
-		if (updateCount == 0) {
-			map.put("isUpdated", "false");
-			return gson.toJson(map);
-		}
-		
-		map.put("isUpdated", "true");
-		return gson.toJson(map);
-	}
-	
-	
 	// 유저 설정 소개 변경
 	@ResponseBody
 	@PostMapping("settingUpdateUserIntro")
@@ -162,15 +142,17 @@ public class UserController {
 		return "1";
 	}
 	
-	
 	// 유저 설정 소개 변경 pro
 	@ResponseBody
-	@PostMapping("settingUpdateUserIntroPro")
-	public String settingUpdateUserIntroPro(@RequestParam Map<String, String> map, Gson gson, HttpSession session, Model model) {
-		System.out.println("UserController - settingUpdateUserIntroPro()");
+	@PostMapping("settingUpdateUserProfilePro")
+	public String settingUpdateUserProfilePro(@RequestParam Map<String, String> map, Gson gson, HttpSession session, Model model) {
+		System.out.println("UserController - settingUpdateUserProfilePro()");
 		
 		map.put("sId", (String)session.getAttribute("sId"));
-		map.replace("user_info", map.get("user_info").replaceAll("\n", "<br>"));
+		
+		if (map.containsKey("user_info")) {
+			map.replace("user_info", map.get("user_info").replaceAll("\n", "<br>"));
+		}
 		
 		int updateCount = userService.updateUserInfo(map);
 		
