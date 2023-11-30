@@ -502,32 +502,36 @@
 						
 						$("#checkPasswdResult").html(msg);
 						$("#checkPasswdResult").css("color", color);
+						
+						checkPassEqual();
 					});
 					
-					$("#changePassCheck").on("blur", function() {
-						let passwd = $("#changePass").val();
-						let passwd2 = $("#changePassCheck").val();
-						
-						let msg = "비밀번호 일치!";
-						let color = "green";
-						
-						if(passwd2 == "") {
-							msg = "비밀번호 확인 입력 필수!";
-							color = "red";
-						} else if(passwd != passwd2) {
-							msg = "비밀번호 불일치!";
-							color = "red";
-						}
-						
-						// 텍스트와 글자색상 변수를 활용하여 상태 변경
-						$("#checkPasswdResult2").html(msg);
-						$("#checkPasswdResult2").css("color", color);
-					});
+					$("#changePassCheck").on("blur", checkPassEqual);
     			},
     			error: function() {
     				alert("에러!");
     			}
     		});
+    	}
+    	
+    	function checkPassEqual() {
+    		let passwd = $("#changePass").val();
+			let passwd2 = $("#changePassCheck").val();
+			
+			let msg = "비밀번호 일치!";
+			let color = "green";
+			
+			if(passwd2 == "") {
+				msg = "비밀번호 확인 입력 필수!";
+				color = "red";
+			} else if(passwd != passwd2) {
+				msg = "비밀번호 불일치!";
+				color = "red";
+			}
+			
+			// 텍스트와 글자색상 변수를 활용하여 상태 변경
+			$("#checkPasswdResult2").html(msg);
+			$("#checkPasswdResult2").css("color", color);
     	}
     	
     	// TODO
