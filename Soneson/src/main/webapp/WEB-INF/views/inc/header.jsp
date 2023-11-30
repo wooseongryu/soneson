@@ -86,7 +86,7 @@ ul {
 <!-- 						</a> -->
 						<c:if test="${sessionScope.sId eq 'admin' }">
 							<a href="admin">
-								<span class="icon_profile">관리자페이지</span>
+								<span class="">관리자페이지</span>
 								<span class="HeaderUserProfile_bar__1OPU2"></span>
 							</a>
 						</c:if>
