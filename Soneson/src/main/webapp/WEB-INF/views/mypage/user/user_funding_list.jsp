@@ -47,6 +47,7 @@
    	
    	.anime__review__item__text{
    		border: 1px solid rgba(0, 0, 0, 0.3);
+   		border-radius: 0px;
    	}
    	
    	.anime__review__item__text span {
