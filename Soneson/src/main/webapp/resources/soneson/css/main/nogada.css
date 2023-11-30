@@ -859,6 +859,7 @@
     justify-content: flex-start;
     margin: 0px -10px;
     padding: 0px;
+    margin-top: 25px;
 }
 
 .cXaiVs {
@@ -1257,4 +1258,9 @@
     top: -1px;
     font-size: 9px;
     color: rgb(208, 208, 208);
+}
+
+.dday.deadline {
+	font-weight: 700;
+    color: rgb(235, 75, 56) !important;
 }

@@ -9,8 +9,6 @@ import com.itwillbs.soneson.vo.ProjectVO;
 
 @Mapper
 public interface ProjectMapper {
-
-	List<ProjectVO> selectProjectList();
 	
 	//새 프로젝트 insert
 	int insertStartProj(Map<String, Object> map);
@@ -25,6 +23,14 @@ public interface ProjectMapper {
 	int updateProject(ProjectVO pro);
 
 	ProjectVO selectFileName(int pro_code);
+
+	
+	
+	// =========== 아래는 프로젝트 리스트, 성윤 =============
+	
+	List<ProjectVO> selectProjectList();
+	
+	List<Map<String, Object>> getProjectList();
 
 	
 }
