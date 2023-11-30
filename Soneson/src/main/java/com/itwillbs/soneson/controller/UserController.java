@@ -181,7 +181,7 @@ public class UserController {
 		return "1";
 	}
 	
-	// 유저 설정 계정 초기 출력 화면
+	// 유저 설정 계정 비밀번호 변경
 	@ResponseBody
 	@PostMapping("settingUpdateUserPassword")
 	public String settingUpdateUserPassword() {
@@ -189,7 +189,31 @@ public class UserController {
 		return "1";
 	}
 	
-	// 유저 설정 계정 초기 출력 화면
+	// 유저 설정 계정 비밀번호 변경 pro
+	@ResponseBody
+	@PostMapping("isPassEqual")
+	public String isPassEqual() {
+		System.out.println("UserController - isPassEqual()");
+		
+		// TODO
+//		비번 일치 확인
+//		loginjoin컨트롤러 loginPro() 참조
+		
+		return "1";
+	}
+	
+	// 유저 설정 계정 비밀번호 변경 pro
+	@ResponseBody
+	@PostMapping("settingUpdateUserPasswordPro")
+	public String settingUpdateUserPasswordPro() {
+		System.out.println("UserController - settingUpdateUserPasswordPro()");
+		
+		System.out.println("비번 변경 컨트롤러");
+		
+		return "1";
+	}
+	
+	// 유저 설정 계정 비밀번호 변경 취소
 	@ResponseBody
 	@PostMapping("settingCancelUpdateUserPassword")
 	public String settingCancelUpdateUserPassword() {

@@ -430,10 +430,10 @@
                    		
                    		+ ' <h6 style="margin-top: 15px">변경할 비밀번호</h6>                                     '           
                    		
-                   		+ ' <input type="password" id="changePass" placeholder="변경할 비밀번호" style="margin-top: 10px">            '
+                   		+ ' <input type="password" id="changePass" placeholder="변경할 비밀번호" maxlength="16" style="margin-top: 10px">            '
                    		+ ' <span id = "checkPasswdResult"></span>'
                    		+ ' <br>                                                                                  '
-                   		+ ' <input type="password" id="changePassCheck" placeholder="변경할 비밀번호 확인" style="margin-top: 10px">       '
+                   		+ ' <input type="password" id="changePassCheck" placeholder="변경할 비밀번호 확인" maxlength="16" style="margin-top: 10px">       '
                    		+ ' <span id = "checkPasswdResult2"></span>'
                    		
                    		+ ' <div class="user_follow_btn">                                                         '
@@ -445,68 +445,11 @@
 					);
 					
 					$("#changePass").on("blur", function() {
-						let passwd = $("#changePass").val();
-						
-						let msg = "";
-						let color = "";
-						
-						let lengthRegex = /^[A-Za-z0-9!@#$%]{8,16}$/;
-						
-						if(passwd == "") {
-							msg = "비밀번호 입력 필수!";
-							color = "red";
-						} else if(!lengthRegex.exec(passwd)) {
-							msg = "비밀번호 길이 8 ~ 16글자 필수!";
-							color = "red";
-						} else {
-							let engUpperRegex = /[A-Z]/;
-							let engLowerRegex = /[a-z]/;
-							let numRegex = /[\d]/;
-							let specRegex = /[!@#$%]/;
-							
-							let count = 0;
-							
-							if(engUpperRegex.exec(passwd)) {  // 대문자가 포함되어 있을 경우
-								count++; 
-							}
-							if(engLowerRegex.exec(passwd)) {  // 소문자가 포함되어 있을 경우
-								count++; 
-							}
-							if(numRegex.exec(passwd)) {  // 숫자가 포함되어 있을 경우
-								count++; 
-							}
-							if(specRegex.exec(passwd)) {  // 특수문자가 포함되어 있을 경우
-								count++; 
-							}
-							
-							switch(count) {
-								case 4 : 
-									msg = "안전";
-									color = "green";
-									break;
-								case 3 : 
-									msg = "보통";
-									color = "blue";
-									break;
-								case 2 : 
-									msg = "위험";
-									color = "orange";
-									break;
-								case 1 :
-								case 0 :
-									msg = "사용 불가능한 패스워드!";
-									color = "red";
-							}
-							
-						}
-						
-						$("#checkPasswdResult").html(msg);
-						$("#checkPasswdResult").css("color", color);
-						
-						checkPassEqual();
+						isPassSafe();
+						isPassEqual();
 					});
 					
-					$("#changePassCheck").on("blur", checkPassEqual);
+					$("#changePassCheck").on("blur", isPassEqual);
     			},
     			error: function() {
     				alert("에러!");
@@ -514,12 +457,81 @@
     		});
     	}
     	
-    	function checkPassEqual() {
+    	function isPassSafe() {
+    		let isSafe = false;
+    		
+    		let passwd = $("#changePass").val();
+			
+			let msg = "";
+			let color = "";
+			
+			let lengthRegex = /^[A-Za-z0-9!@#$%]{8,16}$/;
+			
+			if(passwd == "") {
+				msg = "비밀번호 입력 필수!";
+				color = "red";
+			} else if(!lengthRegex.exec(passwd)) {
+				msg = "비밀번호 길이 8 ~ 16글자 필수!";
+				color = "red";
+			} else {
+				let engUpperRegex = /[A-Z]/;
+				let engLowerRegex = /[a-z]/;
+				let numRegex = /[\d]/;
+				let specRegex = /[!@#$%]/;
+				
+				let count = 0;
+				
+				if(engUpperRegex.exec(passwd)) {  // 대문자가 포함되어 있을 경우
+					count++; 
+				}
+				if(engLowerRegex.exec(passwd)) {  // 소문자가 포함되어 있을 경우
+					count++; 
+				}
+				if(numRegex.exec(passwd)) {  // 숫자가 포함되어 있을 경우
+					count++; 
+				}
+				if(specRegex.exec(passwd)) {  // 특수문자가 포함되어 있을 경우
+					count++; 
+				}
+				
+				switch(count) {
+					case 4 : 
+						msg = "안전";
+						color = "green";
+						isSafe = true;
+						break;
+					case 3 : 
+						msg = "보통";
+						color = "blue";
+						isSafe = true;
+						break;
+					case 2 : 
+						msg = "위험";
+						color = "orange";
+						isSafe = true;
+						break;
+					case 1 :
+					case 0 :
+						msg = "사용 불가능한 패스워드!";
+						color = "red";
+				}
+				
+			}
+			
+			$("#checkPasswdResult").html(msg);
+			$("#checkPasswdResult").css("color", color);
+			
+			return isSafe;
+    	}
+    	
+    	function isPassEqual() {
+    		let isEqual = false;
+    		
     		let passwd = $("#changePass").val();
 			let passwd2 = $("#changePassCheck").val();
 			
-			let msg = "비밀번호 일치!";
-			let color = "green";
+			let msg = "";
+			let color = "";
 			
 			if(passwd2 == "") {
 				msg = "비밀번호 확인 입력 필수!";
@@ -527,21 +539,44 @@
 			} else if(passwd != passwd2) {
 				msg = "비밀번호 불일치!";
 				color = "red";
+			} else {
+				msg = "비밀번호 일치!";
+				color = "green";
+				isEqual = true;
 			}
 			
-			// 텍스트와 글자색상 변수를 활용하여 상태 변경
 			$("#checkPasswdResult2").html(msg);
 			$("#checkPasswdResult2").css("color", color);
+			
+			return isEqual;
     	}
     	
-    	// TODO
     	function checkValid() {
-			let changePass = $("#changePass").val();
-			let changePassCheck = $("#changePassCheck").val();
-			
-			if (changePass != changePassCheck) {
-				alert("비번 다름!");
+    		let isEqual = isPassEqual();
+    		let isSafe = isPassSafe();
+    		
+			if (!isEqual) {
+				alert("비밀번호가 일치하지 않습니다.");
+				return;
 			}
+			
+			if (!isSafe) {
+				alert("안전하지 않은 비밀번호입니다.");
+				return;
+			}
+			
+			// TODO
+			$.ajax({
+    			type: 'post',
+    			url: 'isPassEqual',
+    			dataType: 'json',
+    			success: function(resp) {
+    				console.log("비밀번호 일치 여부 : " + resp);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
     	}
     	
     	function cancelUpdateUserPassword() {
