@@ -304,6 +304,13 @@ public class UserController {
 		return "mypage/user/user_funding_success";
 	}
 	
+	// 후원(결제) 취소 확인 페이지
+	@GetMapping("userFundingCancel")
+	public String userFundingCancel() {
+		System.out.println("UserController - userFundingCancel()");
+		return "mypage/user/user_funding_cancel";
+	}
+	
 	// 후원 상세 페이지
 	@GetMapping("userFundingDetail")
 	public String userFundingDetail() {
