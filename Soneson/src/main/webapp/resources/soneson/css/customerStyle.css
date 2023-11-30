@@ -32,6 +32,76 @@
 /*----------------------------------------*/
 
 
+
+#qnaCate_subject {
+		color: #F86453; 
+		font-weight: bold;
+}
+	
+#qna_row {
+ 	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: rgba(0,0,0,0.1);
+	padding-bottom: 30px;
+	margin-bottom: 30px;
+}
+#qna_title {
+ 	margin: 10px 10px 10px 0px;
+}
+
+#qnaCate_subject_category {
+	font-weight: bold;
+	color: rgba(0,0,0,0.7);
+}
+
+#qna_category {
+	padding-right: 0px !important;
+}
+
+
+#eventDetail_row {
+	 	border-bottom-style: solid;
+		border-bottom-width: 1px;
+		border-bottom-color: rgba(0,0,0,0.1);
+		padding-bottom: 30px;
+		margin-bottom: 30px;
+}
+
+
+#eventCate_subject {
+	color: #F86453; 
+	font-weight: bold;
+}
+
+#event_status {
+	 border: none;
+	 color: #fff; 
+	 background: #F86453;
+}
+#event_Dt {
+	 font-size: small;
+}
+#eventList_row {
+ 	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: rgba(0,0,0,0.1);
+	padding-bottom: 30px;
+	margin-bottom: 30px;
+}
+#event_title {
+ 	margin: 10px 10px 10px 0px;
+}
+
+#eventCate_category {
+	padding-right: 0px !important;
+}
+
+#eventCate_subject_category {
+	font-weight: bold;
+	color: rgba(0,0,0,0.7);
+}
+
+
 #wrapper {
 	padding-top: 50px;
 }
@@ -54,7 +124,7 @@ h6 {
 	margin: 0;
 	color: black;
 	font-weight: 400;
-	font-family: "Mulish", sans-serif;
+/* 	font-family: "Mulish", sans-serif; */
 }
 
 h1 {
@@ -138,7 +208,7 @@ ol {
 	text-transform: uppercase;
 	padding-left: 20px;
 	position: relative;
-	font-family: "Oswald", sans-serif;
+/* 	font-family: "Oswald", sans-serif; */
 }
 
 /* .fa-heart-o {
@@ -523,7 +593,7 @@ ol {
 .hero__text h2 {
 	color: #ffffff;
 	font-size: 42px;
-	font-family: "Oswald", sans-serif;
+/* 	font-family: "Oswald", sans-serif; */
 	font-weight: 700;
 	line-height: 52px;
 	margin-top: 35px;
@@ -776,7 +846,7 @@ ol {
 .product__sidebar .section-title h5 {
 	color: #1c1c1c;
 	font-weight: 600;
-	font-family: "Oswald", sans-serif;
+/* 	font-family: "Oswald", sans-serif; */
 	line-height: 21px;
 	text-transform: uppercase;
 	padding-left: 20px;
@@ -1421,7 +1491,7 @@ ol {
 .normal__breadcrumb__text h2 {
 	color: #ffffff;
 	font-size: 48px;
-	font-family: "Oswald", sans-serif;
+/* 	font-family: "Oswald", sans-serif; */
 	font-weight: 700;
 	margin-bottom: 22px;
 }
@@ -1898,7 +1968,7 @@ ol {
 .login__register h3 {
 	color: #1c1c1c;
 	font-weight: 700;
-	font-family: "Oswald", sans-serif;
+/* 	font-family: "Oswald", sans-serif; */
 	margin-bottom: 30px;
 }
 
@@ -1998,7 +2068,7 @@ ol {
 .signup .login__social__links h3 {
 	color: #ffffff;
 	font-weight: 700;
-	font-family: "Oswald", sans-serif;
+/* 	font-family: "Oswald", sans-serif; */
 	margin-bottom: 30px;
 }
 

@@ -47,16 +47,17 @@
 			<div class="row">
 				<div class="col-lg-10 col-md-8" style="float: none; margin: 0 auto;">
 					<div class="anime__details__review">
-						<div class="row justify-content-end">
+						<div class="row justify-content-center">
 							<c:forEach var="qnaCate" items="${qnaCateList }">
-								<div class="col-2">
-									<div class="customer_category" align="center" name="${qnaCate.qnaCate_subject}" 
+								<div class="col-2" >
+									<div class="customer_category"  align="center" name="${qnaCate.qnaCate_subject}" 
 										onclick="location.href='qna?qnaCate_idx=${qnaCate.qnaCate_idx}'" >
-										<h6>${qnaCate.qnaCate_subject }</h6>
+										<h6 id="qnaCate_subject_category">${qnaCate.qnaCate_subject }</h6>
 									</div>
 								</div>
 							</c:forEach>
 						</div>
+						<hr>
 					</div>
 				</div>
 			</div>
