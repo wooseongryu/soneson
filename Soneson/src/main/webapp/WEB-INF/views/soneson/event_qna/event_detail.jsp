@@ -31,26 +31,6 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/slicknav.min.css" type="text/css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/customerStyle.css" type="text/css">
 </head>
-<style>
-	#eventCate_subject {
-		color: #F86453; 
-		font-weight: bold;
-	}
-	#eventCate_category {
-		padding-right: 0px !important;
-	}
-	
-	#eventCate_subject_category {
-		font-weight: bold;
-		color: rgba(0,0,0,0.7);
-	}
-	#event_status {
-		 border: none;
-		 color: #fff; 
-		 background: #F86453;
-	}
-	
-</style>
 
 
 
@@ -69,9 +49,9 @@
 			<div class="row">
 				<div class="col-lg-10 col-md-8" style="float: none; margin: 0 auto;">
 					<div class="anime__details__review">
-						<div class="row justify-content-end">
+						<div class="row justify-content-center">
 							<c:forEach var="eventCate" items="${eventCateList }">
-								<div class="col-1" id="eventCate_category">
+								<div class="col-2" id="eventCate_category">
 									<div class="customer_category" align="center" name="${eventCate.eventCate_subject}" 
 										onclick="location.href='eventList?eventCate_idx=${eventCate.eventCate_idx}'" >
 										<h6 id="eventCate_subject_category">${eventCate.eventCate_subject }</h6>
@@ -79,6 +59,7 @@
 								</div>
 							</c:forEach>
 						</div>
+						<hr>
 					</div>
 				</div>
 			</div>
