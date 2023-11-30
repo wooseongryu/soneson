@@ -40,9 +40,9 @@
 				<div class="ProjectIntroduction__ProjectOutline-sc-1kf21am-2 jqMDnB">
 					<div class="ProjectIntroduction__ProjectOutlineInner-sc-1kf21am-3 edHMaW">
 						<a href="/discover?tab=category&amp;category=calendar-and-diary">
-							<span class="ProjectIntroduction__ProjectCategory-sc-1kf21am-4 gObYWz">${project.category }</span>
+							<span class="ProjectIntroduction__ProjectCategory-sc-1kf21am-4 gObYWz">캘린더 · 다이어리</span>
 						</a>
-						<h1 class="ProjectIntroduction__ProjectTitle-sc-1kf21am-5 VbzlC">${project.title }</h1>
+						<h1 class="ProjectIntroduction__ProjectTitle-sc-1kf21am-5 VbzlC">길고양이와 사계절 2024 탁상달력 [배은망덕고양이들]</h1>
 					</div>
 				</div>
 				
@@ -76,8 +76,7 @@
 									</div>
 									<div class="swiper-slide swiper-slide-active" style="width: 855px;">
 										<div class="IntroVisualSlider__ProjectCoverImage-sc-1h7hyyq-2 eKEnRF">
-<!-- 											<img src="https://tumblbug-pci.imgix.net/4b47313543b96b2826155b31ab4f1f9a6bacb921/14bec61d57bd5c1a1f98d774245389da35067770/cf80649689edf6cb074059992b33969d03900fed/77dd390f-12fb-4a54-8912-bcf74bed4dc2.jpeg?ixlib=rb-1.1.0&amp;w=1240&amp;h=930&amp;auto=format%2Ccompress&amp;lossless=true&amp;fit=crop&amp;s=43ac72d540fe749ebbb93a43082c6d4a" alt="프로젝트 커버 이미지"> -->
-											<img src="${project.img1 }" alt="프로젝트 커버 이미지">
+											<img src="https://tumblbug-pci.imgix.net/4b47313543b96b2826155b31ab4f1f9a6bacb921/14bec61d57bd5c1a1f98d774245389da35067770/cf80649689edf6cb074059992b33969d03900fed/77dd390f-12fb-4a54-8912-bcf74bed4dc2.jpeg?ixlib=rb-1.1.0&amp;w=1240&amp;h=930&amp;auto=format%2Ccompress&amp;lossless=true&amp;fit=crop&amp;s=43ac72d540fe749ebbb93a43082c6d4a" alt="프로젝트 커버 이미지">
 										</div>
 									</div>
 									<div class="swiper-slide swiper-slide-next" style="width: 855px;">
@@ -126,9 +125,9 @@
 						<div class="ProjectIntroduction__Metric-sc-1kf21am-12 fXsdBd">
 							<div class="ProjectIntroduction__StatusTitle-sc-1kf21am-13 fPBHBs">모인금액</div>
 							<div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs">
-								<span class="ProjectIntroduction__Price-sc-1kf21am-15 kzkxoz">${project.now_amount }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">원</span>
+								<span class="ProjectIntroduction__Price-sc-1kf21am-15 kzkxoz">12,405,000<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">원</span>
 								</span>
-								<span class="ProjectIntroduction__FundingRate-sc-1kf21am-16 hIweQS">${project.goal_rate}<!-- -->%</span>
+								<span class="ProjectIntroduction__FundingRate-sc-1kf21am-16 hIweQS">1240<!-- -->%</span>
 							</div>
 						</div>
 						<div class="ProjectIntroduction__Metric-sc-1kf21am-12 fXsdBd">
@@ -137,7 +136,7 @@
 						</div>
 						<div class="ProjectIntroduction__Metric-sc-1kf21am-12 fXsdBd">
 							<div class="ProjectIntroduction__StatusTitle-sc-1kf21am-13 fPBHBs">후원자</div>
-							<div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs">${project.donor}<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">명</span></div>
+							<div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs">606<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">명</span></div>
 						</div>
 					</div>
 
@@ -146,15 +145,15 @@
 						<div class="FundingInformation__InfoWrap-sc-84xkqs-1 dLRgOT">
 							<dl class="FundingInformation__InfoItem-sc-84xkqs-2 dsitt">
 								<dt class="FundingInformation__Title-sc-84xkqs-3 cSBHrX">목표금액</dt>
-								<dd class="FundingInformation__Desc-sc-84xkqs-4 Hysth">${project.goal_amount }원</dd>
+								<dd class="FundingInformation__Desc-sc-84xkqs-4 Hysth">1,000,000원</dd>
 							</dl>
 							<dl class="FundingInformation__InfoItem-sc-84xkqs-2 dsitt">
 								<dt class="FundingInformation__Title-sc-84xkqs-3 cSBHrX">펀딩 기간</dt>
-								<dd class="FundingInformation__Desc-sc-84xkqs-4 Hysth">${project.start_date} ~ ${project.end_date}<span class="FundingInformation__DdayLabel-sc-84xkqs-5 cfyFBE">14일 남음</span></dd>
+								<dd class="FundingInformation__Desc-sc-84xkqs-4 Hysth">2023.11.18 ~ 2023.12.11<span class="FundingInformation__DdayLabel-sc-84xkqs-5 cfyFBE">14일 남음</span></dd>
 							</dl>
 							<dl class="FundingInformation__InfoItem-sc-84xkqs-2 dsitt">
 								<dt class="FundingInformation__Title-sc-84xkqs-3 cSBHrX">결제</dt>
-								<dd class="FundingInformation__Desc-sc-84xkqs-4 Hysth">목표금액 달성시 ${project.end_date}에 결제 진행</dd>
+								<dd class="FundingInformation__Desc-sc-84xkqs-4 Hysth">목표금액 달성시 2023.12.12에 결제 진행</dd>
 							</dl>
 						</div>
 					</div>
@@ -733,7 +732,7 @@
 										<div class="style__CreatorInfo-sc-1kqdyt-10 gFiWmy">
 											<div class="style__TopWrap-sc-1kqdyt-11 cUKpnq">
 												<a target="_blank" href="/u/baeunmangdeokcats">
-													<span class="style__CreatorName-sc-1kqdyt-12 ktUknF">${project.creator }</span>
+													<span class="style__CreatorName-sc-1kqdyt-12 ktUknF">배은망덕고양이들</span>
 												</a>
 											</div>
 											<div class="style__BottomWrap-sc-1kqdyt-13 odjCI">

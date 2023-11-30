@@ -34,5 +34,7 @@ public interface ProjectMapper {
 	
 	List<Map<String, Object>> getProjectList();
 
+	Map<String, Object> getProject(int project_code);
+
 	
 }

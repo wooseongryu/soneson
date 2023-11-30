@@ -23,4 +23,8 @@ public class ProjectListService {
 		return mapper.getProjectList();
 	}
 
+	public Map<String, Object> selectProject(int project_code) {
+		return mapper.getProject(project_code);
+	}
+
 }

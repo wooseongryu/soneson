@@ -138,9 +138,12 @@
 							</div>
 <!-- 							<span class="rest-day">20일 남음</span> -->
 <!-- 							<span class="rest-day">20일 남음</span> -->
-							<strong class="roboto dday rest-day" data-end_date="${project.end_date}"></strong>
+							<strong class="roboto dday rest-day" data-end_date="${project.end_date}" data-goal_rate="${project.goal_rate}"></strong>
 						</div>
-						<div class="ProjectCard__PercentageBar-opxl0a-11 lcwTLC"></div>
+						<div class="ProjectCard__PercentageBar-opxl0a-11 lcwTLC">
+							<div class="ProjectCard__PercentageBar-opxl0a-11 goalRate" data-goal_rate="${project.goal_rate}"></div>
+						</div>
+<%-- 						<div class="ProjectCard__PercentageBar-opxl0a-11 goalRate" data-goal_rate="${project.goal_rate}"></div> --%>
 					</div>
 				</div>
 			</div>
@@ -151,53 +154,61 @@
 	
 	
 	
-	<div class="InfinityList__ProjectCardWrapper-sc-19jay7c-4 jfWeNA">
-	<div>
-	</div>
-	<div class="ProjectCard__Wrapper-opxl0a-13 klQtEn project-card">
-	<div>
-	</div>
-	<div class="ProjectCard__Card-opxl0a-7 dPhtaB link-wrapper">
-	<div class="ProjectCard__StyledImageBox-opxl0a-2 jYSiJP">
-	<div class="image-wrapper">
-	<a target="_self" href="projectDetail">
-	</a>
-	<div class="LikeButton__Wrapper-whittq-0 kiaOkh ProjectCard__StyledLikeButton-opxl0a-8 hfSMxY">
-	<button type="button" class="LikeButton__LikedBtn-whittq-1 gylNpn">
-	<span>좋아요</span>
-	</button>
-	</div>
-	</div>
-	</div>
-	<div class="ProjectCard__StyledInfoBox-opxl0a-3 kfeTrp">
-	<dl>
-	<dd class="project-sub-info">
-	<span>
-	<a href="/discover?tab=category&amp;category=calendar-and-diary">캘린더 · 다이어리</a>
-	</span>
-	<span>
-	<a href="/u/pawinhand">포인핸드</a>
-	</span>
-	</dd>
-	<dt>
-	<a target="_self" href="/pawinhand2024calendar?ref=GNB%2F%EC%9D%B8%EA%B8%B0">품종이 없어도 충분히 사랑스러운, 포인핸드 2024 캘린더</a>
-	</dt>
-	<dd class="project-desc">포인핸드 2024 믹스 유기견 입양 홍보 달력</dd>
-	</dl>
-	<div class="ProjectCard__FundingStatus-opxl0a-10 hjCxPX">
-	<div>
-	<span class="ProjectCard__StyledFundingProgressState-opxl0a-12 ivYcvj">52%</span>
-	<span class="funding-amount">
-	<em>2,643,999</em>원</span>
-	</div>
-	<span class="rest-day">37일 남음</span>
-	</div>
-	<div class="ProjectCard__PercentageBar-opxl0a-11 ktgqAf">
-	</div>
-	</div>
-	</div>
-	</div>
-	</div>
+<!-- 	<div class="InfinityList__ProjectCardWrapper-sc-19jay7c-4 jfWeNA"> -->
+<!-- 	<div> -->
+<!-- 	</div> -->
+<!-- 	<div class="ProjectCard__Wrapper-opxl0a-13 klQtEn project-card"> -->
+<!-- 	<div> -->
+<!-- 	</div> -->
+<!-- 	<div class="ProjectCard__Card-opxl0a-7 dPhtaB link-wrapper"> -->
+<!-- 	<div class="ProjectCard__StyledImageBox-opxl0a-2 jYSiJP"> -->
+<!-- 	<div class="image-wrapper"> -->
+<!-- 	<a target="_self" href="projectDetail"> -->
+<!-- 	</a> -->
+<!-- 	<div class="LikeButton__Wrapper-whittq-0 kiaOkh ProjectCard__StyledLikeButton-opxl0a-8 hfSMxY"> -->
+<!-- 	<button type="button" class="LikeButton__LikedBtn-whittq-1 gylNpn"> -->
+<!-- 	<span>좋아요</span> -->
+<!-- 	</button> -->
+<!-- 	</div> -->
+<!-- 	</div> -->
+<!-- 	</div> -->
+<!-- 	<div class="ProjectCard__StyledInfoBox-opxl0a-3 kfeTrp"> -->
+<!-- 	<dl> -->
+<!-- 	<dd class="project-sub-info"> -->
+<!-- 	<span> -->
+<!-- 	<a href="/discover?tab=category&amp;category=calendar-and-diary">캘린더 · 다이어리</a> -->
+<!-- 	</span> -->
+<!-- 	<span> -->
+<!-- 	<a href="/u/pawinhand">포인핸드</a> -->
+<!-- 	</span> -->
+<!-- 	</dd> -->
+<!-- 	<dt> -->
+<!-- 	<a target="_self" href="/pawinhand2024calendar?ref=GNB%2F%EC%9D%B8%EA%B8%B0">품종이 없어도 충분히 사랑스러운, 포인핸드 2024 캘린더</a> -->
+<!-- 	</dt> -->
+<!-- 	<dd class="project-desc">포인핸드 2024 믹스 유기견 입양 홍보 달력</dd> -->
+<!-- 	</dl> -->
+<!-- 	<div class="ProjectCard__FundingStatus-opxl0a-10 hjCxPX"> -->
+<!-- 	<div> -->
+<!-- 	<span class="ProjectCard__StyledFundingProgressState-opxl0a-12 ivYcvj">52%</span> -->
+<!-- 	<span class="funding-amount"> -->
+<!-- 	<em>2,643,999</em>원</span> -->
+<!-- 	</div> -->
+<!-- 	<span class="rest-day">37일 남음</span> -->
+<!-- 	</div> -->
+<!-- 	<div class="ProjectCard__PercentageBar-opxl0a-11 ktgqAf"> -->
+<!-- 	</div> -->
+<!-- 	</div> -->
+<!-- 	</div> -->
+<!-- 	</div> -->
+<!-- 	</div> -->
+	
+	
+	
+	
+	
+	
+	
+	
 	<div class="InfinityList__ProjectCardWrapper-sc-19jay7c-4 jfWeNA">
 	<div>
 	</div>
@@ -911,6 +922,8 @@
 
 <jsp:include page="../inc/footer.jsp"></jsp:include>
 
+<script src="${pageContext.request.contextPath }/resources/soneson/js/list/popular.js"></script>
+
 <script>
 
 
@@ -918,28 +931,40 @@
 // let dday = new Date(serverEndDate.getTime() + serverEndDate.getTimezoneOffset() * 60 * 1000);
 
 
-	function restDay() {
-		$(".dday").each(function() {
-			let now = new Date();
-			let serverEndDate = new Date($(this).data("end_date"));
-			let dday = new Date(serverEndDate.getTime() + serverEndDate.getTimezoneOffset() * 60 * 1000);
-			let timeDifference = dday - now;
-			let restDay = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) + 1;
+// 	function restDay() {
+// 		$(".dday").each(function() {
+// 			let now = new Date();
+// 			let serverEndDate = new Date($(this).data("end_date"));
+// 			let dday = new Date(serverEndDate.getTime() + serverEndDate.getTimezoneOffset() * 60 * 1000);
+// 			let timeDifference = dday - now;
+// 			let restDay = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) + 1;
 			
-			if(restDay == 0) {
-				$(this).html("오늘 마감");
-				$(this).addClass("deadline")
-			} else {
-				$(this).html(restDay + "일 남음");
-			}
+// 			if(restDay == 0) {
+// 				$(this).html("오늘 마감");
+// 				$(this).addClass("deadline")
+// 			} else {
+// 				$(this).html(restDay + "일 남음");
+// 			}
 			
 			
-		});
-	}
+// 		});
+// 	}
 	
-	$(function() {
-		restDay();
-	});
+// 	let goalRate = 0;
+	
+// 	function goalRateCss() {
+// 		$(".lcwTLC").each(function() {
+// // 			goalRate = ${project.goal_rate};
+// 			$(this).style.setProperty('--goal-rate', goalRate + '%');
+// 		})
+		
+// 	}
+	
+// 	$(function() {
+// 		restDay();
+		
+		
+// 	});
 
 
 //     var endDate = new Date("${project.end_date}"); // endDate를 JSP에서 전달한 변수로 변경

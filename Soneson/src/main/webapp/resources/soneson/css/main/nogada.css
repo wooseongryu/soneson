@@ -619,6 +619,14 @@
     font-weight: 700;
 }
 
+/* .ivYcvj::after { */
+/*     content: ""; */
+/*     width: var(--goal-rate); */
+/*     display: block; */
+/*     height: 100%; */
+/*     background: rgb(255, 87, 87); */
+/* } */
+
 .klQtEn .ProjectCard__FundingStatus-opxl0a-10 .funding-amount {
     margin-left: 4px;
     font-size: 13px;
@@ -643,13 +651,13 @@
     font-weight: 700;
 }
 
-.lcwTLC {
-    overflow: hidden;
-    background: rgb(208, 208, 208);
-    height: 3px;
-    position: relative;
-    margin: 6px 0px 0px;
-}
+/* .lcwTLC { */
+/*     overflow: hidden; */
+/*     background: rgb(208, 208, 208); */
+/*     height: 3px; */
+/*     position: relative; */
+/*     margin: 6px 0px 0px; */
+/* } */
 
 .ffcngd {
     color: rgb(51, 51, 51);
@@ -780,21 +788,21 @@
     box-sizing: border-box;
 }
 
-.lcwTLC {
-    width: 100%;
-    height: 3px;
-	overflow: hidden;
-    background: rgb(208, 208, 208);
-    position: relative;
-}
+/* .lcwTLC { */
+/*     width: 100%; */
+/*     height: 3px; */
+/* 	overflow: hidden; */
+/*     background: rgb(208, 208, 208); */
+/*     position: relative; */
+/* } */
 
-.lcwTLC::after {
-    content: "";
-    width: 219%;
-    display: block;
-    height: 100%;
-    background: rgb(255, 87, 87);
-}
+/* .lcwTLC::after { */
+/*     content: ""; */
+/*     width: var(--goal-rate); */
+/*     display: block; */
+/*     height: 100%; */
+/*     background: rgb(255, 87, 87); */
+/* } */
 
 .jYSiJP {
     position: relative;
@@ -1262,5 +1270,24 @@
 
 .dday.deadline {
 	font-weight: 700;
-    color: rgb(235, 75, 56) !important;
+/*     color: rgb(235, 75, 56) !important; */
+    color: rgb(255, 87, 87) !important;
+}
+
+/* 달성률 */
+.goalRate {
+    content: "";
+/*     width: 51%; */
+    display: block;
+    height: 100%;
+    background: rgb(255, 87, 87);
+}
+
+.lcwTLC {
+    overflow: hidden;
+    background: rgb(208, 208, 208);
+    position: relative;
+	width: 100%;
+    height: 3px;
+    margin: 6px 0px 0px;
 }
