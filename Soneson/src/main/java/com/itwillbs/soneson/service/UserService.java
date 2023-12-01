@@ -101,8 +101,9 @@ public class UserService {
 		
 		return mapper.selectUserFint(user, user_id);
 	}
-	public UserVO getUserPass(UserVO user ) {
-		return mapper.selectUser(user);
+	
+	public UserVO selectUserPass(UserVO user ) {
+		return mapper.selectUserPass(user);
 	}
 
 
@@ -111,21 +112,20 @@ public class UserService {
 		return mapper.selectUser2(user);
 	}
 	
-	// 회원 정보 변경 요청
-	public int updateUser(UserVO user) {
-		return mapper.updateUser(user);
-	}
+//	// 회원 정보 변경 요청
+//	public int updateUser(UserVO user) {
+//		return mapper.updateUser(user);
+//	}
 	
-	// 회원 탈퇴 정보 요청 시 조회
-	public UserVO getdeleteUser(UserVO user) {
-		return mapper.selectUser(user);
-	}
+//	// 회원 탈퇴 정보 요청 시 조회
+//	public UserVO getdeleteUser(UserVO user) {
+//		return mapper.selectUser(user);
+//	}
 
-	// 회원 탈퇴 요청
-	public int deleteUser(UserVO user) {
-		return mapper.deleteUser(user);
-		
-	}
+//	// 회원 탈퇴 요청
+//	public int deleteUser(UserVO user) {
+//		return mapper.deleteUser(user);
+//	}
 	
 	// 아이디 찾기 
 	public UserVO userIdSearch(UserVO user) {
@@ -157,15 +157,15 @@ public class UserService {
 		return mapper.updateKakaoId(user);
 	}
 
-	// 이메일 랜덤으로 바꾸기 - 회원 삭제시
-	public int updateRandomEmail(UserVO user) {
-		return mapper.updateRandomEmail(user);
-	}
+//	// 이메일 랜덤으로 바꾸기 - 회원 삭제시
+//	public int updateRandomEmail(UserVO user) {
+//		return mapper.updateRandomEmail(user);
+//	}
 
-	// 회원 삭제시 이메일 중복체크용
-	public int checkDuplicateEmail(String deleteEmail) {
-		return mapper.checkDuplicateEmail(deleteEmail);
-	}
+//	// 회원 삭제시 이메일 중복체크용
+//	public int checkDuplicateEmail(String deleteEmail) {
+//		return mapper.checkDuplicateEmail(deleteEmail);
+//	}
 
 
 	

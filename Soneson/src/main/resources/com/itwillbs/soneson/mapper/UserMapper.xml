@@ -59,7 +59,7 @@
 	</insert>
 	
 	<!-- select -->
-	<select id="selectUser" resultType="User">
+	<select id="selectUserPass" resultType="User">
 		SELECT
 			user_idx
 			, user_name

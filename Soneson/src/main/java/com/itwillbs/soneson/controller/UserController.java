@@ -206,7 +206,7 @@ public class UserController {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
 		user.setUser_id((String)session.getAttribute("sId"));
-		UserVO dbUser = userService.getUserPass(user);
+		UserVO dbUser = userService.selectUserPass(user);
 		
 		if(!passwordEncoder.matches(user.getUser_passwd(), dbUser.getUser_passwd())) {
 			System.out.println("비밀번호 불일치");
