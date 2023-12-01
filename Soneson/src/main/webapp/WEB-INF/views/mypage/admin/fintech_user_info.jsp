@@ -36,7 +36,7 @@
 		<c:when test="${empty sessionScope.access_token}">
 			<script type="text/javascript">
 				alert("계좌 인증 후 사용 가능합니다!");
-				location.href = "FintechMain";
+				location.href = "admin";
 			</script>
 		</c:when>
 	</c:choose>

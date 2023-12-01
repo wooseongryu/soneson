@@ -29,13 +29,8 @@ import com.itwillbs.soneson.vo.ResponseTokenVO;
 import com.itwillbs.soneson.vo.ResponseUserInfoVO;
 import com.itwillbs.soneson.vo.ResponseWithdrawVO;
 
-
-// 금융결제원 오픈뱅킹 API(REST API) 요청을 수행할 클래스 => 실제 통신을 수행할 클래스
-// => 스프링 빈으로 관리하기 위해 @Service 어노테이션 적용
 @Service
 public class BankApiClient {
-	// -----------------------------------------------------------------------------------
-	// 오픈뱅킹 API 요청 시 사용할 속성값을 appdata.properties 로부터 가져와서 변수에 저장
 	@Value("${client_id}")
 	private String client_id;
 	
@@ -66,14 +61,8 @@ public class BankApiClient {
 	// -----------------------------------------------------------------------------------
 	
 	// 2.1.1. 사용자인증 API (3-legged) 요청 정보 생성 및 요청 수행
-	// 요청 메시지 HTTP URL https://openapi.openbanking.or.kr/oauth/2.0/authorize
-	//             HTTP Method GET
-	// 인증 코드 요청을 수행할 requestAuth() 메서드 정의
-	// => 파라미터 : 없음   리턴타입 : String
 	public String requestAuth() {
 		log.info(">>>>>>>>>>>>>>>>>>>> requestAuth() 확인");
-		// GET 방식 요청을 수행하기 위한 URL 정보 생성
-		// => org.springframework.web.util.UriComponentsBuilder 클래스 활용
 		URI uri = UriComponentsBuilder
 					.fromUriString(base_url) // 기본 주소
 					.path("/oauth/2.0/authorize") // 작업 요청 상세 주소
@@ -94,11 +83,6 @@ public class BankApiClient {
 		// 1) RestTemplate 객체 생성
 		RestTemplate restTemplate = new RestTemplate();
 		// 2) RestTemplate 객체의 getForEntity() 메서드를 호출하여 GET 방식의 HTTP 요청을 수행하고
-		//    리턴되는 데이터를 ResponseEntity 타입 객체로 저장
-		// => 응답 데이터를 처리할 객체 타입이 있을 경우 ResponseEntity 타입의 제네릭타입으로 설정하고
-		//    문자열로 처리할 경우 String 타입 지정
-		// => getForEntity() 메서드 파라미터로 URI 객체와 응답 데이터를 처리할 객체의 클래스타입 지정
-		//    주의! 두번째 파라미터인 응답 데이터 처리 타입 지정 시 .class 필수! (Class 타입으로 지정)
 		ResponseEntity<String> responseEntity = restTemplate.getForEntity(uri, String.class);
 		// => getForEntity() 메서드 호출 시 HTTP 요청이 수행되고
 		//    응답 데이터가 리턴되어 ResponseEntity 타입으로 저장됨
@@ -109,9 +93,7 @@ public class BankApiClient {
 	}
 
 	// 2.1.2. 토큰발급 API - 사용자 토큰발급 API (3-legged) 요청
-	// https://testapi.openbanking.or.kr/oauth/2.0/token
 	public ResponseTokenVO requestToken(Map<String, String> authResponse) {
-		// 요청에 필요한 정보를 관리하는 RequestTokenVO 객체를 통해 요청 파라미터 정보 생성
 		System.out.println("발급전");
 		RequestTokenVO requestToken = new RequestTokenVO();
 		requestToken.setCode(authResponse.get("code"));
@@ -150,23 +132,16 @@ public class BankApiClient {
 		log.info("응답데이터 : " + responseEntity.getBody()); // 리턴타입 : ResponseTokenVO
 		
 		
-		// ResponseEntity 객체의 getBody() 메서드 결과값 리턴 시
-		// 제네릭타입으로 지정된 ResponseTokenVO 타입 객체가 리턴됨
 		return responseEntity.getBody();
 	}
 
 	// 2.2. 사용자/서비스 관리 - 2.2.1. 사용자정보조회 API - GET
-	//  https://testapi.openbanking.or.kr/v2.0/user/me
 	public ResponseUserInfoVO requestUserInfo(Map<String, String> map) {
 		// 1. 사용자 정보 조회 시 엑세스 토큰값을 헤더로 담아 전송 필요하므로
-		//    HttpHeaders 객체 생성 후 add() 메서드를 통해 헤더에 정보 추가
 		HttpHeaders headers = new HttpHeaders();
-		// 헤더명 : "Authorization"
-		// 헤더값 : "Bearer" 문자열과 토큰 결합
 		headers.add("Authorization", "Bearer" + map.get("access_token"));
 		
 		// 2. 헤더 정보를 갖는 HttpEntity 객체 생성
-		//    (헤더 정보를 문자열로 관리하기 위해 제네릭타입 String 타입 지정)
 		HttpEntity<String> httpEntity = new HttpEntity<String>(headers);
 		
 		// 3. 요청에 필요한 URI 정보 생성
@@ -182,10 +157,6 @@ public class BankApiClient {
 		RestTemplate restTemplate = new RestTemplate();
 		
 		// 5. RestTemplate 객체의 exchange() 메서드 호출하여 HTTP 요청 수행 - GET
-		// => 파라미터 : URI 객체, 요청방식(HttpMethod.GET), HttpEntity 객체, 응답데이터 관리 클래스타입
-		// => 리턴타입 : ResponseEntity<ResponseUserInfoVO>
-		// => 헤더 정보 등의 커스터마이징을 수행해야하므로 getForEntity() 메서드 대신
-		//    exchange() 메서드를 통해 HTTP 요청 수행 필요(POST 방식과 동일한 문법 적용 가능)
 		ResponseEntity<ResponseUserInfoVO> responseEntity = 
 				restTemplate.exchange(uri, HttpMethod.GET, httpEntity, ResponseUserInfoVO.class);
 		
@@ -196,14 +167,10 @@ public class BankApiClient {
 	// 2.2. 사용자/서비스 관리 - 2.2.3. 등록계좌조회 API - GET
 	public ResponseAccountListVO requestAccountList(Map<String, String> map) {
 		// 1. 사용자 정보 조회 시 엑세스 토큰값을 헤더로 담아 전송 필요하므로
-		//    HttpHeaders 객체 생성 후 add() 메서드를 통해 헤더에 정보 추가
 		HttpHeaders headers = new HttpHeaders();
-		// 헤더명 : "Authorization"
-		// 헤더값 : "Bearer" 문자열과 토큰 결합
 		headers.add("Authorization", "Bearer" + map.get("access_token"));
 		
 		// 2. 헤더 정보를 갖는 HttpEntity 객체 생성
-		//    (헤더 정보를 문자열로 관리하기 위해 제네릭타입 String 타입 지정)
 		HttpEntity<String> httpEntity = new HttpEntity<String>(headers);
 		
 		// 3. 요청에 필요한 URI 정보 생성
@@ -221,12 +188,9 @@ public class BankApiClient {
 		RestTemplate restTemplate = new RestTemplate();
 		
 		// 5. RestTemplate 객체의 exchange() 메서드 호출하여 HTTP 요청 수행 - GET
-		// => 파라미터 : URI 객체, 요청방식(HttpMethod.GET), HttpEntity 객체, 응답데이터 관리 클래스타입
-		// => 리턴타입 : ResponseEntity<ResponseAccountListVO>
 		ResponseEntity<ResponseAccountListVO> responseEntity = 
 				restTemplate.exchange(uri, HttpMethod.GET, httpEntity, ResponseAccountListVO.class);
-		
-		// ResponseEntity 객체의 getBody() 메서드 호출하여 응답 데이터 리턴
+
 		return responseEntity.getBody();
 	}
 
@@ -239,14 +203,10 @@ public class BankApiClient {
 		log.info(">>>>>>> 요청일시(tran_dtime) : " + tran_dtime);
 		
 		// 1. 사용자 정보 조회 시 엑세스 토큰값을 헤더로 담아 전송 필요하므로
-		//    HttpHeaders 객체 생성 후 add() 메서드를 통해 헤더에 정보 추가
 		HttpHeaders headers = new HttpHeaders();
-		// 헤더명 : "Authorization"
-		// 헤더값 : "Bearer" 문자열과 토큰 결합
 		headers.add("Authorization", "Bearer" + map.get("access_token"));
 		
 		// 2. 헤더 정보를 갖는 HttpEntity 객체 생성
-		//    (헤더 정보를 문자열로 관리하기 위해 제네릭타입 String 타입 지정)
 		HttpEntity<String> httpEntity = new HttpEntity<String>(headers);
 		log.info(">>>>> httpEntity : " + httpEntity.getHeaders());
 		
@@ -265,28 +225,17 @@ public class BankApiClient {
 		RestTemplate restTemplate = new RestTemplate();
 		
 		// 5. RestTemplate 객체의 exchange() 메서드 호출하여 HTTP 요청 수행 - GET
-		// => 파라미터 : URI 객체, 요청방식(HttpMethod.GET), HttpEntity 객체, 응답데이터 관리 클래스타입
-		// => 리턴타입 : ResponseEntity<BankAccountDetailVO>
 		ResponseEntity<BankAccountDetailVO> responseEntity = 
 				restTemplate.exchange(uri, HttpMethod.GET, httpEntity, BankAccountDetailVO.class);
 		
-		// ResponseEntity 객체의 getBody() 메서드 호출하여 응답 데이터 리턴
 		return responseEntity.getBody();
 	}
 
 	// 2.5. 이체서비스 - 2.5.1. 출금이체 API
 	public ResponseWithdrawVO requestWithdraw(Map<String, String> map) {
 		// 1. 사용자 정보 조회 시 엑세스 토큰값을 헤더로 담아 전송 필요하므로
-		//    HttpHeaders 객체 생성 후 add() 메서드를 통해 헤더에 정보 추가
 		HttpHeaders headers = new HttpHeaders();
-		// 헤더명 : "Authorization"
-		// 헤더값 : "Bearer" 문자열과 토큰 결합
-//		headers.add("Authorization", "Bearer" + map.get("access_token"));
-		// Bearer 토큰을 통해 Access Token 전달 시 setBearerAuth() 메서드 활용 가능
 		headers.setBearerAuth(map.get("access_token"));
-		// 전송할 컨텐츠 타입을 JSON 타입으로 설정 => setContentType() 메서드 활용
-		// => MediaType 클래스의 APPLICATION_JSON 상수 활용
-		//    (주의! APPLICATION_JSON_UTF8 은 사용하지 않음 = Deprecated 처리됨)
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
 		// 2. 요청에 필요한 URI 정보 생성 => 문자열로 바로 생성
@@ -325,12 +274,10 @@ public class BankApiClient {
 		log.info(">>>>> 출금이체 요청 JSON 데이터 : " + jo.toString());
 		
 		// 4. 헤더 정보를 갖는 HttpEntity 객체 생성
-		// => 파라미터 데이터(body)로 JSONObject 객체를 문자열로 변환하여 전달, 헤더도 전달
 		HttpEntity<String> httpEntity = new HttpEntity<String>(jo.toString(), headers);
 		log.info(">>>>> httpEntity : " + httpEntity.getHeaders());
 		
 		// 5. POST 방식으로 API 요청 시 JSON 데이터 전송하기 위해
-		//    RestTemplate 객체의 postForEntity() 메서드 호출
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<ResponseWithdrawVO> responseEntity = 
 				restTemplate.postForEntity(url, httpEntity, ResponseWithdrawVO.class);
@@ -352,16 +299,8 @@ public class BankApiClient {
 	// 2.5. 이체서비스 - 2.5.2. 입금이체 API
 	public ResponseDepositListVO requestDeposit(Map<String, String> map) {
 		// 1. 사용자 정보 조회 시 엑세스 토큰값을 헤더로 담아 전송 필요하므로
-		//    HttpHeaders 객체 생성 후 add() 메서드를 통해 헤더에 정보 추가
 		HttpHeaders headers = new HttpHeaders();
-		// 헤더명 : "Authorization"
-		// 헤더값 : "Bearer" 문자열과 토큰 결합
-//		headers.add("Authorization", "Bearer" + map.get("access_token"));
-		// Bearer 토큰을 통해 Access Token 전달 시 setBearerAuth() 메서드 활용 가능
 		headers.setBearerAuth(map.get("access_token"));
-		// 전송할 컨텐츠 타입을 JSON 타입으로 설정 => setContentType() 메서드 활용
-		// => MediaType 클래스의 APPLICATION_JSON 상수 활용
-		//    (주의! APPLICATION_JSON_UTF8 은 사용하지 않음 = Deprecated 처리됨)
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
 		// 2. 요청에 필요한 URI 정보 생성 => 문자열로 바로 생성

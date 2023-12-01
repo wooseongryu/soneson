@@ -96,6 +96,9 @@ public interface UserMapper {
 	// 유저 설정 변경 pro
 	int updateUserInfo(Map<String, String> map);
 
+	// 유저 핀테크 조회
+	UserVO selectUserFint(@Param("user")UserVO user, @Param("user_id")String user_id);
+
 	
 
 	

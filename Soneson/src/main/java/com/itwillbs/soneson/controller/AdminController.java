@@ -69,6 +69,8 @@ public class AdminController {
 		String sId = (String)session.getAttribute("sId");
 		String isAdmin = (String)session.getAttribute("isAdmin");
 		
+		
+		
 		if(sId == null || isAdmin.equals("N")) {
 			model.addAttribute("msg", "잘못된 접근입니다!");
 			return "fail_back";

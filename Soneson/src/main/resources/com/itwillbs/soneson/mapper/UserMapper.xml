@@ -246,5 +246,34 @@
 		WHERE user_id = #{sId};
 	</update>
 	
+	<select id="selectUserFint" resultType="User">
+		SELECT user_idx
+			, user_name
+			, user_id
+			, user_email
+			, user_passwd
+			, hire_date
+			, user_is_admin
+			, mail_auth_status
+		  	, user_status
+			, CASE
+				WHEN kakao_id IS NULL THEN '미연동'
+				ELSE '연동됨'
+			  END AS kakao_id 
+		    ,   (SELECT  f.access_token
+			     FROM user 
+			     LEFT JOIN fintech_user_info AS f
+				      ON user.user_id  = f.id
+			    WHERE user_id = #{user_id}) AS access_token
+			,   (SELECT f.user_seq_no
+			     FROM user 
+			     LEFT JOIN fintech_user_info AS f
+				      ON user.user_id  = f.id
+			     WHERE user_id = #{user_id}) AS user_seq_no
+		     FROM user
+		     WHERE user_id = #{user_id}
+	</select>
+	
+	
 </mapper>
 

@@ -97,9 +97,16 @@ public class UserService {
 	}
 	
 	// 회원 상세정보 조회 요청 - 아이디 ajax 확인용
-	public UserVO getUser(UserVO user) {
-		return mapper.selectUser(user);
+	public UserVO getUser(UserVO user, String user_id) {
+		
+		return mapper.selectUserFint(user, user_id);
+//		return mapper.selectUser(user);
 	}
+
+//	public UserVO getUserFint(UserVO user) {
+//		
+//		return mapper.selectUserFint(user);
+//	}
 
 	// 회원 상세정보 조회 요청 - 이메일 ajax 확인용
 	public UserVO getUser2(UserVO user) {
@@ -183,6 +190,7 @@ public class UserService {
 		return mapper.updateUserInfo(map);
 	}
 
+	
 	
 }
 
