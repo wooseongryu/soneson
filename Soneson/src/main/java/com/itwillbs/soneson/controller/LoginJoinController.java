@@ -311,6 +311,8 @@ public class LoginJoinController {
 								, UserVO user) throws Exception {
 		System.out.println("LoginJoinController - kakao/callback()");
 		
+		System.out.println("+++ " + code);
+		
 		String access_Token = ls.getAccessToken(code);
 		
 		HashMap<String, Object> userInfo = ls.getUserInfo(access_Token);
