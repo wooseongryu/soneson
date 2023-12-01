@@ -1,6 +1,7 @@
 package com.itwillbs.soneson.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -88,6 +89,17 @@ public interface AdminMapper {
 	int deleteQnaCategory(String qnaCate_subject);
 	
 	
+	
+	/*==============================================================
+	 * 프로젝트 관리
+	 * =============================================================
+	 * */
+	
+	
+	List<Map<String, Object>> selectProjectList();
+
+	List<Map<String, Object>> selectProjectMyList();
+
 	
 	
 }

@@ -1,6 +1,7 @@
 package com.itwillbs.soneson.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -161,8 +162,18 @@ public class AdminService {
 		return mapper.deleteQnaCategory(qnaCate_subject);
 	}
 
+	/*==============================================================
+	 * 프로젝트 관리
+	 * =============================================================
+	 * */
 	
-	
+	public List<Map<String, Object>> selectProjectList() {
+		return mapper.selectProjectList();
+	}
+
+	public List<Map<String, Object>> selectProjectMyList() {
+		return mapper.selectProjectMyList();
+	}
 	
 	
 	

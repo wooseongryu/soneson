@@ -182,39 +182,47 @@
 							<!-- Project Card Example -->
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">프로젝트별 펀딩 달성도</h6>
+									<h6 class="m-0 font-weight-bold text-primary">마감예정인 프로젝트 달성도</h6>
 								</div>
 								<div class="card-body">
-									<h4 class="small font-weight-bold">손에손 프로젝트1 <span
-										class="float-right">20%</span></h4>
+								<c:forEach var="projectMy" items="${projectMyList }">
+									<h4 class="small font-weight-bold">${projectMy.title }
+										<span class="float-right">
+											<c:choose>
+												<c:when test="${projectMy.goal_rate > 100 }">달성완료</c:when>
+												<c:otherwise>${projectMy.goal_rate }%</c:otherwise>
+											</c:choose>
+										</span>
+									</h4>
 									<div class="progress mb-4">
-										<div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-											aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar bg-danger" role="progressbar" style="width: ${projectMy.goal_rate }%"
+											aria-valuenow="${projectMy.goal_rate }" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
-									<h4 class="small font-weight-bold">손에손 프로젝트2 <span
-											class="float-right">40%</span></h4>
-									<div class="progress mb-4">
-										<div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-											aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
-									<h4 class="small font-weight-bold">손에손 프로젝트3 <span
-											class="float-right">60%</span></h4>
-									<div class="progress mb-4">
-										<div class="progress-bar" role="progressbar" style="width: 60%"
-											aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
-									<h4 class="small font-weight-bold">손에손 프로젝트4 <span
-											class="float-right">80%</span></h4>
-									<div class="progress mb-4">
-										<div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-											aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
-									<h4 class="small font-weight-bold">손에손 프로젝트5 <span
-											class="float-right">Complete!</span></h4>
-									<div class="progress">
-										<div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-											aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
+								</c:forEach>
+<!-- 									<h4 class="small font-weight-bold">손에손 프로젝트2 <span -->
+<!-- 											class="float-right">40%</span></h4> -->
+<!-- 									<div class="progress mb-4"> -->
+<!-- 										<div class="progress-bar bg-warning" role="progressbar" style="width: 40%" -->
+<!-- 											aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div> -->
+<!-- 									</div> -->
+<!-- 									<h4 class="small font-weight-bold">손에손 프로젝트3 <span -->
+<!-- 											class="float-right">60%</span></h4> -->
+<!-- 									<div class="progress mb-4"> -->
+<!-- 										<div class="progress-bar" role="progressbar" style="width: 60%" -->
+<!-- 											aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div> -->
+<!-- 									</div> -->
+<!-- 									<h4 class="small font-weight-bold">손에손 프로젝트4 <span -->
+<!-- 											class="float-right">80%</span></h4> -->
+<!-- 									<div class="progress mb-4"> -->
+<!-- 										<div class="progress-bar bg-info" role="progressbar" style="width: 80%" -->
+<!-- 											aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div> -->
+<!-- 									</div> -->
+<!-- 									<h4 class="small font-weight-bold">손에손 프로젝트5 <span -->
+<!-- 											class="float-right">Complete!</span></h4> -->
+<!-- 									<div class="progress"> -->
+<!-- 										<div class="progress-bar bg-success" role="progressbar" style="width: 100%" -->
+<!-- 											aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div> -->
+<!-- 									</div> -->
 								</div>
 							</div>
                         </div>

@@ -28,12 +28,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/customerStyle.css" type="text/css">
 
 
-
-
 </head>
-
-
-
 
 <body>
 	<!-- header 위치 -->

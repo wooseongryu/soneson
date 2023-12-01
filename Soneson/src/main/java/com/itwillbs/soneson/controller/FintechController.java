@@ -43,7 +43,6 @@ public class FintechController {
 		String id = (String)session.getAttribute("sId");
 		
 		if(id == null) {
-			// Model 객체를 통해 출력할 메세지(msg) 및 창 닫기 여부(isClose) 전달
 			model.addAttribute("msg", "로그인 필수!");
 			model.addAttribute("isClose", true); // 현재 창(서브 윈도우) 닫기
 			return "fail_back";
@@ -80,7 +79,6 @@ public class FintechController {
 	}
 	
 	// 2.2. 사용자/서비스 관리 - 2.2.1. 사용자정보조회 API
-	//  https://testapi.openbanking.or.kr/v2.0/user/me
 	@GetMapping("/FintechUserInfo")
 	public String requestUserInfo(Map<String, String> map, HttpSession session, Model model) {
 		
