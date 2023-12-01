@@ -99,10 +99,12 @@ public interface UserMapper {
 	// 유저 비밀번호 변경
 	int updatePassword(UserVO user);
 
-	
+	// 유저 설정 계정 초기값
+	UserVO selectUserAccount(String sId);
 
-	
-	
+	// 유저 휴대폰 번호 변경
+	int updateUserPhone(UserVO user);
+
 }
 
 

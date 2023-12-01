@@ -44,7 +44,7 @@
     			success: function(resp) {
     				reset_screen(id);
     				
-    				console.log(resp);
+//     				console.log(resp);
     				
     				// 등록된 소개가 없을 경우 입력폼 출력값 수정 필요.
 					let info = resp.user_info;
@@ -354,6 +354,9 @@
     		});
     	}
     	
+    	let phone = "";
+    	let phone_print = "";
+    	
     	function userAccount(id) {
     		$.ajax({
     			type: 'post',
@@ -361,6 +364,14 @@
     			dataType: 'json',
     			success: function(resp) {
     				reset_screen(id);
+    				
+    				console.log(resp);
+    				
+    				phone = resp.user_phone;
+    				phone_print = resp.user_phone;
+    				if (phone == null || phone == "") {
+    					phone_print = "등록된 연락처가 없습니다.";
+    				}
 
 					$("#user_content").append(
 						  ' <div class="anime__details__review">                                           '
@@ -378,7 +389,7 @@
 						+ '  	<div class="anime__review__item">                                          '
                         + '  		<div class="user__setting__text" id="user_phone">                      '
 	                    + '      		<h6>연락처</h6>                                                    '
-	                    + '      		<p style="margin-top: 10px">등록된 연락처가 없습니다.</p>          '
+	                    + '      		<p style="margin-top: 10px">' + phone_print + '</p>          '
 	                    + '      		<div class="user_follow_btn">                                      '
 	                    + '      			<a onclick="updateUserPhone()">변경</a>                         '
 	                    + '      		</div>                                                             '
@@ -647,14 +658,42 @@
 
 					$("#user_phone").append(
 						  ' <h6>연락처</h6>                                                                     '
-                   		+ ' <input type="text" placeholder="휴대폰 번호를 입력하세요." style="margin-top: 10px">'    
+                   		+ ' <input type="text" id="userPhone" value="' + phone + '" placeholder="휴대폰 번호를 입력하세요." maxlength="11" style="margin-top: 10px">'    
                    		+ '                                                                                     '
                    		+ ' <div class="user_follow_btn">                                                       '
-                   		+ ' 	<a href="#">저장</a>                                                            '
+                   		+ ' 	<a onclick="updateUserPhonePro()">저장</a>                                                            '
                    		+ ' </div>                                                                              '
                    		+ ' <div class=user_cancel_btn>                                                         '
                    		+ ' 	<a onclick="cancelUpdateUserPhone()">취소</a>                                    '
                    		+ ' </div>                                                                              '
+					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function updateUserPhonePro() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingUpdateUserPhonePro',
+    			dataType: 'json',
+    			data: {
+    				user_phone: $("#userPhone").val()
+    			},
+    			success: function(resp) {
+    				phone_print = resp.user_phone;
+    				phone = resp.user_phone;
+    				
+    				$("#user_phone").children().remove();
+
+					$("#user_phone").append(
+						  ' <h6>연락처</h6>                                                    '
+	                    + ' <p style="margin-top: 10px">' + phone_print + '</p>          '
+	                    + ' <div class="user_follow_btn">                                      '
+	                    + ' 	<a onclick="updateUserPhone()">변경</a>                         '
+	                    + ' </div>                                                             '
 					);
     			},
     			error: function() {
@@ -673,7 +712,7 @@
 
 					$("#user_phone").append(
 						  ' <h6>연락처</h6>                                                    '
-	                    + ' <p style="margin-top: 10px">등록된 연락처가 없습니다.</p>          '
+	                    + ' <p style="margin-top: 10px">' + phone_print + '</p>          '
 	                    + ' <div class="user_follow_btn">                                      '
 	                    + ' 	<a onclick="updateUserPhone()">변경</a>                        '
 	                    + ' </div>                                                             '
@@ -893,31 +932,7 @@
                         
                         <div id="user_content">
                         	<!-- ajax -->
-                        	
-                        	<div class="anime__details__review">                                       
-						  		<div class="anime__review__item">                                          
-	                          		<div class="user__setting__text" id="user_password">                   
-		                          		<h6>현재 비밀번호</h6>          
-				                   		 <input type="password" placeholder="현재 비밀번호" id="nowPass" style="margin-top: 10px">      
-				                   		                                                                               
-				                   		 <h6 style="margin-top: 15px">변경할 비밀번호</h6>                             
-				                   		 <input type="password" placeholder="변경할 비밀번호" id="changePass" style="margin-top: 10px">    
-				                   		 <br>                                                                          
-				                   		 <input type="password" placeholder="변경할 비밀번호 확인" id="changePassCheck" style="margin-top: 10px">
-				                   		                                                                               
-				                   		 <div class="user_follow_btn">                                                 
-					                   		 	<a href="#">저장</a>                                                       
-				                   		 </div>                                                                        
-				                   		 <div class=user_cancel_btn>                                                   
-				                   		 	<a onclick="cancelUpdateUserPassword()">취소</a>                      
-				                   		 </div>                                                             
-						  			</div>                                                            
-	                    	  	</div>                                                                
-	                	 	 </div>
-                        	
 						</div>
-						
-						
 						
 					</div>
                 </div>

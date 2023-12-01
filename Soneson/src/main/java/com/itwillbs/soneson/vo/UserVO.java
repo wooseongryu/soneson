@@ -33,5 +33,6 @@ public class UserVO {
 	private String kakao_id;
 	private String user_info;
 	private String user_picture;
+	private String user_phone;
 }
 

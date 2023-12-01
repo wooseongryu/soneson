@@ -190,6 +190,20 @@ public class UserService {
 		return mapper.updatePassword(user);
 	}
 
+	// 유저 설정 계정 초기값
+	public UserVO selectUserAccount(String sId) {
+		System.out.println("UserService - selectUserAccount()");
+		
+		return mapper.selectUserAccount(sId);
+	}
+	
+	// 유저 휴대폰 번호 변경
+	public int updateUserPhone(UserVO user) {
+		System.out.println("UserService - updateUserPhone()");
+		
+		return mapper.updateUserPhone(user);
+	}
+
 	
 }
 
