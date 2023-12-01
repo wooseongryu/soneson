@@ -743,10 +743,21 @@
     	}
     	
     	// TODO
-//     	function updateUserKakao() {
+    	function updateUserKakao() {
+    		let popup = window.open('https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://localhost:8081/soneson/kakao/callback', 'kakao_popup', 'width=700px,height=800px,scrollbars=yes');
+    		
+    		// 진행중..............
+    		popup.addEventListener('unload', function(event) {
+    			alert("창 닫힘");
+    		});
+    		
+    		
+    		console.log("아래 코드1");
+    		
+    		
 //     		$.ajax({
-//     			type: 'get',
-//     			url: 'kakao/callback',
+//     			type: 'post',
+//     			url: 'settingUpdateUserKakao',
 //     			dataType: 'json',
 //     			success: function(resp) {
 //     				console.log("카카오=====");
@@ -762,10 +773,6 @@
 //     				alert("에러!");
 //     			}
 //     		});
-//     	}
-    	
-    	function updateUserKakao() {
-    		window.open('https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://localhost:8081/soneson/kakao/callback', '네이버팝업', 'width=700px,height=800px,scrollbars=yes');
     	}
     	
     	function updateUserLeave() {
