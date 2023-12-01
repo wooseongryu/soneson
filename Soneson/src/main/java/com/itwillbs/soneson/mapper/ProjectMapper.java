@@ -17,7 +17,7 @@ public interface ProjectMapper {
 	ProjectVO selectIdProj(String sId);
 	
 	//이어쓰기버튼
-	ProjectVO selectProject(Map<String, String> map);
+	ProjectVO selectProject(Map<String, Object> map);
 	
 	//저장버튼
 	int updateProject(ProjectVO pro);

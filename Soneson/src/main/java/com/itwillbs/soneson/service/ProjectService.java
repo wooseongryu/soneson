@@ -26,7 +26,7 @@ public class ProjectService {
 	}
 
 	//이어쓰기 버튼
-	public ProjectVO selectProject(Map<String, String> map) {
+	public ProjectVO selectProject(Map<String, Object> map) {
 		return mapper.selectProject(map);
 	}
 	

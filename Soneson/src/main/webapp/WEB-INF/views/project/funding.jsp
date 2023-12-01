@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <script>
 	//시작일 선택날짜 제한
 	let now = new Date();
@@ -94,7 +95,7 @@
 			}
 			console.log(startDt + ", " + typeof startDt);
 			
-			if(endDt != "" || endDt != null) {
+			if(startDt != "" || startDt != null ||endDt != "" || endDt != null) {
 				fundingDays = Math.round((endDt - startDt) / 1000 / 60 / 60 / 24);
 				console.log(fundingDays + ", " + typeof fundingDays);
 				$("#fundingDays").text(fundingDays);

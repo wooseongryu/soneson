@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwillbs.soneson.mapper.RewardMapper">
+	<!-- 아이템 추가  -->
+	<insert id="insertItem">
+		INSERT INTO pro_item
+		VALUES (
+			null
+			, #{pro_code}
+			, #{item_name}
+			, #{item_condition}
+			, #{item_option}
+		)
+	</insert>
+	
+	<!-- 아이템 삭제  -->
+	<delete id="deleteItem">
+		DELETE FROM pro_item
+		WHERE pro_code = #{pro_code} AND item_code = #{item_code}
+	</delete>
+	
+	<!-- itemList  -->
+	<select id="selectItem" resultType="map">
+		SELECT item_code
+			, item_name
+			, CASE WHEN item_condition = '0' THEN '옵션없음'
+				   WHEN item_condition = '1' THEN '주관식'
+				   ELSE '객관식' END AS item_condition 							
+			, REPLACE(item_option, '/', ' ') AS item_option
+		FROM pro_item
+		WHERE pro_code = #{pro_code}
+	</select>
+	
+	<select id="selectNewItem" resultType="map">
+		SELECT item_code
+			, item_name
+			, CASE WHEN item_condition = '0' THEN '옵션없음'
+				   WHEN item_condition = '1' THEN '주관식'
+				   ELSE '객관식' END AS item_condition 							
+			, REPLACE(item_option, '/', ' ') AS item_option
+		FROM pro_item
+		WHERE pro_code = #{pro_code} AND item_name = #{item_name} AND item_condition = #{item_condition}
+	</select>
+	
+	<!-- rewardList  -->
+	<select id="selectReward" resultType="map">
+		SELECT reward_code
+			, reward_item_name
+			, reward_explan	
+			, CASE WHEN reward_isCount = 'N' THEN '수량제한 없음'
+				   ELSE concat(reward_count, '개') END AS reward_count					
+			, reward_amount
+		FROM pro_reward
+		WHERE pro_code = #{pro_code}
+	</select>
+	
+	
+	
+</mapper>
+

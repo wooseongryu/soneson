@@ -14,7 +14,7 @@
 <script src= "${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
 <script>
 function updateProject(pro_code) {
-	alert("저장버튼!");
+// 	alert("저장버튼!");
 	let user_id =  "${sessionScope.sId}";
 	console.log("id: " + user_id + " pro_code: " + pro_code);
 	var form = $('#uploadProjectForm')[0];

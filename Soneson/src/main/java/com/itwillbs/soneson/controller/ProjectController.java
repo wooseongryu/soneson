@@ -16,6 +16,8 @@ import java.util.UUID;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.itwillbs.soneson.service.ItemService;
+import com.itwillbs.soneson.service.RewardService;
 import com.itwillbs.soneson.service.ProjectService;
 import com.itwillbs.soneson.vo.ProjectVO;
 
@@ -34,7 +36,7 @@ public class ProjectController {
 	@Autowired
 	private ProjectService service;
 	@Autowired
-	private ItemService itemService;
+	private RewardService itemService;
 	
 	
 	
@@ -64,7 +66,7 @@ public class ProjectController {
 	
 	//이미 작성 중인 프로젝트가 있을 경우
 	@PostMapping("projectUpdateForm")
-	public String projectUpdateForm(@RequestParam Map<String, String> map, HttpSession session, ProjectVO pro, Model model) {
+	public String projectUpdateForm(@RequestParam Map<String, Object> map, HttpSession session, ProjectVO pro, Model model) {
 		System.out.println(">>>>>>>>>projectUpdateForm<<<<<<<<<<<<");
 		String sId = (String)session.getAttribute("sId");
 		
@@ -76,6 +78,10 @@ public class ProjectController {
 		
 		System.out.println(map);
 		pro = service.selectProject(map);
+		List<Map<String, String>> itemList = itemService.selectItem(map);
+		List<Map<String, String>> rewardList = itemService.selectReward(map);
+		System.out.println(">>>>>>>>>>>>>>>>>>>>리워드<<<<<<<<<<<<" + rewardList);
+		
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>pro"+ pro);
 			
 		
@@ -106,6 +112,8 @@ public class ProjectController {
 		
 		
 		model.addAttribute("pro", pro);
+		model.addAttribute("itemList", itemList);
+		model.addAttribute("rewardList", rewardList);
 		
 		return "project/default";
 	}
@@ -364,9 +372,39 @@ public class ProjectController {
 	public String insertItem(@RequestParam Map<String, Object>map) {
 		System.out.println("아이템 저장하러 가는중~~~~~");
 		System.out.println(map);
-		return "";
+		
+		int insertCount = itemService.insertItem(map);
+		if(insertCount > 0) {
+			Map<String, String> item = itemService.selectNewItem(map);
+//		List<Map<String, String>> itemList = itemService.selectItem(map);
+//			System.out.println(">>>>>>>>>>>>>>>아이템 가져오기~~~ :"+itemList);
+//			JSONArray jsonArray = new JSONArray(itemList);
+//			System.out.println("제이슨에 담겼나?" + jsonArray.toString());
+//			return jsonArray.toString(); 
+			
+			item.replace("item_option",item.get("item_option").replace("/"," "));
+			JSONObject jsonObject = new JSONObject(item);
+			return jsonObject.toString();
+		} else {
+			
+			return "저장 실패하였습니다.";
+		}
+		
 	}
 	
+	//아이템삭제
+	@ResponseBody
+	@PostMapping("deleteItem")
+	public String deleteItem(@RequestParam Map<String, String> map) {
+		
+		int deleteCount = itemService.deleteItem(map);
+		JSONObject json=new JSONObject();
+		if(deleteCount > 0) {
+			return "삭제되었습니다.";
+		} else {
+			return "잠시 후 다시 시도해주세요.";
+		}
+	}
 
 
 	

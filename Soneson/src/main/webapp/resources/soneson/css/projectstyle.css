@@ -878,6 +878,10 @@ radio-label label {
     border: #fff;
 }
 
+.reward-select-itemList {
+	border: 0.8px solid rgb(242, 242, 242);
+    padding: 10px;
+}
 
 
 /*---창작자 정보-----*/
