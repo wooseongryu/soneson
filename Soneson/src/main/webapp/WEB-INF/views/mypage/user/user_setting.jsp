@@ -674,6 +674,10 @@
     		});
     	}
     	
+    	function test() {
+    		
+    	}
+    	
     	function updateUserPhonePro() {
     		$.ajax({
     			type: 'post',

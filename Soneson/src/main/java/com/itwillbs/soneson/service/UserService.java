@@ -101,10 +101,7 @@ public class UserService {
 		
 		return mapper.selectUserFint(user, user_id);
 	}
-	
-	public UserVO selectUserPass(UserVO user ) {
-		return mapper.selectUserPass(user);
-	}
+
 
 
 	// 회원 상세정보 조회 요청 -아이디  ajax 확인용
@@ -178,6 +175,11 @@ public class UserService {
 	
 
 //	=======================================================
+	
+	
+	public UserVO selectUserPass(UserVO user ) {
+		return mapper.selectUserPass(user);
+	}
 	
 	// 유저 설정 페이지 초기값
 	public UserVO getUserProfile(String sId) {
