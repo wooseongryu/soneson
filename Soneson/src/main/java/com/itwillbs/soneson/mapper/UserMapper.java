@@ -96,6 +96,9 @@ public interface UserMapper {
 	// 유저 설정 변경 pro
 	int updateUserInfo(Map<String, String> map);
 
+	// 유저 비밀번호 변경
+	int updatePassword(UserVO user);
+
 	
 
 	

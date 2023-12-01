@@ -4,7 +4,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -192,25 +194,51 @@ public class UserController {
 	// 유저 설정 계정 비밀번호 변경 pro
 	@ResponseBody
 	@PostMapping("isPassEqual")
-	public String isPassEqual() {
+	public String isPassEqual(UserVO user, HttpSession session) {
 		System.out.println("UserController - isPassEqual()");
 		
 		// TODO
 //		비번 일치 확인
 //		loginjoin컨트롤러 loginPro() 참조
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
-		return "1";
+		user.setUser_id((String)session.getAttribute("sId"));
+		UserVO dbUser = userService.getUser(user);
+		
+//		System.out.println("-----------------");
+//		System.out.println(user.getUser_passwd());
+//		System.out.println(dbUser.getUser_passwd());
+		
+		if(!passwordEncoder.matches(user.getUser_passwd(), dbUser.getUser_passwd())) {
+			System.out.println("비밀번호 불일치");
+			return "false";
+		}
+		
+		return "true";
 	}
 	
 	// 유저 설정 계정 비밀번호 변경 pro
 	@ResponseBody
 	@PostMapping("settingUpdateUserPasswordPro")
-	public String settingUpdateUserPasswordPro() {
+	public String settingUpdateUserPasswordPro(UserVO user, HttpSession session) {
 		System.out.println("UserController - settingUpdateUserPasswordPro()");
+
+		user.setUser_id((String)session.getAttribute("sId"));
+//		System.out.println(user);
 		
-		System.out.println("비번 변경 컨트롤러");
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		user.setUser_passwd(passwordEncoder.encode(user.getUser_passwd()));
 		
-		return "1";
+		System.out.println(user);
+		
+		int updateCount = userService.updatePassword(user);
+		
+		if (updateCount < 0) {
+			System.out.println("비번 변경 실패");
+			return "false";
+		}
+		
+		return "true";
 	}
 	
 	// 유저 설정 계정 비밀번호 변경 취소

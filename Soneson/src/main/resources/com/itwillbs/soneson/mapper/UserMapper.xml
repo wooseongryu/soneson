@@ -246,5 +246,10 @@
 		WHERE user_id = #{sId};
 	</update>
 	
+	<update id="updatePassword">
+		UPDATE user
+		SET user_passwd = #{user_passwd}
+		WHERE user_id = #{user_id}
+	</update>
 </mapper>
 

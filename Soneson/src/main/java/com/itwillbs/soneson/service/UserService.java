@@ -134,7 +134,7 @@ public class UserService {
 		return mapper.selectPasswdSearch(user);
 	}
 
-	// 비밀번호 변경
+	// 임시 비밀번호 변경
 	public int userPasswdChange(UserVO user) {
 		System.out.println("UserService - userPasswdChange()");
 		return mapper.updatePasswdChange(user);
@@ -181,6 +181,13 @@ public class UserService {
 		System.out.println("UserService - updateUserInfo()");
 		
 		return mapper.updateUserInfo(map);
+	}
+
+	// 유저 비밀번호 변경
+	public int updatePassword(UserVO user) {
+		System.out.println("UserService - updatePassword()");
+		
+		return mapper.updatePassword(user);
 	}
 
 	
