@@ -186,6 +186,8 @@ public class UserController {
 		
 		user = userService.selectUserAccount(sId);
 		
+		System.out.println("))))))))))))))" + user);
+		
 		return gson.toJson(user);
 	}
 	
@@ -277,6 +279,19 @@ public class UserController {
 		System.out.println("UserController - settingCancelUpdateUserPhone()");
 		return "1";
 	}
+	
+	// TODO
+	// 유저 설정 카카오 연동 변경
+	@ResponseBody
+	@PostMapping("settingUpdateUserKakao")
+	public String settingUpdateUserKakao() {
+		System.out.println("UserController - settingUpdateUserKakao()");
+		
+		
+		
+		return "1";
+	}
+	
 	
 	// 유저 설정 계정 연락처 변경 취소
 	@ResponseBody

@@ -356,6 +356,8 @@
     	
     	let phone = "";
     	let phone_print = "";
+    	let kakao_id = "";
+    	let kakao_btn = "";
     	
     	function userAccount(id) {
     		$.ajax({
@@ -366,6 +368,18 @@
     				reset_screen(id);
     				
     				console.log(resp);
+    				
+    				kakao_id = resp.kakao_id;
+    				console.log("카카오: " + kakao_id);
+    				console.log(kakao_id == null);
+    				
+    				if (kakao_id == null) {
+    					kakao_id = "미연동 중입니다.";
+    					kakao_btn = "연동"
+    				} else {
+    					kakao_id = "연동 중입니다.";
+    					kakao_btn = "연동 해제";
+    				}
     				
     				phone = resp.user_phone;
     				phone_print = resp.user_phone;
@@ -401,9 +415,9 @@
 						+ '  	<div class="anime__review__item">                                          '
                         + '  		<div class="user__setting__text" id="user_kakao">                      '
 	                    + '      		<h6>카카오 계정 연동</h6>                                          '
-	                    + '      		<p style="margin-top: 10px">연동 중입니다.</p>                     '
+	                    + '      		<p style="margin-top: 10px">' + kakao_id + '</p>                     '
 	                    + '      		<div class="user_follow_btn">                                      '
-	                    + '      			<a onclick="updateUserName()">연동 해제</a>                    '
+	                    + '      			<a onclick="updateUserKakao()">' + kakao_btn + '</a>                    '
 	                    + '      		</div>                                                             '
 						+ '  		</div>                                                                 '
                     	+ '  	</div>                                                                     '
@@ -720,6 +734,25 @@
 	                    + ' <div class="user_follow_btn">                                      '
 	                    + ' 	<a onclick="updateUserPhone()">변경</a>                        '
 	                    + ' </div>                                                             '
+					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	// TODO
+    	function updateUserKakao() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingUpdateUserKakao',
+    			dataType: 'json',
+    			success: function(resp) {
+    				$("#user_kakao").children().remove();
+
+					$("#user_kakao").append(
+						
 					);
     			},
     			error: function() {
