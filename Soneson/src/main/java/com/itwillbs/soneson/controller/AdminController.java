@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.soneson.service.AdminService;
+import com.itwillbs.soneson.service.ProjectListService;
 import com.itwillbs.soneson.service.UserService;
 import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
@@ -42,6 +44,10 @@ public class AdminController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ProjectListService projectListService;
+	
 	
 /*====================================================================
  * - 목차 -
@@ -69,15 +75,26 @@ public class AdminController {
 		String sId = (String)session.getAttribute("sId");
 		String isAdmin = (String)session.getAttribute("isAdmin");
 		
+		
+		
 		if(sId == null || isAdmin.equals("N")) {
 			model.addAttribute("msg", "잘못된 접근입니다!");
 			return "fail_back";
 		}
 		
+		
 		int joinUserCount = adminService.countJoinUser();
 
 		int deleteUserCount = adminService.countDeleteUser();
+
+		// 프로젝트 달성률 그래프
+		List<Map<String, Object>> projectMyList = adminService.selectProjectMyList();
+
 		
+		
+		
+		
+		model.addAttribute("projectMyList", projectMyList);
 		model.addAttribute("joinUserCount", joinUserCount);
 		model.addAttribute("deleteUserCount", deleteUserCount);
 		
@@ -174,8 +191,13 @@ public class AdminController {
 
 	// 펀딩 프로젝트 관리 - 등록된 전체 펀딩 관리 페이지로 이동
 	@GetMapping("adminSelectFundAll")
-	public String adminSelectFundAll() {
+	public String adminSelectFundAll(Model model) {
 		System.out.println("AdminController - adminSelectFundAll()");
+		
+		List<Map<String, Object>> projectList = adminService.selectProjectList();
+		
+		model.addAttribute("projectList", projectList);
+		
 		
 		return "mypage/admin/admin_select_fundAll";	
 	}

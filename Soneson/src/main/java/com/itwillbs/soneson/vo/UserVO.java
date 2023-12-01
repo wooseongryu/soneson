@@ -33,5 +33,12 @@ public class UserVO {
 	private String kakao_id;
 	private String user_info;
 	private String user_picture;
+	
+	// 핀테크 토큰 관련 정보 추가
+	private String access_token;
+	private String user_seq_no;
+	
+	
+	private String user_phone;
 }
 

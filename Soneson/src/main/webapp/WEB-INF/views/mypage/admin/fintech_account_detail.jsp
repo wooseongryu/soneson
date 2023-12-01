@@ -70,7 +70,7 @@
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">${user_name} 고객님의 계좌 상세정보 (사용자번호 : ${sessionScope.user_seq_no})</h6>
+							<h6 class="m-0 font-weight-bold text-primary">${user_name} 고객님의 계좌 상세정보 (사용자번호 :${sessionScope.user_seq_no})</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">

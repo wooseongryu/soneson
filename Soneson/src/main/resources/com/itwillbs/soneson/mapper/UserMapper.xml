@@ -21,7 +21,7 @@
 			, #{user_id}
 			, #{user_email} 
 			, #{user_passwd}
-			, now()
+			, now(
 			, 'N'
 			, 'N'
 			, '가입'
@@ -59,7 +59,7 @@
 	</insert>
 	
 	<!-- select -->
-	<select id="selectUser" resultType="User">
+	<select id="selectUserPass" resultType="User">
 		SELECT
 			user_idx
 			, user_name
@@ -79,9 +79,17 @@
 		WHERE user_id = #{user_id}
 	</select>
 
-	<select id="selectUser2" resultType="User">
+	<!-- select -->
+	<select id="selectUserId" resultType="User">
 		SELECT
-			user_email
+			 user_id
+		FROM user 
+		WHERE user_id = #{user_id}
+	</select>
+
+	<select id="selectUserEmail" resultType="User">
+		SELECT
+			 user_email
 		FROM user 
 		WHERE user_email = #{user_email}
 	</select>
@@ -246,5 +254,54 @@
 		WHERE user_id = #{sId};
 	</update>
 	
+	<select id="selectUserFint" resultType="User">
+		SELECT user_idx
+			, user_name
+			, user_id
+			, user_email
+			, user_passwd
+			, hire_date
+			, user_is_admin
+			, mail_auth_status
+		  	, user_status
+			, CASE
+				WHEN kakao_id IS NULL THEN '미연동'
+				ELSE '연동됨'
+			  END AS kakao_id 
+		    ,   (SELECT  f.access_token
+			     FROM user 
+			     LEFT JOIN fintech_user_info AS f
+				      ON user.user_id  = f.id
+			    WHERE user_id = #{user_id}) AS access_token
+			,   (SELECT f.user_seq_no
+			     FROM user 
+			     LEFT JOIN fintech_user_info AS f
+				      ON user.user_id  = f.id
+			     WHERE user_id = #{user_id}) AS user_seq_no
+		     FROM user
+		     WHERE user_id = #{user_id}
+	</select>
+	
+	
+	<update id="updatePassword">
+		UPDATE user
+		SET user_passwd = #{user_passwd}
+		WHERE user_id = #{user_id}
+	</update>
+	
+	<select id="selectUserAccount" resultType="User">
+		SELECT 
+			user_idx
+			, user_phone
+			, kakao_id
+		FROM user
+		WHERE user_id = #{user_id}
+	</select>
+	
+	<update id="updateUserPhone">
+		UPDATE user
+		SET user_phone = #{user_phone}
+		WHERE user_id = #{user_id}
+	</update>
 </mapper>
 

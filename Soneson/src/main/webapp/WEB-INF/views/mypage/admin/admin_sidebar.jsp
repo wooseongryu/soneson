@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +18,30 @@
     <link href="${pageContext.request.contextPath }/resources/mypage/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
 </head>
+
+<script type="text/javascript">
+	function authAccount() {
+		// 새 창에서 사용자 인증 페이지 요청
+		let requestUri = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
+							+ "response_type=code"
+							+ "&client_id=4066d795-aa6e-4720-9383-931d1f60d1a9"
+							+ "&redirect_uri=http://localhost:8081/soneson/callback"
+// 							+ "&scope=login inquiry transfer oob"
+							+ "&scope=login inquiry transfer"
+							+ "&state=12345678901234567890123456789012"
+							+ "&auth_type=0";
+		window.open(requestUri, "authWindow", "width=600, height=800");
+	}
+	// 임시. GET 방식 요청을 RestTemplate 객체를 활용하여 수행하도록 새 창 열기
+	function authAccount2() {
+		// 새 창에서 사용자 인증 페이지 요청
+		// => GET 방식의 REST API 요청 연습을 위한 임시 창(서블릿 주소 요청)
+		window.open("RequestAuth", "authWindow", "width=600, height=800");
+	}
+	
+</script>
+
+
 
 <body id="page-top">
 
@@ -108,11 +133,22 @@
             	</a>
 				<div id="collapseAccount" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="adminSelectAccount">정산관리</a>
-						<a class="collapse-item" href="adminSelectAccount">정산관리</a>
-						<a class="collapse-item" href="adminSelectAccount">정산관리</a>
-						<a class="collapse-item" href="adminSelectAccount">정산관리</a>
-						<a class="collapse-item" href="adminSelectAccount">정산관리</a>
+						<c:choose>
+							<c:when test="${empty sessionScope.sId}">
+								<script type="text/javascript">
+									alert("로그인 후 사용 가능합니다!");
+									location.href = "login";
+								</script>
+							</c:when>
+							<c:when test="${empty sessionScope.access_token}">
+								<a class="collapse-item"  onclick="authAccount()">계좌인증</a>
+							</c:when>
+							<c:otherwise>
+								<a class="collapse-item"  onclick="authAccount()">계좌인증(임시_계좌등록용)</a>
+								<a class="collapse-item"  onclick="location.href = 'FintechUserInfo'">핀테크사용자정보</a>
+								<a class="collapse-item"  onclick="location.href = 'FintechAccountList'">핀테크등록계좌정보</a>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</li>

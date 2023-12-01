@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.soneson.service.ProjectListService;
 import com.itwillbs.soneson.vo.ProjectVO;
@@ -48,11 +49,20 @@ public class ProjectListController {
 	public String popular(Model model) {
 		System.out.println("popularController - popular()");
 		
+		// 모든 프로젝트 리스트 받아오기
+//		List<Map<String, Object>> projectList = service.selectProjectList();
+//		model.addAttribute("projectList", projectList);
+		
+		// 달성률 포함한 프로젝트 리스트 받아오기
 		List<Map<String, Object>> projectList = service.selectProjectList();
 		model.addAttribute("projectList", projectList);
 		
+		
 		return "list/popular";	
 	}
+	
+	
+	
 //	@GetMapping("popular")
 //	public String popular(Model model) {
 //		System.out.println("popularController - popular()");
@@ -66,9 +76,11 @@ public class ProjectListController {
 //	}
 	
 	@GetMapping("projectDetail")
-	public String projectDetail(Model model) {
+	public String projectDetail(Model model, @RequestParam int project_code) {
 		System.out.println("projectDetailController - projectDetail()");
 		
+		Map<String, Object> project = service.selectProject(project_code);
+		model.addAttribute("project", project);
 		
 		return "list/projectDetail";	
 	}

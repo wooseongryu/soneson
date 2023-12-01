@@ -125,7 +125,7 @@ public class LoginJoinController {
 	@GetMapping("UserCheckDupId")
 	public String checkDupId(UserVO user) {
 		
-		UserVO returnUser = userService.getUser(user);
+		UserVO returnUser = userService.selectUserId(user);
 		System.out.println(user);
 		
 		if(returnUser != null) { // 아이디 중복
@@ -141,7 +141,7 @@ public class LoginJoinController {
 	@GetMapping("UserCheckDupEmail")
 	public String checkDupEmail(UserVO user) {
 		
-		UserVO returnUser = userService.getUser2(user);
+		UserVO returnUser = userService.selectUserEmail(user);
 		System.out.println(user);
 		
 		if(returnUser != null) { // 이메일 중복
@@ -167,12 +167,17 @@ public class LoginJoinController {
 			@RequestParam(required = false) boolean rememberId,
 			HttpSession session, 
 			Model model, 
-			HttpServletResponse response) {
+			HttpServletResponse response,
+			String user_id) {
 		
 		// BCryptPasswordEncoder 객체를 활용한 패스워드 비교
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
-		UserVO dbUser = userService.getUser(user);
+		System.out.println(user_id);
+
+		UserVO dbUser = userService.getUser(user, user_id);
+		System.out.println(dbUser);
+		
 		
 		if(dbUser == null || !passwordEncoder.matches(user.getUser_passwd(), dbUser.getUser_passwd())) { // 로그인 실패
 			model.addAttribute("msg", "로그인 실패!");
@@ -190,6 +195,11 @@ public class LoginJoinController {
 				// 세션 객체에 로그인 성공한 아이디를 "sId" 속성명으로 저장
 				session.setAttribute("sId", user.getUser_id());
 				session.setAttribute("isAdmin", dbUser.getUser_is_admin());
+				
+				// ---------- 핀테크 토큰 관련 정보 저장 기능 추가(dbUser 활용) -----------
+				session.setAttribute("access_token", dbUser.getAccess_token());
+				session.setAttribute("user_seq_no", dbUser.getUser_seq_no());	
+				
 				
 				Cookie cookie = new Cookie("cookieId", user.getUser_id());
 				
@@ -300,6 +310,8 @@ public class LoginJoinController {
 								, HttpSession session
 								, UserVO user) throws Exception {
 		System.out.println("LoginJoinController - kakao/callback()");
+		
+		System.out.println("+++ " + code);
 		
 		String access_Token = ls.getAccessToken(code);
 		

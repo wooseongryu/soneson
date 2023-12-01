@@ -19,28 +19,6 @@
 
 </head>
 
-<script type="text/javascript">
-	function authAccount() {
-		// 새 창에서 사용자 인증 페이지 요청
-		let requestUri = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
-							+ "response_type=code"
-							+ "&client_id=4066d795-aa6e-4720-9383-931d1f60d1a9"
-							+ "&redirect_uri=http://localhost:8081/soneson/callback"
-// 							+ "&scope=login inquiry transfer oob"
-							+ "&scope=login inquiry transfer"
-							+ "&state=12345678901234567890123456789012"
-							+ "&auth_type=0";
-		window.open(requestUri, "authWindow", "width=600, height=800");
-	}
-	// 임시. GET 방식 요청을 RestTemplate 객체를 활용하여 수행하도록 새 창 열기
-	function authAccount2() {
-		// 새 창에서 사용자 인증 페이지 요청
-		// => GET 방식의 REST API 요청 연습을 위한 임시 창(서블릿 주소 요청)
-		window.open("RequestAuth", "authWindow", "width=600, height=800");
-	}
-	
-</script>
-
 <!-- header -->
 <body id="page-top">
 
@@ -66,25 +44,6 @@
 					<!-- Page Heading -->
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
 						<h1 class="h3 mb-0 text-gray-800">관리자 마이페이지</h1>
-					</div>
-					<div>
-						<c:choose>
-							<c:when test="${empty sessionScope.sId}">
-								<script type="text/javascript">
-									alert("로그인 후 사용 가능합니다!");
-									location.href = "login";
-								</script>
-							</c:when>
-							<c:when test="${empty sessionScope.access_token}">
-								<input type="button" value="계좌인증" onclick="authAccount()">
-				<!-- 				<input type="button" value="계좌인증2" onclick="authAccount2()"> -->
-							</c:when>
-							<c:otherwise>
-								<input type="button" value="계좌인증(임시_계좌등록용)" onclick="authAccount()">
-								<input type="button" value="핀테크사용자정보" onclick="location.href = 'FintechUserInfo'">
-								<input type="button" value="핀테크등록계좌정보" onclick="location.href = 'FintechAccountList'">
-							</c:otherwise>
-						</c:choose>
 					</div>
 
 					<!-- Content Row -->
@@ -223,39 +182,47 @@
 							<!-- Project Card Example -->
 							<div class="card shadow mb-4">
 								<div class="card-header py-3">
-									<h6 class="m-0 font-weight-bold text-primary">프로젝트별 펀딩 달성도</h6>
+									<h6 class="m-0 font-weight-bold text-primary">마감예정인 프로젝트 달성도</h6>
 								</div>
 								<div class="card-body">
-									<h4 class="small font-weight-bold">손에손 프로젝트1 <span
-										class="float-right">20%</span></h4>
+								<c:forEach var="projectMy" items="${projectMyList }">
+									<h4 class="small font-weight-bold">${projectMy.title }
+										<span class="float-right">
+											<c:choose>
+												<c:when test="${projectMy.goal_rate > 100 }">달성완료</c:when>
+												<c:otherwise>${projectMy.goal_rate }%</c:otherwise>
+											</c:choose>
+										</span>
+									</h4>
 									<div class="progress mb-4">
-										<div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
-											aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+										<div class="progress-bar bg-danger" role="progressbar" style="width: ${projectMy.goal_rate }%"
+											aria-valuenow="${projectMy.goal_rate }" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
-									<h4 class="small font-weight-bold">손에손 프로젝트2 <span
-											class="float-right">40%</span></h4>
-									<div class="progress mb-4">
-										<div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-											aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
-									<h4 class="small font-weight-bold">손에손 프로젝트3 <span
-											class="float-right">60%</span></h4>
-									<div class="progress mb-4">
-										<div class="progress-bar" role="progressbar" style="width: 60%"
-											aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
-									<h4 class="small font-weight-bold">손에손 프로젝트4 <span
-											class="float-right">80%</span></h4>
-									<div class="progress mb-4">
-										<div class="progress-bar bg-info" role="progressbar" style="width: 80%"
-											aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
-									<h4 class="small font-weight-bold">손에손 프로젝트5 <span
-											class="float-right">Complete!</span></h4>
-									<div class="progress">
-										<div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-											aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-									</div>
+								</c:forEach>
+<!-- 									<h4 class="small font-weight-bold">손에손 프로젝트2 <span -->
+<!-- 											class="float-right">40%</span></h4> -->
+<!-- 									<div class="progress mb-4"> -->
+<!-- 										<div class="progress-bar bg-warning" role="progressbar" style="width: 40%" -->
+<!-- 											aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div> -->
+<!-- 									</div> -->
+<!-- 									<h4 class="small font-weight-bold">손에손 프로젝트3 <span -->
+<!-- 											class="float-right">60%</span></h4> -->
+<!-- 									<div class="progress mb-4"> -->
+<!-- 										<div class="progress-bar" role="progressbar" style="width: 60%" -->
+<!-- 											aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div> -->
+<!-- 									</div> -->
+<!-- 									<h4 class="small font-weight-bold">손에손 프로젝트4 <span -->
+<!-- 											class="float-right">80%</span></h4> -->
+<!-- 									<div class="progress mb-4"> -->
+<!-- 										<div class="progress-bar bg-info" role="progressbar" style="width: 80%" -->
+<!-- 											aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div> -->
+<!-- 									</div> -->
+<!-- 									<h4 class="small font-weight-bold">손에손 프로젝트5 <span -->
+<!-- 											class="float-right">Complete!</span></h4> -->
+<!-- 									<div class="progress"> -->
+<!-- 										<div class="progress-bar bg-success" role="progressbar" style="width: 100%" -->
+<!-- 											aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div> -->
+<!-- 									</div> -->
 								</div>
 							</div>
                         </div>

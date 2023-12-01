@@ -183,6 +183,54 @@
     <!-- 자주 묻는 질문 카테고리 끝 -->
     
     
-    
+    <!-- 프로젝트 관련 된 내용 -->
+   	<select id="selectProjectList" resultType="map">
+		SELECT
+			p.project_code
+			, max(p.title) AS title
+			, max(p.subtitle) AS subtitle
+			, max(p.category) AS category
+			, max(p.creator) AS creator
+			, max(p.img_main) AS img1
+			, max(p.start_date) AS start_date
+			, max(p.end_date) AS end_date
+			, ifnull(format(sum(cost) , 0), 0) AS now_amount
+			, ifnull(max(goal_amount), 0) AS goal_amount
+			, ifnull(sum(cost) / max(goal_amount), 0) AS ratio
+			, ifnull(TRUNCATE(sum(cost) / max(goal_amount) * 100, 0), 0) AS goal_rate
+			, CASE count(p.project_code) WHEN 1 THEN 0 
+										 ELSE count(p.project_code)
+										 END AS donor
+		FROM project p
+		LEFT JOIN fund f
+		ON p.project_code = f.project_code
+		GROUP BY p.project_code
+	</select>
+
+    <!-- 마이페이지 달성률  -->
+   	<select id="selectProjectMyList" resultType="map">
+		SELECT
+			p.project_code
+			, max(p.title) AS title
+			, max(p.subtitle) AS subtitle
+			, max(p.category) AS category
+			, max(p.creator) AS creator
+			, max(p.img_main) AS img_main
+			, max(p.start_date) AS start_date
+			, max(p.end_date) AS end_date
+			, ifnull(format(sum(cost) , 0), 0) AS now_amount
+			, ifnull(max(goal_amount), 0) AS goal_amount
+			, ifnull(sum(cost) / max(goal_amount), 0) AS ratio
+			, ifnull(TRUNCATE(sum(cost) / max(goal_amount) * 100, 0), 0) AS goal_rate
+			, CASE count(p.project_code) WHEN 1 THEN 0 
+										 ELSE count(p.project_code)
+										 END AS donor
+		FROM project p
+		LEFT JOIN fund f
+		ON p.project_code = f.project_code
+		GROUP BY p.project_code
+		ORDER BY end_date DESC
+		LIMIT 5
+	</select>
     
 </mapper>

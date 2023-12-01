@@ -44,7 +44,7 @@
     			success: function(resp) {
     				reset_screen(id);
     				
-    				console.log(resp);
+//     				console.log(resp);
     				
     				// 등록된 소개가 없을 경우 입력폼 출력값 수정 필요.
 					let info = resp.user_info;
@@ -354,6 +354,11 @@
     		});
     	}
     	
+    	let phone = "";
+    	let phone_print = "";
+    	let kakao_id = "";
+    	let kakao_btn = "";
+    	
     	function userAccount(id) {
     		$.ajax({
     			type: 'post',
@@ -361,6 +366,26 @@
     			dataType: 'json',
     			success: function(resp) {
     				reset_screen(id);
+    				
+    				console.log(resp);
+    				
+    				kakao_id = resp.kakao_id;
+    				console.log("카카오: " + kakao_id);
+    				console.log(kakao_id == null);
+    				
+    				if (kakao_id == null) {
+    					kakao_id = "미연동 중입니다.";
+    					kakao_btn = "연동"
+    				} else {
+    					kakao_id = "연동 중입니다.";
+    					kakao_btn = "연동 해제";
+    				}
+    				
+    				phone = resp.user_phone;
+    				phone_print = resp.user_phone;
+    				if (phone == null || phone == "") {
+    					phone_print = "등록된 연락처가 없습니다.";
+    				}
 
 					$("#user_content").append(
 						  ' <div class="anime__details__review">                                           '
@@ -378,7 +403,7 @@
 						+ '  	<div class="anime__review__item">                                          '
                         + '  		<div class="user__setting__text" id="user_phone">                      '
 	                    + '      		<h6>연락처</h6>                                                    '
-	                    + '      		<p style="margin-top: 10px">등록된 연락처가 없습니다.</p>          '
+	                    + '      		<p style="margin-top: 10px">' + phone_print + '</p>          '
 	                    + '      		<div class="user_follow_btn">                                      '
 	                    + '      			<a onclick="updateUserPhone()">변경</a>                         '
 	                    + '      		</div>                                                             '
@@ -390,9 +415,9 @@
 						+ '  	<div class="anime__review__item">                                          '
                         + '  		<div class="user__setting__text" id="user_kakao">                      '
 	                    + '      		<h6>카카오 계정 연동</h6>                                          '
-	                    + '      		<p style="margin-top: 10px">연동 중입니다.</p>                     '
+	                    + '      		<p style="margin-top: 10px">' + kakao_id + '</p>                     '
 	                    + '      		<div class="user_follow_btn">                                      '
-	                    + '      			<a onclick="updateUserName()">연동 해제</a>                    '
+	                    + '      			<a onclick="updateUserKakao()">' + kakao_btn + '</a>                    '
 	                    + '      		</div>                                                             '
 						+ '  		</div>                                                                 '
                     	+ '  	</div>                                                                     '
@@ -565,13 +590,50 @@
 				return;
 			}
 			
-			// TODO
 			$.ajax({
     			type: 'post',
     			url: 'isPassEqual',
     			dataType: 'json',
-    			success: function(resp) {
-    				console.log("비밀번호 일치 여부 : " + resp);
+    			data: {
+    				user_passwd: $("#nowPass").val()
+    			},
+    			success: function(isPassEqual) {
+    				if (!isPassEqual) {
+    					alert("현재 비밀번호 불일치!");
+    					return;
+    				}
+   					changePass();
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function changePass() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingUpdateUserPasswordPro',
+    			dataType: 'json',
+    			data: {
+    				user_passwd: $("#changePass").val()
+    			},
+    			success: function(isSuccessChangePass) {
+    				if (!isSuccessChangePass) {
+    					alert("비밀번호 변경 실패.");
+    					return;
+    				}
+   					alert("비밀번호가 변경 되었습니다.");
+   					
+   					$("#user_password").children().remove();
+   					
+   					$("#user_password").append(
+						  ' <h6>비밀번호</h6>                                                 '
+		                + ' <div class="user_follow_btn">                                     '
+		                + ' <a onclick="updateUserPassword()" style="bottom: 7px">변경</a>    '
+		                + ' </div>		                                                      '
+   					);
+    				
     			},
     			error: function() {
     				alert("에러!");
@@ -610,14 +672,46 @@
 
 					$("#user_phone").append(
 						  ' <h6>연락처</h6>                                                                     '
-                   		+ ' <input type="text" placeholder="휴대폰 번호를 입력하세요." style="margin-top: 10px">'    
+                   		+ ' <input type="text" id="userPhone" value="' + phone + '" placeholder="휴대폰 번호를 입력하세요." maxlength="11" style="margin-top: 10px">'    
                    		+ '                                                                                     '
                    		+ ' <div class="user_follow_btn">                                                       '
-                   		+ ' 	<a href="#">저장</a>                                                            '
+                   		+ ' 	<a onclick="updateUserPhonePro()">저장</a>                                                            '
                    		+ ' </div>                                                                              '
                    		+ ' <div class=user_cancel_btn>                                                         '
                    		+ ' 	<a onclick="cancelUpdateUserPhone()">취소</a>                                    '
                    		+ ' </div>                                                                              '
+					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function test() {
+    		
+    	}
+    	
+    	function updateUserPhonePro() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingUpdateUserPhonePro',
+    			dataType: 'json',
+    			data: {
+    				user_phone: $("#userPhone").val()
+    			},
+    			success: function(resp) {
+    				phone_print = resp.user_phone;
+    				phone = resp.user_phone;
+    				
+    				$("#user_phone").children().remove();
+
+					$("#user_phone").append(
+						  ' <h6>연락처</h6>                                                    '
+	                    + ' <p style="margin-top: 10px">' + phone_print + '</p>          '
+	                    + ' <div class="user_follow_btn">                                      '
+	                    + ' 	<a onclick="updateUserPhone()">변경</a>                         '
+	                    + ' </div>                                                             '
 					);
     			},
     			error: function() {
@@ -636,7 +730,7 @@
 
 					$("#user_phone").append(
 						  ' <h6>연락처</h6>                                                    '
-	                    + ' <p style="margin-top: 10px">등록된 연락처가 없습니다.</p>          '
+	                    + ' <p style="margin-top: 10px">' + phone_print + '</p>          '
 	                    + ' <div class="user_follow_btn">                                      '
 	                    + ' 	<a onclick="updateUserPhone()">변경</a>                        '
 	                    + ' </div>                                                             '
@@ -646,6 +740,39 @@
     				alert("에러!");
     			}
     		});
+    	}
+    	
+    	// TODO
+    	function updateUserKakao() {
+    		let popup = window.open('https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://localhost:8081/soneson/kakao/callback', 'kakao_popup', 'width=700px,height=800px,scrollbars=yes');
+    		
+    		// 진행중..............
+    		popup.addEventListener('unload', function(event) {
+    			alert("창 닫힘");
+    		});
+    		
+    		
+    		console.log("아래 코드1");
+    		
+    		
+//     		$.ajax({
+//     			type: 'post',
+//     			url: 'settingUpdateUserKakao',
+//     			dataType: 'json',
+//     			success: function(resp) {
+//     				console.log("카카오=====");
+//     				console.log(resp);
+    				
+// //     				$("#user_kakao").children().remove();
+
+// // 					$("#user_kakao").append(
+						
+// // 					);
+//     			},
+//     			error: function() {
+//     				alert("에러!");
+//     			}
+//     		});
     	}
     	
     	function updateUserLeave() {
@@ -856,31 +983,7 @@
                         
                         <div id="user_content">
                         	<!-- ajax -->
-                        	
-                        	<div class="anime__details__review">                                       
-						  		<div class="anime__review__item">                                          
-	                          		<div class="user__setting__text" id="user_password">                   
-		                          		<h6>현재 비밀번호</h6>          
-				                   		 <input type="password" placeholder="현재 비밀번호" id="nowPass" style="margin-top: 10px">      
-				                   		                                                                               
-				                   		 <h6 style="margin-top: 15px">변경할 비밀번호</h6>                             
-				                   		 <input type="password" placeholder="변경할 비밀번호" id="changePass" style="margin-top: 10px">    
-				                   		 <br>                                                                          
-				                   		 <input type="password" placeholder="변경할 비밀번호 확인" id="changePassCheck" style="margin-top: 10px">
-				                   		                                                                               
-				                   		 <div class="user_follow_btn">                                                 
-					                   		 	<a href="#">저장</a>                                                       
-				                   		 </div>                                                                        
-				                   		 <div class=user_cancel_btn>                                                   
-				                   		 	<a onclick="cancelUpdateUserPassword()">취소</a>                      
-				                   		 </div>                                                             
-						  			</div>                                                            
-	                    	  	</div>                                                                
-	                	 	 </div>
-                        	
 						</div>
-						
-						
 						
 					</div>
                 </div>

@@ -46,16 +46,18 @@ public interface UserMapper {
 	// 암호화 된 패스워드 조회
 	String selectPasswd(UserVO user);
 
+	// 회원 마이페이지 - 비밀번호 확인 ajax
+	UserVO selectUserPass(UserVO user);
+
 	// 회원 상세정보 조회 - 회원가입 아이디 확인 ajax용
-	UserVO selectUser(UserVO user);
+	UserVO selectUserId(UserVO user);
 
 	// 회원 상세정보 조회 - 회원가입 이메일 확인 ajax용
-	UserVO selectUser2(UserVO user);
+	UserVO selectUserEmail(UserVO user);
 	
 	// 회원 정보 변경
 	int updateUser(UserVO user);
 
-	
 	// 회원 탈퇴 요청
 	int deleteUser(UserVO user);
 
@@ -96,10 +98,18 @@ public interface UserMapper {
 	// 유저 설정 변경 pro
 	int updateUserInfo(Map<String, String> map);
 
+	// 유저 핀테크 조회
+	UserVO selectUserFint(@Param("user")UserVO user, @Param("user_id")String user_id);
 	
+	// 유저 비밀번호 변경
+	int updatePassword(UserVO user);
 
-	
-	
+	// 유저 설정 계정 초기값
+	UserVO selectUserAccount(String sId);
+
+	// 유저 휴대폰 번호 변경
+	int updateUserPhone(UserVO user);
+
 }
 
 

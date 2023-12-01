@@ -18,6 +18,10 @@ import com.google.gson.JsonParser;
 @Service
 public class LoginApiService {
 	public String getAccessToken (String authorize_code) {
+		System.out.println("LoginApiService - getAccessToken()");
+		
+		System.out.println("))) " + authorize_code);
+		
 		String access_Token = "";
 		String refresh_Token = "";
 		String reqURL = "https://kauth.kakao.com/oauth/token";

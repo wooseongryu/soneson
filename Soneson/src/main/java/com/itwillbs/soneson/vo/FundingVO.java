@@ -13,6 +13,6 @@ public class FundingVO {
 	private String fund_date;	// 후원(신청)일
 	
 	
-//	private String fun_del_status;		// 전달 상태(보류)
+//	private String fund_del_status;		// 전달 상태(보류)
 }
 
