@@ -123,9 +123,9 @@ public class LoginJoinController {
 	// 아이디 중복체크
 	@ResponseBody
 	@GetMapping("UserCheckDupId")
-	public String checkDupId(UserVO user, String id) {
+	public String checkDupId(UserVO user) {
 		
-		UserVO returnUser = userService.getUser(user, id);
+		UserVO returnUser = userService.selectUserId(user);
 		System.out.println(user);
 		
 		if(returnUser != null) { // 아이디 중복

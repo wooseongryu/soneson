@@ -21,7 +21,7 @@
 			, #{user_id}
 			, #{user_email} 
 			, #{user_passwd}
-			, now()
+			, now(
 			, 'N'
 			, 'N'
 			, '가입'
@@ -60,6 +60,27 @@
 	
 	<!-- select -->
 	<select id="selectUserPass" resultType="User">
+		SELECT
+			user_idx
+			, user_name
+			, user_id
+			, user_email
+			, user_passwd
+<!-- 			, user_phone -->
+			, hire_date
+			, user_is_admin
+			, mail_auth_status
+		  	, user_status
+			, CASE
+				WHEN kakao_id IS NULL THEN '미연동'
+				ELSE '연동됨'
+			  END AS kakao_id
+		FROM user 
+		WHERE user_id = #{user_id}
+	</select>
+
+	<!-- select -->
+	<select id="selectUserId" resultType="User">
 		SELECT
 			user_idx
 			, user_name

@@ -46,8 +46,11 @@ public interface UserMapper {
 	// 암호화 된 패스워드 조회
 	String selectPasswd(UserVO user);
 
-	// 회원 상세정보 조회 - 회원가입 아이디 확인 ajax용
+	// 회원 마이페이지 - 비밀번호 확인 ajax
 	UserVO selectUserPass(UserVO user);
+
+	// 회원 상세정보 조회 - 회원가입 아이디 확인 ajax용
+	UserVO selectUserId(UserVO user);
 
 	// 회원 상세정보 조회 - 회원가입 이메일 확인 ajax용
 	UserVO selectUser2(UserVO user);

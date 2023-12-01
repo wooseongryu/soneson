@@ -96,7 +96,7 @@ public class UserService {
 		return mapper.selectUserList();
 	}
 	
-	// 회원 상세정보 조회 요청 - 아이디 ajax 확인용
+	// 회원 핀테크 정보 확인용
 	public UserVO getUser(UserVO user, String user_id) {
 		
 		return mapper.selectUserFint(user, user_id);
@@ -106,6 +106,11 @@ public class UserService {
 		return mapper.selectUserPass(user);
 	}
 
+
+	// 회원 상세정보 조회 요청 -아이디  ajax 확인용
+	public UserVO selectUserId(UserVO user) {
+		return mapper.selectUserId(user);
+	}
 
 	// 회원 상세정보 조회 요청 - 이메일 ajax 확인용
 	public UserVO getUser2(UserVO user) {
