@@ -280,5 +280,19 @@
 		SET user_passwd = #{user_passwd}
 		WHERE user_id = #{user_id}
 	</update>
+	
+	<select id="selectUserAccount" resultType="User">
+		SELECT 
+			user_idx
+			, user_phone
+		FROM user
+		WHERE user_id = #{user_id}
+	</select>
+	
+	<update id="updateUserPhone">
+		UPDATE user
+		SET user_phone = #{user_phone}
+		WHERE user_id = #{user_id}
+	</update>
 </mapper>
 

@@ -175,12 +175,18 @@ public class UserController {
 		return "1";
 	}
 	
+	// TODO
 	// 유저 설정 계정 초기 출력 화면
 	@ResponseBody
 	@PostMapping("settingUserAccount")
-	public String settingUserAccount() {
+	public String settingUserAccount(HttpSession session, UserVO user, Gson gson) {
 		System.out.println("UserController - settingUserAccount()");
-		return "1";
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		user = userService.selectUserAccount(sId);
+		
+		return gson.toJson(user);
 	}
 	
 	// 유저 설정 계정 비밀번호 변경
@@ -197,17 +203,10 @@ public class UserController {
 	public String isPassEqual(UserVO user, HttpSession session) {
 		System.out.println("UserController - isPassEqual()");
 		
-		// TODO
-//		비번 일치 확인
-//		loginjoin컨트롤러 loginPro() 참조
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
 		user.setUser_id((String)session.getAttribute("sId"));
 		UserVO dbUser = userService.getUserPass(user);
-		
-//		System.out.println("-----------------");
-//		System.out.println(user.getUser_passwd());
-//		System.out.println(dbUser.getUser_passwd());
 		
 		if(!passwordEncoder.matches(user.getUser_passwd(), dbUser.getUser_passwd())) {
 			System.out.println("비밀번호 불일치");
@@ -224,7 +223,6 @@ public class UserController {
 		System.out.println("UserController - settingUpdateUserPasswordPro()");
 
 		user.setUser_id((String)session.getAttribute("sId"));
-//		System.out.println(user);
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		user.setUser_passwd(passwordEncoder.encode(user.getUser_passwd()));
@@ -255,6 +253,21 @@ public class UserController {
 	public String settingUpdateUserPhone() {
 		System.out.println("UserController - settingUpdateUserPhone()");
 		return "1";
+	}
+	
+	// 유저 설정 계정 연락처 변경 pro
+	@ResponseBody
+	@PostMapping("settingUpdateUserPhonePro")
+	public String settingUpdateUserPhonePro(UserVO user, HttpSession session, Gson gson) {
+		System.out.println("UserController - settingUpdateUserPhonePro()");
+
+		user.setUser_id((String)session.getAttribute("sId"));
+		
+		System.out.println("===" + user);
+		
+		int updateCount = userService.updateUserPhone(user);
+		
+		return gson.toJson(user);
 	}
 		
 	// 유저 설정 계정 연락처 변경 취소

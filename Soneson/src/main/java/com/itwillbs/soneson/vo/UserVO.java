@@ -39,5 +39,6 @@ public class UserVO {
 	private String user_seq_no;
 	
 	
+	private String user_phone;
 }
 
