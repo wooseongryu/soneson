@@ -53,7 +53,7 @@ public interface UserMapper {
 	UserVO selectUserId(UserVO user);
 
 	// 회원 상세정보 조회 - 회원가입 이메일 확인 ajax용
-	UserVO selectUser2(UserVO user);
+	UserVO selectUserEmail(UserVO user);
 	
 	// 회원 정보 변경
 	int updateUser(UserVO user);
