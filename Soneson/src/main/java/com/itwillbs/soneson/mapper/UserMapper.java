@@ -55,7 +55,6 @@ public interface UserMapper {
 	// 회원 정보 변경
 	int updateUser(UserVO user);
 
-	
 	// 회원 탈퇴 요청
 	int deleteUser(UserVO user);
 
@@ -98,6 +97,9 @@ public interface UserMapper {
 
 	// 유저 핀테크 조회
 	UserVO selectUserFint(@Param("user")UserVO user, @Param("user_id")String user_id);
+	
+	// 유저 비밀번호 변경
+	int updatePassword(UserVO user);
 
 	
 

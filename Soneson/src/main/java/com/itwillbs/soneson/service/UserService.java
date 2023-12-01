@@ -100,13 +100,11 @@ public class UserService {
 	public UserVO getUser(UserVO user, String user_id) {
 		
 		return mapper.selectUserFint(user, user_id);
-//		return mapper.selectUser(user);
+	}
+	public UserVO getUserPass(UserVO user ) {
+		return mapper.selectUser(user);
 	}
 
-//	public UserVO getUserFint(UserVO user) {
-//		
-//		return mapper.selectUserFint(user);
-//	}
 
 	// 회원 상세정보 조회 요청 - 이메일 ajax 확인용
 	public UserVO getUser2(UserVO user) {
@@ -141,7 +139,7 @@ public class UserService {
 		return mapper.selectPasswdSearch(user);
 	}
 
-	// 비밀번호 변경
+	// 임시 비밀번호 변경
 	public int userPasswdChange(UserVO user) {
 		System.out.println("UserService - userPasswdChange()");
 		return mapper.updatePasswdChange(user);
@@ -188,6 +186,13 @@ public class UserService {
 		System.out.println("UserService - updateUserInfo()");
 		
 		return mapper.updateUserInfo(map);
+	}
+
+	// 유저 비밀번호 변경
+	public int updatePassword(UserVO user) {
+		System.out.println("UserService - updatePassword()");
+		
+		return mapper.updatePassword(user);
 	}
 
 	

@@ -565,13 +565,50 @@
 				return;
 			}
 			
-			// TODO
 			$.ajax({
     			type: 'post',
     			url: 'isPassEqual',
     			dataType: 'json',
-    			success: function(resp) {
-    				console.log("비밀번호 일치 여부 : " + resp);
+    			data: {
+    				user_passwd: $("#nowPass").val()
+    			},
+    			success: function(isPassEqual) {
+    				if (!isPassEqual) {
+    					alert("현재 비밀번호 불일치!");
+    					return;
+    				}
+   					changePass();
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function changePass() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingUpdateUserPasswordPro',
+    			dataType: 'json',
+    			data: {
+    				user_passwd: $("#changePass").val()
+    			},
+    			success: function(isSuccessChangePass) {
+    				if (!isSuccessChangePass) {
+    					alert("비밀번호 변경 실패.");
+    					return;
+    				}
+   					alert("비밀번호가 변경 되었습니다.");
+   					
+   					$("#user_password").children().remove();
+   					
+   					$("#user_password").append(
+						  ' <h6>비밀번호</h6>                                                 '
+		                + ' <div class="user_follow_btn">                                     '
+		                + ' <a onclick="updateUserPassword()" style="bottom: 7px">변경</a>    '
+		                + ' </div>		                                                      '
+   					);
+    				
     			},
     			error: function() {
     				alert("에러!");
