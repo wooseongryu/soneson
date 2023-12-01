@@ -10,13 +10,15 @@ function restDay() {
 		if(restDay == 0) {
 			$(this).html("오늘 마감");
 			$(this).addClass("deadline")
-		} else if(restDay < 0 && goalRate < 100) {
-			$(this).html("펀딩 무산");
-		} else if(restDay < 0 && goalRate >= 100) {
-			$(this).html("펀딩 성공");
 		} else {
 			$(this).html(restDay + "일 남음");
 		}
+		
+//		else if(restDay < 0 && goalRate < 100) {
+//			$(this).html("펀딩 무산");
+//		} else if(restDay < 0 && goalRate >= 100) {
+//			$(this).html("펀딩 성공");
+//		}
 		
 		
 	});
@@ -101,5 +103,10 @@ $(function() {
 
 	
 	goalRateCss();
+	
+	$(".goalRateBtn").click(function() {
+//		debugger;
+		$(".faghXt").show();
+	});
 	
 });
