@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class ChatVO {
 	
-	private String room_idx;		// 채팅방 번호
+	private int room_idx;			// 채팅방 번호
     private String user_id;			// 구매자(유저) 아이디(닉네임/이름)
     
     private String creator_id;		// 판매자(창작자) 아이디(닉네임/이름)
