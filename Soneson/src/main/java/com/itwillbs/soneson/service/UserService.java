@@ -110,8 +110,8 @@ public class UserService {
 	}
 
 	// 회원 상세정보 조회 요청 - 이메일 ajax 확인용
-	public UserVO getUser2(UserVO user) {
-		return mapper.selectUser2(user);
+	public UserVO selectUserEmail(UserVO user) {
+		return mapper.selectUserEmail(user);
 	}
 	
 //	// 회원 정보 변경 요청
