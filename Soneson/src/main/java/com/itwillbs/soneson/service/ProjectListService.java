@@ -19,12 +19,20 @@ public class ProjectListService {
 		return mapper.selectProjectList();
 	}
 
+	// 프로젝트 리스트 가져오기 (성공)
 	public List<Map<String, Object>> selectProjectList() {
 		return mapper.getProjectList();
 	}
 
+
 	public Map<String, Object> selectProject(int project_code) {
 		return mapper.getProject(project_code);
+	}
+
+	// 아래는 프로젝트 탭 별로 시도
+	
+	public List<Map<String, Object>> getTapProjectList(String listType) {
+		return mapper.getTapProjectList(listType);
 	}
 
 }

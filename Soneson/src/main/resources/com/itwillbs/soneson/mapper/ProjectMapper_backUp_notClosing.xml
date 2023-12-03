@@ -183,15 +183,6 @@
 <!-- 탭별 프로젝트 리스트 -->
 
 
-<sql id="popular">
-	<![CDATA[
-			WHERE p.start_date <= now() AND p.end_date >= now()
-	]]>
-			GROUP BY p.project_code) A
-<!-- 		데이터 쌓이면 주석 풀기 -->
-<!-- 		WHERE A.goal_rate >= 100	 -->
-		ORDER BY donor DESC;	
-</sql>
 <sql id="new">
 	<![CDATA[
 			GROUP BY p.project_code) A
@@ -215,6 +206,7 @@
 
 
 	<select id="getTapProjectList" resultType="map">
+		<![CDATA[
 		SELECT *
 		FROM 
 			(SELECT
@@ -236,11 +228,8 @@
 			FROM project p
 			LEFT JOIN fund f
 			ON p.project_code = f.project_code
-			<choose>
-				<when test="listType.equals('popular')">
-					<include refid="popular"/>
-				</when>
-			</choose>
+			WHERE p.start_date <= now() AND p.end_date >= now()
+		]]>
 			<choose>
 				<when test="listType.equals('new')">
 					<include refid="new"/>
@@ -273,9 +262,8 @@
 				, max(p.category) AS category
 				, max(p.creator) AS creator
 				, max(p.img_main) AS img_main
-				, date(max(p.start_date)) AS start_date
-				, date(max(p.end_date)) AS end_date
-				, date(date_add((max(p.end_date)), INTERVAL 1 day)) AS pay_date
+				, max(p.start_date) AS start_date
+				, max(p.end_date) AS end_date
 				, ifnull(format(sum(cost), 0), 0) AS now_amount
 				, ifnull(format(max(goal_amount), 0), 0) AS goal_amount
 <!-- 				, ifnull(max(goal_amount), 0) AS goal_amount -->
@@ -284,7 +272,6 @@
 				, CASE count(p.project_code) WHEN 1 THEN 0 
 											 ELSE count(p.project_code)
 											 END AS donor
-				, max(p.creator_info) AS creator_info
 			FROM project p
 			LEFT JOIN fund f
 			ON p.project_code = f.project_code

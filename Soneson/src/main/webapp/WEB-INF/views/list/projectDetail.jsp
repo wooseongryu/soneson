@@ -154,7 +154,7 @@
 							</dl>
 							<dl class="FundingInformation__InfoItem-sc-84xkqs-2 dsitt">
 								<dt class="FundingInformation__Title-sc-84xkqs-3 cSBHrX">결제</dt>
-								<dd class="FundingInformation__Desc-sc-84xkqs-4 Hysth">목표금액 달성시 ${project.end_date}에 결제 진행</dd>
+								<dd class="FundingInformation__Desc-sc-84xkqs-4 Hysth">목표금액 달성시 ${project.pay_date}에 결제 진행</dd>
 							</dl>
 						</div>
 					</div>
@@ -745,7 +745,8 @@
 									</div>
 								</div>
 								
-								<div class="style__CreatorBiography-sc-1kqdyt-15 jZceGY">시골의 야생 길고양이들이 우리 집 마당냥이가 되어 함께 살아가는 평화로운 일상을 유튜브로 공유하고 있습니다.<br>길고양이 중성화 사업(TNR)을 통해 아픈 냥이들을 구조, 치료, 보호하여 집 안과 마당에서 같이 공존하며 지내고 있습니다.<br>저희 집 마당 길고양이 급식소에서 늘 따듯한 육수와 닭가슴살을 매일 삶아서 밥과 함께 주고 있습니다.<br>추운 겨울을 대비해 길고양이들이 따듯하게 지내기 위한 따듯한 온실과 비닐하우스, 전기장판 집을 만들어 길고양이 쉼터로 사용하고 있습니다.<br>길고양이들의 행복한 미래를 위해 최선을 다하겠습니다.</div>
+								<div class="style__CreatorBiography-sc-1kqdyt-15 jZceGY">${project.creator_info }</div>
+<!-- 								<div class="style__CreatorBiography-sc-1kqdyt-15 jZceGY">시골의 야생 길고양이들이 우리 집 마당냥이가 되어 함께 살아가는 평화로운 일상을 유튜브로 공유하고 있습니다.<br>길고양이 중성화 사업(TNR)을 통해 아픈 냥이들을 구조, 치료, 보호하여 집 안과 마당에서 같이 공존하며 지내고 있습니다.<br>저희 집 마당 길고양이 급식소에서 늘 따듯한 육수와 닭가슴살을 매일 삶아서 밥과 함께 주고 있습니다.<br>추운 겨울을 대비해 길고양이들이 따듯하게 지내기 위한 따듯한 온실과 비닐하우스, 전기장판 집을 만들어 길고양이 쉼터로 사용하고 있습니다.<br>길고양이들의 행복한 미래를 위해 최선을 다하겠습니다.</div> -->
 								<div class="style__ButtonsWrapper-sc-1kqdyt-0 hLwfvj">
 								<div class="style__FollowButtonWrapper-sc-1kqdyt-5 VdNWQ">
 								<button class="SolidButton__Button-d4ctco-0 iDFRLW style__FollowButton-sc-1fj9dkx-0 hzzFYf fnt-p1" color="grayEditor200">
@@ -1233,6 +1234,8 @@
 
 
 <jsp:include page="../inc/footer.jsp"></jsp:include>
+
+<script src="${pageContext.request.contextPath }/resources/soneson/js/list/popularDetail.js"></script>
 
 </body>
 </html>

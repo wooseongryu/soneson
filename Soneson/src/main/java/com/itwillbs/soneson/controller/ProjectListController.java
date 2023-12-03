@@ -45,21 +45,112 @@ public class ProjectListController {
 	
 	// ============== 아래부터 진짜 시작 ========================
 	
+//원래 인기 (성공)
+//	@GetMapping("popular")
+//	public String popular(Model model) {
+//		System.out.println("popularController - popular()");
+//		
+//		// 모든 프로젝트 리스트 받아오기
+////		List<Map<String, Object>> projectList = service.selectProjectList();
+////		model.addAttribute("projectList", projectList);
+//		
+//		// 달성률 포함한 프로젝트 리스트 받아오기
+//		List<Map<String, Object>> projectList = service.selectProjectList();
+//		model.addAttribute("projectList", projectList);
+//		
+//		
+//		return "list/popular";	
+//	}
+	
 	@GetMapping("popular")
 	public String popular(Model model) {
 		System.out.println("popularController - popular()");
 		
-		// 모든 프로젝트 리스트 받아오기
+		String listType = "popular";
+		
+		List<Map<String, Object>> projectList = service.getTapProjectList(listType);
+		
+		int projectCount = projectList.size();
+		System.out.println("프로젝트 갯수 : " + projectCount);
+		
+		model.addAttribute("projectList", projectList);
+		model.addAttribute("projectCount", projectCount);
+		
+		return "list/popular";
+	}
+	@GetMapping("new")
+	public String fresh(Model model) {
+		System.out.println("freshController - new()");
+		
+		String listType = "new";
+		
+		List<Map<String, Object>> projectList = service.getTapProjectList(listType);
+		
+		int projectCount = projectList.size();
+		System.out.println("프로젝트 갯수 : " + projectCount);
+		
+		model.addAttribute("projectList", projectList);
+		model.addAttribute("projectCount", projectCount);
+		
+		return "list/popular";
+	}
+	@GetMapping("closing")
+	public String closing(Model model) {
+		System.out.println("closingController - closing()");
+		
+		String listType = "closing";
+		
+		List<Map<String, Object>> projectList = service.getTapProjectList(listType);
+		
+		int projectCount = projectList.size();
+		System.out.println("프로젝트 갯수 : " + projectCount);
+		
+		model.addAttribute("projectList", projectList);
+		model.addAttribute("projectCount", projectCount);
+		
+		return "list/popular";
+	}
+	@GetMapping("upcoming")
+	public String upcoming(Model model) {
+		System.out.println("upcomingController - upcoming()");
+		
+		String listType = "upcoming";
+		
+		List<Map<String, Object>> projectList = service.getTapProjectList(listType);
+		
+		int projectCount = projectList.size();
+		System.out.println("프로젝트 갯수 : " + projectCount);
+		
+		model.addAttribute("projectList", projectList);
+		model.addAttribute("projectCount", projectCount);
+		
+		return "list/popular";
+	}
+	
+//	@GetMapping("closing")
+//	public String closing(Model model) {
+//		System.out.println("popularController - popular()");
+//		
+//		// 달성률 포함한 프로젝트 리스트 받아오기
 //		List<Map<String, Object>> projectList = service.selectProjectList();
 //		model.addAttribute("projectList", projectList);
-		
-		// 달성률 포함한 프로젝트 리스트 받아오기
-		List<Map<String, Object>> projectList = service.selectProjectList();
-		model.addAttribute("projectList", projectList);
-		
-		
-		return "list/popular";	
-	}
+//		
+//		
+//		return "list/closing";	
+//	}
+	
+	
+//	@GetMapping("upcoming")
+//	public String upcoming(Model model) {
+//		System.out.println("popularController - popular()");
+//		
+//		// 달성률 포함한 프로젝트 리스트 받아오기
+//		List<Map<String, Object>> projectList = service.selectProjectList();
+//		model.addAttribute("projectList", projectList);
+//		
+//		
+//		return "list/upcoming";	
+//	}
 	
 	
 	

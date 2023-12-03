@@ -128,11 +128,11 @@ $(function() {
 	});
 	
 //	$(".grChoice > div").click(function() {
-//	$(".jKGUjM").click(function() {
-//		debugger;
-//		let grChoice = $(this).text();
-//		$(".title-wrapper").text(grChoice);
-//	});
+	$(".jKGUjM").click(function() {
+		debugger;
+		let grChoice = $(this).text();
+		$(".title-wrapper").text(grChoice);
+	});
 //	$(".faghXt").addEventListner("click", (e) => {console.log(e.target);});
 	
 	$(document).mouseup(function (e){

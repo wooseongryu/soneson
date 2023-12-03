@@ -84,100 +84,77 @@ ul {
 <!-- 								<span class="HeaderUserProfile_bar__1OPU2"></span> -->
 <!-- 							</span> -->
 <!-- 						</a> -->
-						<div class="loginSearch">
-						
-							<div class="loginText">
-								<c:if test="${sessionScope.sId eq 'admin' }">
-									<a href="admin">
-										<span class="">관리자페이지</span>
-										<span class="HeaderUserProfile_bar__1OPU2"></span>
-									</a>
-								</c:if>
-								<a href="projectStartForm">
-									<span class="">
-									<span class="">프로젝트 올리기</span>
-										<span class="HeaderUserProfile_bar__1OPU2"></span>
-									</span>
+						<c:if test="${sessionScope.sId eq 'admin' }">
+							<a href="admin">
+								<span class="">관리자페이지</span>
+								<span class="HeaderUserProfile_bar__1OPU2"></span>
+							</a>
+						</c:if>
+						<a href="projectStartForm">
+							<span class="">
+							<span class="">프로젝트 올리기</span>
+								<span class="HeaderUserProfile_bar__1OPU2"></span>
+							</span>
+						</a>
+						<a href="https://happybean.naver.com/my/home" class="HeaderUserProfile_wrap__3FD8V">
+							<img loading="lazy" src="https://phinf.pstatic.net/contact/profile/blog/58/80/bom_bomi.jpg?type=s160" width="30" height="30" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI">
+<!-- 								<span class="HeaderUserProfile_id__3e8GE"> -->
+<!-- 									<span class="HeaderUserProfile_ellipsis__1iBvz"></span> -->
+<!-- 								</span> -->
+						</a>
+						<c:choose>
+							<c:when test="${empty sessionScope.sId }">
+								<a href="login" class="search-switch">
+									<span>로그인</span>
 								</a>
-								<a href="https://happybean.naver.com/my/home" class="HeaderUserProfile_wrap__3FD8V">
-									<img loading="lazy" src="https://phinf.pstatic.net/contact/profile/blog/58/80/bom_bomi.jpg?type=s160" width="30" height="30" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI">
-		<!-- 								<span class="HeaderUserProfile_id__3e8GE"> -->
-		<!-- 									<span class="HeaderUserProfile_ellipsis__1iBvz"></span> -->
-		<!-- 								</span> -->
+								<a href="join">
+									<span class="HeaderUserProfile_bar__1OPU2"></span>
+									<span>회원가입</span>
 								</a>
-								<c:choose>
-									<c:when test="${empty sessionScope.sId }">
-										<a href="login" class="search-switch">
-											<span>로그인</span>
-										</a>
-										<a href="join">
-											<span class="HeaderUserProfile_bar__1OPU2"></span>
-											<span>회원가입</span>
-										</a>
-									</c:when>
-									<c:otherwise>
-										<span class="HeaderUserProfile_ellipsis__1iBvz"><a href="user?id=${sessionScope.sId }">${sessionScope.sId } 님</a></span>
-										<span class="HeaderUserProfile_bar__1OPU2"></span>
-										<a href="javascript:logout()">로그아웃</a>
-										 
-									</c:otherwise>
-								</c:choose>
-							</div>
-							
-							<div class="style__SearchInputWrapper-zxsodr-15 hbYMFx">
-								<input placeholder="검색어를 입력해주세요." class="style__SearchInput-zxsodr-16 jPMsmJ">
-								<div class="style__SearchButton-zxsodr-17 bolWec">
-									<svg class="style__SearchIcon-zxsodr-34 dtngnQ" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<path fill-rule="evenodd" clip-rule="evenodd" d="M29.9979 32.9819C27.3165 34.9694 23.9582 36.0788 20.3642 35.9089C12.0892 35.5176 5.69811 28.4922 6.08938 20.2171C6.48064 11.9421 13.5061 5.55107 21.7811 5.94234C30.0561 6.33361 36.4472 13.359 36.0559 21.6341C35.889 25.1636 34.5152 28.3505 32.3522 30.8144L39.4908 38.6856L37.1205 40.8353L29.9979 32.9819ZM32.6597 21.4735C32.3571 27.8728 26.9241 32.8152 20.5248 32.5127C14.1254 32.2101 9.183 26.7771 9.48558 20.3777C9.78816 13.9784 15.2212 9.03597 21.6205 9.33855C28.0199 9.64113 32.9623 15.0741 32.6597 21.4735Z" fill="black">
-										</path>
-									</svg>
-								</div>
-							</div>
-						
-						</div>
-						
+							</c:when>
+							<c:otherwise>
+								<span class="HeaderUserProfile_ellipsis__1iBvz"><a href="user?id=${sessionScope.sId }">${sessionScope.sId } 님</a></span>
+								<span class="HeaderUserProfile_bar__1OPU2"></span>
+								<a href="javascript:logout()">로그아웃</a>
+								 
+							</c:otherwise>
+						</c:choose>
 						
 <!-- 						<span class="HeaderUserProfile_bar__1OPU2"></span> -->
 <!-- 						<a href="https://nid.naver.com/nidlogin.logout?returl=https%3A%2F%2Fhappybean.naver.com%2F" class="HeaderUserProfile_btn_login__F6x9v">로그아웃</a> -->
-<!-- 							<span class="HeaderUserProfile_bar__1OPU2"></span> -->
-							
-							
-<!-- 							1202 주석 -->
-<!-- 							<a class="Header_btn_search__2NxHd" href="/search"> -->
-<!-- 								<span class="blind">검색</span> -->
-<!-- 									<g fill="none" fill-rule="evenodd"> -->
-<!-- 										<path fill="#333" fill-rule="nonzero" d="M15.205 17.161a9.209 9.209 0 0 1-5.49 1.804 9.25 9.25 0 1 1 6.52-2.687L21 21.044l-.956.956-4.84-4.839zm-5.49.304a7.75 7.75 0 1 0 0-15.5 7.75 7.75 0 0 0 0 15.5z"> -->
-<!-- 										</path> -->
-<!-- 									</g> -->
-<!-- 								</svg> -->
-<!-- 							</a> -->
-							
-							
-							
-							
-						<div class="menuSearch">
-							<div role="menubar" class="HeaderGnb_menu__1fvV3">
-								<svg class="style__MenuIcon-sc-76u73h-29 goKAXE" width="25" height="25" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<rect x="9" y="11" width="30" height="4" fill="#1C1C1C"></rect>
-									<rect x="9" y="22" width="30" height="4" fill="#1C1C1C"></rect>
-									<rect x="9" y="33" width="30" height="4" fill="#1C1C1C"></rect>
+							<span class="HeaderUserProfile_bar__1OPU2"></span>
+							<a class="Header_btn_search__2NxHd" href="/search">
+								<span class="blind">검색</span>
+								<svg width="21" height="22" viewBox="0 0 21 22" aria-hidden="true">
+									<g fill="none" fill-rule="evenodd">
+										<path fill="#333" fill-rule="nonzero" d="M15.205 17.161a9.209 9.209 0 0 1-5.49 1.804 9.25 9.25 0 1 1 6.52-2.687L21 21.044l-.956.956-4.84-4.839zm-5.49.304a7.75 7.75 0 1 0 0-15.5 7.75 7.75 0 0 0 0 15.5z">
+										</path>
+									</g>
 								</svg>
-								<a href="javascript:void(0);" role="menuitem" class="HeaderGnb_item__wcfir category" aria-current="false">카테고리</a>
-								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="true" href="popular">인기</a>
-								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="true" href="new">신규</a>
-								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="closing">마감임박</a>
-								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="upcoming">공개예정</a>
-								<a href="https://happybean.naver.com/campaign/list" role="menuitem" class="HeaderGnb_item__wcfir" aria-current="false">가치</a>
-							</div>
-		<!-- 					<div class="style__SearchInputWrapper-zxsodr-15 hbYMFx"> -->
-		<!-- 						<input placeholder="검색어를 입력해주세요." class="style__SearchInput-zxsodr-16 jPMsmJ"> -->
-		<!-- 						<div class="style__SearchButton-zxsodr-17 bolWec"> -->
-		<!-- 							<svg class="style__SearchIcon-zxsodr-34 dtngnQ" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"> -->
-		<!-- 								<path fill-rule="evenodd" clip-rule="evenodd" d="M29.9979 32.9819C27.3165 34.9694 23.9582 36.0788 20.3642 35.9089C12.0892 35.5176 5.69811 28.4922 6.08938 20.2171C6.48064 11.9421 13.5061 5.55107 21.7811 5.94234C30.0561 6.33361 36.4472 13.359 36.0559 21.6341C35.889 25.1636 34.5152 28.3505 32.3522 30.8144L39.4908 38.6856L37.1205 40.8353L29.9979 32.9819ZM32.6597 21.4735C32.3571 27.8728 26.9241 32.8152 20.5248 32.5127C14.1254 32.2101 9.183 26.7771 9.48558 20.3777C9.78816 13.9784 15.2212 9.03597 21.6205 9.33855C28.0199 9.64113 32.9623 15.0741 32.6597 21.4735Z" fill="black"> -->
-		<!-- 								</path> -->
-		<!-- 							</svg> -->
-		<!-- 						</div> -->
-		<!-- 					</div> -->
+							</a>
+					</div>
+				</div>
+				<div class="menuSearch">
+					<div role="menubar" class="HeaderGnb_menu__1fvV3">
+						<svg class="style__MenuIcon-sc-76u73h-29 goKAXE" width="25" height="25" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<rect x="9" y="11" width="30" height="4" fill="#1C1C1C"></rect>
+							<rect x="9" y="22" width="30" height="4" fill="#1C1C1C"></rect>
+							<rect x="9" y="33" width="30" height="4" fill="#1C1C1C"></rect>
+						</svg>
+						<a href="https://happybean.naver.com/donation" role="menuitem" class="HeaderGnb_item__wcfir category" aria-current="false">카테고리</a>
+						<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="true" href="popular">인기</a>
+						<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="true" href="/fundings/home">신규</a>
+						<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="/flower/product">마감임박</a>
+						<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="/volunteer">공개예정</a>
+						<a href="https://happybean.naver.com/campaign/list" role="menuitem" class="HeaderGnb_item__wcfir" aria-current="false">가치</a>
+					</div>
+					<div class="style__SearchInputWrapper-zxsodr-15 hbYMFx">
+						<input placeholder="검색어를 입력해주세요." class="style__SearchInput-zxsodr-16 jPMsmJ">
+						<div class="style__SearchButton-zxsodr-17 bolWec">
+							<svg class="style__SearchIcon-zxsodr-34 dtngnQ" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path fill-rule="evenodd" clip-rule="evenodd" d="M29.9979 32.9819C27.3165 34.9694 23.9582 36.0788 20.3642 35.9089C12.0892 35.5176 5.69811 28.4922 6.08938 20.2171C6.48064 11.9421 13.5061 5.55107 21.7811 5.94234C30.0561 6.33361 36.4472 13.359 36.0559 21.6341C35.889 25.1636 34.5152 28.3505 32.3522 30.8144L39.4908 38.6856L37.1205 40.8353L29.9979 32.9819ZM32.6597 21.4735C32.3571 27.8728 26.9241 32.8152 20.5248 32.5127C14.1254 32.2101 9.183 26.7771 9.48558 20.3777C9.78816 13.9784 15.2212 9.03597 21.6205 9.33855C28.0199 9.64113 32.9623 15.0741 32.6597 21.4735Z" fill="black">
+								</path>
+							</svg>
 						</div>
 					</div>
 				</div>
@@ -258,7 +235,6 @@ ul {
 		let timeout;
 
         $j(".HeaderGnb_item__wcfir.category, .DonationTodayCategory_wrap__k2rtu").on({
-        	
             mouseenter: function () {
                 clearTimeout(timeout);
                 $j(".DonationTodayCategory_wrap__k2rtu").show();
