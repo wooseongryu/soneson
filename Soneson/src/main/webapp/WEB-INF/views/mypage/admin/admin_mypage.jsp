@@ -185,7 +185,7 @@
 									<h6 class="m-0 font-weight-bold text-primary">마감예정인 프로젝트 달성도</h6>
 								</div>
 								<div class="card-body">
-								<c:forEach var="projectMy" items="${projectMyList }">
+								<c:forEach var="projectMy" items="${projectMyList }" varStatus="status">
 									<h4 class="small font-weight-bold">${projectMy.title }
 										<span class="float-right">
 											<c:choose>
@@ -195,7 +195,23 @@
 										</span>
 									</h4>
 									<div class="progress mb-4">
-										<div class="progress-bar bg-danger" role="progressbar" style="width: ${projectMy.goal_rate }%"
+										<div class=
+										<c:if test="${status.index eq 0 }">
+										"progress-bar bg-danger"	
+										</c:if>
+										<c:if test="${status.index eq 1 }">
+										"progress-bar bg-warning"	
+										</c:if>
+										<c:if test="${status.index eq 2 }">
+										"progress-bar"	
+										</c:if>
+										<c:if test="${status.index eq 3 }">
+										"progress-bar bg-info"	
+										</c:if>
+										<c:if test="${status.index eq 4 }">
+										"progress-bar bg-success"	
+										</c:if>
+										role="progressbar" style="width: ${projectMy.goal_rate }%"
 											aria-valuenow="${projectMy.goal_rate }" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</c:forEach>
