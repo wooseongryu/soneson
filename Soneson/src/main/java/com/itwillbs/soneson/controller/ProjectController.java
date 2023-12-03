@@ -398,14 +398,32 @@ public class ProjectController {
 	public String deleteItem(@RequestParam Map<String, String> map) {
 		
 		int deleteCount = itemService.deleteItem(map);
-		JSONObject json=new JSONObject();
 		if(deleteCount > 0) {
 			return "삭제되었습니다.";
 		} else {
 			return "잠시 후 다시 시도해주세요.";
 		}
 	}
-
+	
+	//리워드저장
+	@ResponseBody
+	@PostMapping("insertReward")
+	public String insertReward(@RequestParam Map<String, String> map) {
+		System.out.println(map);
+		map.put("reward_code", null);
+		int insertCount = itemService.insertReward(map);
+//		int reward_code = Integer.parseInt(map.get("reward_code"));
+		System.out.println(insertCount);
+		System.out.println(map);
+		
+		if(insertCount > 0) {
+			JSONObject jsonObject = new JSONObject(map);
+			return jsonObject.toString();
+		} else {
+			return "잠시 후 다시 시도해주세요.";
+		}
+		
+	}
 
 	
 }

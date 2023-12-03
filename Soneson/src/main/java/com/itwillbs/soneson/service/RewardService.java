@@ -32,6 +32,9 @@ public class RewardService {
 	public int deleteItem(Map<String, String> map) {
 		return mapper.deleteItem(map);
 	}
+	public int insertReward(Map<String, String> map) {
+		return mapper.insertReward(map);
+	}
 	
 
 }

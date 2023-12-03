@@ -95,7 +95,7 @@
 			}
 			console.log(startDt + ", " + typeof startDt);
 			
-			if(startDt != "" || startDt != null ||endDt != "" || endDt != null) {
+			if((startDt != "" || startDt != null) && (endDt != "" || endDt != null)) {
 				fundingDays = Math.round((endDt - startDt) / 1000 / 60 / 60 / 24);
 				console.log(fundingDays + ", " + typeof fundingDays);
 				$("#fundingDays").text(fundingDays);

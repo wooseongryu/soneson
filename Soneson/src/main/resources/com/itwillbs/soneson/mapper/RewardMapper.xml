@@ -57,6 +57,28 @@
 	</select>
 	
 	
+	<!-- rewardInsert  -->
+	<insert id="insertReward">
+		<selectKey keyProperty="reward_code" resultType="Integer" order="AFTER">
+	    	SELECT LAST_INSERT_ID() AS reward_code
+	    	<!-- 마지막 auto_increment 값 가져옴 -->
+		</selectKey>
+		INSERT INTO pro_reward
+		VALUES (
+			null
+			, #{pro_code}
+			, #{reward_item_name}
+			, #{reward_item_code}
+			, #{reward_explan}
+			, #{reward_isCount}
+			, #{reward_count}
+			, #{reward_isDeliv}
+			, #{reward_amount}
+		)
+		
+		
+	</insert>
+	
 	
 </mapper>
 

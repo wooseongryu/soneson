@@ -22,6 +22,9 @@ public interface RewardMapper {
 	
 	//리워드 리스트조회
 	List<Map<String, String>> selectReward(Map<String, Object> map);
+	
+	//리워드 추가
+	int insertReward(Map<String, String> map);
 
 
 }
