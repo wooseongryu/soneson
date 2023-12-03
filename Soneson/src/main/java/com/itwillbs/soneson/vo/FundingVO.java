@@ -15,4 +15,3 @@ public class FundingVO {
 	
 //	private String fund_del_status;		// 전달 상태(보류)
 }
-
