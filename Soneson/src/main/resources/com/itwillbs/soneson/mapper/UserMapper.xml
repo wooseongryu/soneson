@@ -15,16 +15,22 @@
 			, mail_auth_status
 			, user_status
 			, kakao_id
+			, user_info
+			, user_picture
+			, user_phone
 	)
   	 VALUES (
 			#{user_name}
 			, #{user_id}
 			, #{user_email} 
 			, #{user_passwd}
-			, now(
+			, now()
 			, 'N'
 			, 'N'
 			, '가입'
+			, null
+			, null
+			, null
 			, null
 	)
 	
@@ -195,11 +201,7 @@
 		WHERE user_id = #{user_id}
 	</update>
 	
-	<select id="checkDuplicateEmail" resultType="int">
-		SELECT COUNT(user_idx)
-		FROM user
-		WHERE user_email = #{deleteEmail}
-	</select>
+
 	
 	
 	<!-- 내가 쓴 리뷰 삭제 -->
@@ -309,5 +311,27 @@
 		SET kakao_id = null
 		WHERE user_id = #{sId}
 	</update>
+	
+	<update id="updateUserLeave">
+		UPDATE user
+		SET 
+			user_name = ""
+			, user_email = #{user_email}
+			, user_passwd = ""
+			, user_is_admin = "N"
+			, mail_auth_status = ""
+			, user_status = "탈퇴"
+			, kakao_id = null
+			, user_info = null
+			, user_picture = null
+			, user_phone = null
+		WHERE user_id = #{user_id}
+	</update>
+	
+	<select id="checkDuplicateEmail" resultType="int">
+		SELECT COUNT(user_idx)
+		FROM user
+		WHERE user_email = #{deleteEmail}
+	</select>
 </mapper>
 
