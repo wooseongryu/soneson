@@ -37,6 +37,7 @@
     	let picture = "";
     	let info = "";
     	let info_print = "";
+    	let user_name = "";
     	
     	function userProfile(id) {
     		$.ajax({
@@ -46,7 +47,6 @@
     			success: function(resp) {
     				reset_screen(id);
     				
-    				// 등록된 소개가 없을 경우 입력폼 출력값 수정 필요.
 					info = resp.user_info;
 					info_print = resp.user_info;
     				if (info == "" || info == null) {
@@ -57,6 +57,8 @@
     				if (picture == "" || picture == null) {
     					picture = "${pageContext.request.contextPath }/resources/user/prifile.png";
     				}
+    				
+    				user_name = resp.user_name;
 
 					$("#user_content").append(
 						  ' <div class="anime__details__review">                                                                                    '
@@ -78,9 +80,9 @@
 						+ '  	<div class="anime__review__item">                                    '
                         + '  		<div class="user__setting__text" id="user_name">                 '
 	                    + '      		<h6>이름</h6>                                                '
-	                    + '      		<p style="margin-top: 10px">' + resp.user_name + '</p>                       '
+	                    + '      		<p style="margin-top: 10px">' + user_name + '</p>                       '
 	                    + '      		<div class="user_follow_btn">                                '
-	                    + '      			<a onclick="updateUserName(\'' + resp.user_name + '\')">변경</a>     '
+	                    + '      			<a onclick="updateUserName()">변경</a>     '
 	                    + '      		</div>                                                       '
 						+ '  		</div>                                                           '
                     	+ '  	</div>                                                               '
@@ -181,7 +183,7 @@
     		});
     	}
     	
-    	function updateUserName(user_name) {
+    	function updateUserName() {
     		$.ajax({
     			type: 'post',
     			url: 'settingUpdateUserName',
@@ -191,16 +193,23 @@
     				
     				$("#user_name").append(
                      		  ' <h6>이름</h6>                                                                              '
-                     		+ ' <input type="text" value="' + user_name + '" id="userName" style="margin-top: 10px">       '
+                     		+ ' <input type="text" value="' + user_name + '" maxlength="10"  id="userName" style="margin-top: 10px">       '
                      		+ ' <div class="user_follow_btn">                                                              '
                      		+ ' 	<a id="updateUserNameSave">저장</a>                                                    '
                      		+ ' </div>                                                                                     '
                      		+ ' <div class=user_cancel_btn>                                                                '
-                     		+ ' 	<a onclick="cancelUpdateUserName(\'' + user_name + '\')">취소</a>                      '
+                     		+ ' 	<a onclick="cancelUpdateUserName()">취소</a>                      '
                      		+ ' </div>      	                                                                           '
     				);
     				
-    				$("#updateUserNameSave").on("click", updateUserNamePro);
+    				$("#updateUserNameSave").on("click", function() {
+    					if ($("#userName").val() == "") {
+    						alert("1자 이상 입력 하세요.");
+    						return;
+    					}
+    					
+    					updateUserNamePro();
+    				});
     			},
     			error: function() {
     				alert("에러!");
@@ -221,7 +230,13 @@
     			},
     			dataType: 'json',
     			success: function(resp) {
-    				if (resp.isUpdated == "false") {
+    				if (!resp.isLogin) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    				
+    				if (!resp.isUpdated) {
     					alert("이름 수정 실패!");
     					userProfile('topCateProfile');
     					return;
@@ -229,15 +244,15 @@
     				
     				alert("이름이 변경 되었습니다.");
     				
-    				let name = resp.user_name;
+    				user_name = resp.user_name;
     				
     				$("#user_name").children().remove();
     				
     				$("#user_name").append(
    						  '<h6>이름</h6>                                                '
-   	                    + '<p style="margin-top: 10px">' + name + '</p>                 '
+   	                    + '<p style="margin-top: 10px">' + user_name + '</p>                 '
    	                    + '<div class="user_follow_btn">                                '
-   	                    + '    <a onclick="updateUserName(\'' + name + '\')">변경</a>   '
+   	                    + '    <a onclick="updateUserName()">변경</a>   '
    	                    + '</div>                                                       '
     				);
     			},
@@ -247,7 +262,7 @@
     		});
     	}
     	
-    	function cancelUpdateUserName(user_name) {
+    	function cancelUpdateUserName() {
     		$.ajax({
     			type: 'post',
     			url: 'settingCancelUpdateUserName',
@@ -322,7 +337,13 @@
     			},
     			dataType: 'json',
     			success: function(resp) {
-    				if (resp.isUpdated == "false") {
+    				if (!resp.isLogin) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    				
+    				if (!resp.isUpdated) {
     					alert("소개 수정 실패!");
     					userProfile('topCateProfile');
     					return;
@@ -613,11 +634,18 @@
     			data: {
     				user_passwd: $("#nowPass").val()
     			},
-    			success: function(isPassEqual) {
-    				if (!isPassEqual) {
+    			success: function(resp) {
+    				if (!resp.isLogin) {
+       					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+       					location.href="login";
+       					return;
+    				}
+    				
+    				if (!resp.isPassEqual) {
     					alert("현재 비밀번호 불일치!");
     					return;
     				}
+    				
    					changePass();
     			},
     			error: function() {
@@ -717,6 +745,17 @@
     				user_phone: $("#userPhone").val()
     			},
     			success: function(resp) {
+    				if (!resp.isLogin) {
+       					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+       					location.href="login";
+       					return;
+    				}
+    				
+    				if (!resp.isSuccess) {
+    					alert("전화번호 변경 실패.");
+    					return;
+    				}
+    				
     				alert("전화번호가 변경 되었습니다.");
     				
     				phone_print = resp.user_phone;
@@ -770,7 +809,13 @@
     			url: 'settingDisconnectKakao',
     			dataType: 'json',
     			success: function(resp) {
-    				if (resp.isSuccess == "false") {
+    				if (!resp.isLogin) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    				
+    				if (!resp.isSuccess) {
     					alert("카카오 연동해제에 실패 하였습니다.");
     					return;
     				}
@@ -991,11 +1036,6 @@
     		}
     		
     		userProfile('topCateProfile');
-    		
-    		$('input[name="profile_path"]').change(function(){
-    		    setImageFromFile(this);
-    		});
-    		
     	});
     	
     	function setImageFromFile(input) {
