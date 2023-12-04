@@ -116,6 +116,9 @@ public interface AdminMapper {
 	// 파이차트 
 	List<Map<Object, Object>> selectMyPieChart();
 
+	// 에어리어차트 
+	List<Map<Object, Object>> selectMyBarChart();
+
 
 
 	

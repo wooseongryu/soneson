@@ -98,6 +98,8 @@ public class AdminController {
 		
 		// 카테고리별 분류
 		List<Map<Object, Object>> AdminSelectMyPieChart = adminService.selectMyPieChart();
+
+		
 		
 
 		model.addAttribute("AdminSelectMyPieChart", AdminSelectMyPieChart);
@@ -117,6 +119,17 @@ public class AdminController {
 		List<Map<Object, Object>> AdminSelectMyPieChart = adminService.selectMyPieChart();
 		
 		return AdminSelectMyPieChart;
+	}
+
+	@ResponseBody
+	@PostMapping("AdminSelectMyBarChart")
+	public List<Map<Object, Object>> AdminSelectMyBarChart() {
+		
+		// 최근 일주일 일별 누적 금액
+		List<Map<Object, Object>> AdminSelectMyBarChart = adminService.selectMyBarChart();
+		
+		
+		return AdminSelectMyBarChart;
 	}
 	
 	

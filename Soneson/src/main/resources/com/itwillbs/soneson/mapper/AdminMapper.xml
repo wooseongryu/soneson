@@ -30,6 +30,14 @@
 		ORDER BY cateCount DESC
 	</select>
 
+	<!-- 바 차트 -->
+	<select id="selectMyBarChart" resultType="map">
+		SELECT REPLACE(ifnull(format(sum(cost) , 0), 0), ',' ,'') AS now_amount, DATE_FORMAT(fund_date, '%Y-%m-%d') AS fund_date_a  
+		FROM fund 
+		WHERE fund_date BETWEEN DATE_ADD(now(), INTERVAL -1 WEEK) AND now()
+		GROUP BY fund_date_a
+	</select>
+
     <!-- 마이페이지 달성률  -->
    	<select id="selectProjectMyList" resultType="map">
 		SELECT
@@ -59,23 +67,9 @@
 
     <!-- 주간 펀딩 금액 조회  -->
    	<select id="costAmount" resultType="map">
-   	<![CDATA[
-		SELECT
-		  CONCAT(
-		    DATE_FORMAT(
-		      DATE_ADD(fund_date, INTERVAL (WEEKDAY(fund_date)) * -1 DAY),
-		      '%Y-%m-%d'
-		    ),
-		    ' ~ ',
-		    DATE_FORMAT(
-		      DATE_ADD(fund_date, INTERVAL (6 - WEEKDAY(fund_date)) * +1 DAY),
-		      '%Y-%m-%d'
-		    )
-		  ) AS `date`,
-		  SUM(cost) AS sum_cost 
-		FROM fund f 
-		GROUP BY date
-		]]>
+		SELECT SUM(cost) AS sum_cost 
+		FROM fund
+		WHERE fund_date BETWEEN DATE_ADD(NOW(),INTERVAL -1 WEEK) AND NOW()
 	</select>
 
     <!-- 진행중인 프로젝트 수 조회  -->

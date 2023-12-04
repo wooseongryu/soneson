@@ -136,7 +136,7 @@
 <!-- 								Card Body -->
 								<div class="card-body">
 									<div class="chart-area">
-										<canvas id="myAreaChart"></canvas>
+										<canvas id="myBarChart"></canvas>
 									</div>
 								</div>
 							</div>
@@ -189,18 +189,12 @@
 											></i> ${AdminSelectMyPieChart.cate }
 										</span>
 										</c:forEach>
-<!-- 										<span class="mr-2"> -->
-<!-- 											<i class="fas fa-circle text-success"></i> 분류별 카테2 -->
-<!-- 										</span> -->
-<!-- 										<span class="mr-2"> -->
-<!-- 											<i class="fas fa-circle text-info"></i> 분류별 카테3 -->
-<!-- 										</span> -->
 									</div>
 								</div>
 							</div>
 						</div>
 						<!-- Content Column -->
-						<div class="col-xl-12 col-lg-12">
+						<div class="col-xl-8 col-lg-8">
 
 							<!-- Project Card Example -->
 							<div class="card shadow mb-4">
@@ -269,9 +263,9 @@
     <script src="${pageContext.request.contextPath }/resources/mypage/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-area-demo.js"></script>
+<%--     <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-area-demo.js"></script> --%>
     <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-pie-demo.js"></script>
-<%--     <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-bar-demo.js"></script> --%>
+    <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-bar-demo.js"></script>
 
 
 

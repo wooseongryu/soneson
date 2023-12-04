@@ -201,6 +201,10 @@ public class AdminService {
 		return mapper.selectMyPieChart();
 	}
 
+	public List<Map<Object, Object>> selectMyBarChart() {
+		return mapper.selectMyBarChart();
+	}
+
 	
 	
 	
