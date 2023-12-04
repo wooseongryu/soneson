@@ -343,7 +343,7 @@ public class LoginJoinController {
     		}
     		
     		model.addAttribute("msg", "카카오 연동이 완료 되었습니다.");
-    		model.addAttribute("targetURL", "/soneson/userUpdate");
+    		model.addAttribute("targetURL", "/soneson/userSetting?kakao=true");
     		
     		return "forward";
     	}

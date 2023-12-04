@@ -732,6 +732,10 @@
     	}
     	
     	function disconnectKakao() {
+    		if (!confirm("카카오 연동을 해제 하시겠습니까?")) {
+    			return;
+    		}
+    		
     		$.ajax({
     			type: 'post',
     			url: 'settingDisconnectKakao',
@@ -742,6 +746,8 @@
     					return;
     				}
     				
+    				alert("카카오 연동을 해제 하였습니다.");
+    				
     				kakao_id = "미연동 중입니다.";
     				kakao_link = 'href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://localhost:8081/soneson/kakao/callback"';
     				kakao_btn = "연동";
@@ -749,11 +755,11 @@
     				$("#user_kakao").children().remove();
 
 					$("#user_kakao").append(
-						   '      		<h6>카카오 계정 연동</h6>                                          '
-		                 + '      		<p style="margin-top: 10px">' + kakao_id + '</p>                   '
-		                 + '      		<div class="user_follow_btn">                                      '
-		                 + '      			<a ' + kakao_link + '>' + kakao_btn + '</a>                    '
-		                 + '      		</div>                                                             '
+						   ' <h6>카카오 계정 연동</h6>                                          '
+		                 + ' <p style="margin-top: 10px">' + kakao_id + '</p>                   '
+		                 + ' <div class="user_follow_btn">                                      '
+		                 + ' 	<a ' + kakao_link + '>' + kakao_btn + '</a>                     '
+		                 + ' </div>                                                             '
 					);
     			},
     			error: function() {
@@ -797,8 +803,6 @@
     				user_passwd: $("#leavePass").val()
     			},
     			success: function(resp) {
-    				console.log(resp);
-    				
     				if (!resp.isLogin) {
     					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
     					location.href="login";
@@ -945,6 +949,14 @@
     	}
     
     	$(function() {
+    		let urlParams = new URLSearchParams(window.location.search);
+    		
+    		if (urlParams.has('kakao')) {
+    			userAccount('topUserAccount');
+	    		history.replaceState({}, null, location.pathname);
+    			return;
+    		}
+    		
     		userProfile('topCateProfile');
     		
     		$('input[name="profile_path"]').change(function(){
