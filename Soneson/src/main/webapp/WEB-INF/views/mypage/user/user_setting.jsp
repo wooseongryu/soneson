@@ -208,6 +208,10 @@
     	}
     	
     	function updateUserNamePro() {
+    		if (!confirm("이름을 변경 하시겠습니까?")) {
+    			return;
+    		}
+    		
     		$.ajax({
     			type: 'post',
     			url: 'settingUpdateUserProfilePro',
@@ -221,6 +225,8 @@
     					userProfile('topCateProfile');
     					return;
     				}
+    				
+    				alert("이름이 변경 되었습니다.");
     				
     				let name = resp.user_name;
     				
@@ -298,6 +304,10 @@
     	}
     	
     	function updateUserIntroductionPro() {
+    		if (!confirm("소개를 변경 하시겠습니까?")) {
+    			return;
+    		}
+    		
     		$.ajax({
     			type: 'post',
     			url: 'settingUpdateUserProfilePro',
@@ -311,6 +321,8 @@
     					userProfile('topCateProfile');
     					return;
     				}
+    				
+    				alert("소개가 변경 되었습니다.");
     				
     				let info = resp.user_info;
     				
@@ -570,6 +582,10 @@
     	}
     	
     	function checkValid() {
+    		if (!confirm("비밀번호를 변경 하시겠습니까?")) {
+    			return;
+    		}
+    		
     		let isEqual = isPassEqual();
     		let isSafe = isPassSafe();
     		
@@ -682,6 +698,10 @@
     	}
     	
     	function updateUserPhonePro() {
+    		if (!confirm("전화번호를 변경 하시겠습니까?")) {
+    			return;
+    		}
+    		
     		$.ajax({
     			type: 'post',
     			url: 'settingUpdateUserPhonePro',
@@ -690,6 +710,8 @@
     				user_phone: $("#userPhone").val()
     			},
     			success: function(resp) {
+    				alert("전화번호가 변경 되었습니다.");
+    				
     				phone_print = resp.user_phone;
     				phone = resp.user_phone;
     				
@@ -795,6 +817,10 @@
     	}
     	
     	function checkPasswdEqual() {
+    		if (!confirm("회원탈퇴를 하시겠습니까?")) {
+    			return;
+    		}
+    		
     		$.ajax({
     			type: 'post',
     			url: 'isPassEqual',
