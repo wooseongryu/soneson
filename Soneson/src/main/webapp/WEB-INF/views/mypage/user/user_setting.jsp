@@ -35,6 +35,8 @@
     	let pointColor = "#F86453";
     	
     	let picture = "";
+    	let info = "";
+    	let info_print = "";
     	
     	function userProfile(id) {
     		$.ajax({
@@ -44,12 +46,11 @@
     			success: function(resp) {
     				reset_screen(id);
     				
-//     				console.log(resp);
-    				
     				// 등록된 소개가 없을 경우 입력폼 출력값 수정 필요.
-					let info = resp.user_info;
+					info = resp.user_info;
+					info_print = resp.user_info;
     				if (info == "" || info == null) {
-    					info = "등록된 소개가 없습니다.";
+    					info_print = "등록된 소개가 없습니다.";
     				}
     				
     				picture = resp.user_picture;
@@ -89,9 +90,9 @@
 						+ '  	<div class="anime__review__item">                                                       '
 	                    + '  		<div class="user__setting__text" id="user_intro">                                   '
 	                    + '      		<h6>소개</h6>                                                                   '
-	                    + '      		<p style="margin-top: 10px; width: 700px">' + info + '</p>           '
+	                    + '      		<p style="margin-top: 10px; width: 700px">' + info_print + '</p>           '
 	                    + '      		<div class="user_follow_btn">                                                   '
-	                    + '      			<a onclick="updateUserIntroduction(\'' + info + '\')">변경</a>                '
+	                    + '      			<a onclick="updateUserIntroduction()">변경</a>                '
 	                    + '      		</div>                                                                          '
 						+ '  		</div>                                                                              '
 	                	+ '  	</div>                                                                                  '
@@ -268,24 +269,29 @@
     		});
     	}
     	
-    	function updateUserIntroduction(info) {
+    	function updateUserIntroduction() {
     		$.ajax({
     			type: 'post',
     			url: 'settingUpdateUserIntro',
     			dataType: 'json',
     			success: function(resp) {
+    				let tmp = "";
+    				if (info != null) {
+    					tmp = info.replaceAll("<br>", "\n");
+    				}
+    				
 					$("#user_intro").children().remove();
 					
     				$("#user_intro").append(
    						  ' <h6>소개</h6>                                                                                                                    '
                    		+ ' <textarea rows="10px" cols="70px" id="userInfo" placeholder="자기소개를 입력해주세요." maxlength="3000" style="margin-top: 10px">'
-                   		+ 		info.replaceAll("<br>", "\n") 
+                   		+ 		tmp 
                    		+ '</textarea>                                                                                                                           '
                    		+ ' <div class="user_follow_btn">                                                                                                         '
                    		+ ' 	<a id="updateUserIntroductionSave">저장</a>                                                                                       '
                    		+ ' </div>                                                                                                                                '
                    		+ ' <div class=user_cancel_btn>                                                                                                           '
-                   		+ ' 	<a onclick="cancelUpdateUserIntroduction(\'' + info + '\')">취소</a>                                                              '
+                   		+ ' 	<a onclick="cancelUpdateUserIntroduction()">취소</a>                                                              '
                    		+ ' </div>                                                                                                                                '
     				);
 
@@ -324,13 +330,14 @@
     				
     				alert("소개가 변경 되었습니다.");
     				
-    				let info = resp.user_info;
+    				info = resp.user_info;
+    				info_print = resp.user_info;
     				
 					$("#user_intro").children().remove();
     				
     				$("#user_intro").append(
    						  ' <h6>소개</h6>                                                        '
-   	                    + ' <p style="margin-top: 10px; width: 700px">' + info + '</p>           '
+   	                    + ' <p style="margin-top: 10px; width: 700px">' + info_print + '</p>           '
    	                    + ' <div class="user_follow_btn">                                        '
    	                    + ' 	<a onclick="updateUserIntroduction(\'' + info + '\')">변경</a>   '
    	                    + ' </div>                                                               '                                                     
@@ -343,7 +350,7 @@
     		});
     	}
     	
-    	function cancelUpdateUserIntroduction(info) {
+    	function cancelUpdateUserIntroduction() {
     		$.ajax({
     			type: 'post',
     			url: 'settingcCancelUpdateUserIntro',
@@ -353,9 +360,9 @@
     				
     				$("#user_intro").append(
     						  ' <h6>소개</h6>                                                                   '
-    	                    + ' <p style="margin-top: 10px; width: 700px">' + info + '</p>           '
+    	                    + ' <p style="margin-top: 10px; width: 700px">' + info_print + '</p>           '
     	                    + ' <div class="user_follow_btn">                                                   '
-    	                    + ' 	<a onclick="updateUserIntroduction(\'' + info + '\')">변경</a>                              '
+    	                    + ' 	<a onclick="updateUserIntroduction()">변경</a>                              '
     	                    + ' </div>                                                                          '
     				);
 
