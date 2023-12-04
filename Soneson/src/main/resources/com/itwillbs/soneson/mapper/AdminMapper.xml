@@ -20,6 +20,7 @@
 		FROM user
 		WHERE user_status = '탈퇴';
 	</select>
+
 	
 	
 
@@ -231,6 +232,41 @@
 		GROUP BY p.project_code
 		ORDER BY end_date DESC
 		LIMIT 5
+	</select>
+
+
+    <!-- 주간 펀딩 금액 조회  -->
+   	<select id="costAmount" resultType="map">
+   	<![CDATA[
+		SELECT
+		  CONCAT(
+		    DATE_FORMAT(
+		      DATE_ADD(fund_date, INTERVAL (WEEKDAY(fund_date)) * -1 DAY),
+		      '%Y-%m-%d'
+		    ),
+		    ' ~ ',
+		    DATE_FORMAT(
+		      DATE_ADD(fund_date, INTERVAL (6 - WEEKDAY(fund_date)) * +1 DAY),
+		      '%Y-%m-%d'
+		    )
+		  ) AS `date`,
+		  SUM(cost) AS sum_cost 
+		FROM fund f 
+		GROUP BY date
+		]]>
+	</select>
+
+    <!-- 진행중인 프로젝트 수 조회  -->
+   	<select id="projectCount" resultType="map">
+   	<![CDATA[
+		SELECT count(*) AS project_count
+		FROM 
+			(SELECT
+				date(p.start_date) AS start_date
+				, date(p.end_date) AS end_date
+			FROM project p
+			WHERE start_date <= now() AND end_date >= now()) AS A
+		]]>
 	</select>
     
 </mapper>
