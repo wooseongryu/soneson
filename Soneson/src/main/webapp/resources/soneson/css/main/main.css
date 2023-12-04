@@ -251,3 +251,15 @@
 		font-weight: bold;
 	}  	
   	
+  .sliderA {
+/*     display: block; 링크를 블록 레벨로 설정하여 컨테이너 크기에 맞게 조정 */
+/*     width: max-content; 컨텐츠 크기에 맞게 넓힘 */
+  }
+
+  .slider li img {
+/*     width: 100%; 이미지를 100%의 너비로 설정하여 부모(<a>)의 크기에 맞춤 */
+/*     height: auto; 높이는 자동으로 조정하여 가로 비율 유지 */
+/*     display: block; 인라인 요소가 아닌 블록 레벨로 설정 */
+  }
+  
+  
