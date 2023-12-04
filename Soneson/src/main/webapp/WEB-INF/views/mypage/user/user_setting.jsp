@@ -1001,11 +1001,6 @@
     		}
     		
     		userProfile('topCateProfile');
-    		
-    		$('input[name="profile_path"]').change(function(){
-    		    setImageFromFile(this);
-    		});
-    		
     	});
     	
     	function setImageFromFile(input) {
