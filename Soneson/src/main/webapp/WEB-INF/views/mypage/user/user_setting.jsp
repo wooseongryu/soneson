@@ -358,6 +358,7 @@
     	let phone_print = "";
     	let kakao_id = "";
     	let kakao_btn = "";
+    	let kakao_link = "";
     	
     	function userAccount(id) {
     		$.ajax({
@@ -376,9 +377,11 @@
     				if (kakao_id == null) {
     					kakao_id = "미연동 중입니다.";
     					kakao_btn = "연동"
+   						kakao_link = 'href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://localhost:8081/soneson/kakao/callback"';
     				} else {
     					kakao_id = "연동 중입니다.";
     					kakao_btn = "연동 해제";
+    					kakao_link = "onclick='disconnectKakao()'";
     				}
     				
     				phone = resp.user_phone;
@@ -417,7 +420,7 @@
 	                    + '      		<h6>카카오 계정 연동</h6>                                          '
 	                    + '      		<p style="margin-top: 10px">' + kakao_id + '</p>                     '
 	                    + '      		<div class="user_follow_btn">                                      '
-	                    + '      			<a onclick="updateUserKakao()">' + kakao_btn + '</a>                    '
+	                    + '      			<a ' + kakao_link + '>' + kakao_btn + '</a>                    '
 	                    + '      		</div>                                                             '
 						+ '  		</div>                                                                 '
                     	+ '  	</div>                                                                     '
@@ -688,10 +691,6 @@
     		});
     	}
     	
-    	function test() {
-    		
-    	}
-    	
     	function updateUserPhonePro() {
     		$.ajax({
     			type: 'post',
@@ -742,37 +741,35 @@
     		});
     	}
     	
-    	// TODO
-    	function updateUserKakao() {
-    		let popup = window.open('https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://localhost:8081/soneson/kakao/callback', 'kakao_popup', 'width=700px,height=800px,scrollbars=yes');
-    		
-    		// 진행중..............
-    		popup.addEventListener('unload', function(event) {
-    			alert("창 닫힘");
-    		});
-    		
-    		
-    		console.log("아래 코드1");
-    		
-    		
-//     		$.ajax({
-//     			type: 'post',
-//     			url: 'settingUpdateUserKakao',
-//     			dataType: 'json',
-//     			success: function(resp) {
-//     				console.log("카카오=====");
-//     				console.log(resp);
+    	function disconnectKakao() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingDisconnectKakao',
+    			dataType: 'json',
+    			success: function(resp) {
+    				if (resp.isSuccess == "false") {
+    					alert("카카오 연동해제에 실패 하였습니다.");
+    					return;
+    				}
     				
-// //     				$("#user_kakao").children().remove();
+    				kakao_id = "미연동 중입니다.";
+    				kakao_link = 'href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://localhost:8081/soneson/kakao/callback"';
+    				kakao_btn = "연동";
+    				
+    				$("#user_kakao").children().remove();
 
-// // 					$("#user_kakao").append(
-						
-// // 					);
-//     			},
-//     			error: function() {
-//     				alert("에러!");
-//     			}
-//     		});
+					$("#user_kakao").append(
+						   '      		<h6>카카오 계정 연동</h6>                                          '
+		                 + '      		<p style="margin-top: 10px">' + kakao_id + '</p>                   '
+		                 + '      		<div class="user_follow_btn">                                      '
+		                 + '      			<a ' + kakao_link + '>' + kakao_btn + '</a>                    '
+		                 + '      		</div>                                                             '
+					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
     	}
     	
     	function updateUserLeave() {

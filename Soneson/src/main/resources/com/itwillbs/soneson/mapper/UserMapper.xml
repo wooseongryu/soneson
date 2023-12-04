@@ -303,5 +303,11 @@
 		SET user_phone = #{user_phone}
 		WHERE user_id = #{user_id}
 	</update>
+	
+	<update id="updateKakaoStatus">
+		UPDATE user
+		SET kakao_id = null
+		WHERE user_id = #{sId}
+	</update>
 </mapper>
 

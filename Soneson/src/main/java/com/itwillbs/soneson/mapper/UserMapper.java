@@ -110,6 +110,9 @@ public interface UserMapper {
 	// 유저 휴대폰 번호 변경
 	int updateUserPhone(UserVO user);
 
+	// 유저 설정 카카오 연동 해제
+	int updateKakaoStatus(String sId);
+
 }
 
 
