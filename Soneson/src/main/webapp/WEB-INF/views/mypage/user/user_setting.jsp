@@ -356,9 +356,9 @@
     	
     	let phone = "";
     	let phone_print = "";
-    	let kakao_id = "";
-    	let kakao_btn = "";
-    	let kakao_link = "";
+    	let kakao_id = "연동 중입니다.";
+    	let kakao_btn = "연동 해제";
+    	let kakao_link = "onclick='disconnectKakao()'";
     	
     	function userAccount(id) {
     		$.ajax({
@@ -368,20 +368,10 @@
     			success: function(resp) {
     				reset_screen(id);
     				
-    				console.log(resp);
-    				
-    				kakao_id = resp.kakao_id;
-    				console.log("카카오: " + kakao_id);
-    				console.log(kakao_id == null);
-    				
-    				if (kakao_id == null) {
+    				if (resp.kakao_id == null) {
     					kakao_id = "미연동 중입니다.";
     					kakao_btn = "연동"
    						kakao_link = 'href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://localhost:8081/soneson/kakao/callback"';
-    				} else {
-    					kakao_id = "연동 중입니다.";
-    					kakao_btn = "연동 해제";
-    					kakao_link = "onclick='disconnectKakao()'";
     				}
     				
     				phone = resp.user_phone;
