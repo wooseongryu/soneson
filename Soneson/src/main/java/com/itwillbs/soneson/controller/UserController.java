@@ -152,8 +152,6 @@ public class UserController {
 		
 		String sId = (String)session.getAttribute("sId");
 		if (sId == null) {
-			System.out.println("세션 없음.");
-			map.put("isLogin", "false");
 			return gson.toJson(map);
 		}
 		
@@ -167,7 +165,6 @@ public class UserController {
 		int updateCount = userService.updateUserInfo(map);
 		
 		if (updateCount == 0) {
-			map.put("isUpdated", "false");
 			return gson.toJson(map);
 		}
 		
