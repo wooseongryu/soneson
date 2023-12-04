@@ -214,7 +214,6 @@ public class UserController {
 		
 		String sId = (String)session.getAttribute("sId");
 		if (sId == null) {
-			map.put("isLogin", false);
 			return gson.toJson(map);
 		}
 		map.put("isLogin", true);
@@ -223,7 +222,6 @@ public class UserController {
 		UserVO dbUser = userService.selectUserPass(user);
 		
 		if(!passwordEncoder.matches(user.getUser_passwd(), dbUser.getUser_passwd())) {
-			map.put("isPassEqual", false);
 			return gson.toJson(map);
 		}
 		map.put("isPassEqual", true);

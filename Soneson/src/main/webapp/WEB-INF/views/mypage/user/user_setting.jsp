@@ -634,11 +634,18 @@
     			data: {
     				user_passwd: $("#nowPass").val()
     			},
-    			success: function(isPassEqual) {
-    				if (!isPassEqual) {
+    			success: function(resp) {
+    				if (!resp.isLogin) {
+       					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+       					location.href="login";
+       					return;
+    				}
+    				
+    				if (!resp.isPassEqual) {
     					alert("현재 비밀번호 불일치!");
     					return;
     				}
+    				
    					changePass();
     			},
     			error: function() {
