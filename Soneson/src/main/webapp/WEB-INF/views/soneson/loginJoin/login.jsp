@@ -63,14 +63,14 @@
 						<h3>로그인</h3>
 						<form action="loginPro" method="post">
 							<div class="input__item">
-                                <input name="user_id" type="text" value="${cookie.cookieId.value }" placeholder="아이디를 입력하세요">
+                                <input name="user_id" type="text" value="${cookie.cookieId.value }" placeholder="아이디를 입력하세요" required="required">
                                 <span class="icon_id"></span>
                             </div>
                             
                             <div class="input__item">
                             	<div class="main">
                         			<span class="icon_lock"></span>
-                           			<input name="user_passwd" type="password" placeholder="비밀번호를 입력해주세요" >
+                           			<input name="user_passwd" type="password" placeholder="비밀번호를 입력해주세요" required="required">
                            			<i class="fa fa-eye fa-lg"></i>
 								</div>
 							</div>

@@ -330,7 +330,8 @@ public class LoginJoinController {
     	if (user_id != null) {  // 로그인이 된 상태에서 유저 정보에서 변경
     		if(dbUser != null) {  // 중복 가입 방어.
     			model.addAttribute("msg", "이미 연동된 카카오계정입니다.");
-    			return "fail_back";
+    			model.addAttribute("targetURL", "/soneson");
+    			return "forward";
     		}
     		
     		user.setUser_id(user_id);

@@ -100,8 +100,6 @@ public class AdminController {
 		List<Map<Object, Object>> AdminSelectMyPieChart = adminService.selectMyPieChart();
 
 		
-		
-
 		model.addAttribute("AdminSelectMyPieChart", AdminSelectMyPieChart);
 		model.addAttribute("projectCount", projectCount);
 		model.addAttribute("costAmount", costAmount);
@@ -112,6 +110,7 @@ public class AdminController {
 		return "mypage/admin/admin_mypage";	
 	}
 	
+	// 파이차트
 	@ResponseBody
     @PostMapping("AdminSelectMyPieChart")
 	public List<Map<Object, Object>> AdminSelectMyPieChart() {
@@ -121,6 +120,7 @@ public class AdminController {
 		return AdminSelectMyPieChart;
 	}
 
+	// 바 차트
 	@ResponseBody
 	@PostMapping("AdminSelectMyBarChart")
 	public List<Map<Object, Object>> AdminSelectMyBarChart() {

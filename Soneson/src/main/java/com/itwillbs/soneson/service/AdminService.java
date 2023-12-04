@@ -54,6 +54,15 @@ public class AdminService {
 		return mapper.selectProjectMyList();
 	}
 	
+	// 파이차트
+	public List<Map<Object, Object>> selectMyPieChart() {
+		return mapper.selectMyPieChart();
+	}
+
+	// 바 차트
+	public List<Map<Object, Object>> selectMyBarChart() {
+		return mapper.selectMyBarChart();
+	}
 	
 	
 	
@@ -181,29 +190,27 @@ public class AdminService {
 	 * =============================================================
 	 * */
 	
+	// 프로젝트 전체 조회
 	public List<Map<String, Object>> selectProjectList() {
 		return mapper.selectProjectList();
 	}
 
+	// 진행전 프로젝트 조회
 	public List<Map<String, Object>> selectProjectBefore() {
 		return mapper.selectProjectBefore();
 	}
 
+	// 진행중 프로젝트 조회
 	public List<Map<String, Object>> selectProjectOngoing() {
 		return mapper.selectProjectOngoing();
 	}
 
+	// 마감된 프로젝트 조회
 	public List<Map<String, Object>> selectProjectAfter() {
 		return mapper.selectProjectAfter();
 	}
 
-	public List<Map<Object, Object>> selectMyPieChart() {
-		return mapper.selectMyPieChart();
-	}
 
-	public List<Map<Object, Object>> selectMyBarChart() {
-		return mapper.selectMyBarChart();
-	}
 
 	
 	
