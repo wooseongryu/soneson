@@ -281,15 +281,23 @@ public class UserController {
 	}
 	
 	// TODO
-	// 유저 설정 카카오 연동 변경
+	// 유저 설정 카카오 연동 해제
 	@ResponseBody
-	@PostMapping("settingUpdateUserKakao")
-	public String settingUpdateUserKakao() {
-		System.out.println("UserController - settingUpdateUserKakao()");
+	@PostMapping("settingDisconnectKakao")
+	public String settingDisconnectKakao(HttpSession session, Map<String, String> map, Gson gson) {
+		System.out.println("UserController - settingDisconnectKakao()");
 		
+		String sId = (String)session.getAttribute("sId");
 		
+		int updateCount = userService.updateKakaoStatus(sId);
 		
-		return "1";
+		if (updateCount == 0) {
+			map.put("isSuccess", "false");
+			return gson.toJson(map);
+		}
+		
+		map.put("isSuccess", "true");
+		return gson.toJson(map);
 	}
 	
 	

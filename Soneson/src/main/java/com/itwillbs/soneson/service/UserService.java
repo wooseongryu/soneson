@@ -215,7 +215,13 @@ public class UserService {
 		
 		return mapper.updateUserPhone(user);
 	}
-
+	
+	// 유저 설정 카카오 연동 해제
+	public int updateKakaoStatus(String sId) {
+		System.out.println("UserService - updateKakaoStatus()");
+		
+		return mapper.updateKakaoStatus(sId);
+	}
 	
 	
 }
