@@ -4,13 +4,32 @@ Chart.defaults.global.defaultFontColor = '#858796';
 
 // Pie Chart Example
 var ctx = document.getElementById("myPieChart");
+
+$.ajax({
+      type: "POST",
+      url: "AdminSelectMyPieChart",
+      async: false,
+      data: {
+      },
+      success: function(AdminSelectMyPieChart) {
+         cate = AdminSelectMyPieChart.map(row => row.cate);
+         cateCount = AdminSelectMyPieChart.map(row => row.cateCount);
+         
+      },
+      error:function(){
+         alert("들고오기 실패");
+      }
+   });
+
+
+
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["분류별 카테1", "분류별 카테2", "분류별 카테3"],
+    labels: cate,
     datasets: [{
-      data: [55, 30, 15],
-      backgroundColor: ['rgb(255, 87, 87)', '#1cc88a', '#36b9cc'],
+      data: cateCount,
+      backgroundColor: ['#1cc88a', '#f6c23e', '#e74a3b', '#4e73df', '#36b9cc', '#5a5c69'],
       hoverBackgroundColor: ['rgb(200, 87, 87)', '#17a673', '#2c9faf'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],

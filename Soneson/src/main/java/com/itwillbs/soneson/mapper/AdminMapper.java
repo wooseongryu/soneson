@@ -112,6 +112,10 @@ public interface AdminMapper {
 
 	List<Map<String, Object>> selectProjectAfter();
 
+	
+	// 파이차트 
+	List<Map<Object, Object>> selectMyPieChart();
+
 
 
 	

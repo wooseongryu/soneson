@@ -197,6 +197,10 @@ public class AdminService {
 		return mapper.selectProjectAfter();
 	}
 
+	public List<Map<Object, Object>> selectMyPieChart() {
+		return mapper.selectMyPieChart();
+	}
+
 	
 	
 	

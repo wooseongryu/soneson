@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.soneson.service.AdminService;
@@ -95,7 +96,11 @@ public class AdminController {
 		// 진행중인 프로젝트 수
 		List<Map<Object, Object>> projectCount = adminService.projectCount();
 		
+		// 카테고리별 분류
+		List<Map<Object, Object>> AdminSelectMyPieChart = adminService.selectMyPieChart();
+		
 
+		model.addAttribute("AdminSelectMyPieChart", AdminSelectMyPieChart);
 		model.addAttribute("projectCount", projectCount);
 		model.addAttribute("costAmount", costAmount);
 		model.addAttribute("projectMyList", projectMyList);
@@ -104,8 +109,19 @@ public class AdminController {
 		
 		return "mypage/admin/admin_mypage";	
 	}
-
-
+	
+	@ResponseBody
+    @PostMapping("AdminSelectMyPieChart")
+	public List<Map<Object, Object>> AdminSelectMyPieChart() {
+		
+		List<Map<Object, Object>> AdminSelectMyPieChart = adminService.selectMyPieChart();
+		
+		return AdminSelectMyPieChart;
+	}
+	
+	
+	
+	
 /*====================================================================
  * 2. 회원 관리
  * ===================================================================
@@ -130,6 +146,10 @@ public class AdminController {
 		
 		return "mypage/admin/admin_select_user";	
 	}
+	
+	
+	
+	
 	
 	// 관리자 권한 부여/해제
 	@GetMapping("adminUserAuthorize")
