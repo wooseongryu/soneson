@@ -725,6 +725,11 @@
                    		+ ' 	<a onclick="cancelUpdateUserPhone()">취소</a>                                    '
                    		+ ' </div>                                                                              '
 					);
+					
+					// TODO
+					// 유효성 추가
+					
+					
     			},
     			error: function() {
     				alert("에러!");
@@ -990,19 +995,19 @@
 
 					$("#user_content").append(
 						  ' <div class="anime__details__review">                                                                    '
-						+ '  	<div class="anime__review__item">                                                                   '
+						+ '  	<div class="anime__review__item" id="addressAdd">                                                                   '
                         + '  		<div class="user__setting__head">                                                               '
 	                    + '      		<h6>배송지</h6>                                                                             '
 	                    + '      		<div class="user_follow_btn">                                                               '
-	                    + '      			<a onclick="updateUserPassword()" style="bottom: 7px">+ 추가</a>                        '
+	                    + '      			<a onclick="insertUserAddress()" style="bottom: 7px">+ 추가</a>                        '
 	                    + '      		</div>                                                                                      '
 						+ '  		</div>                                                                                          '
                     	+ '  	</div>                                                                                              '
                 	 	+ ' </div>                                                                                                  '
-                	 	+ '                                                                                                         '
+                	 	+ '                                      	                                                                   '
                 	 	+ ' <div class="anime__details__review">                                                                    '
 						+ '  	<div class="anime__review__item">                                                                   '
-                        + '  		<div class="user__setting__text">                                                               '
+                        + '  		<div class="user__setting__text" id="registAddress">                                                               '
 	                    + '      		<h6>홍길동</h6>                                                                             '
 	                    + '      		<div class="user_follow_btn">                                                               '
 	                    + '      			<a onclick="updateUserPassword()">삭제</a>                                              '
@@ -1012,6 +1017,68 @@
 						+ '  		</div>                                                                                          '
                     	+ '  	</div>                                                                                              '
                 	 	+ ' </div>                                                                                                  '
+					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	// TODO
+    	function insertUserAddress() {
+    		$.ajax({
+    			type: 'post',
+    			// 임시 경로
+    			url: 'settingUserAddress',
+    			dataType: 'json',
+    			success: function(resp) {
+    				$("#addressAdd").children().remove();
+
+					$("#addressAdd").append(
+						  ' <div class="user__setting__text" id="registAddress">                                                                   '
+						+ ' 	<h6>받는 사람</h6>                                                                                                 '
+                   		+ ' 	<input type="text" id="" placeholder="받는 사람" maxlength="10" style="margin-top: 10px">                          '
+                   		
+                   		+ ' 	<h6 style="margin-top: 15px">주소</h6>                                                                             '
+                   		+ ' 	<input type="text" id="" placeholder="주소" style="margin-top: 10px; width: 550px;">                                         '
+                   		+ ' 	<input type="button" id="" value="검색">                                         '
+                   		
+                   		+ ' 	<h6 style="margin-top: 15px">상세 주소</h6>                                                                        '
+                   		+ ' 	<input type="text" id="" placeholder="상세 주소" style="margin-top: 10px; width: 550px;">                                         '
+                   		
+                   		+ ' 	<h6 style="margin-top: 15px">받는 사람 휴대폰 번호</h6>                                                            '           
+                   		+ ' 	<input type="text" id="" placeholder="받는 사람 휴대폰 번호" maxlength="11" style="margin-top: 10px">              '
+                   		
+                   		+ ' 	<span id = "checkPasswdResult"></span>                                                                             '
+                   		+ ' 	<div class="user_follow_btn">                                                                                      '
+                   		+ ' 		<a onclick="">저장</a>                                                                                         '
+                   		+ ' 	</div>                                                                                                             '
+                   		+ ' 	<div class=user_cancel_btn>                                                                                        '
+                   		+ ' 		<a onclick="cancelInsertUserAddress()">취소</a>                                      	   	                           	               '
+                   		+ ' 	</div>                                                                                                             '
+						+ ' </div>                                                                                                                 '
+
+					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function cancelInsertUserAddress() {
+    		$.ajax({
+    			success: function(resp) {
+    				$("#addressAdd").children().remove();
+
+					$("#addressAdd").append(
+						  ' <div class="user__setting__head">                                                               '
+	                    + ' 	<h6>배송지</h6>                                                                             '
+	                    + ' 	<div class="user_follow_btn">                                                               '
+	                    + ' 		<a onclick="insertUserAddress()" style="bottom: 7px">+ 추가</a>                         '
+	                    + ' 	</div>                                                                                      '
+						+ ' </div>                                                                                          '
 					);
     			},
     			error: function() {
