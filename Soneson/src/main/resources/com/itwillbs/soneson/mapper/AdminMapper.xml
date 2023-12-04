@@ -21,6 +21,15 @@
 		WHERE user_status = '탈퇴';
 	</select>
 
+
+	<!-- 파이 차트  -->
+	<select id="selectMyPieChart" resultType="map">
+		SELECT category AS cate, COUNT(category) AS cateCount
+		FROM project
+		GROUP BY category
+		ORDER BY cateCount DESC
+	</select>
+
     <!-- 마이페이지 달성률  -->
    	<select id="selectProjectMyList" resultType="map">
 		SELECT

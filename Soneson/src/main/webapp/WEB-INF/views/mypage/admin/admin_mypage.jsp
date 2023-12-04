@@ -118,66 +118,87 @@
 
 					<!-- Content Row -->
 
-<!-- 					<div class="row"> -->
+					<div class="row">
 
 						<!-- Area Chart -->
-<!-- 						<div class="col-xl-12 col-lg-12"> -->
-<!-- 							<div class="card shadow mb-4"> -->
-							<!-- Card Header - Dropdown -->
-<!-- 								<div -->
-<!-- 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between"> -->
-<!-- 									<h6 class="m-0 font-weight-bold text-primary">요일별 펀딩금액</h6> -->
-<!-- 									<div class="dropdown no-arrow"> -->
-<!-- 										<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" -->
-<!-- 											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
-<!-- 										</a> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
+						<div class="col-xl-12 col-lg-12">
+							<div class="card shadow mb-4">
+<!-- 							Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">요일별 펀딩금액</h6>
+									<div class="dropdown no-arrow">
+										<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										</a>
+									</div>
+								</div>
 <!-- 								Card Body -->
-<!-- 								<div class="card-body"> -->
-<!-- 									<div class="chart-area"> -->
-<%-- 										<canvas id="myAreaChart"></canvas> --%>
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
+								<div class="card-body">
+									<div class="chart-area">
+										<canvas id="myAreaChart"></canvas>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
 					<!-- Content Row -->
-<!-- 					<div class="row"> -->
+					<div class="row">
 
 						<!-- Pie Chart -->
-<!-- 						<div class="col-xl-4 col-lg-5"> -->
-<!-- 							<div class="card shadow mb-4"> -->
+						<div class="col-xl-4 col-lg-5">
+							<div class="card shadow mb-4">
 <!-- 								Card Header - Dropdown -->
-<!-- 								<div -->
-<!-- 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between"> -->
-<!-- 									<h6 class="m-0 font-weight-bold text-primary">프로젝트 카테고리별 분포도</h6> -->
-<!-- 									<div class="dropdown no-arrow"> -->
-<!-- 										<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" -->
-<!-- 											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
-<!-- 										</a> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+									<h6 class="m-0 font-weight-bold text-primary">프로젝트 카테고리별 분포도</h6>
+									<div class="dropdown no-arrow">
+										<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										</a>
+									</div>
+								</div>
 <!-- 								Card Body -->
-<!-- 								<div class="card-body"> -->
-<!-- 									<div class="chart-pie pt-4 pb-2"> -->
-<%-- 										<canvas id="myPieChart"></canvas> --%>
-<!-- 									</div> -->
-<!-- 									<div class="mt-4 text-center small"> -->
-<!-- 										<span class="mr-2"> -->
-<!-- 											<i class="fas fa-circle text-primary"></i> 분류별 카테1 -->
-<!-- 										</span> -->
+								<div class="card-body">
+									<div class="chart-pie pt-4 pb-2">
+										<canvas id="myPieChart"></canvas>
+									</div>
+									<div class="mt-4 text-center small">
+										<c:forEach var="AdminSelectMyPieChart" items="${AdminSelectMyPieChart }" varStatus="status">
+										<span class="mr-2">
+											<i class=
+											<c:if test="${status.index eq 0 }">
+											"fas fa-circle text-success"	
+											</c:if>
+											<c:if test="${status.index eq 1 }">
+											"fas fa-circle text-warning"	
+											</c:if>
+											<c:if test="${status.index eq 2 }">
+											"fas fa-circle text-danger"	
+											</c:if>
+											<c:if test="${status.index eq 3 }">
+											"fas fa-circle text-primary"	
+											</c:if>
+											<c:if test="${status.index eq 4 }">
+											"fas fa-circle text-info"	
+											</c:if>
+											<c:if test="${status.index eq 5 }">
+											"fas fa-circle text-dark"	
+											</c:if>
+											></i> ${AdminSelectMyPieChart.cate }
+										</span>
+										</c:forEach>
 <!-- 										<span class="mr-2"> -->
 <!-- 											<i class="fas fa-circle text-success"></i> 분류별 카테2 -->
 <!-- 										</span> -->
 <!-- 										<span class="mr-2"> -->
 <!-- 											<i class="fas fa-circle text-info"></i> 분류별 카테3 -->
 <!-- 										</span> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
+									</div>
+								</div>
+							</div>
+						</div>
 						<!-- Content Column -->
 						<div class="col-xl-12 col-lg-12">
 
@@ -245,11 +266,11 @@
 </body>
 
     <!-- Page level plugins -->
-<%--     <script src="${pageContext.request.contextPath }/resources/mypage/vendor/chart.js/Chart.min.js"></script> --%>
+    <script src="${pageContext.request.contextPath }/resources/mypage/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-<%--     <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-area-demo.js"></script> --%>
-<%--     <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-pie-demo.js"></script> --%>
+    <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-area-demo.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-pie-demo.js"></script>
 <%--     <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-bar-demo.js"></script> --%>
 
 
