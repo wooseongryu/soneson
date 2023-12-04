@@ -149,8 +149,14 @@ public class UserController {
 	@PostMapping("settingUpdateUserProfilePro")
 	public String settingUpdateUserProfilePro(@RequestParam Map<String, String> map, Gson gson, HttpSession session, Model model) {
 		System.out.println("UserController - settingUpdateUserProfilePro()");
-			
-		map.put("sId", (String)session.getAttribute("sId"));
+		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			return gson.toJson(map);
+		}
+		
+		map.put("isLogin", "true");
+		map.put("sId", sId);
 		
 		if (map.containsKey("user_info")) {
 			map.replace("user_info", map.get("user_info").replaceAll("\n", "<br>"));
@@ -159,7 +165,6 @@ public class UserController {
 		int updateCount = userService.updateUserInfo(map);
 		
 		if (updateCount == 0) {
-			map.put("isUpdated", "false");
 			return gson.toJson(map);
 		}
 		
@@ -202,20 +207,26 @@ public class UserController {
 	// 유저 설정 계정 비밀번호 변경 pro
 	@ResponseBody
 	@PostMapping("isPassEqual")
-	public String isPassEqual(UserVO user, HttpSession session) {
+	public String isPassEqual(UserVO user, HttpSession session, Map<String, Boolean> map, Gson gson) {
 		System.out.println("UserController - isPassEqual()");
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		
-		user.setUser_id((String)session.getAttribute("sId"));
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			return gson.toJson(map);
+		}
+		map.put("isLogin", true);
+		
+		user.setUser_id(sId);
 		UserVO dbUser = userService.selectUserPass(user);
 		
 		if(!passwordEncoder.matches(user.getUser_passwd(), dbUser.getUser_passwd())) {
-			System.out.println("비밀번호 불일치");
-			return "false";
+			return gson.toJson(map);
 		}
+		map.put("isPassEqual", true);
 		
-		return "true";
+		return gson.toJson(map);
 	}
 	
 	// 유저 설정 계정 비밀번호 변경 pro
@@ -260,16 +271,26 @@ public class UserController {
 	// 유저 설정 계정 연락처 변경 pro
 	@ResponseBody
 	@PostMapping("settingUpdateUserPhonePro")
-	public String settingUpdateUserPhonePro(UserVO user, HttpSession session, Gson gson) {
+	public String settingUpdateUserPhonePro(UserVO user, HttpSession session, Gson gson, Map<String, String> map) {
 		System.out.println("UserController - settingUpdateUserPhonePro()");
 
-		user.setUser_id((String)session.getAttribute("sId"));
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			return gson.toJson(map);
+		}
+		map.put("isLogin", "true");
 		
-		System.out.println("===" + user);
+		user.setUser_id(sId);
 		
 		int updateCount = userService.updateUserPhone(user);
 		
-		return gson.toJson(user);
+		if (updateCount == 0) {
+			return gson.toJson(map);
+		}
+		map.put("isSuccess", "true");
+		map.put("user_phone", user.getUser_phone());
+		
+		return gson.toJson(map);
 	}
 		
 	// 유저 설정 계정 연락처 변경 취소
@@ -281,19 +302,31 @@ public class UserController {
 	}
 	
 	// TODO
-	// 유저 설정 카카오 연동 변경
+	// 유저 설정 카카오 연동 해제
 	@ResponseBody
-	@PostMapping("settingUpdateUserKakao")
-	public String settingUpdateUserKakao() {
-		System.out.println("UserController - settingUpdateUserKakao()");
+	@PostMapping("settingDisconnectKakao")
+	public String settingDisconnectKakao(HttpSession session, Map<String, String> map, Gson gson) {
+		System.out.println("UserController - settingDisconnectKakao()");
 		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			return gson.toJson(map); 
+		}
+		map.put("isLogin", "true");
 		
+		int updateCount = userService.updateKakaoStatus(sId);
 		
-		return "1";
+		if (updateCount == 0) {
+//			map.put("isSuccess", "false");
+			return gson.toJson(map);
+		}
+		
+		map.put("isSuccess", "true");
+		return gson.toJson(map);
 	}
 	
 	
-	// 유저 설정 계정 연락처 변경 취소
+	// 유저 설정 계정 회원탈퇴
 	@ResponseBody
 	@PostMapping("settingUpdateUserLeave")
 	public String settingUpdateUserLeave() {
@@ -301,12 +334,54 @@ public class UserController {
 		return "1";
 	}
 	
-	// 유저 설정 계정 연락처 변경 취소
+	// 유저 설정 계정 회원탈퇴 취소
 	@ResponseBody
 	@PostMapping("settingCancelUpdateUserLeave")
 	public String settingCancelUpdateUserLeave() {
 		System.out.println("UserController - settingCancelUpdateUserLeave()");
 		return "1";
+	}
+	
+	// 유저 설정 계정 회원탈퇴 처리
+	@ResponseBody
+	@PostMapping("settingLeaveUser")
+	public String settingLeaveUser(HttpSession session, Gson gson, Map<String, String> map, UserVO user) {
+		System.out.println("UserController - settingLeaveUser()");
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		System.out.println("))))))))))))" + sId + "(((");
+		
+		if (sId == null) {
+			map.put("isSuccess", "false");
+			return gson.toJson(map);
+		}
+		
+		user.setUser_id(sId);
+		
+		int dupCount = 1;
+		String deleteEmail = "";
+		
+		while (true) {
+			deleteEmail = RandomStringUtils.randomAlphabetic(20);
+			dupCount = userService.checkDuplicateEmail(deleteEmail);
+			if (dupCount == 0) {
+				break;
+			}
+		}
+		
+		user.setUser_email(deleteEmail);
+		
+		int updateCount = userService.updateUserLeave(user);
+		
+		if (updateCount == 0) {
+			map.put("isSuccess", "false");
+			return gson.toJson(map);
+		}
+		
+		session.invalidate();
+		map.put("isSuccess", "true");
+		return gson.toJson(map);
 	}
 	
 	// 유저 설정 계정 배송지 초기 출력 화면

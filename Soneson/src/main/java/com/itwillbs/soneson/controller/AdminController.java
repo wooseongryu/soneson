@@ -23,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.soneson.service.AdminService;
@@ -45,8 +46,6 @@ public class AdminController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private ProjectListService projectListService;
 	
 	
 /*====================================================================
@@ -87,21 +86,55 @@ public class AdminController {
 
 		int deleteUserCount = adminService.countDeleteUser();
 
+		
 		// 프로젝트 달성률 그래프
 		List<Map<String, Object>> projectMyList = adminService.selectProjectMyList();
 
+		// 프로젝트 주간 펀딩 금액
+		List<Map<Object, Object>> costAmount = adminService.costAmount();
+
+		// 진행중인 프로젝트 수
+		List<Map<Object, Object>> projectCount = adminService.projectCount();
 		
+		// 카테고리별 분류
+		List<Map<Object, Object>> AdminSelectMyPieChart = adminService.selectMyPieChart();
+
 		
-		
-		
+		model.addAttribute("AdminSelectMyPieChart", AdminSelectMyPieChart);
+		model.addAttribute("projectCount", projectCount);
+		model.addAttribute("costAmount", costAmount);
 		model.addAttribute("projectMyList", projectMyList);
 		model.addAttribute("joinUserCount", joinUserCount);
 		model.addAttribute("deleteUserCount", deleteUserCount);
 		
 		return "mypage/admin/admin_mypage";	
 	}
+	
+	// 파이차트
+	@ResponseBody
+    @PostMapping("AdminSelectMyPieChart")
+	public List<Map<Object, Object>> AdminSelectMyPieChart() {
+		
+		List<Map<Object, Object>> AdminSelectMyPieChart = adminService.selectMyPieChart();
+		
+		return AdminSelectMyPieChart;
+	}
 
-
+	// 바 차트
+	@ResponseBody
+	@PostMapping("AdminSelectMyBarChart")
+	public List<Map<Object, Object>> AdminSelectMyBarChart() {
+		
+		// 최근 일주일 일별 누적 금액
+		List<Map<Object, Object>> AdminSelectMyBarChart = adminService.selectMyBarChart();
+		
+		
+		return AdminSelectMyBarChart;
+	}
+	
+	
+	
+	
 /*====================================================================
  * 2. 회원 관리
  * ===================================================================
@@ -126,6 +159,10 @@ public class AdminController {
 		
 		return "mypage/admin/admin_select_user";	
 	}
+	
+	
+	
+	
 	
 	// 관리자 권한 부여/해제
 	@GetMapping("adminUserAuthorize")
@@ -204,25 +241,37 @@ public class AdminController {
 	
 	// 펀딩 프로젝트 관리 - 진행예정인 펀딩 관리 페이지로 이동
 	@GetMapping("adminSelectFundBefore")
-	public String adminSelectFundBefore() {
+	public String adminSelectFundBefore(Model model) {
 		System.out.println("AdminController - adminSelectFundBefore()");
+
+		List<Map<String, Object>> beforeProjectList = adminService.selectProjectBefore();
+		
+		model.addAttribute("beforeProjectList", beforeProjectList);
 		
 		return "mypage/admin/admin_select_fundBefore";	
 	}
 	
 	// 펀딩 프로젝트 관리 - 진행중인 펀딩 관리 페이지로 이동
 	@GetMapping("adminSelectFundOngoing")
-	public String adminSelectFundOngoing() {
+	public String adminSelectFundOngoing(Model model) {
 		System.out.println("AdminController - adminSelectFundOngoing()");
 		
+		List<Map<String, Object>> ongoingProjectList = adminService.selectProjectOngoing();
+		
+		model.addAttribute("ongoingProjectList", ongoingProjectList);
+	
 		return "mypage/admin/admin_select_fundOngoing";	
 	}
 
 	
 	// 펀딩 프로젝트 관리 - 마감된 펀딩 관리 페이지로 이동
 	@GetMapping("adminSelectFundAfter")
-	public String adminSelectFundAfter() {
+	public String adminSelectFundAfter(Model model) {
 		System.out.println("AdminController - adminSelectFundAfter()");
+
+		List<Map<String, Object>> afterProjectList = adminService.selectProjectAfter();
+		
+		model.addAttribute("afterProjectList", afterProjectList);
 		
 		return "mypage/admin/admin_select_fundAfter";	
 	}

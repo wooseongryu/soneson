@@ -33,8 +33,10 @@
 			stopAutoOnClick: true,
 			pager: true,
 			startText: '<i class="bi bi-play-fill" style="color: #ffffff"></i>',
-			stopText: '<i class="bi bi-pause-fill" style="color: #ffffff"></i>'
-        	
+			stopText: '<i class="bi bi-pause-fill" style="color: #ffffff"></i>',
+// 			a 태그 안 먹혀서 추가
+			touchEnabled : (navigator.maxTouchPoints > 0)
+// 			touchEnabled : false
         });
 	});
 
@@ -107,8 +109,16 @@
 
 <div class="slideWrap" id="slider">
 	<ul class="slider" id="slide">
-		<li><img alt="" src="${pageContext.request.contextPath }/resources/soneson/img/main_slider/main_slider1.jpg"></li>
-		<li><img alt="" src="${pageContext.request.contextPath }/resources/soneson/img/main_slider/main_slider4.jpg"></li>
+		<li>
+			<a href="projectDetail?project_code=16" class="sliderA">
+				<img alt="" src="${pageContext.request.contextPath }/resources/soneson/img/main_slider/main_slider1.jpg">
+			</a>
+		</li>
+		<li>
+			<a href="projectDetail?project_code=17">
+				<img alt="" src="${pageContext.request.contextPath }/resources/soneson/img/main_slider/main_slider4.jpg">
+			</a>
+		</li>
 		<li><img alt="" src="${pageContext.request.contextPath }/resources/soneson/img/main_slider/main_slider2.jpg"></li>
 		<li><img alt="" src="${pageContext.request.contextPath }/resources/soneson/img/main_slider/main_slider3.jpg"></li>
 	</ul>

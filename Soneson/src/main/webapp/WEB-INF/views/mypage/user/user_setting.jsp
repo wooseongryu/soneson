@@ -35,6 +35,9 @@
     	let pointColor = "#F86453";
     	
     	let picture = "";
+    	let info = "";
+    	let info_print = "";
+    	let user_name = "";
     	
     	function userProfile(id) {
     		$.ajax({
@@ -44,18 +47,18 @@
     			success: function(resp) {
     				reset_screen(id);
     				
-//     				console.log(resp);
-    				
-    				// 등록된 소개가 없을 경우 입력폼 출력값 수정 필요.
-					let info = resp.user_info;
+					info = resp.user_info;
+					info_print = resp.user_info;
     				if (info == "" || info == null) {
-    					info = "등록된 소개가 없습니다.";
+    					info_print = "등록된 소개가 없습니다.";
     				}
     				
     				picture = resp.user_picture;
     				if (picture == "" || picture == null) {
     					picture = "${pageContext.request.contextPath }/resources/user/prifile.png";
     				}
+    				
+    				user_name = resp.user_name;
 
 					$("#user_content").append(
 						  ' <div class="anime__details__review">                                                                                    '
@@ -77,9 +80,9 @@
 						+ '  	<div class="anime__review__item">                                    '
                         + '  		<div class="user__setting__text" id="user_name">                 '
 	                    + '      		<h6>이름</h6>                                                '
-	                    + '      		<p style="margin-top: 10px">' + resp.user_name + '</p>                       '
+	                    + '      		<p style="margin-top: 10px">' + user_name + '</p>                       '
 	                    + '      		<div class="user_follow_btn">                                '
-	                    + '      			<a onclick="updateUserName(\'' + resp.user_name + '\')">변경</a>     '
+	                    + '      			<a onclick="updateUserName()">변경</a>     '
 	                    + '      		</div>                                                       '
 						+ '  		</div>                                                           '
                     	+ '  	</div>                                                               '
@@ -89,9 +92,9 @@
 						+ '  	<div class="anime__review__item">                                                       '
 	                    + '  		<div class="user__setting__text" id="user_intro">                                   '
 	                    + '      		<h6>소개</h6>                                                                   '
-	                    + '      		<p style="margin-top: 10px; width: 700px">' + info + '</p>           '
+	                    + '      		<p style="margin-top: 10px; width: 700px">' + info_print + '</p>           '
 	                    + '      		<div class="user_follow_btn">                                                   '
-	                    + '      			<a onclick="updateUserIntroduction(\'' + info + '\')">변경</a>                '
+	                    + '      			<a onclick="updateUserIntroduction()">변경</a>                '
 	                    + '      		</div>                                                                          '
 						+ '  		</div>                                                                              '
 	                	+ '  	</div>                                                                                  '
@@ -180,7 +183,7 @@
     		});
     	}
     	
-    	function updateUserName(user_name) {
+    	function updateUserName() {
     		$.ajax({
     			type: 'post',
     			url: 'settingUpdateUserName',
@@ -190,16 +193,23 @@
     				
     				$("#user_name").append(
                      		  ' <h6>이름</h6>                                                                              '
-                     		+ ' <input type="text" value="' + user_name + '" id="userName" style="margin-top: 10px">       '
+                     		+ ' <input type="text" value="' + user_name + '" maxlength="10"  id="userName" style="margin-top: 10px">       '
                      		+ ' <div class="user_follow_btn">                                                              '
                      		+ ' 	<a id="updateUserNameSave">저장</a>                                                    '
                      		+ ' </div>                                                                                     '
                      		+ ' <div class=user_cancel_btn>                                                                '
-                     		+ ' 	<a onclick="cancelUpdateUserName(\'' + user_name + '\')">취소</a>                      '
+                     		+ ' 	<a onclick="cancelUpdateUserName()">취소</a>                      '
                      		+ ' </div>      	                                                                           '
     				);
     				
-    				$("#updateUserNameSave").on("click", updateUserNamePro);
+    				$("#updateUserNameSave").on("click", function() {
+    					if ($("#userName").val() == "") {
+    						alert("1자 이상 입력 하세요.");
+    						return;
+    					}
+    					
+    					updateUserNamePro();
+    				});
     			},
     			error: function() {
     				alert("에러!");
@@ -208,6 +218,10 @@
     	}
     	
     	function updateUserNamePro() {
+    		if (!confirm("이름을 변경 하시겠습니까?")) {
+    			return;
+    		}
+    		
     		$.ajax({
     			type: 'post',
     			url: 'settingUpdateUserProfilePro',
@@ -216,21 +230,29 @@
     			},
     			dataType: 'json',
     			success: function(resp) {
-    				if (resp.isUpdated == "false") {
+    				if (!resp.isLogin) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    				
+    				if (!resp.isUpdated) {
     					alert("이름 수정 실패!");
     					userProfile('topCateProfile');
     					return;
     				}
     				
-    				let name = resp.user_name;
+    				alert("이름이 변경 되었습니다.");
+    				
+    				user_name = resp.user_name;
     				
     				$("#user_name").children().remove();
     				
     				$("#user_name").append(
    						  '<h6>이름</h6>                                                '
-   	                    + '<p style="margin-top: 10px">' + name + '</p>                 '
+   	                    + '<p style="margin-top: 10px">' + user_name + '</p>                 '
    	                    + '<div class="user_follow_btn">                                '
-   	                    + '    <a onclick="updateUserName(\'' + name + '\')">변경</a>   '
+   	                    + '    <a onclick="updateUserName()">변경</a>   '
    	                    + '</div>                                                       '
     				);
     			},
@@ -240,7 +262,7 @@
     		});
     	}
     	
-    	function cancelUpdateUserName(user_name) {
+    	function cancelUpdateUserName() {
     		$.ajax({
     			type: 'post',
     			url: 'settingCancelUpdateUserName',
@@ -262,24 +284,29 @@
     		});
     	}
     	
-    	function updateUserIntroduction(info) {
+    	function updateUserIntroduction() {
     		$.ajax({
     			type: 'post',
     			url: 'settingUpdateUserIntro',
     			dataType: 'json',
     			success: function(resp) {
+    				let tmp = "";
+    				if (info != null) {
+    					tmp = info.replaceAll("<br>", "\n");
+    				}
+    				
 					$("#user_intro").children().remove();
 					
     				$("#user_intro").append(
    						  ' <h6>소개</h6>                                                                                                                    '
                    		+ ' <textarea rows="10px" cols="70px" id="userInfo" placeholder="자기소개를 입력해주세요." maxlength="3000" style="margin-top: 10px">'
-                   		+ 		info.replaceAll("<br>", "\n") 
+                   		+ 		tmp 
                    		+ '</textarea>                                                                                                                           '
                    		+ ' <div class="user_follow_btn">                                                                                                         '
                    		+ ' 	<a id="updateUserIntroductionSave">저장</a>                                                                                       '
                    		+ ' </div>                                                                                                                                '
                    		+ ' <div class=user_cancel_btn>                                                                                                           '
-                   		+ ' 	<a onclick="cancelUpdateUserIntroduction(\'' + info + '\')">취소</a>                                                              '
+                   		+ ' 	<a onclick="cancelUpdateUserIntroduction()">취소</a>                                                              '
                    		+ ' </div>                                                                                                                                '
     				);
 
@@ -298,6 +325,10 @@
     	}
     	
     	function updateUserIntroductionPro() {
+    		if (!confirm("소개를 변경 하시겠습니까?")) {
+    			return;
+    		}
+    		
     		$.ajax({
     			type: 'post',
     			url: 'settingUpdateUserProfilePro',
@@ -306,19 +337,28 @@
     			},
     			dataType: 'json',
     			success: function(resp) {
-    				if (resp.isUpdated == "false") {
+    				if (!resp.isLogin) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    				
+    				if (!resp.isUpdated) {
     					alert("소개 수정 실패!");
     					userProfile('topCateProfile');
     					return;
     				}
     				
-    				let info = resp.user_info;
+    				alert("소개가 변경 되었습니다.");
+    				
+    				info = resp.user_info;
+    				info_print = resp.user_info;
     				
 					$("#user_intro").children().remove();
     				
     				$("#user_intro").append(
    						  ' <h6>소개</h6>                                                        '
-   	                    + ' <p style="margin-top: 10px; width: 700px">' + info + '</p>           '
+   	                    + ' <p style="margin-top: 10px; width: 700px">' + info_print + '</p>           '
    	                    + ' <div class="user_follow_btn">                                        '
    	                    + ' 	<a onclick="updateUserIntroduction(\'' + info + '\')">변경</a>   '
    	                    + ' </div>                                                               '                                                     
@@ -331,7 +371,7 @@
     		});
     	}
     	
-    	function cancelUpdateUserIntroduction(info) {
+    	function cancelUpdateUserIntroduction() {
     		$.ajax({
     			type: 'post',
     			url: 'settingcCancelUpdateUserIntro',
@@ -341,9 +381,9 @@
     				
     				$("#user_intro").append(
     						  ' <h6>소개</h6>                                                                   '
-    	                    + ' <p style="margin-top: 10px; width: 700px">' + info + '</p>           '
+    	                    + ' <p style="margin-top: 10px; width: 700px">' + info_print + '</p>           '
     	                    + ' <div class="user_follow_btn">                                                   '
-    	                    + ' 	<a onclick="updateUserIntroduction(\'' + info + '\')">변경</a>                              '
+    	                    + ' 	<a onclick="updateUserIntroduction()">변경</a>                              '
     	                    + ' </div>                                                                          '
     				);
 
@@ -356,8 +396,9 @@
     	
     	let phone = "";
     	let phone_print = "";
-    	let kakao_id = "";
-    	let kakao_btn = "";
+    	let kakao_id = "연동 중입니다.";
+    	let kakao_btn = "연동 해제";
+    	let kakao_link = "onclick='disconnectKakao()'";
     	
     	function userAccount(id) {
     		$.ajax({
@@ -367,18 +408,10 @@
     			success: function(resp) {
     				reset_screen(id);
     				
-    				console.log(resp);
-    				
-    				kakao_id = resp.kakao_id;
-    				console.log("카카오: " + kakao_id);
-    				console.log(kakao_id == null);
-    				
-    				if (kakao_id == null) {
+    				if (resp.kakao_id == null) {
     					kakao_id = "미연동 중입니다.";
     					kakao_btn = "연동"
-    				} else {
-    					kakao_id = "연동 중입니다.";
-    					kakao_btn = "연동 해제";
+   						kakao_link = 'href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://localhost:8081/soneson/kakao/callback"';
     				}
     				
     				phone = resp.user_phone;
@@ -417,7 +450,7 @@
 	                    + '      		<h6>카카오 계정 연동</h6>                                          '
 	                    + '      		<p style="margin-top: 10px">' + kakao_id + '</p>                     '
 	                    + '      		<div class="user_follow_btn">                                      '
-	                    + '      			<a onclick="updateUserKakao()">' + kakao_btn + '</a>                    '
+	                    + '      			<a ' + kakao_link + '>' + kakao_btn + '</a>                    '
 	                    + '      		</div>                                                             '
 						+ '  		</div>                                                                 '
                     	+ '  	</div>                                                                     '
@@ -577,6 +610,10 @@
     	}
     	
     	function checkValid() {
+    		if (!confirm("비밀번호를 변경 하시겠습니까?")) {
+    			return;
+    		}
+    		
     		let isEqual = isPassEqual();
     		let isSafe = isPassSafe();
     		
@@ -597,11 +634,18 @@
     			data: {
     				user_passwd: $("#nowPass").val()
     			},
-    			success: function(isPassEqual) {
-    				if (!isPassEqual) {
+    			success: function(resp) {
+    				if (!resp.isLogin) {
+       					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+       					location.href="login";
+       					return;
+    				}
+    				
+    				if (!resp.isPassEqual) {
     					alert("현재 비밀번호 불일치!");
     					return;
     				}
+    				
    					changePass();
     			},
     			error: function() {
@@ -681,6 +725,11 @@
                    		+ ' 	<a onclick="cancelUpdateUserPhone()">취소</a>                                    '
                    		+ ' </div>                                                                              '
 					);
+					
+					// TODO
+					// 유효성 추가
+					
+					
     			},
     			error: function() {
     				alert("에러!");
@@ -688,11 +737,11 @@
     		});
     	}
     	
-    	function test() {
-    		
-    	}
-    	
     	function updateUserPhonePro() {
+    		if (!confirm("전화번호를 변경 하시겠습니까?")) {
+    			return;
+    		}
+    		
     		$.ajax({
     			type: 'post',
     			url: 'settingUpdateUserPhonePro',
@@ -701,6 +750,19 @@
     				user_phone: $("#userPhone").val()
     			},
     			success: function(resp) {
+    				if (!resp.isLogin) {
+       					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+       					location.href="login";
+       					return;
+    				}
+    				
+    				if (!resp.isSuccess) {
+    					alert("전화번호 변경 실패.");
+    					return;
+    				}
+    				
+    				alert("전화번호가 변경 되었습니다.");
+    				
     				phone_print = resp.user_phone;
     				phone = resp.user_phone;
     				
@@ -742,37 +804,47 @@
     		});
     	}
     	
-    	// TODO
-    	function updateUserKakao() {
-    		let popup = window.open('https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://localhost:8081/soneson/kakao/callback', 'kakao_popup', 'width=700px,height=800px,scrollbars=yes');
+    	function disconnectKakao() {
+    		if (!confirm("카카오 연동을 해제 하시겠습니까?")) {
+    			return;
+    		}
     		
-    		// 진행중..............
-    		popup.addEventListener('unload', function(event) {
-    			alert("창 닫힘");
-    		});
-    		
-    		
-    		console.log("아래 코드1");
-    		
-    		
-//     		$.ajax({
-//     			type: 'post',
-//     			url: 'settingUpdateUserKakao',
-//     			dataType: 'json',
-//     			success: function(resp) {
-//     				console.log("카카오=====");
-//     				console.log(resp);
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingDisconnectKakao',
+    			dataType: 'json',
+    			success: function(resp) {
+    				if (!resp.isLogin) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
     				
-// //     				$("#user_kakao").children().remove();
+    				if (!resp.isSuccess) {
+    					alert("카카오 연동해제에 실패 하였습니다.");
+    					return;
+    				}
+    				
+    				alert("카카오 연동을 해제 하였습니다.");
+    				
+    				kakao_id = "미연동 중입니다.";
+    				kakao_link = 'href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://localhost:8081/soneson/kakao/callback"';
+    				kakao_btn = "연동";
+    				
+    				$("#user_kakao").children().remove();
 
-// // 					$("#user_kakao").append(
-						
-// // 					);
-//     			},
-//     			error: function() {
-//     				alert("에러!");
-//     			}
-//     		});
+					$("#user_kakao").append(
+						   ' <h6>카카오 계정 연동</h6>                                          '
+		                 + ' <p style="margin-top: 10px">' + kakao_id + '</p>                   '
+		                 + ' <div class="user_follow_btn">                                      '
+		                 + ' 	<a ' + kakao_link + '>' + kakao_btn + '</a>                     '
+		                 + ' </div>                                                             '
+					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
     	}
     	
     	function updateUserLeave() {
@@ -785,15 +857,67 @@
 
 					$("#user_leave").append(
                    		  ' <h6>회원탈퇴</h6>                                                                '
-                		+ ' <input type="text" placeholder="비밀번호를 입력하세요." style="margin-top: 10px">'    
+                		+ ' <input type="password" id="leavePass" placeholder="비밀번호를 입력하세요." maxlength="16" style="margin-top: 10px">'    
                 		+ '                                                                                  '
                 		+ ' <div class="user_follow_btn">                                                    '
-                		+ ' 	<a href="#">탈퇴</a>                                                         '
+                		+ ' 	<a onclick="checkPasswdEqual()">탈퇴</a>                                                         '
                 		+ ' </div>                                                                           '
                 		+ ' <div class=user_cancel_btn>                                                      '
                 		+ ' 	<a onclick="cancelUpdateUserLeave()">취소</a>                                '
                 		+ ' </div>                                                                           '
 					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function checkPasswdEqual() {
+    		if (!confirm("회원탈퇴를 하시겠습니까?")) {
+    			return;
+    		}
+    		
+    		$.ajax({
+    			type: 'post',
+    			url: 'isPassEqual',
+    			dataType: 'json',
+    			data: {
+    				user_passwd: $("#leavePass").val()
+    			},
+    			success: function(resp) {
+    				if (!resp.isLogin) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    				
+    				if (!resp.isPassEqual) {
+    					alert("현재 비밀번호 불일치!");
+    					return;
+    				}
+    				
+   					leaveUser();
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function leaveUser() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingLeaveUser',
+    			dataType: 'json',
+    			success: function(resp) {
+    				if (!resp.isSuccess) {
+    					alert("회원탈퇴 실패");
+    					return;
+    				}
+    				
+   					alert("회원탈퇴가 완료 되었습니다.");
+   					location.href="main";
     			},
     			error: function() {
     				alert("에러!");
@@ -871,19 +995,19 @@
 
 					$("#user_content").append(
 						  ' <div class="anime__details__review">                                                                    '
-						+ '  	<div class="anime__review__item">                                                                   '
+						+ '  	<div class="anime__review__item" id="addressAdd">                                                                   '
                         + '  		<div class="user__setting__head">                                                               '
 	                    + '      		<h6>배송지</h6>                                                                             '
 	                    + '      		<div class="user_follow_btn">                                                               '
-	                    + '      			<a onclick="updateUserPassword()" style="bottom: 7px">+ 추가</a>                        '
+	                    + '      			<a onclick="insertUserAddress()" style="bottom: 7px">+ 추가</a>                        '
 	                    + '      		</div>                                                                                      '
 						+ '  		</div>                                                                                          '
                     	+ '  	</div>                                                                                              '
                 	 	+ ' </div>                                                                                                  '
-                	 	+ '                                                                                                         '
+                	 	+ '                                      	                                                                   '
                 	 	+ ' <div class="anime__details__review">                                                                    '
 						+ '  	<div class="anime__review__item">                                                                   '
-                        + '  		<div class="user__setting__text">                                                               '
+                        + '  		<div class="user__setting__text" id="registAddress">                                                               '
 	                    + '      		<h6>홍길동</h6>                                                                             '
 	                    + '      		<div class="user_follow_btn">                                                               '
 	                    + '      			<a onclick="updateUserPassword()">삭제</a>                                              '
@@ -900,6 +1024,68 @@
     			}
     		});
     	}
+    	
+    	// TODO
+    	function insertUserAddress() {
+    		$.ajax({
+    			type: 'post',
+    			// 임시 경로
+    			url: 'settingUserAddress',
+    			dataType: 'json',
+    			success: function(resp) {
+    				$("#addressAdd").children().remove();
+
+					$("#addressAdd").append(
+						  ' <div class="user__setting__text" id="registAddress">                                                                   '
+						+ ' 	<h6>받는 사람</h6>                                                                                                 '
+                   		+ ' 	<input type="text" id="" placeholder="받는 사람" maxlength="10" style="margin-top: 10px">                          '
+                   		
+                   		+ ' 	<h6 style="margin-top: 15px">주소</h6>                                                                             '
+                   		+ ' 	<input type="text" id="" placeholder="주소" style="margin-top: 10px; width: 550px;">                                         '
+                   		+ ' 	<input type="button" id="" value="검색">                                         '
+                   		
+                   		+ ' 	<h6 style="margin-top: 15px">상세 주소</h6>                                                                        '
+                   		+ ' 	<input type="text" id="" placeholder="상세 주소" style="margin-top: 10px; width: 550px;">                                         '
+                   		
+                   		+ ' 	<h6 style="margin-top: 15px">받는 사람 휴대폰 번호</h6>                                                            '           
+                   		+ ' 	<input type="text" id="" placeholder="받는 사람 휴대폰 번호" maxlength="11" style="margin-top: 10px">              '
+                   		
+                   		+ ' 	<span id = "checkPasswdResult"></span>                                                                             '
+                   		+ ' 	<div class="user_follow_btn">                                                                                      '
+                   		+ ' 		<a onclick="">저장</a>                                                                                         '
+                   		+ ' 	</div>                                                                                                             '
+                   		+ ' 	<div class=user_cancel_btn>                                                                                        '
+                   		+ ' 		<a onclick="cancelInsertUserAddress()">취소</a>                                      	   	                           	               '
+                   		+ ' 	</div>                                                                                                             '
+						+ ' </div>                                                                                                                 '
+
+					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function cancelInsertUserAddress() {
+    		$.ajax({
+    			success: function(resp) {
+    				$("#addressAdd").children().remove();
+
+					$("#addressAdd").append(
+						  ' <div class="user__setting__head">                                                               '
+	                    + ' 	<h6>배송지</h6>                                                                             '
+	                    + ' 	<div class="user_follow_btn">                                                               '
+	                    + ' 		<a onclick="insertUserAddress()" style="bottom: 7px">+ 추가</a>                         '
+	                    + ' 	</div>                                                                                      '
+						+ ' </div>                                                                                          '
+					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
 
     	function reset_screen(id) {
     		$("#section-title h5").css("color", "black");
@@ -908,12 +1094,15 @@
     	}
     
     	$(function() {
+    		let urlParams = new URLSearchParams(window.location.search);
+    		
+    		if (urlParams.has('kakao')) {
+    			userAccount('topUserAccount');
+	    		history.replaceState({}, null, location.pathname);
+    			return;
+    		}
+    		
     		userProfile('topCateProfile');
-    		
-    		$('input[name="profile_path"]').change(function(){
-    		    setImageFromFile(this);
-    		});
-    		
     	});
     	
     	function setImageFromFile(input) {

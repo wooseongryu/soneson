@@ -84,8 +84,7 @@ public interface UserMapper {
 	// 회원 탈퇴시 랜덤이메일로 이메일 변경처리
 	int updateRandomEmail(UserVO user);
 
-	// 삭제된 이메일 체크
-	int checkDuplicateEmail(String deleteEmail);
+
 
 	
 	
@@ -110,6 +109,14 @@ public interface UserMapper {
 	// 유저 휴대폰 번호 변경
 	int updateUserPhone(UserVO user);
 
+	// 유저 설정 카카오 연동 해제
+	int updateKakaoStatus(String sId);
+
+	// 유저 설정 계정 회원탈퇴 처리
+	int updateUserLeave(UserVO user);
+
+	// 삭제된 이메일 체크
+	int checkDuplicateEmail(String deleteEmail);
 }
 
 

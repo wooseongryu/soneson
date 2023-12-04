@@ -56,7 +56,7 @@
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-												총 가입 회원 수</div>
+												가입 회원 수</div>
 											<div class="h5 mb-0 font-weight-bold text-gray-800">${joinUserCount }명</div>
 										</div>
 									</div>
@@ -85,11 +85,13 @@
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
-											<div class="text-xs font-weight-bold text-info text-uppercase mb-1">금일 펀딩 금액
+											<div class="text-xs font-weight-bold text-info text-uppercase mb-1">주간 펀딩 금액
 											</div>
 											<div class="row no-gutters align-items-center">
 												<div class="col-auto">
-													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">20000000원</div>
+													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+													${costAmount[0].sum_cost }원
+													</div>
 												</div>
 											</div>
 										</div>
@@ -105,8 +107,8 @@
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-												금일 시작된 펀딩 프로젝트 수</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800">1건</div>
+												진행중인 펀딩 프로젝트 수</div>
+											<div class="h5 mb-0 font-weight-bold text-gray-800">${projectCount[0].project_count}건</div>
 										</div>
 									</div>
 								</div>
@@ -121,7 +123,7 @@
 						<!-- Area Chart -->
 						<div class="col-xl-12 col-lg-12">
 							<div class="card shadow mb-4">
-							<!-- Card Header - Dropdown -->
+<!-- 							Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 									<h6 class="m-0 font-weight-bold text-primary">요일별 펀딩금액</h6>
@@ -131,10 +133,10 @@
 										</a>
 									</div>
 								</div>
-								<!-- Card Body -->
+<!-- 								Card Body -->
 								<div class="card-body">
 									<div class="chart-area">
-										<canvas id="myAreaChart"></canvas>
+										<canvas id="myBarChart"></canvas>
 									</div>
 								</div>
 							</div>
@@ -147,7 +149,7 @@
 						<!-- Pie Chart -->
 						<div class="col-xl-4 col-lg-5">
 							<div class="card shadow mb-4">
-								<!-- Card Header - Dropdown -->
+<!-- 								Card Header - Dropdown -->
 								<div
 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 									<h6 class="m-0 font-weight-bold text-primary">프로젝트 카테고리별 분포도</h6>
@@ -157,27 +159,42 @@
 										</a>
 									</div>
 								</div>
-								<!-- Card Body -->
+<!-- 								Card Body -->
 								<div class="card-body">
 									<div class="chart-pie pt-4 pb-2">
 										<canvas id="myPieChart"></canvas>
 									</div>
 									<div class="mt-4 text-center small">
+										<c:forEach var="AdminSelectMyPieChart" items="${AdminSelectMyPieChart }" varStatus="status">
 										<span class="mr-2">
-											<i class="fas fa-circle text-primary"></i> 분류별 카테1
+											<i class=
+											<c:if test="${status.index eq 0 }">
+											"fas fa-circle text-success"	
+											</c:if>
+											<c:if test="${status.index eq 1 }">
+											"fas fa-circle text-warning"	
+											</c:if>
+											<c:if test="${status.index eq 2 }">
+											"fas fa-circle text-danger"	
+											</c:if>
+											<c:if test="${status.index eq 3 }">
+											"fas fa-circle text-primary"	
+											</c:if>
+											<c:if test="${status.index eq 4 }">
+											"fas fa-circle text-info"	
+											</c:if>
+											<c:if test="${status.index eq 5 }">
+											"fas fa-circle text-dark"	
+											</c:if>
+											></i> ${AdminSelectMyPieChart.cate }
 										</span>
-										<span class="mr-2">
-											<i class="fas fa-circle text-success"></i> 분류별 카테2
-										</span>
-										<span class="mr-2">
-											<i class="fas fa-circle text-info"></i> 분류별 카테3
-										</span>
+										</c:forEach>
 									</div>
 								</div>
 							</div>
 						</div>
 						<!-- Content Column -->
-						<div class="col-lg-8 mb-6">
+						<div class="col-xl-8 col-lg-8">
 
 							<!-- Project Card Example -->
 							<div class="card shadow mb-4">
@@ -215,30 +232,6 @@
 											aria-valuenow="${projectMy.goal_rate }" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</c:forEach>
-<!-- 									<h4 class="small font-weight-bold">손에손 프로젝트2 <span -->
-<!-- 											class="float-right">40%</span></h4> -->
-<!-- 									<div class="progress mb-4"> -->
-<!-- 										<div class="progress-bar bg-warning" role="progressbar" style="width: 40%" -->
-<!-- 											aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div> -->
-<!-- 									</div> -->
-<!-- 									<h4 class="small font-weight-bold">손에손 프로젝트3 <span -->
-<!-- 											class="float-right">60%</span></h4> -->
-<!-- 									<div class="progress mb-4"> -->
-<!-- 										<div class="progress-bar" role="progressbar" style="width: 60%" -->
-<!-- 											aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div> -->
-<!-- 									</div> -->
-<!-- 									<h4 class="small font-weight-bold">손에손 프로젝트4 <span -->
-<!-- 											class="float-right">80%</span></h4> -->
-<!-- 									<div class="progress mb-4"> -->
-<!-- 										<div class="progress-bar bg-info" role="progressbar" style="width: 80%" -->
-<!-- 											aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div> -->
-<!-- 									</div> -->
-<!-- 									<h4 class="small font-weight-bold">손에손 프로젝트5 <span -->
-<!-- 											class="float-right">Complete!</span></h4> -->
-<!-- 									<div class="progress"> -->
-<!-- 										<div class="progress-bar bg-success" role="progressbar" style="width: 100%" -->
-<!-- 											aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div> -->
-<!-- 									</div> -->
 								</div>
 							</div>
                         </div>
@@ -270,7 +263,7 @@
     <script src="${pageContext.request.contextPath }/resources/mypage/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-area-demo.js"></script>
+<%--     <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-area-demo.js"></script> --%>
     <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-pie-demo.js"></script>
     <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-bar-demo.js"></script>
 

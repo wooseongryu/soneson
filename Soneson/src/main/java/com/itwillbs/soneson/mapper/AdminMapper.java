@@ -27,7 +27,20 @@ public interface AdminMapper {
 	// 탈퇴 회원 수 조회
 	int countDeleteUser();
 	
+	// 프로젝트 달성률 그래프
+	List<Map<String, Object>> selectProjectMyList();
+
+	// 주간 펀딩 금액
+	List<Map<Object, Object>> costAmount();
+
+	// 진행중인 프로젝트 수
+	List<Map<Object, Object>> projectCount();
 	
+	// 파이차트 
+	List<Map<Object, Object>> selectMyPieChart();
+
+	// 에어리어차트 
+	List<Map<Object, Object>> selectMyBarChart();
 	
 	/*====================================================================
 	 * 관리자 회원 정보 관리 페이지
@@ -95,10 +108,22 @@ public interface AdminMapper {
 	 * =============================================================
 	 * */
 	
-	
+	// 프로젝트 전체 조회
 	List<Map<String, Object>> selectProjectList();
 
-	List<Map<String, Object>> selectProjectMyList();
+	// 진행전 프로젝트 조회
+	List<Map<String, Object>> selectProjectBefore();
+
+	// 진행중 프로젝트 조회
+	List<Map<String, Object>> selectProjectOngoing();
+
+	// 마감된 프로젝트 조회
+	List<Map<String, Object>> selectProjectAfter();
+
+	
+
+
+
 
 	
 	

@@ -20,8 +20,74 @@
 		FROM user
 		WHERE user_status = '탈퇴';
 	</select>
-	
-	
+
+
+	<!-- 파이 차트  -->
+	<select id="selectMyPieChart" resultType="map">
+		SELECT category AS cate, COUNT(category) AS cateCount
+		FROM project
+		GROUP BY category
+		ORDER BY cateCount DESC
+	</select>
+
+	<!-- 바 차트 -->
+	<select id="selectMyBarChart" resultType="map">
+		SELECT REPLACE(ifnull(format(sum(cost) , 0), 0), ',' ,'') AS now_amount, DATE_FORMAT(fund_date, '%Y-%m-%d') AS fund_date_a  
+		FROM fund 
+		WHERE fund_date BETWEEN DATE_ADD(now(), INTERVAL -1 WEEK) AND now()
+		GROUP BY fund_date_a
+	</select>
+
+    <!-- 마이페이지 달성률  -->
+   	<select id="selectProjectMyList" resultType="map">
+		SELECT
+			p.project_code
+			, max(p.title) AS title
+			, max(p.subtitle) AS subtitle
+			, max(p.category) AS category
+			, max(p.creator) AS creator
+			, max(p.img_main) AS img_main
+			, max(p.start_date) AS start_date
+			, max(p.end_date) AS end_date
+			, ifnull(format(sum(cost) , 0), 0) AS now_amount
+			, ifnull(max(goal_amount), 0) AS goal_amount
+			, ifnull(sum(cost) / max(goal_amount), 0) AS ratio
+			, ifnull(TRUNCATE(sum(cost) / max(goal_amount) * 100, 0), 0) AS goal_rate
+			, CASE count(p.project_code) WHEN 1 THEN 0 
+										 ELSE count(p.project_code)
+										 END AS donor
+		FROM project p
+		LEFT JOIN fund f
+		ON p.project_code = f.project_code
+		GROUP BY p.project_code
+		ORDER BY end_date DESC
+		LIMIT 5
+	</select>
+
+
+    <!-- 주간 펀딩 금액 조회  -->
+   	<select id="costAmount" resultType="map">
+		SELECT SUM(cost) AS sum_cost 
+		FROM fund
+		WHERE fund_date BETWEEN DATE_ADD(NOW(),INTERVAL -1 WEEK) AND NOW()
+	</select>
+
+    <!-- 진행중인 프로젝트 수 조회  -->
+   	<select id="projectCount" resultType="map">
+   	<![CDATA[
+		SELECT count(*) AS project_count
+		FROM 
+			(SELECT
+				date(p.start_date) AS start_date
+				, date(p.end_date) AS end_date
+			FROM project p
+			WHERE start_date <= now() AND end_date >= now()) AS A
+		]]>
+	</select>
+
+
+
+
 
 	<!-- 회원 정보 관리 -->
 	<update id="updateUserAuthorize">
@@ -184,6 +250,7 @@
     
     
     <!-- 프로젝트 관련 된 내용 -->
+    <!-- 프로젝트 전체 조회 -->
    	<select id="selectProjectList" resultType="map">
 		SELECT
 			p.project_code
@@ -207,17 +274,35 @@
 		GROUP BY p.project_code
 	</select>
 
-    <!-- 마이페이지 달성률  -->
-   	<select id="selectProjectMyList" resultType="map">
+    <!-- 진행전인 프로젝트 조회 -->
+   	<select id="selectProjectBefore" resultType="map">
 		SELECT
+			project_code
+			, title 
+			, subtitle
+			, category
+			, creator
+			, img_main AS img1
+			, date(start_date) AS start_date
+			, date(end_date) AS end_date
+			, ifnull(goal_amount, 0) AS goal_amount
+		FROM project p
+		WHERE start_date > now() 
+	</select>
+
+	<!-- 진행중인 프로젝트 조회 -->
+	<select id="selectProjectOngoing" resultType="map">
+	SELECT *
+	FROM 
+		(SELECT
 			p.project_code
 			, max(p.title) AS title
 			, max(p.subtitle) AS subtitle
 			, max(p.category) AS category
 			, max(p.creator) AS creator
 			, max(p.img_main) AS img_main
-			, max(p.start_date) AS start_date
-			, max(p.end_date) AS end_date
+			, date(max(p.start_date)) AS start_date
+			, date(max(p.end_date)) AS end_date
 			, ifnull(format(sum(cost) , 0), 0) AS now_amount
 			, ifnull(max(goal_amount), 0) AS goal_amount
 			, ifnull(sum(cost) / max(goal_amount), 0) AS ratio
@@ -228,9 +313,40 @@
 		FROM project p
 		LEFT JOIN fund f
 		ON p.project_code = f.project_code
-		GROUP BY p.project_code
-		ORDER BY end_date DESC
-		LIMIT 5
+		<![CDATA[
+		WHERE p.start_date <= now() AND p.end_date >= now()
+		]]>
+		GROUP BY p.project_code) A
+	ORDER BY donor DESC
 	</select>
-    
+
+   	<!-- 마감된 프로젝트 조회 -->
+	<select id="selectProjectAfter" resultType="map">
+	SELECT *
+	FROM 
+		(SELECT
+			p.project_code
+			, max(p.title) AS title
+			, max(p.subtitle) AS subtitle
+			, max(p.category) AS category
+			, max(p.creator) AS creator
+			, max(p.img_main) AS img_main
+			, date(max(p.start_date)) AS start_date
+			, date(max(p.end_date)) AS end_date
+			, ifnull(format(sum(cost) , 0), 0) AS now_amount
+			, ifnull(max(goal_amount), 0) AS goal_amount
+			, ifnull(sum(cost) / max(goal_amount), 0) AS ratio
+			, ifnull(TRUNCATE(sum(cost) / max(goal_amount) * 100, 0), 0) AS goal_rate
+			, CASE count(p.project_code) WHEN 1 THEN 0 
+										 ELSE count(p.project_code)
+										 END AS donor
+		FROM project p
+		LEFT JOIN fund f
+		ON p.project_code = f.project_code
+		<![CDATA[
+		WHERE p.end_date < now()
+		]]>
+		GROUP BY p.project_code) A
+	ORDER BY donor DESC
+	</select>
 </mapper>
