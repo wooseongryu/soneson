@@ -309,11 +309,15 @@ public class UserController {
 		System.out.println("UserController - settingDisconnectKakao()");
 		
 		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			return gson.toJson(map); 
+		}
+		map.put("isLogin", "true");
 		
 		int updateCount = userService.updateKakaoStatus(sId);
 		
 		if (updateCount == 0) {
-			map.put("isSuccess", "false");
+//			map.put("isSuccess", "false");
 			return gson.toJson(map);
 		}
 		

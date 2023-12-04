@@ -809,7 +809,13 @@
     			url: 'settingDisconnectKakao',
     			dataType: 'json',
     			success: function(resp) {
-    				if (resp.isSuccess == "false") {
+    				if (!resp.isLogin) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    				
+    				if (!resp.isSuccess) {
     					alert("카카오 연동해제에 실패 하였습니다.");
     					return;
     				}
