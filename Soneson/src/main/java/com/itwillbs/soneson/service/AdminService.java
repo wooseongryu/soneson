@@ -185,6 +185,18 @@ public class AdminService {
 		return mapper.selectProjectList();
 	}
 
+	public List<Map<String, Object>> selectProjectBefore() {
+		return mapper.selectProjectBefore();
+	}
+
+	public List<Map<String, Object>> selectProjectOngoing() {
+		return mapper.selectProjectOngoing();
+	}
+
+	public List<Map<String, Object>> selectProjectAfter() {
+		return mapper.selectProjectAfter();
+	}
+
 	
 	
 	

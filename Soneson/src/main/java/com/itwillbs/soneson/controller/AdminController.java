@@ -45,8 +45,6 @@ public class AdminController {
 	@Autowired
 	private UserService userService;
 	
-	@Autowired
-	private ProjectListService projectListService;
 	
 	
 /*====================================================================
@@ -213,26 +211,34 @@ public class AdminController {
 	public String adminSelectFundBefore(Model model) {
 		System.out.println("AdminController - adminSelectFundBefore()");
 
-		List<Map<String, Object>> projectList = adminService.selectProjectList();
+		List<Map<String, Object>> beforeProjectList = adminService.selectProjectBefore();
 		
-		model.addAttribute("projectList", projectList);
+		model.addAttribute("beforeProjectList", beforeProjectList);
 		
 		return "mypage/admin/admin_select_fundBefore";	
 	}
 	
 	// 펀딩 프로젝트 관리 - 진행중인 펀딩 관리 페이지로 이동
 	@GetMapping("adminSelectFundOngoing")
-	public String adminSelectFundOngoing() {
+	public String adminSelectFundOngoing(Model model) {
 		System.out.println("AdminController - adminSelectFundOngoing()");
 		
+		List<Map<String, Object>> ongoingProjectList = adminService.selectProjectOngoing();
+		
+		model.addAttribute("ongoingProjectList", ongoingProjectList);
+	
 		return "mypage/admin/admin_select_fundOngoing";	
 	}
 
 	
 	// 펀딩 프로젝트 관리 - 마감된 펀딩 관리 페이지로 이동
 	@GetMapping("adminSelectFundAfter")
-	public String adminSelectFundAfter() {
+	public String adminSelectFundAfter(Model model) {
 		System.out.println("AdminController - adminSelectFundAfter()");
+
+		List<Map<String, Object>> afterProjectList = adminService.selectProjectAfter();
+		
+		model.addAttribute("afterProjectList", afterProjectList);
 		
 		return "mypage/admin/admin_select_fundAfter";	
 	}
