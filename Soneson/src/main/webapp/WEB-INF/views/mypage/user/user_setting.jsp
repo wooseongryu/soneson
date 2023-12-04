@@ -47,7 +47,6 @@
     			success: function(resp) {
     				reset_screen(id);
     				
-    				// 등록된 소개가 없을 경우 입력폼 출력값 수정 필요.
 					info = resp.user_info;
 					info_print = resp.user_info;
     				if (info == "" || info == null) {
@@ -231,6 +230,12 @@
     			},
     			dataType: 'json',
     			success: function(resp) {
+    				if (resp.isLogin == "false") {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    				
     				if (resp.isUpdated == "false") {
     					alert("이름 수정 실패!");
     					userProfile('topCateProfile');

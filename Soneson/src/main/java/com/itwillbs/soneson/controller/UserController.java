@@ -149,8 +149,16 @@ public class UserController {
 	@PostMapping("settingUpdateUserProfilePro")
 	public String settingUpdateUserProfilePro(@RequestParam Map<String, String> map, Gson gson, HttpSession session, Model model) {
 		System.out.println("UserController - settingUpdateUserProfilePro()");
-			
-		map.put("sId", (String)session.getAttribute("sId"));
+		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			System.out.println("세션 없음.");
+			map.put("isLogin", "false");
+			return gson.toJson(map);
+		}
+		
+		map.put("isLogin", "true");
+		map.put("sId", sId);
 		
 		if (map.containsKey("user_info")) {
 			map.replace("user_info", map.get("user_info").replaceAll("\n", "<br>"));
