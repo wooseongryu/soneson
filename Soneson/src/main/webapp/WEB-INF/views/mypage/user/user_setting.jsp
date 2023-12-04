@@ -37,6 +37,7 @@
     	let picture = "";
     	let info = "";
     	let info_print = "";
+    	let user_name = "";
     	
     	function userProfile(id) {
     		$.ajax({
@@ -57,6 +58,8 @@
     				if (picture == "" || picture == null) {
     					picture = "${pageContext.request.contextPath }/resources/user/prifile.png";
     				}
+    				
+    				user_name = resp.user_name;
 
 					$("#user_content").append(
 						  ' <div class="anime__details__review">                                                                                    '
@@ -78,9 +81,9 @@
 						+ '  	<div class="anime__review__item">                                    '
                         + '  		<div class="user__setting__text" id="user_name">                 '
 	                    + '      		<h6>이름</h6>                                                '
-	                    + '      		<p style="margin-top: 10px">' + resp.user_name + '</p>                       '
+	                    + '      		<p style="margin-top: 10px">' + user_name + '</p>                       '
 	                    + '      		<div class="user_follow_btn">                                '
-	                    + '      			<a onclick="updateUserName(\'' + resp.user_name + '\')">변경</a>     '
+	                    + '      			<a onclick="updateUserName()">변경</a>     '
 	                    + '      		</div>                                                       '
 						+ '  		</div>                                                           '
                     	+ '  	</div>                                                               '
@@ -181,7 +184,7 @@
     		});
     	}
     	
-    	function updateUserName(user_name) {
+    	function updateUserName() {
     		$.ajax({
     			type: 'post',
     			url: 'settingUpdateUserName',
@@ -191,16 +194,23 @@
     				
     				$("#user_name").append(
                      		  ' <h6>이름</h6>                                                                              '
-                     		+ ' <input type="text" value="' + user_name + '" id="userName" style="margin-top: 10px">       '
+                     		+ ' <input type="text" value="' + user_name + '" maxlength="10"  id="userName" style="margin-top: 10px">       '
                      		+ ' <div class="user_follow_btn">                                                              '
                      		+ ' 	<a id="updateUserNameSave">저장</a>                                                    '
                      		+ ' </div>                                                                                     '
                      		+ ' <div class=user_cancel_btn>                                                                '
-                     		+ ' 	<a onclick="cancelUpdateUserName(\'' + user_name + '\')">취소</a>                      '
+                     		+ ' 	<a onclick="cancelUpdateUserName()">취소</a>                      '
                      		+ ' </div>      	                                                                           '
     				);
     				
-    				$("#updateUserNameSave").on("click", updateUserNamePro);
+    				$("#updateUserNameSave").on("click", function() {
+    					if ($("#userName").val() == "") {
+    						alert("1자 이상 입력 하세요.");
+    						return;
+    					}
+    					
+    					updateUserNamePro();
+    				});
     			},
     			error: function() {
     				alert("에러!");
@@ -229,15 +239,15 @@
     				
     				alert("이름이 변경 되었습니다.");
     				
-    				let name = resp.user_name;
+    				user_name = resp.user_name;
     				
     				$("#user_name").children().remove();
     				
     				$("#user_name").append(
    						  '<h6>이름</h6>                                                '
-   	                    + '<p style="margin-top: 10px">' + name + '</p>                 '
+   	                    + '<p style="margin-top: 10px">' + user_name + '</p>                 '
    	                    + '<div class="user_follow_btn">                                '
-   	                    + '    <a onclick="updateUserName(\'' + name + '\')">변경</a>   '
+   	                    + '    <a onclick="updateUserName()">변경</a>   '
    	                    + '</div>                                                       '
     				);
     			},
@@ -247,7 +257,7 @@
     		});
     	}
     	
-    	function cancelUpdateUserName(user_name) {
+    	function cancelUpdateUserName() {
     		$.ajax({
     			type: 'post',
     			url: 'settingCancelUpdateUserName',
