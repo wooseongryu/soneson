@@ -53,7 +53,7 @@ var myBarChart = new Chart(ctx, {
     labels: fund_date_a,
     datasets: [{
       label: "일별후원금액",
-      backgroundColor: "#4e73df",
+      backgroundColor: "rgb(255, 87, 87)",
       hoverBackgroundColor: "#2e59d9",
       borderColor: "#4e73df",
       data: now_amount,
