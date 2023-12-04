@@ -337,7 +337,13 @@
     			},
     			dataType: 'json',
     			success: function(resp) {
-    				if (resp.isUpdated == "false") {
+    				if (!resp.isLogin) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    				
+    				if (!resp.isUpdated) {
     					alert("소개 수정 실패!");
     					userProfile('topCateProfile');
     					return;
