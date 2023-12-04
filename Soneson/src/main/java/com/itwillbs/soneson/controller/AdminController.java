@@ -87,13 +87,18 @@ public class AdminController {
 
 		int deleteUserCount = adminService.countDeleteUser();
 
+		
 		// 프로젝트 달성률 그래프
 		List<Map<String, Object>> projectMyList = adminService.selectProjectMyList();
 
+		// 프로젝트 달성률 그래프
+		List<Map<Object, Object>> costAmount = adminService.costAmount();
 		
 		
 		
 		
+
+		model.addAttribute("costAmount", costAmount);
 		model.addAttribute("projectMyList", projectMyList);
 		model.addAttribute("joinUserCount", joinUserCount);
 		model.addAttribute("deleteUserCount", deleteUserCount);

@@ -85,11 +85,13 @@
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
-											<div class="text-xs font-weight-bold text-info text-uppercase mb-1">금일 펀딩 금액
+											<div class="text-xs font-weight-bold text-info text-uppercase mb-1">주간 펀딩 금액
 											</div>
 											<div class="row no-gutters align-items-center">
 												<div class="col-auto">
-													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">20000000원</div>
+													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+													${costAmount[0].sum_cost }원
+													</div>
 												</div>
 											</div>
 										</div>
@@ -116,68 +118,68 @@
 
 					<!-- Content Row -->
 
-					<div class="row">
+<!-- 					<div class="row"> -->
 
 						<!-- Area Chart -->
-						<div class="col-xl-12 col-lg-12">
-							<div class="card shadow mb-4">
+<!-- 						<div class="col-xl-12 col-lg-12"> -->
+<!-- 							<div class="card shadow mb-4"> -->
 							<!-- Card Header - Dropdown -->
-								<div
-									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">요일별 펀딩금액</h6>
-									<div class="dropdown no-arrow">
-										<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										</a>
-									</div>
-								</div>
-								<!-- Card Body -->
-								<div class="card-body">
-									<div class="chart-area">
-										<canvas id="myAreaChart"></canvas>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+<!-- 								<div -->
+<!-- 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between"> -->
+<!-- 									<h6 class="m-0 font-weight-bold text-primary">요일별 펀딩금액</h6> -->
+<!-- 									<div class="dropdown no-arrow"> -->
+<!-- 										<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" -->
+<!-- 											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+<!-- 										</a> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 								Card Body -->
+<!-- 								<div class="card-body"> -->
+<!-- 									<div class="chart-area"> -->
+<%-- 										<canvas id="myAreaChart"></canvas> --%>
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
 
 					<!-- Content Row -->
-					<div class="row">
+<!-- 					<div class="row"> -->
 
 						<!-- Pie Chart -->
-						<div class="col-xl-4 col-lg-5">
-							<div class="card shadow mb-4">
-								<!-- Card Header - Dropdown -->
-								<div
-									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">프로젝트 카테고리별 분포도</h6>
-									<div class="dropdown no-arrow">
-										<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										</a>
-									</div>
-								</div>
-								<!-- Card Body -->
-								<div class="card-body">
-									<div class="chart-pie pt-4 pb-2">
-										<canvas id="myPieChart"></canvas>
-									</div>
-									<div class="mt-4 text-center small">
-										<span class="mr-2">
-											<i class="fas fa-circle text-primary"></i> 분류별 카테1
-										</span>
-										<span class="mr-2">
-											<i class="fas fa-circle text-success"></i> 분류별 카테2
-										</span>
-										<span class="mr-2">
-											<i class="fas fa-circle text-info"></i> 분류별 카테3
-										</span>
-									</div>
-								</div>
-							</div>
-						</div>
+<!-- 						<div class="col-xl-4 col-lg-5"> -->
+<!-- 							<div class="card shadow mb-4"> -->
+<!-- 								Card Header - Dropdown -->
+<!-- 								<div -->
+<!-- 									class="card-header py-3 d-flex flex-row align-items-center justify-content-between"> -->
+<!-- 									<h6 class="m-0 font-weight-bold text-primary">프로젝트 카테고리별 분포도</h6> -->
+<!-- 									<div class="dropdown no-arrow"> -->
+<!-- 										<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" -->
+<!-- 											data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+<!-- 										</a> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 								Card Body -->
+<!-- 								<div class="card-body"> -->
+<!-- 									<div class="chart-pie pt-4 pb-2"> -->
+<%-- 										<canvas id="myPieChart"></canvas> --%>
+<!-- 									</div> -->
+<!-- 									<div class="mt-4 text-center small"> -->
+<!-- 										<span class="mr-2"> -->
+<!-- 											<i class="fas fa-circle text-primary"></i> 분류별 카테1 -->
+<!-- 										</span> -->
+<!-- 										<span class="mr-2"> -->
+<!-- 											<i class="fas fa-circle text-success"></i> 분류별 카테2 -->
+<!-- 										</span> -->
+<!-- 										<span class="mr-2"> -->
+<!-- 											<i class="fas fa-circle text-info"></i> 분류별 카테3 -->
+<!-- 										</span> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 						<!-- Content Column -->
-						<div class="col-lg-8 mb-6">
+						<div class="col-xl-12 col-lg-12">
 
 							<!-- Project Card Example -->
 							<div class="card shadow mb-4">
@@ -215,30 +217,6 @@
 											aria-valuenow="${projectMy.goal_rate }" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
 								</c:forEach>
-<!-- 									<h4 class="small font-weight-bold">손에손 프로젝트2 <span -->
-<!-- 											class="float-right">40%</span></h4> -->
-<!-- 									<div class="progress mb-4"> -->
-<!-- 										<div class="progress-bar bg-warning" role="progressbar" style="width: 40%" -->
-<!-- 											aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div> -->
-<!-- 									</div> -->
-<!-- 									<h4 class="small font-weight-bold">손에손 프로젝트3 <span -->
-<!-- 											class="float-right">60%</span></h4> -->
-<!-- 									<div class="progress mb-4"> -->
-<!-- 										<div class="progress-bar" role="progressbar" style="width: 60%" -->
-<!-- 											aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div> -->
-<!-- 									</div> -->
-<!-- 									<h4 class="small font-weight-bold">손에손 프로젝트4 <span -->
-<!-- 											class="float-right">80%</span></h4> -->
-<!-- 									<div class="progress mb-4"> -->
-<!-- 										<div class="progress-bar bg-info" role="progressbar" style="width: 80%" -->
-<!-- 											aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div> -->
-<!-- 									</div> -->
-<!-- 									<h4 class="small font-weight-bold">손에손 프로젝트5 <span -->
-<!-- 											class="float-right">Complete!</span></h4> -->
-<!-- 									<div class="progress"> -->
-<!-- 										<div class="progress-bar bg-success" role="progressbar" style="width: 100%" -->
-<!-- 											aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div> -->
-<!-- 									</div> -->
 								</div>
 							</div>
                         </div>
@@ -267,12 +245,12 @@
 </body>
 
     <!-- Page level plugins -->
-    <script src="${pageContext.request.contextPath }/resources/mypage/vendor/chart.js/Chart.min.js"></script>
+<%--     <script src="${pageContext.request.contextPath }/resources/mypage/vendor/chart.js/Chart.min.js"></script> --%>
 
     <!-- Page level custom scripts -->
-    <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-area-demo.js"></script>
-    <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-pie-demo.js"></script>
-    <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-bar-demo.js"></script>
+<%--     <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-area-demo.js"></script> --%>
+<%--     <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-pie-demo.js"></script> --%>
+<%--     <script src="${pageContext.request.contextPath }/resources/mypage/js/demo/chart-bar-demo.js"></script> --%>
 
 
 

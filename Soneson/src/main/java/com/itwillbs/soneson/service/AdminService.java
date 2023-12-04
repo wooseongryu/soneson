@@ -36,6 +36,12 @@ public class AdminService {
 		System.out.println("AdminService - countDeleteUser()");
 		return mapper.countDeleteUser();
 	}
+
+	// 주간합계금액
+	public List<Map<Object, Object>> costAmount() {
+		System.out.println("AdminService - costAmount()");
+		return mapper.costAmount();
+	}
 	
 	
 	

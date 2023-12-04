@@ -100,6 +100,8 @@ public interface AdminMapper {
 
 	List<Map<String, Object>> selectProjectMyList();
 
+	List<Map<Object, Object>> costAmount();
+
 	
 	
 }
