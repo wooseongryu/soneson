@@ -96,7 +96,7 @@
 	<div class="InfinityList__ListWrapper-sc-19jay7c-3 fZWVhg tbb-if-list-wrapper">
 	
 	<c:forEach var="project" items="${projectList }">
-		<div class="InfinityList__ProjectCardWrapper-sc-19jay7c-4 jfWeNA">
+		<div class="InfinityList__ProjectCardWrapper-sc-19jay7c-4 jfWeNA listCard">
 			<div></div>
 			<div class="ProjectCard__Wrapper-opxl0a-13 klQtEn project-card">
 				<div></div>
@@ -131,7 +131,7 @@
 						</dl>
 						<div class="ProjectCard__FundingStatus-opxl0a-10 hjCxPX">
 							<div>
-								<span class="ProjectCard__StyledFundingProgressState-opxl0a-12 ivYcvj">${project.goal_rate }%</span>
+								<span class="ProjectCard__StyledFundingProgressState-opxl0a-12 ivYcvj percent">${project.goal_rate }%</span>
 								<span class="funding-amount">
 									<em>${project.now_amount }</em>원
 <!-- 									<em>6,584,799</em>원 -->

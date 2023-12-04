@@ -31,19 +31,6 @@ public class ProjectListController {
 		return "list/popular";
 	}
 	
-	public String method(Model model, String listType) {
-		
-		List<Map<String, Object>> projectList = service.getTapProjectList(listType);
-		
-		int projectCount = projectList.size();
-		System.out.println("프로젝트 갯수 : " + projectCount);
-		
-		model.addAttribute("projectList", projectList);
-		model.addAttribute("projectCount", projectCount);
-		
-		return "list/popular";
-	}
-	
 	@GetMapping("popular")
 	public String popular(Model model) {
 		return getListType(model, "popular");
@@ -74,6 +61,13 @@ public class ProjectListController {
 		return "list/projectDetail";	
 	}
 	
+//	@GetMapping()
+//	public String header(Model model) {
+//		List<Map<String, Object>> tapList = service.getTapList();
+//		model.addAttribute("tapList", tapList);
+//		
+//		return "inc/header";
+//	}
 	
 	// ============ 아래는 엄성윤 테스트 =======================
 	

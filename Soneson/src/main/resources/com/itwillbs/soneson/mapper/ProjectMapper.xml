@@ -115,6 +115,13 @@
 	
 <!-- 아래는 프로젝트 리스트, 성윤 -->
 
+<!-- 헤더 -->
+	<select id="getTapList" resultType="map">
+		SELECT *
+		FROM project_tap;
+	</select>
+
+
 	
 <!-- 탭별 프로젝트 리스트 -->
 

@@ -163,10 +163,17 @@ ul {
 									<rect x="9" y="33" width="30" height="4" fill="#1C1C1C"></rect>
 								</svg>
 								<a href="javascript:void(0);" role="menuitem" class="HeaderGnb_item__wcfir category" aria-current="false">카테고리</a>
-								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="popular">인기</a>
-								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="new">신규</a>
-								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="closing">마감임박</a>
-								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="upcoming">공개예정</a>
+								<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="popular">인기</a>
+								<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="new">신규</a>
+								<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="closing">마감임박</a>
+								<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="upcoming">공개예정</a>
+<!-- 								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="popular">인기</a> -->
+<!-- 								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="new">신규</a> -->
+<!-- 								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="closing">마감임박</a> -->
+<!-- 								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="upcoming">공개예정</a> -->
+<%-- 								<c:forEach var="tap" items="${tapList }"> --%>
+<%-- 									<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="${tap.tap_Ename }">${tap.tap_Kname }</a> --%>
+<%-- 								</c:forEach> --%>
 								<a href="https://happybean.naver.com/campaign/list" role="menuitem" class="HeaderGnb_item__wcfir" aria-current="false">가치</a>
 							</div>
 		<!-- 					<div class="style__SearchInputWrapper-zxsodr-15 hbYMFx"> -->
@@ -279,6 +286,10 @@ ul {
 //         	$j(".HeaderGnb_item__wcfir").attr("aria-current", "false");
 //         	$j(this).attr("aria-current", "true");
 //         });
+        
+//         $j(".HeaderGnb_item__wcfir").click(function() {
+//         	$j(this).addClass("eWDpEZ");
+//         });.
 // 왜 안 되지?
         
         // 위는 전부 맞음

@@ -1,3 +1,9 @@
+let hideCount = 0;
+
+function filterGoalRate(from, to) {
+	
+}
+
 $(".grChoice > div").click(function() {
 	let grChoice = $(this).text();
 	$(".goalRateBtn .title-wrapper").text(grChoice);
@@ -11,6 +17,28 @@ $(".grChoice > div").click(function() {
 	$(".goalRateBtn").addClass("modalOff");
 	$(".goalRateBtn").removeClass("modalOn");
 	$(".faghXt").hide();
+	
+	if($(this).hasClass("grUnder75")) {
+		$(".listCard").each(function() {
+			let goalRate = parseInt($(this).find(".percent").text().replace('%', ''));
+			
+			if(goalRate > 75) {
+				$(this).hide();
+			} 
+		});
+	}
+	
+	if($(this).hasClass("gr75to100")) {
+		
+		$(".listCard").each(function() {
+			let goalRate = parseInt($(this).find(".percent").text().replace('%', ''));
+			
+			if(goalRate > 75) {
+				$(this).hide();
+			} 
+		});
+	}
+	
 });
 
 
