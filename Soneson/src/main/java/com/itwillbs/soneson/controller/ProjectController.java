@@ -356,9 +356,9 @@ public class ProjectController {
 				
 				
 			}
-			return "저장되었습니다.";
+			return "true";
 		} else { // DB 작업 처리 실패
-			return "저장에 실패하였습니다.";
+			return "false";
 		}
 //		*/
 		
@@ -397,11 +397,13 @@ public class ProjectController {
 	@PostMapping("deleteItem")
 	public String deleteItem(@RequestParam Map<String, String> map) {
 		
+		
+		
 		int deleteCount = itemService.deleteItem(map);
 		if(deleteCount > 0) {
-			return "삭제되었습니다.";
+			return "true";
 		} else {
-			return "잠시 후 다시 시도해주세요.";
+			return "false";
 		}
 	}
 	
@@ -416,13 +418,30 @@ public class ProjectController {
 		System.out.println(insertCount);
 		System.out.println(map);
 		
+		
 		if(insertCount > 0) {
 			JSONObject jsonObject = new JSONObject(map);
 			return jsonObject.toString();
 		} else {
-			return "잠시 후 다시 시도해주세요.";
+			return "false";
 		}
 		
+	}
+	
+	//리워드삭제
+	@ResponseBody
+	@PostMapping("deleteReward")
+	public String deleteReward(int reward_code) {
+		System.out.println("삭제할 reward_code : "+reward_code);
+		int deleteCount = itemService.deleteReward(reward_code);
+		System.out.println("왜 404가 뜨는거고? : " + deleteCount);
+		if(deleteCount > 0) {
+			return "true";
+		} else {
+			return "false";
+		}
+		
+//		return "";
 	}
 
 	

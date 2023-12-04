@@ -21,7 +21,7 @@
 			, #{user_id}
 			, #{user_email} 
 			, #{user_passwd}
-			, now(
+			, now()
 			, 'N'
 			, 'N'
 			, '가입'

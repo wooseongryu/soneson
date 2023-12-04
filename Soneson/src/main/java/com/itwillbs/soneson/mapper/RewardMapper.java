@@ -26,5 +26,10 @@ public interface RewardMapper {
 	//리워드 추가
 	int insertReward(Map<String, String> map);
 
+	//리워드삭제
+	int deleteReward(int reward_code);
+	
+	
+
 
 }

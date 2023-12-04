@@ -35,6 +35,9 @@ public class RewardService {
 	public int insertReward(Map<String, String> map) {
 		return mapper.insertReward(map);
 	}
+	public int deleteReward(int reward_code) {
+		return mapper.deleteReward(reward_code);
+	}
 	
 
 }

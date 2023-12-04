@@ -2,14 +2,25 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
-	//본인인증
-	function authInfo() {
-		window.open("RequestAuth", "authWindow", "width=600, height=800");
-	}
+// 	//본인인증
+// 	function authInfo() {
+// 		let requestUri = "https://openapi.openbanking.or.kr/v2.0/user/me?";
+// 			+ "Authorization"
+		
+// 		window.open("RequestAuth", "authWindow", "width=600, height=800");
+// 	}
 	
 	//계좌등록
-	function authAccount() {
-		window.open("RequestAuth", "authWindow", "width=600, height=800");
+	function authAccountCreator() {
+		let requestUri = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
+			+ "response_type=code"
+			+ "&client_id=4066d795-aa6e-4720-9383-931d1f60d1a9"
+			+ "&redirect_uri=http://localhost:8081/soneson/callback"
+// 			+ "&scope=login inquiry transfer oob"
+			+ "&scope=login inquiry transfer"
+			+ "&state=12345678901234567890123456789012"
+			+ "&auth_type=0";
+		window.open(requestUri, "authWindow", "width=600, height=800");		
 	}
 	
 	//할라나...세금계산서발행
@@ -19,7 +30,7 @@
 
 
 	$(function() {
-		$('input[name="pro_profile"]').change(function(){
+		$('input[name="pro_profile_multi"]').change(function(){
 		    setImageFromFile(this, '#profile_preview');
 		});
 
@@ -122,30 +133,30 @@
 			</div>	
 		</div>
 		<!--  -->
-		<div class="view-content-form">
-			<div class="projectItemWarp">
-				<dl class="projectInfo">
-					<dt class="projectInfo-title">
-						본인 인증
-						<div class="icon-asterisk"><i class="bi bi-asterisk"></i></div>
-					</dt>
-					<dd class="projectInfo-description">
-						창작자 본인 명의의 휴대폰 번호로 인증해주세요.<br>
-					</dd>
-				</dl>
-				<div class="projectItem-form">
-					<div class="projectInfo-writeDIv">
-						<div class="creator-info">
-							<div class="creator-authInfo">
-								<i class="bi bi-person-fill"></i>	
-								<p>본인인증을 해주세요.</p>
-							</div>
-							<button class="authInfoBtn" type="button" onclick="authInfo()">인증하기</button>
-						</div>
-					</div>
-				</div>
-			</div>	
-		</div>
+<!-- 		<div class="view-content-form"> -->
+<!-- 			<div class="projectItemWarp"> -->
+<!-- 				<dl class="projectInfo"> -->
+<!-- 					<dt class="projectInfo-title"> -->
+<!-- 						본인 인증 -->
+<!-- 						<div class="icon-asterisk"><i class="bi bi-asterisk"></i></div> -->
+<!-- 					</dt> -->
+<!-- 					<dd class="projectInfo-description"> -->
+<!-- 						창작자 본인 명의의 휴대폰 번호로 인증해주세요.<br> -->
+<!-- 					</dd> -->
+<!-- 				</dl> -->
+<!-- 				<div class="projectItem-form"> -->
+<!-- 					<div class="projectInfo-writeDIv"> -->
+<!-- 						<div class="creator-info"> -->
+<!-- 							<div class="creator-authInfo"> -->
+<!-- 								<i class="bi bi-person-fill"></i>	 -->
+<!-- 								<p>본인인증을 해주세요.</p> -->
+<!-- 							</div> -->
+<!-- 							<button class="authInfoBtn" type="button" onclick="authInfo()">인증하기</button> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div>	 -->
+<!-- 		</div> -->
 		<div class="view-content-form">
 			<div class="projectItemWarp">
 				<dl class="projectInfo">
@@ -163,12 +174,35 @@
 						<div class="creator-info">
 							<div class="creator-authInfo">
 								<i class="bi bi-coin"></i>
-								<p>후원금을 수령할 계좌를 등록해주세요.</p>
+								<p>
+									후원금을 수령할 계좌를 등록해주세요.<br>
+									본인인증 후 계좌등록이 가능합니다.
+								</p>
 							</div>
-							<button class="authInfoBtn" type="button" onclick="authAccount()">등록하기</button>
+							<button class="authInfoBtn" type="button" onclick="authAccountCreator()">등록하기</button>
 						</div>
 					</div>
 				</div>
+				<!-- 등록햇을 때 예시 -->
+<!-- 				<div class="projectItem-form"> -->
+<!-- 					<div class="projectInfo-writeDIv"> -->
+<!-- 						<div class="creator-info"> -->
+<!-- 							<div class="creator-authInfo"> -->
+<!-- 								<h5> -->
+<!-- 									<i class="bi bi-coin"></i> -->
+<!-- 									임진왜란 -->
+<!-- 								</h5> -->
+<!-- 							</div> -->
+<!-- 							<button class="authInfoBtn" type="button" onclick="authAccountCreator()">변경하기</button> -->
+<!-- 						</div> -->
+<!-- 						<div> -->
+<!-- 							<p> -->
+<!-- 								kb국민은행 95880201****** -->
+<!-- 							</p> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+				<!-- 나중에 append로 쓸 구역임 -->
 			</div>	
 		</div>
 		<div class="view-content-form">

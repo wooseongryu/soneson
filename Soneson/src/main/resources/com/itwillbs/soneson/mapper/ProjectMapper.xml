@@ -8,7 +8,7 @@
 	
 	<!-- 프로젝트 등록 start페이지 -->
 	<select id="selectIdProj" resultType="Project">
-		SELECT pro_code, user_id, pro_title
+		SELECT pro_code, user_id, pro_title, pro_thumbsnail
 		FROM sample_pro 
 		WHERE user_id = #{sId}
 		ORDER BY pro_code asc

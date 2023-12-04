@@ -16,9 +16,31 @@
 	</insert>
 	
 	<!-- 아이템 삭제  -->
-	<delete id="deleteItem">
+	<delete id="deleteItem2">
 		DELETE FROM pro_item
 		WHERE pro_code = #{pro_code} AND item_code = #{item_code}
+	</delete>
+	
+	<delete id="deleteItem">
+	<![CDATA[
+	WITH RECURSIVE numbers AS (
+		SELECT 1 AS NUM
+		UNION ALL
+		SELECT NUM + 1 FROM numbers
+		WHERE NUM < (SELECT COUNT(*) FROM pro_item
+					  WHERE pro_code = #{pro_code})
+	), TMP AS (
+	SELECT DISTINCT SUBSTRING_INDEX(SUBSTRING_INDEX(pr.reward_item_code, '|', n.NUM), '|', -1) reward_item_code
+	  FROM pro_reward pr
+	 INNER JOIN numbers n
+	   ON CHAR_LENGTH(pr.reward_item_code) - CHAR_LENGTH(REPLACE(pr.reward_item_code, '|', '')) >= n.NUM-1
+	)
+	DELETE FROM pro_item 
+	 WHERE pro_code = #{pro_code}
+	   AND item_code = #{item_code}
+	   AND 0 = (SELECT COUNT(*) FROM TMP
+				 WHERE reward_item_code = #{item_code})
+	]]>
 	</delete>
 	
 	<!-- itemList  -->
@@ -28,7 +50,7 @@
 			, CASE WHEN item_condition = '0' THEN '옵션없음'
 				   WHEN item_condition = '1' THEN '주관식'
 				   ELSE '객관식' END AS item_condition 							
-			, REPLACE(item_option, '/', ' ') AS item_option
+			, REPLACE(item_option, '|', ' ') AS item_option
 		FROM pro_item
 		WHERE pro_code = #{pro_code}
 	</select>
@@ -39,7 +61,7 @@
 			, CASE WHEN item_condition = '0' THEN '옵션없음'
 				   WHEN item_condition = '1' THEN '주관식'
 				   ELSE '객관식' END AS item_condition 							
-			, REPLACE(item_option, '/', ' ') AS item_option
+			, REPLACE(item_option, '|', ' ') AS item_option
 		FROM pro_item
 		WHERE pro_code = #{pro_code} AND item_name = #{item_name} AND item_condition = #{item_condition}
 	</select>
@@ -49,7 +71,7 @@
 		SELECT reward_code
 			, reward_item_name
 			, reward_explan	
-			, CASE WHEN reward_isCount = 'N' THEN '수량제한 없음'
+			, CASE WHEN reward_isCount = '1' THEN '제한 없음'
 				   ELSE concat(reward_count, '개') END AS reward_count					
 			, reward_amount
 		FROM pro_reward
@@ -67,7 +89,7 @@
 		VALUES (
 			null
 			, #{pro_code}
-			, #{reward_item_name}
+			, #{reward_item_name}      
 			, #{reward_item_code}
 			, #{reward_explan}
 			, #{reward_isCount}
@@ -78,6 +100,12 @@
 		
 		
 	</insert>
+	
+	<!-- rewardDelete  -->
+	<delete id="deleteReward">
+		DELETE FROM pro_reward
+		WHERE reward_code = #{reward_code}
+	</delete>
 	
 	
 </mapper>

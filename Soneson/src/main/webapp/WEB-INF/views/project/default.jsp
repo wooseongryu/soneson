@@ -38,13 +38,22 @@ function updateProject(pro_code) {
 		cache: false,
 		processData: false,
 		contentType: false,
-		dataType: "text",
+		dataType: "json",
 		success: function(result) {
 			console.log(result);
-			alert(result);
+// 			if(result == "forward") {
+// 				alert("로그인 후 이용 가능 합니다.");
+// 				location.href="login";
+// 			}
+			if(result) {
+				alert("저장되었습니다.");
+			} else {
+				alert("잠시 후 다시 시도해주세요.");
+			}
+			
 		},
-		error:function(request,error){
-			alert("저장을 실패하였습니다. 잠시 후 다시 시도해주세요.");
+		error:function(request, status, error){
+			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		}
 	});
 }
@@ -75,6 +84,7 @@ $(function() {
 	    reader.onload = function (e) {
 	    $(expression).attr('src', e.target.result);
 	    $(".image-change").show();
+	    $("#mainThunb_preview").attr('src', e.target.result);
 	  }
 	  reader.readAsDataURL(input.files[0]);
 	    $(".image-change").hide();
@@ -226,11 +236,15 @@ $(function() {
 							<button formaction="submitProject">등록하기</button>
 						</div>
 						<div class="top-content-center">
-							<div class="top-content-img"></div>
+							<div class="top-content-img">
+								<c:if test="${not empty pro.pro_thumbsnail }">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }" id="mainThunb_preview" width="200px" height="133px">
+								</c:if>
+							</div>
 							<div class="plan-title">
 								<h2>${pro.pro_title }</h2>
-								<p>${pro.pro_categorie} · ${pro.user_id }</p>
-								<P>${pro.pro_code }</P>
+								<p>${pro.pro_categorie}<c:if test="${not empty pro.pro_creator }"> · ${pro.pro_creator }</c:if></p>
+								<P>${pro.user_id }(${pro.pro_code })</P>
 							</div>
 						</div>
 					</div>
@@ -290,7 +304,7 @@ $(function() {
 										<option value="아동·청소년" <c:if test="${pro.pro_categorie eq '아동·청소년' }">selected</c:if>>아동·청소년</option>
 										<option value="동물" <c:if test="${pro.pro_categorie eq '동물' }">selected</c:if>>동물</option>
 										<option value="환경" <c:if test="${pro.pro_categorie eq '환경' }">selected</c:if>>환경</option>
-										<option value="장애인" <c:if test="${pro.pro_categorie eq '아동·청소년' }">selected</c:if>>장애인</option>
+										<option value="장애인" <c:if test="${pro.pro_categorie eq '장애인' }">selected</c:if>>장애인</option>
 										<option value="가족·여성" <c:if test="${pro.pro_categorie eq '가족·여성' }">selected</c:if>>가족·여성</option>
 										<option value="어르신" <c:if test="${pro.pro_categorie eq '어르신' }">selected</c:if>>어르신</option>
 										<option value="기타" <c:if test="${pro.pro_categorie eq '기타' }">selected</c:if>>기타</option>

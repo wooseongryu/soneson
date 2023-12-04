@@ -74,7 +74,7 @@
 		let startDt = new Date("${pro.pro_startDt}");
 		let endDt = new Date("${pro.pro_endDt}");
 		
-		if(${not empty pro.pro_startDt} && ${not empty pro.pro_startDt}) {
+		if(${not empty pro.pro_startDt} && ${not empty pro.pro_endDt}) {
 			let fundingDays = Math.round((endDt - startDt) / 1000 / 60 / 60 / 24);
 			let paymentDt = endDt.getFullYear() + "-" + endDt.getMonth() + "-" + (endDt.getDate() + 7);
 			let calculateDt = endDt.getFullYear() + "-" + endDt.getMonth() + "-" + (endDt.getDate() + 14);
@@ -85,7 +85,7 @@
 		};
 		
 		//시작날짜 변경 시
-		$("#start-funding").on('click change', function() {
+		$("#start-funding").on('change', function() {
 			startDt = new Date($(this).val()); //String
 			endDt = new Date($("#end-funding").val());
 			if(startDt > endDt) {
@@ -95,7 +95,8 @@
 			}
 			console.log(startDt + ", " + typeof startDt);
 			
-			if((startDt != "" || startDt != null) && (endDt != "" || endDt != null)) {
+			if(startDt != "" && endDt != "") {
+// 			if((startDt != "" || startDt != null) && (endDt != "" || endDt != null)) {
 				fundingDays = Math.round((endDt - startDt) / 1000 / 60 / 60 / 24);
 				console.log(fundingDays + ", " + typeof fundingDays);
 				$("#fundingDays").text(fundingDays);

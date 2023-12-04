@@ -71,7 +71,9 @@
 					<div class="ing-content">
 						<div class="ing-protitle">
 							<span class="ing-proimg">
-								<img>
+								<c:if test="${not empty pro.pro_thumbsnail }">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }">
+								</c:if>
 							</span>
 							<p>${pro.pro_title }</p>
 						</div>
