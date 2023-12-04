@@ -772,15 +772,65 @@
 
 					$("#user_leave").append(
                    		  ' <h6>회원탈퇴</h6>                                                                '
-                		+ ' <input type="text" placeholder="비밀번호를 입력하세요." style="margin-top: 10px">'    
+                		+ ' <input type="password" id="leavePass" placeholder="비밀번호를 입력하세요." maxlength="16" style="margin-top: 10px">'    
                 		+ '                                                                                  '
                 		+ ' <div class="user_follow_btn">                                                    '
-                		+ ' 	<a href="#">탈퇴</a>                                                         '
+                		+ ' 	<a onclick="checkPasswdEqual()">탈퇴</a>                                                         '
                 		+ ' </div>                                                                           '
                 		+ ' <div class=user_cancel_btn>                                                      '
                 		+ ' 	<a onclick="cancelUpdateUserLeave()">취소</a>                                '
                 		+ ' </div>                                                                           '
 					);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function checkPasswdEqual() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'isPassEqual',
+    			dataType: 'json',
+    			data: {
+    				user_passwd: $("#leavePass").val()
+    			},
+    			success: function(resp) {
+    				console.log(resp);
+    				
+    				if (!resp.isLogin) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    				
+    				if (!resp.isPassEqual) {
+    					alert("현재 비밀번호 불일치!");
+    					return;
+    				}
+    				
+   					leaveUser();
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
+    	
+    	function leaveUser() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'settingLeaveUser',
+    			dataType: 'json',
+    			success: function(resp) {
+    				if (!resp.isSuccess) {
+    					alert("회원탈퇴 실패");
+    					return;
+    				}
+    				
+   					alert("회원탈퇴가 완료 되었습니다.");
+   					location.href="main";
     			},
     			error: function() {
     				alert("에러!");

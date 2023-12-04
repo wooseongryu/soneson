@@ -222,6 +222,20 @@ public class UserService {
 		
 		return mapper.updateKakaoStatus(sId);
 	}
+
+	// 유저 설정 계정 회원탈퇴 처리
+	public int updateUserLeave(UserVO user) {
+		System.out.println("UserService - updateUserLeave()");
+		
+		return mapper.updateUserLeave(user);
+	}
+
+	// 유저 설정 회원탈퇴 랜덤 이메일 변경 중복 확인
+	public int checkDuplicateEmail(String deleteEmail) {
+		System.out.println("UserService - checkDuplicateEmail()");
+		
+		return mapper.checkDuplicateEmail(deleteEmail);
+	}
 	
 	
 }
