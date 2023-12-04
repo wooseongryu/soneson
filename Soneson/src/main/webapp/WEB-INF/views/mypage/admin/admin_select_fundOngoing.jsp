@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>     
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,33 +63,31 @@
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
+											<th>프로젝트 코드</th>
+											<th>프로젝트 제목</th>
+											<th>프로젝트 카테고리</th>
+											<th>프로젝트 창작자</th>
+											<th>프로젝트 기간</th>
+											<th>프로젝트 후원금액</th>
+											<th>프로젝트 목표금액</th>
+											<th>프로젝트 달성률</th>
+											<th>프로젝트 후원자</th>
 										</tr>
 									</thead>
-									<tfoot>
-										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
-										</tr>
-									</tfoot>
 									<tbody>
-										<tr>
-											<td>Tiger Nixon</td>
-											<td>System Architect</td>
-											<td>Edinburgh</td>
-											<td>61</td>
-											<td>2011/04/25</td>
-											<td>$320,800</td>
-										</tr>
+										<c:forEach var="ongoingProject" items="${ongoingProjectList }">
+	                                        <tr>
+	                                            <td>${ongoingProject.project_code }</td>
+	                                            <td>${ongoingProject.title }</td>
+	                                            <td>${ongoingProject.category }</td>
+	                                            <td>${ongoingProject.creator }</td>
+	                                            <td>${fn:replace(ongoingProject.start_date ,"T", " ") } ~<br> ${fn:replace(ongoingProject.end_date ,"T", " ") }</td>
+	                                            <td>${ongoingProject.now_amount }원</td>
+	                                            <td>${ongoingProject.goal_amount }원</td>
+	                                            <td>${ongoingProject.goal_rate }%</td>
+	                                            <td>${ongoingProject.donor }명</td>
+	                                        </tr>
+                                        </c:forEach>
 									</tbody>
 								</table>
 							</div>

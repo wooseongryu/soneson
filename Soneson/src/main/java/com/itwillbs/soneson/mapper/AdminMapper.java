@@ -106,6 +106,12 @@ public interface AdminMapper {
 	
 	List<Map<String, Object>> selectProjectList();
 
+	List<Map<String, Object>> selectProjectBefore();
+
+	List<Map<String, Object>> selectProjectOngoing();
+
+	List<Map<String, Object>> selectProjectAfter();
+
 
 
 	
