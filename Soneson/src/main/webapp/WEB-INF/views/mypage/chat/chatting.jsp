@@ -122,12 +122,11 @@ $(function() {
 
 	<article>
 		<%-- 본문 표시 영역 --%>
-		<c:if test="${empty sessionScope.sId}">
-		</c:if>
+		
+		닉네임 : <input type="text" value="${sessionScope.sId}" id="nickname">
 		
 		<input type="button" value="채팅방 입장" id="btnJoin">
-		<input type="button" value="채팅방 나가기" id="btnQuit">
-		<hr>
+		
 	
 		<div id="react-view" class="tbb-only-ff">
 			<div class="ScrollTop__ScrollTopBtnWrapper-sc-679kj0-1 dABHQj">
