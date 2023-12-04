@@ -37,12 +37,22 @@ public class AdminService {
 		return mapper.countDeleteUser();
 	}
 
-	// 주간합계금액
+	// 프로젝트 주간 펀딩 금액
 	public List<Map<Object, Object>> costAmount() {
 		System.out.println("AdminService - costAmount()");
 		return mapper.costAmount();
 	}
+
+	// 진행중인 프로젝트 수
+	public List<Map<Object, Object>> projectCount() {
+		System.out.println("AdminService - projectCount()");
+		return mapper.projectCount();
+	}
 	
+	// 프로젝트 달성률 그래프
+	public List<Map<String, Object>> selectProjectMyList() {
+		return mapper.selectProjectMyList();
+	}
 	
 	
 	
@@ -57,8 +67,6 @@ public class AdminService {
 		System.out.println("AdminService - updateUserAuthorize()");
 		return mapper.updateUserAuthorize(user);
 	}
-	
-	
 	
 	
 	/*==============================================================
@@ -177,9 +185,6 @@ public class AdminService {
 		return mapper.selectProjectList();
 	}
 
-	public List<Map<String, Object>> selectProjectMyList() {
-		return mapper.selectProjectMyList();
-	}
 	
 	
 	

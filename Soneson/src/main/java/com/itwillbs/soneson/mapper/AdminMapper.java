@@ -27,6 +27,14 @@ public interface AdminMapper {
 	// 탈퇴 회원 수 조회
 	int countDeleteUser();
 	
+	// 프로젝트 달성률 그래프
+	List<Map<String, Object>> selectProjectMyList();
+
+	// 주간 펀딩 금액
+	List<Map<Object, Object>> costAmount();
+
+	// 진행중인 프로젝트 수
+	List<Map<Object, Object>> projectCount();
 	
 	
 	/*====================================================================
@@ -98,9 +106,7 @@ public interface AdminMapper {
 	
 	List<Map<String, Object>> selectProjectList();
 
-	List<Map<String, Object>> selectProjectMyList();
 
-	List<Map<Object, Object>> costAmount();
 
 	
 	

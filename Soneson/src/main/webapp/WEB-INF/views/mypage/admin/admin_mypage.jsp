@@ -56,7 +56,7 @@
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-												총 가입 회원 수</div>
+												가입 회원 수</div>
 											<div class="h5 mb-0 font-weight-bold text-gray-800">${joinUserCount }명</div>
 										</div>
 									</div>
@@ -107,8 +107,8 @@
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-												금일 시작된 펀딩 프로젝트 수</div>
-											<div class="h5 mb-0 font-weight-bold text-gray-800">1건</div>
+												진행중인 펀딩 프로젝트 수</div>
+											<div class="h5 mb-0 font-weight-bold text-gray-800">${projectCount[0].project_count}건</div>
 										</div>
 									</div>
 								</div>

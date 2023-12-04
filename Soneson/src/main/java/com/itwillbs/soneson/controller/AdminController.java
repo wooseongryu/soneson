@@ -91,13 +91,14 @@ public class AdminController {
 		// 프로젝트 달성률 그래프
 		List<Map<String, Object>> projectMyList = adminService.selectProjectMyList();
 
-		// 프로젝트 달성률 그래프
+		// 프로젝트 주간 펀딩 금액
 		List<Map<Object, Object>> costAmount = adminService.costAmount();
-		
-		
-		
+
+		// 진행중인 프로젝트 수
+		List<Map<Object, Object>> projectCount = adminService.projectCount();
 		
 
+		model.addAttribute("projectCount", projectCount);
 		model.addAttribute("costAmount", costAmount);
 		model.addAttribute("projectMyList", projectMyList);
 		model.addAttribute("joinUserCount", joinUserCount);
@@ -209,8 +210,12 @@ public class AdminController {
 	
 	// 펀딩 프로젝트 관리 - 진행예정인 펀딩 관리 페이지로 이동
 	@GetMapping("adminSelectFundBefore")
-	public String adminSelectFundBefore() {
+	public String adminSelectFundBefore(Model model) {
 		System.out.println("AdminController - adminSelectFundBefore()");
+
+		List<Map<String, Object>> projectList = adminService.selectProjectList();
+		
+		model.addAttribute("projectList", projectList);
 		
 		return "mypage/admin/admin_select_fundBefore";	
 	}

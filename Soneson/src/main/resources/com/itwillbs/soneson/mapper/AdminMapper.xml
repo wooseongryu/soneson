@@ -235,7 +235,7 @@
 	</select>
 
 
-    <!-- 마이페이지 달성률  -->
+    <!-- 주간 펀딩 금액 조회  -->
    	<select id="costAmount" resultType="map">
    	<![CDATA[
 		SELECT
@@ -253,6 +253,19 @@
 		  SUM(cost) AS sum_cost 
 		FROM fund f 
 		GROUP BY date
+		]]>
+	</select>
+
+    <!-- 진행중인 프로젝트 수 조회  -->
+   	<select id="projectCount" resultType="map">
+   	<![CDATA[
+		SELECT count(*) AS project_count
+		FROM 
+			(SELECT
+				date(p.start_date) AS start_date
+				, date(p.end_date) AS end_date
+			FROM project p
+			WHERE start_date <= now() AND end_date >= now()) AS A
 		]]>
 	</select>
     
