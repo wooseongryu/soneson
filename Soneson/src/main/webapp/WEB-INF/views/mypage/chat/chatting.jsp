@@ -14,33 +14,59 @@
 
 <script type="text/javascript">
 
-const chatbox = document.getElementById('chatbox');
-const messageInput = document.getElementById('messageInput');
-const sendButton = document.getElementById('sendButton');
-
-// WebSocket 연결
-const socket = new WebSocket('ws://localhost:8081/chatting');
-
-// 서버로부터 메시지 받았을 때 처리
-socket.onmessage = function(event) {
-    const message = event.data;
-    chatbox.innerHTML += `<p>${message}</p>`;
-    chatbox.scrollTop = chatbox.scrollHeight;
-};
-
-// 전송 버튼 클릭 이벤트 처리
-sendButton.onclick = function() {
-    const message = messageInput.value;
-    socket.send(message);
-    messageInput.value = '';
-};
-
-// Enter 키 입력 이벤트 처리
-messageInput.addEventListener('keyup', function(event) {
-    if (event.key === 'Enter') {
-        sendButton.click();
-    }
-});
+$(function() {
+		// 채팅 입력창 키 누를때마다 이벤트 처리
+		// => 엔터키 입력 시(keyCode 값이 '13') 메세지 전송 기능 동작
+		$("#chatMsg").keypress(function(event) {
+			// 누른 키의 코드값 가져오기
+			let keyCode = event.keyCode;
+			
+			if(keyCode == '13') {
+				sendMessage();
+			}
+		});
+		
+		$("#btnSend").click(function() {
+			sendMessage();
+		});
+		
+		$("#btnJoin").click(function() {
+			connect();
+		});
+		
+		$("#btnQuit").click(function() {
+			disconnect();
+		});
+		
+	});
+	// -------------------------------------------------
+	let ws;
+	
+	function connect() {
+		let ws_base_url = "ws://localhost:8081/soneson";
+		
+		ws = new WebSocket(ws_base_url + "/echo"); // 웹소켓 요청
+		ws.onopen = onOpen();
+		ws.onmessage = onMessage();
+		ws.onclose = onClose();
+	}
+	
+	function onOpen() {
+		
+	}
+	
+	function onClose() {
+		
+	}
+	
+	function onMessage() {
+		
+	}
+	
+	function sendMessage() {
+		ws.send("aaaaaaaaaa");
+	}
+	
 
 </script>
 
@@ -94,76 +120,89 @@ messageInput.addEventListener('keyup', function(event) {
 </head>
 <body>
 
-<div id="react-view" class="tbb-only-ff">
-	<div class="ScrollTop__ScrollTopBtnWrapper-sc-679kj0-1 dABHQj">
-		<div class="ScrollTop__StyledIcon-sc-679kj0-0 ijEXUb">
-			<g fill-rule="evenodd" id="Page-1" stroke="none">
-				<g id="jump-to-top" transform="translate(-1.000000, 0.000000)">
-					<path d="M12.006,5.987 L22.75,16.437 C22.9,16.587 23,16.837 23,17.087 C23,17.338 22.9,17.587 22.7,17.737 C22.35,18.087 21.75,18.087 21.35,17.737 L12.006,8.587 L2.611,17.737 C2.261,18.087 1.662,18.087 1.262,17.737 C0.912,17.387 0.912,16.787 1.262,16.437 L12.006,5.987 L12.006,5.987 Z M22.175,0 C22.631,0 23,0.37 23,0.825 L23,0.877 C23,1.332 22.63,1.702 22.175,1.702 L1.825,1.702 C1.369,1.702 1,1.332 1,0.877 L1,0.825 C1,0.369 1.37,0 1.825,0 L22.175,0 Z" id="Shape">
-					</path>
-				</g>
-			</g>
-		</div>
-	</div>
-      
-	<div class="style__MessageThreadV2Container-ycnsos-0 kJLTuj">
-		<div class="style__MessageThreadHeaderContainer-sc-1pbo5fq-0 nZLfM">
-			<div class="style__MessageThreadHeaderWrapper-sc-1pbo5fq-1 ejjycN">
-				<div class="style__PartnerImageWrapper-sc-1pbo5fq-2 dkpPBt">
-<!-- 					<img src="" alt="partner image" class="style__PartnerImage-sc-1pbo5fq-3 dTzOVH"> -->
-				</div>
-<!-- 				<span class="style__WarrantyInfoTitle-sc-1pbo5fq-4 gtRqjf">창작자 이름</span> -->
-<!-- 				<hr> -->
-			</div>
-		</div>
+	<article>
+		<%-- 본문 표시 영역 --%>
+		<c:if test="${empty sessionScope.sId}">
+		</c:if>
 		
-		<div class="style__PartnerMessageContentsContainer-ycnsos-1 bBuFRk">
-			<div data-test-id="virtuoso-scroller" data-virtuoso-scroller="true" tabindex="0" style="outline: none; overflow-y: auto; position: relative; overscroll-behavior: contain; height: 752px;">
-				<div data-viewport-type="element" style="width: 100%; height: 100%; position: absolute; top: 0px;">
-					<div>
-						<div class="style__PartnerInformationContainer-sc-1fy8oty-0 MHpOi">
-							<div class="style__PartnerImageWrapper-sc-1fy8oty-1 cVAYyM" align="center">
-								<img src="https://tumblbug-upi.imgix.net/0684e096-c98d-43bd-aa2c-d7440a3ef116.jpg?ixlib=rb-1.1.0&amp;w=100&amp;h=125&amp;auto=format%2Ccompress&amp;fit=facearea&amp;facepad=2.0&amp;ch=Save-Data&amp;mask=ellipse&amp;s=edc5fb287f77a477286c5e42747aee4b"
-								alt="partner image" class="style__PartnerImage-sc-1fy8oty-2 gpRiKM">
-								<p class="style__PartnerName">창작자 이름</p>
-								<p class="style__Description">메시지를 남겨주시면<br>창작자님이 확인하시는 대로 답변을 드립니다.</p>
+		<input type="button" value="채팅방 입장" id="btnJoin">
+		<input type="button" value="채팅방 나가기" id="btnQuit">
+		<hr>
+	
+		<div id="react-view" class="tbb-only-ff">
+			<div class="ScrollTop__ScrollTopBtnWrapper-sc-679kj0-1 dABHQj">
+				<div class="ScrollTop__StyledIcon-sc-679kj0-0 ijEXUb">
+					<g fill-rule="evenodd" id="Page-1" stroke="none">
+						<g id="jump-to-top" transform="translate(-1.000000, 0.000000)">
+							<path d="M12.006,5.987 L22.75,16.437 C22.9,16.587 23,16.837 23,17.087 C23,17.338 22.9,17.587 22.7,17.737 C22.35,18.087 21.75,18.087 21.35,17.737 L12.006,8.587 L2.611,17.737 C2.261,18.087 1.662,18.087 1.262,17.737 C0.912,17.387 0.912,16.787 1.262,16.437 L12.006,5.987 L12.006,5.987 Z M22.175,0 C22.631,0 23,0.37 23,0.825 L23,0.877 C23,1.332 22.63,1.702 22.175,1.702 L1.825,1.702 C1.369,1.702 1,1.332 1,0.877 L1,0.825 C1,0.369 1.37,0 1.825,0 L22.175,0 Z" id="Shape">
+							</path>
+						</g>
+					</g>
+				</div>
+			</div>
+		      
+			<div class="style__MessageThreadV2Container-ycnsos-0 kJLTuj">
+				<div class="style__MessageThreadHeaderContainer-sc-1pbo5fq-0 nZLfM">
+					<div class="style__MessageThreadHeaderWrapper-sc-1pbo5fq-1 ejjycN">
+						<div class="style__PartnerImageWrapper-sc-1pbo5fq-2 dkpPBt">
+		<!-- 					<img src="" alt="partner image" class="style__PartnerImage-sc-1pbo5fq-3 dTzOVH"> -->
+						</div>
+		<!-- 				<span class="style__WarrantyInfoTitle-sc-1pbo5fq-4 gtRqjf">창작자 이름</span> -->
+		<!-- 				<hr> -->
+					</div>
+				</div>
+				
+				<div class="style__PartnerMessageContentsContainer-ycnsos-1 bBuFRk">
+					<div data-test-id="virtuoso-scroller" data-virtuoso-scroller="true" tabindex="0" style="outline: none; overflow-y: auto; position: relative; overscroll-behavior: contain; height: 752px;">
+						<div data-viewport-type="element" style="width: 100%; height: 100%; position: absolute; top: 0px;">
+							<div>
+								<div class="style__PartnerInformationContainer-sc-1fy8oty-0 MHpOi">
+									<div class="style__PartnerImageWrapper-sc-1fy8oty-1 cVAYyM" align="center">
+										<img src="https://tumblbug-upi.imgix.net/0684e096-c98d-43bd-aa2c-d7440a3ef116.jpg?ixlib=rb-1.1.0&amp;w=100&amp;h=125&amp;auto=format%2Ccompress&amp;fit=facearea&amp;facepad=2.0&amp;ch=Save-Data&amp;mask=ellipse&amp;s=edc5fb287f77a477286c5e42747aee4b"
+										alt="partner image" class="style__PartnerImage-sc-1fy8oty-2 gpRiKM">
+										<p class="style__PartnerName">창작자 이름</p>
+										<p class="style__Description">메시지를 남겨주시면<br>창작자님이 확인하시는 대로 답변을 드립니다.</p>
+									</div>
+								</div>
+							</div>
+						
+							<div data-test-id="virtuoso-item-list" style="box-sizing: border-box; padding-top: 0px; padding-bottom: 0px; margin-top: 0px;">
 							</div>
 						</div>
 					</div>
 				
-					<div data-test-id="virtuoso-item-list" style="box-sizing: border-box; padding-top: 0px; padding-bottom: 0px; margin-top: 0px;">
+					<!-- 파일 업로드 아이콘 -->
+					<div class="style__MessageFormContainer-sc-5iwu9o-0 jMSa-dF">
+						<label for="camera-select" class="style__CameraLabel-sc-5iwu9o-1 btWLeF">
+							<input type="file" id="camera-select" accept="image/png, image/jpeg, image/jpg, image/gif" multiple="" class="style__CameraInput-sc-5iwu9o-2 jcBCvO">
+								<div name="camera-filled" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV__camera">
+									<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 28 28" fill="none">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M8.08125 5.98484C8.20062 5.55079 8.59529 5.25 9.04546 5.25H18.9545C19.4047 5.25 19.7994 5.55079 19.9187 5.98484L20.6792 8.75H23.5C24.0523 8.75 24.5 9.19772 24.5 9.75V21.1667C24.5 21.719 24.0523 22.1667 23.5 22.1667H4.5C3.94772 22.1667 3.5 21.719 3.5 21.1667V9.75C3.5 9.19772 3.94772 8.75 4.5 8.75H7.32083L8.08125 5.98484ZM16.8 14.5833C16.8 16.1297 15.5464 17.3833 14 17.3833C12.4536 17.3833 11.2 16.1297 11.2 14.5833C11.2 13.0369 12.4536 11.7833 14 11.7833C15.5464 11.7833 16.8 13.0369 16.8 14.5833ZM18.6667 14.5833C18.6667 17.1607 16.5773 19.25 14 19.25C11.4227 19.25 9.33333 17.1607 9.33333 14.5833C9.33333 12.006 11.4227 9.91667 14 9.91667C16.5773 9.91667 18.6667 12.006 18.6667 14.5833Z" fill="#6D6D6D">
+										</path>
+									</svg>
+									<div id="chatArea">
+										<span id="chatMessageArea"></span>
+									</div>
+									<!-- 메세지 업로드 아이콘 -->
+									<textarea placeholder="메시지 보내기..." id="chatMsg" class="style__MessageTextarea-sc-5iwu9o-3 fAyvnV"></textarea>
+						 				<button class="style__MessageSendButton-sc-5iwu9o-4 dbivrG">
+						 					<div name="message-send-disabled" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV__submit">
+						 						<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+						 							<circle cx="16" cy="16" r="16" fill="white" id="btnSend"></circle>
+						 							<path fill-rule="evenodd" clip-rule="evenodd" d="M9.33268 15.6773L15.9993 9.75L22.666 15.6773L21.2829 16.9494L16.8918 12.7424L16.8918 22.25L15.1656 22.25L15.1656 12.6861L10.7158 16.9494L9.33268 15.6773ZM16.8507 22.2083L16.8507 22.2087L15.2067 22.2087L15.2067 12.5896L10.7153 16.8929L9.39416 15.6778L9.39435 15.6776L10.7153 16.8926L15.2068 12.5893L15.2068 22.2083L16.8507 22.2083ZM16.8507 12.6459L16.8507 12.6456L21.2835 16.8926L22.6044 15.6776L22.6045 15.6778L21.2834 16.8929L16.8507 12.6459Z" fill="#9E9E9E">
+						 							</path> 
+						 						</svg> 
+						 					</div> 
+						 				</button> 
+								</div>
+						</label>
 					</div>
 				</div>
 			</div>
-		
-			<!-- 파일 업로드 아이콘 -->
-			<div class="style__MessageFormContainer-sc-5iwu9o-0 jMSa-dF">
-				<label for="camera-select" class="style__CameraLabel-sc-5iwu9o-1 btWLeF">
-					<input type="file" id="camera-select" accept="image/png, image/jpeg, image/jpg, image/gif" multiple="" class="style__CameraInput-sc-5iwu9o-2 jcBCvO">
-						<div name="camera-filled" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV__camera">
-							<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 28 28" fill="none">
-								<path fill-rule="evenodd" clip-rule="evenodd" d="M8.08125 5.98484C8.20062 5.55079 8.59529 5.25 9.04546 5.25H18.9545C19.4047 5.25 19.7994 5.55079 19.9187 5.98484L20.6792 8.75H23.5C24.0523 8.75 24.5 9.19772 24.5 9.75V21.1667C24.5 21.719 24.0523 22.1667 23.5 22.1667H4.5C3.94772 22.1667 3.5 21.719 3.5 21.1667V9.75C3.5 9.19772 3.94772 8.75 4.5 8.75H7.32083L8.08125 5.98484ZM16.8 14.5833C16.8 16.1297 15.5464 17.3833 14 17.3833C12.4536 17.3833 11.2 16.1297 11.2 14.5833C11.2 13.0369 12.4536 11.7833 14 11.7833C15.5464 11.7833 16.8 13.0369 16.8 14.5833ZM18.6667 14.5833C18.6667 17.1607 16.5773 19.25 14 19.25C11.4227 19.25 9.33333 17.1607 9.33333 14.5833C9.33333 12.006 11.4227 9.91667 14 9.91667C16.5773 9.91667 18.6667 12.006 18.6667 14.5833Z" fill="#6D6D6D">
-								</path>
-							</svg>
-							<!-- 메세지 업로드 아이콘 -->
-							<textarea placeholder="메시지 보내기..." class="style__MessageTextarea-sc-5iwu9o-3 fAyvnV"></textarea>
-				 				<button class="style__MessageSendButton-sc-5iwu9o-4 dbivrG">
-				 					<div name="message-send-disabled" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV__submit">
-				 						<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-				 							<circle cx="16" cy="16" r="16" fill="white"></circle>
-				 							<path fill-rule="evenodd" clip-rule="evenodd" d="M9.33268 15.6773L15.9993 9.75L22.666 15.6773L21.2829 16.9494L16.8918 12.7424L16.8918 22.25L15.1656 22.25L15.1656 12.6861L10.7158 16.9494L9.33268 15.6773ZM16.8507 22.2083L16.8507 22.2087L15.2067 22.2087L15.2067 12.5896L10.7153 16.8929L9.39416 15.6778L9.39435 15.6776L10.7153 16.8926L15.2068 12.5893L15.2068 22.2083L16.8507 22.2083ZM16.8507 12.6459L16.8507 12.6456L21.2835 16.8926L22.6044 15.6776L22.6045 15.6778L21.2834 16.8929L16.8507 12.6459Z" fill="#9E9E9E">
-				 							</path> 
-				 						</svg> 
-				 					</div> 
-				 				</button> 
-						</div>
-				</label>
+			<div class="common-Layer tbb">
 			</div>
 		</div>
-	</div>
-	<div class="common-Layer tbb">
-	</div>
-</div>
+	</article>
 
 
 <!-- <script type="application/javascript" src="https://d2om2e6rfn032x.cloudfront.net/wpa/bundle.app.858e1b77f5d30fd90b67.js"></script>  -->
