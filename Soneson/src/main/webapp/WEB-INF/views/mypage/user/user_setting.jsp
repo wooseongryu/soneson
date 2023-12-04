@@ -745,6 +745,17 @@
     				user_phone: $("#userPhone").val()
     			},
     			success: function(resp) {
+    				if (!resp.isLogin) {
+       					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+       					location.href="login";
+       					return;
+    				}
+    				
+    				if (!resp.isSuccess) {
+    					alert("전화번호 변경 실패.");
+    					return;
+    				}
+    				
     				alert("전화번호가 변경 되었습니다.");
     				
     				phone_print = resp.user_phone;

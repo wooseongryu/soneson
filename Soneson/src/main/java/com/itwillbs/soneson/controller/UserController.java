@@ -271,16 +271,26 @@ public class UserController {
 	// 유저 설정 계정 연락처 변경 pro
 	@ResponseBody
 	@PostMapping("settingUpdateUserPhonePro")
-	public String settingUpdateUserPhonePro(UserVO user, HttpSession session, Gson gson) {
+	public String settingUpdateUserPhonePro(UserVO user, HttpSession session, Gson gson, Map<String, String> map) {
 		System.out.println("UserController - settingUpdateUserPhonePro()");
 
-		user.setUser_id((String)session.getAttribute("sId"));
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			return gson.toJson(map);
+		}
+		map.put("isLogin", "true");
 		
-		System.out.println("===" + user);
+		user.setUser_id(sId);
 		
 		int updateCount = userService.updateUserPhone(user);
 		
-		return gson.toJson(user);
+		if (updateCount == 0) {
+			return gson.toJson(map);
+		}
+		map.put("isSuccess", "true");
+		map.put("user_phone", user.getUser_phone());
+		
+		return gson.toJson(map);
 	}
 		
 	// 유저 설정 계정 연락처 변경 취소
