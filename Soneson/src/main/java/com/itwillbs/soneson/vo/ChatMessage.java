@@ -18,9 +18,9 @@ public class ChatMessage {
 	private String message;
 	
 	// 타입으로 사용될 문자열을 상수(public static final)로 제공
-	public static final String TYPE_ENTER = "ENTER";	// 사용 X
-	public static final String TYPE_TALK = "TALK";
-	public static final String TYPE_LEAVE = "LEAVE";	// 사용 X
+//	public static final String TYPE_ENTER = "ENTER";	// 사용 X
+//	public static final String TYPE_TALK = "TALK";
+//	public static final String TYPE_LEAVE = "LEAVE";	// 사용 X
 	
 	
 }
