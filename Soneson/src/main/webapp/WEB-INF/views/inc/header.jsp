@@ -163,10 +163,12 @@ ul {
 									<rect x="9" y="33" width="30" height="4" fill="#1C1C1C"></rect>
 								</svg>
 								<a href="javascript:void(0);" role="menuitem" class="HeaderGnb_item__wcfir category" aria-current="false">카테고리</a>
-								<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="popular">인기</a>
-								<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="new">신규</a>
-								<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="closing">마감임박</a>
-								<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="upcoming">공개예정</a>
+<!-- 								 TODO -->
+<!-- 								<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="popular">인기</a> -->
+<!-- 								<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="new">신규</a> -->
+<!-- 								<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="closing">마감임박</a> -->
+<!-- 								<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="upcoming">공개예정</a> -->
+								
 <!-- 								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="popular">인기</a> -->
 <!-- 								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="new">신규</a> -->
 <!-- 								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="closing">마감임박</a> -->
@@ -281,6 +283,45 @@ ul {
         	$j(".DonationTodayCategory_list_item__agFbi").attr("aria-current", "false");
         	$j(this).attr("aria-current", "true");
         });
+        
+        // HeaderGnb_menu__1fvV3
+        $j.ajax({
+            url: "header",  // 서버의 URL로 변경
+            type: "GET",
+            dataType: "json",
+            success: function(response) {
+//             	'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="popular">인기</a>'
+            	$.each(response, function(i, e){
+            		debugger;
+            		$('.HeaderGnb_menu__1fvV3').append(
+            			
+            		
+            		);	
+            	})
+            	
+            }
+        });
+        
+        
+//             				'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="popular">' + + '</a>'
+        
+//         $("#step1_screen").children(".row").last().append(
+// 					"<div class='col-4'><h6 data-hour='" 
+// 					+ hour 
+// 					+ "' data-movieCode='" 
+// 					+ data.getAttribute("data-movieCode") 
+// 					+ "' data-theaterIdx='" 
+// 					+ data.getAttribute("data-theaterIdx") 
+// 					+ "' data-date='" 
+// 					+ data.getAttribute("data-date")
+// 					+ "' data-screenName='" 
+// 					+ time.screen_name 
+// 					+ "' data-screen_idx='" 
+// 					+ time.sche_screen_idx
+// 					+ "' onclick='final(this)'>" + hour + " | " + time.remainSeatCount + "석" + "</h6></div>"
+// 				);
+	}
+        
         
 //         $j(".HeaderGnb_item__wcfir").click(function() {
 //         	$j(".HeaderGnb_item__wcfir").attr("aria-current", "false");

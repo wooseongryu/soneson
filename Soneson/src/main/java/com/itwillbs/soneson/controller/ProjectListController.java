@@ -61,14 +61,6 @@ public class ProjectListController {
 		return "list/projectDetail";	
 	}
 	
-//	@GetMapping()
-//	public String header(Model model) {
-//		List<Map<String, Object>> tapList = service.getTapList();
-//		model.addAttribute("tapList", tapList);
-//		
-//		return "inc/header";
-//	}
-	
 	// ============ 아래는 엄성윤 테스트 =======================
 	
 	@GetMapping("dayTest")

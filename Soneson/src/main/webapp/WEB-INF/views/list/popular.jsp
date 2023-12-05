@@ -200,17 +200,17 @@
 							<div class="FilterUIPresetWithRange__Title-sc-187gsyo-5 exgiXp">직접 입력</div>
 							<div class="FilterUIPresetWithRange__RangeWrapper-sc-187gsyo-3 liLMij">
 								<span class="FilterUIInput__InputWrapper-sc-1g1rwo7-0 hoDSPq" style="margin-right: 7px; flex: 1 1 0%;">
-									<input type="number" pattern="[0-9]*" min="0" max="9999" placeholder="" maxlength="5" class="FilterUIInput__InputComponent-sc-1g1rwo7-1 fHjjDc" value="">
+									<input id="start" type="number" pattern="[0-9]*" min="0" max="9999" placeholder="" maxlength="5" class="FilterUIInput__InputComponent-sc-1g1rwo7-1 fHjjDc" value="">
 <!-- 									<input type="text" pattern="[0-9]*" min="0" max="9999" placeholder="" maxlength="5" class="FilterUIInput__InputComponent-sc-1g1rwo7-1 fHjjDc" value=""> -->
 									<span class="FilterUIInput__UnitComponent-sc-1g1rwo7-2 fMQjmL">%</span>
 								</span>
 								-
 								<span class="FilterUIInput__InputWrapper-sc-1g1rwo7-0 hoDSPq" style="margin-left: 7px; flex: 1 1 0%;">
-									<input type="text" pattern="[0-9]*" min="0" max="9999" placeholder="" maxlength="5" class="FilterUIInput__InputComponent-sc-1g1rwo7-1 fHjjDc" value="">
+									<input id="end" type="text" pattern="[0-9]*" min="0" max="9999" placeholder="" maxlength="5" class="FilterUIInput__InputComponent-sc-1g1rwo7-1 fHjjDc" value="">
 									<span class="FilterUIInput__UnitComponent-sc-1g1rwo7-2 fMQjmL">%</span>
 								</span>
 							</div>
-							<button disabled="" class="FilterUIPresetWithRange__FilterUIRangeConfirmButton-sc-187gsyo-4 fHumWM">
+							<button id="btnInputScope" class="FilterUIPresetWithRange__FilterUIRangeConfirmButton-sc-187gsyo-4 fHumWM">
 								<span>입력값 적용</span>
 							</button>
 						</div>
