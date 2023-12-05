@@ -409,7 +409,15 @@ public class UserController {
 		}
 		map.put("isLogin", "true");
 		
+		// TODO
+		// address에 sId추가
+		// 컬럼 재 확인!
 		
+//		int selectCount = userService.checkDuplicateAddress();
+		
+//		if (selectCount > 0) {
+//			map.put("isDuplicate", "true");
+//		}
 		
 		return gson.toJson(map);
 	}
