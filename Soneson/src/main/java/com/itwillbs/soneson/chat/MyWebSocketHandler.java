@@ -10,8 +10,8 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import com.google.gson.Gson;
-import com.itwillbs.soneson.vo.ChatMessage;
+
+
 
 // 웹소켓 핸들링을 위한 클래스 정의 - TextWebSocketHandler 클래스 상속
 // => 기본적으로 서버에서 단 하나만 생성됨
@@ -24,7 +24,6 @@ public class MyWebSocketHandler extends TextWebSocketHandler {
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		
 		System.out.println("웹소켓 연결됨(afterConnectionEstablished) - " + session.getId());
 		
 	}
