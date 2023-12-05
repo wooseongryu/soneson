@@ -1,13 +1,34 @@
 package com.itwillbs.soneson.controller;
 
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
+import com.itwillbs.soneson.HomeController;
+import com.itwillbs.soneson.service.ProjectListService;
 
 @Controller
 public class MainController {
 	
+	@Autowired
+	ProjectListService service;
+	
+	@ResponseBody
+	@GetMapping("header")
+	public String header(Model model) {
+		System.out.println("!@#!@#");
+		Gson gson = new Gson();
+		return gson.toJson(service.getTapList());
+	}
+	
 	@GetMapping("main")
-	public String main() {
+	public String main(Model model) {
 		System.out.println("MainController - main()");
 		
 		return "main/mainTest3";	
