@@ -176,7 +176,7 @@ ul {
 <%-- 								<c:forEach var="tap" items="${tapList }"> --%>
 <%-- 									<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="${tap.tap_Ename }">${tap.tap_Kname }</a> --%>
 <%-- 								</c:forEach> --%>
-								<a href="https://happybean.naver.com/campaign/list" role="menuitem" class="HeaderGnb_item__wcfir" aria-current="false">가치</a>
+								<a href="https://happybean.naver.com/campaign/list" role="menuitem" class="HeaderGnb_item__wcfir worth" aria-current="false">가치</a>
 							</div>
 		<!-- 					<div class="style__SearchInputWrapper-zxsodr-15 hbYMFx"> -->
 		<!-- 						<input placeholder="검색어를 입력해주세요." class="style__SearchInput-zxsodr-16 jPMsmJ"> -->
@@ -291,12 +291,12 @@ ul {
             dataType: "json",
             success: function(response) {
 //             	'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="popular">인기</a>'
-            	$.each(response, function(i, e){
-            		debugger;
-            		$('.HeaderGnb_menu__1fvV3').append(
-            			
-            		
-            		);	
+            	$j.each(response, function(i, e){
+//             		debugger;
+// 					$j('.category').after(
+					$j('.worth').before(
+							'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="' + e.tap_Ename + '">' + e.tap_Kname + '</a>'		
+					);
             	})
             	
             }
@@ -320,7 +320,7 @@ ul {
 // 					+ time.sche_screen_idx
 // 					+ "' onclick='final(this)'>" + hour + " | " + time.remainSeatCount + "석" + "</h6></div>"
 // 				);
-	}
+// 	}
         
         
 //         $j(".HeaderGnb_item__wcfir").click(function() {

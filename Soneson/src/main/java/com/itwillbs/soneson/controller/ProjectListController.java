@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.soneson.service.ProjectListService;
@@ -18,7 +19,9 @@ public class ProjectListController {
 	@Autowired
 	private ProjectListService service;
 	
-	public String getListType(Model model, String listType) {
+//	@GetMapping("/{listType}")
+//	public String getListType(Model model, String listType) {
+	public String getListType(Model model, @PathVariable String listType) {
 		
 		List<Map<String, Object>> projectList = service.getTapProjectList(listType);
 		
@@ -31,25 +34,30 @@ public class ProjectListController {
 		return "list/popular";
 	}
 	
-	@GetMapping("popular")
-	public String popular(Model model) {
-		return getListType(model, "popular");
+	@GetMapping("{listType}")
+	public String list(Model model, @PathVariable String listType) {
+	    return getListType(model, listType);
 	}
 	
-	@GetMapping("new")
-	public String fresh(Model model) {
-		return getListType(model, "new");
-	}
-	
-	@GetMapping("closing")
-	public String closing(Model model) {
-		return getListType(model, "closing");
-	}
-	
-	@GetMapping("upcoming")
-	public String upcoming(Model model) {
-		return getListType(model, "upcoming");
-	}
+//	@GetMapping("popular")
+//	public String popular(Model model) {
+//		return getListType(model, "popular");
+//	}
+//	
+//	@GetMapping("new")
+//	public String fresh(Model model) {
+//		return getListType(model, "new");
+//	}
+//	
+//	@GetMapping("closing")
+//	public String closing(Model model) {
+//		return getListType(model, "closing");
+//	}
+//	
+//	@GetMapping("upcoming")
+//	public String upcoming(Model model) {
+//		return getListType(model, "upcoming");
+//	}
 	
 	@GetMapping("projectDetail")
 	public String projectDetail(Model model, @RequestParam int project_code) {

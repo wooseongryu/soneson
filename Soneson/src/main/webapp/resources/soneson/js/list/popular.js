@@ -20,7 +20,7 @@ function filterGoalRate(from, to) {
 			count--;
 		}
 	});
-	debugger;
+//	debugger;
 	
 }
 
