@@ -31,6 +31,9 @@
     <!-- 류우성 CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/user/style.css" type="text/css">
     
+    <!-- 다음 주소 API -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    
     <script type="text/javascript">
     	let pointColor = "#F86453";
     	
@@ -985,6 +988,12 @@
     		});
     	}
     	
+//     	let reciver = "";
+// 		let zonecode = "";
+// 		let address = "";
+// 		let detailAddress = "";
+// 		let reciverPhoneNumber = "";
+    	
     	function userAddress(id) {
     		$.ajax({
     			type: 'post',
@@ -1025,6 +1034,12 @@
     		});
     	}
     	
+    	let reciver = "";
+		let zonecode = "";
+		let address = "";
+		let detailAddress = "";
+		let reciverPhoneNumber = "";
+    	
     	// TODO
     	function insertUserAddress() {
     		$.ajax({
@@ -1038,21 +1053,22 @@
 					$("#addressAdd").append(
 						  ' <div class="user__setting__text" id="registAddress">                                                                   '
 						+ ' 	<h6>받는 사람</h6>                                                                                                 '
-                   		+ ' 	<input type="text" id="" placeholder="받는 사람" maxlength="10" style="margin-top: 10px">                          '
+                   		+ ' 	<input type="text" id="reciver" placeholder="받는 사람" maxlength="10" style="margin-top: 10px">                          '
                    		
                    		+ ' 	<h6 style="margin-top: 15px">주소</h6>                                                                             '
-                   		+ ' 	<input type="text" id="" placeholder="주소" style="margin-top: 10px; width: 550px;">                                         '
-                   		+ ' 	<input type="button" id="" value="검색">                                         '
+                   		+ ' 	<input type="text" id="zonecode" placeholder="코드" disabled style="margin-top: 10px; width: 70px;">                                         '
+                   		+ ' 	<input type="text" id="address" placeholder="주소" disabled style="margin-top: 10px; width: 550px;">                                         '
+                   		+ ' 	<input type="button" onclick="search_address_window()" value="검색">                                         '
                    		
                    		+ ' 	<h6 style="margin-top: 15px">상세 주소</h6>                                                                        '
-                   		+ ' 	<input type="text" id="" placeholder="상세 주소" style="margin-top: 10px; width: 550px;">                                         '
+                   		+ ' 	<input type="text" id="detailAddress" placeholder="상세 주소" style="margin-top: 10px; width: 625px;">                                         '
                    		
                    		+ ' 	<h6 style="margin-top: 15px">받는 사람 휴대폰 번호</h6>                                                            '           
-                   		+ ' 	<input type="text" id="" placeholder="받는 사람 휴대폰 번호" maxlength="11" style="margin-top: 10px">              '
+                   		+ ' 	<input type="text" id="reciverPhoneNumber" placeholder="받는 사람 휴대폰 번호" maxlength="11" style="margin-top: 10px">              '
                    		
                    		+ ' 	<span id = "checkPasswdResult"></span>                                                                             '
                    		+ ' 	<div class="user_follow_btn">                                                                                      '
-                   		+ ' 		<a onclick="">저장</a>                                                                                         '
+                   		+ ' 		<a onclick="checkAddress()">저장</a>                                                                                         '
                    		+ ' 	</div>                                                                                                             '
                    		+ ' 	<div class=user_cancel_btn>                                                                                        '
                    		+ ' 		<a onclick="cancelInsertUserAddress()">취소</a>                                      	   	                           	               '
@@ -1065,6 +1081,88 @@
     				alert("에러!");
     			}
     		});
+    	}
+    	
+    	function checkAddress() {
+    		reciver = $("#reciver").val();
+    		zonecode = $("#zonecode").val();
+    		address = $("#address").val();
+    		detailAddress = $("#detailAddress").val();
+    		reciverPhoneNumber = $("#reciverPhoneNumber").val();
+    		
+    		// TODO
+    		// 유효성 검사 추가...
+//     		let reciverPhoneNumber = $("#reciverPhoneNumber").val();
+    		
+    		if (reciver == null || reciver == "") {
+    			alert("받는 사람을 입력하세요.");
+    			return;
+    		}
+    		
+    		if (zonecode == null || zonecode == "") {
+    			alert("주소를 입력하세요.");
+    			return;
+    		}
+    		
+    		if (!isDuplicateAddress()) {
+	    		insertUserAddressPro();
+    		};
+    		
+    	}
+    	
+    	function isDuplicateAddress() {
+    		let isDuplicate = true;
+    		
+    		$.ajax({
+    			type: 'post',
+    			url: 'isDuplicateAddress',
+    			dataType: 'json',
+    			data: {
+    				address_reciver : reciver,
+    				address_code : zonecode,
+    				address_main : address,
+    				address_sub : detailAddress,
+    				address_reciver_phone : reciverPhoneNumber
+    			},
+    			success: function(resp) {
+    				if (!resp.isLogin) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    				
+    				//...
+    				
+    				isDuplicate = resp;
+    			},
+    			error: function() {
+    				alert("주소 등록 실패!");
+    			}
+    		});
+    		
+    		return isDuplicate;
+    	}
+    	
+    	function insertUserAddressPro() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'insertUserAddressPro',
+    			dataType: 'json',
+    			data: {
+    				address_reciver : reciver,
+    				address_code : zonecode,
+    				address_main : address,
+    				address_sub : detailAddress,
+    				address_reciver_phone : reciverPhoneNumber
+    			},
+    			success: function(resp) {
+    				
+    			},
+    			error: function() {
+    				alert("주소 등록 실패!");
+    			}
+    		});
+    		
     	}
     	
     	function cancelInsertUserAddress() {
@@ -1116,6 +1214,22 @@
     		  	reader.readAsDataURL(input.files[0]);
 		  	}
 		}
+    	
+    	function search_address_window() { 
+    	    new daum.Postcode({
+    	        oncomplete: function(data) {
+    				let zonecode = data.zonecode;
+    				let address = data.address;
+    				
+    				if (data.buildingName != "") {
+    					address += " (" + data.buildingName + ")";
+    				}
+    				
+    				$("#address").val(address);
+    				$("#zonecode").val(zonecode);
+    	        }
+    	    }).open();
+    	}
     </script>
 </head>
 
