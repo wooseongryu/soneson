@@ -332,6 +332,17 @@
 		SELECT COUNT(user_idx)
 		FROM user
 		WHERE user_email = #{deleteEmail}
+		address_reciver_phone
+	</select>
+	
+	<select id="checkDuplicateAddress" resultType="int">
+		SELECT COUNT(address_idx)
+		FROM address
+		WHERE
+			user_id = #{user_id}
+			AND address_reciver = #{address_reciver}
+			AND address_main = #{address_main}
+			AND address_sub = #{address_sub}
 	</select>
 </mapper>
 

@@ -1131,9 +1131,11 @@
     					return;
     				}
     				
-    				//...
+    				isDuplicate = resp.isDuplicate;
     				
-    				isDuplicate = resp;
+    				if (isDuplicate) {
+    					alert("중복된 정보 입니다.");
+    				}
     			},
     			error: function() {
     				alert("주소 등록 실패!");
@@ -1156,7 +1158,7 @@
     				address_reciver_phone : reciverPhoneNumber
     			},
     			success: function(resp) {
-    				
+    				// TODO
     			},
     			error: function() {
     				alert("주소 등록 실패!");

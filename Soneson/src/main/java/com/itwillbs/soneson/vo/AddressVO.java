@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class AddressVO {
 	private int address_idx;
-	private int user_idx;
+	private String user_id;
 	private String address_reciver;
 	private int address_code;
 	private String address_main;

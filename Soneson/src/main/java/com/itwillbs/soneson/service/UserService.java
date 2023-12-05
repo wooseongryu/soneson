@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.soneson.mapper.UserMapper;
+import com.itwillbs.soneson.vo.AddressVO;
 import com.itwillbs.soneson.vo.AuthInfoVO;
 import com.itwillbs.soneson.vo.UserVO;
 
@@ -235,6 +236,13 @@ public class UserService {
 		System.out.println("UserService - checkDuplicateEmail()");
 		
 		return mapper.checkDuplicateEmail(deleteEmail);
+	}
+
+	// 유저 설정 계정 배송지 등록 중복 확인
+	public int checkDuplicateAddress(AddressVO address) {
+		System.out.println("UserService - checkDuplicateAddress()");
+		
+		return mapper.checkDuplicateAddress(address);
 	}
 	
 	

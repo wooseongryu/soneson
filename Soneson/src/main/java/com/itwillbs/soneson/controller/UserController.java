@@ -397,7 +397,7 @@ public class UserController {
 		return "1";
 	}
 	
-	// 유저 설정 계정 배송지 초기 출력 화면
+	// 유저 설정 계정 배송지 등록 중복 확인
 	@ResponseBody
 	@PostMapping("isDuplicateAddress")
 	public String isDuplicateAddress(HttpSession session, Gson gson, Map<String, String> map, AddressVO address) {
@@ -409,15 +409,12 @@ public class UserController {
 		}
 		map.put("isLogin", "true");
 		
-		// TODO
-		// address에 sId추가
-		// 컬럼 재 확인!
+		address.setUser_id(sId);
+		int selectCount = userService.checkDuplicateAddress(address);
 		
-//		int selectCount = userService.checkDuplicateAddress();
-		
-//		if (selectCount > 0) {
-//			map.put("isDuplicate", "true");
-//		}
+		if (selectCount > 0) {
+			map.put("isDuplicate", "true");
+		}
 		
 		return gson.toJson(map);
 	}
@@ -434,6 +431,7 @@ public class UserController {
 		}
 		map.put("isLogin", "true");
 		
+		// TODO
 //		int insertCount = userService
 //		
 //		if (insertCount == 0) {
