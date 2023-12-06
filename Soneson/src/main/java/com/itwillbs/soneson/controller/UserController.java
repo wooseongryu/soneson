@@ -430,15 +430,16 @@ public class UserController {
 			return gson.toJson(map); 
 		}
 		map.put("isLogin", "true");
+
+		address.setUser_id(sId);
 		
-		// TODO
-//		int insertCount = userService
-//		
-//		if (insertCount == 0) {
-//			return gson.toJson(map);
-//		}
-//		
-//		map.put("isSuccess", "true");
+		int insertCount = userService.insertUserAddress(address);
+		
+		if (insertCount == 0) {
+			return gson.toJson(map);
+		}
+		
+		map.put("isSuccess", "true");
 		
 		return gson.toJson(map);
 	}

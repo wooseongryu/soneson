@@ -121,6 +121,9 @@ public interface UserMapper {
 
 	// 유저 설정 계정 배송지 등록 중복 확인
 	int checkDuplicateAddress(AddressVO address);
+
+	// 유저 설정 계정 배송지 등록
+	int insertUserAddress(AddressVO address);
 }
 
 

@@ -1039,7 +1039,7 @@
 		let address = "";
 		let detailAddress = "";
 		let reciverPhoneNumber = "";
-    	
+		
     	// TODO
     	function insertUserAddress() {
     		$.ajax({
@@ -1111,11 +1111,12 @@
     	}
     	
     	function isDuplicateAddress() {
-    		let isDuplicate = true;
+    		let isDuplicate;
     		
     		$.ajax({
     			type: 'post',
     			url: 'isDuplicateAddress',
+    			async: false,
     			dataType: 'json',
     			data: {
     				address_reciver : reciver,
@@ -1131,7 +1132,7 @@
     					return;
     				}
     				
-    				isDuplicate = resp.isDuplicate;
+    				isDuplicate = Boolean(resp.isDuplicate);
     				
     				if (isDuplicate) {
     					alert("중복된 정보 입니다.");
@@ -1158,7 +1159,16 @@
     				address_reciver_phone : reciverPhoneNumber
     			},
     			success: function(resp) {
-    				// TODO
+    				$("#addressAdd").children().remove();
+
+					$("#addressAdd").append(
+						  ' <div class="user__setting__head">                                                               '
+	                    + ' 	<h6>배송지</h6>                                                                             '
+	                    + ' 	<div class="user_follow_btn">                                                               '
+	                    + ' 		<a onclick="insertUserAddress()" style="bottom: 7px">+ 추가</a>                         '
+	                    + ' 	</div>                                                                                      '
+						+ ' </div>                                                                                          '
+					);  				
     			},
     			error: function() {
     				alert("주소 등록 실패!");
