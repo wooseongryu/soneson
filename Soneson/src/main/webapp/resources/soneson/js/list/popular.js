@@ -1,3 +1,33 @@
+let hideCount = 0;
+
+function filterGoalRate(from, to) {
+	if(to === undefined || to === ''){
+		to = 9999;
+	}
+	
+	if(from === ''){
+		from = 0;
+	}
+	
+	let count = $(".listCard").length;
+	$(".listCard").each(function() {
+		let goalRate = parseInt($(this).find(".percent").text().replace('%', ''));
+	
+		if(from <= goalRate && goalRate <= to){
+			$(this).show();
+		} else {
+			$(this).hide();
+			count--;
+		}
+	});
+//	debugger;
+	
+}
+
+$('#btnInputScope').click(function(){
+	filterGoalRate($('#start').val(), $('#end').val());
+});
+
 $(".grChoice > div").click(function() {
 	let grChoice = $(this).text();
 	$(".goalRateBtn .title-wrapper").text(grChoice);
@@ -11,6 +41,43 @@ $(".grChoice > div").click(function() {
 	$(".goalRateBtn").addClass("modalOff");
 	$(".goalRateBtn").removeClass("modalOn");
 	$(".faghXt").hide();
+	
+	switch (this.classList[1]){
+		case 'grAll': 		filterGoalRate(0);			break;
+		case 'grUnder75': 	filterGoalRate(0, 75);		break;
+		case 'gr75to100': 	filterGoalRate(75, 100);	break;
+		case 'grOver100': 	filterGoalRate(100);		break; 
+	}
+	
+	
+	// 쌤한테 여쭤볼 부분
+	/*
+	if($(this).is(".grAll, .grUnder75, .gr75to100, .grOver100")) {
+		
+		let count = $(".listCard").length;
+		$(".listCard").each(function() {
+			let goalRate = parseInt($(this).find(".percent").text().replace('%', ''));
+			
+			if(goalRate > 75) {
+				$(this).hide();
+				count--; 
+			} 
+		});
+		
+	}
+	
+	if($(this).hasClass("gr75to100")) {
+		
+		$(".listCard").each(function() {
+			let goalRate = parseInt($(this).find(".percent").text().replace('%', ''));
+			
+			if(goalRate > 75) {
+				$(this).hide();
+			} 
+		});
+	}
+	*/
+	
 });
 
 

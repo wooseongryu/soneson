@@ -163,11 +163,20 @@ ul {
 									<rect x="9" y="33" width="30" height="4" fill="#1C1C1C"></rect>
 								</svg>
 								<a href="javascript:void(0);" role="menuitem" class="HeaderGnb_item__wcfir category" aria-current="false">카테고리</a>
-								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="popular">인기</a>
-								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="new">신규</a>
-								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="closing">마감임박</a>
-								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="upcoming">공개예정</a>
-								<a href="https://happybean.naver.com/campaign/list" role="menuitem" class="HeaderGnb_item__wcfir" aria-current="false">가치</a>
+<!-- 								 TODO -->
+<!-- 								<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="popular">인기</a> -->
+<!-- 								<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="new">신규</a> -->
+<!-- 								<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="closing">마감임박</a> -->
+<!-- 								<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="upcoming">공개예정</a> -->
+								
+<!-- 								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="popular">인기</a> -->
+<!-- 								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="new">신규</a> -->
+<!-- 								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="closing">마감임박</a> -->
+<!-- 								<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="upcoming">공개예정</a> -->
+<%-- 								<c:forEach var="tap" items="${tapList }"> --%>
+<%-- 									<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="${tap.tap_Ename }">${tap.tap_Kname }</a> --%>
+<%-- 								</c:forEach> --%>
+								<a href="https://happybean.naver.com/campaign/list" role="menuitem" class="HeaderGnb_item__wcfir worth" aria-current="false">가치</a>
 							</div>
 		<!-- 					<div class="style__SearchInputWrapper-zxsodr-15 hbYMFx"> -->
 		<!-- 						<input placeholder="검색어를 입력해주세요." class="style__SearchInput-zxsodr-16 jPMsmJ"> -->
@@ -275,10 +284,53 @@ ul {
         	$j(this).attr("aria-current", "true");
         });
         
+        // HeaderGnb_menu__1fvV3
+        $j.ajax({
+            url: "header",  // 서버의 URL로 변경
+            type: "GET",
+            dataType: "json",
+            success: function(response) {
+//             	'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="popular">인기</a>'
+            	$j.each(response, function(i, e){
+//             		debugger;
+// 					$j('.category').after(
+					$j('.worth').before(
+							'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="' + e.tap_Ename + '">' + e.tap_Kname + '</a>'		
+					);
+            	})
+            	
+            }
+        });
+        
+        
+//             				'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="popular">' + + '</a>'
+        
+//         $("#step1_screen").children(".row").last().append(
+// 					"<div class='col-4'><h6 data-hour='" 
+// 					+ hour 
+// 					+ "' data-movieCode='" 
+// 					+ data.getAttribute("data-movieCode") 
+// 					+ "' data-theaterIdx='" 
+// 					+ data.getAttribute("data-theaterIdx") 
+// 					+ "' data-date='" 
+// 					+ data.getAttribute("data-date")
+// 					+ "' data-screenName='" 
+// 					+ time.screen_name 
+// 					+ "' data-screen_idx='" 
+// 					+ time.sche_screen_idx
+// 					+ "' onclick='final(this)'>" + hour + " | " + time.remainSeatCount + "석" + "</h6></div>"
+// 				);
+// 	}
+        
+        
 //         $j(".HeaderGnb_item__wcfir").click(function() {
 //         	$j(".HeaderGnb_item__wcfir").attr("aria-current", "false");
 //         	$j(this).attr("aria-current", "true");
 //         });
+        
+//         $j(".HeaderGnb_item__wcfir").click(function() {
+//         	$j(this).addClass("eWDpEZ");
+//         });.
 // 왜 안 되지?
         
         // 위는 전부 맞음

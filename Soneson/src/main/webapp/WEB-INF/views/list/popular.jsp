@@ -96,7 +96,7 @@
 	<div class="InfinityList__ListWrapper-sc-19jay7c-3 fZWVhg tbb-if-list-wrapper">
 	
 	<c:forEach var="project" items="${projectList }">
-		<div class="InfinityList__ProjectCardWrapper-sc-19jay7c-4 jfWeNA">
+		<div class="InfinityList__ProjectCardWrapper-sc-19jay7c-4 jfWeNA listCard">
 			<div></div>
 			<div class="ProjectCard__Wrapper-opxl0a-13 klQtEn project-card">
 				<div></div>
@@ -131,7 +131,7 @@
 						</dl>
 						<div class="ProjectCard__FundingStatus-opxl0a-10 hjCxPX">
 							<div>
-								<span class="ProjectCard__StyledFundingProgressState-opxl0a-12 ivYcvj">${project.goal_rate }%</span>
+								<span class="ProjectCard__StyledFundingProgressState-opxl0a-12 ivYcvj percent">${project.goal_rate }%</span>
 								<span class="funding-amount">
 									<em>${project.now_amount }</em>원
 <!-- 									<em>6,584,799</em>원 -->
@@ -200,17 +200,17 @@
 							<div class="FilterUIPresetWithRange__Title-sc-187gsyo-5 exgiXp">직접 입력</div>
 							<div class="FilterUIPresetWithRange__RangeWrapper-sc-187gsyo-3 liLMij">
 								<span class="FilterUIInput__InputWrapper-sc-1g1rwo7-0 hoDSPq" style="margin-right: 7px; flex: 1 1 0%;">
-									<input type="number" pattern="[0-9]*" min="0" max="9999" placeholder="" maxlength="5" class="FilterUIInput__InputComponent-sc-1g1rwo7-1 fHjjDc" value="">
+									<input id="start" type="number" pattern="[0-9]*" min="0" max="9999" placeholder="" maxlength="5" class="FilterUIInput__InputComponent-sc-1g1rwo7-1 fHjjDc" value="">
 <!-- 									<input type="text" pattern="[0-9]*" min="0" max="9999" placeholder="" maxlength="5" class="FilterUIInput__InputComponent-sc-1g1rwo7-1 fHjjDc" value=""> -->
 									<span class="FilterUIInput__UnitComponent-sc-1g1rwo7-2 fMQjmL">%</span>
 								</span>
 								-
 								<span class="FilterUIInput__InputWrapper-sc-1g1rwo7-0 hoDSPq" style="margin-left: 7px; flex: 1 1 0%;">
-									<input type="text" pattern="[0-9]*" min="0" max="9999" placeholder="" maxlength="5" class="FilterUIInput__InputComponent-sc-1g1rwo7-1 fHjjDc" value="">
+									<input id="end" type="text" pattern="[0-9]*" min="0" max="9999" placeholder="" maxlength="5" class="FilterUIInput__InputComponent-sc-1g1rwo7-1 fHjjDc" value="">
 									<span class="FilterUIInput__UnitComponent-sc-1g1rwo7-2 fMQjmL">%</span>
 								</span>
 							</div>
-							<button disabled="" class="FilterUIPresetWithRange__FilterUIRangeConfirmButton-sc-187gsyo-4 fHumWM">
+							<button id="btnInputScope" class="FilterUIPresetWithRange__FilterUIRangeConfirmButton-sc-187gsyo-4 fHumWM">
 								<span>입력값 적용</span>
 							</button>
 						</div>

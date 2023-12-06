@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itwillbs.soneson.vo.AddressVO;
 import com.itwillbs.soneson.vo.AuthInfoVO;
 import com.itwillbs.soneson.vo.UserVO;
 
@@ -117,6 +118,9 @@ public interface UserMapper {
 
 	// 삭제된 이메일 체크
 	int checkDuplicateEmail(String deleteEmail);
+
+	// 유저 설정 계정 배송지 등록 중복 확인
+	int checkDuplicateAddress(AddressVO address);
 }
 
 

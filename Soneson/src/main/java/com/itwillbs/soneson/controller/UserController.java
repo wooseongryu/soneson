@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.itwillbs.soneson.service.UserService;
+import com.itwillbs.soneson.vo.AddressVO;
 import com.itwillbs.soneson.vo.UserVO;
 
 @Controller
@@ -350,10 +351,7 @@ public class UserController {
 		
 		String sId = (String)session.getAttribute("sId");
 		
-		System.out.println("))))))))))))" + sId + "(((");
-		
 		if (sId == null) {
-			map.put("isSuccess", "false");
 			return gson.toJson(map);
 		}
 		
@@ -375,7 +373,6 @@ public class UserController {
 		int updateCount = userService.updateUserLeave(user);
 		
 		if (updateCount == 0) {
-			map.put("isSuccess", "false");
 			return gson.toJson(map);
 		}
 		
@@ -400,7 +397,51 @@ public class UserController {
 		return "1";
 	}
 	
+	// 유저 설정 계정 배송지 등록 중복 확인
+	@ResponseBody
+	@PostMapping("isDuplicateAddress")
+	public String isDuplicateAddress(HttpSession session, Gson gson, Map<String, String> map, AddressVO address) {
+		System.out.println("UserController - isDuplicateAddress()");
+		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			return gson.toJson(map); 
+		}
+		map.put("isLogin", "true");
+		
+		address.setUser_id(sId);
+		int selectCount = userService.checkDuplicateAddress(address);
+		
+		if (selectCount > 0) {
+			map.put("isDuplicate", "true");
+		}
+		
+		return gson.toJson(map);
+	}
 
+	// 유저 설정 계정 배송지 등록
+	@ResponseBody
+	@PostMapping("insertUserAddressPro")
+	public String insertUserAddressPro(HttpSession session, Gson gson, Map<String, String> map, AddressVO address) {
+		System.out.println("UserController - insertUserAddressPro()");
+		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			return gson.toJson(map); 
+		}
+		map.put("isLogin", "true");
+		
+		// TODO
+//		int insertCount = userService
+//		
+//		if (insertCount == 0) {
+//			return gson.toJson(map);
+//		}
+//		
+//		map.put("isSuccess", "true");
+		
+		return gson.toJson(map);
+	}
 		
 		
 		

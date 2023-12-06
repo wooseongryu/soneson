@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwillbs.soneson.mapper.ProjectMapper">
 	
@@ -151,8 +151,8 @@
 			LEFT JOIN fund f
 			ON p.project_code = f.project_code
 			<![CDATA[
-			WHERE p.start_date <= now() AND p.end_date >= now()
-			]]>
+<!-- 			WHERE p.start_date <= now() AND p.end_date >= now() -->
+<!-- 			]]> -->
 			GROUP BY p.project_code) A
 <!-- 			데이터 쌓이면 주석 풀기 -->
 <!-- 		WHERE A.goal_rate >= 100 -->
@@ -185,51 +185,51 @@
 
 <sql id="new">
 	<![CDATA[
-			GROUP BY p.project_code) A
-		WHERE A.start_date <= now()	
-		ORDER BY now() - A.start_date;	
-	]]>
+<!-- 			GROUP BY p.project_code) A -->
+<!-- 		WHERE A.start_date <= now()	 -->
+<!-- 		ORDER BY now() - A.start_date;	 -->
+<!-- 	]]> -->
 </sql>
 <sql id="closing">
 	<![CDATA[
-			WHERE p.start_date <= now() AND p.end_date >= now()
-			GROUP BY p.project_code) A
-		ORDER BY A.end_date - now();	
-	]]>
+<!-- 			WHERE p.start_date <= now() AND p.end_date >= now() -->
+<!-- 			GROUP BY p.project_code) A -->
+<!-- 		ORDER BY A.end_date - now();	 -->
+<!-- 	]]> -->
 </sql>
 <sql id="upcoming">
 	<![CDATA[
-			GROUP BY p.project_code) A
-		WHERE start_date > now();	
-	]]>
+<!-- 			GROUP BY p.project_code) A -->
+<!-- 		WHERE start_date > now();	 -->
+<!-- 	]]> -->
 </sql>
 
 
 	<select id="getTapProjectList" resultType="map">
 		<![CDATA[
-		SELECT *
-		FROM 
-			(SELECT
-				p.project_code
-				, max(p.title) AS title
-				, max(p.subtitle) AS subtitle
-				, max(p.category) AS category
-				, max(p.creator) AS creator
-				, max(p.img_main) AS img_main
-				, date(max(p.start_date)) AS start_date
-				, date(max(p.end_date)) AS end_date
-				, ifnull(format(sum(cost) , 0), 0) AS now_amount
-				, ifnull(max(goal_amount), 0) AS goal_amount
-				, ifnull(sum(cost) / max(goal_amount), 0) AS ratio
-				, ifnull(TRUNCATE(sum(cost) / max(goal_amount) * 100, 0), 0) AS goal_rate
-				, CASE count(p.project_code) WHEN 1 THEN 0 
-											 ELSE count(p.project_code)
-											 END AS donor
-			FROM project p
-			LEFT JOIN fund f
-			ON p.project_code = f.project_code
-			WHERE p.start_date <= now() AND p.end_date >= now()
-		]]>
+<!-- 		SELECT * -->
+<!-- 		FROM  -->
+<!-- 			(SELECT -->
+<!-- 				p.project_code -->
+<!-- 				, max(p.title) AS title -->
+<!-- 				, max(p.subtitle) AS subtitle -->
+<!-- 				, max(p.category) AS category -->
+<!-- 				, max(p.creator) AS creator -->
+<!-- 				, max(p.img_main) AS img_main -->
+<!-- 				, date(max(p.start_date)) AS start_date -->
+<!-- 				, date(max(p.end_date)) AS end_date -->
+<!-- 				, ifnull(format(sum(cost) , 0), 0) AS now_amount -->
+<!-- 				, ifnull(max(goal_amount), 0) AS goal_amount -->
+<!-- 				, ifnull(sum(cost) / max(goal_amount), 0) AS ratio -->
+<!-- 				, ifnull(TRUNCATE(sum(cost) / max(goal_amount) * 100, 0), 0) AS goal_rate -->
+<!-- 				, CASE count(p.project_code) WHEN 1 THEN 0  -->
+<!-- 											 ELSE count(p.project_code) -->
+<!-- 											 END AS donor -->
+<!-- 			FROM project p -->
+<!-- 			LEFT JOIN fund f -->
+<!-- 			ON p.project_code = f.project_code -->
+<!-- 			WHERE p.start_date <= now() AND p.end_date >= now() -->
+<!-- 		]]> -->
 			<choose>
 				<when test="listType.equals('new')">
 					<include refid="new"/>

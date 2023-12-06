@@ -14,6 +14,8 @@
 		<typeAlias type="com.itwillbs.soneson.vo.ProjectVO" alias="Project"/>
 		<typeAlias type="com.itwillbs.soneson.vo.FundingVO" alias="Funding"/>
 		<typeAlias type="com.itwillbs.soneson.vo.ProItemVO" alias="Item"/>
+		<typeAlias type="com.itwillbs.soneson.vo.AddressVO" alias="Address"/>
+		<typeAlias type="com.itwillbs.soneson.vo.ChatVO" alias="Chat"/>
 	</typeAliases>
 </configuration>
   

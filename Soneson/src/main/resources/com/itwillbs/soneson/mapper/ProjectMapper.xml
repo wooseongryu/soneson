@@ -115,6 +115,13 @@
 	
 <!-- 아래는 프로젝트 리스트, 성윤 -->
 
+<!-- 헤더 -->
+	<select id="getTapList" resultType="map">
+		SELECT *
+		FROM project_tap;
+	</select>
+
+
 	
 <!-- 탭별 프로젝트 리스트 -->
 
@@ -130,8 +137,8 @@
 </sql>
 <sql id="new">
 	<![CDATA[
+			WHERE p.start_date <= now() AND p.end_date >= now()
 			GROUP BY p.project_code) A
-		WHERE A.start_date <= now()	
 		ORDER BY now() - A.start_date;	
 	]]>
 </sql>
@@ -166,9 +173,7 @@
 				, ifnull(max(goal_amount), 0) AS goal_amount
 				, ifnull(sum(cost) / max(goal_amount), 0) AS ratio
 				, ifnull(TRUNCATE(sum(cost) / max(goal_amount) * 100, 0), 0) AS goal_rate
-				, CASE count(p.project_code) WHEN 1 THEN 0 
-											 ELSE count(p.project_code)
-											 END AS donor
+				, count(f.fund_code) AS donor
 			FROM project p
 			LEFT JOIN fund f
 			ON p.project_code = f.project_code

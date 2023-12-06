@@ -155,7 +155,7 @@
 		    <version>20231013</version>
 		</dependency>
 				
-		<!-- 12. JSON 라이브러리 => RestTemplate 에서 JSON Converter 로 사용할 라이브러리 -->
+		<!-- 12. GSON 라이브러리 (=> RestTemplate 에서 JSON Converter 로 사용할 라이브러리) + (Chat 메세지 파싱을 수행하기 위한 Gson) -->
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
 		<dependency>
 		    <groupId>com.google.code.gson</groupId>

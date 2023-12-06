@@ -40,6 +40,8 @@ public interface ProjectMapper {
 
 	List<Map<String, Object>> getTapProjectList(String listType);
 
+	List<Map<String, Object>> getTapList();
+
 
 
 	

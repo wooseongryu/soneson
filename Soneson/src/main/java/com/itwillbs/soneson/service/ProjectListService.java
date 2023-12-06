@@ -35,4 +35,8 @@ public class ProjectListService {
 		return mapper.getTapProjectList(listType);
 	}
 
+	public List<Map<String, Object>> getTapList() {
+		return mapper.getTapList();
+	}
+
 }
