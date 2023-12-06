@@ -20,7 +20,80 @@
 			+ "&scope=login inquiry transfer"
 			+ "&state=12345678901234567890123456789012"
 			+ "&auth_type=0";
-		window.open(requestUri, "authWindow", "width=600, height=800");		
+		window.open(requestUri, "authWindow", "width=600, height=800");	
+		
+		
+		//등록을 하고 꺼지면 여기서 계속 이어나갈 수 가 있나??
+		//controller에서 session에 저장되니까 그 값을 가지고 getAuthAccount(access_token, user_seq_no); 바로 호출하고싶음
+		
+	}
+	
+	//새로 만들 함수
+	let access_token = "";
+	let user_seq_no = "";
+	function selectAuthInfo() {
+		
+		access_token = "${sessionScope.access_token}";
+		user_seq_no = "${sessionScope.user_seq_no}";
+		getAuthAccount(access_token, user_seq_no);
+		
+	}
+	
+	
+	function getAuthAccount(access_token, user_seq_no) {
+// 		debugger;
+		console.log("access_token: " + access_token);
+		console.log("user_seq_no: " + user_seq_no);
+// 		console.log(access_token + ", " + user_seq_no);
+		$.ajax({
+			type: "GET",
+			url: "selectAccountInfo",
+			data: {
+				"access_token": access_token,
+				"user_seq_no": user_seq_no
+			},
+			dataType: "json",
+			success: function(data) {
+// 				console.log(data);
+				let infoList = data.res_list;
+				let str = "";
+				$("#creator-authAccountInfo").empty();
+				str += '<button class="authInfoBtn" type="button" onclick="authAccountCreator()">계좌 추가 등록</button>'
+				
+				
+				for(info of infoList) {
+					console.log(info);
+					str += '<label for="accountVal' + info.fintech_use_num + '">'
+					str += '<input type="radio" id="accountVal' + info.fintech_use_num + '" class="account-radioBtn" name="creator_authInfo" value="' + info.fintech_use_num + '">'
+					str += 		'<div class="projectInfo-writeDIv">'
+					str += 			'<div class="creator-info">'
+					str += 				'<div class="creator-authInfo">'
+					str += 					'<h5>'
+					str += 						'<i class="bi bi-coin"></i>&emsp;'
+					str += 						info.account_holder_name
+					str += 					'</h5>'
+					str += 				'</div>'
+					str += 			'</div>'
+					str += 			'<div>'
+					str += 				'<p>'
+					str += 					info.bank_name + '&emsp;' + info.account_num_masked
+					str += 				'</p>'
+					str += 			'</div>'
+					str += 		  '</div>'
+					str += '</label>'
+				}
+				
+				$("#creator-authAccountInfo").append(str);
+				
+				
+				
+			},
+			error:function(request, status, error){
+				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+		});//ajax끝
+		
+		
 	}
 	
 	//할라나...세금계산서발행
@@ -169,7 +242,7 @@
 						법인사업자는 법인계좌로만 정산받을 수 있습니다.
 					</dd>
 				</dl>
-				<div class="projectItem-form">
+				<div class="projectItem-form"  id="creator-authAccountInfo">
 					<div class="projectInfo-writeDIv">
 						<div class="creator-info">
 							<div class="creator-authInfo">
@@ -179,28 +252,37 @@
 									본인인증 후 계좌등록이 가능합니다.
 								</p>
 							</div>
-							<button class="authInfoBtn" type="button" onclick="authAccountCreator()">등록하기</button>
+							<c:choose>
+								<c:when test="${not empty fintechInfo.access_token }">
+									<button class="authInfoBtn" type="button" onclick="getAuthAccount('${fintechInfo.access_token}', '${fintechInfo.user_seq_no }')">계좌가져오기</button>
+								</c:when>
+								<c:otherwise>
+									<button class="authInfoBtn" type="button" onclick="authAccountCreator()">등록하기</button>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 				</div>
 				<!-- 등록햇을 때 예시 -->
 <!-- 				<div class="projectItem-form"> -->
-<!-- 					<div class="projectInfo-writeDIv"> -->
-<!-- 						<div class="creator-info"> -->
-<!-- 							<div class="creator-authInfo"> -->
-<!-- 								<h5> -->
-<!-- 									<i class="bi bi-coin"></i> -->
-<!-- 									임진왜란 -->
-<!-- 								</h5> -->
+<!-- 					<input type="radio" id="accountVal0"> -->
+<!-- 					<label for="accountVal0"> -->
+<!-- 						<div class="projectInfo-writeDIv"> -->
+<!-- 							<div class="creator-info"> -->
+<!-- 								<div class="creator-authInfo"> -->
+<!-- 									<h5> -->
+<!-- 										<i class="bi bi-coin"></i> -->
+<!-- 										임진왜란 -->
+<!-- 									</h5> -->
+<!-- 								</div> -->
 <!-- 							</div> -->
-<!-- 							<button class="authInfoBtn" type="button" onclick="authAccountCreator()">변경하기</button> -->
+<!-- 							<div> -->
+<!-- 								<p> -->
+<!-- 									kb국민은행 95880201****** -->
+<!-- 								</p> -->
+<!-- 							</div> -->
 <!-- 						</div> -->
-<!-- 						<div> -->
-<!-- 							<p> -->
-<!-- 								kb국민은행 95880201****** -->
-<!-- 							</p> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
+<!-- 					</label> -->
 <!-- 				</div> -->
 				<!-- 나중에 append로 쓸 구역임 -->
 			</div>	

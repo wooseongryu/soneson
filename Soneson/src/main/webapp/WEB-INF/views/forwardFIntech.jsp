@@ -13,8 +13,9 @@
 	if("${isClose}" == "true") { //true "" 안하면 문자열 존재하기만 해도 무조건 true가 됨
 		window.close();
 		
-		window.opener.location.href = "${targetURL}";
+		window.opener.${functionName}();
 		
+// 		window.opener.location.href = "${targetURL}";
 	} else {
 		location.href = "${targetURL}";
 		
