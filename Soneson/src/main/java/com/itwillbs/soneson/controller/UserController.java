@@ -24,6 +24,8 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	Gson gson = new Gson();
+	
 	/*====================================================================
 	 * - 목차 -
 	 * 1. 유저 프로필
@@ -91,7 +93,7 @@ public class UserController {
 	// 유저 설정 프로필 초기 출력 화면
 	@ResponseBody
 	@PostMapping("settingUserProfile")
-	public String settingUserProfile(HttpSession session, Gson gson, UserVO user) {
+	public String settingUserProfile(HttpSession session, UserVO user) {
 		System.out.println("UserController - settingUserProfile()");
 		
 		String sId = (String)session.getAttribute("sId");
@@ -148,7 +150,7 @@ public class UserController {
 	// 유저 설정 소개 변경 pro
 	@ResponseBody
 	@PostMapping("settingUpdateUserProfilePro")
-	public String settingUpdateUserProfilePro(@RequestParam Map<String, String> map, Gson gson, HttpSession session, Model model) {
+	public String settingUpdateUserProfilePro(@RequestParam Map<String, String> map, HttpSession session, Model model) {
 		System.out.println("UserController - settingUpdateUserProfilePro()");
 		
 		String sId = (String)session.getAttribute("sId");
@@ -185,7 +187,7 @@ public class UserController {
 	// 유저 설정 계정 초기 출력 화면
 	@ResponseBody
 	@PostMapping("settingUserAccount")
-	public String settingUserAccount(HttpSession session, UserVO user, Gson gson) {
+	public String settingUserAccount(HttpSession session, UserVO user) {
 		System.out.println("UserController - settingUserAccount()");
 		
 		String sId = (String)session.getAttribute("sId");
@@ -208,7 +210,7 @@ public class UserController {
 	// 유저 설정 계정 비밀번호 변경 pro
 	@ResponseBody
 	@PostMapping("isPassEqual")
-	public String isPassEqual(UserVO user, HttpSession session, Map<String, Boolean> map, Gson gson) {
+	public String isPassEqual(UserVO user, HttpSession session, Map<String, Boolean> map) {
 		System.out.println("UserController - isPassEqual()");
 		
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -272,7 +274,7 @@ public class UserController {
 	// 유저 설정 계정 연락처 변경 pro
 	@ResponseBody
 	@PostMapping("settingUpdateUserPhonePro")
-	public String settingUpdateUserPhonePro(UserVO user, HttpSession session, Gson gson, Map<String, String> map) {
+	public String settingUpdateUserPhonePro(UserVO user, HttpSession session, Map<String, String> map) {
 		System.out.println("UserController - settingUpdateUserPhonePro()");
 
 		String sId = (String)session.getAttribute("sId");
@@ -306,7 +308,7 @@ public class UserController {
 	// 유저 설정 카카오 연동 해제
 	@ResponseBody
 	@PostMapping("settingDisconnectKakao")
-	public String settingDisconnectKakao(HttpSession session, Map<String, String> map, Gson gson) {
+	public String settingDisconnectKakao(HttpSession session, Map<String, String> map) {
 		System.out.println("UserController - settingDisconnectKakao()");
 		
 		String sId = (String)session.getAttribute("sId");
@@ -346,7 +348,7 @@ public class UserController {
 	// 유저 설정 계정 회원탈퇴 처리
 	@ResponseBody
 	@PostMapping("settingLeaveUser")
-	public String settingLeaveUser(HttpSession session, Gson gson, Map<String, String> map, UserVO user) {
+	public String settingLeaveUser(HttpSession session, Map<String, String> map, UserVO user) {
 		System.out.println("UserController - settingLeaveUser()");
 		
 		String sId = (String)session.getAttribute("sId");
@@ -394,13 +396,16 @@ public class UserController {
 	@PostMapping("settingUserAddress")
 	public String settingUserAddress() {
 		System.out.println("UserController - settingUserAddress()");
+		
+		
+		
 		return "1";
 	}
 	
 	// 유저 설정 계정 배송지 등록 중복 확인
 	@ResponseBody
 	@PostMapping("isDuplicateAddress")
-	public String isDuplicateAddress(HttpSession session, Gson gson, Map<String, String> map, AddressVO address) {
+	public String isDuplicateAddress(HttpSession session, Map<String, String> map, AddressVO address) {
 		System.out.println("UserController - isDuplicateAddress()");
 		
 		String sId = (String)session.getAttribute("sId");
@@ -422,7 +427,7 @@ public class UserController {
 	// 유저 설정 계정 배송지 등록
 	@ResponseBody
 	@PostMapping("insertUserAddressPro")
-	public String insertUserAddressPro(HttpSession session, Gson gson, Map<String, String> map, AddressVO address) {
+	public String insertUserAddressPro(HttpSession session, Map<String, String> map, AddressVO address) {
 		System.out.println("UserController - insertUserAddressPro()");
 		
 		String sId = (String)session.getAttribute("sId");
