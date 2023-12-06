@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.itwillbs.soneson.mapper.AdminMapper;
 import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
-import com.itwillbs.soneson.vo.MainTapVO;
+import com.itwillbs.soneson.vo.MainTabVO;
 import com.itwillbs.soneson.vo.QnaCateVO;
 import com.itwillbs.soneson.vo.QnaVO;
 import com.itwillbs.soneson.vo.UserVO;
@@ -214,19 +214,19 @@ public class AdminService {
 
 	
 	// 메인 탭 조회
-	public List<MainTapVO> selectMainTap() {
-		return mapper.selectMainTap();
+	public List<MainTabVO> selectMainTab() {
+		return mapper.selectMainTab();
 	}
 	
 	// 메인 탭 추가
-	public int insertMainTap(Map<String, String> map) {
-		return mapper.insertMainTap(map);
+	public int insertMainTab(Map<String, String> map) {
+		return mapper.insertMainTab(map);
 	}
 
 	
 	// 메인 탭 삭제
-	public int deleteMainTap(String tap_Kname) {
-		return mapper.deleteMainTap(tap_Kname);
+	public int deleteMainTap(String tab_Kname) {
+		return mapper.deleteMainTab(tab_Kname);
 	}
 
 

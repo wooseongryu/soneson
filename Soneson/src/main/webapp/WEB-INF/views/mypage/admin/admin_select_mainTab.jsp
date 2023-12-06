@@ -46,11 +46,11 @@
 
 
 <script>
-	function confirmDelete(tap_Kname) {
-		let result = confirm(tap_Kname  + "카테고리를 삭제하시겠습니까?");
+	function confirmDelete(tab_Kname) {
+		let result = confirm(tab_Kname  + "카테고리를 삭제하시겠습니까?");
 		
 		if(result) {
-			location.href = "adminDeleteMainTap?tap_Kname=" + tap_Kname;
+			location.href = "adminDeleteMainTab?tab_Kname=" + tab_Kname;
 		}
 	}
 </script>
@@ -84,12 +84,12 @@
 		                                        </tr>
 		                                    </thead>
 		                                    <tbody>
-		                                    	<c:forEach var="MainTap" items="${selectMainTap }">
+		                                    	<c:forEach var="MainTab" items="${selectMainTab }">
 			                                        <tr>
-			                                            <td>${MainTap.tap_Kname  }</td>
-			                                            <td>${MainTap.tap_Ename  }</td>
+			                                            <td>${MainTab.tab_Kname  }</td>
+			                                            <td>${MainTab.tab_Ename  }</td>
 														<td>
-															<button type="button" class="btn btn-primary" onclick="confirmDelete('${MainTap.tap_Kname }')">삭제</button>
+															<button type="button" class="btn btn-primary" onclick="confirmDelete('${MainTab.tab_Kname }')">삭제</button>
 														</td>
 			                                        </tr>
 		                                        </c:forEach>
@@ -101,13 +101,13 @@
 
                             
                             
-                            <form class="user" action="adminInsertMainTapPro" method="post">
+                            <form class="user" action="adminInsertMainTabPro" method="post">
                                 <div class="form-group row">
                                     <div class="col-sm-12 mb-6 mb-sm-0">
 										<label for="">메인 탭 카테고리 추가</label>
-                                        <input type="text" name="tap_Kname" class="form-control form-control-user" id="exampleFirstName"
+                                        <input type="text" name="tab_Kname" class="form-control form-control-user" id="exampleFirstName"
                                             placeholder="메인 탭 입력(한글)" required="required">
-                                        <input type="text" name="tap_Ename" class="form-control form-control-user" id="exampleSecondName"
+                                        <input type="text" name="tab_Ename" class="form-control form-control-user" id="exampleSecondName"
                                             placeholder="메인 탭 입력(영어)" required="required">
                                     </div>
                                 </div>

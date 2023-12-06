@@ -16,7 +16,7 @@
 		<typeAlias type="com.itwillbs.soneson.vo.ProItemVO" alias="Item"/>
 		<typeAlias type="com.itwillbs.soneson.vo.AddressVO" alias="Address"/>
 		<typeAlias type="com.itwillbs.soneson.vo.ChatVO" alias="Chat"/>
-		<typeAlias type="com.itwillbs.soneson.vo.MainTapVO" alias="MainTap"/>
+		<typeAlias type="com.itwillbs.soneson.vo.MainTabVO" alias="MainTab"/>
 	</typeAliases>
 </configuration>
   

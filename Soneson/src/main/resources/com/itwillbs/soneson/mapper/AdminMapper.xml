@@ -351,30 +351,30 @@
 	</select>
 	
 	<!-- 메인 탭 조회 -->
-	<select id="selectMainTap" resultType="MainTap">
+	<select id="selectMainTab" resultType="MainTab">
 		SELECT 
 			idx
-			, tap_Kname 
-			, tap_Ename 
-		FROM project_tap 
+			, tab_Kname 
+			, tab_Ename 
+		FROM project_tab 
 	</select>
 	
 	
 	<!-- 메인 탭 추가 -->
-	<insert id="insertMainTap" parameterType="Map">
-		INSERT INTO project_tap
+	<insert id="insertMainTab" parameterType="Map">
+		INSERT INTO project_tab
 		VALUES (
 			 null
-			, #{tap_Kname}
-			, #{tap_Ename}
+			, #{tab_Kname}
+			, #{tab_Ename}
 		)
 	</insert>
 
 	<!-- 메인 탭 삭제 -->
-	<delete id="deleteMainTap">
+	<delete id="deleteMainTab">
 		DELETE 
-		FROM project_tap 
-		WHERE tap_Kname = #{tap_Kname} 
+		FROM project_tab 
+		WHERE tab_Kname = #{tab_Kname} 
 	</delete>
 	
 	

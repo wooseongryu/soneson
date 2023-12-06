@@ -31,7 +31,7 @@ import com.itwillbs.soneson.service.ProjectListService;
 import com.itwillbs.soneson.service.UserService;
 import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
-import com.itwillbs.soneson.vo.MainTapVO;
+import com.itwillbs.soneson.vo.MainTabVO;
 import com.itwillbs.soneson.vo.QnaCateVO;
 import com.itwillbs.soneson.vo.QnaVO;
 import com.itwillbs.soneson.vo.UserVO;
@@ -212,9 +212,9 @@ public class AdminController {
  * */
 	
 	// 메인페이지 관리 -메인 탭 페이지로 이동
-	@GetMapping("adminSelectMainTap")
-	public String adminSelectMainTap(Model model, HttpSession session) {
-		System.out.println("AdminController - adminSelectMainTap()");
+	@GetMapping("adminSelectMainTab")
+	public String adminSelectMainTab(Model model, HttpSession session) {
+		System.out.println("AdminController - adminSelectMainTab()");
 		String sId = (String)session.getAttribute("sId");
 		String isAdmin = (String)session.getAttribute("isAdmin");
 		
@@ -223,45 +223,45 @@ public class AdminController {
 			return "fail_back";
 		}
 		
-		List<MainTapVO> selectMainTap = adminService.selectMainTap();
+		List<MainTabVO> selectMainTab = adminService.selectMainTab();
 		
-		model.addAttribute("selectMainTap", selectMainTap);
+		model.addAttribute("selectMainTab", selectMainTab);
 		
-		return "mypage/admin/admin_select_mainTap";	
+		return "mypage/admin/admin_select_mainTab";	
 	}
 	
 	
 	// 메인페이지 관리 -메인 탭 등록
-	@PostMapping("adminInsertMainTapPro")
-	public String adminInsertMainTapPro(@RequestParam Map<String, String> map, Model model) {
-		System.out.println("AdminController - adminInsertMainTapPro()");
+	@PostMapping("adminInsertMainTabPro")
+	public String adminInsertMainTabPro(@RequestParam Map<String, String> map, Model model) {
+		System.out.println("AdminController - adminInsertMainTabPro()");
 		
-		List<MainTapVO> mainTab = adminService.selectMainTap();
+		List<MainTabVO> mainTab = adminService.selectMainTab();
 		
 		
-		for (MainTapVO tab : mainTab) {
-			if (map.get("tap_Kname").equals(tab.getTap_Kname()) || map.get("tap_Ename").equals(tab.getTap_Ename())) {
+		for (MainTabVO tab : mainTab) {
+			if (map.get("tab_Kname").equals(tab.getTab_Kname()) || map.get("tab_Ename").equals(tab.getTab_Ename())) {
 				model.addAttribute("msg", "중복된 카테고리입니다!");
 				return "fail_back";
 			}
 		}
 		
 		
-		int insertCount = adminService.insertMainTap(map);
+		int insertCount = adminService.insertMainTab(map);
 		
 		if (insertCount == 0) {
 			model.addAttribute("msg", "등록 실패!");
 			return "fail_back";
 		}
 		
-		return "redirect:/adminSelectMainTap";
+		return "redirect:/adminSelectMainTab";
 	}
 	
 	
 	
 	// 메인페이지 관리 -메인 탭 삭제
-	@GetMapping("adminDeleteMainTap")
-	public String adminDeleteMainTap(@RequestParam String tap_Kname, HttpSession session, Model model) {
+	@GetMapping("adminDeleteMainTab")
+	public String adminDeleteMainTab(@RequestParam String tab_Kname, HttpSession session, Model model) {
 		System.out.println("AdminController - adminDeleteMainTap()");
 		
 		String sId = (String)session.getAttribute("sId");
@@ -272,16 +272,16 @@ public class AdminController {
 			return "fail_back";
 		}
 		
-		System.out.println("tap_Kname : " + tap_Kname);
+		System.out.println("tap_Kname : " + tab_Kname);
 		
-		int deleteCount = adminService.deleteMainTap(tap_Kname);
+		int deleteCount = adminService.deleteMainTap(tab_Kname);
 		
 		if (deleteCount == 0) {
 			model.addAttribute("msg", "삭제 실패!");
 			return "fail_back";
 		}
 		
-		return "redirect:/adminSelectMainTap";
+		return "redirect:/adminSelectMainTab";
 	}
 	
 
