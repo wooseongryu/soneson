@@ -1325,3 +1325,10 @@
 .image-wrapper:hover img {
 	transform: scale(1.1);
 }
+
+/* 펀딩 종료 */
+.ggdrCf {
+    color: rgb(61, 61, 61);
+    font-size: 14px;
+    font-weight: 700;
+}

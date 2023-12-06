@@ -19,7 +19,11 @@ function filterGoalRate(from, to) {
 			$(this).hide();
 			count--;
 		}
+
+	$("#projectCount").text(count);
+
 	});
+	
 //	debugger;
 	
 }
@@ -90,13 +94,27 @@ function restDay() {
 		let dday = new Date(serverEndDate.getTime() + serverEndDate.getTimezoneOffset() * 60 * 1000);
 		let timeDifference = dday - now;
 		let restDay = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) + 1;
+		let thisGoldRate = $(this).data("goal_rate");
+		debugger;
+		let percentElement = $(this).siblings().children('.percent');
 		
 		if(restDay == 0) {
 			$(this).html("오늘 마감");
 			$(this).addClass("deadline")
-		} else {
+		} else if(restDay > 0) {
 			$(this).html(restDay + "일 남음");
+		} else {
+			percentElement.removeClass("ivYcvj");
+			percentElement.addClass("ggdrCf");
+			if(thisGoldRate >= 100) {
+				$(this).html("펀딩 성공");
+//				debugger;
+			} else {
+				$(this).html("펀딩 무산");
+			}
 		}
+		
+		
 		
 	});
 }
@@ -109,6 +127,7 @@ function goalRateCss() {
 		console.log(goalRate);
 		
 		 $(this).css("width", goalRate + "%");
+		 
 	})
 	
 }

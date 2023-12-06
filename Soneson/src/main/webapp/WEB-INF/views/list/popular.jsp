@@ -89,7 +89,7 @@
 	<div class="Container-gci8y7-0 InfinityList__InfinityContainer-sc-19jay7c-0 cXaiVs dykamL">
 	<div class="InfinityList__ResultWrapper-sc-19jay7c-1 ffcngd">
 	<div class="InfinityList__ResultCounter-sc-19jay7c-2 dsEGnR">
-	<span>${projectCount}</span>개의 프로젝트가 있습니다.</div>
+	<span id="projectCount">${projectCount}</span>개의 프로젝트가 있습니다.</div>
 	
 	
 	
@@ -131,7 +131,7 @@
 						</dl>
 						<div class="ProjectCard__FundingStatus-opxl0a-10 hjCxPX">
 							<div>
-								<span class="ProjectCard__StyledFundingProgressState-opxl0a-12 ivYcvj percent">${project.goal_rate }%</span>
+								<span class="ProjectCard__StyledFundingProgressState-opxl0a-12 ivYcvj percent" data-end_date="${project.end_date}">${project.goal_rate }%</span>
 								<span class="funding-amount">
 									<em>${project.now_amount }</em>원
 <!-- 									<em>6,584,799</em>원 -->

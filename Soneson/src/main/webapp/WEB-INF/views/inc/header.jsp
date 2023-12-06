@@ -176,7 +176,8 @@ ul {
 <%-- 								<c:forEach var="tap" items="${tapList }"> --%>
 <%-- 									<a class="HeaderGnb_item__wcfir" role="menuitem" aria-current="false" href="${tap.tap_Ename }">${tap.tap_Kname }</a> --%>
 <%-- 								</c:forEach> --%>
-								<a href="https://happybean.naver.com/campaign/list" role="menuitem" class="HeaderGnb_item__wcfir worth" aria-current="false">가치</a>
+<!-- 								<a href="https://happybean.naver.com/campaign/list" role="menuitem" class="HeaderGnb_item__wcfir worth" aria-current="false">가치</a> -->
+								<a href="https://happybean.naver.com/campaign/list" role="menuitem" class="HeaderGnb_item__wcfir worth" aria-current="false"></a>
 							</div>
 		<!-- 					<div class="style__SearchInputWrapper-zxsodr-15 hbYMFx"> -->
 		<!-- 						<input placeholder="검색어를 입력해주세요." class="style__SearchInput-zxsodr-16 jPMsmJ"> -->
@@ -195,12 +196,15 @@ ul {
 				<div class="DonationTodayCategory_wrap__k2rtu">
 					<ul class="DonationTodayCategory_category_list__2WAdE">
 						<li class="DonationTodayCategory_list_item__agFbi item_1" aria-current="true">
-							<button type="button" class="DonationTodayCategory_button__1648s">
+							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='all'">
 								<span class="DonationTodayCategory_text__2oRHp">전체</span>
 							</button>
+<!-- 							<a class="DonationTodayCategory_button__1648s"> -->
+<!-- 								<span class="DonationTodayCategory_text__2oRHp">전체</span> -->
+<!-- 							</a> -->
 						</li>
 						<li class="DonationTodayCategory_list_item__agFbi item_2" aria-current="false">
-							<button type="button" class="DonationTodayCategory_button__1648s">
+							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='youth'">
 								<span class="DonationTodayCategory_text__2oRHp">아동•청소년</span>
 							</button>
 						</li>
@@ -215,27 +219,27 @@ ul {
 <!-- 							</button> -->
 <!-- 						</li> -->
 						<li class="DonationTodayCategory_list_item__agFbi item_3" aria-current="false">
-							<button type="button" class="DonationTodayCategory_button__1648s">
+							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='animal'">
 								<span class="DonationTodayCategory_text__2oRHp">동물</span>
 							</button>
 						</li>
 						<li class="DonationTodayCategory_list_item__agFbi item_4" aria-current="false">
-							<button type="button" class="DonationTodayCategory_button__1648s">
+							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='nature'">
 								<span class="DonationTodayCategory_text__2oRHp">환경</span>
 							</button>
 						</li>
 						<li class="DonationTodayCategory_list_item__agFbi item_5" aria-current="false">
-							<button type="button" class="DonationTodayCategory_button__1648s">
+							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='disabled'">
 								<span class="DonationTodayCategory_text__2oRHp">장애인</span>
 							</button>
 						</li>
 						<li class="DonationTodayCategory_list_item__agFbi item_6" aria-current="false">
-							<button type="button" class="DonationTodayCategory_button__1648s">
+							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='woman'">
 								<span class="DonationTodayCategory_text__2oRHp">가족•여성</span>
 							</button>
 						</li>
 						<li class="DonationTodayCategory_list_item__agFbi item_7" aria-current="false">
-							<button type="button" class="DonationTodayCategory_button__1648s">
+							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='eldery'">
 								<span class="DonationTodayCategory_text__2oRHp">어르신</span>
 							</button>
 						</li>
@@ -245,7 +249,7 @@ ul {
 <!-- 							</button> -->
 <!-- 						</li> -->
 						<li class="DonationTodayCategory_list_item__agFbi item_9" aria-current="false">
-							<button type="button" class="DonationTodayCategory_button__1648s">
+							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='etc'">
 								<span class="DonationTodayCategory_text__2oRHp">기타</span>
 							</button>
 						</li>
