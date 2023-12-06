@@ -5,10 +5,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.soneson.mapper.AdminMapper;
 import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
+import com.itwillbs.soneson.vo.MainTapVO;
 import com.itwillbs.soneson.vo.QnaCateVO;
 import com.itwillbs.soneson.vo.QnaVO;
 import com.itwillbs.soneson.vo.UserVO;
@@ -208,6 +210,23 @@ public class AdminService {
 	// 마감된 프로젝트 조회
 	public List<Map<String, Object>> selectProjectAfter() {
 		return mapper.selectProjectAfter();
+	}
+
+	
+	// 메인 탭 조회
+	public List<MainTapVO> selectMainTap() {
+		return mapper.selectMainTap();
+	}
+	
+	// 메인 탭 추가
+	public int insertMainTap(Map<String, String> map) {
+		return mapper.insertMainTap(map);
+	}
+
+	
+	// 메인 탭 삭제
+	public int deleteMainTap(String tap_Kname) {
+		return mapper.deleteMainTap(tap_Kname);
 	}
 
 

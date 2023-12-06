@@ -88,6 +88,7 @@
             	</a>
 				<div id="collapseCate" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" href="adminSelectMainTap">메인 탭 관리</a>
 						<a class="collapse-item" href="adminSelectMainCate">메인 카테고리 관리</a>
 					</div>
 				</div>
@@ -141,10 +142,10 @@
 								</script>
 							</c:when>
 							<c:when test="${empty sessionScope.access_token}">
-								<a class="collapse-item"  onclick="authAccount()">계좌인증</a>
+<!-- 								<a class="collapse-item"  onclick="authAccount()">계좌인증</a> -->
 							</c:when>
 							<c:otherwise>
-								<a class="collapse-item"  onclick="authAccount()">계좌인증(임시_계좌등록용)</a>
+<!-- 								<a class="collapse-item"  onclick="authAccount()">계좌인증(임시_계좌등록용)</a> -->
 								<a class="collapse-item"  onclick="location.href = 'FintechUserInfo'">핀테크사용자정보</a>
 								<a class="collapse-item"  onclick="location.href = 'FintechAccountList'">핀테크등록계좌정보</a>
 							</c:otherwise>

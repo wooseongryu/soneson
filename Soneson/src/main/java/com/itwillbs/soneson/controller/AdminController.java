@@ -31,6 +31,7 @@ import com.itwillbs.soneson.service.ProjectListService;
 import com.itwillbs.soneson.service.UserService;
 import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
+import com.itwillbs.soneson.vo.MainTapVO;
 import com.itwillbs.soneson.vo.QnaCateVO;
 import com.itwillbs.soneson.vo.QnaVO;
 import com.itwillbs.soneson.vo.UserVO;
@@ -210,17 +211,80 @@ public class AdminController {
  * ===================================================================
  * */
 	
-	// 메인페이지 관리 - 메인 카테고리 관리 페이지로 이동
-	@GetMapping("adminSelectMainCate")
-	public String adminSelectMainCate() {
-		System.out.println("AdminController - adminSelectMainCate()");
+	// 메인페이지 관리 -메인 탭 페이지로 이동
+	@GetMapping("adminSelectMainTap")
+	public String adminSelectMainTap(Model model, HttpSession session) {
+		System.out.println("AdminController - adminSelectMainTap()");
+		String sId = (String)session.getAttribute("sId");
+		String isAdmin = (String)session.getAttribute("isAdmin");
 		
-		return "mypage/admin/admin_select_mainCate";	
+		if(sId == null || isAdmin.equals("N")) {
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			return "fail_back";
+		}
+		
+		List<MainTapVO> selectMainTap = adminService.selectMainTap();
+		
+		model.addAttribute("selectMainTap", selectMainTap);
+		
+		return "mypage/admin/admin_select_mainTap";	
 	}
+	
+	
+	// 메인페이지 관리 -메인 탭 등록
+	@PostMapping("adminInsertMainTapPro")
+	public String adminInsertMainTapPro(@RequestParam Map<String, String> map, Model model) {
+		System.out.println("AdminController - adminInsertMainTapPro()");
+		
+		List<MainTapVO> mainTab = adminService.selectMainTap();
+		
+		
+		for (MainTapVO tab : mainTab) {
+			if (map.get("tap_Kname").equals(tab.getTap_Kname()) || map.get("tap_Ename").equals(tab.getTap_Ename())) {
+				model.addAttribute("msg", "중복된 카테고리입니다!");
+				return "fail_back";
+			}
+		}
+		
+		
+		int insertCount = adminService.insertMainTap(map);
+		
+		if (insertCount == 0) {
+			model.addAttribute("msg", "등록 실패!");
+			return "fail_back";
+		}
+		
+		return "redirect:/adminSelectMainTap";
+	}
+	
+	
+	
+	// 메인페이지 관리 -메인 탭 삭제
+	@GetMapping("adminDeleteMainTap")
+	public String adminDeleteMainTap(@RequestParam String tap_Kname, HttpSession session, Model model) {
+		System.out.println("AdminController - adminDeleteMainTap()");
+		
+		String sId = (String)session.getAttribute("sId");
+		String isAdmin = (String)session.getAttribute("isAdmin");
+		
+		if(sId == null || isAdmin.equals("N")) {
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			return "fail_back";
+		}
+		
+		System.out.println("tap_Kname : " + tap_Kname);
+		
+		int deleteCount = adminService.deleteMainTap(tap_Kname);
+		
+		if (deleteCount == 0) {
+			model.addAttribute("msg", "삭제 실패!");
+			return "fail_back";
+		}
+		
+		return "redirect:/adminSelectMainTap";
+	}
+	
 
-	// 메인페이지 관리 - 메인 세부 카테고리 관리 페이지로 이동 ( 만들어야함 )
-	
-	
 /*====================================================================
  * 4. 펀딩 프로젝트 관리
  * ===================================================================
@@ -309,9 +373,6 @@ public class AdminController {
  * 7. 게시판관리
  * ===================================================================
  * */
-	
-	
-	
 	
 /*====================================================================
  *  자주 묻는 질문
