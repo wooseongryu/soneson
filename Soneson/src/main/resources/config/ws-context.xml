@@ -6,8 +6,9 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- 웹소켓 요청에 대한 매핑을 위해 요청 주소와 핸들러 클래스의 아이디 지정 -->
-	<!-- 현재 자신의 서버에서의 웹소켓 요청만 매핑(나머지는 거부) -->
-	<websocket:handlers allowed-origins="http://localhost:8081/soneson">
+	<!-- 현재 자신의 서버에서의 웹소켓 요청만 매핑(localhost:8081/soneson 외 나머지는 거부 또는 * 하면 전체 허용) -->
+<!-- 	<websocket:handlers allowed-origins="http://localhost:8081/soneson"> -->
+	<websocket:handlers allowed-origins="*">
 		<websocket:mapping path="/echo" handler="wsHandler"/>
 	</websocket:handlers>
 	
@@ -15,11 +16,6 @@
 	<bean id="wsHandler" class="com.itwillbs.soneson.chat.MyWebSocketHandler" />
 
 </beans>
-
-
-
-
-
 
 
 
