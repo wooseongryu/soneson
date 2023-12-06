@@ -203,7 +203,6 @@
 	
 	
 	<!-- 프로젝트 디테일 페이지 -->
-	
 	<select id="getProject" resultType="map">
 		SELECT *
 		FROM
@@ -234,7 +233,14 @@
 	
 	
 	</select>
-	
+	<!-- 핀테크 토큰 조회 -->
+	<select id="selectToken" resultType="map">
+		SELECT access_token , user_seq_no  
+		FROM `user` u 
+		JOIN fintech_user_info fui 
+		ON u.user_id = fui.id 
+		WHERE id = #{sId}
+	</select>
 	
 	
 </mapper>

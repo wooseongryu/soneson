@@ -18,6 +18,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,8 +30,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.soneson.service.RewardService;
+import com.itwillbs.soneson.service.BankApiClient;
 import com.itwillbs.soneson.service.ProjectService;
 import com.itwillbs.soneson.vo.ProjectVO;
+import com.itwillbs.soneson.vo.ResponseUserInfoVO;
 
 @Controller
 public class ProjectController {
@@ -37,6 +41,9 @@ public class ProjectController {
 	private ProjectService service;
 	@Autowired
 	private RewardService itemService;
+	@Autowired
+	private BankApiClient bankApiClient;
+	
 	
 	
 	
@@ -80,6 +87,8 @@ public class ProjectController {
 		pro = service.selectProject(map);
 		List<Map<String, String>> itemList = itemService.selectItem(map);
 		List<Map<String, String>> rewardList = itemService.selectReward(map);
+		Map<String, String> fintechInfo = service.selectToken(sId);
+		System.out.println(fintechInfo);
 		System.out.println(">>>>>>>>>>>>>>>>>>>>리워드<<<<<<<<<<<<" + rewardList);
 		
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>pro"+ pro);
@@ -114,6 +123,7 @@ public class ProjectController {
 		model.addAttribute("pro", pro);
 		model.addAttribute("itemList", itemList);
 		model.addAttribute("rewardList", rewardList);
+		model.addAttribute("fintechInfo", fintechInfo);
 		
 		return "project/default";
 	}
@@ -434,7 +444,6 @@ public class ProjectController {
 	public String deleteReward(int reward_code) {
 		System.out.println("삭제할 reward_code : "+reward_code);
 		int deleteCount = itemService.deleteReward(reward_code);
-		System.out.println("왜 404가 뜨는거고? : " + deleteCount);
 		if(deleteCount > 0) {
 			return "true";
 		} else {
@@ -443,6 +452,28 @@ public class ProjectController {
 		
 //		return "";
 	}
-
+	
+	
+	//계좌정보 가져오기
+	@ResponseBody
+	@GetMapping("selectAccountInfo")
+	public String selectAccountInfo(@RequestParam Map<String, String> map, Model model, HttpSession session) {
+		
+		System.out.println("계좌번호가져오기~~~~~~~~~~~~: " + map);
+		map.put("access_token", (String)session.getAttribute("access_token")) ;
+		map.put("user_seq_no", (String)session.getAttribute("user_seq_no")) ;
+//		session.getAttribute("user_seq_no");
+		
+		System.out.println("계좌번호가져오기2222222222222222222222222~~~~~~~~~~~~: " + map);
+		ResponseUserInfoVO userInfo = bankApiClient.requestUserInfo(map);
+		System.out.println("아유>>>>>>>>>>>>>>>>>>>>>>>>" + userInfo);
+		
+		JSONObject jsonObject = new JSONObject(userInfo);
+		return jsonObject.toString();
+	}
+	
+	
+	
+	
 	
 }

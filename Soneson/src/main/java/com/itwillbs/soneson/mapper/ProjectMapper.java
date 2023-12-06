@@ -25,7 +25,9 @@ public interface ProjectMapper {
 	ProjectVO selectFileName(int pro_code);
 
 	ProjectVO selectNewProject(Map<String, String> map);
-
+	
+	//핀테크 토큰
+	Map<String, String> selectToken(String sId);
 	
 	
 	// =========== 아래는 프로젝트 리스트, 성윤 =============
@@ -39,6 +41,7 @@ public interface ProjectMapper {
 	List<Map<String, Object>> getTapProjectList(String listType);
 
 	List<Map<String, Object>> getTapList();
+
 
 
 	

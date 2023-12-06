@@ -60,6 +60,7 @@ public class FintechController {
 		// 2.1.2. 토큰발급 API 
 		ResponseTokenVO responseToken = bankApiClient.requestToken(authResponse);
 		
+		
 		if(responseToken.getAccess_token() == null) {
 			model.addAttribute("msg", "토큰 발급 실패! 다시 인증하세요!");
 			model.addAttribute("isClose", true); // 현재 창(서브 윈도우) 닫기
@@ -72,10 +73,12 @@ public class FintechController {
 		session.setAttribute("access_token", responseToken.getAccess_token());
 		session.setAttribute("user_seq_no", responseToken.getUser_seq_no());
 		
+		
 		model.addAttribute("msg", "계좌 인증 완료!");
 		model.addAttribute("isClose", true); // 현재 창(서브 윈도우) 닫기
+		model.addAttribute("functionName", "selectAuthInfo");
 		model.addAttribute("targetURL", "FintechUserInfo");
-		return "forward";
+		return "forwardFintech";
 	}
 	
 	// 2.2. 사용자/서비스 관리 - 2.2.1. 사용자정보조회 API

@@ -43,6 +43,12 @@ public class ProjectService {
 	public ProjectVO selectNewProject(Map<String, String> map) {
 		return mapper.selectNewProject(map);
 	}
+	
+	
+	//핀테크 token조회
+	public Map<String, String> selectToken(String sId) {
+		return mapper.selectToken(sId);
+	}
 
 
 	
