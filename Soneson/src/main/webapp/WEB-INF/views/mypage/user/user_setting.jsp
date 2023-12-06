@@ -1000,8 +1000,31 @@
     			url: 'settingUserAddress',
     			dataType: 'json',
     			success: function(resp) {
+    				if (!resp.isLogin) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    				
     				reset_screen(id);
-
+    				
+    				let addressStr = "";
+    				
+    				$.each(resp.addressList, function (index, el) {
+    					addressStr += ' <div class="anime__details__review">                                                                    '
+									+ '  	<div class="anime__review__item">                                                                   '
+				                    + '  		<div class="user__setting__text" id="registAddress">                                                               '
+				                    + '      		<h6>' + el.address_reciver + '</h6>                                                                             '
+				                    + '      		<div class="user_follow_btn">                                                               '
+				                    + '      			<a onclick="deleteUserAddress(' + el.address_idx + ')">삭제</a>                                              '
+				                    + '      			<p>[' + el.address_code + '] ' + el.address_main + ' ' + el.address_sub + '</p>         '
+				                    + '      			<p>' + el.address_reciver_phone + '</p>                                                                    '
+				                    + '      		</div>                                                                                      '
+									+ '  		</div>                                                                                          '
+				                	+ '  	</div>                                                                                              '
+			            	 		+ ' </div>                                                                                                  ';
+    				});
+    				
 					$("#user_content").append(
 						  ' <div class="anime__details__review">                                                                    '
 						+ '  	<div class="anime__review__item" id="addressAdd">                                                                   '
@@ -1014,18 +1037,7 @@
                     	+ '  	</div>                                                                                              '
                 	 	+ ' </div>                                                                                                  '
                 	 	+ '                                      	                                                                   '
-                	 	+ ' <div class="anime__details__review">                                                                    '
-						+ '  	<div class="anime__review__item">                                                                   '
-                        + '  		<div class="user__setting__text" id="registAddress">                                                               '
-	                    + '      		<h6>홍길동</h6>                                                                             '
-	                    + '      		<div class="user_follow_btn">                                                               '
-	                    + '      			<a onclick="updateUserPassword()">삭제</a>                                              '
-	                    + '      			<p>[46259] 부산 금정구 동천로 1 (회동동) 테스트123</p>         '
-	                    + '      			<p>010-1111-2222</p>                                                                    '
-	                    + '      		</div>                                                                                      '
-						+ '  		</div>                                                                                          '
-                    	+ '  	</div>                                                                                              '
-                	 	+ ' </div>                                                                                                  '
+                	 	+ addressStr
 					);
     			},
     			error: function() {
@@ -1166,7 +1178,10 @@
     				alert("배송지 등록 실패!");
     			}
     		});
-    		
+    	}
+    	
+    	function deleteUserAddress(address_idx) {
+    		console.log("deleteUserAddress()" + address_idx);
     	}
     	
     	function cancelInsertUserAddress() {

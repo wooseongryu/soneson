@@ -1,5 +1,6 @@
 package com.itwillbs.soneson.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -98,11 +99,7 @@ public class UserController {
 		
 		String sId = (String)session.getAttribute("sId");
 		
-		// TODO
-		// 나머지값 컬럼 생성 후 받아와야 됨.
 		user = userService.getUserProfile(sId);
-		
-//		System.out.println("************" + user);
 		
 		return gson.toJson(user);
 	}
@@ -183,7 +180,6 @@ public class UserController {
 		return "1";
 	}
 	
-	// TODO
 	// 유저 설정 계정 초기 출력 화면
 	@ResponseBody
 	@PostMapping("settingUserAccount")
@@ -193,8 +189,6 @@ public class UserController {
 		String sId = (String)session.getAttribute("sId");
 		
 		user = userService.selectUserAccount(sId);
-		
-		System.out.println("))))))))))))))" + user);
 		
 		return gson.toJson(user);
 	}
@@ -304,7 +298,6 @@ public class UserController {
 		return "1";
 	}
 	
-	// TODO
 	// 유저 설정 카카오 연동 해제
 	@ResponseBody
 	@PostMapping("settingDisconnectKakao")
@@ -383,7 +376,7 @@ public class UserController {
 		return gson.toJson(map);
 	}
 	
-	// 유저 설정 계정 배송지 초기 출력 화면
+	// 유저 설정 계정 결제수단 초기 출력 화면
 	@ResponseBody
 	@PostMapping("settingUserPayment")
 	public String settingUserPayment() {
@@ -391,15 +384,25 @@ public class UserController {
 		return "1";
 	}
 	
+	// TODO
 	// 유저 설정 계정 배송지 초기 출력 화면
 	@ResponseBody
 	@PostMapping("settingUserAddress")
-	public String settingUserAddress() {
+	public String settingUserAddress(HttpSession session, AddressVO address, Map<String, Object> map) {
 		System.out.println("UserController - settingUserAddress()");
 		
+		String sId = (String)session.getAttribute("sId");
+				
+		if (sId == null) {
+			return gson.toJson(map);
+		}
+		map.put("isLogin", "true");
 		
+		List<AddressVO> addressList =  userService.selectUserAddress(sId);
+
+		map.put("addressList", addressList);
 		
-		return "1";
+		return gson.toJson(map);
 	}
 	
 	// 유저 설정 계정 배송지 등록 중복 확인

@@ -363,5 +363,17 @@
 			, #{address_reciver_phone }
 		);
 	</insert>
+	
+	<select id="selectUserAddress" resultType="Address">
+		SELECT
+			address_idx
+			, address_reciver
+			, address_code
+			, address_main
+			, address_sub
+			, address_reciver_phone
+		FROM address
+		WHERE user_id = #{sId}
+	</select>
 </mapper>
 

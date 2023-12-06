@@ -251,6 +251,13 @@ public class UserService {
 		
 		return mapper.insertUserAddress(address);
 	}
+
+	// 유저 설정 계정 배송지 초기 출력 화면
+	public List<AddressVO> selectUserAddress(String sId) {
+		System.out.println("UserService - selectUserAddress()");
+		
+		return mapper.selectUserAddress(sId);
+	}
 	
 	
 }

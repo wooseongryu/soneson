@@ -124,6 +124,9 @@ public interface UserMapper {
 
 	// 유저 설정 계정 배송지 등록
 	int insertUserAddress(AddressVO address);
+
+	// 유저 설정 계정 배송지 초기 출력 화면
+	List<AddressVO> selectUserAddress(String sId);
 }
 
 
