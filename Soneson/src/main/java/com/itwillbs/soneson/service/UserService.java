@@ -258,6 +258,13 @@ public class UserService {
 		
 		return mapper.selectUserAddress(sId);
 	}
+
+	// 유저 설정 계정 배송지 삭제
+	public int deleteUserAddress(int address_idx) {
+		System.out.println("UserService - deleteUserAddress()");
+		
+		return mapper.deleteUserAddress(address_idx);
+	}
 	
 	
 }

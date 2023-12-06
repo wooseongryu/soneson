@@ -127,6 +127,9 @@ public interface UserMapper {
 
 	// 유저 설정 계정 배송지 초기 출력 화면
 	List<AddressVO> selectUserAddress(String sId);
+
+	// 유저 설정 계정 배송지 삭제
+	int deleteUserAddress(int address_idx);
 }
 
 

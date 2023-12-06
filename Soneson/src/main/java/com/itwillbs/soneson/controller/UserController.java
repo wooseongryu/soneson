@@ -451,6 +451,29 @@ public class UserController {
 		
 		return gson.toJson(map);
 	}
+	
+	// 유저 설정 계정 배송지 삭제
+	@ResponseBody
+	@PostMapping("deleteUserAddress")
+	public String deleteUserAddress(HttpSession session, Map<String, String> map, int address_idx) {
+		System.out.println("UserController - deleteUserAddress()");
+		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			return gson.toJson(map); 
+		}
+		map.put("isLogin", "true");
+
+		int deleteCount = userService.deleteUserAddress(address_idx);
+		
+		if (deleteCount == 0) {
+			return gson.toJson(map);
+		}
+		
+		map.put("isSuccess", "true");
+		
+		return gson.toJson(map);
+	}
 		
 		
 		

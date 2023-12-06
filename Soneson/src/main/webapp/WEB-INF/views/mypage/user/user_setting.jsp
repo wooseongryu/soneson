@@ -1105,6 +1105,17 @@
     			return;
     		}
     		
+    		if (reciverPhoneNumber == null || reciverPhoneNumber == "") {
+    			alert("전화번호를 입력하세요.");
+    			return;
+    		}
+    		
+    		if (detailAddress == null || detailAddress == "") {
+    			if (!confirm("상세주소를 입력 하지 않았습니다.\n이대로 등록 하시겠습니까?")) {
+        			return;
+        		}
+    		}
+    		
     		if (!isDuplicateAddress()) {
 	    		insertUserAddressPro();
     		};
@@ -1181,7 +1192,36 @@
     	}
     	
     	function deleteUserAddress(address_idx) {
-    		console.log("deleteUserAddress()" + address_idx);
+			if (!confirm("배송지를 삭제 하시겠습니까?")) {
+    			return;
+    		}
+			
+    		$.ajax({
+    			type: 'post',
+    			url: 'deleteUserAddress',
+    			dataType: 'json',
+    			data: {
+    				address_idx : address_idx
+    			},
+    			success: function(resp) {
+    				if (!resp.isLogin) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    				
+    				if (!resp.isSuccess) {
+	    				alert("배송지 삭제 실패.");
+    					return;
+    				}
+    				
+   					alert("배송지가 삭제 되었습니다.");
+   					userAddress('topUserAddress');
+    			},
+    			error: function() {
+    				alert("배송지 삭제 실패!");
+    			}
+    		});
     	}
     	
     	function cancelInsertUserAddress() {

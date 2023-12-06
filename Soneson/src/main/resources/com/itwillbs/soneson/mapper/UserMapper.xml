@@ -375,5 +375,10 @@
 		FROM address
 		WHERE user_id = #{sId}
 	</select>
+	
+	<delete id="deleteUserAddress">
+		DELETE FROM address
+		WHERE address_idx = #{address_idx}
+	</delete>
 </mapper>
 
