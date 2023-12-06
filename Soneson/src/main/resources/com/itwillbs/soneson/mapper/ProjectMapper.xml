@@ -116,9 +116,9 @@
 <!-- 아래는 프로젝트 리스트, 성윤 -->
 
 <!-- 헤더 -->
-	<select id="getTapList" resultType="map">
+	<select id="getTabList" resultType="map">
 		SELECT *
-		FROM project_tap;
+		FROM project_tab;
 	</select>
 
 
@@ -337,7 +337,7 @@
 			GROUP BY p.project_code) A
 		WHERE project_code = #{project_code}
 	
-	
+	  
 	</select>
 	<!-- 핀테크 토큰 조회 -->
 	<select id="selectToken" resultType="map">

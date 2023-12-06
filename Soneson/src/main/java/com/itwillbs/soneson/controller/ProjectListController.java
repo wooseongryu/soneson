@@ -23,7 +23,7 @@ public class ProjectListController {
 //	public String getListType(Model model, String listType) {
 	public String getListType(Model model, @PathVariable String listType) {
 		
-		List<Map<String, Object>> projectList = service.getTapProjectList(listType);
+		List<Map<String, Object>> projectList = service.getTabProjectList(listType);
 		
 		int projectCount = projectList.size();
 		System.out.println("프로젝트 갯수 : " + projectCount);

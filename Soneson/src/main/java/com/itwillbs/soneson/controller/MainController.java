@@ -24,7 +24,7 @@ public class MainController {
 	public String header(Model model) {
 		System.out.println("!@#!@#");
 		Gson gson = new Gson();
-		return gson.toJson(service.getTapList());
+		return gson.toJson(service.getTabList());
 	}
 	
 	@GetMapping("main")

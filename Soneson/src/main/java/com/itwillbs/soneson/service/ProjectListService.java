@@ -31,12 +31,12 @@ public class ProjectListService {
 
 	// 아래는 프로젝트 탭 별로 시도
 	
-	public List<Map<String, Object>> getTapProjectList(String listType) {
-		return mapper.getTapProjectList(listType);
+	public List<Map<String, Object>> getTabProjectList(String listType) {
+		return mapper.getTabProjectList(listType);
 	}
 
-	public List<Map<String, Object>> getTapList() {
-		return mapper.getTapList();
+	public List<Map<String, Object>> getTabList() {
+		return mapper.getTabList();
 	}
 
 }

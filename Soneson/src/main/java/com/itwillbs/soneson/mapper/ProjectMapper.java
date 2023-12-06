@@ -38,9 +38,9 @@ public interface ProjectMapper {
 
 	Map<String, Object> getProject(int project_code);
 
-	List<Map<String, Object>> getTapProjectList(String listType);
+	List<Map<String, Object>> getTabProjectList(String listType);
 
-	List<Map<String, Object>> getTapList();
+	List<Map<String, Object>> getTabList();
 
 
 

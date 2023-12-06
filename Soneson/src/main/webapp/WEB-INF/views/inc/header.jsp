@@ -299,7 +299,7 @@ ul {
 //             		debugger;
 // 					$j('.category').after(
 					$j('.worth').before(
-							'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="' + e.tap_Ename + '">' + e.tap_Kname + '</a>'		
+							'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="' + e.tab_Ename + '">' + e.tab_Kname + '</a>'		
 					);
             	})
             	
