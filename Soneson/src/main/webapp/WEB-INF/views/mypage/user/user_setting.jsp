@@ -988,12 +988,12 @@
     		});
     	}
     	
-//     	let reciver = "";
-// 		let zonecode = "";
-// 		let address = "";
-// 		let detailAddress = "";
-// 		let reciverPhoneNumber = "";
-    	
+    	let reciver = "";
+		let zonecode = "";
+		let address = "";
+		let detailAddress = "";
+		let reciverPhoneNumber = "";
+		
     	function userAddress(id) {
     		$.ajax({
     			type: 'post',
@@ -1033,20 +1033,9 @@
     			}
     		});
     	}
-    	
-    	let reciver = "";
-		let zonecode = "";
-		let address = "";
-		let detailAddress = "";
-		let reciverPhoneNumber = "";
-    	
-    	// TODO
+		
     	function insertUserAddress() {
     		$.ajax({
-    			type: 'post',
-    			// 임시 경로
-    			url: 'settingUserAddress',
-    			dataType: 'json',
     			success: function(resp) {
     				$("#addressAdd").children().remove();
 
@@ -1111,11 +1100,12 @@
     	}
     	
     	function isDuplicateAddress() {
-    		let isDuplicate = true;
+    		let isDuplicate;
     		
     		$.ajax({
     			type: 'post',
     			url: 'isDuplicateAddress',
+    			async: false,
     			dataType: 'json',
     			data: {
     				address_reciver : reciver,
@@ -1131,7 +1121,7 @@
     					return;
     				}
     				
-    				isDuplicate = resp.isDuplicate;
+    				isDuplicate = Boolean(resp.isDuplicate);
     				
     				if (isDuplicate) {
     					alert("중복된 정보 입니다.");
@@ -1158,10 +1148,22 @@
     				address_reciver_phone : reciverPhoneNumber
     			},
     			success: function(resp) {
-    				// TODO
+    				if (!resp.isLogin) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    				
+    				if (resp.isSuccess) {
+    					alert("배송지가 등록 되었습니다.");
+    					userAddress('topUserAddress');
+    					return;
+    				}
+    				
+    				alert("배송지 등록 실패.");
     			},
     			error: function() {
-    				alert("주소 등록 실패!");
+    				alert("배송지 등록 실패!");
     			}
     		});
     		

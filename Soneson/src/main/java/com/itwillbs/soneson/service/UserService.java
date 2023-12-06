@@ -244,6 +244,13 @@ public class UserService {
 		
 		return mapper.checkDuplicateAddress(address);
 	}
+
+	// 유저 설정 계정 배송지 등록
+	public int insertUserAddress(AddressVO address) {
+		System.out.println("UserService - insertUserAddress()");
+		
+		return mapper.insertUserAddress(address);
+	}
 	
 	
 }

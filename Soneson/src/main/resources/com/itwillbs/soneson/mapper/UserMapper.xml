@@ -344,5 +344,24 @@
 			AND address_main = #{address_main}
 			AND address_sub = #{address_sub}
 	</select>
+	
+	<insert id="insertUserAddress">
+		INSERT INTO address (
+			user_id
+			, address_reciver
+			, address_code
+			, address_main
+			, address_sub
+			, address_reciver_phone
+		)
+		VALUES (
+			#{user_id }
+			, #{address_reciver }
+			, #{address_code }
+			, #{address_main }
+			, #{address_sub }
+			, #{address_reciver_phone }
+		);
+	</insert>
 </mapper>
 

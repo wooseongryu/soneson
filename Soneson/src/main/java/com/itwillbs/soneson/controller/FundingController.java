@@ -27,17 +27,17 @@ public class FundingController {
 	@GetMapping("fundingList")
 	public String fundingList(HttpSession session, Model model, FundingVO fund) {
 		System.out.println("FundingController - fundingList()");
-		
-		String sId = (String)session.getAttribute("sId");
-		
-		if(sId == null) {
-			model.addAttribute("msg", "로그인 후 이용 가능 합니다.");
-			model.addAttribute("targetURL", "login");
-			return "forward";
-		}
-		fund = service.selectIdFund(sId);
-		System.out.println(fund);
-		model.addAttribute("fund", fund);
+//		
+//		String sId = (String)session.getAttribute("sId");
+//		
+//		if(sId == null) {
+//			model.addAttribute("msg", "로그인 후 이용 가능 합니다.");
+//			model.addAttribute("targetURL", "login");
+//			return "forward";
+//		}
+//		fund = service.selectIdFund(sId);
+//		System.out.println(fund);
+//		model.addAttribute("fund", fund);
 		
 		return "mypage/funding/funding_list";
 		
