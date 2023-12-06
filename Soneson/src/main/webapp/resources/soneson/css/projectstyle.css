@@ -315,7 +315,7 @@ button:disabled {
     align-items: center;
 }
 .top-headerWarp-right span {
-	width: 38px;
+	width: 100px;
 	height: 38px;
 }
 .view-top-content {
@@ -1065,6 +1065,7 @@ textarea:focus {
 }
 a {
 	text-decoration: none;
+	color: #3d3d3d;
 }
 
 a:hover,

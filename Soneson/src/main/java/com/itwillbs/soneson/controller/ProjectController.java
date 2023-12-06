@@ -33,6 +33,7 @@ import com.itwillbs.soneson.service.RewardService;
 import com.itwillbs.soneson.service.BankApiClient;
 import com.itwillbs.soneson.service.ProjectService;
 import com.itwillbs.soneson.vo.ProjectVO;
+import com.itwillbs.soneson.vo.ResponseTokenVO;
 import com.itwillbs.soneson.vo.ResponseUserInfoVO;
 
 @Controller
@@ -92,32 +93,19 @@ public class ProjectController {
 		System.out.println(">>>>>>>>>>>>>>>>>>>>리워드<<<<<<<<<<<<" + rewardList);
 		
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>pro"+ pro);
-			
 		
-		
-//		if(!pro.getPro_thumbsnail().equals("") || pro.getPro_thumbsnail() != null) { 
-//			pro.setPro_thumbsnail(pro.getPro_thumbsnail().substring(20));
-//			System.out.println(pro.getPro_thumbsnail());
+		if(fintechInfo.get("access_token") != null) {
+			System.out.println("토큰있음!!!!!!!!!!!!!!!!!!");
+			ResponseUserInfoVO userInfo = bankApiClient.requestUserInfo(fintechInfo);
+			model.addAttribute("userInfo", userInfo);
+			System.out.println(">>>>>><<<<<<" + userInfo);
+		}
+//		if(pro.getPro_startDt() != null) {
+//			pro.setPro_startDt(pro.getPro_startDt().substring(0,9));
+//			pro.setPro_start_time(sId);
 //		}
-//		if(!pro.getPro_content().equals("") || pro.getPro_content() != null) { 
-//			pro.setPro_content(pro.getPro_content().substring(20));
-//		}
-//		if(!pro.getPro_budget().equals("") || pro.getPro_budget() != null) { 
-//			pro.setPro_budget(pro.getPro_budget().substring(20));
-//		}
-//		if(!pro.getPro_sch().equals("") || pro.getPro_sch() != null) { 
-//			pro.setPro_sch(pro.getPro_sch().substring(20));
-//		}
-//		if(!pro.getPro_team().equals("") || pro.getPro_team() != null) { 
-//			pro.setPro_team(pro.getPro_team().substring(20));
-//			System.out.println(pro.getPro_team());
-//		}
-//		if(!pro.getPro_reward().equals("") || pro.getPro_reward() != null) { 
-//			pro.setPro_reward(pro.getPro_reward().substring(20));
-//		}
-//		if(!pro.getPro_profile().equals("") || pro.getPro_profile() != null) { 
-//			pro.setPro_profile(pro.getPro_profile().substring(20));
-//		}
+//		System.out.println("시작날짜: " + pro.getPro_startDt());
+
 		
 		
 		model.addAttribute("pro", pro);
@@ -163,43 +151,13 @@ public class ProjectController {
 		map.put("user_id", sId);
 		pro = service.selectNewProject(map);
 		
-//		if(!pro.getPro_thumbsnail().equals("") || pro.getPro_thumbsnail() != null) { 
-//			pro.setPro_thumbsnail(pro.getPro_thumbsnail().substring(11));
-//			System.out.println(pro.getPro_thumbsnail());
-//		}
-//		if(!pro.getPro_content().equals("") || pro.getPro_content() != null) { 
-//			pro.setPro_content(pro.getPro_content().substring(20));
-//		}
-//		if(!pro.getPro_budget().equals("") || pro.getPro_budget() != null) { 
-//			pro.setPro_budget(pro.getPro_budget().substring(20));
-//		}
-//		if(!pro.getPro_sch().equals("") || pro.getPro_sch() != null) { 
-//			pro.setPro_sch(pro.getPro_sch().substring(20));
-//		}
-//		if(!pro.getPro_team().equals("") || pro.getPro_team() != null) { 
-//			pro.setPro_team(pro.getPro_team().substring(20));
-//			System.out.println(pro.getPro_team());
-//		}
-//		if(!pro.getPro_reward().equals("") || pro.getPro_reward() != null) { 
-//			pro.setPro_reward(pro.getPro_reward().substring(20));
-//		}
-//		if(!pro.getPro_profile().equals("") || pro.getPro_profile() != null) { 
-//			pro.setPro_profile(pro.getPro_profile().substring(20));
-//		}
 		
 		model.addAttribute("pro", pro);
 		
 		return "project/default";
 	}
 	
-	@PostMapping("submitProject")
-	public String testProject(String test, MultipartFile pro_thumbsnail) {
-//		System.out.println("ProjectVO : " + pro);
-//		System.out.println("map : " + map);
-		System.out.println("test : " + test + ", pro_thumbsnail : " + pro_thumbsnail.getOriginalFilename());
-		
-		return "";
-	}
+
 	
 	//작성 중 저장하기 버튼
 	@ResponseBody
@@ -473,7 +431,13 @@ public class ProjectController {
 	}
 	
 	
-	
+	//프로젝트 최종등록
+//	@PostMapping("submitProject")
+//	public String submitProject() {
+//		
+//		
+//		return "";
+//	}
 	
 	
 }

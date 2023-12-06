@@ -171,7 +171,7 @@ $(function() {
 			<div class="write-view-top">
 				<div class="view-top-header">
 					<div class="top-headerWarp">
-						<a href="#" class="top-headerWarp-left">
+						<a href="userProjectsCreated" class="top-headerWarp-left">
 							<i class="bi bi-arrow-left"></i><span>내가 만든 프로젝트</span>	
 						</a>
 						<h1>
@@ -180,7 +180,7 @@ $(function() {
 							</a>
 						</h1>
 						<div class="top-headerWarp-right">
-							<a href="./"><span><i class="bi bi-person-circle"></i></span></a>
+							<span class="HeaderUserProfile_ellipsis__1iBvz"><a href="user?id=${sessionScope.sId }">${sessionScope.sId } 님</a></span>
 						</div>
 					</div>	
 				</div>

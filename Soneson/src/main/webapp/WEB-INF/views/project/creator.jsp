@@ -64,7 +64,7 @@
 				for(info of infoList) {
 					console.log(info);
 					str += '<label for="accountVal' + info.fintech_use_num + '">'
-					str += '<input type="radio" id="accountVal' + info.fintech_use_num + '" class="account-radioBtn" name="creator_authInfo" value="' + info.fintech_use_num + '">'
+					str += '<input type="radio" id="accountVal' + info.fintech_use_num + '" class="account-radioBtn" name="pro_userAuth" value="' + info.fintech_use_num + '">'
 					str += 		'<div class="projectInfo-writeDIv">'
 					str += 			'<div class="creator-info">'
 					str += 				'<div class="creator-authInfo">'
@@ -243,25 +243,45 @@
 					</dd>
 				</dl>
 				<div class="projectItem-form"  id="creator-authAccountInfo">
-					<div class="projectInfo-writeDIv">
-						<div class="creator-info">
-							<div class="creator-authInfo">
-								<i class="bi bi-coin"></i>
-								<p>
-									후원금을 수령할 계좌를 등록해주세요.<br>
-									본인인증 후 계좌등록이 가능합니다.
-								</p>
+					<c:choose>
+						<c:when test="${not empty fintechInfo.access_token }">
+							<button class="authInfoBtn" type="button" onclick="authAccountCreator()">계좌 추가 등록</button>
+<%-- 									<button class="authInfoBtn" type="button" onclick="getAuthAccount('${fintechInfo.access_token}', '${fintechInfo.user_seq_no }')">계좌가져오기</button> --%>
+							<c:forEach var="auth" items="${userInfo.res_list }">
+								<label for="accountVal${auth.fintech_use_num }">
+									<input type="radio" id="accountVal${auth.fintech_use_num }" class="account-radioBtn" name="pro_userAuth" value="${auth.fintech_use_num}"<c:if test="${pro.pro_userAuth eq auth.fintech_use_num }">checked</c:if>>
+									<div class="projectInfo-writeDIv">
+										<div class="creator-info">
+											<div class="creator-authInfo">
+												<h5>
+													<i class="bi bi-coin"></i>&emsp;${auth.account_holder_name }
+												</h5>
+											</div>
+										</div>
+										<div>
+											<p>
+												${auth.bank_name }&emsp;${auth.account_num_masked }
+											</p>
+										</div>
+									</div>
+								</label>
+							</c:forEach>	
+						</c:when>
+						<c:otherwise>
+							<div class="projectInfo-writeDIv">
+								<div class="creator-info">
+									<div class="creator-authInfo">
+										<i class="bi bi-coin"></i>
+										<p>
+											후원금을 수령할 계좌를 등록해주세요.<br>
+											본인인증 후 계좌등록이 가능합니다.
+										</p>
+									</div>
+											<button class="authInfoBtn" type="button" onclick="authAccountCreator()">등록하기</button>
+								</div>
 							</div>
-							<c:choose>
-								<c:when test="${not empty fintechInfo.access_token }">
-									<button class="authInfoBtn" type="button" onclick="getAuthAccount('${fintechInfo.access_token}', '${fintechInfo.user_seq_no }')">계좌가져오기</button>
-								</c:when>
-								<c:otherwise>
-									<button class="authInfoBtn" type="button" onclick="authAccountCreator()">등록하기</button>
-								</c:otherwise>
-							</c:choose>
-						</div>
-					</div>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<!-- 등록햇을 때 예시 -->
 <!-- 				<div class="projectItem-form"> -->

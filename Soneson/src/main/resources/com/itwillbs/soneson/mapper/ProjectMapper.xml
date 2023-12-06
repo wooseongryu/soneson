@@ -17,7 +17,27 @@
 	
 	<!-- 이어쓰기 -->
 	<select id="selectProject" resultType="Project">
-		SELECT *
+		SELECT pro_code 
+			, user_id 
+			, pro_categorie 
+			, pro_title 
+			, pro_agree 
+			, pro_summary 
+			, pro_thumbsnail 
+			, pro_goal 
+			, SUBSTRING_INDEX(pro_startDt , ' ', 1) AS pro_startDt 
+			, SUBSTRING_INDEX(pro_startDt , ' ', -1) AS pro_start_time
+			, SUBSTRING_INDEX(pro_endDt , ' ', 1) AS pro_endDt 
+			, pro_content 
+			, pro_budget 
+			, pro_sch 
+			, pro_team 
+			, pro_reward 
+			, pro_notice 
+			, pro_creator 
+			, pro_profile 
+			, pro_createrInfo 
+			, pro_userAuth
 		FROM sample_pro
 		WHERE user_id = #{user_id} AND pro_code = #{pro_code}
 	</select>
@@ -79,10 +99,10 @@
 			</if>
 			, pro_goal = #{pro_goal}
 			<if test="pro_startDt != null and !pro_startDt.equals('')">
-				, pro_startDt = #{pro_startDt}
+				, pro_startDt = CONCAT(#{pro_startDt},' ', #{pro_start_time})
 			</if>
 			<if test="pro_endDt != null and !pro_endDt.equals('')">
-				, pro_endDt = #{pro_endDt}
+				, pro_endDt = CONCAT(#{pro_endDt},' ', '23:59:59')
 			</if>
 			<if test="pro_content != null and !pro_content.equals('')">
 				, pro_content = #{pro_content}

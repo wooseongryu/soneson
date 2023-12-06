@@ -62,6 +62,7 @@ public class ProjectVO {
 	private String pro_thumbsnail;
 	private String pro_goal;
 	private String pro_startDt;
+	private String pro_start_time;
 	private String pro_endDt;
 	private String pro_content;
 	private String pro_budget;

@@ -248,7 +248,7 @@
 					<div class="icon-asterisk"><i class="bi bi-asterisk"></i></div>
 				</dt>
 				<dd class="projectInfo-description">
-					시작일 오전 9시 부터 펀딩이 자동 시작됩니다.<br>
+					설정한 일시가 되면 펀딩이 자동 시작됩니다.<br>
 					펀딩 시작 전까지 날짜를 변경할 수 있습니다.
 				</dd>
 				<div class="projectInfo-notice">
@@ -272,9 +272,24 @@
 									<input type="date" class="input-date" id="start-funding" name="pro_startDt">
 								</div>
 								<div class="projectFormHalf-date">
-									<p class="tiny-title">종료일</p>
-									<input type="date" class="input-date" name="pro_endDt" id="end-funding">
+									<p class="tiny-title">시작 시간</p>
+									<select name="pro_start_time" class="select_detail">
+										<option value="09:00:00" <c:if test="${pro.pro_start_time eq '09:00:00' }">selected</c:if>>09:00</option>
+										<option value="10:00:00" <c:if test="${pro.pro_start_time eq '10:00:00' }">selected</c:if>>10:00</option>
+										<option value="11:00:00" <c:if test="${pro.pro_start_time eq '11:00:00' }">selected</c:if>>11:00</option>
+										<option value="12:00:00" <c:if test="${pro.pro_start_time eq '12:00:00' }">selected</c:if>>12:00</option>
+										<option value="13:00:00" <c:if test="${pro.pro_start_time eq '13:00:00' }">selected</c:if>>13:00</option>
+										<option value="14:00:00" <c:if test="${pro.pro_start_time eq '14:00:00' }">selected</c:if>>14:00</option>
+										<option value="15:00:00" <c:if test="${pro.pro_start_time eq '15:00:00' }">selected</c:if>>15:00</option>
+										<option value="16:00:00" <c:if test="${pro.pro_start_time eq '16:00:00' }">selected</c:if>>16:00</option>
+										<option value="17:00:00" <c:if test="${pro.pro_start_time eq '17:00:00' }">selected</c:if>>17:00</option>
+										<option value="18:00:00" <c:if test="${pro.pro_start_time eq '18:00:00' }">selected</c:if>>18:00</option>
+									</select>
 								</div>
+							</div>
+							<div class="projectFormHalf-date">
+								<p class="tiny-title">종료일</p>
+								<input type="date" class="input-date" name="pro_endDt" id="end-funding">
 							</div>
 							<div class="projectFormHalf-date">
 								<p class="tiny-title">펀딩기간</p>
