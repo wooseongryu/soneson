@@ -60,6 +60,7 @@ public class FintechController {
 		// 2.1.2. 토큰발급 API 
 		ResponseTokenVO responseToken = bankApiClient.requestToken(authResponse);
 		
+		
 		if(responseToken.getAccess_token() == null) {
 			model.addAttribute("msg", "토큰 발급 실패! 다시 인증하세요!");
 			model.addAttribute("isClose", true); // 현재 창(서브 윈도우) 닫기

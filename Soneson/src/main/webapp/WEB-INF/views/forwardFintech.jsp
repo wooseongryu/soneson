@@ -11,6 +11,7 @@
 	alert("${msg}");
 	
 	if("${isClose}" == "true") { //true "" 안하면 문자열 존재하기만 해도 무조건 true가 됨
+		debugger;
 		window.close();
 		
 		window.opener.${functionName}();
