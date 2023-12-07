@@ -73,7 +73,7 @@
 				<div id="collapseUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" href="adminSelectUser">회원정보관리</a>
-						<a class="collapse-item" href="adminSelectUserPay">회원결제관리</a>
+<!-- 						<a class="collapse-item" href="adminSelectUserPay">회원결제관리</a> -->
 						<a class="collapse-item" href="adminSelectReport">신고회원관리</a>
 					</div>
 				</div>
@@ -90,6 +90,20 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" href="adminSelectMainTab">메인 탭 관리</a>
 						<a class="collapse-item" href="adminSelectMainCate">메인 카테고리 관리</a>
+					</div>
+				</div>
+			</li>
+            <!-- 프로젝트 심사 / 반려 / 승인 -->
+            <li class="nav-item">
+            	<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseExam"
+            		aria-expanded="true" aria-controls=collapseReview>
+            		<i class="fas fa-fw fa-comment-dots"></i>
+            		<span>프로젝트 심사</span>
+            	</a>
+				<div id="collapseExam" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<a class="collapse-item" href="adminExamWaitProject">심사대기중인 프로젝트</a>
+						<a class="collapse-item" href="adminRejectProject">반려된 프로젝트</a>
 					</div>
 				</div>
 			</li>
@@ -111,19 +125,6 @@
 				</div>
 			</li>
             
-            <!-- 커뮤니티 관리 (펀딩 후기 등등) -->
-            <li class="nav-item">
-            	<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReview"
-            		aria-expanded="true" aria-controls=collapseReview>
-            		<i class="fas fa-fw fa-comment-dots"></i>
-            		<span>펀딩후기관리</span>
-            	</a>
-				<div id="collapseReview" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="adminSelectReview">펀딩후기관리</a>
-					</div>
-				</div>
-			</li>
 
             <!-- 정산 관리 (프로젝트 마감 후 결제, 카드사 결제 등등) -->
             <li class="nav-item">
