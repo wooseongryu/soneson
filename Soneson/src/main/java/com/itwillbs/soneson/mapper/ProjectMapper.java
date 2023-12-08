@@ -42,6 +42,8 @@ public interface ProjectMapper {
 
 	List<Map<String, Object>> getTabList();
 
+	List<Map<String, Object>> getTabProjectList(Map<String, String> map);
+
 
 
 	
