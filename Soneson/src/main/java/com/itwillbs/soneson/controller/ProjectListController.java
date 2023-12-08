@@ -30,6 +30,7 @@ public class ProjectListController {
 		
 		model.addAttribute("projectList", projectList);
 		model.addAttribute("projectCount", projectCount);
+		model.addAttribute("listType", listType);
 		
 		return "list/popular";
 	}

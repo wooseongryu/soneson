@@ -243,7 +243,7 @@
 </sql>
 
 
-	<select id="getTapProjectList" resultType="map">
+	<select id="getTabProjectList" resultType="map">
 		SELECT *
 		FROM 
 			(SELECT
@@ -361,11 +361,11 @@
 	</select>
 	<!-- 핀테크 토큰 조회 -->
 	<select id="selectToken" resultType="map">
-		SELECT access_token , user_seq_no  
-		FROM `user` u 
-		JOIN fintech_user_info fui 
-		ON u.user_id = fui.id 
-		WHERE id = #{sId}
+<!-- 		SELECT access_token , user_seq_no   -->
+<!-- 		FROM `user` u  -->
+<!-- 		JOIN fintech_user_info fui  -->
+<!-- 		ON u.user_id = fui.id  -->
+<!-- 		WHERE id = #{sId} -->
 	</select>
 	
 	
