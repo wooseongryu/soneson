@@ -121,7 +121,6 @@ public class UserController {
 		return "1";
 	}
 	
-	// TODO
 	// 유저 설정 프로필 사진 수정
 	@ResponseBody
 	@PostMapping("uploadUserProfilePic")
@@ -129,6 +128,10 @@ public class UserController {
 		System.out.println("UserController - uploadUserProfilePic()");
 		
 		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			return gson.toJson(map);
+		}
+		map.put("isLogin", "true");
 		
 		user.setUser_id(sId);
 		

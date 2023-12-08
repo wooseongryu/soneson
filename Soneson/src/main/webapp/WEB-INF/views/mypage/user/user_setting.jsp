@@ -73,7 +73,6 @@
                         + '  		<div class="user__setting__text" id="user_profile_pic">                                                                '
 	                    + '      		<h6>프로필 사진</h6>                                                                                        '
 	                    + '      		<div class="profileImgDiv">                                                                                 '
-// 						+ ' 				<img alt="" src="${pageContext.request.contextPath }/resources/user/alarm.jpg" class="profileImg">      '
 						+ ' 				<img alt="" src="' + picture + '" class="profileImg">      '
 						+ ' 			</div>                                                                                                      '
 	                    + '      		<div class="user_follow_btn">                                                                               '
@@ -114,15 +113,12 @@
     		});
     	}
     	
-    	// TODO
     	function updateUserProfilePic() {
     		$.ajax({
     			type: 'post',
     			url: 'settingUpdateUserProfilePic',
     			dataType: 'json',
     			success: function(resp) {
-    				console.log(sessionStorage.getItem('sId'));
-    				
     				$("#user_profile_pic").children().remove();
     				
     				$("#user_profile_pic").append(
@@ -180,6 +176,12 @@
     				        cache: false,         
     				        dataType: 'json',
     				        success: function (resp) { 
+    				        	if (!resp.isLogin) {
+    		    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    		    					location.href="login";
+    		    					return;
+    		    				}
+    				        	
     				        	picture = "${pageContext.request.contextPath }/resources/upload/" + resp.userVO.user_picture;
 								
     				        	$("#user_profile_pic").children().remove();
