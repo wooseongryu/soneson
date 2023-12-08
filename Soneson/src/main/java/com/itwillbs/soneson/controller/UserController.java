@@ -1,7 +1,15 @@
 package com.itwillbs.soneson.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.itwillbs.soneson.service.UserService;
@@ -112,15 +121,64 @@ public class UserController {
 		return "1";
 	}
 	
-	// 유저 설정 프로필 사진 업로드
+	// TODO
+	// 유저 설정 프로필 사진 수정
 	@ResponseBody
 	@PostMapping("uploadUserProfilePic")
-	public String uploadUserProfilePic(UserVO user) {
+	public String uploadUserProfilePic(UserVO user, HttpSession session, Map<String, String> map) {
 		System.out.println("UserController - uploadUserProfilePic()");
 		
-		System.out.println(")))" + user);
+		String sId = (String)session.getAttribute("sId");
 		
-		return "1";
+		user.setUser_id(sId);
+		
+		String uploadDir = "/resources/upload"; // 가상의 경로
+		String saveDir = session.getServletContext().getRealPath(uploadDir); // 실제 업로드 경로
+		String subDir = ""; // 서브디렉토리명을 저장할 변수 선언(날짜로 구분)
+		
+		System.out.println(saveDir);
+		
+		try {
+			LocalDate now = LocalDate.now();
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			subDir = now.format(dtf);
+			saveDir += "/" + subDir;
+			Path path = Paths.get(saveDir);
+			Files.createDirectories(path);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		MultipartFile mFile_picture = user.getProfilePic();
+		
+		String uuid = UUID.randomUUID().toString();
+		user.setUser_picture("");
+		
+		String fileName_picture = uuid.substring(0, 8) + "_" + mFile_picture.getOriginalFilename();
+		
+		if(!mFile_picture.getOriginalFilename().equals("")) {
+			user.setUser_picture(subDir + "/" + fileName_picture);
+		}
+		
+		int updateCount = userService.updateUserProfilePic(user);
+		
+		if (updateCount == 0) {
+			return gson.toJson(map);
+		}
+		map.put("isSuccess", "true");
+		
+		// 실제폴더에 저장.
+		try {
+			if(!mFile_picture.getOriginalFilename().equals("")) {
+				mFile_picture.transferTo(new File(saveDir, fileName_picture));
+			}
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return gson.toJson(map);
 	}
 	
 	// 유저 설정 프로필 사진 변경 취소

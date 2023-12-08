@@ -265,7 +265,20 @@ public class UserService {
 		
 		return mapper.deleteUserAddress(address_idx);
 	}
-	
+
+	// 유저 설정 프로필사진 등록 유무 확인
+	public boolean selectIsUserProfilePicExist(String sId) {
+		System.out.println("UserService - selectIsUserProfilePicExist()");
+		
+		return mapper.selectIsUserProfilePicExist(sId);
+	}
+
+	// 유저 설정 프로필 사진 업로드
+	public int updateUserProfilePic(UserVO user) {
+		System.out.println("UserService - updateUserProfilePic()");
+		
+		return mapper.updateUserProfilePic(user);
+	}
 	
 }
 

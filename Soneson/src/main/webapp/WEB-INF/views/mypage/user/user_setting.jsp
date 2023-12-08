@@ -130,7 +130,6 @@
 						+ ' 	<img alt="" src="' + picture + '" id="profileImg" class="profileImg">        '
 						+ ' </div>                                                                                                                        '
                         + '                                                                                                                               '
-//                     	+ '	<form action="uploadUserProfilePic" method="post" enctype="multipart/form-data">'
                     	+ '	<form method="post" enctype="multipart/form-data" id="pictureUploadForm">'
 						+ '     <div class="profile-right">                                                                                                   '
 						+ '     	<div class="uploadDiv">                                                                                                   '
@@ -161,10 +160,11 @@
     	    		    setImageFromFile(this);
     	    		});
     				
-    				$("#pictureSubmitBtn").click(function (event) {         
+    				$("#pictureSubmitBtn").click(function(event) {         
     					//preventDefault 는 기본으로 정의된 이벤트를 작동하지 못하게 하는 메서드이다. 
     					//submit을 막는다. 
     					event.preventDefault();
+    					
     				    let form = $('#pictureUploadForm')[0];  	    
     				    let data = new FormData(form);  	   
     				    
@@ -185,14 +185,13 @@
     				        }     
     					});  
     				});
+    				
     			},
     			error: function() {
     				alert("에러!");
     			}
     		});
     	}
-    	
-    	
     	
     	function cancelUpdateUserProfilePic() {
     		$.ajax({
