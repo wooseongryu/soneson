@@ -55,6 +55,11 @@ public class ProjectService {
 		return mapper.insertProject(pro_code);
 	}
 	
+	//임시테이블에서 삭제
+	public int deleteProject(int pro_code) {
+		return mapper.deleteProject(pro_code);
+	}
+	
 
 
 	

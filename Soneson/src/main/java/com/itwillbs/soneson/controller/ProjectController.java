@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -88,30 +89,24 @@ public class ProjectController {
 		pro = service.selectProject(map);
 		List<Map<String, String>> itemList = itemService.selectItem(map);
 		List<Map<String, String>> rewardList = itemService.selectReward(map);
-		Map<String, String> fintechInfo = service.selectToken(sId);
-		System.out.println(fintechInfo);
+		Map<String, String> fintechInfo = new HashMap<String, String>();
+		fintechInfo = service.selectToken(sId);
+		System.out.println("fintechInfo>>>>>>" + fintechInfo);
 		System.out.println(">>>>>>>>>>>>>>>>>>>>리워드<<<<<<<<<<<<" + rewardList);
 		
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>pro"+ pro);
-		
-		if(fintechInfo.get("access_token") != null) {
+		//객체자체가 null인데 get으로 가져오려고 해서 404뜸
+		if(!(fintechInfo == null) &&fintechInfo.get("access_token") != null) {
 			System.out.println("토큰있음!!!!!!!!!!!!!!!!!!");
 			ResponseUserInfoVO userInfo = bankApiClient.requestUserInfo(fintechInfo);
 			model.addAttribute("userInfo", userInfo);
 			System.out.println(">>>>>><<<<<<" + userInfo);
-		}
-//		if(pro.getPro_startDt() != null) {
-//			pro.setPro_startDt(pro.getPro_startDt().substring(0,9));
-//			pro.setPro_start_time(sId);
-//		}
-//		System.out.println("시작날짜: " + pro.getPro_startDt());
-
-		
-		
+		} 
+		System.out.println("fintechInfo>>>>>>" + fintechInfo);
+		model.addAttribute("fintechInfo", fintechInfo);
 		model.addAttribute("pro", pro);
 		model.addAttribute("itemList", itemList);
 		model.addAttribute("rewardList", rewardList);
-		model.addAttribute("fintechInfo", fintechInfo);
 		
 		return "project/default";
 	}
@@ -524,14 +519,27 @@ public class ProjectController {
 		int updateCount = service.updateProject(pro);	//최종저장
 		if(updateCount > 0) {
 			
-		int insertCount = service.insertProject(pro.getPro_code());
+			int insertCount = service.insertProject(pro.getPro_code());
+			if(insertCount > 0) {
+				//창작자 핀테크번호 저장하기
+				
+				//임시테이블에서 삭제하기
+				int deleteCount = service.deleteProject(pro.getPro_code());
+				
+				
+				model.addAttribute("msg", "프로젝트가 등록되었습니다. 심사여부는 약 7일 정도 소요됩니다.");
+				model.addAttribute("targetURL", "userProjectsCreated");
+				return "forward";
+			} else {
+				model.addAttribute("msg", "잠시 후 다시 시도해 주세요.");
+				return "fail_back";
+			}
 			
 		} else {
 			model.addAttribute("msg", "잠시 후 다시 시도해 주세요.");
 			return "fail_back";
 		}
 		
-		return "";
 	}
 	
 	

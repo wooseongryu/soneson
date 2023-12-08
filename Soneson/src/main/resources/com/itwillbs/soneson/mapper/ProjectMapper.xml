@@ -361,12 +361,43 @@
 	</select>
 	<!-- 핀테크 토큰 조회 -->
 	<select id="selectToken" resultType="map">
-<!-- 		SELECT access_token , user_seq_no   -->
-<!-- 		FROM `user` u  -->
-<!-- 		JOIN fintech_user_info fui  -->
-<!-- 		ON u.user_id = fui.id  -->
-<!-- 		WHERE id = #{sId} -->
+		SELECT  u.user_id, access_token , user_seq_no  
+		FROM `user` u 
+		JOIN fintech_user_info fui 
+		ON u.user_id = fui.id 
+		WHERE id = #{sId}
 	</select>
 	
+		<!-- 프로젝트 최종등록 -->
+	<insert id="insertProject">
+		INSERT INTO project 
+		VALUES( 
+			(SELECT pro_code			FROM sample_pro WHERE pro_code = #{pro_code})
+			, (SELECT pro_title			FROM sample_pro WHERE pro_code = #{pro_code})
+			, (SELECT pro_summary		FROM sample_pro WHERE pro_code = #{pro_code})
+			, (SELECT pro_categorie		FROM sample_pro WHERE pro_code = #{pro_code})
+			, (SELECT pro_creator		FROM sample_pro WHERE pro_code = #{pro_code})
+			, (SELECT pro_profile		FROM sample_pro WHERE pro_code = #{pro_code})
+			, (SELECT pro_createrInfo	FROM sample_pro WHERE pro_code = #{pro_code})
+			, (SELECT pro_thumbsnail	FROM sample_pro WHERE pro_code = #{pro_code})
+			, (SELECT pro_content		FROM sample_pro WHERE pro_code = #{pro_code})
+			, (SELECT pro_budget		FROM sample_pro WHERE pro_code = #{pro_code})
+			, (SELECT pro_sch			FROM sample_pro WHERE pro_code = #{pro_code})
+			, (SELECT pro_team			FROM sample_pro WHERE pro_code = #{pro_code})
+			, (SELECT pro_reward		FROM sample_pro WHERE pro_code = #{pro_code})
+			, (SELECT pro_startDt		FROM sample_pro WHERE pro_code = #{pro_code})
+			, (SELECT pro_EndDt			FROM sample_pro WHERE pro_code = #{pro_code})
+			, (SELECT CAST(REPLACE(pro_goal, ',', '') AS UNSIGNED)	FROM sample_pro WHERE pro_code = #{pro_code})
+			, now()
+			, '심사대기중'
+		);
+	
+	</insert>
+	
+	<delete id="deleteProject">
+		DELETE FROM sample_pro
+		WHERE pro_code = #{pro_code}
+	
+	</delete>
 	
 </mapper>
