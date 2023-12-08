@@ -95,6 +95,15 @@ public class QnaController {
 		
 		return "soneson/event_qna/qna_detail";
 	}
+
+	// 자주 묻는 질문 상세글 보기
+	@GetMapping("oneToOneQna")
+	public String oneToOneQna(String qnaCate_idx , Model model) {
+		
+		
+		
+		return "soneson/event_qna/one_to_one_qna";
+	}
 	
 	
 }
