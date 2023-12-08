@@ -54,8 +54,8 @@ public class AdminController {
  * 1. 관리자 마이페이지
  * 2. 회원 관리
  * 3. 메인페이지 관리
- * 4. 펀딩 프로젝트 관리
- * 5. 펀딩후기관리
+ * 4. 프로젝트 심사 / 반려
+ * 5. 펀딩 프로젝트 관리
  * 6. 정산관리
  * 7. 게시판관리
  * ===================================================================
@@ -128,7 +128,6 @@ public class AdminController {
 		
 		// 최근 일주일 일별 누적 금액
 		List<Map<Object, Object>> AdminSelectMyBarChart = adminService.selectMyBarChart();
-		
 		
 		return AdminSelectMyBarChart;
 	}
@@ -286,7 +285,28 @@ public class AdminController {
 	
 
 /*====================================================================
- * 4. 펀딩 프로젝트 관리
+ * 4. 프로젝트 심사
+ * ===================================================================
+ * */
+	
+
+	@GetMapping("adminExamWaitProject")
+	public String adminExamWaitProject() {
+		System.out.println("AdminController - adminExamWaitProject");
+		return "mypage/admin/admin_examWait_project";
+	}
+	
+	@GetMapping("adminRejectProject")
+	public String adminRejectProject() {
+		System.out.println("AdminController - adminRejectProject");
+		return "mypage/admin/admin_reject_project";
+	}
+
+	
+	
+	
+/*====================================================================
+ * 5. 펀딩 프로젝트 관리
  * ===================================================================
  * */
 

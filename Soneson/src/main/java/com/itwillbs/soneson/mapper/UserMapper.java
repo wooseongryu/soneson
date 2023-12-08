@@ -130,6 +130,15 @@ public interface UserMapper {
 
 	// 유저 설정 계정 배송지 삭제
 	int deleteUserAddress(int address_idx);
+
+	// 유저 설정 프로필사진 등록 유무 확인
+	boolean selectIsUserProfilePicExist(String sId);
+
+	// 유저 설정 프로필 사진 업로드
+	int updateUserProfilePic(UserVO user);
+
+	// 유저 설정 프로필 수정 전 기존 파일 경로 가져오기
+	String selectUserPicPath(String sId);
 }
 
 

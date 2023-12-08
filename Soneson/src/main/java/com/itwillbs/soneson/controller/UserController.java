@@ -1,7 +1,15 @@
 package com.itwillbs.soneson.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +22,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.itwillbs.soneson.service.UserService;
@@ -110,6 +119,82 @@ public class UserController {
 	public String settingUpdateUserProfilePic() {
 		System.out.println("UserController - settingUpdateUserProfilePic()");
 		return "1";
+	}
+	
+	// 유저 설정 프로필 사진 수정
+	@ResponseBody
+	@PostMapping("uploadUserProfilePic")
+	public String uploadUserProfilePic(UserVO user, HttpSession session, Map<String, String> map) {
+		System.out.println("UserController - uploadUserProfilePic()");
+		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			return gson.toJson(map);
+		}
+		map.put("isLogin", "true");
+		
+		user.setUser_id(sId);
+		
+		String uploadDir = "/resources/upload"; // 가상의 경로
+		String saveDir = session.getServletContext().getRealPath(uploadDir); // 실제 업로드 경로
+		String subDir = ""; // 서브디렉토리명을 저장할 변수 선언(날짜로 구분)
+		
+		System.out.println(saveDir);
+		
+		try {
+			LocalDate now = LocalDate.now();
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			subDir = now.format(dtf);
+			saveDir += "/" + subDir;
+			Path path = Paths.get(saveDir);
+			Files.createDirectories(path);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		MultipartFile mFile_picture = user.getProfilePic();
+		
+		String uuid = UUID.randomUUID().toString();
+		user.setUser_picture("");
+		
+		String fileName_picture = uuid.substring(0, 8) + "_" + mFile_picture.getOriginalFilename();
+		
+		if(!mFile_picture.getOriginalFilename().equals("")) {
+			user.setUser_picture(subDir + "/" + fileName_picture);
+		}
+		
+		// 수정전 기존의 파일경로 가지고 있어야됨.
+		String tmpUserPicPath = userService.selectUserPicPath(sId);
+		
+		int updateCount = userService.updateUserProfilePic(user);
+		
+		if (updateCount == 0) {
+			return gson.toJson(map);
+		}
+		map.put("isSuccess", "true");
+		
+		// 실제폴더에 저장.
+		try {
+			if(!mFile_picture.getOriginalFilename().equals("")) {
+				mFile_picture.transferTo(new File(saveDir, fileName_picture));
+			}
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		// 수정시 기존의 파일 삭제.
+		String uploadPath = "resources/upload";
+		try {
+			String realPath = session.getServletContext().getRealPath(uploadPath);
+			Path path = Paths.get(realPath + "/" + tmpUserPicPath);
+			Files.deleteIfExists(path);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return gson.toJson(map);
 	}
 	
 	// 유저 설정 프로필 사진 변경 취소
@@ -475,7 +560,19 @@ public class UserController {
 		return gson.toJson(map);
 	}
 		
+	// 유저 설정 로그인 유무 확인
+	@ResponseBody
+	@PostMapping("checkSessionAlive")
+	public Boolean checkSessionAlive(HttpSession session, Map<String, String> map) {
+		System.out.println("UserController - checkSessionAlive()");
 		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			return false; 
+		}
+		
+		return true;
+	}
 		
 	/*====================================================================
 	 * 마이페이지에서 세부 페이지로 이동

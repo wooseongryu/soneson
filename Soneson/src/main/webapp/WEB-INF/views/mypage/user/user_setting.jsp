@@ -43,6 +43,8 @@
     	let user_name = "";
     	
     	function userProfile(id) {
+    		checkSessionAlive();
+    		
     		$.ajax({
     			type: 'post',
     			url: 'settingUserProfile',
@@ -59,6 +61,8 @@
     				picture = resp.user_picture;
     				if (picture == "" || picture == null) {
     					picture = "${pageContext.request.contextPath }/resources/user/prifile.png";
+    				} else {
+	    				picture = "${pageContext.request.contextPath }/resources/upload/" + resp.user_picture;
     				}
     				
     				user_name = resp.user_name;
@@ -69,7 +73,6 @@
                         + '  		<div class="user__setting__text" id="user_profile_pic">                                                                '
 	                    + '      		<h6>프로필 사진</h6>                                                                                        '
 	                    + '      		<div class="profileImgDiv">                                                                                 '
-// 						+ ' 				<img alt="" src="${pageContext.request.contextPath }/resources/user/alarm.jpg" class="profileImg">      '
 						+ ' 				<img alt="" src="' + picture + '" class="profileImg">      '
 						+ ' 			</div>                                                                                                      '
 	                    + '      		<div class="user_follow_btn">                                                                               '
@@ -112,12 +115,10 @@
     	
     	function updateUserProfilePic() {
     		$.ajax({
-//     			type: 'post',
-//     			url: 'settingUpdateUserProfilePic',
-//     			dataType: 'json',
+    			type: 'post',
+    			url: 'settingUpdateUserProfilePic',
+    			dataType: 'json',
     			success: function(resp) {
-    				console.log(sessionStorage.getItem('sId'));
-    				
     				$("#user_profile_pic").children().remove();
     				
     				$("#user_profile_pic").append(
@@ -127,33 +128,80 @@
 						+ ' 	<img alt="" src="' + picture + '" id="profileImg" class="profileImg">        '
 						+ ' </div>                                                                                                                        '
                         + '                                                                                                                               '
-						+ ' <div class="profile-right">                                                                                                   '
-						+ ' 	<div class="uploadDiv">                                                                                                   '
-						+ ' 		<div class="uploadImage">                                                                                             '
-						+ ' 			<div>                                                                                                             '
-						+ ' 				<span><i class="bi bi-upload"></i>이미지 업로드</span>                                                        '
-						+ ' 				<input type="file" accept=".jpg, .jpeg, .png" name="profile_path">                                            '
-						+ ' 			</div>                                                                                                            '
-						+ ' 		</div>                                                                                                                '
-						+ ' 	</div>                                                                                                                    '
-						+ ' 	<p>                                                                                                                       '
-						+ ' 		파일 형식은 jpg 또는 png 또는 gif로,<br>                                                                              '
-						+ ' 		사이즈는 가로 200px, 세로 200px 이상으로 올려주세요.                                                                  '
-						+ ' 	</p>                                                                                                                      '
-						+ ' </div>                                                                                                                        '
-						+ ' 	                                                                                                                          '
-                		+ ' <div class=user_cancel_btn>                                                                                                   '
-                		+ ' 	<a onclick="cancelUpdateUserProfilePic()">취소</a>                                                                                                    '
-                		+ ' </div>                                                                                                                        '
-	                    + '                                                                                                                               '
-                    	+ ' 	<div class="user_follow_btn">                                                                                             '
-                    	+ ' 		<a onclick="">변경</a>                                                                                                '
-                    	+ ' 	</div>                                                                                                                    '
+                    	+ '	<form method="post" enctype="multipart/form-data" id="pictureUploadForm">'
+						+ '     <div class="profile-right">                                                                                                   '
+						+ '     	<div class="uploadDiv">                                                                                                   '
+						+ '     		<div class="uploadImage">                                                                                             '
+						+ '     			<div>                                                                                                             '
+						+ '     				<span><i class="bi bi-upload"></i>이미지 업로드</span>                                                        '
+						+ '     				<input type="file" accept=".jpg, .jpeg, .png" name="profilePic">                                            '
+						+ '     			</div>                                                                                                            '
+						+ '     		</div>                                                                                                                '
+						+ '     	</div>                                                                                                                    '
+						+ '     	<p>                                                                                                                       '
+						+ '     		파일 형식은 jpg 또는 png 또는 gif로,<br>                                                                              '
+						+ '     		사이즈는 가로 200px, 세로 200px 이상으로 올려주세요.                                                                  '
+						+ '     	</p>                                                                                                                      '
+						+ '     </div>                                                                                                                        '
+						+ '     	                                                                                                                          '
+                		+ '     <div class=user_cancel_btn>                                                                                                   '
+                		+ '     	<a onclick="cancelUpdateUserProfilePic()">취소</a>                                                                                                    '
+                		+ '     </div>                                                                                                                        '
+	                    + '                                                                                                                                   '
+                    	+ '     <div class="user_follow_btn">                                                                                             '
+                    	+ '     	<input id="pictureSubmitBtn" type="submit" value="변경">                                                                                                '
+                    	+ '     </div>                                                                                                                    '
+                    	+ '	</form>'
     				);
     				
-    				$('input[name="profile_path"]').change(function(){
+    				$('input[name="profilePic"]').change(function(){
     	    		    setImageFromFile(this);
     	    		});
+    				
+    				$("#pictureSubmitBtn").click(function(event) {         
+    					//preventDefault 는 기본으로 정의된 이벤트를 작동하지 못하게 하는 메서드이다. 
+    					//submit을 막는다. 
+    					event.preventDefault();
+    					
+    				    let form = $('#pictureUploadForm')[0];  	    
+    				    let data = new FormData(form);  	   
+    				    
+    				    $.ajax({             
+    				    	type: "POST",          
+    				        enctype: 'multipart/form-data',  
+    				        url: "uploadUserProfilePic",        
+    				        data: data,          
+    				        processData: false,    
+    				        contentType: false,      
+    				        cache: false,         
+    				        dataType: 'json',
+    				        success: function (resp) { 
+    				        	if (!resp.isLogin) {
+    		    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    		    					location.href="login";
+    		    					return;
+    		    				}
+    				        	
+    				        	picture = "${pageContext.request.contextPath }/resources/upload/" + resp.userVO.user_picture;
+								
+    				        	$("#user_profile_pic").children().remove();
+    				        	
+    				        	$("#user_profile_pic").append(
+	    				        	  ' <h6>프로필 사진</h6>                                              '
+	    		                    + ' <div class="profileImgDiv">                                       '
+	    							+ ' 	<img alt="" src="' + picture + '" class="profileImg">         '
+	    							+ ' </div>                                                            '
+	    		                    + ' <div class="user_follow_btn">                                     '
+	    		                    + ' 	<a onclick="updateUserProfilePic()">변경</a>                  '
+	    		                    + ' </div> 															  '
+    				        	);
+    				        },          
+    				        error: function (error) {  
+    				        	alert("프로필사진 등록 실패!");
+    				        }     
+    					});  
+    				});
+    				
     			},
     			error: function() {
     				alert("에러!");
@@ -167,7 +215,6 @@
     			url: 'settingCancelUpdateUserProfilePic',
     			dataType: 'json',
     			success: function(resp) {
-    				console.log("test");
     				$("#user_profile_pic").children().remove();
     				
     				$("#user_profile_pic").append(
@@ -404,6 +451,8 @@
     	let kakao_link = "onclick='disconnectKakao()'";
     	
     	function userAccount(id) {
+    		checkSessionAlive();
+    		
     		$.ajax({
     			type: 'post',
     			url: 'settingUserAccount',
@@ -949,37 +998,89 @@
     		});
     	}
     	
+    	//계좌등록
+    	function authAccountCreator() {
+    		let requestUri = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
+    			+ "response_type=code"
+    			+ "&client_id=4066d795-aa6e-4720-9383-931d1f60d1a9"
+    			+ "&redirect_uri=http://localhost:8081/soneson/callback"
+//     			+ "&scope=login inquiry transfer oob"
+    			+ "&scope=login inquiry transfer"
+    			+ "&state=12345678901234567890123456789012"
+    			+ "&auth_type=0";
+    		
+    		window.open(requestUri, "authWindow", "width=600, height=800");
+    	}
+    	
+    	function getAuthAccount() {
+    		let access_token = "${sessionScope.access_token}";
+			let user_seq_no = "${sessionScope.user_seq_no}";
+			
+			let infoList = "";
+			
+    		$.ajax({
+    			type: "GET",
+    			url: "selectAccountInfo",
+    			async: false,
+    			data: {
+    				"access_token": access_token,
+    				"user_seq_no": user_seq_no
+    			},
+    			dataType: "json",
+    			success: function(data) {
+    				infoList = data.res_list;
+    			},
+    			error:function(request, status, error){
+    				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    			}
+    		});
+    		
+    		return infoList;
+    	}
+    	
     	function userPayment(id) {
+    		checkSessionAlive();
+    		
     		$.ajax({
     			type: 'post',
     			url: 'settingUserPayment',
     			dataType: 'json',
     			success: function(resp) {
     				reset_screen(id);
+    				
+    				let accountStr = "";
+    				
+    				let infoList = getAuthAccount();
+    				
+    				if (infoList != null && infoList != "") {
+   						for(info of infoList) {
+   							accountStr += 
+	    						  ' <div class="anime__details__review">                                                   '
+	    						+ '  	<div class="anime__review__item">                                                  '
+	                            + '  		<div class="user__setting__text">                                              '
+	    	                    + '      		<h6>' + info.account_holder_name + '</h6>                                  '
+	    	                    + '      		<div class="user_follow_btn">                                              '
+// 	    	                    + '      			<a onclick="">삭제</a>                                                 '
+	    	                    + '      			<p style="margin-top: 10px">' + info.bank_name + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + info.account_num_masked + '</p>'
+	    	                    + '      		</div>                                                                     '
+	    						+ '  		</div>                                                                         '
+	                        	+ '  	</div>                                                                             '
+	                    	 	+ ' </div>                                                                                 ';
+   						}
+    				}
 
 					$("#user_content").append(
 						  ' <div class="anime__details__review">                                                   '
 						+ '  	<div class="anime__review__item">                                                  '
                         + '  		<div class="user__setting__head">                                              '
-	                    + '      		<h6>등록된 결제수단</h6>                                                   '
+	                    + '      		<h6>등록된 결제계좌</h6>                                                   '
 	                    + '      		<div class="user_follow_btn">                                              '
-	                    + '      			<a onclick="" style="bottom: 7px">+ 추가</a>                           '
+	                    + '      			<a onclick="authAccountCreator()" style="bottom: 7px">+ 추가</a>                           '
 	                    + '      		</div>                                                                     '
 						+ '  		</div>                                                                         '
                     	+ '  	</div>                                                                             '
                 	 	+ ' </div>                                                                                 '
-                	 	+ '                                                                                        '
-                	 	+ ' <div class="anime__details__review">                                                   '
-						+ '  	<div class="anime__review__item">                                                  '
-                        + '  		<div class="user__setting__text">                                              '
-	                    + '      		<h6>비씨카드</h6>                                                          '
-	                    + '      		<div class="user_follow_btn">                                              '
-	                    + '      			<a onclick="">삭제</a>                                                 '
-	                    + '      			<p style="margin-top: 10px">************ 4776</p>                      '
-	                    + '      		</div>                                                                     '
-						+ '  		</div>                                                                         '
-                    	+ '  	</div>                                                                             '
-                	 	+ ' </div>                                                                                 '
+                	 	+ accountStr
 					);
     			},
     			error: function() {
@@ -987,6 +1088,7 @@
     			}
     		});
     	}
+    	
     	
     	let reciver = "";
 		let zonecode = "";
@@ -1251,6 +1353,10 @@
     	}
     
     	$(function() {
+    		// 나중에 사용.
+//     		let sId = "${sessionScope.sId}";
+//     		alert(sId);
+    		
     		let urlParams = new URLSearchParams(window.location.search);
     		
     		if (urlParams.has('kakao')) {
@@ -1289,6 +1395,24 @@
     	        }
     	    }).open();
     	}
+    	
+    	function checkSessionAlive() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'checkSessionAlive',
+    			dataType: 'json',
+    			success: function(isSessionAlive) {
+    				if (!isSessionAlive) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+    	}
     </script>
 </head>
 
@@ -1311,7 +1435,7 @@
 			</div>
 		</div>
 	</section>
-
+	
     <!-- Product Section Begin -->
     <section class="product-page spad">
         <div class="container">
@@ -1329,14 +1453,14 @@
 											<h5 onclick="userAccount('topUserAccount')">계정</h5>
 										</div>
 										<div class="user_top_cate" id="topUserPayment">
-											<h5 onclick="userPayment('topUserPayment')">결제수단</h5>
+											<h5 onclick="userPayment('topUserPayment')">결제계좌</h5>
 										</div>
 										<div class="user_top_cate" id="topUserAddress">	
 											<h5 onclick="userAddress('topUserAddress')">배송지</h5>
 										</div>
-										<div class="user_top_cate" id="topUserAlarm">	
-											<h5 onclick="userAlarm('topUserAlarm')">알림</h5>
-										</div>
+<!-- 										<div class="user_top_cate" id="topUserAlarm">	 -->
+<!-- 											<h5 onclick="userAlarm('topUserAlarm')">알림</h5> -->
+<!-- 										</div> -->
                                     </div>
                                 </div>
                             </div>
