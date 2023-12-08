@@ -10,6 +10,7 @@ public class ChatController {
 	public String chatting() {
 		System.out.println("ChatController - chatting()");
 		return "mypage/chat/chatting";
+//		return "mypage/chat/main";
 		
 		
 	}
