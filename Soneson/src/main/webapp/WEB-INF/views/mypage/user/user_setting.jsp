@@ -949,13 +949,77 @@
     		});
     	}
     	
+    	//계좌등록
+    	function authAccountCreator() {
+    		let requestUri = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
+    			+ "response_type=code"
+    			+ "&client_id=4066d795-aa6e-4720-9383-931d1f60d1a9"
+    			+ "&redirect_uri=http://localhost:8081/soneson/callback"
+//     			+ "&scope=login inquiry transfer oob"
+    			+ "&scope=login inquiry transfer"
+    			+ "&state=12345678901234567890123456789012"
+    			+ "&auth_type=0";
+    		
+    		window.open(requestUri, "authWindow", "width=600, height=800");
+    	}
+    	
+    	function getAuthAccount() {
+    		let access_token = "${sessionScope.access_token}";
+			let user_seq_no = "${sessionScope.user_seq_no}";
+			
+			let infoList = "";
+			
+    		$.ajax({
+    			type: "GET",
+    			url: "selectAccountInfo",
+    			async: false,
+    			data: {
+    				"access_token": access_token,
+    				"user_seq_no": user_seq_no
+    			},
+    			dataType: "json",
+    			success: function(data) {
+    				infoList = data.res_list;
+    			},
+    			error:function(request, status, error){
+    				console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    			}
+    		});
+    		
+    		return infoList;
+    	}
+    	
+    	// TODO
     	function userPayment(id) {
+    		checkSessionAlive();
+    		
     		$.ajax({
     			type: 'post',
     			url: 'settingUserPayment',
     			dataType: 'json',
     			success: function(resp) {
     				reset_screen(id);
+    				
+    				let accountStr = "";
+    				
+    				let infoList = getAuthAccount();
+    				
+    				if (infoList != null && infoList != "") {
+   						for(info of infoList) {
+   							accountStr += 
+	    						  ' <div class="anime__details__review">                                                   '
+	    						+ '  	<div class="anime__review__item">                                                  '
+	                            + '  		<div class="user__setting__text">                                              '
+	    	                    + '      		<h6>' + info.account_holder_name + '</h6>                                  '
+	    	                    + '      		<div class="user_follow_btn">                                              '
+// 	    	                    + '      			<a onclick="">삭제</a>                                                 '
+	    	                    + '      			<p style="margin-top: 10px">' + info.bank_name + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + info.account_num_masked + '</p>'
+	    	                    + '      		</div>                                                                     '
+	    						+ '  		</div>                                                                         '
+	                        	+ '  	</div>                                                                             '
+	                    	 	+ ' </div>                                                                                 ';
+   						}
+    				}
 
 					$("#user_content").append(
 						  ' <div class="anime__details__review">                                                   '
@@ -963,23 +1027,12 @@
                         + '  		<div class="user__setting__head">                                              '
 	                    + '      		<h6>등록된 결제수단</h6>                                                   '
 	                    + '      		<div class="user_follow_btn">                                              '
-	                    + '      			<a onclick="" style="bottom: 7px">+ 추가</a>                           '
+	                    + '      			<a onclick="authAccountCreator()" style="bottom: 7px">+ 추가</a>                           '
 	                    + '      		</div>                                                                     '
 						+ '  		</div>                                                                         '
                     	+ '  	</div>                                                                             '
                 	 	+ ' </div>                                                                                 '
-                	 	+ '                                                                                        '
-                	 	+ ' <div class="anime__details__review">                                                   '
-						+ '  	<div class="anime__review__item">                                                  '
-                        + '  		<div class="user__setting__text">                                              '
-	                    + '      		<h6>비씨카드</h6>                                                          '
-	                    + '      		<div class="user_follow_btn">                                              '
-	                    + '      			<a onclick="">삭제</a>                                                 '
-	                    + '      			<p style="margin-top: 10px">************ 4776</p>                      '
-	                    + '      		</div>                                                                     '
-						+ '  		</div>                                                                         '
-                    	+ '  	</div>                                                                             '
-                	 	+ ' </div>                                                                                 '
+                	 	+ accountStr
 					);
     			},
     			error: function() {
@@ -987,6 +1040,7 @@
     			}
     		});
     	}
+    	
     	
     	let reciver = "";
 		let zonecode = "";
@@ -1251,6 +1305,10 @@
     	}
     
     	$(function() {
+    		// 나중에 사용.
+//     		let sId = "${sessionScope.sId}";
+//     		alert(sId);
+    		
     		let urlParams = new URLSearchParams(window.location.search);
     		
     		if (urlParams.has('kakao')) {
@@ -1288,6 +1346,24 @@
     				$("#zonecode").val(zonecode);
     	        }
     	    }).open();
+    	}
+    	
+    	function checkSessionAlive() {
+    		$.ajax({
+    			type: 'post',
+    			url: 'checkSessionAlive',
+    			dataType: 'json',
+    			success: function(isSessionAlive) {
+    				if (!isSessionAlive) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
     	}
     </script>
 </head>
@@ -1329,14 +1405,14 @@
 											<h5 onclick="userAccount('topUserAccount')">계정</h5>
 										</div>
 										<div class="user_top_cate" id="topUserPayment">
-											<h5 onclick="userPayment('topUserPayment')">결제수단</h5>
+											<h5 onclick="userPayment('topUserPayment')">결제계좌</h5>
 										</div>
 										<div class="user_top_cate" id="topUserAddress">	
 											<h5 onclick="userAddress('topUserAddress')">배송지</h5>
 										</div>
-										<div class="user_top_cate" id="topUserAlarm">	
-											<h5 onclick="userAlarm('topUserAlarm')">알림</h5>
-										</div>
+<!-- 										<div class="user_top_cate" id="topUserAlarm">	 -->
+<!-- 											<h5 onclick="userAlarm('topUserAlarm')">알림</h5> -->
+<!-- 										</div> -->
                                     </div>
                                 </div>
                             </div>

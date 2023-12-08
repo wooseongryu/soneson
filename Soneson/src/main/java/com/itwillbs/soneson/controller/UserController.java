@@ -475,7 +475,19 @@ public class UserController {
 		return gson.toJson(map);
 	}
 		
+	// 유저 설정 로그인 유무 확인
+	@ResponseBody
+	@PostMapping("checkSessionAlive")
+	public Boolean checkSessionAlive(HttpSession session, Map<String, String> map) {
+		System.out.println("UserController - checkSessionAlive()");
 		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			return false; 
+		}
+		
+		return true;
+	}
 		
 	/*====================================================================
 	 * 마이페이지에서 세부 페이지로 이동
