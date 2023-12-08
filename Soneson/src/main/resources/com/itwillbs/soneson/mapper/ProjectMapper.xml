@@ -136,10 +136,10 @@
 <!-- 아래는 프로젝트 리스트, 성윤 -->
 
 <!-- 헤더 -->
-	<select id="getTabList" resultType="map">
-		SELECT *
-		FROM project_tab;
-	</select>
+<!-- 	<select id="getTabList" resultType="map"> -->
+<!-- 		SELECT * -->
+<!-- 		FROM project_tab; -->
+<!-- 	</select> -->
 
 
 	
