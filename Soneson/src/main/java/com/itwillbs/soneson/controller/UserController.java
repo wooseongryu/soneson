@@ -160,6 +160,11 @@ public class UserController {
 			user.setUser_picture(subDir + "/" + fileName_picture);
 		}
 		
+		// 수정전 기존의 파일경로 가지고 있어야됨.
+		String tmpUserPicPath = userService.selectUserPicPath(sId);
+		
+		System.out.println("기존 파일 경로 : " + tmpUserPicPath);
+		
 		int updateCount = userService.updateUserProfilePic(user);
 		
 		if (updateCount == 0) {
@@ -174,6 +179,16 @@ public class UserController {
 			}
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		// 수정시 기존의 파일 삭제.
+		String uploadPath = "resources/upload";
+		try {
+			String realPath = session.getServletContext().getRealPath(uploadPath);
+			Path path = Paths.get(realPath + "/" + tmpUserPicPath);
+			Files.deleteIfExists(path);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

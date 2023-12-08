@@ -279,6 +279,13 @@ public class UserService {
 		
 		return mapper.updateUserProfilePic(user);
 	}
+
+	// 유저 설정 프로필 수정 전 기존 파일 경로 가져오기
+	public String selectUserPicPath(String sId) {
+		System.out.println("UserService - selectUserPicPath()");
+		
+		return mapper.selectUserPicPath(sId);
+	}
 	
 }
 
