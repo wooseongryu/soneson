@@ -1,6 +1,9 @@
 package com.itwillbs.soneson.vo;
 
 import java.sql.Date;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 /*
@@ -40,5 +43,14 @@ public class UserVO {
 	
 	
 	private String user_phone;
+	
+	// 원본 파일명을 가공하여 저장할 멤버변수 선언 추가
+	private MultipartFile profilePic;
+	
+	// 원본 파일명 저장
+	private String original_profilePic;
+	
+	// 실제 파일명 저장
+	private String profilePicFileName;
 }
 

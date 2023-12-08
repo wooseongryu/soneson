@@ -112,11 +112,12 @@
     		});
     	}
     	
+    	// TODO
     	function updateUserProfilePic() {
     		$.ajax({
-//     			type: 'post',
-//     			url: 'settingUpdateUserProfilePic',
-//     			dataType: 'json',
+    			type: 'post',
+    			url: 'settingUpdateUserProfilePic',
+    			dataType: 'json',
     			success: function(resp) {
     				console.log(sessionStorage.getItem('sId'));
     				
@@ -129,39 +130,69 @@
 						+ ' 	<img alt="" src="' + picture + '" id="profileImg" class="profileImg">        '
 						+ ' </div>                                                                                                                        '
                         + '                                                                                                                               '
-						+ ' <div class="profile-right">                                                                                                   '
-						+ ' 	<div class="uploadDiv">                                                                                                   '
-						+ ' 		<div class="uploadImage">                                                                                             '
-						+ ' 			<div>                                                                                                             '
-						+ ' 				<span><i class="bi bi-upload"></i>이미지 업로드</span>                                                        '
-						+ ' 				<input type="file" accept=".jpg, .jpeg, .png" name="profile_path">                                            '
-						+ ' 			</div>                                                                                                            '
-						+ ' 		</div>                                                                                                                '
-						+ ' 	</div>                                                                                                                    '
-						+ ' 	<p>                                                                                                                       '
-						+ ' 		파일 형식은 jpg 또는 png 또는 gif로,<br>                                                                              '
-						+ ' 		사이즈는 가로 200px, 세로 200px 이상으로 올려주세요.                                                                  '
-						+ ' 	</p>                                                                                                                      '
-						+ ' </div>                                                                                                                        '
-						+ ' 	                                                                                                                          '
-                		+ ' <div class=user_cancel_btn>                                                                                                   '
-                		+ ' 	<a onclick="cancelUpdateUserProfilePic()">취소</a>                                                                                                    '
-                		+ ' </div>                                                                                                                        '
-	                    + '                                                                                                                               '
-                    	+ ' 	<div class="user_follow_btn">                                                                                             '
-                    	+ ' 		<a onclick="">변경</a>                                                                                                '
-                    	+ ' 	</div>                                                                                                                    '
+//                     	+ '	<form action="uploadUserProfilePic" method="post" enctype="multipart/form-data">'
+                    	+ '	<form method="post" enctype="multipart/form-data" id="pictureUploadForm">'
+						+ '     <div class="profile-right">                                                                                                   '
+						+ '     	<div class="uploadDiv">                                                                                                   '
+						+ '     		<div class="uploadImage">                                                                                             '
+						+ '     			<div>                                                                                                             '
+						+ '     				<span><i class="bi bi-upload"></i>이미지 업로드</span>                                                        '
+						+ '     				<input type="file" accept=".jpg, .jpeg, .png" name="profilePic">                                            '
+						+ '     			</div>                                                                                                            '
+						+ '     		</div>                                                                                                                '
+						+ '     	</div>                                                                                                                    '
+						+ '     	<p>                                                                                                                       '
+						+ '     		파일 형식은 jpg 또는 png 또는 gif로,<br>                                                                              '
+						+ '     		사이즈는 가로 200px, 세로 200px 이상으로 올려주세요.                                                                  '
+						+ '     	</p>                                                                                                                      '
+						+ '     </div>                                                                                                                        '
+						+ '     	                                                                                                                          '
+                		+ '     <div class=user_cancel_btn>                                                                                                   '
+                		+ '     	<a onclick="cancelUpdateUserProfilePic()">취소</a>                                                                                                    '
+                		+ '     </div>                                                                                                                        '
+	                    + '                                                                                                                                   '
+                    	+ '     <div class="user_follow_btn">                                                                                             '
+                    	+ '     	<input id="pictureSubmitBtn" type="submit" value="변경">                                                                                                '
+                    	+ '     </div>                                                                                                                    '
+                    	+ '	</form>'
     				);
     				
-    				$('input[name="profile_path"]').change(function(){
+    				$('input[name="profilePic"]').change(function(){
     	    		    setImageFromFile(this);
     	    		});
+    				
+    				$("#pictureSubmitBtn").click(function (event) {         
+    					//preventDefault 는 기본으로 정의된 이벤트를 작동하지 못하게 하는 메서드이다. 
+    					//submit을 막는다. 
+    					event.preventDefault();
+    				    let form = $('#pictureUploadForm')[0];  	    
+    				    let data = new FormData(form);  	   
+    				    
+    				    $.ajax({             
+    				    	type: "POST",          
+    				        enctype: 'multipart/form-data',  
+    				        url: "uploadUserProfilePic",        
+    				        data: data,          
+    				        processData: false,    
+    				        contentType: false,      
+    				        cache: false,         
+    				        dataType: 'json',
+    				        success: function (data) { 
+    				        	console.log(data);
+    				        },          
+    				        error: function (error) {  
+    				        	alert("프로필사진 등록 실패!");
+    				        }     
+    					});  
+    				});
     			},
     			error: function() {
     				alert("에러!");
     			}
     		});
     	}
+    	
+    	
     	
     	function cancelUpdateUserProfilePic() {
     		$.ajax({
@@ -1390,7 +1421,7 @@
 			</div>
 		</div>
 	</section>
-
+	
     <!-- Product Section Begin -->
     <section class="product-page spad">
         <div class="container">

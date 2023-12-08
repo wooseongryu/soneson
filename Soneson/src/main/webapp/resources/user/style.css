@@ -2037,7 +2037,7 @@ ol {
 	cursor: pointer;
 }
 
-.user_follow_btn a {
+.user_follow_btn a, #pictureSubmitBtn {
 	display: inline-block;
 	color: rgb(0, 0, 0);
 	background: white;

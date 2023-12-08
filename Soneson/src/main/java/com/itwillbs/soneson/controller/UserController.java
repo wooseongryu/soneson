@@ -112,6 +112,17 @@ public class UserController {
 		return "1";
 	}
 	
+	// 유저 설정 프로필 사진 업로드
+	@ResponseBody
+	@PostMapping("uploadUserProfilePic")
+	public String uploadUserProfilePic(UserVO user) {
+		System.out.println("UserController - uploadUserProfilePic()");
+		
+		System.out.println(")))" + user);
+		
+		return "1";
+	}
+	
 	// 유저 설정 프로필 사진 변경 취소
 	@ResponseBody
 	@PostMapping("settingCancelUpdateUserProfilePic")
