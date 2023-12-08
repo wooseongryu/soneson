@@ -163,8 +163,6 @@ public class UserController {
 		// 수정전 기존의 파일경로 가지고 있어야됨.
 		String tmpUserPicPath = userService.selectUserPicPath(sId);
 		
-		System.out.println("기존 파일 경로 : " + tmpUserPicPath);
-		
 		int updateCount = userService.updateUserProfilePic(user);
 		
 		if (updateCount == 0) {

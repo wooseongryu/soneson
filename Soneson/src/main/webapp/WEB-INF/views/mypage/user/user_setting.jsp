@@ -61,6 +61,8 @@
     				picture = resp.user_picture;
     				if (picture == "" || picture == null) {
     					picture = "${pageContext.request.contextPath }/resources/user/prifile.png";
+    				} else {
+	    				picture = "${pageContext.request.contextPath }/resources/upload/" + resp.user_picture;
     				}
     				
     				user_name = resp.user_name;
@@ -177,8 +179,20 @@
     				        contentType: false,      
     				        cache: false,         
     				        dataType: 'json',
-    				        success: function (data) { 
-    				        	console.log(data);
+    				        success: function (resp) { 
+    				        	picture = "${pageContext.request.contextPath }/resources/upload/" + resp.userVO.user_picture;
+								
+    				        	$("#user_profile_pic").children().remove();
+    				        	
+    				        	$("#user_profile_pic").append(
+	    				        	  ' <h6>프로필 사진</h6>                                              '
+	    		                    + ' <div class="profileImgDiv">                                       '
+	    							+ ' 	<img alt="" src="' + picture + '" class="profileImg">         '
+	    							+ ' </div>                                                            '
+	    		                    + ' <div class="user_follow_btn">                                     '
+	    		                    + ' 	<a onclick="updateUserProfilePic()">변경</a>                  '
+	    		                    + ' </div> 															  '
+    				        	);
     				        },          
     				        error: function (error) {  
     				        	alert("프로필사진 등록 실패!");
@@ -199,7 +213,6 @@
     			url: 'settingCancelUpdateUserProfilePic',
     			dataType: 'json',
     			success: function(resp) {
-    				console.log("test");
     				$("#user_profile_pic").children().remove();
     				
     				$("#user_profile_pic").append(
