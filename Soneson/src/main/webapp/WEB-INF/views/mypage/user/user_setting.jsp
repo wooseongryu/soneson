@@ -43,6 +43,8 @@
     	let user_name = "";
     	
     	function userProfile(id) {
+    		checkSessionAlive();
+    		
     		$.ajax({
     			type: 'post',
     			url: 'settingUserProfile',
@@ -404,6 +406,8 @@
     	let kakao_link = "onclick='disconnectKakao()'";
     	
     	function userAccount(id) {
+    		checkSessionAlive();
+    		
     		$.ajax({
     			type: 'post',
     			url: 'settingUserAccount',
@@ -989,7 +993,6 @@
     		return infoList;
     	}
     	
-    	// TODO
     	function userPayment(id) {
     		checkSessionAlive();
     		
@@ -1025,7 +1028,7 @@
 						  ' <div class="anime__details__review">                                                   '
 						+ '  	<div class="anime__review__item">                                                  '
                         + '  		<div class="user__setting__head">                                              '
-	                    + '      		<h6>등록된 결제수단</h6>                                                   '
+	                    + '      		<h6>등록된 결제계좌</h6>                                                   '
 	                    + '      		<div class="user_follow_btn">                                              '
 	                    + '      			<a onclick="authAccountCreator()" style="bottom: 7px">+ 추가</a>                           '
 	                    + '      		</div>                                                                     '
