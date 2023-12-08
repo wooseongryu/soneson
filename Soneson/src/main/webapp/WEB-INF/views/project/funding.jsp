@@ -273,7 +273,7 @@
 								</div>
 								<div class="projectFormHalf-date">
 									<p class="tiny-title">시작 시간</p>
-									<select name="pro_start_time" class="select_detail">
+									<select name="pro_start_time" class="select_detail" id="pro_start_time">
 										<option value="09:00:00" <c:if test="${pro.pro_start_time eq '09:00:00' }">selected</c:if>>09:00</option>
 										<option value="10:00:00" <c:if test="${pro.pro_start_time eq '10:00:00' }">selected</c:if>>10:00</option>
 										<option value="11:00:00" <c:if test="${pro.pro_start_time eq '11:00:00' }">selected</c:if>>11:00</option>

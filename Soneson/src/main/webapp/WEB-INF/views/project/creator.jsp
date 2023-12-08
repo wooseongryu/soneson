@@ -135,7 +135,7 @@
 					</dd>
 				</dl>
 				<div class="projectItem-form">
-					<input type="text" class="input_detail" name="pro_creator" value="${pro.pro_creator }">
+					<input type="text" class="input_detail" name="pro_creator" id="pro_creator" value="${pro.pro_creator }">
 				</div>
 			</div>	
 		</div>
@@ -157,7 +157,7 @@
 								<div  class="profile-image">
 									<c:choose>
 										<c:when test="${not empty pro.pro_profile }">
-											<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_profile }" id="profile_preview" width="630px" alt="사진을 등록해주세요.">
+											<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_profile }" id="profile_preview" width="630px" alt="${pro.pro_profile }">
 										</c:when>
 										<c:otherwise>
 											<img src="" id="profile_preview" width="180px">
@@ -171,7 +171,7 @@
 								<div class="uploadImage">
 									<div>
 										<span><i class="bi bi-upload"></i>이미지 업로드</span>
-										<input type="file" accept=".jpg, .jpeg, .png" name="pro_profile_multi">
+										<input type="file" accept=".jpg, .jpeg, .png" name="pro_profile_multi" id="pro_profile">
 									</div>
 								</div>
 <!-- 										<input type="file" accept="jpg, .png, .gif, .jpeg" style="display: none;"> -->
@@ -201,7 +201,7 @@
 					</dd>
 				</dl>
 				<div class="projectItem-form">
-					<textarea class="plan-textarea" placeholder="간단한 소개를 써주세요" name="pro_createrInfo">${pro.pro_createrInfo }</textarea>
+					<textarea class="plan-textarea" placeholder="간단한 소개를 써주세요" name="pro_createrInfo" id="pro_createrInfo">${pro.pro_createrInfo }</textarea>
 				</div>
 			</div>	
 		</div>
@@ -307,29 +307,29 @@
 				<!-- 나중에 append로 쓸 구역임 -->
 			</div>	
 		</div>
-		<div class="view-content-form">
-			<div class="projectItemWarp">
-				<dl class="projectInfo">
-					<dt class="projectInfo-title">
-						세금계산서 발행
-						<div class="icon-asterisk"><i class="bi bi-asterisk"></i></div>
-					</dt>
-					<dd class="projectInfo-description">
-						수수료 세금계산서 발행에 필요한 정보를 등록해주세요.
-					</dd>
-				</dl>
-				<div class="projectItem-form">
-					<div class="projectInfo-writeDIv">
-						<div class="creator-info">
-							<div class="creator-authInfo">
-								<i class="bi bi-cash"></i>
-								<p>세금계산서 발행을 위한 정보를 등록해주세요.</p>
-							</div>
-							<button class="authInfoBtn" type="button" onclick="taxInfo()">등록하기</button>
-						</div>
-					</div>
-				</div>
-			</div>	
-		</div>
+<!-- 		<div class="view-content-form"> -->
+<!-- 			<div class="projectItemWarp"> -->
+<!-- 				<dl class="projectInfo"> -->
+<!-- 					<dt class="projectInfo-title"> -->
+<!-- 						세금계산서 발행 -->
+<!-- 						<div class="icon-asterisk"><i class="bi bi-asterisk"></i></div> -->
+<!-- 					</dt> -->
+<!-- 					<dd class="projectInfo-description"> -->
+<!-- 						수수료 세금계산서 발행에 필요한 정보를 등록해주세요. -->
+<!-- 					</dd> -->
+<!-- 				</dl> -->
+<!-- 				<div class="projectItem-form"> -->
+<!-- 					<div class="projectInfo-writeDIv"> -->
+<!-- 						<div class="creator-info"> -->
+<!-- 							<div class="creator-authInfo"> -->
+<!-- 								<i class="bi bi-cash"></i> -->
+<!-- 								<p>세금계산서 발행을 위한 정보를 등록해주세요.</p> -->
+<!-- 							</div> -->
+<!-- 							<button class="authInfoBtn" type="button" onclick="taxInfo()">등록하기</button> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div>	 -->
+<!-- 		</div> -->
 	</div>
 </div>

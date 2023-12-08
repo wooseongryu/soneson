@@ -50,6 +50,12 @@ public class ProjectService {
 		return mapper.selectToken(sId);
 	}
 
+	//최종등록
+	public int insertProject(int pro_code) {
+		return mapper.insertProject(pro_code);
+	}
+	
+
 
 	
 	

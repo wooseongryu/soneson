@@ -108,14 +108,14 @@
 					<div class="uploadImage">
 						<div>
 							<span><i class="bi bi-upload"></i>소개 이미지 업로드</span>
-							<input type="file" accept=".jpg, .jpeg, .png" name="pro_content_multi">
+							<input type="file" accept=".jpg, .jpeg, .png" name="pro_content_multi" id="pro_content">
 						</div>
 					</div>
 					<div class="imagePreview">
 						<div class="image-preview">
 							<c:choose>
 								<c:when test="${not empty pro.pro_content }">
-									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_content }" id="info_preview" width="630px">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_content }" id="info_preview" width="630px" alt="${pro.pro_content }">
 								</c:when>
 								<c:otherwise>
 									<img src="" id="info_preview" width="180px">
@@ -157,14 +157,14 @@
 					<div class="uploadImage">
 						<div>
 							<span><i class="bi bi-upload"></i>예산 이미지 업로드</span>
-							<input type="file" accept=".jpg, .jpeg, .png" name="pro_budget_multi">
+							<input type="file" accept=".jpg, .jpeg, .png" name="pro_budget_multi" id="pro_budget">
 						</div>
 					</div>
 					<div class="imagePreview">
 						<div class="image-preview">
 							<c:choose>
 								<c:when test="${not empty pro.pro_budget }">
-									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_budget }" id="budget_preview" width="630px" alt="사진을 등록해주세요.">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_budget }" id="budget_preview" width="630px" alt="${pro.pro_budget }">
 								</c:when>
 								<c:otherwise>
 									<img src="" id="budget_preview" width="180px">
@@ -206,14 +206,14 @@
 					<div class="uploadImage">
 						<div>
 							<span><i class="bi bi-upload"></i>일정 이미지 업로드</span>
-							<input type="file" accept=".jpg, .jpeg, .png" name="pro_sch_multi">
+							<input type="file" accept=".jpg, .jpeg, .png" name="pro_sch_multi" id="pro_sch">
 						</div>
 					</div>
 					<div class="imagePreview">
 						<div class="image-preview">
 							<c:choose>
 								<c:when test="${not empty pro.pro_sch }">
-									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_sch }" id="sch_preview" width="630px">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_sch }" id="sch_preview" width="630px" alt="${pro.pro_sch }">
 								</c:when>
 								<c:otherwise>
 									<img src="" id="sch_preview" width="180px">
@@ -239,14 +239,14 @@
 					<div class="uploadImage">
 						<div>
 							<span><i class="bi bi-upload"></i>팀소개 이미지 업로드</span>
-							<input type="file" accept=".jpg, .jpeg, .png" name="pro_team_multi">
+							<input type="file" accept=".jpg, .jpeg, .png" name="pro_team_multi" id="pro_team">
 						</div>
 					</div>
 					<div class="imagePreview">
 						<div class="image-preview">
 							<c:choose>
 								<c:when test="${not empty pro.pro_team }">
-									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_team }" id="team_preview" width="630px">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_team }" id="team_preview" width="630px" alt="${pro.pro_team }">
 								</c:when>
 								<c:otherwise>
 									<img src="" id="team_preview" width="180px">
@@ -271,14 +271,14 @@
 					<div class="uploadImage">
 						<div>
 							<span><i class="bi bi-upload"></i>리워드설명 이미지 업로드</span>
-							<input type="file" accept=".jpg, .jpeg, .png" name="pro_reward_multi">
+							<input type="file" accept=".jpg, .jpeg, .png" name="pro_reward_multi" id="pro_reward">
 						</div>
 					</div>
 					<div class="imagePreview">
 						<div class="image-preview">
 							<c:choose>
 								<c:when test="${not empty pro.pro_reward }">
-									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_reward }" id="reward_preview" width="630px">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_reward }" id="reward_preview" width="630px" alt="${pro.pro_reward }">
 								</c:when>
 								<c:otherwise>
 									<img src="" id="reward_preview" width="180px">
@@ -306,7 +306,7 @@
 								이 프로젝트의 정책을 기입해주세요.<br>
 							</p>
 							<section class="reward-section">
-								<textarea rows="10" cols="" class="plan-textarea" style="height: 300px;" name="pro_notice">${pro.pro_notice }</textarea>
+								<textarea rows="10" cols="" class="plan-textarea" style="height: 300px;" name="pro_notice" id="pro_notice">${pro.pro_notice }</textarea>
 							</section>
 						</div>
 				</div>

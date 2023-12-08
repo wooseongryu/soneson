@@ -432,12 +432,107 @@ public class ProjectController {
 	
 	
 	//프로젝트 최종등록
-//	@PostMapping("submitProject")
-//	public String submitProject() {
-//		
-//		
-//		return "";
-//	}
+	@PostMapping("submitProject")
+	public String submitProject(ProjectVO pro, Model model, HttpSession session) {
+		String sId = (String)session.getAttribute("sId");
+		
+		if(sId == null) {
+			model.addAttribute("msg", "로그인 후 이용 가능 합니다.");
+			model.addAttribute("targetURL", "login");
+			return "forward";
+		}
+		
+		System.out.println("최종등록 하러 가보자고: " + pro);
+		//파일 수정
+		String uploadDir = "/resources/upload"; // 가상의 경로
+		String saveDir = session.getServletContext().getRealPath(uploadDir); // 실제 업로드 경로
+		String subDir = ""; // 서브디렉토리명을 저장할 변수 선언(날짜로 구분)
+
+		try {
+			LocalDate now = LocalDate.now();
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+			subDir = now.format(dtf);
+			saveDir += "/" + subDir;
+			Path path = Paths.get(saveDir);
+			Files.createDirectories(path);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//업로드된 파일 가져오기
+		MultipartFile p_thumb = pro.getPro_thumb_multi();
+		MultipartFile p_content = pro.getPro_content_multi();
+		MultipartFile p_budget = pro.getPro_budget_multi();
+		MultipartFile p_sch = pro.getPro_sch_multi();
+		MultipartFile p_team = pro.getPro_team_multi();
+		MultipartFile p_reward = pro.getPro_reward_multi();
+		MultipartFile p_profile = pro.getPro_profile_multi();
+		
+		String uuid = UUID.randomUUID().toString();
+		pro.setPro_thumbsnail("");
+		pro.setPro_content("");
+		pro.setPro_budget("");
+		pro.setPro_sch("");
+		pro.setPro_team("");
+		pro.setPro_reward("");
+		pro.setPro_profile("");
+		
+		boolean isUploadProcess = false;
+		
+		String fileName_thumbsnail = "";
+		String fileName_content = "";
+		String fileName_budget = "";
+		String fileName_sch = "";
+		String fileName_team = "";
+		String fileName_reward = "";
+		String fileName_profile = "";
+		
+		if(pro.getPro_thumb_multi() != null && !p_thumb.getOriginalFilename().equals("")) {
+			fileName_thumbsnail = uuid.substring(0,8) + "_" + p_thumb.getOriginalFilename();
+			pro.setPro_thumbsnail(subDir + "/" + fileName_thumbsnail);
+			isUploadProcess = true;
+		}
+		if(pro.getPro_content_multi() != null && !p_content.getOriginalFilename().equals("")) {
+			fileName_content = uuid.substring(0,8) + "_" + p_content.getOriginalFilename();
+			pro.setPro_content(subDir + "/" + fileName_content);
+			isUploadProcess = true;
+		}
+		if(pro.getPro_budget_multi() != null && !p_budget.getOriginalFilename().equals("")) {
+			fileName_budget = uuid.substring(0,8) + "_" + p_budget.getOriginalFilename();
+			pro.setPro_budget(subDir + "/" + fileName_budget);
+			isUploadProcess = true;
+		}
+		if(pro.getPro_sch_multi() != null && !p_sch.getOriginalFilename().equals("")) {
+			fileName_sch = uuid.substring(0,8) + "_" + p_sch.getOriginalFilename();
+			pro.setPro_sch(subDir + "/" + fileName_sch);
+			isUploadProcess = true;
+		}
+		if(pro.getPro_team_multi() != null && !p_team.getOriginalFilename().equals("")) {
+			fileName_team = uuid.substring(0,8) + "_" + p_team.getOriginalFilename();
+			pro.setPro_team(subDir + "/" + fileName_team);
+			isUploadProcess = true;
+		}
+		if(pro.getPro_reward_multi() != null && !p_reward.getOriginalFilename().equals("")) {
+			fileName_reward = uuid.substring(0,8) + "_" + p_reward.getOriginalFilename();
+			pro.setPro_reward(subDir + "/" + fileName_reward);
+			isUploadProcess = true;
+		}
+		if(pro.getPro_profile_multi() != null && !p_profile.getOriginalFilename().equals("")) {
+			fileName_profile = uuid.substring(0,8) + "_" + p_profile.getOriginalFilename();
+			pro.setPro_profile(subDir + "/" + fileName_profile);
+			isUploadProcess = true;
+		}
+		int updateCount = service.updateProject(pro);	//최종저장
+		if(updateCount > 0) {
+			
+		int insertCount = service.insertProject(pro.getPro_code());
+			
+		} else {
+			model.addAttribute("msg", "잠시 후 다시 시도해 주세요.");
+			return "fail_back";
+		}
+		
+		return "";
+	}
 	
 	
 }

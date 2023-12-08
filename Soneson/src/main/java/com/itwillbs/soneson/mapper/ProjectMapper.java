@@ -29,6 +29,8 @@ public interface ProjectMapper {
 	//핀테크 토큰
 	Map<String, String> selectToken(String sId);
 	
+	//최종등록
+	int insertProject(int pro_code);
 	
 	// =========== 아래는 프로젝트 리스트, 성윤 =============
 	
@@ -41,6 +43,7 @@ public interface ProjectMapper {
 	List<Map<String, Object>> getTabProjectList(String listType);
 
 	List<Map<String, Object>> getTabList();
+
 
 
 

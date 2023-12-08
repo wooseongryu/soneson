@@ -75,7 +75,7 @@ $(function() {
 	
 	//이미지 미리보기
 	$('input[name="pro_thumb_multi"]').change(function(){
-	    setImageFromFile(this, '#preview');
+	    setImageFromFile(this, '#thumb_preview');
 	});
 	
 	function setImageFromFile(input, expression) {
@@ -159,12 +159,67 @@ $(function() {
 	});
 
 });
-
+	
+	//onsubmit
+	function checkNull() {
+		
+		let pro_categorie = $("#pro_categorie").val();
+		let pro_title = $("#pro_title").val();
+		let pro_summary = $("#pro_summary").val();
+		let pro_thumb = $("#thumb_preview").attr("alt");
+		
+		let pro_goal = $("#pro_goal").val();
+		let start_date = $("#start-funding").val();
+		let start_time = $("#pro_start_time").val();
+		let end_date = $("#end-funding").val();
+		
+		let pro_content = $("#info_preview").attr("alt");
+		let pro_budget = $("#budget_preview").attr("alt");
+		let pro_sch = $("#sch_preview").attr("alt");
+		let pro_team = $("#team_preview").attr("alt");
+		let pro_reward = $("#reward_preview").attr("alt");
+		let pro_notice = $("#pro_notice").val();
+		
+		let pro_creator = $("#pro_creator").val();
+		let pro_profile = $("#profile_preview").attr("alt");
+		let pro_createrInfo = $("#pro_createrInfo").val();
+		let pro_auth = $("input[type=radio][name=pro_userAuth]").val();
+		
+		let arr0 = [pro_categorie, pro_title, pro_summary, pro_thumb];
+		let arr1 = [pro_goal, start_date, start_time, end_date];
+		let arr2 = [pro_content, pro_budget, pro_sch, pro_team, pro_reward, pro_notice];
+		let arr3 = [pro_creator, pro_profile, pro_createrInfo, pro_auth];
+		
+		let arr = [arr0, arr1, arr2, arr3];
+		console.log(arr);
+		for(let j = 1; j < arr.length; j++) {
+			
+			for(let i = 0; i < arr[j].length; i++) {
+				console.log(arr[j][i]);
+				if(arr[j][i] == "") {
+				debugger;
+					alert("필수항목을 입력해주세요.");
+					return false;
+				}
+				
+			}
+		}
+		let checkSubmit = confirm("등록 후 바로 심사가 진행되어 수정이 불가능합니다.\n등록하시겠습니까?");
+		
+		if(checkSubmit) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+	
+	
 </script>
 
 </head>
 <body>
-	<form method="post" enctype="multipart/form-data" action="submitProject" id="uploadProjectForm">
+	<form method="post" enctype="multipart/form-data" action="submitProject" id="uploadProjectForm" onsubmit="return checkNull()">
 		<input type="hidden" name="pro_code" value="${pro.pro_code }">
 		<input type="hidden" name="user_id" value="${pro.user_id }">
 		<div class="write-view-container">
@@ -233,7 +288,7 @@ $(function() {
 								</div>
 							</div>
 							<!-- 등록버튼 submit!! -->
-							<button formaction="submitProject">등록하기</button>
+							<button type="submit">등록하기</button>
 						</div>
 						<div class="top-content-center">
 							<div class="top-content-img">
@@ -300,7 +355,7 @@ $(function() {
 									</dd>
 								</dl>
 								<div class="projectItem-form">
-									<select class="select_detail" name="pro_categorie">
+									<select class="select_detail" name="pro_categorie" id="pro_categorie">
 										<option value="아동·청소년" <c:if test="${pro.pro_categorie eq '아동·청소년' }">selected</c:if>>아동·청소년</option>
 										<option value="동물" <c:if test="${pro.pro_categorie eq '동물' }">selected</c:if>>동물</option>
 										<option value="환경" <c:if test="${pro.pro_categorie eq '환경' }">selected</c:if>>환경</option>
@@ -375,14 +430,14 @@ $(function() {
 									<div class="uploadImage">
 										<div>
 											<span><i class="bi bi-upload"></i>이미지 업로드</span>
-											<input type="file" accept=".jpg, .jpeg, .png" name="pro_thumb_multi">
+											<input type="file" accept=".jpg, .jpeg, .png" name="pro_thumb_multi" id="pro_thumb">
 										</div>
 									</div>
 									<div class="imagePreview">
 										<div class="image-preview">
 										<c:choose>
 											<c:when test="${not empty pro.pro_thumbsnail }">
-												<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }" id="preview" width="180px">
+												<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }" id="thumb_preview" width="180px" alt="${pro.pro_thumbsnail }">
 											</c:when>
 											<c:otherwise>
 												<img src="" id="preview" width="180px">
