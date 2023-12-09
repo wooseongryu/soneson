@@ -12,6 +12,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/soneson/css/projectstyle.css" type="text/css">
 <script src= "${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
 <script>
+function defaultImg(tagId) {
+	console.log(tagId.id);
+	$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/project/default.png');
+}
+
 	$(function() {
 		//카테고리 선택시 div 활성화
 		$("input[type=radio][name=pro_categorie]").click(function() {
@@ -72,7 +77,7 @@
 						<div class="ing-protitle">
 							<span class="ing-proimg">
 								<c:if test="${not empty pro.pro_thumbsnail }">
-									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }" onerror="defaultImg(this)">
 								</c:if>
 							</span>
 							<p>${pro.pro_title }</p>

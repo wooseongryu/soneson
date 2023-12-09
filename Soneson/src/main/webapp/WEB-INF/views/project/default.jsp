@@ -13,8 +13,11 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src= "${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
 <script>
-function defaultImg(this) {
-	this.attr('src','' )
+
+//default Img
+function defaultImg(tagId) {
+	console.log(tagId.id);
+	$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/project/default.png');
 }
 
 
@@ -82,7 +85,7 @@ $(function() {
 	//이미지 미리보기
 	$('input[name="pro_thumb_multi"]').change(function(){
 	    setImageFromFile(this, '#thumb_preview');
-// 	    setImageFromFile(this, '#mainThumb_preview');
+	    setImageFromFile(this, '#mainThumb_preview');
 	});
 	
 	function setImageFromFile(input, expression) {
@@ -90,8 +93,8 @@ $(function() {
 	    var reader = new FileReader();
 	    reader.onload = function (e) {
 	    $(expression).attr('src', e.target.result);
+	    $(expression).attr('alt', "true");
 	    $(".image-change").show();
-	    $("#mainThunb_preview").attr('src', e.target.result);
 	  }
 	  reader.readAsDataURL(input.files[0]);
 	    $(".image-change").hide();
@@ -174,6 +177,7 @@ $(function() {
 		let pro_title = $("#pro_title").val();
 		let pro_summary = $("#pro_summary").val();
 		let pro_thumb = $("#thumb_preview").attr("alt");
+		console.log(pro_thumb);
 		
 		let pro_goal = $("#pro_goal").val();
 		let start_date = $("#start-funding").val();
@@ -306,7 +310,7 @@ $(function() {
 							<div class="top-content-img">
 							<c:choose>
 								<c:when test="${not empty pro.pro_thumbsnail }">
-									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }" id="mainThumb_preview" width="200px" height="133px">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }" id="mainThumb_preview" width="200px" height="133px" onerror="defaultImg(this)">
 								</c:when>
 								<c:otherwise>
 									<img src="" id="mainThumb_preview" width="200px" height="133px" onerror="defaultImg(this)">
@@ -454,10 +458,10 @@ $(function() {
 										<div class="image-preview">
 										<c:choose>
 											<c:when test="${not empty pro.pro_thumbsnail }">
-												<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }" id="thumb_preview" width="180px" alt="${pro.pro_thumbsnail }">
+												<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }" id="thumb_preview" width="180px" alt="${pro.pro_thumbsnail }" onerror="defaultImg(this)">
 											</c:when>
 											<c:otherwise>
-												<img src="" id="thumb_preview" width="180px">
+												<img src="" id="thumb_preview" width="180px" alt="">
 											</c:otherwise>
 										</c:choose>
 										</div>

@@ -146,9 +146,14 @@ public class ProjectController {
 		String sId = (String)session.getAttribute("sId");
 		map.put("user_id", sId);
 		pro = service.selectNewProject(map);
-		
+		Map<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("pro_code", pro.getPro_code());
+		List<Map<String, String>> itemList = itemService.selectItem(map2);
+		List<Map<String, String>> rewardList = itemService.selectReward(map2);
 		
 		model.addAttribute("pro", pro);
+		model.addAttribute("itemList", itemList);
+		model.addAttribute("rewardList", rewardList);
 		
 		return "project/default";
 	}

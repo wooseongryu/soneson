@@ -13,6 +13,7 @@
 		    var reader = new FileReader();
 		    reader.onload = function (e) {
 		    $(expression).attr('src', e.target.result);
+		    $(expression).attr('alt', "true");
 		  }
 		  reader.readAsDataURL(input.files[0]);
 		  }
@@ -28,6 +29,7 @@
 		    var reader = new FileReader();
 		    reader.onload = function (e) {
 		    $(expression).attr('src', e.target.result);
+		    $(expression).attr('alt', "true");
 		  }
 		  reader.readAsDataURL(input.files[0]);
 		  }
@@ -43,6 +45,7 @@
 		    var reader = new FileReader();
 		    reader.onload = function (e) {
 		    $(expression).attr('src', e.target.result);
+		    $(expression).attr('alt', "true");
 		  }
 		  reader.readAsDataURL(input.files[0]);
 		  }
@@ -58,6 +61,7 @@
 		    var reader = new FileReader();
 		    reader.onload = function (e) {
 		    $(expression).attr('src', e.target.result);
+		    $(expression).attr('alt', "true");
 		  }
 		  reader.readAsDataURL(input.files[0]);
 		  }
@@ -73,6 +77,7 @@
 		    var reader = new FileReader();
 		    reader.onload = function (e) {
 		    $(expression).attr('src', e.target.result);
+		    $(expression).attr('alt', "true");
 		  }
 		  reader.readAsDataURL(input.files[0]);
 		  }
@@ -115,7 +120,7 @@
 						<div class="image-preview">
 							<c:choose>
 								<c:when test="${not empty pro.pro_content }">
-									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_content }" id="info_preview" width="630px" alt="${pro.pro_content }">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_content }" id="info_preview" width="630px" alt="${pro.pro_content }" onerror="defaultImg(this)">
 								</c:when>
 								<c:otherwise>
 									<img src="" id="info_preview" width="180px">
@@ -164,7 +169,7 @@
 						<div class="image-preview">
 							<c:choose>
 								<c:when test="${not empty pro.pro_budget }">
-									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_budget }" id="budget_preview" width="630px" alt="${pro.pro_budget }">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_budget }" id="budget_preview" width="630px" alt="${pro.pro_budget }" onerror="defaultImg(this)">
 								</c:when>
 								<c:otherwise>
 									<img src="" id="budget_preview" width="180px">
@@ -213,7 +218,7 @@
 						<div class="image-preview">
 							<c:choose>
 								<c:when test="${not empty pro.pro_sch }">
-									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_sch }" id="sch_preview" width="630px" alt="${pro.pro_sch }">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_sch }" id="sch_preview" width="630px" alt="${pro.pro_sch }" onerror="defaultImg(this)">
 								</c:when>
 								<c:otherwise>
 									<img src="" id="sch_preview" width="180px">
@@ -246,7 +251,7 @@
 						<div class="image-preview">
 							<c:choose>
 								<c:when test="${not empty pro.pro_team }">
-									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_team }" id="team_preview" width="630px" alt="${pro.pro_team }">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_team }" id="team_preview" width="630px" alt="${pro.pro_team }" onerror="defaultImg(this)">
 								</c:when>
 								<c:otherwise>
 									<img src="" id="team_preview" width="180px">
@@ -278,7 +283,7 @@
 						<div class="image-preview">
 							<c:choose>
 								<c:when test="${not empty pro.pro_reward }">
-									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_reward }" id="reward_preview" width="630px" alt="${pro.pro_reward }">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_reward }" id="reward_preview" width="630px" alt="${pro.pro_reward }" onerror="defaultImg(this)">
 								</c:when>
 								<c:otherwise>
 									<img src="" id="reward_preview" width="180px">

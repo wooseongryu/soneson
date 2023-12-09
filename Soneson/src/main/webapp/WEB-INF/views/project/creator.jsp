@@ -112,6 +112,7 @@
 		    var reader = new FileReader();
 		    reader.onload = function (e) {
 		    $(expression).attr('src', e.target.result);
+		    $(expression).attr('alt', "true");
 //			    $(".image-change").show();
 		  }
 		  reader.readAsDataURL(input.files[0]);
@@ -157,7 +158,7 @@
 								<div  class="profile-image">
 									<c:choose>
 										<c:when test="${not empty pro.pro_profile }">
-											<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_profile }" id="profile_preview" width="630px" alt="${pro.pro_profile }">
+											<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_profile }" id="profile_preview" width="630px" alt="${pro.pro_profile }" onerror="defaultImg(this)">
 										</c:when>
 										<c:otherwise>
 											<img src="" id="profile_preview" width="180px">
