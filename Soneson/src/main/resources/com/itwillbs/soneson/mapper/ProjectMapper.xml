@@ -394,6 +394,17 @@
 	
 	</insert>
 	
+	<insert id="insertCreatorAccount">
+		INSERT INTO creator_account
+		VALUES(
+			#{user_id}
+			, #{pro_code}
+			, #{user_name}
+			, #{pro_userAuth}
+		)
+	</insert>
+	
+	
 	<delete id="deleteProject">
 		DELETE FROM sample_pro
 		WHERE pro_code = #{pro_code}

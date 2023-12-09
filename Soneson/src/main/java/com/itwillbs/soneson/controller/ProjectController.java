@@ -33,6 +33,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.itwillbs.soneson.service.RewardService;
 import com.itwillbs.soneson.service.BankApiClient;
 import com.itwillbs.soneson.service.ProjectService;
+import com.itwillbs.soneson.vo.CreatorAccountVO;
 import com.itwillbs.soneson.vo.ProjectVO;
 import com.itwillbs.soneson.vo.ResponseTokenVO;
 import com.itwillbs.soneson.vo.ResponseUserInfoVO;
@@ -89,14 +90,14 @@ public class ProjectController {
 		pro = service.selectProject(map);
 		List<Map<String, String>> itemList = itemService.selectItem(map);
 		List<Map<String, String>> rewardList = itemService.selectReward(map);
-		Map<String, String> fintechInfo = new HashMap<String, String>();
-		fintechInfo = service.selectToken(sId);
+//		Map<String, String> fintechInfo = new HashMap<String, String>();
+		Map<String, String> fintechInfo = service.selectToken(sId);
 		System.out.println("fintechInfo>>>>>>" + fintechInfo);
 		System.out.println(">>>>>>>>>>>>>>>>>>>>리워드<<<<<<<<<<<<" + rewardList);
 		
 		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>pro"+ pro);
 		//객체자체가 null인데 get으로 가져오려고 해서 404뜸
-		if(!(fintechInfo == null) &&fintechInfo.get("access_token") != null) {
+		if(!(fintechInfo == null) && fintechInfo.get("access_token") != null) {
 			System.out.println("토큰있음!!!!!!!!!!!!!!!!!!");
 			ResponseUserInfoVO userInfo = bankApiClient.requestUserInfo(fintechInfo);
 			model.addAttribute("userInfo", userInfo);
@@ -438,6 +439,7 @@ public class ProjectController {
 		}
 		
 		System.out.println("최종등록 하러 가보자고: " + pro);
+		
 		//파일 수정
 		String uploadDir = "/resources/upload"; // 가상의 경로
 		String saveDir = session.getServletContext().getRealPath(uploadDir); // 실제 업로드 경로
@@ -519,9 +521,11 @@ public class ProjectController {
 		int updateCount = service.updateProject(pro);	//최종저장
 		if(updateCount > 0) {
 			
+			//project테이블에 저장
 			int insertCount = service.insertProject(pro.getPro_code());
 			if(insertCount > 0) {
 				//창작자 핀테크번호 저장하기
+				int insertAccount = service.insertCreatorAccount(pro);
 				
 				//임시테이블에서 삭제하기
 				int deleteCount = service.deleteProject(pro.getPro_code());
@@ -540,6 +544,7 @@ public class ProjectController {
 			return "fail_back";
 		}
 		
+//		return "";
 	}
 	
 	

@@ -73,7 +73,8 @@ public class ProjectVO {
 	private String pro_creator;
 	private String pro_profile;
 	private String pro_createrInfo;
-	private String pro_userAuth;
+	private String pro_userAuth; //핀테크번호
+	private String user_name; //계좌소유주명
 	
 	private MultipartFile pro_thumb_multi;
 	private MultipartFile pro_content_multi;

@@ -64,6 +64,9 @@
 						$("#itemList_" + item_code).remove();
 						$("#itemListUl_" + item_code).remove();
 						alert("아이템이 삭제되었습니다.");
+						$("#itemListUl_" + item_code).remove();
+						
+						
 						
 					} else {
 						alert("리워드에 포함되어있는 아이템입니다.\n리워드 먼저 삭제해주세요.");
@@ -253,15 +256,13 @@
 				
 				//리워드창에도 추가
 				$("#selectitem-rewardForm").append(
-						'<div>'
-						+	'<ul id="itemListUl_' + item.item_code + '">'
+							'<ul id="itemListUl_' + item.item_code + '">'
 						+		'<li class="reward-select-itemList">'
 						+			'<input type="checkbox" value="' + item.item_name + '" name="reward_item_name" id="checkitem'+ item.item_code +'">'
 						+			'<input type="hidden" value="' + item.item_code + '" name="reward_item_code" id="checkitemCode' + item.item_code + ' ">'
 						+			'<label class="checkItemLabel" for="checkitem' + item.item_code + '">' + item.item_name + '</label>'
 						+		'</li>'
 						+	'</ul>'
-						+'</div>'	
 				);
 				
 				
@@ -438,8 +439,8 @@
 						+ 		'<div>'
 						+ 			'<p class="tiny-title">아이템 선택</p>'
 						+ 		'</div>'
-						+ 		'<div class="projectItem-form" id="selectitem-rewardForm">'
-						+ 			'<div>'
+						+ 		'<div class="projectItem-form">'
+						+ 			'<div id="selectitem-rewardForm">'
 						+ 				'<c:forEach var="item" items="${itemList }">'
 						+ 					'<ul id="itemListUl_${item.item_code }">'
 						+ 						'<li class="reward-select-itemList">'
@@ -768,8 +769,8 @@
 							<div>
 								<p class="tiny-title">아이템 선택</p>
 							</div>
-							<div class="projectItem-form" id="selectitem-rewardForm">
-								<div>
+							<div class="projectItem-form">
+								<div id="selectitem-rewardForm">
 									<c:forEach var="item" items="${itemList }">
 										<ul id="itemListUl_${item.item_code }">
 											<li class="reward-select-itemList">

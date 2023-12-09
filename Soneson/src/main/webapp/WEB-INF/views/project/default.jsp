@@ -13,6 +13,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src= "${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
 <script>
+function defaultImg(this) {
+	this.attr('src','' )
+}
+
+
+
 function updateProject(pro_code) {
 // 	alert("저장버튼!");
 	let user_id =  "${sessionScope.sId}";
@@ -76,6 +82,7 @@ $(function() {
 	//이미지 미리보기
 	$('input[name="pro_thumb_multi"]').change(function(){
 	    setImageFromFile(this, '#thumb_preview');
+// 	    setImageFromFile(this, '#mainThumb_preview');
 	});
 	
 	function setImageFromFile(input, expression) {
@@ -162,7 +169,7 @@ $(function() {
 	
 	//onsubmit
 	function checkNull() {
-		
+		debugger;
 		let pro_categorie = $("#pro_categorie").val();
 		let pro_title = $("#pro_title").val();
 		let pro_summary = $("#pro_summary").val();
@@ -183,27 +190,32 @@ $(function() {
 		let pro_creator = $("#pro_creator").val();
 		let pro_profile = $("#profile_preview").attr("alt");
 		let pro_createrInfo = $("#pro_createrInfo").val();
-		let pro_auth = $("input[type=radio][name=pro_userAuth]").val();
+		let pro_userAuth = $("input[type=radio][name=pro_userAuth]").val();
 		
 		let arr0 = [pro_categorie, pro_title, pro_summary, pro_thumb];
 		let arr1 = [pro_goal, start_date, start_time, end_date];
 		let arr2 = [pro_content, pro_budget, pro_sch, pro_team, pro_reward, pro_notice];
-		let arr3 = [pro_creator, pro_profile, pro_createrInfo, pro_auth];
+		let arr3 = [pro_creator, pro_profile, pro_createrInfo, pro_userAuth];
 		
 		let arr = [arr0, arr1, arr2, arr3];
 		console.log(arr);
-		for(let j = 1; j < arr.length; j++) {
+	
+		for(let j = 0; j < arr.length; j++) {
 			
 			for(let i = 0; i < arr[j].length; i++) {
 				console.log(arr[j][i]);
-				if(arr[j][i] == "") {
-				debugger;
+				if(arr[j][i] == "" || arr[j][i] == null) {
+				
 					alert("필수항목을 입력해주세요.");
 					return false;
 				}
 				
 			}
 		}
+		
+		
+		
+		//마지막으로 확인하기
 		let checkSubmit = confirm("등록 후 바로 심사가 진행되어 수정이 불가능합니다.\n등록하시겠습니까?");
 		
 		if(checkSubmit) {
@@ -292,9 +304,14 @@ $(function() {
 						</div>
 						<div class="top-content-center">
 							<div class="top-content-img">
-								<c:if test="${not empty pro.pro_thumbsnail }">
-									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }" id="mainThunb_preview" width="200px" height="133px">
-								</c:if>
+							<c:choose>
+								<c:when test="${not empty pro.pro_thumbsnail }">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }" id="mainThumb_preview" width="200px" height="133px">
+								</c:when>
+								<c:otherwise>
+									<img src="" id="mainThumb_preview" width="200px" height="133px" onerror="defaultImg(this)">
+								</c:otherwise>
+							</c:choose>
 							</div>
 							<div class="plan-title">
 								<h2>${pro.pro_title }</h2>
@@ -440,7 +457,7 @@ $(function() {
 												<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }" id="thumb_preview" width="180px" alt="${pro.pro_thumbsnail }">
 											</c:when>
 											<c:otherwise>
-												<img src="" id="preview" width="180px">
+												<img src="" id="thumb_preview" width="180px">
 											</c:otherwise>
 										</c:choose>
 										</div>

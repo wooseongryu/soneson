@@ -59,7 +59,7 @@
 				let str = "";
 				$("#creator-authAccountInfo").empty();
 				str += '<button class="authInfoBtn" type="button" onclick="authAccountCreator()">계좌 추가 등록</button>'
-				
+				str += '<input type="hidden" name="user_name" value=" ' + data.user_name + ' ">'
 				
 				for(info of infoList) {
 					console.log(info);
@@ -245,6 +245,7 @@
 				<div class="projectItem-form"  id="creator-authAccountInfo">
 					<c:choose>
 						<c:when test="${not empty fintechInfo.access_token }">
+							<input type="hidden" name="user_name" value="${userInfo.user_name }">
 							<button class="authInfoBtn" type="button" onclick="authAccountCreator()">계좌 추가 등록</button>
 <%-- 									<button class="authInfoBtn" type="button" onclick="getAuthAccount('${fintechInfo.access_token}', '${fintechInfo.user_seq_no }')">계좌가져오기</button> --%>
 							<c:forEach var="auth" items="${userInfo.res_list }">

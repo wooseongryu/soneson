@@ -54,9 +54,9 @@
 			if(Number(goal) < 500000) {
 				$(".input-fundingCost").css("border", "1px solid rgb(248, 100, 83)");
 				amountAlert = "50만원 이상의 금액을 입력해 주세요.";
-			} else if(goal.length > 10) {
+			} else if(goal.length > 8) {
 				$(".input-fundingCost").css("border", "1px solid rgb(248, 100, 83)");
-				amountAlert = "9,999,999,999원 이하인 금액을 입력해주세요..";
+				amountAlert = "99,999,999원 이하인 금액을 입력해주세요..";
 			} else {
 				$(".input-fundingCost").css("border", "1px solid rgb(240, 240, 240)");
 				amountAlert = "";
@@ -73,6 +73,12 @@
 		$("#start-funding").attr("min", tommorrow);
 		let startDt = new Date("${pro.pro_startDt}");
 		let endDt = new Date("${pro.pro_endDt}");
+		console.log(tommorrow);
+		if($("#start-funding").val("${pro.pro_startDt}") < tommorrow) {
+			alert("시작일을 다시 선택해주세요.");
+			$("#start-funding").css('border','1px solid rgb(248, 100, 83)');
+		}
+		
 		
 		if(${not empty pro.pro_startDt} && ${not empty pro.pro_endDt}) {
 			let fundingDays = Math.round((endDt - startDt) / 1000 / 60 / 60 / 24);
@@ -93,6 +99,7 @@
 				$(this).val("");
 				return;
 			}
+			$("#start-funding").css('border','1px solid #d1d3e2');
 			console.log(startDt + ", " + typeof startDt);
 			
 			if(startDt != "" && endDt != "") {
@@ -201,6 +208,7 @@
 						<p>종료일까지 목표금액을 달성하지 못하면 후원자 결제가 진행되지 않습니다.</p>
 						<p>후원 취소 및 결제 누락을 대비해 10% 이상 초과 달성을 목표로 해주세요.</p>
 						<p>제작비, 선물 배송비, 인건비, 예비 비용 등을 함께 고려해주세요.</p>
+						<p>목표금액은 50만원 이상 1억 미만으로 설정해 주세요.</p>
 					</div>
 				</div>
 			</dl>
@@ -210,7 +218,7 @@
 					<div>
 						<div class="input-fundingCost">
 							<span class="fundingInputCost">
-								<input type="text" maxlength="14" class="InputTextFunding" name="pro_goal" id="pro_goal" value="${pro.pro_goal }">
+								<input type="text" maxlength="10" class="InputTextFunding" name="pro_goal" id="pro_goal" value="${pro.pro_goal }">
 <!-- 								<input type="text" maxlength="13" class="InputTextFunding" name="pro_goal" id="pro_goal"  oninput="maxLengthCheck(this)"> -->
 <!-- 								<input type="number" min="500000" max="9999999999" class="InputTextFunding" inputmode="numeric" name="pro_goal" id="pro_goal"> -->
 								원
