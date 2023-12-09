@@ -55,12 +55,12 @@
 									<div class="swiper-slide" style="width: 855px;">
 										<div class="IntroVisualSlider__ProjectCoverVideo-sc-1h7hyyq-1 klppFc">
 											<div class="ProjectIntroductionVideoPlayer__StyledVideoWrapper-sc-1rpvirp-0 dqRjJQ _13KHfN73YmQgsYHxXvuh_J ">
-												<video controls="" autoplay="" playsinline="">
-													<source type="video/mp4; codecs='avc1.64001E, mp4a.40.2'" src="https://d2f45jiwzkt4py.cloudfront.net/2cd15f2a-93d1-4d0a-bda7-a9464b4e75ed/95635ffc-596a-4378-97c7-38fef93c1006-high.mp4">
-													<source type="video/mp4; codecs='avc1.42E01E, mp4a.40.2'" src="https://d2f45jiwzkt4py.cloudfront.net/2cd15f2a-93d1-4d0a-bda7-a9464b4e75ed/95635ffc-596a-4378-97c7-38fef93c1006-base.mp4">
-													<source type="video/mp4" src="https://d2f45jiwzkt4py.cloudfront.net/2cd15f2a-93d1-4d0a-bda7-a9464b4e75ed/95635ffc-596a-4378-97c7-38fef93c1006-high.mp4">
-													<source type="video/webm" src="https://d2f45jiwzkt4py.cloudfront.net/2cd15f2a-93d1-4d0a-bda7-a9464b4e75ed/95635ffc-596a-4378-97c7-38fef93c1006.webm">
-												</video>
+<!-- 												<video controls="" autoplay="" playsinline=""> -->
+<!-- 													<source type="video/mp4; codecs='avc1.64001E, mp4a.40.2'" src="https://d2f45jiwzkt4py.cloudfront.net/2cd15f2a-93d1-4d0a-bda7-a9464b4e75ed/95635ffc-596a-4378-97c7-38fef93c1006-high.mp4"> -->
+<!-- 													<source type="video/mp4; codecs='avc1.42E01E, mp4a.40.2'" src="https://d2f45jiwzkt4py.cloudfront.net/2cd15f2a-93d1-4d0a-bda7-a9464b4e75ed/95635ffc-596a-4378-97c7-38fef93c1006-base.mp4"> -->
+<!-- 													<source type="video/mp4" src="https://d2f45jiwzkt4py.cloudfront.net/2cd15f2a-93d1-4d0a-bda7-a9464b4e75ed/95635ffc-596a-4378-97c7-38fef93c1006-high.mp4"> -->
+<!-- 													<source type="video/webm" src="https://d2f45jiwzkt4py.cloudfront.net/2cd15f2a-93d1-4d0a-bda7-a9464b4e75ed/95635ffc-596a-4378-97c7-38fef93c1006.webm"> -->
+<!-- 												</video> -->
 											</div>
 										</div>
 									</div>
