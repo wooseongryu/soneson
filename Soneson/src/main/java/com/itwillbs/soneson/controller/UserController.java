@@ -105,6 +105,32 @@ public class UserController {
 		return "redirect:/user?id=" + follow_id;
 	}
 	
+	// 팔로우 해제
+	@GetMapping("deleteFollow")
+	public String deleteFollow(String follow_id, HttpSession session, Model model, Map<String, String> map) {
+		System.out.println("UserController - deleteFollow()");
+		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+			return "fail_back";
+		}
+		
+		map.put("sId", sId);
+		map.put("follow_id", follow_id);
+		
+		int deleteCount = userService.deleteFollow(map);
+		
+		if (deleteCount == 0) {
+			model.addAttribute("msg", "팔로우 해제 실패!");
+			return "fail_back";
+		}
+		
+		return "redirect:/user?id=" + follow_id;
+	}
+	
+	
+	
 	// 프로필
 	@ResponseBody
 	@PostMapping("userProfile")

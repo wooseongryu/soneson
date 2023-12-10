@@ -201,6 +201,12 @@
     		user_id = "${param.id}";
     		userProfile('topCateProfile');
     	});
+    	
+    	function deleteFollow(user_id) {
+    		if(confirm("팔로우를 해제 하시겠습니까?")) {
+    			location.href="deleteFollow?follow_id=" + user_id;
+    		}
+    	}
     </script>
 </head>
 
@@ -246,7 +252,7 @@
 						        	<a href="follow?follow_id=${user.user_id }">+ 팔로우</a>
 				        		</c:when>
 				        		<c:otherwise>
-						        	<a href="">팔로잉</a>
+						        	<a onclick="deleteFollow('${user.user_id }')">팔로잉</a>
 				        		</c:otherwise>
 				        	</c:choose>
 					        <a href="chatting" onclick="window.open(this.href, '_blank', 'width=400, height=800'); return false;">창작자 문의</a>

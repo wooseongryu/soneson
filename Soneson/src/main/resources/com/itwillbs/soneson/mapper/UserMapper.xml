@@ -437,5 +437,12 @@
 			, #{follow_id}
 		)
 	</insert>
+	
+	<delete id="deleteFollow">
+		DELETE FROM follow
+		WHERE 
+			user_id = #{sId}
+			AND follow_id = #{follow_id}
+	</delete>
 </mapper>
 

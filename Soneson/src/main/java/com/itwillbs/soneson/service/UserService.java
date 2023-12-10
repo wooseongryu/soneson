@@ -314,6 +314,13 @@ public class UserService {
 		
 		return mapper.insertFollow(map);
 	}
+
+	// 팔로우 해제
+	public int deleteFollow(Map<String, String> map) {
+		System.out.println("UserService - deleteFollow()");
+		
+		return mapper.deleteFollow(map);
+	}
 	
 }
 

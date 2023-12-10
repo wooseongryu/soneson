@@ -151,6 +151,9 @@ public interface UserMapper {
 
 	// 팔로우
 	int insertFollow(Map<String, String> map);
+
+	// 팔로우 해제
+	int deleteFollow(Map<String, String> map);
 }
 
 
