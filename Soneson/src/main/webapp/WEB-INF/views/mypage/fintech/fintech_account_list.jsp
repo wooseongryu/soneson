@@ -50,7 +50,7 @@
 	<div id="wrapper">
 		
 		<!-- Sidebar -->
-		<jsp:include page="admin_sidebar.jsp"></jsp:include>
+		<jsp:include page="../admin/admin_sidebar.jsp"></jsp:include>
 		<!-- End of Sidebar -->
 		
 

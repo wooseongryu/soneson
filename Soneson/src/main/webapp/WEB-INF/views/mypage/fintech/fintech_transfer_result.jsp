@@ -36,7 +36,7 @@
 		<c:when test="${empty sessionScope.access_token}">
 			<script type="text/javascript">
 				alert("계좌 인증 후 사용 가능합니다!");
-				location.href = "admin";
+				location.href = "FintechMain";
 			</script>
 		</c:when>
 	</c:choose>
@@ -50,7 +50,7 @@
 	<div id="wrapper">
 		
 		<!-- Sidebar -->
-		<jsp:include page="admin_sidebar.jsp"></jsp:include>
+		<jsp:include page="../admin/admin_sidebar.jsp"></jsp:include>
 		<!-- End of Sidebar -->
 		
 
@@ -65,47 +65,35 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">핀테크 사용자 정보</h1>
+					<h1 class="h3 mb-2 text-gray-800">핀테크 송금 결과</h1>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">핀테크 사용자 정보</h6>
+							<h6 class="m-0 font-weight-bold text-primary">핀테크 송금 결과</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th>계좌별칭</th>
-											<th>계좌번호</th> <%-- 일반 계좌번호 대신 마스킹 된 계좌번호(account_num_masked)만 사용 가능 --%>
-											<th>은행명(은행코드)</th>
+											<th>출금은행명(기관코드)</th>
+											<th>출금일시</th>
 											<th>예금주명</th>
-											<th>핀테크이용번호</th>
-											<th></th>
+											<th>출금금액</th>
+											<th>출금한도잔여금액</th>
+											<th>출금계좌인자내역</th>
 										</tr>
 									</thead>
 									<tbody>
-									<c:forEach var="account" items="${userInfo.res_list}">
 										<tr>
-											<td>${account.account_alias}</td>
-											<td>${account.account_num_masked}</td>
-											<td>${account.bank_name}(${account.bank_code_std})</td>
-											<td>${account.account_holder_name}</td>
-											<td>${account.fintech_use_num}</td>
-											<td>
-												<%-- 2.3.1. 잔액조회 API 서비스 요청을 위한 데이터 전송 폼 생성(각 계좌 당 1개) --%>
-												<%-- 요청 URL : BankAccountDetail, 요청 방식 : POST --%>
-												<%-- 핀테크이용번호, 예금주명, 계좌번호(마스킹) 전달 --%>
-												<form action="BankAccountDetail" method="post">
-													<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num}">
-													<input type="hidden" name="user_name" value="${userInfo.user_name}">
-													<input type="hidden" name="account_num_masked" value="${account.account_num_masked}">
-													<input type="submit" value="상세정보">
-												</form>
-											</td>
+											<td>${transferResult.withdrawResult.bank_name}(${transferResult.withdrawResult.bank_code_std})</td>
+											<td>${transferResult.withdrawResult.api_tran_dtm}</td>
+											<td>${transferResult.withdrawResult.account_holder_name}</td>
+											<td>${transferResult.withdrawResult.tran_amt} 원</td>
+											<td>${transferResult.withdrawResult.wd_limit_remain_amt} 원</td>
+											<td>${transferResult.withdrawResult.print_content}</td>
 										</tr>
-									</c:forEach>
 									</tbody>
 								</table>
 							</div>

@@ -104,7 +104,7 @@ public class FintechController {
 		
 		model.addAttribute("userInfo", userInfo);
 		
-		return "mypage/admin/fintech_user_info";
+		return "mypage/fintech/fintech_user_info";
 	}
 	
 	// 2.2.3. 등록계좌조회 API
@@ -118,7 +118,7 @@ public class FintechController {
 		
 		model.addAttribute("accountList", accountList);
 		
-		return "mypage/admin/fintech_account_list";
+		return "mypage/fintech/fintech_account_list";
 	}
 	
 	@PostMapping("BankAccountDetail")
@@ -132,7 +132,7 @@ public class FintechController {
 		model.addAttribute("user_name", map.get("user_name"));
 		model.addAttribute("account_num_masked", map.get("account_num_masked"));
 		
-		return "mypage/admin/fintech_account_detail";
+		return "mypage/fintech/fintech_account_detail";
 	}
 	
 	@PostMapping("BankPayment")
@@ -160,7 +160,7 @@ public class FintechController {
 		
 		model.addAttribute("depositResult", depositResult);
 		
-		return "mypage/admin/fintech_refund_result";
+		return "mypage/fintech/fintech_refund_result";
 	}
 	
 	@PostMapping("BankTransfer")
@@ -173,7 +173,7 @@ public class FintechController {
 		
 		model.addAttribute("transferResult", transferResult);
 		
-		return "mypage/admin/fintech_transfer_result";
+		return "mypage/fintech/fintech_transfer_result";
 	}
 	
 }

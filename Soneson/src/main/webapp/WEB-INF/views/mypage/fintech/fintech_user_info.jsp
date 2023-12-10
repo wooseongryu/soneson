@@ -36,7 +36,7 @@
 		<c:when test="${empty sessionScope.access_token}">
 			<script type="text/javascript">
 				alert("계좌 인증 후 사용 가능합니다!");
-				location.href = "FintechMain";
+				location.href = "admin";
 			</script>
 		</c:when>
 	</c:choose>
@@ -50,7 +50,7 @@
 	<div id="wrapper">
 		
 		<!-- Sidebar -->
-		<jsp:include page="admin_sidebar.jsp"></jsp:include>
+		<jsp:include page="../admin/admin_sidebar.jsp"></jsp:include>
 		<!-- End of Sidebar -->
 		
 
@@ -65,65 +65,47 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">핀테크 계좌 상세정보</h1>
+					<h1 class="h3 mb-2 text-gray-800">핀테크 사용자 정보</h1>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">${user_name} 고객님의 계좌 상세정보 (사용자번호 :${sessionScope.user_seq_no})</h6>
+							<h6 class="m-0 font-weight-bold text-primary">핀테크 사용자 정보</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th>은행명</th>
+											<th>계좌별칭</th>
 											<th>계좌번호</th> <%-- 일반 계좌번호 대신 마스킹 된 계좌번호(account_num_masked)만 사용 가능 --%>
-											<th>상품명</th>
-											<th>계좌잔액</th>
-											<th>출금가능금액</th>
+											<th>은행명(은행코드)</th>
+											<th>예금주명</th>
 											<th>핀테크이용번호</th>
 											<th></th>
 										</tr>
 									</thead>
 									<tbody>
+									<c:forEach var="account" items="${userInfo.res_list}">
 										<tr>
-											<td>${accountDetail.bank_name}</td>
-											<td>${account_num_masked}</td>
-											<td>${accountDetail.product_name}</td>
-											<td>${accountDetail.balance_amt}</td>
-											<td>${accountDetail.available_amt}</td>
-											<td>${accountDetail.fintech_use_num}</td>
-											<td colspan="2">
-												<form action="BankRefund" method="post">
-													<input type="hidden" name="deposit_fintech_use_num" value="${accountDetail.fintech_use_num}">
-													<input type="hidden" name="tran_amt" value="2000">	<%-- 거래금액(출금금액) --%>
-													<input type="hidden" name="deposit_user_name" value="${user_name }">
-													<input type="submit" value="상품환불">
-												</form>
-												<form action="BankPayment" method="post">
-													<input type="hidden" name="withdraw_fintech_use_num" value="${accountDetail.fintech_use_num}">
-													<input type="hidden" name="tran_amt" value="50000">	<%-- 거래금액(출금금액) --%>
-													<input type="hidden" name="withdraw_user_name" value="${user_name }">	<%-- 고객성명 --%>
-													<input type="submit" value="상품구매(결제)">
-												</form>
-												
-												<form action="BankTransfer" method="post">
-													<%-- 송금 요청 대상(출금계좌) 정보를 셋팅 --%>
-													<input type="hidden" name="withdraw_fintech_use_num" value="${accountDetail.fintech_use_num}">
-													<input type="hidden" name="tran_amt" value="35000">
-													<input type="hidden" name="withdraw_user_name" value="${user_name }">
-													<%-- ======================================================== --%>
-													<%-- 송금 대상(입금계좌) 정보를 임의의 정보로 셋팅 --%>
-													<%-- 실제로는 컨트롤러 - 서비스를 통해 해당 회원의 정보 조회 필요 --%>
-													<input type="hidden" name="deposit_fintech_use_num" value="120211385488932387478941">
-													<input type="hidden" name="deposit_user_name" value="류우성">
-													<input type="hidden" name="deposit_bank_code" value="004">
-													<input type="hidden" name="deposit_account_num" value="23062003005">
-													<input type="submit" value="송금">
+											<td>${account.account_alias}</td>
+											<td>${account.account_num_masked}</td>
+											<td>${account.bank_name}(${account.bank_code_std})</td>
+											<td>${account.account_holder_name}</td>
+											<td>${account.fintech_use_num}</td>
+											<td>
+												<%-- 2.3.1. 잔액조회 API 서비스 요청을 위한 데이터 전송 폼 생성(각 계좌 당 1개) --%>
+												<%-- 요청 URL : BankAccountDetail, 요청 방식 : POST --%>
+												<%-- 핀테크이용번호, 예금주명, 계좌번호(마스킹) 전달 --%>
+												<form action="BankAccountDetail" method="post">
+													<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num}">
+													<input type="hidden" name="user_name" value="${userInfo.user_name}">
+													<input type="hidden" name="account_num_masked" value="${account.account_num_masked}">
+													<input type="submit" value="상세정보">
 												</form>
 											</td>
 										</tr>
+									</c:forEach>
 									</tbody>
 								</table>
 							</div>

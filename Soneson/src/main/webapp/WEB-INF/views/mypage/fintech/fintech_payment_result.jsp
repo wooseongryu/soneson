@@ -50,7 +50,7 @@
 	<div id="wrapper">
 		
 		<!-- Sidebar -->
-		<jsp:include page="admin_sidebar.jsp"></jsp:include>
+		<jsp:include page="../admin/admin_sidebar.jsp"></jsp:include>
 		<!-- End of Sidebar -->
 		
 
@@ -78,8 +78,8 @@
 									<thead>
 										<tr>
 											<th>출금은행명(기관코드)</th>
-											<th>출금일시</th>
-											<th>예금주명</th>
+											<th>출금일시</th> <%-- 일반 계좌번호 대신 마스킹 된 계좌번호(account_num_masked)만 사용 가능 --%>
+											<th>예금주명</th> 
 											<th>출금금액</th>
 											<th>출금한도잔여금액</th>
 											<th>출금계좌인자내역</th>
@@ -87,12 +87,12 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td>${transferResult.withdrawResult.bank_name}(${transferResult.withdrawResult.bank_code_std})</td>
-											<td>${transferResult.withdrawResult.api_tran_dtm}</td>
-											<td>${transferResult.withdrawResult.account_holder_name}</td>
-											<td>${transferResult.withdrawResult.tran_amt} 원</td>
-											<td>${transferResult.withdrawResult.wd_limit_remain_amt} 원</td>
-											<td>${transferResult.withdrawResult.print_content}</td>
+											<td>${withdrawResult.bank_name}(${withdrawResult.bank_code_std})</td>
+											<td>${withdrawResult.api_tran_dtm}</td>
+											<td>${withdrawResult.account_holder_name}</td>
+											<td>${withdrawResult.tran_amt} 원</td>
+											<td>${withdrawResult.wd_limit_remain_amt} 원</td>
+											<td>${withdrawResult.print_content}</td>
 										</tr>
 									</tbody>
 								</table>
