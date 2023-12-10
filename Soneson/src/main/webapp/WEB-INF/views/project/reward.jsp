@@ -91,17 +91,33 @@
 		
 		let item_name = $("#item_name").val();
 		let item_condition = $("input[name=item_condition]:checked").val();
+		let option1 = $("#option_1").val();
+		let option2 = $("#option_2").val();
+		let option_2_1 = $("#option_2_1").val();
 		console.log("item_name: " + item_name);
 		console.log("item_condition: " + item_condition);
 		
 		if(item_name == "") {
-			alert("이름을 작성해 주세요.");
+			alert("이름을 작성해주세요.");
 			return;
 		}
 		if(item_condition == "" || item_condition == null) {
-			alert("옵션조건을 선택해 주세요.");
+			alert("옵션조건을 선택해주세요.");
 			return;
 		}
+		//주관식옵션
+		if(item_condition == '1' && option1 == "") {
+			alert("세부옵션을 작성해주세요.");
+			return;
+			
+		}
+		//객관식옵션
+		if(item_condition == '2' && (option2 == "" || option_2_1 == "")) {
+			alert("세부옵션을 2개 이상 작성해주세요.");
+			return;
+			
+		}
+		
 		
 		let get_option = $(".reward-section2 input[type=text]");
 		let item_option = "";
@@ -210,7 +226,7 @@
 						+				'<p class="tiny-title">옵션 항목</p>'
 						+			'</div>'
 						+			'<div class="projectItem-form">'
-						+				'<input type="text" class="input_detail" placeholder="예) 각인문구를 작성해주세요." name="item_option">'
+						+				'<input type="text" class="input_detail" placeholder="예) 각인문구를 작성해주세요." name="item_option" id="option_1">'
 						+			'</div>'
 						+		'</div>'
 						+		'<div id="radio-value2" style="display: none;">'
@@ -230,10 +246,10 @@
 						+				'<p></p>'
 						+			'</div>'
 						+			'<div class="projectItem-form">'
-						+				'<input type="text" class="input_detail" placeholder="예) 블랙-220mm" name="item_option">'
+						+				'<input type="text" class="input_detail" placeholder="예) 블랙-220mm" name="item_option" id="option_2">'
 						+			'</div>'
 						+			'<div class="projectItem-form">'
-						+				'<input type="text" class="input_detail" name="item_option">'
+						+				'<input type="text" class="input_detail" name="item_option" id="option_2_1">'
 						+			'</div>'
 						+		'</div>'
 						+	'</section>'
@@ -772,7 +788,7 @@
 									<p class="tiny-title">옵션 항목</p>
 								</div>
 								<div class="projectItem-form">
-									<input type="text" class="input_detail" placeholder="예) 각인문구를 작성해주세요." name="item_option">
+									<input type="text" class="input_detail" placeholder="예) 각인문구를 작성해주세요." name="item_option" id="option_1">
 								</div>
 							</div>
 							<div id="radio-value2" style="display: none;">
@@ -792,10 +808,10 @@
 									<p></p>
 								</div>
 								<div class="projectItem-form">
-									<input type="text" class="input_detail" placeholder="예) 블랙-220mm" name="item_option">
+									<input type="text" class="input_detail" placeholder="예) 블랙-220mm" name="item_option" id="option_2">
 								</div>
 								<div class="projectItem-form">
-									<input type="text" class="input_detail" name="item_option">
+									<input type="text" class="input_detail" name="item_option" id="option_2_1">
 								</div>
 							</div>
 						</section>
