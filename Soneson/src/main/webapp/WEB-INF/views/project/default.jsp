@@ -104,15 +104,18 @@ $(function() {
 	// 제목 글자수 제한
 	$("#pro_title + .varchar-count .count-length").text($("#pro_title").val().length);
 	
-	$("#pro_title").on("keyup", function() {
+	$("#pro_title").on("keyup keydown blur", function() {
 		let content = $(this).val();
 		$("#pro_title + .varchar-count .count-length").text(content.length);
 		if(content.length <= 0) {
 // 			$(".alert-count").text("10자 이상 작성해 주세요");
 			$("#pro_title + .varchar-count .alert-count").text("필수 항목 입니다.");
+			$(this).css("border", "1px solid rgb(248, 100, 83)");
+			$(this).focus();
 		} else {
 // 			$(".alert-count").text("");
 			$("#pro_title + .varchar-count .alert-count").text("");
+			$(this).css("border", "1px solid #d1d3e2");
 		}
 		
 		if (content.length > 32) {
@@ -125,21 +128,22 @@ $(function() {
 	// 요약 글자수 제한
 	
 	$("#pro_summary + .varchar-count .count-length").text($("#pro_summary").val().length);
-	$("#pro_summary").on("keyup", function() {
+	$("#pro_summary").on("keyup keydown blur", function() {
 		let content = $(this).val();
 		$("#pro_summary + .varchar-count .count-length").text(content.length);
 		
 		if(content.length < 10) {
 // 			$(".alert-count").text("10자 이상 작성해 주세요");
 			$("#pro_summary + .varchar-count .alert-count").text("10자 이상 작성해 주세요");
+			$(this).css("border", "1px solid rgb(248, 100, 83)");
+			$(this).focus();
 		} else {
 			$("#pro_summary + .varchar-count .alert-count").text("");
 // 			$(".alert-count").text("");
-			
+			$(this).css("border", "1px solid #d1d3e2");
 		}
-		
 		if (content.length > 50) {
-	        $(this).val($(this).val().substring(0, 32));
+	        $(this).val($(this).val().substring(0, 50));
 	        alert('글자수는 50자까지 입력 가능합니다.');
 	    };
 		
@@ -194,12 +198,17 @@ $(function() {
 		let pro_creator = $("#pro_creator").val();
 		let pro_profile = $("#profile_preview").attr("alt");
 		let pro_createrInfo = $("#pro_createrInfo").val();
-		let pro_userAuth = $("input[type=radio][name=pro_userAuth]").val();
+		let pro_userAuth = $("input[type=radio][name=pro_userAuth]:checked").val();
+		
+		if(!$('input:radio[name=pro_userAuth]').is(':checked')){
+			alert("계좌를 선택해주세요.");
+			return false;
+		}
 		
 		let arr0 = [pro_categorie, pro_title, pro_summary, pro_thumb];
 		let arr1 = [pro_goal, start_date, start_time, end_date];
 		let arr2 = [pro_content, pro_budget, pro_sch, pro_team, pro_reward, pro_notice];
-		let arr3 = [pro_creator, pro_profile, pro_createrInfo, pro_userAuth];
+		let arr3 = [pro_creator, pro_profile, pro_createrInfo];
 		
 		let arr = [arr0, arr1, arr2, arr3];
 		console.log(arr);

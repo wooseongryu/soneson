@@ -295,6 +295,7 @@
 	//리워드폼
 	let count = "";
 	let amount = "";
+	
 	$(function() {
 		
 		$("input[type=radio][name=reward_isCount]").on("click", function() {
@@ -325,16 +326,18 @@
 		});
 		
 		//금액
-		$("#reward_amount").on('keydown keyup', function() {
+		$("#reward_amount").on('keydown keyup blur', function() {
 			amount = $(this).val().replace(/^0+|[^0-9]/g, ''); //숫자만 입력
 			$(this).val(amount.replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 			
 			if(Number(amount) < 1000) {
 // 				$("#amount-alert").css("border", "1px solid rgb(248, 100, 83)");
 				amountAlert = "1000원 이상의 금액을 입력해 주세요.";
-			} else if(amount.length > 10) {
+				$(this).focus();
+			} else if(Number(amount) > 500000) {
 // 				$("#amount-alert").css("border", "1px solid rgb(248, 100, 83)");
-				amountAlert = "9,999,999,999원 이하인 금액을 입력해주세요..";
+				amountAlert = "500,000원 이하인 금액을 입력해주세요.";
+				$(this).focus();
 			} else {
 // 				$("#amount-alert").css("border", "1px solid rgb(240, 240, 240)");
 				amountAlert = "";
@@ -343,9 +346,12 @@
 			$("#alert-amount").text(amountAlert);
 		});
 		
+		
 	});
 	
-	
+	undo = {
+			targetHtml : $("#rewardInsert-form").html()
+	}
 	//리워드 저장하기
 	function insertReward(pro_code) {
 		
@@ -428,9 +434,9 @@
 				str +=				reward.reward_item_name + '<br>'
 				
 				if(reward.reward_count == "0") {
-					str +=				'수량 : 제한없음'
+					str +=			'수량 : 제한없음'
 				} else {
-					str +=				'수량 : ' + reward.reward_count + '개'
+					str +=			'수량 : ' + reward.reward_count + '개'
 				}
 				str +=			'</p>'
 				str +=		'</div>'
@@ -441,148 +447,200 @@
 				str +='</ul>'
 				$("#preview-rewardList").append(str);
 				
-				$("#rewardInsert-form").html(undo.targetHtml);
-// 				$("#rewardInsert-form").empty();
-// 				$("#rewardInsert-form").append(
-					
-// 						'<div class="style-projectFunding">'
-// 						+ 	'<p class="tiny-title">리워드 구성하기</p>'
-// 						+ 	'<p class="projectInfo-description">'
-// 						+ 		'다양한 금액대로 여러 개의 리워드를 만들어주세요.<br>'
-// 						+ 		'펀딩 성공률이 높아지고, 더 많은 후원 금액을 모금할 수 있어요.'
-// 						+ 	'</p>'
-// 						+ 	'<div class="margindiv">'
-// 						+ 		'<div>'
-// 						+ 			'<p class="tiny-title">아이템 선택</p>'
-// 						+ 		'</div>'
-// 						+ 		'<div class="projectItem-form">'
-// 						+ 			'<div id="selectitem-rewardForm">'
-// 						+ 				'<c:forEach var="item" items="${itemList }">'
-// 						+ 					'<ul id="itemListUl_${item.item_code }">'
-// 						+ 						'<li class="reward-select-itemList">'
-// 						+ 							'<input type="checkbox" value="${item.item_name }" name="reward_item_name" id="checkitem${item.item_code }">'
-// 						+ 							'<input type="hidden" value="${item.item_code }" name="reward_item_code" id="checkitemCode${item.item_code }">'
-// 						+ 							'<label class="checkItemLabel" for="checkitem${item.item_code }">${item.item_name }</label>'
-// 						+ 						'</li>'
-// 						+ 					'</ul>'
-// 						+ 				'</c:forEach>'
-// 						+ 			'</div>'
-// 						+ 		'</div>'
-// 						+ 		'<div class="alert-title">'
-// 						+ 			'<p></p>'
-// 						+ 		'</div>'
-// 						+ 	'</div>'
-// 						+ 	'<section class="reward-section">'
-// 						+ 		'<div class="reward-optiondiv">'
-// 						+ 			'<div class="margindiv">'
-// 						+ 				'<div>'
-// 						+ 					'<p class="tiny-title">구성 설명</p>'
-// 						+ 					'<p class="projectInfo-description">'
-// 						+ 						'얼리버드, 리미티드 에디션 등 선물에 대한 설명을 입력해주세요.'
-// 						+ 					'</p>'
-// 						+ 				'</div>'
-// 						+ 				'<div class="projectItem-form">'
-// 						+ 					'<input type="text" class="input_detail" placeholder="예) 봄 세트, 배송비포함" name="reward_explan" id="reward_explan">'
-// 						+ 				'</div>'
-// 						+ 				'<div class="alert-title">'
-// 						+ 					'<p></p>'
-// 						+ 				'</div>'
-// 						+ 			'</div>'
-// 						+ 		'</div>'
-// 						+ 	'</section>'
-// 						+ 	'<section class="reward-section">'
-// 						+ 		'<div>'
-// 						+ 			'<p class="tiny-title">수량 제한</p>'
-// 						+ 		'</div>'
-// 						+ 		'<div class="select-rewardoptionWarp">'
-// 						+ 			'<div class="select-radioWarp">'
-// 						+ 				'<input type="radio" class="radioBtn-rewardItem" name="reward_isCount" id="total_Y" value="0">'
-// 						+ 				'<div class="radio-inner">'
-// 						+ 					'<div class="radio-label">'
-// 						+ 						'<label for="total_Y">있음</label>'
-// 						+ 					'</div>'
-// 						+ 				'</div>'
-// 						+ 			'</div>'
-// 						+ 			'<div class="select-radioWarp">'
-// 						+ 				'<input type="radio" class="radioBtn-rewardItem" name="reward_isCount" id="total_N" value="1">'
-// 						+ 				'<div class="radio-inner">'
-// 						+ 					'<div class="radio-label">'
-// 						+ 						'<label for="total_N">없음</label>'
-// 						+ 					'</div>'
-// 						+ 				'</div>'
-// 						+ 			'</div>'
-// 						+ 		'</div>'
-// 						+ 		'<div class="totalItemDiv">'
-// 						+ 			'<div id="radio-total0" style="display: none;">'
-// 						+ 				'<div class="projectItem-form">'
-// 						+ 					'<div class="inputAmount-form">'
-// 						+ 						'<span class="input-amountSpan">'
-// 						+ 							'<input type="text" maxlength="4" class="input_numDetail" placeholder="수량을 입력해주세요." name="reward_count" id="reward_count" value="0">'
-// 						+ 							'<div class="input-amountDiv">개</div>'
-// 						+ 						'</span>'
-// 						+ 					'</div>'
-// 						+ 				'</div>'
-// 						+ 			'</div>'
-// 						+ 			'<div class="alert-title-reward" id="count-alert">'
-// 						+ 				'<span id="alert-count"></span>'
-// 						+ 			'</div>'
-// 						+ 			'<div id="radio-total1" style="display: none;">'
-// 						+ 			'</div>'
-// 						+ 		'</div>'
-// 						+ 	'</section>'
-// 						+ 	'<section class="reward-section">'
-// 						+ 		'<div>'
-// 						+ 			'<p class="tiny-title">배송 여부</p>'
-// 						+ 		'</div>'
-// 						+ 		'<div class="select-rewardoptionWarp">'
-// 						+ 			'<div class="select-radioWarp">'
-// 						+ 				'<input type="radio" class="radioBtn-rewardItem" name="reward_isDeliv" id="delivery_Y" value="Y">'
-// 						+ 				'<div class="radio-inner">'
-// 						+ 					'<div class="radio-label">'
-// 						+ 						'<label for="delivery_Y">네</label>'
-// 						+ 					'</div>'
-// 						+ 				'</div>'
-// 						+ 			'</div>'
-// 						+ 			'<div class="select-radioWarp">'
-// 						+ 				'<input type="radio" class="radioBtn-rewardItem" name="reward_isDeliv" id="delivery_N" value="N">'
-// 						+ 				'<div class="radio-inner">'
-// 						+ 					'<div class="radio-label">'
-// 						+ 						'<label for="delivery_N">아니오</label>'
-// 						+ 					'</div>'
-// 						+ 				'</div>'
-// 						+ 			'</div>'
-// 						+ 		'</div>'
-// 						+ 	'</section>'
-// 						+ 	'<section class="reward-section">'
-// 						+ 		'<div class="reward-optiondiv">'
-// 						+ 			'<div class="margindiv">'
-// 						+ 				'<div>'
-// 						+ 					'<p class="tiny-title">후원 금액</p>'
-// 						+ 					'<p class="projectInfo-description">'
-// 						+ 						'배송이 필요한 선물은 배송비를 포함해주세요.'
-// 						+ 					'</p>'
-// 						+ 				'</div>'
-// 						+ 				'<div class="projectItem-form">'
-// 						+ 					'<div class="inputAmount-form">'
-// 						+ 						'<span class="input-amountSpan">'
-// 						+ 							'<input type="text" class="input_numDetail" maxlength="14" placeholder="1000원 이상의 금액을 입력하세요." name="reward_amount" id="reward_amount">'
-// 						+ 							'<div class="input-amountDiv">원</div>'
-// 						+ 						'</span>'
-// 						+ 					'</div>'
-// 						+ 				'</div>'
-// 						+ 				'<div class="alert-title-reward" id="amount-alert">'
-// 						+ 					'<span id="alert-amount"></span>'
-// 						+ 				'</div>'
-// 						+ 			'</div>'
-// 						+ 		'</div>'
-// 						+ 	'</section>'
-// 						+ 	'<div class="formBtnDiv">'
-// 						+ 		'<button type="button" onclick="insertReward(\'' + pro_code + '\')">등록</button>'
-// 						+ 	'</div>'
-// 						+ '</div>'
-					
-// 				);
+				debugger;
+				console.log("어카노..... " + undo.targetHtml);
+				if(undo.targetHtml == undefined) {
+	 				$("#rewardInsert-form").empty();
+	 				$("#rewardInsert-form").append(
+						
+	 						'<div class="style-projectFunding">'
+	 						+ 	'<p class="tiny-title">리워드 구성하기</p>'
+	 						+ 	'<p class="projectInfo-description">'
+	 						+ 		'다양한 금액대로 여러 개의 리워드를 만들어주세요.<br>'
+	 						+ 		'펀딩 성공률이 높아지고, 더 많은 후원 금액을 모금할 수 있어요.'
+	 						+ 	'</p>'
+	 						+ 	'<div class="margindiv">'
+	 						+ 		'<div>'
+	 						+ 			'<p class="tiny-title">아이템 선택</p>'
+	 						+ 		'</div>'
+	 						+ 		'<div class="projectItem-form">'
+	 						+ 			'<div id="selectitem-rewardForm">'
+	 						+ 				'<c:forEach var="item" items="${itemList }">'
+	 						+ 					'<ul id="itemListUl_${item.item_code }">'
+	 						+ 						'<li class="reward-select-itemList">'
+	 						+ 							'<input type="checkbox" value="${item.item_name }" name="reward_item_name" id="checkitem${item.item_code }">'
+	 						+ 							'<input type="hidden" value="${item.item_code }" name="reward_item_code" id="checkitemCode${item.item_code }">'
+	 						+ 							'<label class="checkItemLabel" for="checkitem${item.item_code }">${item.item_name }</label>'
+	 						+ 						'</li>'
+	 						+ 					'</ul>'
+	 						+ 				'</c:forEach>'
+	 						+ 			'</div>'
+	 						+ 		'</div>'
+	 						+ 		'<div class="alert-title">'
+	 						+ 			'<p></p>'
+	 						+ 		'</div>'
+	 						+ 	'</div>'
+	 						+ 	'<section class="reward-section">'
+	 						+ 		'<div class="reward-optiondiv">'
+	 						+ 			'<div class="margindiv">'
+	 						+ 				'<div>'
+	 						+ 					'<p class="tiny-title">구성 설명</p>'
+	 						+ 					'<p class="projectInfo-description">'
+	 						+ 						'얼리버드, 리미티드 에디션 등 선물에 대한 설명을 입력해주세요.'
+	 						+ 					'</p>'
+	 						+ 				'</div>'
+	 						+ 				'<div class="projectItem-form">'
+	 						+ 					'<input type="text" class="input_detail" placeholder="예) 봄 세트, 배송비포함" name="reward_explan" id="reward_explan">'
+	 						+ 				'</div>'
+	 						+ 				'<div class="alert-title">'
+	 						+ 					'<p></p>'
+	 						+ 				'</div>'
+	 						+ 			'</div>'
+	 						+ 		'</div>'
+	 						+ 	'</section>'
+	 						+ 	'<section class="reward-section">'
+	 						+ 		'<div>'
+	 						+ 			'<p class="tiny-title">수량 제한</p>'
+	 						+ 		'</div>'
+	 						+ 		'<div class="select-rewardoptionWarp">'
+	 						+ 			'<div class="select-radioWarp">'
+	 						+ 				'<input type="radio" class="radioBtn-rewardItem" name="reward_isCount" id="total_Y" value="0">'
+	 						+ 				'<div class="radio-inner">'
+	 						+ 					'<div class="radio-label">'
+	 						+ 						'<label for="total_Y">있음</label>'
+	 						+ 					'</div>'
+	 						+ 				'</div>'
+	 						+ 			'</div>'
+	 						+ 			'<div class="select-radioWarp">'
+	 						+ 				'<input type="radio" class="radioBtn-rewardItem" name="reward_isCount" id="total_N" value="1">'
+	 						+ 				'<div class="radio-inner">'
+	 						+ 					'<div class="radio-label">'
+	 						+ 						'<label for="total_N">없음</label>'
+	 						+ 					'</div>'
+	 						+ 				'</div>'
+	 						+ 			'</div>'
+	 						+ 		'</div>'
+	 						+ 		'<div class="totalItemDiv">'
+	 						+ 			'<div id="radio-total0" style="display: none;">'
+	 						+ 				'<div class="projectItem-form">'
+	 						+ 					'<div class="inputAmount-form">'
+	 						+ 						'<span class="input-amountSpan">'
+	 						+ 							'<input type="text" maxlength="4" class="input_numDetail" placeholder="수량을 입력해주세요." name="reward_count" id="reward_count" value="0">'
+	 						+ 							'<div class="input-amountDiv">개</div>'
+	 						+ 						'</span>'
+	 						+ 					'</div>'
+	 						+ 				'</div>'
+	 						+ 			'</div>'
+	 						+ 			'<div class="alert-title-reward" id="count-alert">'
+	 						+ 				'<span id="alert-count"></span>'
+	 						+ 			'</div>'
+	 						+ 			'<div id="radio-total1" style="display: none;">'
+	 						+ 			'</div>'
+	 						+ 		'</div>'
+	 						+ 	'</section>'
+	 						+ 	'<section class="reward-section">'
+	 						+ 		'<div>'
+	 						+ 			'<p class="tiny-title">배송 여부</p>'
+	 						+ 		'</div>'
+	 						+ 		'<div class="select-rewardoptionWarp">'
+	 						+ 			'<div class="select-radioWarp">'
+	 						+ 				'<input type="radio" class="radioBtn-rewardItem" name="reward_isDeliv" id="delivery_Y" value="Y">'
+	 						+ 				'<div class="radio-inner">'
+	 						+ 					'<div class="radio-label">'
+	 						+ 						'<label for="delivery_Y">네</label>'
+	 						+ 					'</div>'
+	 						+ 				'</div>'
+	 						+ 			'</div>'
+	 						+ 			'<div class="select-radioWarp">'
+	 						+ 				'<input type="radio" class="radioBtn-rewardItem" name="reward_isDeliv" id="delivery_N" value="N">'
+	 						+ 				'<div class="radio-inner">'
+	 						+ 					'<div class="radio-label">'
+	 						+ 						'<label for="delivery_N">아니오</label>'
+	 						+ 					'</div>'
+	 						+ 				'</div>'
+	 						+ 			'</div>'
+	 						+ 		'</div>'
+	 						+ 	'</section>'
+	 						+ 	'<section class="reward-section">'
+	 						+ 		'<div class="reward-optiondiv">'
+	 						+ 			'<div class="margindiv">'
+	 						+ 				'<div>'
+	 						+ 					'<p class="tiny-title">후원 금액</p>'
+	 						+ 					'<p class="projectInfo-description">'
+	 						+ 						'배송이 필요한 선물은 배송비를 포함해주세요.'
+	 						+ 					'</p>'
+	 						+ 				'</div>'
+	 						+ 				'<div class="projectItem-form">'
+	 						+ 					'<div class="inputAmount-form">'
+	 						+ 						'<span class="input-amountSpan">'
+	 						+ 							'<input type="text" class="input_numDetail" maxlength="14" placeholder="1000원 이상의 금액을 입력하세요." name="reward_amount" id="reward_amount">'
+	 						+ 							'<div class="input-amountDiv">원</div>'
+	 						+ 						'</span>'
+	 						+ 					'</div>'
+	 						+ 				'</div>'
+	 						+ 				'<div class="alert-title-reward" id="amount-alert">'
+	 						+ 					'<span id="alert-amount"></span>'
+	 						+ 				'</div>'
+	 						+ 			'</div>'
+	 						+ 		'</div>'
+	 						+ 	'</section>'
+	 						+ 	'<div class="formBtnDiv">'
+	 						+ 		'<button type="button" onclick="insertReward(\'' + pro_code + '\')">등록</button>'
+	 						+ 	'</div>'
+	 						+ '</div>'
+						
+	 				);
+				} else {
+					$("#rewardInsert-form").html(undo.targetHtml);
+				}
 				
+				$("input[type=radio][name=reward_isCount]").on("click", function() {
+					let ckv = $(this).val();
+//		 			blockdiv();
+					$.each($('.totalItemDiv').children(), function (index, el) {
+//		 					debugger;
+						var attr = ckv == index ? 'block' : 'none';
+						$(el).css('display', attr);
+						
+					});
+					
+				});
+				
+				//수량
+				$("#reward_count").on('keydown keyup', function() {
+					count = $(this).val().replace(/^0+|[^0-9]/g, '');
+					$(this).val(count);
+					console.log(count);
+					if(Number(count) > 1000) {
+//		 			debugger;
+						$("#count-alert").css('display', 'block');
+						$("#alert-count").text("1000개 이하로 입력해 주세요.");
+					} else {
+						$("#count-alert").css('display', 'none');
+					}
+					
+				});
+				
+				//금액
+				$("#reward_amount").on('keydown keyup blur', function() {
+					amount = $(this).val().replace(/^0+|[^0-9]/g, ''); //숫자만 입력
+					$(this).val(amount.replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+					
+					if(Number(amount) < 1000) {
+//		 				$("#amount-alert").css("border", "1px solid rgb(248, 100, 83)");
+						amountAlert = "1000원 이상의 금액을 입력해 주세요.";
+						$(this).focus();
+					} else if(Number(amount) > 500000) {
+//		 				$("#amount-alert").css("border", "1px solid rgb(248, 100, 83)");
+						amountAlert = "500,000원 이하인 금액을 입력해주세요.";
+						$(this).focus();
+					} else {
+//		 				$("#amount-alert").css("border", "1px solid rgb(240, 240, 240)");
+						amountAlert = "";
+					}
+					
+					$("#alert-amount").text(amountAlert);
+				});
 				
 			},
 			error:function(request, status, error){
@@ -904,7 +962,7 @@
 									<div class="projectItem-form">
 										<div class="inputAmount-form">
 											<span class="input-amountSpan">
-												<input type="text" class="input_numDetail" maxlength="14" placeholder="1000원 이상의 금액을 입력하세요." name="reward_amount" id="reward_amount">
+												<input type="text" class="input_numDetail" maxlength="7" placeholder="1000원 이상의 금액을 입력하세요." name="reward_amount" id="reward_amount">
 <!-- 													<input type="number" min="1000" class="input_numDetail" placeholder="1000원 이상의 금액을 입력하세요." name="reward_amount"> -->
 												<div class="input-amountDiv">원</div>
 											</span>

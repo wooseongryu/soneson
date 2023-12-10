@@ -150,6 +150,15 @@ public class ProjectController {
 		map2.put("pro_code", pro.getPro_code());
 		List<Map<String, String>> itemList = itemService.selectItem(map2);
 		List<Map<String, String>> rewardList = itemService.selectReward(map2);
+		Map<String, String> fintechInfo = service.selectToken(sId);
+		
+		//객체자체가 null인데 get으로 가져오려고 해서 404뜸
+		if(!(fintechInfo == null) && fintechInfo.get("access_token") != null) {
+			System.out.println("토큰있음!!!!!!!!!!!!!!!!!!");
+			ResponseUserInfoVO userInfo = bankApiClient.requestUserInfo(fintechInfo);
+			model.addAttribute("userInfo", userInfo);
+		} 
+		model.addAttribute("fintechInfo", fintechInfo);
 		
 		model.addAttribute("pro", pro);
 		model.addAttribute("itemList", itemList);

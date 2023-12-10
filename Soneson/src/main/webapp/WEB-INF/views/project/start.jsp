@@ -27,7 +27,7 @@ function defaultImg(tagId) {
 		});
 		
 		
-		$("#pro_title1").on("keyup", function() {
+		$("#pro_title1").on("keyup keydown", function() {
 // 			console.log($(this).val().length);
 			let content = $(this).val();
 			$(".count-length").text(content.length);

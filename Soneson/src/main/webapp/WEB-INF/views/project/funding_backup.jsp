@@ -25,7 +25,7 @@
 		$("#totalAmount").text(String(totalAmount).replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 		
 		//수수료 계산하기
-		$('#pro_goal').on('keydown keyup blur', function(){
+		$('#pro_goal').on('keydown keyup', function(){
 // 		$("#pro_goal").keydown(function() {
 // 			debugger;
 // 			let goal = "";
@@ -54,11 +54,9 @@
 			if(Number(goal) < 500000) {
 				$(".input-fundingCost").css("border", "1px solid rgb(248, 100, 83)");
 				amountAlert = "50만원 이상의 금액을 입력해 주세요.";
-				$(this).focus();
 			} else if(goal.length > 8) {
 				$(".input-fundingCost").css("border", "1px solid rgb(248, 100, 83)");
-				amountAlert = "99,999,999원 이하인 금액을 입력해주세요.";
-				$(this).focus();
+				amountAlert = "99,999,999원 이하인 금액을 입력해주세요..";
 			} else {
 				$(".input-fundingCost").css("border", "1px solid rgb(240, 240, 240)");
 				amountAlert = "";
@@ -97,23 +95,22 @@
 		
 		//시작날짜 변경 시
 		$("#start-funding").on('change', function() {
-			startDt = $(this).val(); 
-			endDt = $("#end-funding").val();
-			console.log("new Date 안했을 때 : " + startDt + ", " + typeof startDt); //Invalid Date, object
-			console.log("new Date 안했을 때 : " + endDt + ", " + typeof endDt);
-			if(endDt != "" && startDt > endDt) {
+			startDt = new Date($(this).val()); 
+			endDt = new Date($("#end-funding").val());
+			
+			if(startDt > endDt) {
 				alert("마감일 이전으로 선택해 주세요.");
 				$(this).val("");
 				return;
 			}
-			$("#start-funding").css('border','1px solid #d1d3e2');
 			
+			
+			$("#start-funding").css('border','1px solid #d1d3e2');
 			console.log("시작일 : " + Number(startDt) + ", " + typeof startDt); //Invalid Date, object
 			console.log("마감일 : " + Number(endDt) + ", " + typeof endDt);
 			
 			if(startDt != "" && endDt != "") {
-			startDt = new Date($(this).val()); 
-			endDt = new Date($("#end-funding").val());
+// 			if((startDt != "" || startDt != null) && (endDt != "" || endDt != null)) {
 				fundingDays = Math.round((endDt - startDt) / 1000 / 60 / 60 / 24);
 				console.log("기간 : " + fundingDays + ", " + typeof fundingDays);
 				$("#fundingDays").text(fundingDays);
@@ -123,27 +120,23 @@
 		
 		//마감날짜 변경 시 
 		$("#end-funding").on('click change', function() {
-// 			debugger;
 			let startDt = $("#start-funding").val();
-			let endDt = $(this).val();
-			
 			if(startDt == "" || startDt == null ) {
 				alert("시작일을 먼저 설정해 주세요.");
 				return;	
 			}
 			$("#end-funding").attr("min", $("#start-funding").val());
+// 			debugger;
 			startDt = new Date($("#start-funding").val());
-			
-			if(endDt != "") {
-				debugger;				
-				endDt = new Date($(this).val());
-				fundingDays = Math.round((endDt - startDt) / 1000 / 60 / 60 / 24);
-				paymentDt = new Date(endDt.setDate(endDt.getDate() + 7));
-				calculateDt = new Date(endDt.setDate(endDt.getDate() + 7));
-				
+			endDt = new Date($(this).val());
+			fundingDays = Math.round((endDt - startDt) / 1000 / 60 / 60 / 24);
+			paymentDt = endDt.getFullYear() + "-" + endDt.getMonth() + "-" + (endDt.getDate() + 7);
+			calculateDt = endDt.getFullYear() + "-" + endDt.getMonth() + "-" + (endDt.getDate() + 14);
+// 			console.log("결제마감일" + paymentDt);
+			if(endDt != "" || endDt != null) {
 				$("#fundingDays").text(fundingDays);
-				$("#paymentDt").text(String(paymentDt.toISOString().slice(0,10)));
-				$("#calculateDt").text(String(calculateDt.toISOString().slice(0,10)));
+				$("#paymentDt").text(paymentDt);
+				$("#calculateDt").text(calculateDt);
 				return;
 			}
 			

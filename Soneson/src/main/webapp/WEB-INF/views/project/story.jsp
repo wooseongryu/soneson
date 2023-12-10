@@ -82,6 +82,33 @@
 		  reader.readAsDataURL(input.files[0]);
 		  }
 		}
+		
+		//프로젝트 정책 글자수 제한
+		$("#pro_notice + .varchar-count .count-length").text($("#pro_notice").val().length);
+		
+		$("#pro_notice").on("keyup keydown blur", function() {
+			let content = $(this).val();
+			$("#pro_notice + .varchar-count .count-length").text(content.length);
+			if(content.length <= 0) {
+//	 			$(".alert-count").text("10자 이상 작성해 주세요");
+				$("#pro_notice + .varchar-count .alert-count").text("필수 항목 입니다.");
+				$(this).css("border", "1px solid rgb(248, 100, 83)");
+				$(this).focus();
+			} else {
+//	 			$(".alert-count").text("");
+				$("#pro_notice + .varchar-count .alert-count").text("");
+				$(this).css("border", "1px solid #d1d3e2");
+			}
+			
+			if (content.length > 1000) {
+		        $(this).val($(this).val().substring(0, 1000));
+		        alert('글자수는 1000자까지 입력 가능합니다.');
+		        $(this).focus();
+		    };
+			
+		});
+		
+		
 	});
 </script>
 <!-- 카테고리에 따른 입력폼 -->
@@ -312,6 +339,10 @@
 							</p>
 							<section class="reward-section">
 								<textarea rows="10" cols="" class="plan-textarea" style="height: 300px;" name="pro_notice" id="pro_notice">${pro.pro_notice }</textarea>
+								<div class="varchar-count">
+									<span class="alert-count"></span>
+									<span><span class="count-length">0</span> / 1000</span>
+								</div>
 							</section>
 						</div>
 				</div>
