@@ -11,6 +11,7 @@ import com.itwillbs.soneson.mapper.AdminMapper;
 import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
 import com.itwillbs.soneson.vo.MainTabVO;
+import com.itwillbs.soneson.vo.MyQuestionVO;
 import com.itwillbs.soneson.vo.QnaCateVO;
 import com.itwillbs.soneson.vo.QnaVO;
 import com.itwillbs.soneson.vo.UserVO;
@@ -230,9 +231,24 @@ public class AdminService {
 	}
 
 
+/*====================================================================
+ * 1:1 문의
+ * ===================================================================
+ * */
 
+	// 1:1문의 조회
+	// myQuestion_num을 널스트링으로 전달 시 전체 질문 조회
+	public List<MyQuestionVO> selectOTO(String myQuestion_num) {
+		System.out.println("AdminService - selectOTO()");
+		return mapper.selectOTO(myQuestion_num);
 	
 	
-	
+	}
+
+	// 관리자 1:1문의 답변 등록
+	public int updateOTOAnswer(MyQuestionVO myQuestion) {
+		System.out.println("AdminService - updateOTOAnswer()");
+		return mapper.updateOTOAnswer(myQuestion);
+	}
 	
 }

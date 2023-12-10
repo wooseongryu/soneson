@@ -17,6 +17,7 @@
 		<typeAlias type="com.itwillbs.soneson.vo.AddressVO" alias="Address"/>
 		<typeAlias type="com.itwillbs.soneson.vo.ChatVO" alias="Chat"/>
 		<typeAlias type="com.itwillbs.soneson.vo.MainTabVO" alias="MainTab"/>
+		<typeAlias type="com.itwillbs.soneson.vo.MyQuestionVO" alias="MyQuestion"/>
 	</typeAliases>
 </configuration>
   

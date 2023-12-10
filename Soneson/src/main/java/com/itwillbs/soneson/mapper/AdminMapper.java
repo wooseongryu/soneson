@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
 import com.itwillbs.soneson.vo.MainTabVO;
+import com.itwillbs.soneson.vo.MyQuestionVO;
 import com.itwillbs.soneson.vo.QnaCateVO;
 import com.itwillbs.soneson.vo.QnaVO;
 import com.itwillbs.soneson.vo.UserVO;
@@ -133,7 +134,14 @@ public interface AdminMapper {
 	int deleteMainTab(String tab_Kname);
 
 	
-
+	/*====================================================================
+	 * 1:1 문의
+	 * ===================================================================
+	 * */
+	
+	List<MyQuestionVO> selectOTO(String myQuestion_num);
+	
+	int updateOTOAnswer(MyQuestionVO myQuestion);
 
 
 

@@ -35,37 +35,22 @@
   11. customer center qna
 -----------------------*/
 
-.customer_category {
-	overflow: hidden;
-	background: rgb(128, 128, 128);
-	padding: 15px 25px 5px 25px;
-	border-radius: 10px;
-	position: relative;
-	margin-bottom: 30px;
-}
+/* .customer_category { */
+/* 	overflow: hidden; */
+/* 	background: rgb(128, 128, 128); */
+/* 	padding: 15px 25px 5px 25px; */
+/* 	border-radius: 10px; */
+/* 	position: relative; */
+/* 	margin-bottom: 30px; */
+/* } */
 
 .customer_category h6 {
 	color: #ffffff;
 	font-weight: 700;
-	margin-bottom: 10px;
 	text-align: center;
 }
 
-.qna_table_head {
-	overflow: hidden;
-	background: rgb(255, 0, 0);
-	padding: 15px 25px 5px 25px;
-	border-radius: 10px;
-	position: relative;
-	margin-bottom: 15px;
-}
 
-.qna_table_head h6 {
-	color: #ffffff;
-	font-weight: 700;
-	margin-bottom: 10px;
-	text-align: center;
-}
 
 .qna_table_body {
 	overflow: hidden;
@@ -99,12 +84,6 @@
 	text-align: center;
 }
 
-/* .qna_submit { */
-/* 	position: absolute; */
-/*     bottom: 0; */
-/*     right: 0; */
-/*     padding-right: 15px; */
-/* } */
 
 .qna_submit_btn {
 	font-size: 15px;
@@ -116,8 +95,11 @@
 	letter-spacing: 2px;
 	text-transform: uppercase;
 	display: inline-block;
-	padding:  90px;
+	padding: 12px 45px;
 }
+
+
+
 
 
 #qnaCate_subject {

@@ -169,7 +169,7 @@
 <!-- 						<a class="collapse-item" href="adminSelectNotice">공지사항</a> -->
 						<a class="collapse-item" href="adminSelectQna">자주묻는질문</a>
 						<a class="collapse-item" href="adminSelectOTO">1:1문의</a>
-						<a class="collapse-item" href="adminSelectEvent">이벤트</a>
+						<a class="collapse-item" href="adminSelectEvent">공지사항</a>
 					</div>
 				</div>
 			</li>

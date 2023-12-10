@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.soneson.mapper.QnaMapper;
+import com.itwillbs.soneson.vo.MyQuestionVO;
 import com.itwillbs.soneson.vo.QnaCateVO;
 import com.itwillbs.soneson.vo.QnaVO;
 
@@ -30,6 +31,13 @@ public class QnaService {
 	public List<QnaCateVO> getQnaCateList() {
 		return mapper.selectQnaCateList();
 	}
-	
 
+	// 1:1 문의 작성
+	public int insertMyQuestion(MyQuestionVO myQuestion) {
+		return mapper.insertMyQuestion(myQuestion);
+	}
+	
+	
+	
+	
 }

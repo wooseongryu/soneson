@@ -60,44 +60,37 @@
                     <div class="col-lg-12">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">자주묻는질문 등록</h1>
+                                <h1 class="h4 text-gray-900 mb-4">1대1문의 답변 등록</h1>
                             </div>
-                            <form class="user" action="adminQNAInsertPro" method="post">
-                                <div class="form-group row">
-									<div class="col-sm-12 mb-6 mb-sm-0">
-										<label for="">카테고리</label>
-										<br>
-	                                    <select class="form-select" name="qna_category" aria-label="Default select example" >
-									  		<c:forEach var="qnaCategory" items="${qnaCategoryList }">
-												<option value="${qnaCategory.qnaCate_idx }">${qnaCategory.qnaCate_subject }</option>
-											</c:forEach>
-										</select>
-								  	</div>
-                                </div>
+                            <form class="user" action="adminOTOAnswerPro" method="post" enctype="multipart/form-data">
+                            	<input type="hidden" name="myQuestion_num" value="${question.myQuestion_num }">
                                 <div class="form-group row">
                                     <div class="col-sm-12 mb-6 mb-sm-0">
-										<label for="">제목</label>
-                                        <input type="text" name="qna_title" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="제목입력" maxlength="100">
+										<label for="">질문 제목</label>
+                                        <input type="text" value="${question.myQuestion_subject }" class="form-control form-control-user" id="exampleFirstName" readonly="readonly">
                                     </div>
                                 </div>
 								<div class="form-group row">
                                     <div class="col-sm-12 mb-6 mb-sm-0">
-									  <label for="floatingTextarea">내용</label>
-									  <textarea rows="10" name="qna_content" class="form-control form-control-textarea" placeholder="내용작성" id="floatingTextarea" maxlength="3000"></textarea>
+									  <label for="floatingTextarea">질문 내용</label>
+									  <textarea rows="10" class="form-control form-control-textarea" id="floatingTextarea" readonly="readonly">${question.myQuestion_content }</textarea>
 									</div>
                                 </div>
-
-
-
+                                <div class="form-group row">
+                                    <div class="col-sm-12 mb-6 mb-sm-0">
+									  <label for="floatingTextarea">답변 작성</label>
+									  <textarea rows="10" name="myQuestion_answer" class="form-control form-control-textarea" placeholder="답변내용작성" id="floatingTextarea" maxlength="2000"></textarea>
+									</div>
+                                </div>
+								<br>
                                 
                                 <div class="form-group row" align="center">
 									<div class="col-sm-12 mb-6 mb-sm-0">
-		                                <button type="submit" class="btn btn-primary">등록</button>
+		                                <button type="submit" class="btn btn-primary btn-user" value="등록">등록</button>
 		                                &nbsp;
-		                                <button type="reset" class="btn btn-primary">초기화</button>
+		                                <button type="reset" class="btn btn-primary btn-user" value="초기화">초기화</button>
 		                                &nbsp;
-		                                <button type="button" class="btn btn-primary" onclick="history.back()">돌아가기</button>
+		                                <button type="button" class="btn btn-primary btn-user" onclick="history.back()" value="돌아가기">돌아가기</button>
 									</div>
 								</div>
                             </form>
@@ -113,11 +106,6 @@
 	<!-- 부트 스트랩 js cdn 링크 -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
-	<!-- 부트 스트랩 datepicker js 링크 -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js" integrity="sha512-LsnSViqQyaXpD4mBBdRYeP6sRwJiJveh2ZIbW41EBrNmKxgr/LFZIiWT6yr+nycvhvauz8c2nYMhrP80YhG7Cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	
-	<script src="${pageContext.request.contextPath }/resources/mypage/js/datepicker/bootstrap-datepicker.min.js"></script>
-	
     <!-- Bootstrap core JavaScript-->
     <script src="${pageContext.request.contextPath }/resources/mypage/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -126,28 +114,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="${pageContext.request.contextPath }/resources/mypage/js/sb-admin-2.min.js"></script>
-
-	<script>
-	$("#fromDatepicker").datepicker({
-			format: 'yyyy-mm-dd',
-			autoclose: true,
-		}).on('changeDate', function (selected) {
-			var startDate = new Date(selected.date.valueOf());
-			$('#toDatepicker').datepicker('setStartDate', startDate);
-		}).on('clearDate', function (selected) {
-			$('#toDatepicker').datepicker('setStartDate', null);
-		});
-		
-	$("#toDatepicker").datepicker({
-		format: 'yyyy-mm-dd',
-		autoclose: true,
-	}).on('changeDate', function (selected) {
-		var endDate = new Date(selected.date.valueOf());
-		$('#fromDatepicker').datepicker('setEndDate', endDate);
-	}).on('clearDate', function (selected) {
-		$('#fromDatepicker').datepicker('setEndDate', null);
-	});
-	</script>
 
 </body>
 

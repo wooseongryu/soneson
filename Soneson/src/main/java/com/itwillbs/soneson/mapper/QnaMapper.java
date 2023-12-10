@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.itwillbs.soneson.vo.MyQuestionVO;
 import com.itwillbs.soneson.vo.QnaCateVO;
 import com.itwillbs.soneson.vo.QnaVO;
 
@@ -23,5 +24,9 @@ public interface QnaMapper {
 
 	// 자주묻는 질문 카테고리 조회
 	List<QnaCateVO> selectQnaCateList();
+	
+	
+	// 1:1 문의 글 작성
+	int insertMyQuestion(MyQuestionVO myQuestion);
 
 }

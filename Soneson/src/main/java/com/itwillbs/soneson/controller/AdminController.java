@@ -27,11 +27,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.soneson.service.AdminService;
-import com.itwillbs.soneson.service.ProjectListService;
 import com.itwillbs.soneson.service.UserService;
 import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
 import com.itwillbs.soneson.vo.MainTabVO;
+import com.itwillbs.soneson.vo.MyQuestionVO;
 import com.itwillbs.soneson.vo.QnaCateVO;
 import com.itwillbs.soneson.vo.QnaVO;
 import com.itwillbs.soneson.vo.UserVO;
@@ -582,13 +582,7 @@ public class AdminController {
 	}
 	
 	
-	// 게시판관리 - 1:1문의 페이지로 이동
-	@GetMapping("adminSelectOTO")
-	public String adminSelectOTO() {
-		System.out.println("AdminController - adminSelectOTO()");
-		
-		return "mypage/admin/admin_select_OTO";	
-	}
+
 	
 	
 	
@@ -948,6 +942,84 @@ public class AdminController {
 		}
 		
 		return "redirect:/adminEventCategoryInsert";
+	}
+	
+	
+	
+	// 게시판관리 - 1:1문의 페이지로 이동
+	@GetMapping("adminSelectOTO")
+	public String adminSelectOTO(Model model, HttpSession session) {
+		System.out.println("AdminController - adminSelectOTO()");
+		
+		String sId = (String)session.getAttribute("sId");
+		String isAdmin = (String)session.getAttribute("isAdmin");
+		
+		if(sId == null || isAdmin.equals("N")) {
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			return "fail_back";
+		}
+		
+		List<MyQuestionVO> questionList = adminService.selectOTO("");
+		
+		model.addAttribute("questionList", questionList);
+		
+		return "mypage/admin/admin_select_OTO";	
+	}
+	
+	
+	// 관리자 1:1문의 답변 등록 폼
+	@GetMapping("adminOTOAnswer")
+	public String adminOTOAnswer(String myQuestion_num, Model model, HttpSession session) {
+		System.out.println("AdminController - adminOTOAnswer()");
+		
+		String sId = (String)session.getAttribute("sId");
+		String isAdmin = (String)session.getAttribute("isAdmin");
+		
+		if(sId == null || isAdmin.equals("N")) {
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			return "fail_back";
+		}
+		
+		MyQuestionVO question = adminService.selectOTO(myQuestion_num).get(0);
+		
+		model.addAttribute("question", question);
+		
+		return "mypage/admin/admin_OTO_answer";
+	}
+	
+	
+	// 관리자 1:1문의 답변 등록
+	@PostMapping("adminOTOAnswerPro")
+	public String adminOTOAnswerPro(MyQuestionVO myQuestion, Model model) {
+		System.out.println("AdminController - adminOneToOneUpdatePro()");
+		int insertCount = adminService.updateOTOAnswer(myQuestion);
+		
+		if (insertCount == 0) {
+			model.addAttribute("msg", "등록 실패!");
+			return "fail_back";
+		}
+		
+		return "redirect:/adminSelectOTO";
+	}
+	
+	// 관리자 1대1문의 답변보기
+	@GetMapping("adminOTOAnswerSelect")
+	public String adminOTOSelect(String myQuestion_num, Model model, HttpSession session) {
+		System.out.println("AdminController - adminOTOSelect()");
+		
+		String sId = (String)session.getAttribute("sId");
+		String isAdmin = (String)session.getAttribute("isAdmin");
+		
+		if(sId == null || isAdmin.equals("N")) {
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			return "fail_back";
+		}
+		
+		MyQuestionVO question = adminService.selectOTO(myQuestion_num).get(0);
+		
+		model.addAttribute("question", question);
+		
+		return "mypage/admin/select_OTO_answer";
 	}
 	
 	
