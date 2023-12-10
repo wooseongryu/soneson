@@ -241,7 +241,7 @@
 				        </h5>
 				        <p>${user.hire_year }년전 가입</p>
 				        <c:if test="${empty user.isOwn }">
-				        	<a href="#">+ 팔로우</a>
+				        	<a href="follow?follow_id=${user.user_id }">+ 팔로우</a>
 					        <a href="chatting" onclick="window.open(this.href, '_blank', 'width=400, height=800'); return false;">창작자 문의</a>
 				        </c:if>
 				    </div>

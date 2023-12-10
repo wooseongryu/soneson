@@ -307,6 +307,13 @@ public class UserService {
 		
 		return mapper.selectUserInfo(user_id);
 	}
+
+	// 팔로우
+	public int insertFollow(Map<String, String> map) {
+		System.out.println("UserService - insertFollow()");
+		
+		return mapper.insertFollow(map);
+	}
 	
 }
 

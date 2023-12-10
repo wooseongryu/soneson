@@ -148,6 +148,9 @@ public interface UserMapper {
 
 	// 유저 정보
 	String selectUserInfo(String user_id);
+
+	// 팔로우
+	int insertFollow(Map<String, String> map);
 }
 
 

@@ -421,5 +421,16 @@
 		FROM user
 		WHERE user_id = #{user_id}
 	</select>
+	
+	<insert id="insertFollow">
+		INSERT INTO follow (
+			user_id
+			, follow_id
+		)
+		VALUES (
+			#{sId}	
+			, #{follow_id}
+		)
+	</insert>
 </mapper>
 

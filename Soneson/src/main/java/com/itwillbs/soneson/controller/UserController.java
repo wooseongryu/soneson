@@ -73,6 +73,30 @@ public class UserController {
 		return "mypage/user/user_main";
 	}
 	
+	// 팔로우
+	@GetMapping("follow")
+	public String follow(String follow_id, HttpSession session, Model model, Map<String, String> map) {
+		System.out.println("UserController - follow()");
+		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+			return "fail_back";
+		}
+		
+		map.put("sId", sId);
+		map.put("follow_id", follow_id);
+		
+		int insertCount = userService.insertFollow(map);
+		
+		if (insertCount == 0) {
+			model.addAttribute("msg", "팔로우 실패!");
+			return "fail_back";
+		}
+		
+		return "redirect:/user?id=" + follow_id;
+	}
+	
 	// 프로필
 	@ResponseBody
 	@PostMapping("userProfile")
