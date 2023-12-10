@@ -141,10 +141,13 @@ public interface UserMapper {
 	String selectUserPicPath(String sId);
 
 	// 유저프로필 메인 페이지
-	Map<String, String> selectUserInfo(String id);
+	Map<String, String> selectUserMainInfo(String id);
 
 	// 유저프로필 메인 페이지 유저 존재 유무 확인
 	int selectExistUser(String id);
+
+	// 유저 정보
+	String selectUserInfo(String user_id);
 }
 
 

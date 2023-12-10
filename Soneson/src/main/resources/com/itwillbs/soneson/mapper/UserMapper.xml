@@ -399,7 +399,7 @@
 		WHERE user_id = #{sId}
 	</select>
 	
-	<select id="selectUserInfo" resultType="map">
+	<select id="selectUserMainInfo" resultType="map">
 		SELECT 
 			user_idx
 			, user_name
@@ -411,9 +411,15 @@
 	</select>
 	
 	<select id="selectExistUser" resultType="int">
-		select COUNT(*)
+		SELECT COUNT(*)
 		FROM user
-		where user_id = #{id}
+		WHERE user_id = #{id}
+	</select>
+	
+	<select id="selectUserInfo" resultType="string">
+		SELECT user_info
+		FROM user
+		WHERE user_id = #{user_id}
 	</select>
 </mapper>
 

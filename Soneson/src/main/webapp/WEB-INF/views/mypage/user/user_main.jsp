@@ -32,13 +32,17 @@
     
     <script type="text/javascript">
     	let pointColor = "#F86453";
+    	let user_id = "";
 
 		function userProfile(id) {
     		$.ajax({
     			type: 'post',
     			url: 'userProfile',
+    			data: {
+    				user_id : user_id
+    			},
     			dataType: 'json',
-    			success: function(resp) {
+    			success: function(user_info) {
     				reset_screen(id);
 
 					$("#user_content").append(
@@ -48,7 +52,7 @@
 	   					+			'<div class="blog__details__comment">'
 						+				'<div class="blog__details__comment__item">'
 						+		    		'<div class="blog__details__comment__item__text" id="profile_content">'
-						+			    		'<p>표지 일러스트, 삽화 작업을 주로 하는 또롱입니다. 모든 분들께 예쁘고 행복한 그림을 그려드리는 게 꿈입니다.</p>'
+						+			    		'<p>' + user_info + '</p>'
 						+		    		'</div>'
 						+				'</div>'
 						+			'</div>'
@@ -194,6 +198,7 @@
     	}
     
     	$(function() {
+    		user_id = "${param.id}";
     		userProfile('topCateProfile');
     	});
     </script>

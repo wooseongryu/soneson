@@ -60,7 +60,7 @@ public class UserController {
 		
 		String sId = (String)session.getAttribute("sId");
 		
-		map = userService.selectUserInfo(id);
+		map = userService.selectUserMainInfo(id);
 		
 		model.addAttribute("user", map);
 		
@@ -76,9 +76,12 @@ public class UserController {
 	// 프로필
 	@ResponseBody
 	@PostMapping("userProfile")
-	public String userProfile() {
+	public String userProfile(String user_id) {
 		System.out.println("UserController - userProfile()");
-		return "1";
+		
+		String user_info = userService.selectUserInfo(user_id);
+		
+		return gson.toJson(user_info);
 	}
 	
 	// 프로젝트 후기
