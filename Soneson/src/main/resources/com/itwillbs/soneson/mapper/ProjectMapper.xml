@@ -338,27 +338,31 @@
 				, max(p.subtitle) AS subtitle
 				, max(p.category) AS category
 				, max(p.creator) AS creator
+				, max(p.creator_profile) AS creator_profile
+				, max(p.creator_info) AS creator_info
 				, max(p.img_main) AS img_main
+				, max(p.img_content) AS img_content
+				, max(p.img_budget) AS img_budget
+				, max(p.img_sch) AS img_sch
+				, max(p.img_team) AS img_team
+				, max(p.img_reward) AS img_reward
+				, max(p.policy) AS policy
 				, date(max(p.start_date)) AS start_date
 				, date(max(p.end_date)) AS end_date
 				, date(date_add((max(p.end_date)), INTERVAL 1 day)) AS pay_date
 				, ifnull(format(sum(cost), 0), 0) AS now_amount
 				, ifnull(format(max(goal_amount), 0), 0) AS goal_amount
-<!-- 				, ifnull(max(goal_amount), 0) AS goal_amount -->
 				, ifnull(sum(cost) / max(goal_amount), 0) AS ratio
 				, ifnull(TRUNCATE(sum(cost) / max(goal_amount) * 100, 0), 0) AS goal_rate
-				, CASE count(p.project_code) WHEN 1 THEN 0 
-											 ELSE count(p.project_code)
-											 END AS donor
-				, max(p.creator_info) AS creator_info
+				, count(f.fund_code) AS donor
+				, max(p.status) AS status
 			FROM project p
 			LEFT JOIN fund f
 			ON p.project_code = f.project_code
 			GROUP BY p.project_code) A
 		WHERE project_code = #{project_code}
-	
-	  
 	</select>
+	
 	<!-- 핀테크 토큰 조회 -->
 	<select id="selectToken" resultType="map">
 		SELECT  u.user_id, access_token , user_seq_no  
@@ -385,6 +389,7 @@
 			, (SELECT pro_sch			FROM sample_pro WHERE pro_code = #{pro_code})
 			, (SELECT pro_team			FROM sample_pro WHERE pro_code = #{pro_code})
 			, (SELECT pro_reward		FROM sample_pro WHERE pro_code = #{pro_code})
+			, (SELECT pro_notice		FROM sample_pro WHERE pro_code = #{pro_code})
 			, (SELECT pro_startDt		FROM sample_pro WHERE pro_code = #{pro_code})
 			, (SELECT pro_EndDt			FROM sample_pro WHERE pro_code = #{pro_code})
 			, (SELECT CAST(REPLACE(pro_goal, ',', '') AS UNSIGNED)	FROM sample_pro WHERE pro_code = #{pro_code})

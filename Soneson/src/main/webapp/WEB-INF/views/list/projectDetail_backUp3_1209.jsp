@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,28 +77,7 @@
 									<div class="swiper-slide swiper-slide-active" style="width: 855px;">
 										<div class="IntroVisualSlider__ProjectCoverImage-sc-1h7hyyq-2 eKEnRF">
 <!-- 											<img src="https://tumblbug-pci.imgix.net/4b47313543b96b2826155b31ab4f1f9a6bacb921/14bec61d57bd5c1a1f98d774245389da35067770/cf80649689edf6cb074059992b33969d03900fed/77dd390f-12fb-4a54-8912-bcf74bed4dc2.jpeg?ixlib=rb-1.1.0&amp;w=1240&amp;h=930&amp;auto=format%2Ccompress&amp;lossless=true&amp;fit=crop&amp;s=43ac72d540fe749ebbb93a43082c6d4a" alt="프로젝트 커버 이미지"> -->
-<%-- 											<img src="${project.img_main }" alt="프로젝트 커버 이미지"> --%>
-<%-- 											<img src="${pageContext.request.contextPath }/resources/upload/${project.img_main }"> --%>
-											
-											
-											
-											<c:choose>
-											    <c:when test="${fn:contains(project.img_main, 'https')}">
-											        <img src="${project.img_main}" alt="프로젝트 커버 이미지">
-											    </c:when>
-											    <c:otherwise>
-											        <img src="${pageContext.request.contextPath }/resources/upload/${project.img_main}" alt="프로젝트 커버 이미지">
-											    </c:otherwise>
-											</c:choose>
-											
-<%-- 											<c:choose> --%>
-<%-- 												<c:when test="${not empty pro.pro_profile }"> --%>
-<%-- 													<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_profile }" id="profile_preview" width="630px" alt="${pro.pro_profile }"> --%>
-<%-- 												</c:when> --%>
-<%-- 												<c:otherwise> --%>
-<!-- 													<img src="" id="profile_preview" width="180px"> -->
-<%-- 												</c:otherwise> --%>
-<%-- 											</c:choose> --%>
+											<img src="${project.img_main }" alt="프로젝트 커버 이미지">
 										</div>
 									</div>
 									<div class="swiper-slide swiper-slide-next" style="width: 855px;">
