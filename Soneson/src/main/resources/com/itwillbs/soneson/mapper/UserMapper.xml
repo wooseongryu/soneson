@@ -409,5 +409,11 @@
 		FROM user
 		WHERE user_id = #{id}
 	</select>
+	
+	<select id="selectExistUser" resultType="int">
+		select COUNT(*)
+		FROM user
+		where user_id = #{id}
+	</select>
 </mapper>
 

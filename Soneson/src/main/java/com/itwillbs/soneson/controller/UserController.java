@@ -53,6 +53,11 @@ public class UserController {
 	public String user(HttpSession session, String id, Model model, Map<String, String> map) {
 		System.out.println("UserController - user()");
 		
+		if (userService.selectExistUser(id) == 0) {
+			model.addAttribute("msg", "존재하지 않는 유저입니다.");
+			return "fail_back";
+		}
+		
 		String sId = (String)session.getAttribute("sId");
 		
 		map = userService.selectUserInfo(id);
@@ -63,7 +68,7 @@ public class UserController {
 			map.put("isOwn", "true");
 		}
 		
-		System.out.println("--" + map);
+//		System.out.println("--" + map);
 		
 		return "mypage/user/user_main";
 	}

@@ -142,6 +142,9 @@ public interface UserMapper {
 
 	// 유저프로필 메인 페이지
 	Map<String, String> selectUserInfo(String id);
+
+	// 유저프로필 메인 페이지 유저 존재 유무 확인
+	int selectExistUser(String id);
 }
 
 

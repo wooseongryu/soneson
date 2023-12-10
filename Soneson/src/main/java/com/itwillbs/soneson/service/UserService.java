@@ -293,6 +293,13 @@ public class UserService {
 		
 		return mapper.selectUserInfo(id);
 	}
+
+	// 유저프로필 메인 페이지 유저 존재 유무 확인
+	public int selectExistUser(String id) {
+		System.out.println("UserService - selectExistUser()");
+		
+		return mapper.selectExistUser(id);
+	}
 	
 }
 
