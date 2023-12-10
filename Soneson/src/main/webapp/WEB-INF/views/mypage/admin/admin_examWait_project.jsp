@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +22,25 @@
 
     <!-- Custom styles for this page -->
     <link href="${pageContext.request.contextPath }/resources/mypage/vendor/datatables/admin_dataTables.bootstrap4.css" rel="stylesheet">
+
+	<script type="text/javascript">
+		function confirmUpdateApprove(project_code) {
+			let result = confirm(project_code  + "번 게시글을 승인하시겠습니까?");
+			
+			if(result) {
+				location.href = "adminProjectApprove?project_code=" + project_code;
+			}
+		}
+	
+		function confirmUpdateReject(project_code) {
+			let result = confirm(project_code  + "번 게시글을 반려하시겠습니까?");
+			
+			if(result) {
+				location.href = "adminProjectReject?project_code=" + project_code;
+			}
+		}
+	</script>
+
 
 
 </head>
@@ -53,40 +75,37 @@
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">심사대기 프로젝트 내역</h6>
+							<h6 class="m-0 font-weight-bold text-primary">진행예정 펀딩 페이지</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
+											<th>프로젝트 코드</th>
+											<th>프로젝트 제목</th>
+											<th>프로젝트 카테고리</th>
+											<th>프로젝트 창작자</th>
+											<th>프로젝트 기간</th>
+											<th>프로젝트 목표금액</th>
+											<th></th>
 										</tr>
 									</thead>
-									<tfoot>
-										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
-										</tr>
-									</tfoot>
 									<tbody>
-										<tr>
-											<td>Tiger Nixon</td>
-											<td>System Architect</td>
-											<td>Edinburgh</td>
-											<td>61</td>
-											<td>2011/04/25</td>
-											<td>$320,800</td>
-										</tr>
+										<c:forEach var="examWaitProject" items="${examWaitProjectList }">
+	                                        <tr>
+	                                            <td>${examWaitProject.project_code }</td>
+	                                            <td>${examWaitProject.title }</td>
+	                                            <td>${examWaitProject.category }</td>
+	                                            <td>${examWaitProject.creator }</td>
+	                                            <td>${examWaitProject.start_date } ~<br> ${examWaitProject.end_date}</td>
+	                                            <td>${examWaitProject.goal_amount }원</td>
+	                                            <td>
+		                                            <button type="button" class="btn btn-primary" onclick="confirmUpdateApprove('${examWaitProject.project_code }')">승인</button>&nbsp;&nbsp;
+													<button type="button" class="btn btn-primary" onclick="confirmUpdateReject('${examWaitProject.project_code }')">반려</button>
+												</td>
+	                                        </tr>
+                                        </c:forEach>
 									</tbody>
 								</table>
 							</div>

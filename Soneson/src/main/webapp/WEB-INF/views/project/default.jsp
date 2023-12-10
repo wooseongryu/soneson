@@ -13,6 +13,15 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src= "${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
 <script>
+
+//default Img
+function defaultImg(tagId) {
+	console.log(tagId.id);
+	$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/project/default.png');
+}
+
+
+
 function updateProject(pro_code) {
 // 	alert("저장버튼!");
 	let user_id =  "${sessionScope.sId}";
@@ -76,6 +85,7 @@ $(function() {
 	//이미지 미리보기
 	$('input[name="pro_thumb_multi"]').change(function(){
 	    setImageFromFile(this, '#thumb_preview');
+	    setImageFromFile(this, '#mainThumb_preview');
 	});
 	
 	function setImageFromFile(input, expression) {
@@ -83,8 +93,8 @@ $(function() {
 	    var reader = new FileReader();
 	    reader.onload = function (e) {
 	    $(expression).attr('src', e.target.result);
+	    $(expression).attr('alt', "true");
 	    $(".image-change").show();
-	    $("#mainThunb_preview").attr('src', e.target.result);
 	  }
 	  reader.readAsDataURL(input.files[0]);
 	    $(".image-change").hide();
@@ -94,15 +104,18 @@ $(function() {
 	// 제목 글자수 제한
 	$("#pro_title + .varchar-count .count-length").text($("#pro_title").val().length);
 	
-	$("#pro_title").on("keyup", function() {
+	$("#pro_title").on("keyup keydown blur", function() {
 		let content = $(this).val();
 		$("#pro_title + .varchar-count .count-length").text(content.length);
 		if(content.length <= 0) {
 // 			$(".alert-count").text("10자 이상 작성해 주세요");
 			$("#pro_title + .varchar-count .alert-count").text("필수 항목 입니다.");
+			$(this).css("border", "1px solid rgb(248, 100, 83)");
+			$(this).focus();
 		} else {
 // 			$(".alert-count").text("");
 			$("#pro_title + .varchar-count .alert-count").text("");
+			$(this).css("border", "1px solid #d1d3e2");
 		}
 		
 		if (content.length > 32) {
@@ -115,21 +128,22 @@ $(function() {
 	// 요약 글자수 제한
 	
 	$("#pro_summary + .varchar-count .count-length").text($("#pro_summary").val().length);
-	$("#pro_summary").on("keyup", function() {
+	$("#pro_summary").on("keyup keydown blur", function() {
 		let content = $(this).val();
 		$("#pro_summary + .varchar-count .count-length").text(content.length);
 		
 		if(content.length < 10) {
 // 			$(".alert-count").text("10자 이상 작성해 주세요");
 			$("#pro_summary + .varchar-count .alert-count").text("10자 이상 작성해 주세요");
+			$(this).css("border", "1px solid rgb(248, 100, 83)");
+			$(this).focus();
 		} else {
 			$("#pro_summary + .varchar-count .alert-count").text("");
 // 			$(".alert-count").text("");
-			
+			$(this).css("border", "1px solid #d1d3e2");
 		}
-		
 		if (content.length > 50) {
-	        $(this).val($(this).val().substring(0, 32));
+	        $(this).val($(this).val().substring(0, 50));
 	        alert('글자수는 50자까지 입력 가능합니다.');
 	    };
 		
@@ -162,11 +176,12 @@ $(function() {
 	
 	//onsubmit
 	function checkNull() {
-		
+		debugger;
 		let pro_categorie = $("#pro_categorie").val();
 		let pro_title = $("#pro_title").val();
 		let pro_summary = $("#pro_summary").val();
 		let pro_thumb = $("#thumb_preview").attr("alt");
+		console.log(pro_thumb);
 		
 		let pro_goal = $("#pro_goal").val();
 		let start_date = $("#start-funding").val();
@@ -183,27 +198,37 @@ $(function() {
 		let pro_creator = $("#pro_creator").val();
 		let pro_profile = $("#profile_preview").attr("alt");
 		let pro_createrInfo = $("#pro_createrInfo").val();
-		let pro_auth = $("input[type=radio][name=pro_userAuth]").val();
+		let pro_userAuth = $("input[type=radio][name=pro_userAuth]:checked").val();
+		
+		if(!$('input:radio[name=pro_userAuth]').is(':checked')){
+			alert("계좌를 선택해주세요.");
+			return false;
+		}
 		
 		let arr0 = [pro_categorie, pro_title, pro_summary, pro_thumb];
 		let arr1 = [pro_goal, start_date, start_time, end_date];
 		let arr2 = [pro_content, pro_budget, pro_sch, pro_team, pro_reward, pro_notice];
-		let arr3 = [pro_creator, pro_profile, pro_createrInfo, pro_auth];
+		let arr3 = [pro_creator, pro_profile, pro_createrInfo];
 		
 		let arr = [arr0, arr1, arr2, arr3];
 		console.log(arr);
-		for(let j = 1; j < arr.length; j++) {
+	
+		for(let j = 0; j < arr.length; j++) {
 			
 			for(let i = 0; i < arr[j].length; i++) {
 				console.log(arr[j][i]);
-				if(arr[j][i] == "") {
-				debugger;
+				if(arr[j][i] == "" || arr[j][i] == null) {
+				
 					alert("필수항목을 입력해주세요.");
 					return false;
 				}
 				
 			}
 		}
+		
+		
+		
+		//마지막으로 확인하기
 		let checkSubmit = confirm("등록 후 바로 심사가 진행되어 수정이 불가능합니다.\n등록하시겠습니까?");
 		
 		if(checkSubmit) {
@@ -292,9 +317,14 @@ $(function() {
 						</div>
 						<div class="top-content-center">
 							<div class="top-content-img">
-								<c:if test="${not empty pro.pro_thumbsnail }">
-									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }" id="mainThunb_preview" width="200px" height="133px">
-								</c:if>
+							<c:choose>
+								<c:when test="${not empty pro.pro_thumbsnail }">
+									<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }" id="mainThumb_preview" width="200px" height="133px" onerror="defaultImg(this)">
+								</c:when>
+								<c:otherwise>
+									<img src="" id="mainThumb_preview" width="200px" height="133px" onerror="defaultImg(this)">
+								</c:otherwise>
+							</c:choose>
 							</div>
 							<div class="plan-title">
 								<h2>${pro.pro_title }</h2>
@@ -437,10 +467,10 @@ $(function() {
 										<div class="image-preview">
 										<c:choose>
 											<c:when test="${not empty pro.pro_thumbsnail }">
-												<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }" id="thumb_preview" width="180px" alt="${pro.pro_thumbsnail }">
+												<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_thumbsnail }" id="thumb_preview" width="180px" alt="${pro.pro_thumbsnail }" onerror="defaultImg(this)">
 											</c:when>
 											<c:otherwise>
-												<img src="" id="preview" width="180px">
+												<img src="" id="thumb_preview" width="180px" alt="">
 											</c:otherwise>
 										</c:choose>
 										</div>

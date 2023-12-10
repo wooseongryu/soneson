@@ -59,7 +59,7 @@
 				let str = "";
 				$("#creator-authAccountInfo").empty();
 				str += '<button class="authInfoBtn" type="button" onclick="authAccountCreator()">계좌 추가 등록</button>'
-				
+				str += '<input type="hidden" name="user_name" value=" ' + data.user_name + ' ">'
 				
 				for(info of infoList) {
 					console.log(info);
@@ -112,12 +112,60 @@
 		    var reader = new FileReader();
 		    reader.onload = function (e) {
 		    $(expression).attr('src', e.target.result);
+		    $(expression).attr('alt', "true");
 //			    $(".image-change").show();
 		  }
 		  reader.readAsDataURL(input.files[0]);
 //			    $(".image-change").hide();
 		  }
 		}
+		
+		// 창작자이름 글자수 제한
+		$("#pro_creator + .varchar-count .count-length").text($("#pro_creator").val().length);
+		
+		$("#pro_creator").on("keyup keydown blur", function() {
+			let content = $(this).val();
+			$("#pro_creator + .varchar-count .count-length").text(content.length);
+			if(content.length <= 0) {
+//	 			$(".alert-count").text("10자 이상 작성해 주세요");
+				$("#pro_creator + .varchar-count .alert-count").text("필수 항목 입니다.");
+				$(this).css("border", "1px solid rgb(248, 100, 83)");
+				$(this).focus();
+			} else {
+//	 			$(".alert-count").text("");
+				$("#pro_creator + .varchar-count .alert-count").text("");
+				$(this).css("border", "1px solid #d1d3e2");
+			}
+			
+			if (content.length > 20) {
+		        $(this).val($(this).val().substring(0, 32));
+		        alert('글자수는 20자까지 입력 가능합니다.');
+		    };
+			
+		});
+		
+		// 창작자소개 글자수 제한
+		$("#pro_createrInfo + .varchar-count .count-length").text($("#pro_creator").val().length);
+		
+		$("#pro_createrInfo").on("keyup keydown blur", function() {
+			let content = $(this).val();
+			$("#pro_createrInfo + .varchar-count .count-length").text(content.length);
+			if(content.length <= 0) {
+				$("#pro_createrInfo + .varchar-count .alert-count").text("필수 항목 입니다.");
+				$(this).css("border", "1px solid rgb(248, 100, 83)");
+				$(this).focus();
+			} else {
+//	 			$(".alert-count").text("");
+				$("#pro_createrInfo + .varchar-count .alert-count").text("");
+				$(this).css("border", "1px solid #d1d3e2");
+			}
+			
+			if (content.length > 100) {
+		        $(this).val($(this).val().substring(0, 100));
+		        alert('글자수는 100자까지 입력 가능합니다.');
+		    };
+			
+		});
 	});
 </script>
 <!-- 카테고리에 따른 입력폼 -->
@@ -136,6 +184,10 @@
 				</dl>
 				<div class="projectItem-form">
 					<input type="text" class="input_detail" name="pro_creator" id="pro_creator" value="${pro.pro_creator }">
+					<div class="varchar-count">
+						<span class="alert-count"></span>
+						<span><span class="count-length">0</span> / 20</span>
+					</div>
 				</div>
 			</div>	
 		</div>
@@ -157,7 +209,7 @@
 								<div  class="profile-image">
 									<c:choose>
 										<c:when test="${not empty pro.pro_profile }">
-											<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_profile }" id="profile_preview" width="630px" alt="${pro.pro_profile }">
+											<img src="${pageContext.request.contextPath }/resources/upload/${pro.pro_profile }" id="profile_preview" width="630px" alt="${pro.pro_profile }" onerror="defaultImg(this)">
 										</c:when>
 										<c:otherwise>
 											<img src="" id="profile_preview" width="180px">
@@ -202,6 +254,10 @@
 				</dl>
 				<div class="projectItem-form">
 					<textarea class="plan-textarea" placeholder="간단한 소개를 써주세요" name="pro_createrInfo" id="pro_createrInfo">${pro.pro_createrInfo }</textarea>
+					<div class="varchar-count">
+						<span class="alert-count"></span>
+						<span><span class="count-length">0</span> / 100</span>
+					</div>
 				</div>
 			</div>	
 		</div>
@@ -245,6 +301,7 @@
 				<div class="projectItem-form"  id="creator-authAccountInfo">
 					<c:choose>
 						<c:when test="${not empty fintechInfo.access_token }">
+							<input type="hidden" name="user_name" value="${userInfo.user_name }">
 							<button class="authInfoBtn" type="button" onclick="authAccountCreator()">계좌 추가 등록</button>
 <%-- 									<button class="authInfoBtn" type="button" onclick="getAuthAccount('${fintechInfo.access_token}', '${fintechInfo.user_seq_no }')">계좌가져오기</button> --%>
 							<c:forEach var="auth" items="${userInfo.res_list }">

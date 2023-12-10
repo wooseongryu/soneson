@@ -119,6 +119,9 @@ dl {
 							<li class="footer_info_item">
 								<a href="https://www.mois.go.kr/frt/a01/frtMain.do" target="공익제보(행정안전부)">공익제보(행정안전부)</a>
 							</li>
+							<li class="footer_info_item">
+								<a href="oneToOneQna" target="1대1문의">1대1문의</a>
+							</li>
 						</ul>
 						<div class="footer_info">
 							<ul class="footer_info_list">

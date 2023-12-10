@@ -377,6 +377,87 @@
 		WHERE tab_Kname = #{tab_Kname} 
 	</delete>
 	
+    <!-- 1:1문의 -->
+    <select id="selectOTO" resultType="MyQuestion">
+    	SELECT
+    		myQuestion_num
+			, myQuestion_id
+			, myQuestion_subject
+			, myQuestion_content
+			, myQuestion_answer
+			, myQuestion_status
+			, myQuestion_date
+		FROM myQuestion
+		<if test="myQuestion_num != null and !myQuestion_num.equals('')">
+		WHERE myQuestion_num = #{myQuestion_num}
+		</if>
+    </select>
+	
+	
+   <update id="updateOTOAnswer">
+    	UPDATE myQuestion
+    	SET
+    		myQuestion_answer = #{myQuestion_answer}
+    		, myQuestion_status = "Y"
+    	WHERE myQuestion_num = #{myQuestion_num}
+    </update>
+
+   <update id="updateAnswer">
+    	UPDATE myQuestion
+    	SET
+    		myQuestion_answer = #{myQuestion_answer}
+    	WHERE myQuestion_num = #{myQuestion_num}
+    </update>
+    <!-- 1:1문의 끝 -->
+	
+	<!-- 심사대기중 프로젝트 -->
+    <select id="selectExamWaitProjectList" resultType="map">
+		SELECT
+			project_code
+			, title 
+			, subtitle
+			, category
+			, creator
+			, img_main AS img1
+			, date(start_date) AS start_date
+			, date(end_date) AS end_date
+			, ifnull(goal_amount, 0) AS goal_amount
+		FROM project p
+		WHERE status = '심사대기중'
+    </select>
+
+
+	<!-- 반려된 프로젝트 -->
+    <select id="selectRejectProjectList" resultType="map">
+		SELECT
+			project_code
+			, title 
+			, subtitle
+			, category
+			, creator
+			, img_main AS img1
+			, date(start_date) AS start_date
+			, date(end_date) AS end_date
+			, ifnull(goal_amount, 0) AS goal_amount
+		FROM project p
+		WHERE status = '반려'
+    </select>
+	
+	<!-- 프로젝트 승인 -->
+	<update id="updateProjectApprove">
+		UPDATE project
+    	SET
+    		status = "승인"
+    	WHERE project_code = #{project_code}
+	</update>
+
+	<!-- 프로젝트 승인 -->
+	<update id="updateProjectReject">
+		UPDATE project
+    	SET
+    		status = "반려"
+    	WHERE project_code = #{project_code}
+	</update>
 	
 	
 </mapper>

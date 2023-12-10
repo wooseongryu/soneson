@@ -50,7 +50,7 @@
 	<div id="wrapper">
 		
 		<!-- Sidebar -->
-		<jsp:include page="admin_sidebar.jsp"></jsp:include>
+		<jsp:include page="../admin/admin_sidebar.jsp"></jsp:include>
 		<!-- End of Sidebar -->
 		
 
@@ -65,34 +65,64 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">핀테크 송금 결과</h1>
+					<h1 class="h3 mb-2 text-gray-800">핀테크 계좌 상세정보</h1>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">핀테크 송금 결과</h6>
+							<h6 class="m-0 font-weight-bold text-primary">${user_name} 고객님의 계좌 상세정보 (사용자번호 :${sessionScope.user_seq_no})</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th>출금은행명(기관코드)</th>
-											<th>출금일시</th> <%-- 일반 계좌번호 대신 마스킹 된 계좌번호(account_num_masked)만 사용 가능 --%>
-											<th>예금주명</th> 
-											<th>출금금액</th>
-											<th>출금한도잔여금액</th>
-											<th>출금계좌인자내역</th>
+											<th>은행명</th>
+											<th>계좌번호</th> <%-- 일반 계좌번호 대신 마스킹 된 계좌번호(account_num_masked)만 사용 가능 --%>
+											<th>상품명</th>
+											<th>계좌잔액</th>
+											<th>출금가능금액</th>
+											<th>핀테크이용번호</th>
+											<th></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
-											<td>${withdrawResult.bank_name}(${withdrawResult.bank_code_std})</td>
-											<td>${withdrawResult.api_tran_dtm}</td>
-											<td>${withdrawResult.account_holder_name}</td>
-											<td>${withdrawResult.tran_amt} 원</td>
-											<td>${withdrawResult.wd_limit_remain_amt} 원</td>
-											<td>${withdrawResult.print_content}</td>
+											<td>${accountDetail.bank_name}</td>
+											<td>${account_num_masked}</td>
+											<td>${accountDetail.product_name}</td>
+											<td>${accountDetail.balance_amt}</td>
+											<td>${accountDetail.available_amt}</td>
+											<td>${accountDetail.fintech_use_num}</td>
+											<td colspan="2">
+												<form action="BankRefund" method="post">
+													<input type="hidden" name="deposit_fintech_use_num" value="${accountDetail.fintech_use_num}">
+													<input type="hidden" name="tran_amt" value="2000">	<%-- 거래금액(출금금액) --%>
+													<input type="hidden" name="deposit_user_name" value="${user_name }">
+													<input type="submit" value="상품환불">
+												</form>
+												<form action="BankPayment" method="post">
+													<input type="hidden" name="withdraw_fintech_use_num" value="${accountDetail.fintech_use_num}">
+													<input type="hidden" name="tran_amt" value="50000">	<%-- 거래금액(출금금액) --%>
+													<input type="hidden" name="withdraw_user_name" value="${user_name }">	<%-- 고객성명 --%>
+													<input type="submit" value="상품구매(결제)">
+												</form>
+												
+												<form action="BankTransfer" method="post">
+													<%-- 송금 요청 대상(출금계좌) 정보를 셋팅 --%>
+													<input type="hidden" name="withdraw_fintech_use_num" value="${accountDetail.fintech_use_num}">
+													<input type="hidden" name="tran_amt" value="35000">
+													<input type="hidden" name="withdraw_user_name" value="${user_name }">
+													<%-- ======================================================== --%>
+													<%-- 송금 대상(입금계좌) 정보를 임의의 정보로 셋팅 --%>
+													<%-- 실제로는 컨트롤러 - 서비스를 통해 해당 회원의 정보 조회 필요 --%>
+													<input type="hidden" name="deposit_fintech_use_num" value="120211385488932387478941">
+													<input type="hidden" name="deposit_user_name" value="류우성">
+													<input type="hidden" name="deposit_bank_code" value="004">
+													<input type="hidden" name="deposit_account_num" value="23062003005">
+													<input type="submit" value="송금">
+												</form>
+											</td>
 										</tr>
 									</tbody>
 								</table>

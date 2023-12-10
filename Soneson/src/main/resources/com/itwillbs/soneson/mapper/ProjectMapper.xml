@@ -43,7 +43,27 @@
 	</select>
 	
 	<select id="selectNewProject" resultType="Project">
-		SELECT *
+		SELECT pro_code 
+			, user_id 
+			, pro_categorie 
+			, pro_title 
+			, pro_agree 
+			, pro_summary 
+			, pro_thumbsnail 
+			, pro_goal 
+			, SUBSTRING_INDEX(pro_startDt , ' ', 1) AS pro_startDt 
+			, SUBSTRING_INDEX(pro_startDt , ' ', -1) AS pro_start_time
+			, SUBSTRING_INDEX(pro_endDt , ' ', 1) AS pro_endDt 
+			, pro_content 
+			, pro_budget 
+			, pro_sch 
+			, pro_team 
+			, pro_reward 
+			, pro_notice 
+			, pro_creator 
+			, pro_profile 
+			, pro_createrInfo 
+			, pro_userAuth
 		FROM sample_pro
 		WHERE user_id = #{user_id}
 		ORDER BY pro_insertDt DESC
@@ -398,6 +418,17 @@
 		);
 	
 	</insert>
+	
+	<insert id="insertCreatorAccount">
+		INSERT INTO creator_account
+		VALUES(
+			#{user_id}
+			, #{pro_code}
+			, #{user_name}
+			, #{pro_userAuth}
+		)
+	</insert>
+	
 	
 	<delete id="deleteProject">
 		DELETE FROM sample_pro

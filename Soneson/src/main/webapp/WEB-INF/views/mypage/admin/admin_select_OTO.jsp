@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,37 +58,39 @@
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
-										</tr>
-									</thead>
-									<tfoot>
-										<tr>
-											<th>Name</th>
-											<th>Position</th>
-											<th>Office</th>
-											<th>Age</th>
-											<th>Start date</th>
-											<th>Salary</th>
-										</tr>
-									</tfoot>
-									<tbody>
-										<tr>
-											<td>Tiger Nixon</td>
-											<td>System Architect</td>
-											<td>Edinburgh</td>
-											<td>61</td>
-											<td>2011/04/25</td>
-											<td>$320,800</td>
-										</tr>
-									</tbody>
-								</table>
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>번호</th>
+                                            <th>제목</th>
+                                            <th>작성자</th>
+                                            <th>답변상태</th>
+                                            <th>등록일</th>
+                                            <th>답변작성</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    	<c:forEach var="question" items="${questionList }">
+	                                        <tr>
+	                                            <td>${question.myQuestion_num }</td>
+	                                            <td>${question.myQuestion_subject }</td>
+	                                            <td>${question.myQuestion_id }</td>
+	                                            <td>${question.myQuestion_status }</td>
+	                                            <td><fmt:formatDate value="${question.myQuestion_date }" pattern="yyyy-MM-dd"/></td>
+												<td>
+													<c:choose>
+														<c:when test="${question.myQuestion_status eq 'N'}">
+															<button type="button" class="btn btn-primary" onclick="location.href='adminOTOAnswer?myQuestion_num=${question.myQuestion_num}'">답변작성</button>
+														</c:when>
+														<c:otherwise>
+															<button type="button" class="btn btn-primary" onclick="location.href='adminOTOAnswerSelect?myQuestion_num=${question.myQuestion_num}'">답변보기</button>
+<%-- 															<button type="button" class="btn btn-primary" onclick="location.href='adminOTOAnswerUpdate?myQuestion_num=${question.myQuestion_num}'">답변수정</button> --%>
+														</c:otherwise>
+													</c:choose>
+												</td>
+	                                        </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
 							</div>
 						</div>
 					</div>

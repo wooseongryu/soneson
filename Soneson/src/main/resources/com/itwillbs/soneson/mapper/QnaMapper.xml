@@ -47,5 +47,26 @@
 		FROM qnaCate
 	</select>
 	<!-- 자주 묻는 질문 끝 -->
+	
+	
+	<insert id="insertMyQuestion">
+		<selectKey keyProperty="myQuestion_num" resultType="int" order="BEFORE">
+			SELECT IFNULL(MAX(myQuestion_num), 0) 
+			FROM myQuestion
+		</selectKey>
+		INSERT
+		INTO myQuestion
+		VALUES (
+			null
+			, #{myQuestion_id}
+			, #{myQuestion_subject}
+			, #{myQuestion_content}
+			, #{myQuestion_answer}
+			, 'N'
+			, now()
+		)
+	</insert>
+	
+	
     
 </mapper>

@@ -11,6 +11,7 @@ import com.itwillbs.soneson.mapper.AdminMapper;
 import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
 import com.itwillbs.soneson.vo.MainTabVO;
+import com.itwillbs.soneson.vo.MyQuestionVO;
 import com.itwillbs.soneson.vo.QnaCateVO;
 import com.itwillbs.soneson.vo.QnaVO;
 import com.itwillbs.soneson.vo.UserVO;
@@ -230,9 +231,54 @@ public class AdminService {
 	}
 
 
+/*====================================================================
+ * 1:1 문의
+ * ===================================================================
+ * */
+
+	// 1:1문의 조회
+	// myQuestion_num을 널스트링으로 전달 시 전체 질문 조회
+	public List<MyQuestionVO> selectOTO(String myQuestion_num) {
+		System.out.println("AdminService - selectOTO()");
+		return mapper.selectOTO(myQuestion_num);
+	}
+
+	// 관리자 1:1문의 답변 등록
+	public int updateOTOAnswer(MyQuestionVO myQuestion) {
+		System.out.println("AdminService - updateOTOAnswer()");
+		return mapper.updateOTOAnswer(myQuestion);
+	}
+
+	public int updateAnswer(Map<String, String> map) {
+		System.out.println("AdminService - updateAnswer()");
+		return mapper.updateAnswer(map);
+	}
 
 	
 	
+/*====================================================================
+ * 프로젝트 심사
+ * ===================================================================
+ * */
 	
+	public List<Map<String, Object>> selectExamWaitProjectList() {
+		return mapper.selectExamWaitProjectList();
+	}
+
+	public List<Map<String, Object>> selectRejectProjectList() {
+		return mapper.selectRejectProjectList();
+	}
+
+	
+	// 프로젝트 승인
+	public int updateProjectApprove(String project_code) {
+		return mapper.updateProjectApprove(project_code);
+	}
+
+	// 프로젝트 반려
+	public int updateProjectReject(String project_code) {
+		return mapper.updateProjectReject(project_code);
+	}
+
 	
 }

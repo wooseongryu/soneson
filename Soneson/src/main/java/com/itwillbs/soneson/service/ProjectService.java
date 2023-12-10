@@ -50,6 +50,11 @@ public class ProjectService {
 		return mapper.selectToken(sId);
 	}
 
+	//창작자 계좌저장
+	public int insertCreatorAccount(ProjectVO pro) {
+		return mapper.insertCreatorAccount(pro);
+	}
+	
 	//최종등록
 	public int insertProject(int pro_code) {
 		return mapper.insertProject(pro_code);
@@ -59,7 +64,6 @@ public class ProjectService {
 	public int deleteProject(int pro_code) {
 		return mapper.deleteProject(pro_code);
 	}
-	
 
 
 	
