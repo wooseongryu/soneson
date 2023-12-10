@@ -288,10 +288,10 @@ public class UserService {
 	}
 
 	// 유저프로필 메인 페이지
-	public Map<String, String> selectUserMainInfo(String id) {
+	public Map<String, String> selectUserMainInfo(Map<String, String> map) {
 		System.out.println("UserService - selectUserMainInfo()");
 		
-		return mapper.selectUserMainInfo(id);
+		return mapper.selectUserMainInfo(map);
 	}
 
 	// 유저프로필 메인 페이지 유저 존재 유무 확인

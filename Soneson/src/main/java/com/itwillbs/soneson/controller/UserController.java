@@ -59,8 +59,16 @@ public class UserController {
 		}
 		
 		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+			model.addAttribute("targetURL", "login");
+			return "forward";
+		}
 		
-		map = userService.selectUserMainInfo(id);
+		map.put("sId", sId);
+		map.put("id", id);
+		
+		map = userService.selectUserMainInfo(map);
 		
 		model.addAttribute("user", map);
 		

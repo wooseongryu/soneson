@@ -406,6 +406,11 @@
 			, user_id
 			, TIMESTAMPDIFF(YEAR, now(), hire_date) AS hire_year
 			, user_picture
+			, (select COUNT(follow_id)
+				from follow
+				where 
+					user_id = #{sId}
+					AND follow_id = #{id}) AS followCnt
 		FROM user
 		WHERE user_id = #{id}
 	</select>
