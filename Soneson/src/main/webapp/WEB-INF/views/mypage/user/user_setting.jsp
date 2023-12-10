@@ -769,6 +769,7 @@
 					$("#user_phone").append(
 						  ' <h6>연락처</h6>                                                                     '
                    		+ ' <input type="text" id="userPhone" value="' + phone + '" placeholder="휴대폰 번호를 입력하세요." maxlength="11" style="margin-top: 10px">'    
+                   		+ ' <span id="checkPhone"></span>'
                    		+ '                                                                                     '
                    		+ ' <div class="user_follow_btn">                                                       '
                    		+ ' 	<a onclick="updateUserPhonePro()">저장</a>                                                            '
@@ -778,9 +779,9 @@
                    		+ ' </div>                                                                              '
 					);
 					
-					// TODO
-					// 유효성 추가
-					
+					$("#userPhone").on("blur", function() {
+						checkPhoneNumber("userPhone", "checkPhone");
+					});
 					
     			},
     			error: function() {
@@ -789,7 +790,38 @@
     		});
     	}
     	
+    	function checkPhoneNumber(formId, printId) {
+    		let isValid = false;
+    		
+    		let phoneNumber = $("#" + formId).val();
+			
+			let msg = "";
+			let color = "";
+			
+			let numberRegex = /^01([0|1|6])[0-9]{8}$/;
+
+			if(numberRegex.exec(phoneNumber)) {
+				msg = "가능한 번호";
+				color = "green";
+				isValid = true;
+			} else {
+				msg = "010/011/016으로 시작하는 숫자로만 이루어진 값을 입력하세요.";
+				color = "red";
+				isValid = false;
+			}
+			
+			$("#" + printId).html(msg);
+			$("#" + printId).css("color", color);
+			
+			return isValid;
+    	}
+    	
     	function updateUserPhonePro() {
+    		if (!checkPhoneNumber("userPhone", "checkPhone")) {
+    			alert("유효하지 않은 번호입니다.\n010/011/016으로 시작하는 숫자로만 이루어진 값을 입력하세요.");
+    			return;
+    		}
+    		
     		if (!confirm("전화번호를 변경 하시겠습니까?")) {
     			return;
     		}
@@ -1168,6 +1200,7 @@
                    		
                    		+ ' 	<h6 style="margin-top: 15px">받는 사람 휴대폰 번호</h6>                                                            '           
                    		+ ' 	<input type="text" id="reciverPhoneNumber" placeholder="받는 사람 휴대폰 번호" maxlength="11" style="margin-top: 10px">              '
+                   		+ '<span id="checkReciverPhoneNumber"></span>'
                    		
                    		+ ' 	<span id = "checkPasswdResult"></span>                                                                             '
                    		+ ' 	<div class="user_follow_btn">                                                                                      '
@@ -1177,8 +1210,11 @@
                    		+ ' 		<a onclick="cancelInsertUserAddress()">취소</a>                                      	   	                           	               '
                    		+ ' 	</div>                                                                                                             '
 						+ ' </div>                                                                                                                 '
-
 					);
+					
+					$("#reciverPhoneNumber").on("blur", function() {
+						checkPhoneNumber("reciverPhoneNumber", "checkReciverPhoneNumber");
+					});
     			},
     			error: function() {
     				alert("에러!");
@@ -1193,9 +1229,10 @@
     		detailAddress = $("#detailAddress").val();
     		reciverPhoneNumber = $("#reciverPhoneNumber").val();
     		
-    		// TODO
-    		// 유효성 검사 추가...
-//     		let reciverPhoneNumber = $("#reciverPhoneNumber").val();
+    		if (!checkPhoneNumber("reciverPhoneNumber", "checkReciverPhoneNumber")) {
+    			alert("유효하지 않은 번호입니다.\n010/011/016으로 시작하는 숫자로만 이루어진 값을 입력하세요.");
+    			return;
+    		}
     		
     		if (reciver == null || reciver == "") {
     			alert("받는 사람을 입력하세요.");
