@@ -290,17 +290,45 @@ public class AdminController {
  * ===================================================================
  * */
 	
-
+	// 심사대기중인 프로젝트 페이지 
 	@GetMapping("adminExamWaitProject")
-	public String adminExamWaitProject() {
+	public String adminExamWaitProject(HttpSession session, Model model) {
 		System.out.println("AdminController - adminExamWaitProject");
+		
+		String sId = (String)session.getAttribute("sId");
+		String isAdmin = (String)session.getAttribute("isAdmin");
+		
+		if(sId == null || isAdmin.equals("N")) {
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			return "fail_back";
+		}
+		
+		List<Map<String, Object>> examWaitProjectList = adminService.selectExamWaitProjectList();
+		
+		model.addAttribute("examWaitProjectList", examWaitProjectList);
+		
+		
 		return "mypage/admin/admin_examWait_project";
 	}
 	
+	// 반려된 프로젝트 페이지 
 	@GetMapping("adminRejectProject")
-	public String adminRejectProject() {
+	public String adminRejectProject(HttpSession session, Model model) {
 		System.out.println("AdminController - adminRejectProject");
-		return "mypage/admin/admin_reject_project";
+		
+		String sId = (String)session.getAttribute("sId");
+		String isAdmin = (String)session.getAttribute("isAdmin");
+		
+		if(sId == null || isAdmin.equals("N")) {
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			return "fail_back";
+		}
+		
+		List<Map<String, Object>> rejectProjectList = adminService.selectRejectProjectList();
+		
+		model.addAttribute("rejectProjectList", rejectProjectList);
+		
+		return "mypage/admin/admin_select_reject_project";
 	}
 
 	

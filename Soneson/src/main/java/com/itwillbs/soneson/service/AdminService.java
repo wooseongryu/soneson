@@ -241,8 +241,6 @@ public class AdminService {
 	public List<MyQuestionVO> selectOTO(String myQuestion_num) {
 		System.out.println("AdminService - selectOTO()");
 		return mapper.selectOTO(myQuestion_num);
-	
-	
 	}
 
 	// 관리자 1:1문의 답변 등록
@@ -254,6 +252,21 @@ public class AdminService {
 	public int updateAnswer(Map<String, String> map) {
 		System.out.println("AdminService - updateAnswer()");
 		return mapper.updateAnswer(map);
+	}
+
+	
+	
+/*====================================================================
+ * 프로젝트 심사
+ * ===================================================================
+ * */
+	
+	public List<Map<String, Object>> selectExamWaitProjectList() {
+		return mapper.selectExamWaitProjectList();
+	}
+
+	public List<Map<String, Object>> selectRejectProjectList() {
+		return mapper.selectRejectProjectList();
 	}
 	
 }

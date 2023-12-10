@@ -145,6 +145,16 @@ public interface AdminMapper {
 
 	int updateAnswer(Map<String, String> map);
 
+	/*====================================================================
+	 * 프로젝트 심사
+	 * ===================================================================
+	 * */
+	// 프로젝트 심사대기중
+	List<Map<String, Object>> selectExamWaitProjectList();
+
+	// 프로젝트 반려중 
+	List<Map<String, Object>> selectRejectProjectList();
+
 
 
 	

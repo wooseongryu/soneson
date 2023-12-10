@@ -414,7 +414,38 @@
     </update>
     <!-- 1:1문의 끝 -->
 	
-	
+	<!-- 심사대기중 프로젝트 -->
+    <select id="selectExamWaitProjectList" resultType="map">
+		SELECT
+			project_code
+			, title 
+			, subtitle
+			, category
+			, creator
+			, img_main AS img1
+			, date(start_date) AS start_date
+			, date(end_date) AS end_date
+			, ifnull(goal_amount, 0) AS goal_amount
+		FROM project p
+		WHERE status = '심사대기중'
+    </select>
+
+
+	<!-- 반려된 프로젝트 -->
+    <select id="selectRejectProjectList" resultType="map">
+		SELECT
+			project_code
+			, title 
+			, subtitle
+			, category
+			, creator
+			, img_main AS img1
+			, date(start_date) AS start_date
+			, date(end_date) AS end_date
+			, ifnull(goal_amount, 0) AS goal_amount
+		FROM project p
+		WHERE status = '반려'
+    </select>
 	
 	
 	
