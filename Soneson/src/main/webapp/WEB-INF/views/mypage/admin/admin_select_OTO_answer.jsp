@@ -93,7 +93,7 @@
 						+ '			<div class="form-group row" align="center" id="answerBtn">                                                                                                                               '
 						+ '				<div class="col-sm-12 mb-6 mb-sm-0">                                                                                                                                                 '
 						+ '					<input type="button" class="btn btn-primary btn-user" onclick="adminOTOAnswerUpdatePro()" value="답변 변경하기">                                                                         '
-						+ '					<input type="button" class="btn btn-primary btn-user" onclick="history.back()" value="돌아가기">                                                                                 '
+						+ '					<input type="button" class="btn btn-primary btn-user" onclick="adminOTOAnswerCencel()" value="돌아가기">                                                                                 '
 						+ '				</div>                                                                                                                                                                               '
 						+ '			</div>                                                                                                                                                                                   '
 						+ '		</form>                                                                                                                                                                                      '
@@ -126,11 +126,11 @@
 				$("#adminAnswer").children().remove();
 				
 				$("#adminAnswer").append(
-						  '	<div id="adminAnswer">                                                                                                                                                               '
+						  '	<div id="adminAnswer">                                                                                                                                                           			     '
 						+ '		<div class="text-center">                                                                                                                                                                    '
 						+ '			<h1 class="h4 text-gray-900 mb-4">1대1문의 답변 보기</h1>                                                                                                                                '
 						+ '		</div>                                                                                                                                                                                       '
-						+ '		<form class="user" method="post" enctype="multipart/form-data">                                                                                              '
+						+ '		<form class="user" method="post" enctype="multipart/form-data">                                                                                              								 '
 						+ '			<input type="hidden" name="myQuestion_num" id="myQuestion_num" value="${question.myQuestion_num }">                                                                                      '
 						+ '			<div class="form-group row">                                                                                                                                                             '
 						+ '				<div class="col-sm-12 mb-6 mb-sm-0">                                                                                                                                                 '
@@ -147,7 +147,7 @@
 						+ '			<div class="form-group row" >                                                                                                                                                            '
 						+ '				<div class="col-sm-12 mb-6 mb-sm-0">                                                                                                                                                 '
 						+ '					<label for="floatingTextarea">답변 내용</label>                                                                                                                                  '
-						+ '					<textarea rows="10" name="myQuestion_answer" class="form-control form-control-textarea" id="floatingTextareaAnswer" readonly="readonly">${question.myQuestion_answer }</textarea>													 '
+						+ '					<textarea rows="10" name="myQuestion_answer" class="form-control form-control-textarea" id="floatingTextareaAnswer" readonly="readonly">${question.myQuestion_answer }</textarea>'
 						+ '				</div>                                                                                                                                                                               '
 						+ '			</div>                                                                                                                                                                                   '
 						+ '			<div class="form-group row" align="center" id="answerBtn">                                                                                                                               '
@@ -158,13 +158,67 @@
 						+ '			</div>                                                                                                                                                                                   '
 						+ '		</form>                                                                                                                                                                                      '
 						+ '	</div>																																															 '
-						
-						
 				);
+				location.reload();
 			},
 			error: function() {
 				alert("답변 변경 실패");
 			}
+		});
+	}
+	
+	
+	function adminOTOAnswerCencel() {
+		if (!confirm("이전 화면으로 돌아가시겠습니까?")) {
+			return;
+		}
+		$.ajax({
+			type: 'post',
+			url: 'adminOTOAnswerCencel',
+			dataType: 'json',
+			success: function(resp) {
+				
+					$("#adminAnswer").children().remove();
+				
+					$("#adminAnswer").append(
+					  '	<div id="adminAnswer">                                                                                                                                                           			     '
+					+ '		<div class="text-center">                                                                                                                                                                    '
+					+ '			<h1 class="h4 text-gray-900 mb-4">1대1문의 답변 보기</h1>                                                                                                                                '
+					+ '		</div>                                                                                                                                                                                       '
+					+ '		<form class="user" method="post" enctype="multipart/form-data">                                                                                              								 '
+					+ '			<input type="hidden" name="myQuestion_num" id="myQuestion_num" value="${question.myQuestion_num }">                                                                                      '
+					+ '			<div class="form-group row">                                                                                                                                                             '
+					+ '				<div class="col-sm-12 mb-6 mb-sm-0">                                                                                                                                                 '
+					+ '					<label for="">질문 제목</label>                                                                                                                                                  '
+					+ '					<input type="text" value="${question.myQuestion_subject }" class="form-control form-control-user" id="exampleFirstName" readonly="readonly">                                     '
+					+ '				</div>                                                                                                                                                                               '
+					+ '			</div>                                                                                                                                                                                   '
+					+ '			<div class="form-group row">                                                                                                                                                             '
+					+ '				<div class="col-sm-12 mb-6 mb-sm-0">                                                                                                                                                 '
+					+ '				  <label for="floatingTextarea">질문 내용</label>                                                                                                                                    '
+					+ '				  <textarea rows="10" class="form-control form-control-textarea" id="floatingTextarea" readonly="readonly">${question.myQuestion_content }</textarea>                                '
+					+ '				</div>                                                                                                                                                                               '
+					+ '			</div>                                                                                                                                                                                   '
+					+ '			<div class="form-group row" >                                                                                                                                                            '
+					+ '				<div class="col-sm-12 mb-6 mb-sm-0">                                                                                                                                                 '
+					+ '					<label for="floatingTextarea">답변 내용</label>                                                                                                                                  '
+					+ '					<textarea rows="10" name="myQuestion_answer" class="form-control form-control-textarea" id="floatingTextareaAnswer" readonly="readonly">${question.myQuestion_answer }</textarea>'
+					+ '				</div>                                                                                                                                                                               '
+					+ '			</div>                                                                                                                                                                                   '
+					+ '			<div class="form-group row" align="center" id="answerBtn">                                                                                                                               '
+					+ '				<div class="col-sm-12 mb-6 mb-sm-0">                                                                                                                                                 '
+					+ '					<input type="button" class="btn btn-primary btn-user" onclick="adminOTOAnswerUpdate()" value="수정하기">                                                                         '
+					+ '					<input type="button" class="btn btn-primary btn-user" onclick="history.back()" value="돌아가기">                                                                                 '
+					+ '				</div>                                                                                                                                                                               '
+					+ '			</div>                                                                                                                                                                                   '
+					+ '		</form>                                                                                                                                                                                      '
+					+ '	</div>																																															 '
+					);
+			},
+			error: function() {
+				alert("취소 실패");
+			}
+			
 		});
 	}
 	

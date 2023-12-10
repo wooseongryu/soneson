@@ -1023,7 +1023,7 @@ public class AdminController {
 		return "mypage/admin/admin_select_OTO_answer";
 	}
 	
-	
+	// 1대1문의 답변 변경창 띄우기
 	@ResponseBody
 	@PostMapping("adminOTOAnswerUpdate")
 	public String adminOTOAnswerUpdate() {
@@ -1031,7 +1031,7 @@ public class AdminController {
 		return "1";
 	}
 
-	
+	// 1대1문의 답변 수정 처리
 	@ResponseBody
 	@PostMapping("adminOTOAnswerUpdatePro")
 	public String adminOTOAnswerUpdatePro(@RequestParam Map<String, String> map, HttpSession session, Model model) {
@@ -1045,8 +1045,15 @@ public class AdminController {
 			return "false";
 		}
 		
-		
 		return gson.toJson(map);
+	}
+
+	// 1대1문의 수정 중 취소
+	@ResponseBody
+	@PostMapping("adminOTOAnswerCencel")
+	public String adminOTOAnswerCencel() {
+		System.out.println("AdminController - adminOTOAnswerCencel()");
+		return "1";
 	}
 	
 	
