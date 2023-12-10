@@ -83,7 +83,7 @@
 														</c:when>
 														<c:otherwise>
 															<button type="button" class="btn btn-primary" onclick="location.href='adminOTOAnswerSelect?myQuestion_num=${question.myQuestion_num}'">답변보기</button>
-															<button type="button" class="btn btn-primary" onclick="location.href='adminOTOAnswerUpdate?myQuestion_num=${question.myQuestion_num}'">답변수정</button>
+<%-- 															<button type="button" class="btn btn-primary" onclick="location.href='adminOTOAnswerUpdate?myQuestion_num=${question.myQuestion_num}'">답변수정</button> --%>
 														</c:otherwise>
 													</c:choose>
 												</td>

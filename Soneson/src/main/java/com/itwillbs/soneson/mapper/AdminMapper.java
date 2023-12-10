@@ -143,6 +143,8 @@ public interface AdminMapper {
 	
 	int updateOTOAnswer(MyQuestionVO myQuestion);
 
+	int updateAnswer(Map<String, String> map);
+
 
 
 	

@@ -405,6 +405,13 @@
     		, myQuestion_status = "Y"
     	WHERE myQuestion_num = #{myQuestion_num}
     </update>
+
+   <update id="updateAnswer">
+    	UPDATE myQuestion
+    	SET
+    		myQuestion_answer = #{myQuestion_answer}
+    	WHERE myQuestion_num = #{myQuestion_num}
+    </update>
     <!-- 1:1문의 끝 -->
 	
 	

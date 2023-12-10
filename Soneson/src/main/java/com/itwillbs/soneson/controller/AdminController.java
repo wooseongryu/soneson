@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
 import com.itwillbs.soneson.service.AdminService;
 import com.itwillbs.soneson.service.UserService;
 import com.itwillbs.soneson.vo.EventCateVO;
@@ -1019,7 +1020,33 @@ public class AdminController {
 		
 		model.addAttribute("question", question);
 		
-		return "mypage/admin/select_OTO_answer";
+		return "mypage/admin/admin_select_OTO_answer";
+	}
+	
+	
+	@ResponseBody
+	@PostMapping("adminOTOAnswerUpdate")
+	public String adminOTOAnswerUpdate() {
+		System.out.println("AdminController - adminOTOAnswerUpdate()");
+		return "1";
+	}
+
+	
+	@ResponseBody
+	@PostMapping("adminOTOAnswerUpdatePro")
+	public String adminOTOAnswerUpdatePro(@RequestParam Map<String, String> map, HttpSession session, Model model) {
+		System.out.println("AdminController - adminOTOAnswerUpdatePro()");
+		Gson gson = new Gson();
+		
+		int updateCount = adminService.updateAnswer(map);
+		
+		if (updateCount < 0) {
+			System.out.println("답변 변경 실패");
+			return "false";
+		}
+		
+		
+		return gson.toJson(map);
 	}
 	
 	

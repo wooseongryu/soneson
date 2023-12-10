@@ -250,5 +250,10 @@ public class AdminService {
 		System.out.println("AdminService - updateOTOAnswer()");
 		return mapper.updateOTOAnswer(myQuestion);
 	}
+
+	public int updateAnswer(Map<String, String> map) {
+		System.out.println("AdminService - updateAnswer()");
+		return mapper.updateAnswer(map);
+	}
 	
 }
