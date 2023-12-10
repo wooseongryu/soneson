@@ -286,6 +286,13 @@ public class UserService {
 		
 		return mapper.selectUserPicPath(sId);
 	}
+
+	// 유저프로필 메인 페이지
+	public Map<String, String> selectUserInfo(String id) {
+		System.out.println("UserService - selectUserInfo()");
+		
+		return mapper.selectUserInfo(id);
+	}
 	
 }
 

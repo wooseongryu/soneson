@@ -50,8 +50,21 @@ public class UserController {
 	
 	// 유저프로필 메인 페이지
 	@GetMapping("user")
-	public String user() {
+	public String user(HttpSession session, String id, Model model, Map<String, String> map) {
 		System.out.println("UserController - user()");
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		map = userService.selectUserInfo(id);
+		
+		model.addAttribute("user", map);
+		
+		if (id.equals(sId)) {
+			map.put("isOwn", "true");
+		}
+		
+		System.out.println("--" + map);
+		
 		return "mypage/user/user_main";
 	}
 	

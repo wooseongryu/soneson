@@ -398,5 +398,16 @@
 		FROM user
 		WHERE user_id = #{sId}
 	</select>
+	
+	<select id="selectUserInfo" resultType="map">
+		SELECT 
+			user_idx
+			, user_name
+			, user_id
+			, TIMESTAMPDIFF(YEAR, now(), hire_date) AS hire_year
+			, user_picture
+		FROM user
+		WHERE user_id = #{id}
+	</select>
 </mapper>
 

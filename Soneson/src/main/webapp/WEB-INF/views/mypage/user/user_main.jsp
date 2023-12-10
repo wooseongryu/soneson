@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -216,17 +217,28 @@
 				    	<!-- TODO -->
 				    	<div>
 					    	<div class="profileImgDiv">                                                                             
-	   							<img alt="" src="${pageContext.request.contextPath }/resources/user/alarm.jpg" class="profileImg">  
+					    		<c:choose>
+					    			<c:when test="${empty user.user_picture}">
+		   								<img alt="" src="${pageContext.request.contextPath }/resources/user/profile.png" class="profileImg">  
+					    			</c:when>
+					    			<c:otherwise>
+			   							<img alt="" src="${pageContext.request.contextPath }/resources/upload/${user.user_picture}" class="profileImg">  
+					    			</c:otherwise>
+					    		</c:choose>
 	   						</div>
    						</div>
 				    
 				        <h5>
-				        	또롱/Ttorong&nbsp;&nbsp;
-				        	<i class="fa fa-cog" onclick="location.href='userSetting'" style="cursor: pointer;"></i>
+				        	${user.user_name } / ${user.user_id }&nbsp;&nbsp;
+				        	<c:if test="${not empty user.isOwn }">
+					        	<i class="fa fa-cog" onclick="location.href='userSetting'" style="cursor: pointer;"></i>
+				        	</c:if>
 				        </h5>
-				        <p>3년전 가입</p>
-				        <a href="#">+ 팔로우</a>
-				        <a href="chatting" onclick="window.open(this.href, '_blank', 'width=400, height=800'); return false;">창작자 문의</a>
+				        <p>${user.hire_year }년전 가입</p>
+				        <c:if test="${empty user.isOwn }">
+				        	<a href="#">+ 팔로우</a>
+					        <a href="chatting" onclick="window.open(this.href, '_blank', 'width=400, height=800'); return false;">창작자 문의</a>
+				        </c:if>
 				    </div>
 				</div>
 			</div>

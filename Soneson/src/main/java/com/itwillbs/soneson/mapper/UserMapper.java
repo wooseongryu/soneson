@@ -139,6 +139,9 @@ public interface UserMapper {
 
 	// 유저 설정 프로필 수정 전 기존 파일 경로 가져오기
 	String selectUserPicPath(String sId);
+
+	// 유저프로필 메인 페이지
+	Map<String, String> selectUserInfo(String id);
 }
 
 
