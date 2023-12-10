@@ -44,6 +44,10 @@
     			dataType: 'json',
     			success: function(user_info) {
     				reset_screen(id);
+    				
+    				if (user_info == null || user_info == "") {
+   						user_info = "등록된 소개가 없습니다.";
+    				}
 
 					$("#user_content").append(
 						'<div id="user_content">'
