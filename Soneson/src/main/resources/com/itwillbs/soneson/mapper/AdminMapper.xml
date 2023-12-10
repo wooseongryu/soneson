@@ -377,10 +377,6 @@
 		WHERE tab_Kname = #{tab_Kname} 
 	</delete>
 	
-	
-	
-	
-	
     <!-- 1:1문의 -->
     <select id="selectOTO" resultType="MyQuestion">
     	SELECT
@@ -447,8 +443,21 @@
 		WHERE status = '반려'
     </select>
 	
-	
-	
+	<!-- 프로젝트 승인 -->
+	<update id="updateProjectApprove">
+		UPDATE project
+    	SET
+    		status = "승인"
+    	WHERE project_code = #{project_code}
+	</update>
+
+	<!-- 프로젝트 승인 -->
+	<update id="updateProjectReject">
+		UPDATE project
+    	SET
+    		status = "반려"
+    	WHERE project_code = #{project_code}
+	</update>
 	
 	
 </mapper>

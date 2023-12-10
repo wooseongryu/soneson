@@ -307,8 +307,52 @@ public class AdminController {
 		
 		model.addAttribute("examWaitProjectList", examWaitProjectList);
 		
-		
 		return "mypage/admin/admin_examWait_project";
+	}
+	
+	
+	
+	// 프로젝트 심사 - 승인
+	@GetMapping("adminProjectApprove")
+	public String adminProjectApprove(Model model, String project_code, HttpSession session) {
+		String sId = (String)session.getAttribute("sId");
+		String isAdmin = (String)session.getAttribute("isAdmin");
+		
+		if(sId == null || isAdmin.equals("N")) {
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			return "fail_back";
+		}
+		
+		int updateCount = adminService.updateProjectApprove(project_code);
+		
+		if (updateCount == 0) {
+			model.addAttribute("msg", "승인 실패!");
+			return "fail_back";
+		}
+		
+		return "redirect:/adminExamWaitProject";
+	}
+	
+
+	// 프로젝트 심사 - 반려
+	@GetMapping("adminProjectReject")
+	public String adminProjectReject(Model model, String project_code, HttpSession session) {
+		String sId = (String)session.getAttribute("sId");
+		String isAdmin = (String)session.getAttribute("isAdmin");
+		
+		if(sId == null || isAdmin.equals("N")) {
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			return "fail_back";
+		}
+		
+		int updateCount = adminService.updateProjectReject(project_code);
+		
+		if (updateCount == 0) {
+			model.addAttribute("msg", "반려 실패!");
+			return "fail_back";
+		}
+		
+		return "redirect:/adminExamWaitProject";
 	}
 	
 	// 반려된 프로젝트 페이지 

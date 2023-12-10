@@ -66,7 +66,7 @@
 				$("#adminAnswer").children().remove();
 				
 				$("#adminAnswer").append(
-						  '	<div id="adminAnswer">                                                                                                                                                               '
+						  '	<div id="adminAnswer">                                                                                                                                                              			 '
 						+ '		<div class="text-center">                                                                                                                                                                    '
 						+ '			<h1 class="h4 text-gray-900 mb-4">1대1문의 답변 보기</h1>                                                                                                                                '
 						+ '		</div>                                                                                                                                                                                       '
@@ -92,8 +92,8 @@
 						+ '			</div>                                                                                                                                                                                   '
 						+ '			<div class="form-group row" align="center" id="answerBtn">                                                                                                                               '
 						+ '				<div class="col-sm-12 mb-6 mb-sm-0">                                                                                                                                                 '
-						+ '					<input type="button" class="btn btn-primary btn-user" onclick="adminOTOAnswerUpdatePro()" value="답변 변경하기">                                                                         '
-						+ '					<input type="button" class="btn btn-primary btn-user" onclick="adminOTOAnswerCencel()" value="돌아가기">                                                                                 '
+						+ '					<input type="button" class="btn btn-primary btn-user" onclick="adminOTOAnswerUpdatePro()" value="답변 변경하기">                                                                 '
+						+ '					<input type="button" class="btn btn-primary btn-user" onclick="adminOTOAnswerCencel()" value="돌아가기">                                                                         '
 						+ '				</div>                                                                                                                                                                               '
 						+ '			</div>                                                                                                                                                                                   '
 						+ '		</form>                                                                                                                                                                                      '

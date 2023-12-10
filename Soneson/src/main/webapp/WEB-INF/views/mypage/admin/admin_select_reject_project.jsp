@@ -23,7 +23,16 @@
     <!-- Custom styles for this page -->
     <link href="${pageContext.request.contextPath }/resources/mypage/vendor/datatables/admin_dataTables.bootstrap4.css" rel="stylesheet">
 
-
+	<script type="text/javascript">
+		function confirmUpdateApprove(project_code) {
+			let result = confirm(project_code  + "번 게시글을 승인하시겠습니까?");
+			
+			if(result) {
+				location.href = "adminProjectApprove?project_code=" + project_code;
+			}
+		}
+	
+	</script>
 </head>
 
 <body id="page-top">
@@ -69,6 +78,7 @@
 											<th>프로젝트 창작자</th>
 											<th>프로젝트 기간</th>
 											<th>프로젝트 목표금액</th>
+											<th></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -80,6 +90,9 @@
 	                                            <td>${rejectProject.creator }</td>
 	                                            <td>${rejectProject.start_date } ~<br> ${rejectProject.end_date}</td>
 	                                            <td>${rejectProject.goal_amount }원</td>
+	                                            <td>
+	                                            	<button type="button" class="btn btn-primary" onclick="confirmUpdateApprove('${rejectProject.project_code }')">승인</button>&nbsp;&nbsp;
+	                                        	</td>
 	                                        </tr>
                                         </c:forEach>
 									</tbody>

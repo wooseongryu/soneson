@@ -155,6 +155,12 @@ public interface AdminMapper {
 	// 프로젝트 반려중 
 	List<Map<String, Object>> selectRejectProjectList();
 
+	// 프로젝트 승인
+	int updateProjectApprove(String project_code);
+
+	// 프로젝트 반려
+	int updateProjectReject(String project_code);
+
 
 
 	

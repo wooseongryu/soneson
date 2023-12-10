@@ -29,8 +29,7 @@
 		let result = confirm(qna_idx  + "번 게시글을 삭제하시겠습니까?");
 		
 		if(result) {
-			location.href = "adminEventDelete?qna_idx=" + qna_idx;
-			
+			location.href = "adminQNADelete?qna_idx=" + qna_idx;
 		}
 	}
 </script>

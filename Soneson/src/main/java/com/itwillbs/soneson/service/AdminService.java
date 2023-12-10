@@ -268,5 +268,17 @@ public class AdminService {
 	public List<Map<String, Object>> selectRejectProjectList() {
 		return mapper.selectRejectProjectList();
 	}
+
+	
+	// 프로젝트 승인
+	public int updateProjectApprove(String project_code) {
+		return mapper.updateProjectApprove(project_code);
+	}
+
+	// 프로젝트 반려
+	public int updateProjectReject(String project_code) {
+		return mapper.updateProjectReject(project_code);
+	}
+
 	
 }
