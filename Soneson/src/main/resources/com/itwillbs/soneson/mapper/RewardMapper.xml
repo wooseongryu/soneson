@@ -91,7 +91,7 @@
 			, #{pro_code}
 			, #{reward_item_name}      
 			, #{reward_item_code}
-			, #{reward_explan}
+			, #{reward_explain}
 			, #{reward_isCount}
 			, #{reward_count}
 			, #{reward_isDeliv}

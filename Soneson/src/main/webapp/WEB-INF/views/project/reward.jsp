@@ -389,14 +389,14 @@
 		reward_item_name = nameArr.join('|');
 		reward_item_code = codeArr.join('|');
 		
-		let reward_explan = $("#reward_explan").val();
+		let reward_explain = $("#reward_explain").val();
 		let reward_isCount = $("input[name=reward_isCount]:checked").val();
 		let reward_count = $("#reward_count").val();
 		let reward_isDeliv = $("input[name=reward_isDeliv]:checked").val();
 		let reward_amount = $("#reward_amount").val();
 		console.log(reward_item_name);
 		console.log("아이템코드: " + reward_item_code);
-		console.log(reward_explan);
+		console.log(reward_explain);
 		console.log("reward_isCount" + reward_isCount);
 		console.log(reward_count + typeof reward_count);
 		console.log(reward_isDeliv);
@@ -406,8 +406,8 @@
 			alert("아이템을 한개 이상 선택해주세요.");
 			return;
 		}
-		if(reward_explan == "") {
-			reward_explan = " ";
+		if(reward_explain == "") {
+			reward_explain = " ";
 		}
 		if(reward_isCount == "" || reward_isCount == null) {
 			alert("수량제한여부를 선택해주세요.");
@@ -433,7 +433,7 @@
 				"pro_code": pro_code,
 				"reward_item_name": reward_item_name,
 				"reward_item_code": reward_item_code,
-				"reward_explan": reward_explan,
+				"reward_explain": reward_explain,
 				"reward_isCount": reward_isCount,
 				"reward_count": reward_count,
 				"reward_isDeliv": reward_isDeliv,
@@ -452,7 +452,7 @@
 				str +=			'<h4>' + reward.reward_amount + '원+</h4>'
 				str +=			'<br>'
 				str +=			'<p>'
-				str +=				reward.reward_explan + '<br>'
+				str +=				reward.reward_explain + '<br>'
 				str +=				reward.reward_item_name + '<br>'
 				
 				if(reward.reward_count == "0") {
@@ -512,7 +512,7 @@
 	 						+ 					'</p>'
 	 						+ 				'</div>'
 	 						+ 				'<div class="projectItem-form">'
-	 						+ 					'<input type="text" class="input_detail" placeholder="예) 봄 세트, 배송비포함" name="reward_explan" id="reward_explan">'
+	 						+ 					'<input type="text" class="input_detail" placeholder="예) 봄 세트, 배송비포함" name="reward_explain" id="reward_explain">'
 	 						+ 				'</div>'
 	 						+ 				'<div class="alert-title">'
 	 						+ 					'<p></p>'
@@ -841,7 +841,7 @@
 									<h4>${reward.reward_amount }원+</h4>
 									<br>
 									<p>
-										${reward.reward_explan }<br>
+										${reward.reward_explain }<br>
 										${reward.reward_item_name }<br>
 										수량 : ${reward.reward_count }
 									</p>
@@ -900,7 +900,7 @@
 										</p>
 									</div>
 									<div class="projectItem-form">
-										<input type="text" class="input_detail" placeholder="예) 봄 세트, 배송비포함" name="reward_explan" id="reward_explan">
+										<input type="text" class="input_detail" placeholder="예) 봄 세트, 배송비포함" name="reward_explain" id="reward_explain">
 									</div>
 									<div class="alert-title">
 										<p></p>

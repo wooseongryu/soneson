@@ -181,8 +181,15 @@
     			success: function(resp) {
     				reset_screen(id);
     				
+    				let sId = "${sessionScope.sId}";
+    				
     				for(user of resp) {
     					let uId = user.uId;
+    					
+    					if (uId == sId) {
+    						continue;
+    					}
+    					
     					btnString = '<a onclick="insertFollow(\'' + uId + '\')">+ 팔로우</a>';
         				
     					if (isFollowing(uId)) {
@@ -200,7 +207,9 @@
                             + ' 		<div class="anime__review__item__text" id="project_review_content">'
     	                    + '     		<h6>' + user.user_name + '</h6>'
     	                    + '     		<p>' + info + '</p>'
-    	                    + '     		<p style="margin-top: 10px" id="followerCnt_' + uId + '">팔로워 ' + user.count + ' · 후원한 프로젝트 11</p>'
+    	                    + ' 			<div id="followerCnt_' + uId + '">'
+    	                    + '     			<p style="margin-top: 10px" >팔로워 ' + user.count + ' · 후원한 프로젝트 11</p>'
+    	                    + ' 			</div>'
     	                    + '     		<div class="user_follow_btn" id="followerBtn_' + uId + '">'
     	                    + 					btnString
     	                    + '     		</div>'
@@ -217,7 +226,6 @@
     		});
 		}
 		
-		// TODO
 		function insertFollow(uId) {
 			$.ajax({
     			type: 'post',
@@ -227,11 +235,23 @@
     			},
     			dataType: 'json',
     			success: function(resp) {
+    				if (!resp.isLogin) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    				
     				let divBtnId = "followerBtn_" + uId;
+    				let divCnt = "followerCnt_" + uId;
     				
     				$("#" + divBtnId).children().remove();
     				$("#" + divBtnId).append(
     					'<a onclick="removeFollow(\'' + uId + '\')">팔로잉</a>'
+    				);
+    				
+    				$("#" + divCnt).children().remove();
+    				$("#" + divCnt).append(
+    						'<p style="margin-top: 10px" >팔로워 ' + resp.followerCnt + ' · 후원한 프로젝트 11</p>'
     				);
     			},
     			error: function(error) {
@@ -240,7 +260,6 @@
     		});
 		}
 		
-		// TODO
 		function removeFollow(uId) {
 			$.ajax({
     			type: 'post',
@@ -250,11 +269,23 @@
     			},
     			dataType: 'json',
     			success: function(resp) {
+    				if (!resp.isLogin) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    				
 					let divBtnId = "followerBtn_" + uId;
+					let divCnt = "followerCnt_" + uId;
     				
     				$("#" + divBtnId).children().remove();
     				$("#" + divBtnId).append(
     					'<a onclick="insertFollow(\'' + uId + '\')">+ 팔로우</a>'
+    				);
+    				
+    				$("#" + divCnt).children().remove();
+    				$("#" + divCnt).append(
+    						'<p style="margin-top: 10px" >팔로워 ' + resp.followerCnt + ' · 후원한 프로젝트 11</p>'
     				);
     			},
     			error: function(error) {
@@ -284,6 +315,68 @@
 			
 			return isFollowing;
 		}
+		
+		function userFollowing(id) {
+			let btnString = '';
+			let contentStr = '';
+			let info = '';
+			
+			$.ajax({
+    			type: 'post',
+    			url: 'userFollowing',
+    			data: {
+    				user_id : user_id
+    			},
+    			dataType: 'json',
+    			success: function(resp) {
+    				reset_screen(id);
+    				
+    				let sId = "${sessionScope.sId}";
+    				
+    				for(user of resp) {
+    					let uId = user.uId;
+    					
+    					if (uId == sId) {
+    						continue;
+    					}
+    					
+    					btnString = '<a onclick="insertFollow(\'' + uId + '\')">+ 팔로우</a>';
+        				
+    					if (isFollowing(uId)) {
+    						btnString = '<a onclick="removeFollow(\'' + uId + '\')">팔로잉</a>';
+    					}
+    					
+    					info = user.user_info;
+    					if (info == null) {
+    						info = '소개가 없습니다.';
+    					}
+    					
+    					contentStr += 
+    						  '<div class="anime__details__review">'
+    						+ ' 	<div class="anime__review__item">'
+                            + ' 		<div class="anime__review__item__text" id="project_review_content">'
+    	                    + '     		<h6>' + user.user_name + '</h6>'
+    	                    + '     		<p>' + info + '</p>'
+    	                    + ' 			<div id="followerCnt_' + uId + '">'
+    	                    + '     			<p style="margin-top: 10px" >팔로워 ' + user.count + ' · 후원한 프로젝트 11</p>'
+    	                    + ' 			</div>'
+    	                    + '     		<div class="user_follow_btn" id="followerBtn_' + uId + '">'
+    	                    + 					btnString
+    	                    + '     		</div>'
+    						+ ' 		</div>'
+                        	+ ' 	</div>'
+                    	 	+ '</div>';
+    				}			
+    				
+					$("#user_content").append(contentStr);                                                                                                                                                                             
+    			},
+    			error: function() {
+    				alert("에러!userFollowing");
+    			}
+    		});
+		}
+		
+		
     	
     	function reset_screen(id) {
     		$("#section-title h5").css("color", "black");
@@ -371,19 +464,19 @@
 											<h5 onclick="userProfile('topCateProfile')">프로필</h5>
 										</div>
 										<div class="user_top_cate" id="topProjectReview">
-											<h5 onclick="userProjectReview('topProjectReview')">프로젝트후기 11</h5>
+											<h5 onclick="userProjectReview('topProjectReview')">프로젝트후기</h5>
 										</div>
 										<div class="user_top_cate" id="topUploadProject">
-											<h5 onclick="userUploadProject('topUploadProject')">올린프로젝트 5</h5>
+											<h5 onclick="userUploadProject('topUploadProject')">올린프로젝트</h5>
 										</div>
 										<div class="user_top_cate">	
-											<h5>후원한프로젝트 50</h5>
+											<h5>후원한프로젝트</h5>
 										</div>
 										<div class="user_top_cate" id="topFollower">	
-											<h5 onclick="userFollower('topFollower')">팔로워 120</h5>
+											<h5 onclick="userFollower('topFollower')">팔로워</h5>
 										</div>
-										<div class="user_top_cate">
-											<h5>팔로잉 100</h5>
+										<div class="user_top_cate" id="topFollowing">
+											<h5 onclick="userFollowing('topFollowing')">팔로잉</h5>
 										</div>
                                     </div>
                                 </div>

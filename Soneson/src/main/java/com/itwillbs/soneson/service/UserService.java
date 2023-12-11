@@ -335,6 +335,20 @@ public class UserService {
 		
 		return mapper.selectIsFollowing(map);
 	}
+
+	// 팔로워 수
+	public int countFollower(String user_id) {
+		System.out.println("UserService - UserService()");
+		
+		return mapper.countFollower(user_id);
+	}
+
+	// 팔로잉
+	public List<Map<String, String>> selectUserFollowing(String user_id) {
+		System.out.println("UserService - selectUserFollowing()");
+		
+		return mapper.selectUserFollowing(user_id);
+	}
 	
 }
 

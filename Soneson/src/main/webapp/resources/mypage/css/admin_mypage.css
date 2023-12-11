@@ -9596,6 +9596,26 @@ button.bg-dark:focus {
   color: #F86453 !important;
 }
 
+.text-cyan {
+  color: #36b9cc !important;
+}
+
+.text-indigo {
+  color: #6610f2  !important;
+}
+
+.text-blue {
+  color: #4e73df  !important;
+}
+
+.text-purple {
+  color: #6f42c1 !important;
+}
+
+.text-pink {
+  color: #e83e8c !important;
+}
+
 a.text-primary:hover, a.text-primary:focus {
   color: #224abe !important;
 }

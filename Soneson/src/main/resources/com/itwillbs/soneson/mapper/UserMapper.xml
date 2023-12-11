@@ -466,5 +466,25 @@
 			user_id = #{sId}
 			AND follow_id = #{id}
 	</select>
+	
+	<select id="countFollower" resultType="int">
+		SELECT COUNT(*)
+		FROM follow
+		WHERE follow_id = #{user_id}
+	</select>
+	
+	<select id="selectUserFollowing" resultType="map">
+		SELECT 
+			user_id AS uId
+			, user_name
+			, user_info
+			, (SELECT COUNT(*)
+				FROM follow
+				WHERE follow_id = uId) AS count
+		FROM user
+		WHERE user_id IN (SELECT follow_id 
+							FROM follow
+							WHERE user_id = #{user_id});
+	</select>
 </mapper>
 
