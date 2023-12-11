@@ -182,10 +182,11 @@
     				reset_screen(id);
     				
     				for(user of resp) {
-    					btnString = '<a onclick="insertFollow(\'' + user.uId + '\')">+ 팔로우</a>';
+    					let uId = user.uId;
+    					btnString = '<a onclick="insertFollow(\'' + uId + '\')">+ 팔로우</a>';
         				
-    					if (isFollowing(resp.uId)) {
-    						btnString = '<a onclick="removeFollow(\'' + user.uId + '\')">팔로잉</a>';
+    					if (isFollowing(uId)) {
+    						btnString = '<a onclick="removeFollow(\'' + uId + '\')">팔로잉</a>';
     					}
     					
     					info = user.user_info;
@@ -199,9 +200,9 @@
                             + ' 		<div class="anime__review__item__text" id="project_review_content">'
     	                    + '     		<h6>' + user.user_name + '</h6>'
     	                    + '     		<p>' + info + '</p>'
-    	                    + '     		<p style="margin-top: 10px">팔로워 ' + user.count + ' · 후원한 프로젝트 11</p>'
-    	                    + '     		<div class="user_follow_btn">'
-    	                    + btnString
+    	                    + '     		<p style="margin-top: 10px" id="followerCnt_' + uId + '">팔로워 ' + user.count + ' · 후원한 프로젝트 11</p>'
+    	                    + '     		<div class="user_follow_btn" id="followerBtn_' + uId + '">'
+    	                    + 					btnString
     	                    + '     		</div>'
     						+ ' 		</div>'
                         	+ ' 	</div>'
@@ -226,7 +227,12 @@
     			},
     			dataType: 'json',
     			success: function(resp) {
-    				console.log(resp);
+    				let divBtnId = "followerBtn_" + uId;
+    				
+    				$("#" + divBtnId).children().remove();
+    				$("#" + divBtnId).append(
+    					'<a onclick="removeFollow(\'' + uId + '\')">팔로잉</a>'
+    				);
     			},
     			error: function(error) {
     				alert("팔로우 에러!");
@@ -244,7 +250,12 @@
     			},
     			dataType: 'json',
     			success: function(resp) {
-    				console.log(resp);
+					let divBtnId = "followerBtn_" + uId;
+    				
+    				$("#" + divBtnId).children().remove();
+    				$("#" + divBtnId).append(
+    					'<a onclick="insertFollow(\'' + uId + '\')">+ 팔로우</a>'
+    				);
     			},
     			error: function(error) {
     				alert("팔로우 해제 에러!");
