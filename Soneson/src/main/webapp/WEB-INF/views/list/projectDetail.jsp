@@ -550,7 +550,8 @@
 									<c:forEach var="reward" items="${rewardList }">
 										<div class="RewardCard__RewardCardWrapper-sc-11jni8b-3 iqsxGc">
 											<div class="Card-sc-1vhyvl1-0 RewardCard__StyledCard-sc-11jni8b-1 cfXECD fjuLVq">
-												<div class="Stepper__Wrapper-sc-14ctxej-0 bzcMYO" style="height: 169px;">
+												<div class="Stepper__Wrapper-sc-14ctxej-0 bzcMYO">
+<!-- 												<div class="Stepper__Wrapper-sc-14ctxej-0 bzcMYO" style="height: 169px;"> -->
 													<section direction="right" class="Stepper__StepperWrapper-sc-14ctxej-1 ehQhai">
 													
 														<div class="RewardCard__RewardCardInner-sc-11jni8b-4 doBnVx">
@@ -578,9 +579,18 @@
 															</div>
 														
 															<ul class="RewardCard__Items-sc-11jni8b-14 cNnvBP">
-																<li class="RewardCard__ItemList-sc-11jni8b-15 bpVZwd">${reward.reward_item_name }
+<!-- 															1211 -->
+<%-- 																<li class="RewardCard__ItemList-sc-11jni8b-15 bpVZwd">${reward.reward_item_name } --%>
 		<!-- 														&nbsp;<span>( x 1 )</span> -->
-																</li>
+<!-- 																</li> -->
+																
+																<c:forEach var="item" items="${reward.reward_item_name }">
+																	<li class="RewardCard__ItemList-sc-11jni8b-15 kYvoWT">
+																		${item}
+																	</li>
+															    </c:forEach>
+																
+																
 															</ul>
 															
 															<div class="RewardCard__DeliveryDate-sc-11jni8b-16 cxeoGo"></div>
@@ -612,9 +622,18 @@
 															</div>
 															
 															<ul class="RewardCard__Items-sc-11jni8b-14 ivsvtS">
-																<li class="RewardCard__ItemList-sc-11jni8b-15 kYvoWT">${reward.reward_item_name }
+<%-- 																<c:forEach var="item" items="${reward}"> --%>
+<%-- 															        <p>${item.reward_item_name}</p> --%>
+<%-- 															    </c:forEach> --%>
+															
+																	<c:forEach var="item" items="${reward.reward_item_name }">
+																<li class="RewardCard__ItemList-sc-11jni8b-15 kYvoWT">
+																        <p>${item}</p>
+																
+<%-- 																${reward.reward_item_name } --%>
 		<!-- 														&nbsp;<span>( x 1 )</span> -->
 																</li>
+																    </c:forEach>
 															</ul>
 															
 															<div class="RewardCard__DeliveryDate-sc-11jni8b-16 gRjZWy">

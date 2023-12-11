@@ -44,4 +44,8 @@ public class ProjectListService {
 		return mapper.getRewardList(project_code);
 	}
 
+	public List<Map<String, Object>> getItemList(int project_code) {
+		return mapper.getItemList(project_code);
+	}
+
 }

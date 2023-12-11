@@ -1984,10 +1984,19 @@ dsitt:not(:first-child) {
 	height: auto;
 	min-height: 100%;
 	padding-bottom: 510px;
+	clear: both;
 }
 
 footer {
-	heihgt:510px;
+	height:510px;
 	position: relative;
 	transform: translateY(-100%);
+}
+
+.kYvoWT::before {
+    content: "·";
+    position: absolute;
+    font-weight: bold;
+    left: 0px;
+    top: -1px;
 }

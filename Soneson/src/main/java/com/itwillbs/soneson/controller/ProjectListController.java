@@ -1,5 +1,6 @@
 package com.itwillbs.soneson.controller;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,11 +79,25 @@ public class ProjectListController {
 			project.put("policy", policy);
 		}
 		
-		
 		model.addAttribute("project", project);
 		
 		List<Map<String, Object>> rewardList = service.getRewardList(project_code);
+		
+		if(rewardList != null) {
+			for (Map<String, Object> reward : rewardList) {
+				String currentValue = (String) reward.get("reward_item_name");
+				System.out.println("원래 아이템:" + currentValue);
+				String[] rewards = currentValue.split("\\|");
+				System.out.println("지금 배열: " + Arrays.toString(rewards));
+				reward.put("reward_item_name", rewards);
+//				model.addAttribute("reward", reward);
+			}
+		}
+		
 		model.addAttribute("rewardList", rewardList);
+		
+//		List<Map<String, Object>> itemList = service.getItemList(project_code);
+//		model.addAttribute("itemList", itemList);
 		
 		return "list/projectDetail";	
 	}
