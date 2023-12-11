@@ -33,6 +33,7 @@ import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
 import com.itwillbs.soneson.vo.MainTabVO;
 import com.itwillbs.soneson.vo.MyQuestionVO;
+import com.itwillbs.soneson.vo.ProjectVO;
 import com.itwillbs.soneson.vo.QnaCateVO;
 import com.itwillbs.soneson.vo.QnaVO;
 import com.itwillbs.soneson.vo.UserVO;
@@ -310,6 +311,27 @@ public class AdminController {
 		return "mypage/admin/admin_examWait_project";
 	}
 	
+	// 프로젝트 심사 디테일 페이지
+	@GetMapping("adminProjectExamDetail")
+	public String adminProjectExamDetail(@RequestParam String project_code, HttpSession session, Model model) {
+		System.out.println("AdminController - adminProjectExamDetail");
+		
+		String sId = (String)session.getAttribute("sId");
+		String isAdmin = (String)session.getAttribute("isAdmin");
+		
+		if(sId == null || isAdmin.equals("N")) {
+			model.addAttribute("msg", "잘못된 접근입니다!");
+			return "fail_back";
+		}
+
+		ProjectVO project = adminService.selectProjectExamDetail(project_code);
+		
+		
+		
+		model.addAttribute("project", project);
+		
+		return "mypage/admin/admin_project_exam_detail";
+	}
 	
 	
 	// 프로젝트 심사 - 승인

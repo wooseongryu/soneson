@@ -49,9 +49,8 @@ public class ProjectVO {
 	private String category;
 	private String creator;
 	private String img1;
-	private String startDate;
+	private LocalDateTime start_date;
 	private LocalDateTime end_date;
-	
 	//------------
 	private int pro_code;
 	private String user_id;
