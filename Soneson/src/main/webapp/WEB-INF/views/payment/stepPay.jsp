@@ -75,8 +75,7 @@
 					</div>
 				
 				
-				<!--// discout-setting -->
-				
+				<!--리워드 정보 -->
 				<div class="tit-util mt40">
 					<h3 class="tit small">리워드 정보 <!-- 결제수단선택 --></h3>
 
@@ -105,36 +104,64 @@
 <%-- 						<b>선물금액 : </b>${reward.reward_amount} 원 --%>
 					</div>
 				</div>	
-				<div class="rollbanner">
-					<div class="inrolb swiper-container swiper-container-initialized swiper-container-vertical">
-			            <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(0px, -120px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-next swiper-slide-duplicate-prev" data-swiper-slide-index="1" style="height: 40px;">
-											<div class="text" style="background:url('https://img.megabox.co.kr/SharedImg/flagBanner/2023/04/21/gwehxwSczxpyPt48whc3EZr3Fgx9ASVh.png') 0 50% no-repeat; background-size:80px 30px;">토스페이 메가박스 첫 결제 시 최대 1천원 즉시할인</div>
-										</div>
-			            	
-				                
-									
-									
-										<div class="swiper-slide swiper-slide-duplicate-active" data-swiper-slide-index="0" style="height: 40px;">
-											<div class="text" style="background:url('https://img.megabox.co.kr/SharedImg/flagBanner/2023/10/10/znMs1PqIBr3kJMRX2JzgEXcJ1UBiFE3O.png') 0 50% no-repeat; background-size:80px 30px;">결제 시 최대 1만원 혜택!</div>
-										</div>
-									
-								
-				            
-				                
-									
-									
-										<div class="swiper-slide swiper-slide-prev swiper-slide-duplicate-next" data-swiper-slide-index="1" style="height: 40px;">
-											<div class="text" style="background:url('https://img.megabox.co.kr/SharedImg/flagBanner/2023/04/21/gwehxwSczxpyPt48whc3EZr3Fgx9ASVh.png') 0 50% no-repeat; background-size:80px 30px;">토스페이 메가박스 첫 결제 시 최대 1천원 즉시할인</div>
-										</div>
-									
-								
-				            
-			            <div class="swiper-slide swiper-slide-duplicate swiper-slide-active" data-swiper-slide-index="0" style="height: 40px;">
-											<div class="text" style="background:url('https://img.megabox.co.kr/SharedImg/flagBanner/2023/10/10/znMs1PqIBr3kJMRX2JzgEXcJ1UBiFE3O.png') 0 50% no-repeat; background-size:80px 30px;">결제 시 최대 1만원 혜택!</div>
-										</div></div>
-			            <div class="pgbx swiper-pagination-fraction"><span class="swiper-pagination-current">1</span> / <span class="swiper-pagination-total">2</span></div>
-			        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+				
+				<!-- 후원자 정보 -->
+				<div class="tit-util mt40">
+					<h3 class="tit small">후원자 정보 <!-- 결제수단선택 --></h3>
+
+					<div class="right">
+					</div>
 				</div>
+				<div class="select-payment ty2">
+
+					<div class="radio-group">
+						<table>
+							<tr>
+								<th>연락처</th>
+								<td>${user.user_phone}</td>
+							</tr>
+							<tr>
+								<th>이메일</th>
+								<td>${user.user_email}</td>
+							</tr>
+							<tr>
+								<td colspan="2">* 위 연락처와 이메일로 후원 관련 소식이 전달됩니다.</td>
+							</tr>
+							<tr>
+								<td colspan="2">* 연락처 및 이메일 변경은 설정 > 계정 설정에서 가능합니다.</td>
+							</tr>
+						</table>
+					</div>
+				</div>	
+				<!-- 배송 정보 -->
+				<div class="tit-util mt40">
+					<h3 class="tit small">배송지 정보 <!-- 결제수단선택 --></h3>
+
+					<div class="right">
+					</div>
+				</div>
+				<div class="select-payment ty2">
+
+					<div class="radio-group">
+						<table>
+							<tr>
+								<th>연락처</th>
+								<td>${user.user_phone}</td>
+							</tr>
+							<tr>
+								<th>이메일</th>
+								<td>${user.user_email}</td>
+							</tr>
+							<tr>
+								<td colspan="2">* 위 연락처와 이메일로 후원 관련 소식이 전달됩니다.</td>
+							</tr>
+							<tr>
+								<td colspan="2">* 연락처 및 이메일 변경은 설정 > 계정 설정에서 가능합니다.</td>
+							</tr>
+						</table>
+					</div>
+				</div>	
+	
 				
 				<div class="tit-util mt40">
 					<h3 class="tit small">결제수단선택 <!-- 결제수단선택 --></h3>
