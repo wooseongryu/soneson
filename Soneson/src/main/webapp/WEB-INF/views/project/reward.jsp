@@ -463,7 +463,7 @@
 				str +='</ul>'
 				$("#preview-rewardList").append(str);
 				
-				debugger;
+// 				debugger;
 				console.log("어카노..... " + undo.targetHtml);
 				if(undo.targetHtml == undefined) {
 	 				$("#rewardInsert-form").empty();
