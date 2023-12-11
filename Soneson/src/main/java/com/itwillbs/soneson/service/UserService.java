@@ -342,6 +342,13 @@ public class UserService {
 		
 		return mapper.countFollower(user_id);
 	}
+
+	// 팔로잉
+	public List<Map<String, String>> selectUserFollowing(String user_id) {
+		System.out.println("UserService - selectUserFollowing()");
+		
+		return mapper.selectUserFollowing(user_id);
+	}
 	
 }
 

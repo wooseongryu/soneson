@@ -251,6 +251,22 @@ public class UserController {
 		return gson.toJson(map);
 	}
 	
+	// 팔로잉
+	@ResponseBody
+	@PostMapping("userFollowing")
+	public String userFollowing(String user_id, HttpSession session, Model model) {
+		System.out.println("UserController - userFollowing()");
+		
+		List<Map<String, String>> map = userService.selectUserFollowing(user_id);
+		
+		System.out.println(")))))))))))");
+		System.out.println(map);
+		
+		return gson.toJson(map);
+	}
+	
+	
+	
 	// 유저 정보 수정 페이지 이동
 	@GetMapping("userSetting")
 	public String userSetting() {
