@@ -170,19 +170,25 @@
 			$.ajax({
     			type: 'post',
     			url: 'userFollower',
+    			data: {
+    				user_id : user_id
+    			},
     			dataType: 'json',
     			success: function(resp) {
     				reset_screen(id);
+    				
+//     				let uId = resp.uId;
+//     				if (uId)
 
 					$("#user_content").append(
 						  '<div class="anime__details__review">'
 						+ ' 	<div class="anime__review__item">'
                         + ' 		<div class="anime__review__item__text" id="project_review_content">'
-	                    + '     		<h6>Chris Curry</h6>'
-	                    + '     		<p>[색을 엮어 감성을 꽃 피우다.] 전통 위주의 옛것을 아름답고 독특하게 재해석합니다.</p>'
-	                    + '     		<p style="margin-top: 10px">팔로잉 1 · 후원한 프로젝트 11</p>'
+	                    + '     		<h6>' + resp.user_name + '</h6>'
+	                    + '     		<p>' + resp.user_info + '</p>'
+	                    + '     		<p style="margin-top: 10px">팔로워 ' + resp.count + ' · 후원한 프로젝트 11</p>'
 	                    + '     		<div class="user_follow_btn">'
-	                    + '     			<a href="#">+ 팔로우</a>'
+	                    + '     			<a href="follow?follow_id=' + resp.uId + '">+ 팔로우</a>'
 	                    + '     		</div>'
 						+ ' 		</div>'
                     	+ ' 	</div>'

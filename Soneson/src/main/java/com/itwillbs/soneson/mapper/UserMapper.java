@@ -154,6 +154,9 @@ public interface UserMapper {
 
 	// 팔로우 해제
 	int deleteFollow(Map<String, String> map);
+
+	// 팔로워
+	Map<String, String> selectUserFollower(String user_id);
 }
 
 

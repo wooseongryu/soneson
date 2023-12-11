@@ -161,9 +161,15 @@ public class UserController {
 	// 팔로워
 	@ResponseBody
 	@PostMapping("userFollower")
-	public String userFollower() {
+	public String userFollower(String user_id, HttpSession session, Map<String, String> map) {
 		System.out.println("UserController - userFollower()");
-		return "1";
+		
+		map = userService.selectUserFollower(user_id);
+		
+		System.out.println(")))))))))))))");
+		System.out.println(map);
+		
+		return gson.toJson(map);
 	}
 	
 	// 유저 정보 수정 페이지 이동

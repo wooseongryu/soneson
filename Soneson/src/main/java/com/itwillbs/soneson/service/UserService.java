@@ -321,6 +321,13 @@ public class UserService {
 		
 		return mapper.deleteFollow(map);
 	}
+
+	// 팔로워
+	public Map<String, String> selectUserFollower(String user_id) {
+		System.out.println("UserService - selectUserFollower()");
+		
+		return mapper.selectUserFollower(user_id);
+	}
 	
 }
 
