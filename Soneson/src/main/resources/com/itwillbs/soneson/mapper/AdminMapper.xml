@@ -459,5 +459,27 @@
     	WHERE project_code = #{project_code}
 	</update>
 	
+	<!-- 심사할 프로젝트 조회 -->
+    <select id="selectProjectExamDetail" resultType="Project">
+		SELECT
+			project_code
+			, title 
+			, subtitle
+			, category
+			, creator
+			, creator_profile AS pro_profile
+			, creator_info AS pro_createrInfo
+			, img_main AS img1
+			, img_content AS pro_content
+			, img_budget AS pro_budget
+			, img_sch AS pro_sch
+			, img_team AS pro_team
+			, img_reward AS pro_reward
+			, date(start_date) AS start_date
+			, date(end_date) AS end_date
+			, ifnull(goal_amount, 0) AS pro_goal
+		FROM project p
+		WHERE project_code = #{project_code}
+    </select>
 	
 </mapper>

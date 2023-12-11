@@ -72,8 +72,12 @@ public class FundingController {
 		return "mypage/funding/funding_detail";
 	}
 		
-	
+	//세부내용에서 후원하기 버튼 클릭 시 결제페이지 이동
+	@GetMapping("fundingPaymentform")
+	public String fundingPaymentform() {
 		
+		return "";
+	}
 	
 	
 	
