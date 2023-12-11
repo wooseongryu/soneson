@@ -415,6 +415,8 @@
 			, (SELECT CAST(REPLACE(pro_goal, ',', '') AS UNSIGNED)	FROM sample_pro WHERE pro_code = #{pro_code})
 			, now()
 			, '심사대기중'
+			, (SELECT user_id			FROM sample_pro WHERE pro_code = #{pro_code})
+			
 		);
 	
 	</insert>

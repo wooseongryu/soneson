@@ -88,14 +88,13 @@
 	//데이터 저장
 	function insertItem(pro_code) {
 		
-		
 		let item_name = $("#item_name").val();
 		let item_condition = $("input[name=item_condition]:checked").val();
 		let option1 = $("#option_1").val();
 		let option2 = $("#option_2").val();
 		let option_2_1 = $("#option_2_1").val();
-		console.log("item_name: " + item_name);
-		console.log("item_condition: " + item_condition);
+// 		console.log("item_name: " + item_name);
+// 		console.log("item_condition: " + item_condition);
 		
 		if(item_name == "") {
 			alert("이름을 작성해주세요.");
@@ -115,21 +114,28 @@
 		if(item_condition == '2' && (option2 == "" || option_2_1 == "")) {
 			alert("세부옵션을 2개 이상 작성해주세요.");
 			return;
-			
 		}
-		
 		
 		let get_option = $(".reward-section2 input[type=text]");
 		let item_option = "";
 		let optionArr = [];
-		$.each(get_option, function () {
-			optionArr.push($(this).val());
-			
-		});
-		item_option = optionArr.join('|');
+		
+		switch (Number(item_condition)) {
+		case 1: 
+			item_option = $('input[name=item_option]')[0].value; 
+			break;
+		case 2:
+			get_option = $(".reward-section2 input[type=text]").get();
+			get_option.shift();
+			$.each(get_option, function (index, input) {
+				optionArr.push($(this).val());
+			});
+			item_option = optionArr.join('|');
+			break;
+		}		
 		
 		console.log(item_option);
-// 		return;
+		return;		
 		
 		
 		$.ajax({
