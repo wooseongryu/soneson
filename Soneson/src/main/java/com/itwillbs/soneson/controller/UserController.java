@@ -137,10 +137,10 @@ public class UserController {
 		System.out.println("UserController - removeFollow()");
 		
 		String sId = (String)session.getAttribute("sId");
-//		if (sId == null) {
-//			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
-//			return "fail_back";
-//		}
+		if (sId == null) {
+			return gson.toJson(map);
+		}
+		map.put("isLogin", "true");
 		
 		map.put("sId", sId);
 		map.put("follow_id", user_id);
@@ -152,6 +152,10 @@ public class UserController {
 //			return "fail_back";
 //		}
 		
+		int followerCnt = userService.countFollower(user_id);
+		
+		map.put("followerCnt", followerCnt + "");
+		
 		return gson.toJson(map);
 	}
 	
@@ -162,10 +166,10 @@ public class UserController {
 		System.out.println("UserController - insertFollow()");
 		
 		String sId = (String)session.getAttribute("sId");
-//		if (sId == null) {
-//			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
-//			return "fail_back";
-//		}
+		if (sId == null) {
+			return gson.toJson(map);
+		}
+		map.put("isLogin", "true");
 		
 		map.put("sId", sId);
 		map.put("follow_id", user_id);
@@ -176,6 +180,10 @@ public class UserController {
 //			model.addAttribute("msg", "팔로우 실패!");
 //			return "fail_back";
 //		}
+		
+		int followerCnt = userService.countFollower(user_id);
+		
+		map.put("followerCnt", followerCnt + "");
 		
 		return gson.toJson(map);
 	}
