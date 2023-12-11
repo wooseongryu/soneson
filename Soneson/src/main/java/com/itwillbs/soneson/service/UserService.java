@@ -328,6 +328,13 @@ public class UserService {
 		
 		return mapper.selectUserFollower(user_id);
 	}
+
+	// ajax 팔로우 유무 확인
+	public int selectIsFollowing(Map<String, String> map) {
+		System.out.println("UserService - selectIsFollowing()");
+		
+		return mapper.selectIsFollowing(map);
+	}
 	
 }
 

@@ -157,6 +157,9 @@ public interface UserMapper {
 
 	// 팔로워
 	Map<String, String> selectUserFollower(String user_id);
+
+	// ajax 팔로우 유무 확인
+	int selectIsFollowing(Map<String, String> map);
 }
 
 

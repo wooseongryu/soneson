@@ -130,6 +130,55 @@ public class UserController {
 	}
 	
 	
+	// 팔로우 해제 ajax
+	@ResponseBody
+	@PostMapping("removeFollow")
+	public String removeFollow(String user_id, HttpSession session, Model model, Map<String, String> map) {
+		System.out.println("UserController - removeFollow()");
+		
+		String sId = (String)session.getAttribute("sId");
+//		if (sId == null) {
+//			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+//			return "fail_back";
+//		}
+		
+		map.put("sId", sId);
+		map.put("follow_id", user_id);
+		
+		int deleteCount = userService.deleteFollow(map);
+		
+//		if (deleteCount == 0) {
+//			model.addAttribute("msg", "팔로우 해제 실패!");
+//			return "fail_back";
+//		}
+		
+		return gson.toJson(map);
+	}
+	
+	// 팔로우 ajax
+	@ResponseBody
+	@PostMapping("insertFollow")
+	public String insertFollow(String user_id, HttpSession session, Model model, Map<String, String> map) {
+		System.out.println("UserController - insertFollow()");
+		
+		String sId = (String)session.getAttribute("sId");
+//		if (sId == null) {
+//			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+//			return "fail_back";
+//		}
+		
+		map.put("sId", sId);
+		map.put("follow_id", user_id);
+		
+		int insertCount = userService.insertFollow(map);
+		
+//		if (insertCount == 0) {
+//			model.addAttribute("msg", "팔로우 실패!");
+//			return "fail_back";
+//		}
+		
+		return gson.toJson(map);
+	}
 	
 	// 프로필
 	@ResponseBody
@@ -166,8 +215,33 @@ public class UserController {
 		
 		map = userService.selectUserFollower(user_id);
 		
-		System.out.println(")))))))))))))");
-		System.out.println(map);
+//		System.out.println(")))))))))))))");
+//		System.out.println(map);
+		
+		return gson.toJson(map);
+	}
+	
+	// ajax 팔로우 유무 확인
+	@ResponseBody
+	@PostMapping("isFollowing")
+	public String isFollowing(String user_id, HttpSession session, Map<String, String> map, Model model) {
+		System.out.println("UserController - isFollowing()");
+		
+		String sId = (String)session.getAttribute("sId");
+//		if (sId == null) {
+//			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+//			model.addAttribute("targetURL", "login");
+//			return "forward";
+//		}
+		
+		map.put("sId", sId);
+		map.put("id", user_id);
+		
+		int selectCount = userService.selectIsFollowing(map);
+
+		if (selectCount != 0) {
+			map.put("isFollowing", "true");
+		}
 		
 		return gson.toJson(map);
 	}
