@@ -40,4 +40,8 @@ public class ProjectListService {
 		return mapper.getTabList();
 	}
 
+	public List<Map<String, Object>> getRewardList(int project_code) {
+		return mapper.getRewardList(project_code);
+	}
+
 }

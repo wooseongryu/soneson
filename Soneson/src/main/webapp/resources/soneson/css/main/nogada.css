@@ -1332,3 +1332,44 @@
     font-size: 14px;
     font-weight: 700;
 }
+
+/* 리워드 아이템 리스트 */
+.bpVZwd:last-child {
+    margin: 0px;
+}
+.bpVZwd {
+    font-size: 12px;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+/*     margin: 0px 0px 4px; */
+}
+.bpVZwd {
+    padding: 0px 0px 0px 10px;
+    position: relative;
+/*     font-size: 11px; */
+/*     line-height: 18px; */
+/*     letter-spacing: -0.005em; */
+    list-style: none;
+/*     margin: 0px 0px 2px; */
+}
+
+.bpVZwd::before {
+    content: "·";
+    position: absolute;
+    font-weight: bold;
+    left: 0px;
+    top: -1px;
+}
+
+.cNnvBPul {
+    padding: 0px;
+    margin: 0px;
+}
+
+.cfUWzc {
+    margin: 0px 0px 8px;
+}
+
+.doBnVx {
+    padding: 20px;
+}

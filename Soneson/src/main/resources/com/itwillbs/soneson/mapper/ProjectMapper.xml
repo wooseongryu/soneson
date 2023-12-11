@@ -383,6 +383,19 @@
 		WHERE project_code = #{project_code}
 	</select>
 	
+	<select id="getRewardList" resultType="map">
+		SELECT
+			reward_code
+			, pro_code
+			, REPLACE(reward_item_name, "|", " + ") AS reward_item_name
+			, reward_explain 
+			, reward_amount
+		FROM pro_reward
+		WHERE pro_code = #{project_code};
+	</select>
+	
+	
+	
 	<!-- 핀테크 토큰 조회 -->
 	<select id="selectToken" resultType="map">
 		SELECT  u.user_id, access_token , user_seq_no  

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -104,7 +105,14 @@
 					<div class="ProjectCard__StyledImageBox-opxl0a-2 dNCkN">
 						<div class="image-wrapper">
 							<a target="_self" href="projectDetail?project_code=${project.project_code }">
-								<img src="${project.img_main }" style="width:100%; height:100%">
+								<c:choose>
+								    <c:when test="${fn:contains(project.img_main, 'https')}">
+								        <img src="${project.img_main}" alt="프로젝트 커버 이미지" style="width:100%; height:100%">
+								    </c:when>
+								    <c:otherwise>
+								        <img src="${pageContext.request.contextPath }/resources/upload/${project.img_main }" alt="프로젝트 커버 이미지 DB" style="width:100%; height:100%">
+								    </c:otherwise>
+								</c:choose>
 							</a>
 							<div class="LikeButton__Wrapper-whittq-0 kiaOkh ProjectCard__StyledLikeButton-opxl0a-8 hfSMxY">
 								<button type="button" class="LikeButton__LikedBtn-whittq-1 gylNpn">
