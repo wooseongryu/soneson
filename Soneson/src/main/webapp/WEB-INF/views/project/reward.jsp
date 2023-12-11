@@ -135,7 +135,7 @@
 		}		
 		
 		console.log(item_option);
-		return;		
+// 		return;		
 		
 		
 		$.ajax({
