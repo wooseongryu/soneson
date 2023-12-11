@@ -156,7 +156,7 @@ public interface UserMapper {
 	int deleteFollow(Map<String, String> map);
 
 	// 팔로워
-	Map<String, String> selectUserFollower(String user_id);
+	List<Map<String, String>> selectUserFollower(String user_id);
 
 	// ajax 팔로우 유무 확인
 	int selectIsFollowing(Map<String, String> map);

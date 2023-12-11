@@ -210,13 +210,10 @@ public class UserController {
 	// 팔로워
 	@ResponseBody
 	@PostMapping("userFollower")
-	public String userFollower(String user_id, HttpSession session, Map<String, String> map) {
+	public String userFollower(String user_id, HttpSession session) {
 		System.out.println("UserController - userFollower()");
 		
-		map = userService.selectUserFollower(user_id);
-		
-//		System.out.println(")))))))))))))");
-//		System.out.println(map);
+		List<Map<String, String>> map = userService.selectUserFollower(user_id);
 		
 		return gson.toJson(map);
 	}

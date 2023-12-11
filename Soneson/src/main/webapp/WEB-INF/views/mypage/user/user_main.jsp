@@ -168,7 +168,8 @@
 		
 		function userFollower(id) {
 			let btnString = '';
-			
+			let contentStr = '';
+			let info = '';
 			
 			$.ajax({
     			type: 'post',
@@ -180,26 +181,34 @@
     			success: function(resp) {
     				reset_screen(id);
     				
-    				btnString = '<a onclick="insertFollow(\'' + resp.uId + '\')">+ 팔로우</a>';
+    				for(user of resp) {
+    					btnString = '<a onclick="insertFollow(\'' + user.uId + '\')">+ 팔로우</a>';
+        				
+    					if (isFollowing(resp.uId)) {
+    						btnString = '<a onclick="removeFollow(\'' + user.uId + '\')">팔로잉</a>';
+    					}
+    					
+    					info = user.user_info;
+    					if (info == null) {
+    						info = '소개가 없습니다.';
+    					}
+    					
+    					contentStr += 
+    						  '<div class="anime__details__review">'
+    						+ ' 	<div class="anime__review__item">'
+                            + ' 		<div class="anime__review__item__text" id="project_review_content">'
+    	                    + '     		<h6>' + user.user_name + '</h6>'
+    	                    + '     		<p>' + info + '</p>'
+    	                    + '     		<p style="margin-top: 10px">팔로워 ' + user.count + ' · 후원한 프로젝트 11</p>'
+    	                    + '     		<div class="user_follow_btn">'
+    	                    + btnString
+    	                    + '     		</div>'
+    						+ ' 		</div>'
+                        	+ ' 	</div>'
+                    	 	+ '</div>';
+    				}			
     				
-					if (isFollowing(resp.uId)) {
-						btnString = '<a onclick="removeFollow(\'' + resp.uId + '\')">팔로잉</a>';
-					}
-    				
-					$("#user_content").append(
-						  '<div class="anime__details__review">'
-						+ ' 	<div class="anime__review__item">'
-                        + ' 		<div class="anime__review__item__text" id="project_review_content">'
-	                    + '     		<h6>' + resp.user_name + '</h6>'
-	                    + '     		<p>' + resp.user_info + '</p>'
-	                    + '     		<p style="margin-top: 10px">팔로워 ' + resp.count + ' · 후원한 프로젝트 11</p>'
-	                    + '     		<div class="user_follow_btn">'
-	                    + btnString
-	                    + '     		</div>'
-						+ ' 		</div>'
-                    	+ ' 	</div>'
-                	 	+ '</div>'
-					);                                                                                                                                                                             
+					$("#user_content").append(contentStr);                                                                                                                                                                             
     			},
     			error: function() {
     				alert("에러!123");
