@@ -181,8 +181,15 @@
     			success: function(resp) {
     				reset_screen(id);
     				
+    				let sId = "${sessionScope.sId}";
+    				
     				for(user of resp) {
     					let uId = user.uId;
+    					
+    					if (uId == sId) {
+    						continue;
+    					}
+    					
     					btnString = '<a onclick="insertFollow(\'' + uId + '\')">+ 팔로우</a>';
         				
     					if (isFollowing(uId)) {
@@ -324,8 +331,15 @@
     			success: function(resp) {
     				reset_screen(id);
     				
+    				let sId = "${sessionScope.sId}";
+    				
     				for(user of resp) {
     					let uId = user.uId;
+    					
+    					if (uId == sId) {
+    						continue;
+    					}
+    					
     					btnString = '<a onclick="insertFollow(\'' + uId + '\')">+ 팔로우</a>';
         				
     					if (isFollowing(uId)) {
@@ -361,6 +375,8 @@
     			}
     		});
 		}
+		
+		
     	
     	function reset_screen(id) {
     		$("#section-title h5").css("color", "black");

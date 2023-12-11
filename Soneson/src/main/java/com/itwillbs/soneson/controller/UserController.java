@@ -259,9 +259,6 @@ public class UserController {
 		
 		List<Map<String, String>> map = userService.selectUserFollowing(user_id);
 		
-		System.out.println(")))))))))))");
-		System.out.println(map);
-		
 		return gson.toJson(map);
 	}
 	
