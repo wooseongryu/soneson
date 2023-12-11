@@ -139,6 +139,33 @@ public interface UserMapper {
 
 	// 유저 설정 프로필 수정 전 기존 파일 경로 가져오기
 	String selectUserPicPath(String sId);
+
+	// 유저프로필 메인 페이지
+	Map<String, String> selectUserMainInfo(Map<String, String> map);
+
+	// 유저프로필 메인 페이지 유저 존재 유무 확인
+	int selectExistUser(String id);
+
+	// 유저 정보
+	String selectUserInfo(String user_id);
+
+	// 팔로우
+	int insertFollow(Map<String, String> map);
+
+	// 팔로우 해제
+	int deleteFollow(Map<String, String> map);
+
+	// 팔로워
+	List<Map<String, String>> selectUserFollower(String user_id);
+
+	// ajax 팔로우 유무 확인
+	int selectIsFollowing(Map<String, String> map);
+
+	// 팔로워 수
+	int countFollower(String user_id);
+
+	// 팔로잉
+	List<Map<String, String>> selectUserFollowing(String user_id);
 }
 
 

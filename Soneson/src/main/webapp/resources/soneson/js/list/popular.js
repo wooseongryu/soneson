@@ -95,7 +95,7 @@ function restDay() {
 		let timeDifference = dday - now;
 		let restDay = Math.floor(timeDifference / (1000 * 60 * 60 * 24)) + 1;
 		let thisGoldRate = $(this).data("goal_rate");
-		debugger;
+//		debugger;
 		let percentElement = $(this).siblings().children('.percent');
 		
 		if(restDay == 0) {

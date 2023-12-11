@@ -70,7 +70,19 @@ public class ProjectListController {
 		System.out.println("projectDetailController - projectDetail()");
 		
 		Map<String, Object> project = service.selectProject(project_code);
+		System.out.println("정책: " + project.get("policy"));
+		
+		if(project.get("policy") != null) {
+			String policy = (String) project.get("policy");
+			policy = policy.replaceAll("\r\n", "<br>");
+			project.put("policy", policy);
+		}
+		
+		
 		model.addAttribute("project", project);
+		
+		List<Map<String, Object>> rewardList = service.getRewardList(project_code);
+		model.addAttribute("rewardList", rewardList);
 		
 		return "list/projectDetail";	
 	}

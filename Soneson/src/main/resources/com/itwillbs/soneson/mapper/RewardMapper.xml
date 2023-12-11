@@ -70,7 +70,7 @@
 	<select id="selectReward" resultType="map">
 		SELECT reward_code
 			, reward_item_name
-			, reward_explan	
+			, reward_explain	
 			, CASE WHEN reward_isCount = '1' THEN '제한 없음'
 				   ELSE concat(reward_count, '개') END AS reward_count					
 			, reward_amount
@@ -91,7 +91,7 @@
 			, #{pro_code}
 			, #{reward_item_name}      
 			, #{reward_item_code}
-			, #{reward_explan}
+			, #{reward_explain}
 			, #{reward_isCount}
 			, #{reward_count}
 			, #{reward_isDeliv}

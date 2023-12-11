@@ -50,17 +50,153 @@ public class UserController {
 	
 	// 유저프로필 메인 페이지
 	@GetMapping("user")
-	public String user() {
+	public String user(HttpSession session, String id, Model model, Map<String, String> map) {
 		System.out.println("UserController - user()");
+		
+		if (userService.selectExistUser(id) == 0) {
+			model.addAttribute("msg", "존재하지 않는 유저입니다.");
+			return "fail_back";
+		}
+		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+			model.addAttribute("targetURL", "login");
+			return "forward";
+		}
+		
+		map.put("sId", sId);
+		map.put("id", id);
+		
+		map = userService.selectUserMainInfo(map);
+		
+		model.addAttribute("user", map);
+		
+		if (id.equals(sId)) {
+			map.put("isOwn", "true");
+		}
+		
+//		System.out.println("--" + map);
+		
 		return "mypage/user/user_main";
+	}
+	
+	// 팔로우
+	@GetMapping("follow")
+	public String follow(String follow_id, HttpSession session, Model model, Map<String, String> map) {
+		System.out.println("UserController - follow()");
+		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+			return "fail_back";
+		}
+		
+		map.put("sId", sId);
+		map.put("follow_id", follow_id);
+		
+		int insertCount = userService.insertFollow(map);
+		
+		if (insertCount == 0) {
+			model.addAttribute("msg", "팔로우 실패!");
+			return "fail_back";
+		}
+		
+		return "redirect:/user?id=" + follow_id;
+	}
+	
+	// 팔로우 해제
+	@GetMapping("deleteFollow")
+	public String deleteFollow(String follow_id, HttpSession session, Model model, Map<String, String> map) {
+		System.out.println("UserController - deleteFollow()");
+		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+			return "fail_back";
+		}
+		
+		map.put("sId", sId);
+		map.put("follow_id", follow_id);
+		
+		int deleteCount = userService.deleteFollow(map);
+		
+		if (deleteCount == 0) {
+			model.addAttribute("msg", "팔로우 해제 실패!");
+			return "fail_back";
+		}
+		
+		return "redirect:/user?id=" + follow_id;
+	}
+	
+	
+	// 팔로우 해제 ajax
+	@ResponseBody
+	@PostMapping("removeFollow")
+	public String removeFollow(String user_id, HttpSession session, Model model, Map<String, String> map) {
+		System.out.println("UserController - removeFollow()");
+		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			return gson.toJson(map);
+		}
+		map.put("isLogin", "true");
+		
+		map.put("sId", sId);
+		map.put("follow_id", user_id);
+		
+		int deleteCount = userService.deleteFollow(map);
+		
+//		if (deleteCount == 0) {
+//			model.addAttribute("msg", "팔로우 해제 실패!");
+//			return "fail_back";
+//		}
+		
+		int followerCnt = userService.countFollower(user_id);
+		
+		map.put("followerCnt", followerCnt + "");
+		
+		return gson.toJson(map);
+	}
+	
+	// 팔로우 ajax
+	@ResponseBody
+	@PostMapping("insertFollow")
+	public String insertFollow(String user_id, HttpSession session, Model model, Map<String, String> map) {
+		System.out.println("UserController - insertFollow()");
+		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			return gson.toJson(map);
+		}
+		map.put("isLogin", "true");
+		
+		map.put("sId", sId);
+		map.put("follow_id", user_id);
+		
+		int insertCount = userService.insertFollow(map);
+		
+//		if (insertCount == 0) {
+//			model.addAttribute("msg", "팔로우 실패!");
+//			return "fail_back";
+//		}
+		
+		int followerCnt = userService.countFollower(user_id);
+		
+		map.put("followerCnt", followerCnt + "");
+		
+		return gson.toJson(map);
 	}
 	
 	// 프로필
 	@ResponseBody
 	@PostMapping("userProfile")
-	public String userProfile() {
+	public String userProfile(String user_id) {
 		System.out.println("UserController - userProfile()");
-		return "1";
+		
+		String user_info = userService.selectUserInfo(user_id);
+		
+		return gson.toJson(user_info);
 	}
 	
 	// 프로젝트 후기
@@ -82,10 +218,51 @@ public class UserController {
 	// 팔로워
 	@ResponseBody
 	@PostMapping("userFollower")
-	public String userFollower() {
+	public String userFollower(String user_id, HttpSession session) {
 		System.out.println("UserController - userFollower()");
-		return "1";
+		
+		List<Map<String, String>> map = userService.selectUserFollower(user_id);
+		
+		return gson.toJson(map);
 	}
+	
+	// ajax 팔로우 유무 확인
+	@ResponseBody
+	@PostMapping("isFollowing")
+	public String isFollowing(String user_id, HttpSession session, Map<String, String> map, Model model) {
+		System.out.println("UserController - isFollowing()");
+		
+		String sId = (String)session.getAttribute("sId");
+//		if (sId == null) {
+//			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+//			model.addAttribute("targetURL", "login");
+//			return "forward";
+//		}
+		
+		map.put("sId", sId);
+		map.put("id", user_id);
+		
+		int selectCount = userService.selectIsFollowing(map);
+
+		if (selectCount != 0) {
+			map.put("isFollowing", "true");
+		}
+		
+		return gson.toJson(map);
+	}
+	
+	// 팔로잉
+	@ResponseBody
+	@PostMapping("userFollowing")
+	public String userFollowing(String user_id, HttpSession session, Model model) {
+		System.out.println("UserController - userFollowing()");
+		
+		List<Map<String, String>> map = userService.selectUserFollowing(user_id);
+		
+		return gson.toJson(map);
+	}
+	
+	
 	
 	// 유저 정보 수정 페이지 이동
 	@GetMapping("userSetting")

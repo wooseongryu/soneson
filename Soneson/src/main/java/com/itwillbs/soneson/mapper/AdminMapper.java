@@ -10,6 +10,7 @@ import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
 import com.itwillbs.soneson.vo.MainTabVO;
 import com.itwillbs.soneson.vo.MyQuestionVO;
+import com.itwillbs.soneson.vo.ProjectVO;
 import com.itwillbs.soneson.vo.QnaCateVO;
 import com.itwillbs.soneson.vo.QnaVO;
 import com.itwillbs.soneson.vo.UserVO;
@@ -160,6 +161,9 @@ public interface AdminMapper {
 
 	// 프로젝트 반려
 	int updateProjectReject(String project_code);
+
+	// 심사할 프로젝트 조회
+	ProjectVO selectProjectExamDetail(String project_code);
 
 
 

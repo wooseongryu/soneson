@@ -47,9 +47,6 @@
 					</div>
 				</div>
 				
-				
-				
-				
 				<div class="ProjectIntroduction__ProjectIntroductionMainColumn-sc-1kf21am-6 jUqLs">
 					<figure class="ProjectIntroduction__ProjectCoverImageFigure-sc-1kf21am-7 dEXpQY">
 						<div class="IntroVisualSlider__StyledIntroVisualSliderWrapper-sc-1h7hyyq-0 lbnhcX">
@@ -78,12 +75,17 @@
 											<img src="https://tumblbug-pci.imgix.net/4b47313543b96b2826155b31ab4f1f9a6bacb921/14bec61d57bd5c1a1f98d774245389da35067770/cf80649689edf6cb074059992b33969d03900fed/1172b590-656d-4f3a-b0d3-457e84bea5f5.jpeg?ixlib=rb-1.1.0&amp;w=1240&amp;h=930&amp;auto=format%2Ccompress&amp;lossless=true&amp;fit=crop&amp;s=a7362e130193d59e48d3b7401cbebf2a" alt="프로젝트 커버 이미지">
 										</div>
 									</div>
-									<div class="swiper-slide swiper-slide-active" style="width: 600px;">
-<!-- 									<div class="swiper-slide swiper-slide-active" style="width: 855px;"> -->
+									<div class="swiper-slide swiper-slide-active" style="width: 855px;">
 										<div class="IntroVisualSlider__ProjectCoverImage-sc-1h7hyyq-2 eKEnRF">
+<!-- 											<img src="https://tumblbug-pci.imgix.net/4b47313543b96b2826155b31ab4f1f9a6bacb921/14bec61d57bd5c1a1f98d774245389da35067770/cf80649689edf6cb074059992b33969d03900fed/77dd390f-12fb-4a54-8912-bcf74bed4dc2.jpeg?ixlib=rb-1.1.0&amp;w=1240&amp;h=930&amp;auto=format%2Ccompress&amp;lossless=true&amp;fit=crop&amp;s=43ac72d540fe749ebbb93a43082c6d4a" alt="프로젝트 커버 이미지"> -->
+<%-- 											<img src="${project.img_main }" alt="프로젝트 커버 이미지"> --%>
+<%-- 											<img src="${pageContext.request.contextPath }/resources/upload/${project.img_main }"> --%>
+											
+											
+											
 											<c:choose>
 											    <c:when test="${fn:contains(project.img_main, 'https')}">
-											        <img src="${project.img_main}" alt="프로젝트 커버 이미지" style="width:100%; height:100%">
+											        <img src="${project.img_main}" alt="프로젝트 커버 이미지">
 											    </c:when>
 											    <c:otherwise>
 											        <img src="${pageContext.request.contextPath }/resources/upload/${project.img_main }" alt="프로젝트 커버 이미지 DB">
@@ -122,43 +124,25 @@
 								</div>
 							</div>
 						
-<!-- 							<div class="swiper-button-prev"> -->
-<!-- 								<div name="arrow1-left" class="Icon__SVGICON-sc-12tligs-0 kPBcuc"> -->
-<!-- 									<svg viewBox="0 0 48 48"> -->
-<!-- 										<path fill-rule="evenodd" clip-rule="evenodd" d="M32.8912 45.3014L12 23.913L32.8912 2.52471C33.5866 1.8251 34.7804 1.8251 35.4777 2.52471C36.1741 3.22333 36.1741 4.42368 35.4777 5.22224L17.1731 23.913L35.4777 42.7018C36.1741 43.4024 36.1741 44.6018 35.4777 45.4013C35.0788 45.8011 34.6819 46 34.1845 46C33.7855 45.9011 33.2881 45.7002 32.8912 45.3014Z"> -->
-<!-- 										</path> -->
-<!-- 									</svg> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 							<div class="swiper-button-next"> -->
-<!-- 								<div name="arrow1-right" class="Icon__SVGICON-sc-12tligs-0 kPBcuc"> -->
-<!-- 									<svg viewBox="0 0 48 48"> -->
-<!-- 										<path fill-rule="evenodd" clip-rule="evenodd" d="M13.9071 46C13.4118 46 12.9164 45.8001 12.6192 45.4003C11.9257 44.7007 11.9257 43.5014 12.6192 42.7019L30.8493 24.0125L12.5201 5.22317C11.8266 4.52357 11.8266 3.32425 12.5201 2.5247C13.2136 1.8251 14.3034 1.8251 15.096 2.5247L36 24.0125L15.195 45.4003C14.7988 45.8001 14.3034 46 13.9071 46Z"> -->
-<!-- 										</path> -->
-<!-- 									</svg> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
+							<div class="swiper-button-prev">
+								<div name="arrow1-left" class="Icon__SVGICON-sc-12tligs-0 kPBcuc">
+									<svg viewBox="0 0 48 48">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M32.8912 45.3014L12 23.913L32.8912 2.52471C33.5866 1.8251 34.7804 1.8251 35.4777 2.52471C36.1741 3.22333 36.1741 4.42368 35.4777 5.22224L17.1731 23.913L35.4777 42.7018C36.1741 43.4024 36.1741 44.6018 35.4777 45.4013C35.0788 45.8011 34.6819 46 34.1845 46C33.7855 45.9011 33.2881 45.7002 32.8912 45.3014Z">
+										</path>
+									</svg>
+								</div>
+							</div>
+							<div class="swiper-button-next">
+								<div name="arrow1-right" class="Icon__SVGICON-sc-12tligs-0 kPBcuc">
+									<svg viewBox="0 0 48 48">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M13.9071 46C13.4118 46 12.9164 45.8001 12.6192 45.4003C11.9257 44.7007 11.9257 43.5014 12.6192 42.7019L30.8493 24.0125L12.5201 5.22317C11.8266 4.52357 11.8266 3.32425 12.5201 2.5247C13.2136 1.8251 14.3034 1.8251 15.096 2.5247L36 24.0125L15.195 45.4003C14.7988 45.8001 14.3034 46 13.9071 46Z">
+										</path>
+									</svg>
+								</div>
+							</div>
 						</div>
 					</figure>
 				</div>
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
 				
 				<aside class="ProjectIntroduction__ProjectIntroductionSubColumn-sc-1kf21am-10 gLbMmE">
 					<div class="ProjectIntroduction__FundingStatus-sc-1kf21am-11 HbjsT">
@@ -349,7 +333,7 @@
 					<div id="budget" class="style__StorySection-y9rrh6-7 dxcJNl">
 					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 예산</div>
 					<div class="storyContent">
-						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_budget }" alt="프로젝트 예산 이미지">
+						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_goal }" alt="프로젝트 예산 이미지">
 					</div>
 					
 					
@@ -542,125 +526,425 @@
 						</div>
 						
 						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
 						<div class="Sticker__Wrapper-sc-1si6lg8-0 gYVCLo reward-sticker">
 							<div class="Rewards-kxhggz-2 iWbFFD tbb">
-								<div class="Rewards__RewardsLabel-kxhggz-3 hgFOaN">리워드 선택</div>
-							
-									<!-- 여기 -->
-									<c:forEach var="reward" items="${rewardList }">
-										<div class="RewardCard__RewardCardWrapper-sc-11jni8b-3 iqsxGc">
-											<div class="Card-sc-1vhyvl1-0 RewardCard__StyledCard-sc-11jni8b-1 cfXECD fjuLVq">
-												<div class="Stepper__Wrapper-sc-14ctxej-0 bzcMYO" style="height: 169px;">
-													<section direction="right" class="Stepper__StepperWrapper-sc-14ctxej-1 ehQhai">
-													
-														<div class="RewardCard__RewardCardInner-sc-11jni8b-4 doBnVx">
-														
-															<div class="RewardCard__RewardHeader-sc-11jni8b-5 jeVDzr">
-																<span class="RewardCard__PledgeAmount-sc-11jni8b-6 cMOTuF">
-																	<div name="check" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV RewardCard__StyledSVGIcon-sc-11jni8b-2 eoOxYA">
-																		<svg viewBox="0 0 48 48">
-																			<path fill-rule="evenodd" clip-rule="evenodd" d="M41.6 8L18.9 30.8L6.2 19L2 23.5L19.1 39.4L46 12.4L41.6 8Z">
-																			</path>
-																		</svg>
-																	</div>
-																	49명이 선택
-																</span>
+								<div class="Rewards__RewardsLabel-kxhggz-3 hgFOaN">선물 선택</div>
+								<div class="RewardCard__RewardCardWrapper-sc-11jni8b-3 iqsxGc">
+									<div class="Card-sc-1vhyvl1-0 RewardCard__StyledCard-sc-11jni8b-1 cfXECD fjuLVq">
+										<div class="Stepper__Wrapper-sc-14ctxej-0 bzcMYO" style="height: 110px;">
+											
+											<section direction="right" class="Stepper__StepperWrapper-sc-14ctxej-1 ehQhai">
+												<div class="RewardCard__RewardCardInner-sc-11jni8b-4 doBnVx">
+													<div class="RewardCard__RewardSelector-sc-11jni8b-13 doSKXg">
+														<div class="sub-wrapper">
+															<div class="RewardCard__RewardContents-sc-11jni8b-10 cfUWzc">
+																<div class="RewardCard__RewardMinimumPledgeAmount-sc-11jni8b-11 hcaxjL">1,000원 +</div>
+																<div class="RewardCard__RewardDescription-sc-11jni8b-12 bRlMcL">선물 없이 후원하기</div>
 															</div>
-															
-															<div class="RewardCard__RewardSelector-sc-11jni8b-13 doSKXg">
-																<div class="sub-wrapper">
-																	<div class="RewardCard__RewardContents-sc-11jni8b-10 cfUWzc">
-																		<div class="RewardCard__RewardMinimumPledgeAmount-sc-11jni8b-11 hcaxjL">${reward.reward_amount }원 +</div>
-		<!-- 																<div class="RewardCard__RewardMinimumPledgeAmount-sc-11jni8b-11 hcaxjL">15,000원 +</div> -->
-																		<div class="RewardCard__RewardDescription-sc-11jni8b-12 bRlMcL">${reward.reward_explain }</div>
-																	</div>
-																</div>
-															</div>
-														
-															<ul class="RewardCard__Items-sc-11jni8b-14 cNnvBP">
-																<li class="RewardCard__ItemList-sc-11jni8b-15 bpVZwd">${reward.reward_item_name }
-		<!-- 														&nbsp;<span>( x 1 )</span> -->
-																</li>
-															</ul>
-															
-															<div class="RewardCard__DeliveryDate-sc-11jni8b-16 cxeoGo"></div>
-															
 														</div>
-													</section>
-													
-													<section direction="right" class="Stepper__StepperWrapper-sc-14ctxej-1 gcTNai">
-														<div class="RewardCard__RewardCardInner-sc-11jni8b-4 doBnVx">
-															<div class="RewardCard__RewardHeader-sc-11jni8b-5 eHaKBF">
-																<span class="RewardCard__PledgeAmount-sc-11jni8b-6 cMOTuF">
-																	<div name="check" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV RewardCard__StyledSVGIcon-sc-11jni8b-2 eoOxYA">
-																		<svg viewBox="0 0 48 48">
-																			<path fill-rule="evenodd" clip-rule="evenodd" d="M41.6 8L18.9 30.8L6.2 19L2 23.5L19.1 39.4L46 12.4L41.6 8Z">
-																			</path>
-																		</svg>
-																	</div>
-																	49명이 선택
-																</span>
-															</div>
-															
-															<div class="RewardCard__RewardSelector-sc-11jni8b-13 doSKXg">
-																<div class="sub-wrapper">
-																	<div class="RewardCard__RewardContents-sc-11jni8b-10 cfUWzc">
-																		<div class="RewardCard__RewardMinimumPledgeAmount-sc-11jni8b-11 guDLPF">${reward.reward_amount } +</div>
-																		<div class="RewardCard__RewardDescription-sc-11jni8b-12 ihPVAR">${reward.reward_explain }</div>
-																	</div>
-																</div>
-															</div>
-															
-															<ul class="RewardCard__Items-sc-11jni8b-14 ivsvtS">
-																<li class="RewardCard__ItemList-sc-11jni8b-15 kYvoWT">${reward.reward_item_name }
-		<!-- 														&nbsp;<span>( x 1 )</span> -->
-																</li>
-															</ul>
-															
-															<div class="RewardCard__DeliveryDate-sc-11jni8b-16 gRjZWy">
-																<span>예상 전달일 &nbsp;<b>2023년 12월 20일</b>
-																</span>
-															</div>
-															
-															<div class="ExtraPledge__Wrapper-sc-6m3rsu-0 ipAlaK">
-																<div class="StyledTBB__FormWrapper-trchgn-6 hCtMzp ExtraPledge__StyledFormRenderChildren-sc-6m3rsu-1 eOMuk">
-																	<div class="StyledTBB__FormLabel-trchgn-4 keSzYC form-input-label">추가 후원금(선택)</div>
-																	<div class="StyledTBB__FormContent-trchgn-5 iBKDvR form-input-wrapper">
-																		<div class="InputWithGuideAndLengthCheck__Wrapper-sc-9nmfrw-0 eCSxwJ">
-																			<div class="InputWithGuideAndLengthCheck__InputWrapper-sc-9nmfrw-3 bBnjVq">
-																				<span class="Input__InputWrapper-j7moqy-0 fOjsfs InputWithGuideAndLengthCheck__StyledInput-sc-9nmfrw-1 wmJOZ">
-																					<input type="text" inputmode="numeric" placeholder="0" autocomplete="off" autocapitalize="off" class="Input__InnerInput-j7moqy-1 bfmNPl" value="">
-																				</span>
-																			</div>
-																			<div class="InputWithGuideAndLengthCheck__NoticeArea-sc-9nmfrw-4 ciHGYP">
-																				<p class="InputWithGuideAndLengthCheck__GuideMessage-sc-9nmfrw-5 fduvas"></p>
-																			</div>
-																		</div>
-																	</div>
-																	
-																	<div class="StyledTBB__FormDescription-trchgn-7 dcierJ form-desc-wrapper">* 더 후원해주시면 프로젝트 성사가 앞당겨집니다.</div>
-																</div>
-																
-																<div class="ExtraPledge__ButtonWrapper-sc-6m3rsu-2 xWAlK">
-																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 5천 원</button>
-																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 1만 원</button>
-																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 5만 원</button>
-																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 10만 원</button>
-																</div>
-															</div>
-															
-															
-															<button class="SolidButton__Button-sc-1gsinzz-0 llVOtQ Rewards__StyledSelectRewardDetailButton-kxhggz-6 etABXh fnt-p1" color="main80">
-																<span>${reward.reward_amount }원 후원하기</span>
-															</button>
-														</div>
-													</section>
+													</div>
 												</div>
-											</div>
+											</section>
+
+											<section direction="right" class="Stepper__StepperWrapper-sc-14ctxej-1 gcTNai">
+												<div class="RewardCard__RewardCardInner-sc-11jni8b-4 doBnVx">
+												
+													<div class="RewardCard__RewardSelector-sc-11jni8b-13 doSKXg">
+														<div class="sub-wrapper">
+															<div class="RewardCard__RewardContents-sc-11jni8b-10 cfUWzc">
+																<div class="RewardCard__RewardMinimumPledgeAmount-sc-11jni8b-11 guDLPF">1,000원 +</div>
+																<div class="RewardCard__RewardDescription-sc-11jni8b-12 ihPVAR">선물 없이 후원하기</div>
+															</div>
+														</div>
+													</div>
+													
+													
+													<div class="ExtraPledge__Wrapper-sc-6m3rsu-0 ipAlaK">
+														<div class="StyledTBB__FormWrapper-trchgn-6 hCtMzp ExtraPledge__StyledFormRenderChildren-sc-6m3rsu-1 eOMuk">
+															<div class="StyledTBB__FormLabel-trchgn-4 keSzYC form-input-label">추가 후원금(선택)</div>
+															<div class="StyledTBB__FormContent-trchgn-5 iBKDvR form-input-wrapper">
+																<div class="InputWithGuideAndLengthCheck__Wrapper-sc-9nmfrw-0 eCSxwJ">
+																	<div class="InputWithGuideAndLengthCheck__InputWrapper-sc-9nmfrw-3 bBnjVq">
+																		<span class="Input__InputWrapper-j7moqy-0 fOjsfs InputWithGuideAndLengthCheck__StyledInput-sc-9nmfrw-1 wmJOZ">
+																			<input type="text" inputmode="numeric" placeholder="0" autocomplete="off" autocapitalize="off" class="Input__InnerInput-j7moqy-1 bfmNPl" value="">
+																		</span>
+																	</div>
+																	<div class="InputWithGuideAndLengthCheck__NoticeArea-sc-9nmfrw-4 ciHGYP">
+																		<p class="InputWithGuideAndLengthCheck__GuideMessage-sc-9nmfrw-5 fduvas">
+																		</p>
+																	</div>
+																</div>
+															</div>
+														
+															<div class="StyledTBB__FormDescription-trchgn-7 dcierJ form-desc-wrapper">* 더 후원해주시면 프로젝트 성사가 앞당겨집니다.</div>
+														</div>
+												
+
+														<div class="ExtraPledge__ButtonWrapper-sc-6m3rsu-2 xWAlK">
+															<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 5천 원</button>
+															<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 1만 원</button>
+															<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 5만 원</button>
+															<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 10만 원</button>
+														</div>
+													</div>
+												
+													<button class="SolidButton__Button-sc-1gsinzz-0 llVOtQ Rewards__StyledSelectRewardDetailButton-kxhggz-6 etABXh fnt-p1" color="main80">
+														<span>1,000원 후원하기</span>
+													</button>
+												</div>
+											</section>
 										</div>
-									</c:forEach>
+									</div>
+								</div>
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+								<div class="RewardCard__RewardCardWrapper-sc-11jni8b-3 iqsxGc">
+								<div class="Card-sc-1vhyvl1-0 RewardCard__StyledCard-sc-11jni8b-1 cfXECD fjuLVq">
+								<div class="Stepper__Wrapper-sc-14ctxej-0 bzcMYO" style="height: 169px;">
+								<section direction="right" class="Stepper__StepperWrapper-sc-14ctxej-1 ehQhai">
+								<div class="RewardCard__RewardCardInner-sc-11jni8b-4 doBnVx">
+								<div class="RewardCard__RewardHeader-sc-11jni8b-5 jeVDzr">
+								<span class="RewardCard__PledgeAmount-sc-11jni8b-6 cMOTuF">
+								<div name="check" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV RewardCard__StyledSVGIcon-sc-11jni8b-2 eoOxYA">
+								<svg viewBox="0 0 48 48">
+								<path fill-rule="evenodd" clip-rule="evenodd" d="M41.6 8L18.9 30.8L6.2 19L2 23.5L19.1 39.4L46 12.4L41.6 8Z">
+								</path>
+								</svg>
+								</div>449명이 선택</span>
+								<span class="RewardCard__RewardQuantityLimit-sc-11jni8b-7 edSyxi">
+								<span class="RewardCard__LimitedRewardLabel-sc-11jni8b-8 nNZhl">51개 남음</span>
+								</span>
+								</div>
+								<div class="RewardCard__RewardSelector-sc-11jni8b-13 doSKXg">
+								<div class="sub-wrapper">
+								<div class="RewardCard__RewardContents-sc-11jni8b-10 cfUWzc">
+								<div class="RewardCard__RewardMinimumPledgeAmount-sc-11jni8b-11 hcaxjL">15,000원 +</div>
+								<div class="RewardCard__RewardDescription-sc-11jni8b-12 bRlMcL">배송비 포함, 선착순 수량 한정 결이 엽서 증정</div>
+								</div>
+								</div>
+								</div>
+								<ul class="RewardCard__Items-sc-11jni8b-14 cNnvBP">
+								<li class="RewardCard__ItemList-sc-11jni8b-15 bpVZwd">2024 탁상달력 + 망덕 크리스마스 엽서&nbsp;<span>( x 1 )</span>
+								</li>
+								</ul>
+								<div class="RewardCard__DeliveryDate-sc-11jni8b-16 cxeoGo">
+								</div>
+								</div>
+								</section>
+								<section direction="right" class="Stepper__StepperWrapper-sc-14ctxej-1 gcTNai">
+								<div class="RewardCard__RewardCardInner-sc-11jni8b-4 doBnVx">
+								<div class="RewardCard__RewardHeader-sc-11jni8b-5 eHaKBF">
+								<span class="RewardCard__PledgeAmount-sc-11jni8b-6 cMOTuF">
+								<div name="check" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV RewardCard__StyledSVGIcon-sc-11jni8b-2 eoOxYA">
+								<svg viewBox="0 0 48 48">
+								<path fill-rule="evenodd" clip-rule="evenodd" d="M41.6 8L18.9 30.8L6.2 19L2 23.5L19.1 39.4L46 12.4L41.6 8Z">
+								</path>
+								</svg>
+								</div>449명이 선택</span>
+								<span class="RewardCard__RewardQuantityLimit-sc-11jni8b-7 edSyxi">
+								<span class="RewardCard__LimitedRewardLabel-sc-11jni8b-8 nNZhl">51개 남음</span>
+								</span>
+								</div>
+								<div class="RewardCard__RewardSelector-sc-11jni8b-13 doSKXg">
+								<div class="sub-wrapper">
+								<div class="RewardCard__RewardContents-sc-11jni8b-10 cfUWzc">
+								<div class="RewardCard__RewardMinimumPledgeAmount-sc-11jni8b-11 guDLPF">15,000원 +</div>
+								<div class="RewardCard__RewardDescription-sc-11jni8b-12 ihPVAR">배송비 포함, 선착순 수량 한정 결이 엽서 증정</div>
+								</div>
+								</div>
+								</div>
+								<ul class="RewardCard__Items-sc-11jni8b-14 ivsvtS">
+								<li class="RewardCard__ItemList-sc-11jni8b-15 kYvoWT">2024 탁상달력 + 망덕 크리스마스 엽서&nbsp;<span>( x 1 )</span>
+								</li>
+								</ul>
+								<div class="RewardCard__DeliveryDate-sc-11jni8b-16 gRjZWy">
+								<span>예상 전달일 &nbsp;<b>2023년 12월 20일</b>
+								</span>
+								</div>
+								<div class="ExtraPledge__Wrapper-sc-6m3rsu-0 ipAlaK">
+								<div class="StyledTBB__FormWrapper-trchgn-6 hCtMzp ExtraPledge__StyledFormRenderChildren-sc-6m3rsu-1 eOMuk">
+								<div class="StyledTBB__FormLabel-trchgn-4 keSzYC form-input-label">추가 후원금(선택)</div>
+								<div class="StyledTBB__FormContent-trchgn-5 iBKDvR form-input-wrapper">
+								<div class="InputWithGuideAndLengthCheck__Wrapper-sc-9nmfrw-0 eCSxwJ">
+								<div class="InputWithGuideAndLengthCheck__InputWrapper-sc-9nmfrw-3 bBnjVq">
+								<span class="Input__InputWrapper-j7moqy-0 fOjsfs InputWithGuideAndLengthCheck__StyledInput-sc-9nmfrw-1 wmJOZ">
+								<input type="text" inputmode="numeric" placeholder="0" autocomplete="off" autocapitalize="off" class="Input__InnerInput-j7moqy-1 bfmNPl" value="">
+								</span>
+								</div>
+								<div class="InputWithGuideAndLengthCheck__NoticeArea-sc-9nmfrw-4 ciHGYP">
+								<p class="InputWithGuideAndLengthCheck__GuideMessage-sc-9nmfrw-5 fduvas">
+								</p>
+								</div>
+								</div>
+								</div>
+								<div class="StyledTBB__FormDescription-trchgn-7 dcierJ form-desc-wrapper">* 더 후원해주시면 프로젝트 성사가 앞당겨집니다.</div>
+								</div>
+								<div class="ExtraPledge__ButtonWrapper-sc-6m3rsu-2 xWAlK">
+								<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 5천 원</button>
+								<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 1만 원</button>
+								<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 5만 원</button>
+								<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 10만 원</button>
+								</div>
+								</div>
+								<button class="SolidButton__Button-sc-1gsinzz-0 llVOtQ Rewards__StyledSelectRewardDetailButton-kxhggz-6 etABXh fnt-p1" color="main80">
+								<span>15,000원 후원하기</span>
+								</button>
+								</div>
+								</section>
+								</div>
+								</div>
+								</div>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+								<div class="RewardCard__RewardCardWrapper-sc-11jni8b-3 iqsxGc">
+									<div class="Card-sc-1vhyvl1-0 RewardCard__StyledCard-sc-11jni8b-1 cfXECD fjuLVq">
+										<div class="Stepper__Wrapper-sc-14ctxej-0 bzcMYO" style="height: 169px;">
+											<section direction="right" class="Stepper__StepperWrapper-sc-14ctxej-1 ehQhai">
+											
+												<div class="RewardCard__RewardCardInner-sc-11jni8b-4 doBnVx">
+												
+													<div class="RewardCard__RewardHeader-sc-11jni8b-5 jeVDzr">
+														<span class="RewardCard__PledgeAmount-sc-11jni8b-6 cMOTuF">
+															<div name="check" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV RewardCard__StyledSVGIcon-sc-11jni8b-2 eoOxYA">
+																<svg viewBox="0 0 48 48">
+																	<path fill-rule="evenodd" clip-rule="evenodd" d="M41.6 8L18.9 30.8L6.2 19L2 23.5L19.1 39.4L46 12.4L41.6 8Z">
+																	</path>
+																</svg>
+															</div>
+															49명이 선택
+														</span>
+													</div>
+													
+													<div class="RewardCard__RewardSelector-sc-11jni8b-13 doSKXg">
+														<div class="sub-wrapper">
+															<div class="RewardCard__RewardContents-sc-11jni8b-10 cfUWzc">
+																<div class="RewardCard__RewardMinimumPledgeAmount-sc-11jni8b-11 hcaxjL">15,000원 +</div>
+																<div class="RewardCard__RewardDescription-sc-11jni8b-12 bRlMcL">배송비 포함</div>
+															</div>
+														</div>
+													</div>
+												
+													<ul class="RewardCard__Items-sc-11jni8b-14 cNnvBP">
+														<li class="RewardCard__ItemList-sc-11jni8b-15 bpVZwd">2024 탁상달력 + 망덕 크리스마스 엽서&nbsp;<span>( x 1 )</span>
+														</li>
+													</ul>
+													
+													<div class="RewardCard__DeliveryDate-sc-11jni8b-16 cxeoGo"></div>
+													
+												</div>
+											</section>
+											
+											<section direction="right" class="Stepper__StepperWrapper-sc-14ctxej-1 gcTNai">
+												<div class="RewardCard__RewardCardInner-sc-11jni8b-4 doBnVx">
+													<div class="RewardCard__RewardHeader-sc-11jni8b-5 eHaKBF">
+														<span class="RewardCard__PledgeAmount-sc-11jni8b-6 cMOTuF">
+															<div name="check" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV RewardCard__StyledSVGIcon-sc-11jni8b-2 eoOxYA">
+																<svg viewBox="0 0 48 48">
+																	<path fill-rule="evenodd" clip-rule="evenodd" d="M41.6 8L18.9 30.8L6.2 19L2 23.5L19.1 39.4L46 12.4L41.6 8Z">
+																	</path>
+																</svg>
+															</div>
+															49명이 선택
+														</span>
+													</div>
+													
+													<div class="RewardCard__RewardSelector-sc-11jni8b-13 doSKXg">
+														<div class="sub-wrapper">
+															<div class="RewardCard__RewardContents-sc-11jni8b-10 cfUWzc">
+																<div class="RewardCard__RewardMinimumPledgeAmount-sc-11jni8b-11 guDLPF">15,000원 +</div>
+																<div class="RewardCard__RewardDescription-sc-11jni8b-12 ihPVAR">배송비 포함</div>
+															</div>
+														</div>
+													</div>
+													
+													<ul class="RewardCard__Items-sc-11jni8b-14 ivsvtS">
+														<li class="RewardCard__ItemList-sc-11jni8b-15 kYvoWT">2024 탁상달력 + 망덕 크리스마스 엽서&nbsp;<span>( x 1 )</span>
+														</li>
+													</ul>
+													
+													<div class="RewardCard__DeliveryDate-sc-11jni8b-16 gRjZWy">
+														<span>예상 전달일 &nbsp;<b>2023년 12월 20일</b>
+														</span>
+													</div>
+													
+													<div class="ExtraPledge__Wrapper-sc-6m3rsu-0 ipAlaK">
+														<div class="StyledTBB__FormWrapper-trchgn-6 hCtMzp ExtraPledge__StyledFormRenderChildren-sc-6m3rsu-1 eOMuk">
+															<div class="StyledTBB__FormLabel-trchgn-4 keSzYC form-input-label">추가 후원금(선택)</div>
+															<div class="StyledTBB__FormContent-trchgn-5 iBKDvR form-input-wrapper">
+																<div class="InputWithGuideAndLengthCheck__Wrapper-sc-9nmfrw-0 eCSxwJ">
+																	<div class="InputWithGuideAndLengthCheck__InputWrapper-sc-9nmfrw-3 bBnjVq">
+																		<span class="Input__InputWrapper-j7moqy-0 fOjsfs InputWithGuideAndLengthCheck__StyledInput-sc-9nmfrw-1 wmJOZ">
+																			<input type="text" inputmode="numeric" placeholder="0" autocomplete="off" autocapitalize="off" class="Input__InnerInput-j7moqy-1 bfmNPl" value="">
+																		</span>
+																	</div>
+																	<div class="InputWithGuideAndLengthCheck__NoticeArea-sc-9nmfrw-4 ciHGYP">
+																		<p class="InputWithGuideAndLengthCheck__GuideMessage-sc-9nmfrw-5 fduvas"></p>
+																	</div>
+																</div>
+															</div>
+															
+															<div class="StyledTBB__FormDescription-trchgn-7 dcierJ form-desc-wrapper">* 더 후원해주시면 프로젝트 성사가 앞당겨집니다.</div>
+														</div>
+														
+														<div class="ExtraPledge__ButtonWrapper-sc-6m3rsu-2 xWAlK">
+															<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 5천 원</button>
+															<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 1만 원</button>
+															<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 5만 원</button>
+															<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 10만 원</button>
+														</div>
+													</div>
+													
+													
+													<button class="SolidButton__Button-sc-1gsinzz-0 llVOtQ Rewards__StyledSelectRewardDetailButton-kxhggz-6 etABXh fnt-p1" color="main80">
+														<span>15,000원 후원하기</span>
+													</button>
+												</div>
+											</section>
+										</div>
+									</div>
+								</div>
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								<div class="RewardCard__RewardCardWrapper-sc-11jni8b-3 iqsxGc">
+								<div class="Card-sc-1vhyvl1-0 RewardCard__StyledCard-sc-11jni8b-1 cfXECD fjuLVq">
+								<div class="Stepper__Wrapper-sc-14ctxej-0 bzcMYO" style="height: 169px;">
+								<section direction="right" class="Stepper__StepperWrapper-sc-14ctxej-1 ehQhai">
+								<div class="RewardCard__RewardCardInner-sc-11jni8b-4 doBnVx">
+								<div class="RewardCard__RewardHeader-sc-11jni8b-5 jeVDzr">
+								<span class="RewardCard__PledgeAmount-sc-11jni8b-6 cMOTuF">
+								<div name="check" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV RewardCard__StyledSVGIcon-sc-11jni8b-2 eoOxYA">
+								<svg viewBox="0 0 48 48">
+								<path fill-rule="evenodd" clip-rule="evenodd" d="M41.6 8L18.9 30.8L6.2 19L2 23.5L19.1 39.4L46 12.4L41.6 8Z">
+								</path>
+								</svg>
+								</div>91명이 선택</span>
+								</div>
+								<div class="RewardCard__RewardSelector-sc-11jni8b-13 doSKXg">
+								<div class="sub-wrapper">
+								<div class="RewardCard__RewardContents-sc-11jni8b-10 cfUWzc">
+								<div class="RewardCard__RewardMinimumPledgeAmount-sc-11jni8b-11 hcaxjL">26,000원 +</div>
+								<div class="RewardCard__RewardDescription-sc-11jni8b-12 bRlMcL">배송비 포함, 1+1 할인 (4000원 할인)</div>
+								</div>
+								</div>
+								</div>
+								<ul class="RewardCard__Items-sc-11jni8b-14 cNnvBP">
+								<li class="RewardCard__ItemList-sc-11jni8b-15 bpVZwd">2024 탁상달력 + 망덕 크리스마스 엽서&nbsp;<span>( x 2 )</span>
+								</li>
+								</ul>
+								<div class="RewardCard__DeliveryDate-sc-11jni8b-16 cxeoGo">
+								</div>
+								</div>
+								</section>
+								<section direction="right" class="Stepper__StepperWrapper-sc-14ctxej-1 gcTNai">
+								<div class="RewardCard__RewardCardInner-sc-11jni8b-4 doBnVx">
+								<div class="RewardCard__RewardHeader-sc-11jni8b-5 eHaKBF">
+								<span class="RewardCard__PledgeAmount-sc-11jni8b-6 cMOTuF">
+								<div name="check" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV RewardCard__StyledSVGIcon-sc-11jni8b-2 eoOxYA">
+								<svg viewBox="0 0 48 48">
+								<path fill-rule="evenodd" clip-rule="evenodd" d="M41.6 8L18.9 30.8L6.2 19L2 23.5L19.1 39.4L46 12.4L41.6 8Z">
+								</path>
+								</svg>
+								</div>91명이 선택</span>
+								</div>
+								<div class="RewardCard__RewardSelector-sc-11jni8b-13 doSKXg">
+								<div class="sub-wrapper">
+								<div class="RewardCard__RewardContents-sc-11jni8b-10 cfUWzc">
+								<div class="RewardCard__RewardMinimumPledgeAmount-sc-11jni8b-11 guDLPF">26,000원 +</div>
+								<div class="RewardCard__RewardDescription-sc-11jni8b-12 ihPVAR">배송비 포함, 1+1 할인 (4000원 할인)</div>
+								</div>
+								</div>
+								</div>
+								<ul class="RewardCard__Items-sc-11jni8b-14 ivsvtS">
+								<li class="RewardCard__ItemList-sc-11jni8b-15 kYvoWT">2024 탁상달력 + 망덕 크리스마스 엽서&nbsp;<span>( x 2 )</span>
+								</li>
+								</ul>
+								<div class="RewardCard__DeliveryDate-sc-11jni8b-16 gRjZWy">
+								<span>예상 전달일 &nbsp;<b>2023년 12월 20일</b>
+								</span>
+								</div>
+								<div class="ExtraPledge__Wrapper-sc-6m3rsu-0 ipAlaK">
+								<div class="StyledTBB__FormWrapper-trchgn-6 hCtMzp ExtraPledge__StyledFormRenderChildren-sc-6m3rsu-1 eOMuk">
+								<div class="StyledTBB__FormLabel-trchgn-4 keSzYC form-input-label">추가 후원금(선택)</div>
+								<div class="StyledTBB__FormContent-trchgn-5 iBKDvR form-input-wrapper">
+								<div class="InputWithGuideAndLengthCheck__Wrapper-sc-9nmfrw-0 eCSxwJ">
+								<div class="InputWithGuideAndLengthCheck__InputWrapper-sc-9nmfrw-3 bBnjVq">
+								<span class="Input__InputWrapper-j7moqy-0 fOjsfs InputWithGuideAndLengthCheck__StyledInput-sc-9nmfrw-1 wmJOZ">
+								<input type="text" inputmode="numeric" placeholder="0" autocomplete="off" autocapitalize="off" class="Input__InnerInput-j7moqy-1 bfmNPl" value="">
+								</span>
+								</div>
+								<div class="InputWithGuideAndLengthCheck__NoticeArea-sc-9nmfrw-4 ciHGYP">
+								<p class="InputWithGuideAndLengthCheck__GuideMessage-sc-9nmfrw-5 fduvas">
+								</p>
+								</div>
+								</div>
+								</div>
+								<div class="StyledTBB__FormDescription-trchgn-7 dcierJ form-desc-wrapper">* 더 후원해주시면 프로젝트 성사가 앞당겨집니다.</div>
+								</div>
+								<div class="ExtraPledge__ButtonWrapper-sc-6m3rsu-2 xWAlK">
+								<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 5천 원</button>
+								<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 1만 원</button>
+								<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 5만 원</button>
+								<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 10만 원</button>
+								</div>
+								</div>
+								<button class="SolidButton__Button-sc-1gsinzz-0 llVOtQ Rewards__StyledSelectRewardDetailButton-kxhggz-6 etABXh fnt-p1" color="main80">
+								<span>26,000원 후원하기</span>
+								</button>
+								</div>
+								</section>
+								</div>
+								</div>
+								</div>
 							</div>
 						</div>
+				
+				
+				
+				
+				
+				
+				
+				
 				
 				
 						<div class="Sticker__Ghost-sc-1si6lg8-1 cMGroX">
@@ -668,11 +952,26 @@
 					</div>
 				</div>
 			
+			
+			
+			
+			
+			
+			
 			</div>
 		</div>
 	
 	
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

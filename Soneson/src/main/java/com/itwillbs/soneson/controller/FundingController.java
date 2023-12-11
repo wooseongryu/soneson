@@ -1,5 +1,7 @@
 package com.itwillbs.soneson.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,8 +74,39 @@ public class FundingController {
 		return "mypage/funding/funding_detail";
 	}
 		
-	
+	//세부내용에서 후원하기 버튼 클릭 시 결제페이지 이동 int pro_code, int reward_code, 나중에 추가
+	@GetMapping("fundingPaymentForm")
+	public String fundingPaymentForm(HttpSession session, Model model) {
+		// 나중에 파라미터 앞에 @requestParam 붙여주기
+		String sId = (String)session.getAttribute("sId");
 		
+		if(sId == null) {
+			model.addAttribute("msg", "로그인 후 이용 가능 합니다.");
+			model.addAttribute("targetURL", "login");
+			return "forward";
+		}
+		
+		int pro_code = 50;
+		// 해당 프로젝트 정보
+		Map<String, String> map = service.selectproject(pro_code);
+		
+		int reward_code = 57;
+		//선택리워드 정보
+		Map<String, String> reward = service.selectReward(pro_code, reward_code);
+		
+		//유저배송정보
+		Map<String, String> user = service.selectUser(sId);
+		
+		System.out.println("프로젝트 정보 >>>>>>>" + map);
+		System.out.println("선택 리워드 정보 >>>>>>>" + reward);
+		System.out.println("유저 배송 정보 >>>>>>>" + user);
+		
+		model.addAttribute("pro", map);
+		model.addAttribute("reward", reward);
+		model.addAttribute("user", user);
+		
+		return "payment/stepPay";
+	}
 	
 	
 	

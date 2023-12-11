@@ -81,7 +81,7 @@
 				date(p.start_date) AS start_date
 				, date(p.end_date) AS end_date
 			FROM project p
-			WHERE start_date <= now() AND end_date >= now()) AS A
+			WHERE start_date <= now() AND end_date >= now() AND status = '승인') AS A 
 		]]>
 	</select>
 
@@ -271,6 +271,7 @@
 		FROM project p
 		LEFT JOIN fund f
 		ON p.project_code = f.project_code
+		WHERE p.status = '승인'
 		GROUP BY p.project_code
 	</select>
 
@@ -287,7 +288,7 @@
 			, date(end_date) AS end_date
 			, ifnull(goal_amount, 0) AS goal_amount
 		FROM project p
-		WHERE start_date > now() 
+		WHERE start_date > now() AND status = '승인'
 	</select>
 
 	<!-- 진행중인 프로젝트 조회 -->
@@ -314,7 +315,7 @@
 		LEFT JOIN fund f
 		ON p.project_code = f.project_code
 		<![CDATA[
-		WHERE p.start_date <= now() AND p.end_date >= now()
+		WHERE p.start_date <= now() AND p.end_date >= now() AND status = '승인'
 		]]>
 		GROUP BY p.project_code) A
 	ORDER BY donor DESC
@@ -344,7 +345,7 @@
 		LEFT JOIN fund f
 		ON p.project_code = f.project_code
 		<![CDATA[
-		WHERE p.end_date < now()
+		WHERE p.end_date < now() AND status = '승인'
 		]]>
 		GROUP BY p.project_code) A
 	ORDER BY donor DESC
@@ -459,5 +460,27 @@
     	WHERE project_code = #{project_code}
 	</update>
 	
+	<!-- 심사할 프로젝트 조회 -->
+    <select id="selectProjectExamDetail" resultType="Project">
+		SELECT
+			project_code
+			, title 
+			, subtitle
+			, category
+			, creator
+			, creator_profile AS pro_profile
+			, creator_info AS pro_createrInfo
+			, img_main AS img1
+			, img_content AS pro_content
+			, img_budget AS pro_budget
+			, img_sch AS pro_sch
+			, img_team AS pro_team
+			, img_reward AS pro_reward
+			, date(start_date) AS start_date
+			, date(end_date) AS end_date
+			, ifnull(goal_amount, 0) AS pro_goal
+		FROM project p
+		WHERE project_code = #{project_code}
+    </select>
 	
 </mapper>

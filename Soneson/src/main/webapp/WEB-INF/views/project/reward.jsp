@@ -88,14 +88,13 @@
 	//데이터 저장
 	function insertItem(pro_code) {
 		
-		
 		let item_name = $("#item_name").val();
 		let item_condition = $("input[name=item_condition]:checked").val();
 		let option1 = $("#option_1").val();
 		let option2 = $("#option_2").val();
 		let option_2_1 = $("#option_2_1").val();
-		console.log("item_name: " + item_name);
-		console.log("item_condition: " + item_condition);
+// 		console.log("item_name: " + item_name);
+// 		console.log("item_condition: " + item_condition);
 		
 		if(item_name == "") {
 			alert("이름을 작성해주세요.");
@@ -115,21 +114,28 @@
 		if(item_condition == '2' && (option2 == "" || option_2_1 == "")) {
 			alert("세부옵션을 2개 이상 작성해주세요.");
 			return;
-			
 		}
-		
 		
 		let get_option = $(".reward-section2 input[type=text]");
 		let item_option = "";
 		let optionArr = [];
-		$.each(get_option, function () {
-			optionArr.push($(this).val());
-			
-		});
-		item_option = optionArr.join('|');
+		
+		switch (Number(item_condition)) {
+		case 1: 
+			item_option = $('input[name=item_option]')[0].value; 
+			break;
+		case 2:
+			get_option = $(".reward-section2 input[type=text]").get();
+			get_option.shift();
+			$.each(get_option, function (index, input) {
+				optionArr.push($(this).val());
+			});
+			item_option = optionArr.join('|');
+			break;
+		}		
 		
 		console.log(item_option);
-// 		return;
+// 		return;		
 		
 		
 		$.ajax({
@@ -383,14 +389,14 @@
 		reward_item_name = nameArr.join('|');
 		reward_item_code = codeArr.join('|');
 		
-		let reward_explan = $("#reward_explan").val();
+		let reward_explain = $("#reward_explain").val();
 		let reward_isCount = $("input[name=reward_isCount]:checked").val();
 		let reward_count = $("#reward_count").val();
 		let reward_isDeliv = $("input[name=reward_isDeliv]:checked").val();
 		let reward_amount = $("#reward_amount").val();
 		console.log(reward_item_name);
 		console.log("아이템코드: " + reward_item_code);
-		console.log(reward_explan);
+		console.log(reward_explain);
 		console.log("reward_isCount" + reward_isCount);
 		console.log(reward_count + typeof reward_count);
 		console.log(reward_isDeliv);
@@ -400,8 +406,8 @@
 			alert("아이템을 한개 이상 선택해주세요.");
 			return;
 		}
-		if(reward_explan == "") {
-			reward_explan = " ";
+		if(reward_explain == "") {
+			reward_explain = " ";
 		}
 		if(reward_isCount == "" || reward_isCount == null) {
 			alert("수량제한여부를 선택해주세요.");
@@ -427,7 +433,7 @@
 				"pro_code": pro_code,
 				"reward_item_name": reward_item_name,
 				"reward_item_code": reward_item_code,
-				"reward_explan": reward_explan,
+				"reward_explain": reward_explain,
 				"reward_isCount": reward_isCount,
 				"reward_count": reward_count,
 				"reward_isDeliv": reward_isDeliv,
@@ -446,7 +452,7 @@
 				str +=			'<h4>' + reward.reward_amount + '원+</h4>'
 				str +=			'<br>'
 				str +=			'<p>'
-				str +=				reward.reward_explan + '<br>'
+				str +=				reward.reward_explain + '<br>'
 				str +=				reward.reward_item_name + '<br>'
 				
 				if(reward.reward_count == "0") {
@@ -506,7 +512,7 @@
 	 						+ 					'</p>'
 	 						+ 				'</div>'
 	 						+ 				'<div class="projectItem-form">'
-	 						+ 					'<input type="text" class="input_detail" placeholder="예) 봄 세트, 배송비포함" name="reward_explan" id="reward_explan">'
+	 						+ 					'<input type="text" class="input_detail" placeholder="예) 봄 세트, 배송비포함" name="reward_explain" id="reward_explain">'
 	 						+ 				'</div>'
 	 						+ 				'<div class="alert-title">'
 	 						+ 					'<p></p>'
@@ -835,7 +841,7 @@
 									<h4>${reward.reward_amount }원+</h4>
 									<br>
 									<p>
-										${reward.reward_explan }<br>
+										${reward.reward_explain }<br>
 										${reward.reward_item_name }<br>
 										수량 : ${reward.reward_count }
 									</p>
@@ -894,7 +900,7 @@
 										</p>
 									</div>
 									<div class="projectItem-form">
-										<input type="text" class="input_detail" placeholder="예) 봄 세트, 배송비포함" name="reward_explan" id="reward_explan">
+										<input type="text" class="input_detail" placeholder="예) 봄 세트, 배송비포함" name="reward_explain" id="reward_explain">
 									</div>
 									<div class="alert-title">
 										<p></p>

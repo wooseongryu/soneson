@@ -73,13 +73,15 @@
 		$("#start-funding").val("${pro.pro_startDt}");
 		$("#end-funding").val("${pro.pro_endDt}");
 		$("#start-funding").attr("min", tommorrow);
-		let startDt = new Date("${pro.pro_startDt}");
-		let endDt = new Date("${pro.pro_endDt}");
+// 		debugger;
 		console.log(tommorrow);
-		if($("#start-funding").val("${pro.pro_startDt}") < tommorrow) {
+		if(${not empty pro.pro_startDt} && "${pro.pro_startDt}" < tommorrow) {
 			alert("시작일을 다시 선택해주세요.");
 			$("#start-funding").css('border','1px solid rgb(248, 100, 83)');
+			return;
 		}
+		let startDt = new Date("${pro.pro_startDt}");
+		let endDt = new Date("${pro.pro_endDt}");
 		
 		
 		if(${not empty pro.pro_startDt} && ${not empty pro.pro_endDt}) {

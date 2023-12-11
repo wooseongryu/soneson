@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -31,14 +32,22 @@
     
     <script type="text/javascript">
     	let pointColor = "#F86453";
+    	let user_id = "";
 
 		function userProfile(id) {
     		$.ajax({
     			type: 'post',
     			url: 'userProfile',
+    			data: {
+    				user_id : user_id
+    			},
     			dataType: 'json',
-    			success: function(resp) {
+    			success: function(user_info) {
     				reset_screen(id);
+    				
+    				if (user_info == null || user_info == "") {
+   						user_info = "등록된 소개가 없습니다.";
+    				}
 
 					$("#user_content").append(
 						'<div id="user_content">'
@@ -47,7 +56,7 @@
 	   					+			'<div class="blog__details__comment">'
 						+				'<div class="blog__details__comment__item">'
 						+		    		'<div class="blog__details__comment__item__text" id="profile_content">'
-						+			    		'<p>표지 일러스트, 삽화 작업을 주로 하는 또롱입니다. 모든 분들께 예쁘고 행복한 그림을 그려드리는 게 꿈입니다.</p>'
+						+			    		'<p>' + user_info + '</p>'
 						+		    		'</div>'
 						+				'</div>'
 						+			'</div>'
@@ -158,33 +167,216 @@
 		}
 		
 		function userFollower(id) {
+			let btnString = '';
+			let contentStr = '';
+			let info = '';
+			
 			$.ajax({
     			type: 'post',
     			url: 'userFollower',
+    			data: {
+    				user_id : user_id
+    			},
     			dataType: 'json',
     			success: function(resp) {
     				reset_screen(id);
-
-					$("#user_content").append(
-						  '<div class="anime__details__review">'
-						+ ' 	<div class="anime__review__item">'
-                        + ' 		<div class="anime__review__item__text" id="project_review_content">'
-	                    + '     		<h6>Chris Curry</h6>'
-	                    + '     		<p>[색을 엮어 감성을 꽃 피우다.] 전통 위주의 옛것을 아름답고 독특하게 재해석합니다.</p>'
-	                    + '     		<p style="margin-top: 10px">팔로잉 1 · 후원한 프로젝트 11</p>'
-	                    + '     		<div class="user_follow_btn">'
-	                    + '     			<a href="#">+ 팔로우</a>'
-	                    + '     		</div>'
-						+ ' 		</div>'
-                    	+ ' 	</div>'
-                	 	+ '</div>'
-					);                                                                                                                                                                             
+    				
+    				let sId = "${sessionScope.sId}";
+    				
+    				for(user of resp) {
+    					let uId = user.uId;
+    					
+    					if (uId == sId) {
+    						continue;
+    					}
+    					
+    					btnString = '<a onclick="insertFollow(\'' + uId + '\')">+ 팔로우</a>';
+        				
+    					if (isFollowing(uId)) {
+    						btnString = '<a onclick="removeFollow(\'' + uId + '\')">팔로잉</a>';
+    					}
+    					
+    					info = user.user_info;
+    					if (info == null) {
+    						info = '소개가 없습니다.';
+    					}
+    					
+    					contentStr += 
+    						  '<div class="anime__details__review">'
+    						+ ' 	<div class="anime__review__item">'
+                            + ' 		<div class="anime__review__item__text" id="project_review_content">'
+    	                    + '     		<h6>' + user.user_name + '</h6>'
+    	                    + '     		<p>' + info + '</p>'
+    	                    + ' 			<div id="followerCnt_' + uId + '">'
+    	                    + '     			<p style="margin-top: 10px" >팔로워 ' + user.count + ' · 후원한 프로젝트 11</p>'
+    	                    + ' 			</div>'
+    	                    + '     		<div class="user_follow_btn" id="followerBtn_' + uId + '">'
+    	                    + 					btnString
+    	                    + '     		</div>'
+    						+ ' 		</div>'
+                        	+ ' 	</div>'
+                    	 	+ '</div>';
+    				}			
+    				
+					$("#user_content").append(contentStr);                                                                                                                                                                             
+    			},
+    			error: function() {
+    				alert("에러!123");
+    			}
+    		});
+		}
+		
+		function insertFollow(uId) {
+			$.ajax({
+    			type: 'post',
+    			url: 'insertFollow',
+    			data: {
+    				user_id : uId
+    			},
+    			dataType: 'json',
+    			success: function(resp) {
+    				if (!resp.isLogin) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    				
+    				let divBtnId = "followerBtn_" + uId;
+    				let divCnt = "followerCnt_" + uId;
+    				
+    				$("#" + divBtnId).children().remove();
+    				$("#" + divBtnId).append(
+    					'<a onclick="removeFollow(\'' + uId + '\')">팔로잉</a>'
+    				);
+    				
+    				$("#" + divCnt).children().remove();
+    				$("#" + divCnt).append(
+    						'<p style="margin-top: 10px" >팔로워 ' + resp.followerCnt + ' · 후원한 프로젝트 11</p>'
+    				);
+    			},
+    			error: function(error) {
+    				alert("팔로우 에러!");
+    			}
+    		});
+		}
+		
+		function removeFollow(uId) {
+			$.ajax({
+    			type: 'post',
+    			url: 'removeFollow',
+    			data: {
+    				user_id : uId
+    			},
+    			dataType: 'json',
+    			success: function(resp) {
+    				if (!resp.isLogin) {
+    					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+    					location.href="login";
+    					return;
+    				}
+    				
+					let divBtnId = "followerBtn_" + uId;
+					let divCnt = "followerCnt_" + uId;
+    				
+    				$("#" + divBtnId).children().remove();
+    				$("#" + divBtnId).append(
+    					'<a onclick="insertFollow(\'' + uId + '\')">+ 팔로우</a>'
+    				);
+    				
+    				$("#" + divCnt).children().remove();
+    				$("#" + divCnt).append(
+    						'<p style="margin-top: 10px" >팔로워 ' + resp.followerCnt + ' · 후원한 프로젝트 11</p>'
+    				);
+    			},
+    			error: function(error) {
+    				alert("팔로우 해제 에러!");
+    			}
+    		});
+		}
+		
+		function isFollowing(id) {
+			let isFollowing = false;
+			
+			$.ajax({
+    			type: 'post',
+    			url: 'isFollowing',
+    			async: false,
+    			data: {
+    				user_id : id
+    			},
+    			dataType: 'json',
+    			success: function(resp) {
+    				isFollowing = resp.isFollowing;
     			},
     			error: function() {
     				alert("에러!");
     			}
     		});
+			
+			return isFollowing;
 		}
+		
+		function userFollowing(id) {
+			let btnString = '';
+			let contentStr = '';
+			let info = '';
+			
+			$.ajax({
+    			type: 'post',
+    			url: 'userFollowing',
+    			data: {
+    				user_id : user_id
+    			},
+    			dataType: 'json',
+    			success: function(resp) {
+    				reset_screen(id);
+    				
+    				let sId = "${sessionScope.sId}";
+    				
+    				for(user of resp) {
+    					let uId = user.uId;
+    					
+    					if (uId == sId) {
+    						continue;
+    					}
+    					
+    					btnString = '<a onclick="insertFollow(\'' + uId + '\')">+ 팔로우</a>';
+        				
+    					if (isFollowing(uId)) {
+    						btnString = '<a onclick="removeFollow(\'' + uId + '\')">팔로잉</a>';
+    					}
+    					
+    					info = user.user_info;
+    					if (info == null) {
+    						info = '소개가 없습니다.';
+    					}
+    					
+    					contentStr += 
+    						  '<div class="anime__details__review">'
+    						+ ' 	<div class="anime__review__item">'
+                            + ' 		<div class="anime__review__item__text" id="project_review_content">'
+    	                    + '     		<h6>' + user.user_name + '</h6>'
+    	                    + '     		<p>' + info + '</p>'
+    	                    + ' 			<div id="followerCnt_' + uId + '">'
+    	                    + '     			<p style="margin-top: 10px" >팔로워 ' + user.count + ' · 후원한 프로젝트 11</p>'
+    	                    + ' 			</div>'
+    	                    + '     		<div class="user_follow_btn" id="followerBtn_' + uId + '">'
+    	                    + 					btnString
+    	                    + '     		</div>'
+    						+ ' 		</div>'
+                        	+ ' 	</div>'
+                    	 	+ '</div>';
+    				}			
+    				
+					$("#user_content").append(contentStr);                                                                                                                                                                             
+    			},
+    			error: function() {
+    				alert("에러!userFollowing");
+    			}
+    		});
+		}
+		
+		
     	
     	function reset_screen(id) {
     		$("#section-title h5").css("color", "black");
@@ -193,8 +385,15 @@
     	}
     
     	$(function() {
+    		user_id = "${param.id}";
     		userProfile('topCateProfile');
     	});
+    	
+    	function deleteFollow(user_id) {
+    		if(confirm("팔로우를 해제 하시겠습니까?")) {
+    			location.href="deleteFollow?follow_id=" + user_id;
+    		}
+    	}
     </script>
 </head>
 
@@ -216,17 +415,35 @@
 				    	<!-- TODO -->
 				    	<div>
 					    	<div class="profileImgDiv">                                                                             
-	   							<img alt="" src="${pageContext.request.contextPath }/resources/user/alarm.jpg" class="profileImg">  
+					    		<c:choose>
+					    			<c:when test="${empty user.user_picture}">
+		   								<img alt="" src="${pageContext.request.contextPath }/resources/user/profile.png" class="profileImg">  
+					    			</c:when>
+					    			<c:otherwise>
+			   							<img alt="" src="${pageContext.request.contextPath }/resources/upload/${user.user_picture}" class="profileImg">  
+					    			</c:otherwise>
+					    		</c:choose>
 	   						</div>
    						</div>
 				    
 				        <h5>
-				        	또롱/Ttorong&nbsp;&nbsp;
-				        	<i class="fa fa-cog" onclick="location.href='userSetting'" style="cursor: pointer;"></i>
+				        	${user.user_name } / ${user.user_id }&nbsp;&nbsp;
+				        	<c:if test="${not empty user.isOwn }">
+					        	<i class="fa fa-cog" onclick="location.href='userSetting'" style="cursor: pointer;"></i>
+				        	</c:if>
 				        </h5>
-				        <p>3년전 가입</p>
-				        <a href="#">+ 팔로우</a>
-				        <a href="chatting" onclick="window.open(this.href, '_blank', 'width=400, height=800'); return false;">창작자 문의</a>
+				        <p>${user.hire_year }년전 가입</p>
+				        <c:if test="${empty user.isOwn }">
+				        	<c:choose>
+				        		<c:when test="${user.followCnt eq 0 }">
+						        	<a href="follow?follow_id=${user.user_id }">+ 팔로우</a>
+				        		</c:when>
+				        		<c:otherwise>
+						        	<a onclick="deleteFollow('${user.user_id }')">팔로잉</a>
+				        		</c:otherwise>
+				        	</c:choose>
+					        <a href="chatting" onclick="window.open(this.href, '_blank', 'width=400, height=800'); return false;">창작자 문의</a>
+				        </c:if>
 				    </div>
 				</div>
 			</div>
@@ -247,19 +464,19 @@
 											<h5 onclick="userProfile('topCateProfile')">프로필</h5>
 										</div>
 										<div class="user_top_cate" id="topProjectReview">
-											<h5 onclick="userProjectReview('topProjectReview')">프로젝트후기 11</h5>
+											<h5 onclick="userProjectReview('topProjectReview')">프로젝트후기</h5>
 										</div>
 										<div class="user_top_cate" id="topUploadProject">
-											<h5 onclick="userUploadProject('topUploadProject')">올린프로젝트 5</h5>
+											<h5 onclick="userUploadProject('topUploadProject')">올린프로젝트</h5>
 										</div>
 										<div class="user_top_cate">	
-											<h5>후원한프로젝트 50</h5>
+											<h5>후원한프로젝트</h5>
 										</div>
 										<div class="user_top_cate" id="topFollower">	
-											<h5 onclick="userFollower('topFollower')">팔로워 120</h5>
+											<h5 onclick="userFollower('topFollower')">팔로워</h5>
 										</div>
-										<div class="user_top_cate">
-											<h5>팔로잉 100</h5>
+										<div class="user_top_cate" id="topFollowing">
+											<h5 onclick="userFollowing('topFollowing')">팔로잉</h5>
 										</div>
                                     </div>
                                 </div>

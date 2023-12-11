@@ -184,7 +184,13 @@
 											"fas fa-circle text-info"	
 											</c:if>
 											<c:if test="${status.index eq 5 }">
-											"fas fa-circle text-dark"	
+											"fas fa-circle text-indigo"	
+											</c:if>
+											<c:if test="${status.index eq 6 }">
+											"fas fa-circle text-pink"	
+											</c:if>
+											<c:if test="${status.index eq 7 }">
+											"fas fa-circle text-blue"	
 											</c:if>
 											></i> ${AdminSelectMyPieChart.cate }
 										</span>

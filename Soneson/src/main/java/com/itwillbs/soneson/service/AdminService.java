@@ -12,6 +12,7 @@ import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
 import com.itwillbs.soneson.vo.MainTabVO;
 import com.itwillbs.soneson.vo.MyQuestionVO;
+import com.itwillbs.soneson.vo.ProjectVO;
 import com.itwillbs.soneson.vo.QnaCateVO;
 import com.itwillbs.soneson.vo.QnaVO;
 import com.itwillbs.soneson.vo.UserVO;
@@ -278,6 +279,11 @@ public class AdminService {
 	// 프로젝트 반려
 	public int updateProjectReject(String project_code) {
 		return mapper.updateProjectReject(project_code);
+	}
+
+	// 심사할 프로젝트 조회
+	public ProjectVO selectProjectExamDetail(String project_code) {
+		return mapper.selectProjectExamDetail(project_code);
 	}
 
 	

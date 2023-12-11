@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwillbs.soneson.mapper.FundingMapper">
+	<!-- 해당 프로젝트 정보 -->
+	<select id="selectproject" resultType="map">
+		SELECT title
+				, category
+				, img_main
+		FROM project  
+		WHERE project_code = #{pro_code}
+	</select>
+	
+	<!-- 선택 리워드정보 -->
+	<select id="selectReward" resultType="map">
+		SELECT reward_code
+				, reward_item_name
+				, reward_explain
+				, reward_isCount 
+				, reward_count
+				, reward_isDeliv 
+				, reward_amount 
+		FROM pro_reward pr 
+		WHERE pro_code = #{pro_code} AND reward_code = #{reward_code};
+	</select>
+	
+	<!-- 유저배송정보 -->
+	<select id="selectUser" resultType="map">
+		SELECT user_phone
+				, user_email
+				, address_main 
+				, address_sub
+				, address_reciver 
+				, address_reciver_phone 
+		FROM `user` u LEFT JOIN address a 
+		ON u.user_id = a.user_id 
+		WHERE u.user_id = #{sId}
+		LIMIT 1
+	</select>
+
+
+</mapper>

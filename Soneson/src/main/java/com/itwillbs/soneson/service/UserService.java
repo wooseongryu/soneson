@@ -286,6 +286,69 @@ public class UserService {
 		
 		return mapper.selectUserPicPath(sId);
 	}
+
+	// 유저프로필 메인 페이지
+	public Map<String, String> selectUserMainInfo(Map<String, String> map) {
+		System.out.println("UserService - selectUserMainInfo()");
+		
+		return mapper.selectUserMainInfo(map);
+	}
+
+	// 유저프로필 메인 페이지 유저 존재 유무 확인
+	public int selectExistUser(String id) {
+		System.out.println("UserService - selectExistUser()");
+		
+		return mapper.selectExistUser(id);
+	}
+
+	// 유저 정보
+	public String selectUserInfo(String user_id) {
+		System.out.println("UserService - selectUserInfo()");
+		
+		return mapper.selectUserInfo(user_id);
+	}
+
+	// 팔로우
+	public int insertFollow(Map<String, String> map) {
+		System.out.println("UserService - insertFollow()");
+		
+		return mapper.insertFollow(map);
+	}
+
+	// 팔로우 해제
+	public int deleteFollow(Map<String, String> map) {
+		System.out.println("UserService - deleteFollow()");
+		
+		return mapper.deleteFollow(map);
+	}
+
+	// 팔로워
+	public List<Map<String, String>> selectUserFollower(String user_id) {
+		System.out.println("UserService - selectUserFollower()");
+		
+		return mapper.selectUserFollower(user_id);
+	}
+
+	// ajax 팔로우 유무 확인
+	public int selectIsFollowing(Map<String, String> map) {
+		System.out.println("UserService - selectIsFollowing()");
+		
+		return mapper.selectIsFollowing(map);
+	}
+
+	// 팔로워 수
+	public int countFollower(String user_id) {
+		System.out.println("UserService - UserService()");
+		
+		return mapper.countFollower(user_id);
+	}
+
+	// 팔로잉
+	public List<Map<String, String>> selectUserFollowing(String user_id) {
+		System.out.println("UserService - selectUserFollowing()");
+		
+		return mapper.selectUserFollowing(user_id);
+	}
 	
 }
 
