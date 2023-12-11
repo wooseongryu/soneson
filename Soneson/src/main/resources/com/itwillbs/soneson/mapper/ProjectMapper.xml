@@ -387,11 +387,16 @@
 		SELECT
 			reward_code
 			, pro_code
-			, REPLACE(reward_item_name, "|", " + ") AS reward_item_name
+<!-- 			, REPLACE(reward_item_name, "|", " + ") AS reward_item_name -->
+			, reward_item_name
 			, reward_explain 
 			, reward_amount
 		FROM pro_reward
 		WHERE pro_code = #{project_code};
+	</select>
+	
+	<select id="getItemList" resultType="map">
+	
 	</select>
 	
 	
