@@ -29,6 +29,7 @@
 	<select id="selectUser" resultType="map">
 		SELECT user_phone
 				, user_email
+				, address_code 
 				, address_main 
 				, address_sub
 				, address_reciver 

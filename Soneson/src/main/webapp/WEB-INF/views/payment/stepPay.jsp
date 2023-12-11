@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,14 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 <script src= "${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
+<script>
+//default Img
+function defaultImg(tagId) {
+	console.log(tagId.id);
+	$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/project/default.png');
+}
 
+</script>
     
 
 </head>
@@ -124,13 +132,13 @@
 								<th>이메일</th>
 								<td>${user.user_email}</td>
 							</tr>
-							<tr>
-								<td colspan="2">* 위 연락처와 이메일로 후원 관련 소식이 전달됩니다.</td>
-							</tr>
-							<tr>
-								<td colspan="2">* 연락처 및 이메일 변경은 설정 > 계정 설정에서 가능합니다.</td>
-							</tr>
 						</table>
+						<div class="search-address">
+							<p>
+								* 위 연락처와 이메일로 후원 관련 소식이 전달됩니다.<br>
+								* 연락처 및 이메일 변경은 설정 > 계정 설정에서 가능합니다.
+							</p>
+						</div>
 					</div>
 				</div>	
 				<!-- 배송 정보 -->
@@ -140,373 +148,124 @@
 					<div class="right">
 					</div>
 				</div>
-				<div class="select-payment ty2">
-
-					<div class="radio-group">
-						<table>
-							<tr>
-								<th>연락처</th>
-								<td>${user.user_phone}</td>
-							</tr>
-							<tr>
-								<th>이메일</th>
-								<td>${user.user_email}</td>
-							</tr>
-							<tr>
-								<td colspan="2">* 위 연락처와 이메일로 후원 관련 소식이 전달됩니다.</td>
-							</tr>
-							<tr>
-								<td colspan="2">* 연락처 및 이메일 변경은 설정 > 계정 설정에서 가능합니다.</td>
-							</tr>
-						</table>
-					</div>
-				</div>	
-	
-				
-				<div class="tit-util mt40">
-					<h3 class="tit small">결제수단선택 <!-- 결제수단선택 --></h3>
-
-					<div class="right">
-						<input type="checkbox" id="same_use_payment">
-						<label for="same_use_payment" id="label_use_payment">다음에도 이 결제수단 사용 <!-- 다음에도 이 결제수단 사용 --></label>
-					</div>
-				</div>
-
-				<!-- seat-section -->
-				
-					<div class="rollbanner">
-						<div class="inrolb swiper-container swiper-container-initialized swiper-container-vertical">
-				            <div class="swiper-wrapper" style="transition-duration: 0ms; transform: translate3d(0px, -120px, 0px);"><div class="swiper-slide swiper-slide-duplicate swiper-slide-next swiper-slide-duplicate-prev" data-swiper-slide-index="1" style="height: 40px;">
-												<div class="text" style="background:url('https://img.megabox.co.kr/SharedImg/flagBanner/2023/04/21/gwehxwSczxpyPt48whc3EZr3Fgx9ASVh.png') 0 50% no-repeat; background-size:80px 30px;">토스페이 메가박스 첫 결제 시 최대 1천원 즉시할인</div>
-											</div>
-				            	
-					                
-										
-										
-											<div class="swiper-slide swiper-slide-duplicate-active" data-swiper-slide-index="0" style="height: 40px;">
-												<div class="text" style="background:url('https://img.megabox.co.kr/SharedImg/flagBanner/2023/10/10/znMs1PqIBr3kJMRX2JzgEXcJ1UBiFE3O.png') 0 50% no-repeat; background-size:80px 30px;">결제 시 최대 1만원 혜택!</div>
-											</div>
-										
-									
-					            
-					                
-										
-										
-											<div class="swiper-slide swiper-slide-prev swiper-slide-duplicate-next" data-swiper-slide-index="1" style="height: 40px;">
-												<div class="text" style="background:url('https://img.megabox.co.kr/SharedImg/flagBanner/2023/04/21/gwehxwSczxpyPt48whc3EZr3Fgx9ASVh.png') 0 50% no-repeat; background-size:80px 30px;">토스페이 메가박스 첫 결제 시 최대 1천원 즉시할인</div>
-											</div>
-										
-									
-					            
-				            <div class="swiper-slide swiper-slide-duplicate swiper-slide-active" data-swiper-slide-index="0" style="height: 40px;">
-												<div class="text" style="background:url('https://img.megabox.co.kr/SharedImg/flagBanner/2023/10/10/znMs1PqIBr3kJMRX2JzgEXcJ1UBiFE3O.png') 0 50% no-repeat; background-size:80px 30px;">결제 시 최대 1만원 혜택!</div>
-											</div></div>
-				            <div class="pgbx swiper-pagination-fraction"><span class="swiper-pagination-current">1</span> / <span class="swiper-pagination-total">2</span></div>
-				        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
-					</div>
-				
-				<!--// seat-section -->
-
-				<!--
-					체크 표시 on 클래스 추가
-
-					<button type="button">
-
-					<button type="button" class="on">
-				-->
-				<div class="select-payment ty2">
-
-					<div class="radio-group">
-						<span class="bg-chk small">
-							<input type="radio" name="radio_payment" id="rdo_pay_credit" value="credit" checked="checked"> <label for="rdo_pay_credit">신용/체크카드</label>
-						</span>
-						<span class="bg-chk small">
-							<input type="radio" name="radio_payment" id="rdo_pay_easypay" value="easypay"> <label for="rdo_pay_easypay">카카오페이</label>
-<!-- 							<input type="radio" name="radio_payment" id="rdo_pay_easypay" value="easypay"> <label for="rdo_pay_easypay">간편결제</label> -->
-						</span>
+				<c:choose>
+					<c:when test="${not empty user.address_main }">
+						<div class="select-payment ty2">
+							<div class="radio-group">
+								<div class="select-address">
+									<h6>${user.address_reciver }</h6>
+									<button type="button">변경</button>
+								</div>
+								<div>
+									<p>[ ${user.address_code } ]&emsp;${user.address_main }&emsp;${user.address_sub }</p>
+									<p>${user.address_reciver_phone }</p>
+								</div>
+							</div>
+						</div>	
 						
-					</div>
-
-
-
-					<!-- 2020.02.07 수단별 알림 문구 추가 -->
-					<div class="select-mobile-info" style="display:none">
-						<ul class="dash-list">
-							<li>결제하신 금액은 익월 휴대폰 요금에 합산되어 청구되며, 휴대폰 결제한도는 통산사별 월 누적 이용 제한에 따라 적용됩니다.</li>
-							<li>매월 말일 23시30분 ~ 익월 00시 10분까지(40분간)는 시스템 점검시간으로 이용이 어려울 수 있습니다.</li>
-							<li>휴대폰 결제와 관련된 추가 안내는 FAQ를 참조해주세요.</li>
-						</ul>
-					</div>
-
-					<div class="select-toss-info" style="display:none">
-						<ul class="dash-list">
-							<li>토스에 등록된 계좌와 신용/체크카드로 쉽고 편리하게 결제하세요.</li>
-							<li>토스페이 결제 시 토스에서 제공하는 카드사 별 무이자, 청구할인, 결제 이벤트만 제공됩니다.</li>
-						</ul>
-					</div>
-
-					<div class="select-kakao-info" style="display:none">
-						<ul class="dash-list">
-							<li>즉시할인 신용카드 적용이 불가합니다.</li>
-						</ul>
-					</div>
-
-					<div class="select-payco-info" style="display:none">
-						<ul class="dash-list">
-							<li>즉시할인 신용카드 적용이 불가합니다.</li>
-							<li>페이코 포인트 결제 시 결제금액의 1% 추가적립 됩니다.</li>
-						</ul>
-					</div>
-
-					<div class="select-naverpay-info" style="display:none">
-						<ul class="dash-list">
-							<li>네이버페이 결제 시, 카드사 할인 및 포인트 사용이 불가할 수 있습니다.</li>
-							<li>네이버페이 결제 시 결제금액의 1%가 적립 됩니다.
-								<br>(네이버 유입1% / 기타경로 0.2%)
-								<br>상기 적립율은 2023년 6월 1일 결제 건부터 적용됩니다.
-							</li>
-						</ul>
-					</div>
-
-					<div class="select-chai-info" style="display:none">
-						<ul class="dash-list">
-							<li>CHAI는 은행 계좌만 등록하면 차이 비밀번호로 안전하게 결제할 수 있는 간편결제 서비스입니다.<br>(은행 점검시간인 23:30 ~ 00:30에는 이용이 어려울 수 있습니다.)</li>
-							<li>결제 취소 또는 부분 취소 시 차이머니로 환불됩니다.</li>
-							<li>결제 이용 한도는 1회 200만원입니다.</li>
-							<li>이벤트를 통해 혜택을 적용 받은 주문의 경우, 즉시 할인 기준 금액에 따라 부분환불이 불가능할 수도 있습니다.</li>
-						</ul>
-					</div>
-
-					<div class="select-settlebank-info" style="display:none">
-						<ul class="dash-list">
-							<li>내통장결제는 본인명의의 계좌를 최초 1회 등록 후 비밀번호 입력만으로 간편하게 이용할 수 있는 현금결제 서비스 입니다.</li>
-							<li>은행 점검시간의 경우 내통장결제서비스 이용이 불가합니다.</li>
-						</ul>
-					</div>
-
-					<div class="select-kj-info" style="display:none;">
-						<ul class="dash-list">
-							<li>메가박스 신용/체크카드(광주카드) 선할인은 즉시할인 버튼 선택 시에만 적용 가능합니다.</li>
-						</ul>
-					</div>
+					</c:when>
+					<c:otherwise>
+					
+					</c:otherwise>
+				</c:choose>
+						<div class="select-payment ty2">
+							<div class="radio-group">
+								<div class="select-address">
+									<input type="text" placeholder="받는 사람" class="addressInput">
+									<button type="button">등록</button>
+								</div>
+								<div class="search-address">
+									<input type="text" class="addressInput" id="input-postCode" readonly>
+									<input type="text" class="addressInput" id="input-mainAdd" placeholder="주소" readonly>
+									<input type="button" class="searchBtn" value="검색" id="">
+								</div>
+								<div class="select-address">
+									<input type="text" class="addressInput" id="input-subAdd" placeholder="상세 주소">
+								</div>
+								<div class="select-address">
+									<input type="text" class="addressInput" placeholder="연락처">
+								</div>
+							</div>
+						</div>	
+				<div class="tit-util mt40">
+					<h3 class="tit small">결제계좌 선택</h3>
 				</div>
-
-				<dl class="term-list" id="terms" style="display: none;">
-					<dt>
-						<span class="bg-chk small">
-							<input type="checkbox" id="agree"><label for="agree">결제대행 서비스 약관 필수 동의</label>
-						</span>
-					</dt>
-					<dd class="tit">
-						전자금융거래 이용약관<!-- 전자금융거래 이용약관 -->
-						<a href="javascript:void(0);" onclick="openTermsPop('one')">내용보기</a>
-					</dd>
-					<dd class="tit">
-						개인정보 수집 및 이용 안내<!-- 개인정보 수집 및 이용 안내 -->
-						<a href="javascript:void(0);" onclick="openTermsPop('two')">내용보기</a>
-					</dd>
-					<dd class="tit">
-						개인정보 제공 및 위탁 안내<!-- 개인정보 제공 및 위탁 안내 -->
-						<a href="javascript:void(0);" onclick="openTermsPop('three')">내용보기</a>
-					</dd>
-				</dl>
+				<!-- 나중에 if문 안에 넣을 div  -->
+				<!-- 내일 핀테크 정보 받아오기 -->
+						<input type="hidden" name="user_name" value="${userInfo.user_name }">
+							<button class="authInfoBtn" type="button" onclick="authAccountCreator()">계좌 추가 등록</button>
+							<c:forEach var="auth" items="${userInfo.res_list }">
+								<label for="accountVal${auth.fintech_use_num }">
+									<input type="radio" id="accountVal${auth.fintech_use_num }" class="account-radioBtn" name="pro_userAuth" value="${auth.fintech_use_num}"<c:if test="${pro.pro_userAuth eq auth.fintech_use_num }">checked</c:if>>
+									<div class="authInfo-writeDIv">
+										<div class="userAuth-info">
+											<div class="user-authInfo">
+												<h5>
+													<i class="bi bi-coin"></i>&emsp;${auth.account_holder_name }
+												</h5>
+											</div>
+										</div>
+										<div>
+											<p>
+												${auth.bank_name }&emsp;${auth.account_num_masked }
+											</p>
+										</div>
+									</div>
+								</label>
+							</c:forEach>
+					<!-- //div 끝 -->		
+				<c:choose>
+					<c:when test="">
+					</c:when>
+					<c:otherwise>
+						<div class="authInfo-writeDIv">
+								<div class="userAuth-info">
+									<div class="user-authInfo">
+										<p>
+											후원금을 이체할 계좌를 등록해주세요.<br>
+											본인인증 후 계좌등록이 가능합니다.
+										</p>
+									</div>
+									<button class="authInfoBtn" type="button" onclick="authAccountCreator()">등록하기</button>
+								</div>
+							</div>
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<!--// seat-section -->
-
-			<!-- seat-result -->
+			<!-- 사이드바 -->
 			<div class="seat-result">
 				<div class="wrap">
-
 					<div class="tit-area type2">
-						<!--
-							관람 등급 표시
-							<span class="movie-grade small age-all">전체 관람가</span>
-							<span class="movie-grade small age-12">12세 이상 관람가</span>
-							<span class="movie-grade small age-15">15세 이상 관람가</span>
-							<span class="movie-grade small age-19">청소년 관람 불가</span>
-							<span class="movie-grade small age-no">미정</span>
-						-->
-						<span class="movie-grade small age-all" id="admisClassNm">${param.movie_rated }</span>
-
-						<p class="tit" id="movieNm">${param.movie_nameK }</p>
-<!-- 						<p class="cate" id="playKindNm">2D(자막)</p> -->
-						<p class="theater" id="brchNm">${param.theater_name }/${param.screen_name }</p>
-						<p class="date">
-							<span id="playDe">${param.sche_date }</span>
-<!-- 							<em id="dowNm">(월)</em>  -->
-							<br>
-							<span class="time" id="playTime" style="color: #c4c4c4">
-<!-- 								<i class="iconset ico-clock-white"></i> -->
-								${param.sche_start_time } ~ ${param.sche_end_time }
-							</span>
-						</p>
-<!-- 						<span class="movie-grade small age-all" id="admisClassNm">전체관람가</span> -->
-
-<!-- 						<p class="tit" id="movieNm">(자막) 그대들은 어떻게 살 것인가</p> -->
-<!-- 						<p class="cate" id="playKindNm">2D(자막)</p> -->
-<!-- 						<p class="theater" id="brchNm">원주센트럴/컴포트3관_리클라이너</p> -->
-<!-- 						<p class="date"><span id="playDe">2023.10.30</span><em id="dowNm">(월)</em> <span class="time" id="playTime"><i class="iconset ico-clock-white"></i>17:10~19:23</span></p> -->
+						<img id="payment-img" alt="thumb" src="${pageContext.request.contextPath }/resources/upload/${pro.img_main  }" onerror="defaultImg(this)">
+						<br>
+						<p class="tit">${pro.title }</p>
+						<p class="theater">${pro.category }</p>
 					</div>
 					<div class="price-process">
-<!-- 						<div class="box"><div class="data"><span class="tit">청소년 <em>1</em></span><span class="price">11,000</span></div> -->
-						<div class="box">
-							<div class="data">
-								<span class="tit"></span>
-<%-- 								<span class="tit">${param.allTickets }</span> --%>
-							</div>
-							<!--
-							<div class="data">
-								<span class="tit">일반 <em>1</em></span>
-								<span class="price">20,000</span>
-							</div>
-
-							<div class="data">
-								<span class="tit">어린이 <em>2</em></span>
-								<span class="price">6,000</span>
-							</div>
-							-->
-							<div class="all">
-								<span class="tit">금액 <!-- 금액 --></span>
-								<span class="price"><em>${param.moneySum }</em> <span>원 <!-- 원 --></span></span>
-							</div>
-						</div>
-
-<!-- 						<div class="box discout-box"> -->
-
-<!-- 							<div class="all"> -->
-<!-- 								<span class="tit">할인적용 할인적용</span> -->
-<!-- 								<span class="price"><em>0</em> 원 원</span> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
 					</div>
-
 					<div class="pay-area">
-<!-- 						<div class="add-thing"> -->
-<!-- 							<p class="tit">추가차액 추가금액</p> -->
-
-<!-- 							<div class="money">0</div> -->
-<!-- 						</div> -->
 						<div class="pay">
-							<p class="tit">최종결제금액 <!-- 최종결제금액 --></p>
-
+							<p class="tit">최종결제금액</p>
 							<div class="money">
-								<em>${param.moneySum }</em>
-								<span>원 <!-- 원 --></span>
+								<em>${reward.reward_amount } </em>
+								<span>원</span>
 							</div>
 						</div>
 						<div class="payment-thing">
-							<span class="tit">결제수단 <!-- 결제수단 --></span>
-							<span class="thing">신용/체크카드</span>
+							<span class="tit">결제시작일</span>
+							<span class="thing">계산해서 넣기...</span>
 						</div>
 					</div>
-
 					<div class="btn-group">
 						<a href="javascript:history.back()" class="button" id="btn_booking_back" title="이전">이전</a>
-<!-- 						<button class="button" id="btn_booking_back" title="이전">이전 이전</button> -->
-							
-<!-- 								<a href="#" w-data="600" h-data="400" class="button active btn-modal-open" id="btn_booking_pay" onclick="startPay()" title="결제">결제</a> -->
-<!-- 								<a href="#" w-data="600" h-data="400" class="button active btn-modal-open" id="btn_booking_pay" onclick="requestPay()" title="결제">결제</a> -->
-<!-- 								<a href="javscript:requestPay()" w-data="600" h-data="400" class="button active btn-modal-open" id="btn_booking_pay" title="결제">결제</a> -->
-								<button w-data="600" h-data="400" class="button active btn-modal-open" id="btn_booking_pay" onclick="requestPay()" title="결제">결제</button>
-<!-- 								<button id="kakao">카카오 결제</button> -->
-								
+							<button w-data="600" h-data="400" class="button active btn-modal-open" id="btn_booking_pay" onclick="requestPay()" title="결제">결제</button>
 					</div>
 				</div>
 			</div>
 			<!--// seat-result -->
-			
-			
-				
-					
-					<div class="adbox">
-						<div class="swiper-container payBannerSwiper swiper-container-initialized swiper-container-horizontal">
-							<div class="swiper-wrapper" style="transform: translate3d(-1860px, 0px, 0px); transition-duration: 0ms;"><div class="swiper-slide swiper-slide-duplicate swiper-slide-next swiper-slide-duplicate-prev" data-swiper-slide-index="4" style="width: 310px;">
-										
-											
-												<a href="https://event.thessencard.co.kr/megabox" target="_blank" title="할인혜택 확인하기" classname="eventBtn">
-<!-- 													<img style="width:310px;" src="https://img.megabox.co.kr/SharedImg/cpBanner/2023/10/13/rzyo2JqBMmVulA5blXaXEJkXt3tWmlEH.png" alt=" "> -->
-												</a>
-											
-											
-										
-									</div>
-								
-									<div class="swiper-slide swiper-slide-duplicate-active" data-swiper-slide-index="0" style="width: 310px;">
-										
-											
-												<a href="https://megabox.co.kr/event/detail?eventNo=14234" target="_blank" title="" classname="eventBtn">
-<!-- 													<img style="width:310px;" src="https://img.megabox.co.kr/SharedImg/cpBanner/2023/10/10/PzI6j8DM87lZ4z6O7Z5d2kaeXptwLNjM.png" alt=" "> -->
-												</a>
-											
-											
-										
-									</div>
-								
-									<div class="swiper-slide" data-swiper-slide-index="1" style="width: 310px;">
-										
-											
-												<a href="https://megabox.co.kr/event/detail?eventNo=14164" target="_blank" title="" classname="eventBtn">
-<!-- 													<img style="width:310px;" src="https://img.megabox.co.kr/SharedImg/cpBanner/2023/09/26/3V1MA6zKA8G8V78QXLafxQTmUIvSemDQ.jpg" alt=" "> -->
-												</a>
-											
-											
-										
-									</div>
-								
-									<div class="swiper-slide" data-swiper-slide-index="2" style="width: 310px;">
-										
-											
-											
-												<a href="https://www.megabox.co.kr/event/detail?eventNo=11263" target="_top" title="할인쿠폰 받기" classname="eventBtn">
-<!-- 													<img style="width:310px;" src="https://img.megabox.co.kr/SharedImg/cpBanner/2023/05/12/UBtabkSOoEm1tXZCblLLGAeLKX9Qnkei.jpg" alt=" "> -->
-												</a>
-											
-										
-									</div>
-								
-									<div class="swiper-slide" data-swiper-slide-index="3" style="width: 310px;">
-										
-											
-											
-												<a href="https://www.megabox.co.kr/event/detail?eventNo=13381" target="_top" title="보험료 확인하기" classname="eventBtn">
-<!-- 													<img style="width:310px;" src="https://img.megabox.co.kr/SharedImg/cpBanner/2023/05/30/c43LWLcvVKWG3WZTVUsL3n82n0BXISmE.jpg" alt=" "> -->
-												</a>
-											
-										
-									</div>
-								
-									<div class="swiper-slide swiper-slide-prev swiper-slide-duplicate-next" data-swiper-slide-index="4" style="width: 310px;">
-										
-											
-												<a href="https://event.thessencard.co.kr/megabox" target="_blank" title="할인혜택 확인하기" classname="eventBtn">
-<!-- 													<img style="width:310px;" src="https://img.megabox.co.kr/SharedImg/cpBanner/2023/10/13/rzyo2JqBMmVulA5blXaXEJkXt3tWmlEH.png" alt=" "> -->
-												</a>
-											
-											
-										
-									</div>
-								
-							<div class="swiper-slide swiper-slide-duplicate swiper-slide-active" data-swiper-slide-index="0" style="width: 310px;">
-										
-											
-												<a href="https://megabox.co.kr/event/detail?eventNo=14234" target="_blank" title="" classname="eventBtn">
-<!-- 													<img style="width:310px;" src="https://img.megabox.co.kr/SharedImg/cpBanner/2023/10/10/PzI6j8DM87lZ4z6O7Z5d2kaeXptwLNjM.png" alt=" "> -->
-												</a>
-											
-											
-										
-									</div></div>
-						<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
-						<div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 4"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 5"></span></div>
-					</div>
-					
-					
-				
-			
-
 		</div>
 		<!--// seat-select-section -->
-
 	</div>
 	<!--// quick-reserve -->
 </div>
