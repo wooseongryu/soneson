@@ -88,8 +88,7 @@
 											        <img src="${project.img_main}" alt="프로젝트 커버 이미지">
 											    </c:when>
 											    <c:otherwise>
-											        <img src="${pageContext.request.contextPath }/resources/upload/${project.img_main }" alt="프로젝트 커버 이미지 DB">
-<%-- 											        <img src="${pageContext.request.contextPath }/resources/upload/2023/12/11/79c3f999_esy_bonbon.jpg" alt="프로젝트 커버 이미지 DB"> --%>
+											        <img src="${pageContext.request.contextPath }/resources/upload/${project.img_main}" alt="프로젝트 커버 이미지">
 											    </c:otherwise>
 											</c:choose>
 											

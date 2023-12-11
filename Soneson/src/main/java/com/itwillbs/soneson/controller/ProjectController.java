@@ -532,8 +532,57 @@ public class ProjectController {
 			pro.setPro_profile(subDir + "/" + fileName_profile);
 			isUploadProcess = true;
 		}
+		
+		ProjectVO prevPro = service.selectFileName(pro.getPro_code());
 		int updateCount = service.updateProject(pro);	//최종저장
 		if(updateCount > 0) {
+			
+			if(isUploadProcess) {
+				try {
+					// 파일명이 존재하는 파일만 이동 처리 수행
+					if(!fileName_thumbsnail.equals("")) {
+						p_thumb.transferTo(new File(saveDir,fileName_thumbsnail));
+					} 
+					if(!fileName_content.equals("")) {
+						p_content.transferTo(new File(saveDir,fileName_content));
+					} 
+					if(!fileName_budget.equals("")) {
+						p_budget.transferTo(new File(saveDir,fileName_budget));
+					} 
+					if(!fileName_sch.equals("")) {
+						p_sch.transferTo(new File(saveDir,fileName_sch));
+					} 
+					if(!fileName_team.equals("")) {
+						p_team.transferTo(new File(saveDir,fileName_team));
+					} 
+					if(!fileName_reward.equals("")) {
+						p_reward.transferTo(new File(saveDir,fileName_reward));
+					} 
+					if(!fileName_profile.equals("")) {
+						p_profile.transferTo(new File(saveDir,fileName_profile));
+					} 
+				} catch (IllegalStateException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+				String uploadPath = "resources/upload";
+				try {
+					String realPath = session.getServletContext().getRealPath(uploadPath);
+					Path path = Paths.get(realPath + "/" + prevPro.getPro_thumbsnail());
+					Files.deleteIfExists(path);
+					
+					path = Paths.get(realPath + "/" + prevPro.getPro_content());
+					Files.deleteIfExists(path);
+					
+					path = Paths.get(realPath + "/" + prevPro.getPro_budget());
+					Files.deleteIfExists(path);
+					
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 			
 			//project테이블에 저장
 			int insertCount = service.insertProject(pro.getPro_code());
