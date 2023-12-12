@@ -134,6 +134,71 @@
     		});
 		}
 		
+		function userSupportProject(id) {
+			$.ajax({
+    			type: 'post',
+    			// TODO
+    			// 수정 필요
+    			url: 'userUploadProject',
+    			dataType: 'json',
+    			success: function(resp) {
+    				reset_screen(id);
+    				
+    				let	contentStr =
+    						  '<section class="product-page spad">                  '                                                                                                          
+    						+ '	<div class="container">                             '                                                                                                          
+    					    + '     <div class="row">                               '                                                                                                          
+    						+ '			<div class="col-lg-12">                     '                                                                                                          
+    						+ '				<div class="product__page__content">    '                                                                                                          
+                            + '					<div class="row">                   '                                                                                                          
+                            ;
+    					    
+    				for (project of resp) {
+    					contentStr +=
+    						  '                     <div class="col-lg-4 col-md-6 col-sm-6" style="">                                                                                                 '
+    					    + '                         <div class="product__item">                                                                                                                   '
+    					    + '								<a href="projectDetail?project_code=' + project.project_code + '">																																'
+    					    + '                                 <div class="product__item__pic set-bg" data-setbg="' + project.img_main + '" 		 '
+    					    + '										style="background-image: url(\'' + project.img_main + '\')"></div>			 '
+    					    + '								</a>																																		'
+    					    + '                             <div class="product__item__text">                                                                                                         '
+    					    + '                                 <ul>                                                                                                                                  '
+    					    + '                                     <li>' + project.category + '</li>                                                                                                              '
+    					    + '                                 </ul>                                                                                                                                 '
+    					    + '                                 <h5 style="margin-bottom: 7px;">                                                                                                      '
+    					    + '                                 <a href="projectDetail?project_code=' + project.project_code + '">                                                                                                                         '
+    					    + 										project.title
+    					    + '                                 </a>                                                                                                                                 '
+    					    + '                                 </h5>                                                                                                                                 '
+    					    + '                                 <h6>' + project.subtitle + '</h6>                                                    '
+    					    + '                                 <ul style="margin-top: 15px">                                                                                                         '
+    					    + '                                     <li>' + project.rate + '%</li>                                                                                                                    '
+    					    + '                                     <li>' + project.total + '원</li>                                                                                                              '
+    					    + '                                     <li style="float: right">' + project.d_day + '</li>                                                                                           '
+    					    + '                                 </ul>                                                                                                                                 '
+    					    + ' 							</div>                                                                                                                                    '
+    					    + ' 						</div>                                                                                                                                        '
+    					    + ' 					</div>                                                                                                                                            '
+    						;
+					}
+    				
+    				contentStr +=
+    					  ' 				</div>       '                                                                                                                                    
+					    + ' 			</div>           '                                                                                                                                    
+					    + ' 		</div>               '                                                                                                                                    
+						+ ' 	</div>                   '                                                                                                                                    
+					    + ' </div>                       '                                                                                                                                    
+						+ '</section>                    '                                                                                                                                    
+    					;
+						
+					$("#user_content").append(contentStr);
+    			},
+    			error: function() {
+    				alert("에러!");
+    			}
+    		});
+		}
+		
 		function userFollower(id) {
 			let btnString = '';
 			let contentStr = '';
@@ -447,8 +512,8 @@
 										<div class="user_top_cate" id="topUploadProject">
 											<h5 onclick="userUploadProject('topUploadProject')">올린프로젝트</h5>
 										</div>
-										<div class="user_top_cate">	
-											<h5>후원한프로젝트</h5>
+										<div class="user_top_cate" id="topsupportProject">	
+											<h5 onclick="userSupportProject('topsupportProject')">후원한프로젝트</h5>
 										</div>
 										<div class="user_top_cate" id="topFollower">	
 											<h5 onclick="userFollower('topFollower')">팔로워</h5>
