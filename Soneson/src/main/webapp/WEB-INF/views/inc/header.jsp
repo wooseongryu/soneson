@@ -102,7 +102,8 @@ ul {
 								<!-- 박훈나 임시추가 -->
 								<a href="fundingPaymentForm">
 									<span class="">
-									<span class="">임시 결제페이지</span>
+									<span class="">임</span>
+<!-- 									<span class="">임시 결제페이지</span> -->
 										<span class="HeaderUserProfile_bar__1OPU2"></span>
 									</span>
 								</a>
