@@ -494,11 +494,17 @@
 			, subtitle
 			, category
 			, img_main
-			, end_date
-			, goal_amount
-			, (SELECT sum(cost)
-				FROM fund
-				WHERE project_code = p.project_code) AS total
+			, CASE
+				WHEN (DATEDIFF(end_date, now()) >= 0) THEN CONCAT(DATEDIFF(end_date, now()), '일 남음')
+				WHEN (DATEDIFF(end_date, now()) = 0) THEN '오늘 종료'
+		        ELSE '종료 됨'
+			  END AS d_day
+			, IFNULL((SELECT sum(cost)
+						FROM fund
+						WHERE project_code = p.project_code), 0) AS total
+			, IFNULL(TRUNCATE((SELECT sum(cost)
+								FROM fund
+								WHERE project_code = p.project_code) / goal_amount * 100, 0), 0) AS rate
 		FROM project p
 		LEFT JOIN fund f
 		ON p.project_code = f.project_code
