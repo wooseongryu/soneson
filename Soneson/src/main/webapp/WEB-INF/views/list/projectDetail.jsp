@@ -594,9 +594,9 @@
 															</ul>
 															
 															<!-- 1212 추가 -->
-															<button class=>
-															후원
-															</button>
+<!-- 															<button class=> -->
+<!-- 															후원 -->
+<!-- 															</button> -->
 															<input type="submit">
 															
 															<div class="RewardCard__DeliveryDate-sc-11jni8b-16 cxeoGo"></div>

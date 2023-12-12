@@ -69,7 +69,8 @@ public class ProjectListController {
 	@GetMapping("projectDetail")
 	public String projectDetail(Model model, @RequestParam int project_code) {
 		System.out.println("projectDetailController - projectDetail()");
-		
+	
+		// 정책 <br> 넣기
 		Map<String, Object> project = service.selectProject(project_code);
 		System.out.println("정책: " + project.get("policy"));
 		
