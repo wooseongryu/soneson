@@ -92,7 +92,7 @@
     					contentStr +=
     						  '                     <div class="col-lg-4 col-md-6 col-sm-6" style="">                                                                                                 '
     					    + '                         <div class="product__item">                                                                                                                   '
-    					    + '								<a href="#">																																'
+    					    + '								<a href="projectDetail?project_code=' + project.project_code + '">																																'
     					    + '                                 <div class="product__item__pic set-bg" data-setbg="' + project.img_main + '" 		 '
     					    + '										style="background-image: url(\'' + project.img_main + '\')"></div>			 '
     					    + '								</a>																																		'
@@ -101,7 +101,7 @@
     					    + '                                     <li>' + project.category + '</li>                                                                                                              '
     					    + '                                 </ul>                                                                                                                                 '
     					    + '                                 <h5 style="margin-bottom: 7px;">                                                                                                      '
-    					    + '                                 <a href="#">                                                                                                                         '
+    					    + '                                 <a href="projectDetail?project_code=' + project.project_code + '">                                                                                                                         '
     					    + 										project.title
     					    + '                                 </a>                                                                                                                                 '
     					    + '                                 </h5>                                                                                                                                 '
@@ -209,6 +209,11 @@
     					return;
     				}
     				
+    				if (!resp.isSuccess) {
+    					alert("팔로우 실패!");
+    					return;
+    				}
+    				
     				let divBtnId = "followerBtn_" + uId;
     				let divCnt = "followerCnt_" + uId;
     				
@@ -240,6 +245,11 @@
     				if (!resp.isLogin) {
     					alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
     					location.href="login";
+    					return;
+    				}
+    				
+    				if (!resp.isSuccess) {
+    					alert("팔로우 해제 실패!");
     					return;
     				}
     				
