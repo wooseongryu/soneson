@@ -2006,3 +2006,27 @@ footer {
 /* 	height: 200px; */
 /* 	1212 추가 */
 }
+
+.cfXECD:hover {
+	border: 1px solid black; 	
+}
+
+/* 리워드 선택에 따라 1212 */
+
+/* .gcTNai { */
+/*     transition: all 0.4s ease-out 0s; */
+/*     opacity: 0; */
+/*     left: 100%; */
+/*     width: 100%; */
+/*     position: absolute; */
+/*     overflow-x: hidden; */
+/* } */
+
+/* .ehQhai { */
+/*     transition: all 0.4s ease-out 0s; */
+/*     opacity: 1; */
+/*     left: 0%; */
+/*     width: 100%; */
+/*     position: absolute; */
+/*     overflow-x: hidden; */
+/* } */
