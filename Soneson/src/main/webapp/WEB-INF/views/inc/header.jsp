@@ -55,6 +55,52 @@ ul {
 /*     box-sizing: border-box; */
 /* } */
 
+.hd_dropdown{
+  position : relative;
+  display : inline-block;
+}
+
+.hd_dropbtn_icon{
+  font-family : 'Material Icons';
+}
+.hd_dropbtn{
+  border : 2px solid rgba(0,0,0,0.1);
+  border-radius : 4px;
+  background-color: white;
+  font-weight: 400;
+  color : rgb(37, 37, 37);
+  padding : 10px;
+  width :100px;
+  text-align: center;
+  cursor : pointer;
+  font-size : 12px;
+}
+.hd_dropdown-content{
+  display : none;
+  position : absolute;
+  z-index : 1; /*다른 요소들보다 앞에 배치*/
+  font-weight: 300;
+  background-color: #f9f9f9;
+  min-width : 100px;
+}
+
+.hd_dropdown-content a{
+  display : block;
+  text-decoration : none;
+  color : rgb(37, 37, 37);
+  font-size: 12px;
+  padding : 12px 20px;
+}
+
+.hd_dropdown-content a:hover{
+  background-color : #ececec
+}
+
+.hd_dropdown:hover .hd_dropdown-content {
+  display: block;
+}
+
+
 </style>
 
 </head>
@@ -124,10 +170,21 @@ ul {
 										</a>
 									</c:when>
 									<c:otherwise>
-										<span class="HeaderUserProfile_ellipsis__1iBvz"><a href="user?id=${sessionScope.sId }">${sessionScope.sId } 님</a></span>
-										<span class="HeaderUserProfile_bar__1OPU2"></span>
-										<a href="javascript:logout()">로그아웃</a>
-										 
+<%-- 										<span class="HeaderUserProfile_ellipsis__1iBvz"><a href="user?id=${sessionScope.sId }">${sessionScope.sId } 님</a></span> --%>
+<!-- 										<span class="HeaderUserProfile_bar__1OPU2"></span> -->
+<!-- 										<a href="javascript:logout()">로그아웃</a> -->
+										 <div class="hd_dropdown">
+											<button class="hd_dropbtn"> 
+												${picture }
+												<span class="hd_dropbtn_icon">${sessionScope.sId }</span>
+											</button>
+											<div class="hd_dropdown-content">
+												<a href="user?id=${sessionScope.sId }">마이페이지</a>
+												<a href="oneToOneQna">1:1문의</a>
+												<a href="">문의내역</a>
+												<a href="javascript:logout()">로그아웃</a>
+											</div>
+										</div>
 									</c:otherwise>
 								</c:choose>
 							</div>
