@@ -166,6 +166,9 @@ public interface UserMapper {
 
 	// 팔로잉
 	List<Map<String, String>> selectUserFollowing(String user_id);
+
+	// 유저 올린 프로젝트
+	List<Map<String, String>> selectUploadProjects();
 }
 
 

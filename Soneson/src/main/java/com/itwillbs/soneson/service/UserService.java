@@ -349,6 +349,13 @@ public class UserService {
 		
 		return mapper.selectUserFollowing(user_id);
 	}
+
+	// 유저 올린 프로젝트
+	public List<Map<String, String>> selectUploadProjects() {
+		System.out.println("UserService - selectUploadProjects()");
+		
+		return mapper.selectUploadProjects();
+	}
 	
 }
 
