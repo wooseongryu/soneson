@@ -138,7 +138,7 @@
 			}
 			
 			if (content.length > 20) {
-		        $(this).val($(this).val().substring(0, 32));
+		        $(this).val($(this).val().substring(0, 20));
 		        alert('글자수는 20자까지 입력 가능합니다.');
 		    };
 			

@@ -135,6 +135,20 @@ button {
     padding: 0px 24px;
     cursor: pointer;
 }
+
+.projectItem-form {
+	display: flex;
+    justify-content: space-between;
+/*     width: 630px; */
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.authInfo-addBtn {
+	justify-content: right;
+    display: flex;
+}
+
 /*==============================  */
 html {
     -webkit-text-size-adjust: 100%

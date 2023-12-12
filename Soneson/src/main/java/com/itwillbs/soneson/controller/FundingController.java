@@ -12,13 +12,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.itwillbs.soneson.service.BankApiClient;
 import com.itwillbs.soneson.service.FundingService;
+import com.itwillbs.soneson.service.ProjectService;
 import com.itwillbs.soneson.vo.FundingVO;
 import com.itwillbs.soneson.vo.ProjectVO;
+import com.itwillbs.soneson.vo.ResponseUserInfoVO;
 @Controller
 public class FundingController {
 	@Autowired
 	private FundingService service;
+	
+	@Autowired
+	private BankApiClient bankApiClient;
+	
+	@Autowired
+	private ProjectService projectservice;
 	
 	/*====================================================================
 	 * 후원 관련 세부 페이지
@@ -96,6 +105,16 @@ public class FundingController {
 		
 		//유저배송정보
 		Map<String, String> user = service.selectUser(sId);
+		//핀테크 정보
+		Map<String, String> fintechInfo = projectservice.selectToken(sId);
+		
+		if(!(fintechInfo == null) && fintechInfo.get("access_token") != null) {
+			System.out.println("토큰있음!!!!!!!!!!!!!!!!!!");
+			ResponseUserInfoVO userInfo = bankApiClient.requestUserInfo(fintechInfo);
+			model.addAttribute("userInfo", userInfo);
+			System.out.println(">>>>>><<<<<<" + userInfo);
+		} 
+		
 		
 		System.out.println("프로젝트 정보 >>>>>>>" + map);
 		System.out.println("선택 리워드 정보 >>>>>>>" + reward);
@@ -104,6 +123,7 @@ public class FundingController {
 		model.addAttribute("pro", map);
 		model.addAttribute("reward", reward);
 		model.addAttribute("user", user);
+		model.addAttribute("fintechInfo", fintechInfo);
 		
 		return "payment/stepPay";
 	}

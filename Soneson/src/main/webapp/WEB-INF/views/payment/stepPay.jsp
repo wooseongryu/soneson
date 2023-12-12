@@ -19,6 +19,94 @@ function defaultImg(tagId) {
 	$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/project/default.png');
 }
 
+//계좌등록
+function authAccountCreator() {
+	let requestUri = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
+		+ "response_type=code"
+		+ "&client_id=4066d795-aa6e-4720-9383-931d1f60d1a9"
+		+ "&redirect_uri=http://localhost:8081/soneson/callback"
+//			+ "&scope=login inquiry transfer oob"
+		+ "&scope=login inquiry transfer"
+		+ "&state=12345678901234567890123456789012"
+		+ "&auth_type=0";
+	window.open(requestUri, "authWindow", "width=600, height=800");	
+	
+	
+	//등록을 하고 꺼지면 여기서 계속 이어나갈 수 가 있나??
+	//controller에서 session에 저장되니까 그 값을 가지고 getAuthAccount(access_token, user_seq_no); 바로 호출하고싶음
+	
+}
+
+//새로 만들 함수
+let access_token = "";
+let user_seq_no = "";
+function selectAuthInfo() {
+	
+	access_token = "${sessionScope.access_token}";
+	user_seq_no = "${sessionScope.user_seq_no}";
+	getAuthAccount(access_token, user_seq_no);
+	
+}
+
+
+function getAuthAccount(access_token, user_seq_no) {
+//		debugger;
+	console.log("access_token: " + access_token);
+	console.log("user_seq_no: " + user_seq_no);
+//		console.log(access_token + ", " + user_seq_no);
+	$.ajax({
+		type: "GET",
+		url: "selectAccountInfo",
+		data: {
+			"access_token": access_token,
+			"user_seq_no": user_seq_no
+		},
+		dataType: "json",
+		success: function(data) {
+//				console.log(data);
+			let infoList = data.res_list;
+			let str = "";
+			$("#funding-authAccountInfo").empty();
+			str += '<div class="authInfo-addBtn">'
+			str += 		'<button class="authInfoBtn" type="button" onclick="authAccountCreator()">계좌 추가 등록</button>'
+			str += '</div>'
+			str += '<input type="hidden" name="user_name" value=" ' + data.user_name + ' ">'
+			
+			for(info of infoList) {
+				console.log(info);
+				str += '<label for="accountVal' + info.fintech_use_num + '">'
+				str += '<input type="radio" id="accountVal' + info.fintech_use_num + '" class="account-radioBtn" name="pro_userAuth" value="' + info.fintech_use_num + '">'
+				str += 		'<div class="authInfo-writeDIv">'
+				str += 			'<div class="userAuth-info">'
+				str += 				'<div class="user-authInfo">'
+				str += 					'<h6>'
+// 				str += 						'<i class="bi bi-coin"></i>&emsp;'
+				str += 						info.account_holder_name
+				str += 					'</h6>'
+				str += 				'</div>'
+				str += 			'</div>'
+				str += 			'<div>'
+				str += 				'<p>'
+				str += 					info.bank_name + '&emsp;' + info.account_num_masked
+				str += 				'</p>'
+				str += 			'</div>'
+				str += 		 '</div>'
+				str += '</label>'
+			}
+			
+			$("#funding-authAccountInfo").append(str);
+			
+			
+			
+		},
+		error:function(request, status, error){
+			console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});//ajax끝
+	
+	
+}
+
 </script>
     
 
@@ -191,31 +279,35 @@ function defaultImg(tagId) {
 					<h3 class="tit small">결제계좌 선택</h3>
 				</div>
 				<!-- 나중에 if문 안에 넣을 div  -->
-				<!-- 내일 핀테크 정보 받아오기 -->
+				<!-- 내일 핀테크 정보 받아오기 테이블 만들고 name 다시 바꿔야함 위에 ajax에도 -->
+					<div class="projectItem-form"  id="funding-authAccountInfo">
 						<input type="hidden" name="user_name" value="${userInfo.user_name }">
+						<div class="authInfo-addBtn">
 							<button class="authInfoBtn" type="button" onclick="authAccountCreator()">계좌 추가 등록</button>
-							<c:forEach var="auth" items="${userInfo.res_list }">
-								<label for="accountVal${auth.fintech_use_num }">
-									<input type="radio" id="accountVal${auth.fintech_use_num }" class="account-radioBtn" name="pro_userAuth" value="${auth.fintech_use_num}"<c:if test="${pro.pro_userAuth eq auth.fintech_use_num }">checked</c:if>>
-									<div class="authInfo-writeDIv">
-										<div class="userAuth-info">
-											<div class="user-authInfo">
-												<h5>
-													<i class="bi bi-coin"></i>&emsp;${auth.account_holder_name }
-												</h5>
-											</div>
-										</div>
-										<div>
-											<p>
-												${auth.bank_name }&emsp;${auth.account_num_masked }
-											</p>
+						</div>
+						<c:forEach var="auth" items="${userInfo.res_list }">
+							<label for="accountVal${auth.fintech_use_num }">
+								<input type="radio" id="accountVal${auth.fintech_use_num }" class="account-radioBtn" name="pro_userAuth" value="${auth.fintech_use_num}"<c:if test="${pro.pro_userAuth eq auth.fintech_use_num }">checked</c:if>>
+								<div class="authInfo-writeDIv">
+									<div class="userAuth-info">
+										<div class="user-authInfo">
+											<h6>
+												${auth.account_holder_name }
+											</h6>
 										</div>
 									</div>
-								</label>
-							</c:forEach>
+									<div>
+										<p>
+											${auth.bank_name }&emsp;${auth.account_num_masked }
+										</p>
+									</div>
+								</div>
+							</label>
+						</c:forEach>
+					</div>
 					<!-- //div 끝 -->		
 				<c:choose>
-					<c:when test="">
+					<c:when test="${not empty fintechInfo.access_token }">
 					</c:when>
 					<c:otherwise>
 						<div class="authInfo-writeDIv">
