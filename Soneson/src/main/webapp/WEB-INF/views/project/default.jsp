@@ -176,7 +176,7 @@ $(function() {
 	
 	//onsubmit
 	function checkNull() {
-		debugger;
+// 		debugger;
 		let pro_categorie = $("#pro_categorie").val();
 		let pro_title = $("#pro_title").val();
 		let pro_summary = $("#pro_summary").val();

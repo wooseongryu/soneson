@@ -1,5 +1,6 @@
 package com.itwillbs.soneson.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -105,8 +106,14 @@ public class FundingController {
 		
 		//유저배송정보
 		Map<String, String> user = service.selectUser(sId);
+		
+		//유저배송지목록
+		List<Map<String, String>> addressList = service.selectAddress(sId);
+		
 		//핀테크 정보
 		Map<String, String> fintechInfo = projectservice.selectToken(sId);
+		
+		
 		
 		if(!(fintechInfo == null) && fintechInfo.get("access_token") != null) {
 			System.out.println("토큰있음!!!!!!!!!!!!!!!!!!");
@@ -123,14 +130,11 @@ public class FundingController {
 		model.addAttribute("pro", map);
 		model.addAttribute("reward", reward);
 		model.addAttribute("user", user);
+		model.addAttribute("addressList", addressList);
 		model.addAttribute("fintechInfo", fintechInfo);
 		
 		return "payment/stepPay";
 	}
-	
-	
-	
-	
 	
 	
 	

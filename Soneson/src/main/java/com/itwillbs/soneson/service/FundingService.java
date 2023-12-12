@@ -1,5 +1,6 @@
 package com.itwillbs.soneson.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,10 @@ public class FundingService {
 	//유저 배송정보
 	public Map<String, String> selectUser(String sId) {
 		return mapper.selectUser(sId);
+	}
+
+
+	public List<Map<String, String>> selectAddress(String id) {
+		return mapper.selectAddress(id);
 	}
 }

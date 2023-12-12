@@ -5,9 +5,12 @@
 <mapper namespace="com.itwillbs.soneson.mapper.FundingMapper">
 	<!-- 해당 프로젝트 정보 -->
 	<select id="selectproject" resultType="map">
-		SELECT title
+		SELECT project_code
+				, title
 				, category
 				, img_main
+				, SUBSTRING_INDEX(end_date , ' ', 1) AS end_date
+				,
 		FROM project  
 		WHERE project_code = #{pro_code}
 	</select>
@@ -29,6 +32,7 @@
 	<select id="selectUser" resultType="map">
 		SELECT user_phone
 				, user_email
+				, address_idx
 				, address_code 
 				, address_main 
 				, address_sub
@@ -40,5 +44,16 @@
 		LIMIT 1
 	</select>
 
+	<!-- 유저배송목록 -->
+	<select id="selectAddress">
+		SELECT address_idx 
+				, address_reciver 
+				, address_code 
+				, address_main 
+				, address_sub 
+				, address_reciver_phone 
+		FROM address
+		WHERE user_id = #{sId}
+	</select>
 
 </mapper>

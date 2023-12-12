@@ -1,5 +1,6 @@
 package com.itwillbs.soneson.mapper;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -23,5 +24,8 @@ public interface FundingMapper {
 
 	//유저 배송정보
 	Map<String, String> selectUser(String sId);
+
+
+	List<Map<String, String>> selectAddress(String id);
 
 }

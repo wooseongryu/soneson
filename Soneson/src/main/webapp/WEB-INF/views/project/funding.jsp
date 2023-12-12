@@ -89,11 +89,15 @@
 			endDt = new Date("${pro.pro_endDt}");
 		
 			let fundingDays = Math.round((endDt - startDt) / 1000 / 60 / 60 / 24);
-			let paymentDt = endDt.getFullYear() + "-" + endDt.getMonth() + "-" + (endDt.getDate() + 7);
-			let calculateDt = endDt.getFullYear() + "-" + endDt.getMonth() + "-" + (endDt.getDate() + 14);
+// 			let paymentDt = endDt.getFullYear() + "-" + endDt.getMonth() + "-" + (endDt.getDate() + 7);
+// 			let calculateDt = endDt.getFullYear() + "-" + endDt.getMonth() + "-" + (endDt.getDate() + 14);
+			let paymentDt = new Date(endDt.setDate(endDt.getDate() + 7));
+			let calculateDt = new Date(endDt.setDate(endDt.getDate() + 7));
 			$("#fundingDays").text(fundingDays);
-			$("#paymentDt").text(paymentDt);
-			$("#calculateDt").text(calculateDt);
+			$("#paymentDt").text(String(paymentDt.toISOString().slice(0,10)));
+			$("#calculateDt").text(String(calculateDt.toISOString().slice(0,10)));
+// 			$("#paymentDt").text(paymentDt);
+// 			$("#calculateDt").text(calculateDt);
 			
 		};
 		
