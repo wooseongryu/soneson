@@ -60,11 +60,6 @@ public class UserController {
 		}
 		
 		String sId = (String)session.getAttribute("sId");
-		if (sId == null) {
-			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
-			model.addAttribute("targetURL", "login");
-			return "forward";
-		}
 		
 		map.put("sId", sId);
 		map.put("id", id);
@@ -77,8 +72,6 @@ public class UserController {
 			map.put("isOwn", "true");
 		}
 		
-//		System.out.println("--" + map);
-		
 		return "mypage/user/user_main";
 	}
 	
@@ -90,7 +83,8 @@ public class UserController {
 		String sId = (String)session.getAttribute("sId");
 		if (sId == null) {
 			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
-			return "fail_back";
+			model.addAttribute("targetURL", "login");
+			return "forward";
 		}
 		
 		map.put("sId", sId);
