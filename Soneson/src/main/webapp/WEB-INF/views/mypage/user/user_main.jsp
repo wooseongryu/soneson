@@ -70,48 +70,6 @@
     			}
     		});
     	}
-
-// 		function userProjectReview(id) {
-//     		$.ajax({
-//     			type: 'post',
-//     			url: 'userProfileProjectReview',
-//     			dataType: 'json',
-//     			success: function(resp) {
-//     				reset_screen(id);
-					
-// 					$("#user_content").append(
-// 						'<div class="row">'
-// 						+ 	'<div class="col-lg-4 col-md-4 col-sm-6" style="margin-bottom: 10px">'
-// 						+ 	    '<div class="product__page__filter">'
-// 						+ 	        '<select>'
-// 						+ 				'<option value="">모든 프로젝트</option>'
-// 						+ 				'<option value="">웹툰, 일러스트를 위한 [화려한 꽃 브러쉬Set]</option>'
-// 						+ 				'<option value="">10-501</option>'
-// 						+ 	        '</select>'
-// 						+ 	    '</div>'
-// 						+ 	'</div>'
-// 						+ '</div>'
-						
-// 						+ '<div class="anime__details__review">'
-// 						+ 	'<div class="anime__review__item">'
-//                         + 		'<div class="anime__review__item__text" id="project_review_content">'
-// 	                    +     		'<h6>Chris Curry</h6>'
-// 	        			+ 			'<p>whachikan Just noticed that someone categorized this as belonging to the genre demons" LOL</p>'
-// 	        			+ 			'<div class="review_product_title">'
-// 	        			+ 				'<p>웹툰, 일러스트를 위한 [화려한 꽃 브러쉬Set]</p>'
-// 	        			+ 			'</div>'
-// 	        			+ 			'<p>2022.05.25<p>'
-// 						+ 		'</div>'
-//                     	+ 	'</div>'
-//                     	+ '</div>'
-//     				);		
-    				
-//     			},
-//     			error: function() {
-//     				alert("에러!");
-//     			}
-//     		});
-//     	}
 		
 		function userUploadProject(id) {
 			$.ajax({
@@ -131,9 +89,6 @@
                             ;
     					    
     				for (project of resp) {
-    					console.log(project);
-    					console.log("------------");
-    					
     					contentStr +=
     						  '                     <div class="col-lg-4 col-md-6 col-sm-6" style="">                                                                                                 '
     					    + '                         <div class="product__item">                                                                                                                   '

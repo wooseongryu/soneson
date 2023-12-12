@@ -214,13 +214,9 @@ public class UserController {
 	public String userUploadProject() {
 		System.out.println("UserController - userUploadProject()");
 		
-		System.out.println("----------------");
 		// TODO
 		// 모든 프로젝트 불러오는 중... 해당 유저의 프로젝트만 가져오도록 수정 필요.
 		List<Map<String, String>> map = userService.selectUploadProjects();
-		
-		System.out.println(")))))");
-		System.out.println(map);
 		
 		return gson.toJson(map);
 	}
