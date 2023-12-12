@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 import com.itwillbs.soneson.service.UserService;
 import com.itwillbs.soneson.vo.AddressVO;
 import com.itwillbs.soneson.vo.MyQuestionVO;
+import com.itwillbs.soneson.vo.ProjectVO;
 import com.itwillbs.soneson.vo.UserVO;
 
 @Controller
@@ -60,11 +61,6 @@ public class UserController {
 		}
 		
 		String sId = (String)session.getAttribute("sId");
-		if (sId == null) {
-			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
-			model.addAttribute("targetURL", "login");
-			return "forward";
-		}
 		
 		map.put("sId", sId);
 		map.put("id", id);
@@ -77,8 +73,6 @@ public class UserController {
 			map.put("isOwn", "true");
 		}
 		
-//		System.out.println("--" + map);
-		
 		return "mypage/user/user_main";
 	}
 	
@@ -90,7 +84,8 @@ public class UserController {
 		String sId = (String)session.getAttribute("sId");
 		if (sId == null) {
 			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
-			return "fail_back";
+			model.addAttribute("targetURL", "login");
+			return "forward";
 		}
 		
 		map.put("sId", sId);
@@ -148,10 +143,10 @@ public class UserController {
 		
 		int deleteCount = userService.deleteFollow(map);
 		
-//		if (deleteCount == 0) {
-//			model.addAttribute("msg", "팔로우 해제 실패!");
-//			return "fail_back";
-//		}
+		if (deleteCount == 0) {
+			return gson.toJson(map);
+		}
+		map.put("isSuccess", "true");
 		
 		int followerCnt = userService.countFollower(user_id);
 		
@@ -177,10 +172,10 @@ public class UserController {
 		
 		int insertCount = userService.insertFollow(map);
 		
-//		if (insertCount == 0) {
-//			model.addAttribute("msg", "팔로우 실패!");
-//			return "fail_back";
-//		}
+		if (insertCount == 0) {
+			return gson.toJson(map);
+		}
+		map.put("isSuccess", "true");
 		
 		int followerCnt = userService.countFollower(user_id);
 		
@@ -213,7 +208,12 @@ public class UserController {
 	@PostMapping("userUploadProject")
 	public String userUploadProject() {
 		System.out.println("UserController - userUploadProject()");
-		return "1";
+		
+		// TODO
+		// 모든 프로젝트 불러오는 중... 해당 유저의 프로젝트만 가져오도록 수정 필요.
+		List<Map<String, String>> map = userService.selectUploadProjects();
+		
+		return gson.toJson(map);
 	}
 	
 	// 팔로워
@@ -234,11 +234,6 @@ public class UserController {
 		System.out.println("UserController - isFollowing()");
 		
 		String sId = (String)session.getAttribute("sId");
-//		if (sId == null) {
-//			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
-//			model.addAttribute("targetURL", "login");
-//			return "forward";
-//		}
 		
 		map.put("sId", sId);
 		map.put("id", user_id);
@@ -505,7 +500,6 @@ public class UserController {
 		int updateCount = userService.updatePassword(user);
 		
 		if (updateCount < 0) {
-			System.out.println("비번 변경 실패");
 			return "false";
 		}
 		
@@ -576,7 +570,6 @@ public class UserController {
 		int updateCount = userService.updateKakaoStatus(sId);
 		
 		if (updateCount == 0) {
-//			map.put("isSuccess", "false");
 			return gson.toJson(map);
 		}
 		
@@ -647,7 +640,6 @@ public class UserController {
 		return "1";
 	}
 	
-	// TODO
 	// 유저 설정 계정 배송지 초기 출력 화면
 	@ResponseBody
 	@PostMapping("settingUserAddress")
@@ -786,6 +778,11 @@ public class UserController {
 		System.out.println("UserController - userProjectsAlarm()");
 		return "1";
 	}
+	
+	
+	
+	
+	
 	
 	
 	

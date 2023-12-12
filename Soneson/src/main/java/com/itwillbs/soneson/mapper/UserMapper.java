@@ -175,6 +175,8 @@ public interface UserMapper {
 
 	// 1대1문의보기
 	MyQuestionVO selectUserAnswer(String myQuestion_num);
+	// 유저 올린 프로젝트
+	List<Map<String, String>> selectUploadProjects();
 }
 
 
