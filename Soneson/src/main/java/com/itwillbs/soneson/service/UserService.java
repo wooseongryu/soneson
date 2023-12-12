@@ -1,5 +1,6 @@
 package com.itwillbs.soneson.service;
 
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.soneson.mapper.UserMapper;
 import com.itwillbs.soneson.vo.AddressVO;
 import com.itwillbs.soneson.vo.AuthInfoVO;
+import com.itwillbs.soneson.vo.MyQuestionVO;
 import com.itwillbs.soneson.vo.UserVO;
 
 
@@ -349,6 +351,18 @@ public class UserService {
 		
 		return mapper.selectUserFollowing(user_id);
 	}
+
+	
+	
+	// 1대1 문의 내역
+	public List<MyQuestionVO> selectUserOTO(String sId) {
+		return mapper.selectUserOTO(sId);
+	}
+
+	public MyQuestionVO selectUserAnswer(String myQuestion_num) {
+		return mapper.selectUserAnswer(myQuestion_num);
+	}
+
 	
 }
 

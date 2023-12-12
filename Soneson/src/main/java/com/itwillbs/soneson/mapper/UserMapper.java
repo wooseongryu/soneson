@@ -1,5 +1,6 @@
 package com.itwillbs.soneson.mapper;
 
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.soneson.vo.AddressVO;
 import com.itwillbs.soneson.vo.AuthInfoVO;
+import com.itwillbs.soneson.vo.MyQuestionVO;
 import com.itwillbs.soneson.vo.UserVO;
 
 
@@ -166,6 +168,13 @@ public interface UserMapper {
 
 	// 팔로잉
 	List<Map<String, String>> selectUserFollowing(String user_id);
+
+	
+	// 1대1문의 
+	List<MyQuestionVO> selectUserOTO(String sId);
+
+	// 1대1문의보기
+	MyQuestionVO selectUserAnswer(String myQuestion_num);
 }
 
 

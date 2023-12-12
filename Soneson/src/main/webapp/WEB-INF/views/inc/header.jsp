@@ -181,7 +181,7 @@ ul {
 											<div class="hd_dropdown-content">
 												<a href="user?id=${sessionScope.sId }">마이페이지</a>
 												<a href="oneToOneQna">1:1문의</a>
-												<a href="">문의내역</a>
+												<a href="userSelectOTO">문의내역</a>
 												<a href="javascript:logout()">로그아웃</a>
 											</div>
 										</div>

@@ -486,5 +486,22 @@
 							FROM follow
 							WHERE user_id = #{user_id});
 	</select>
+
+
+
+
+	<select id="selectUserOTO" resultType="MyQuestion">
+		SELECT 
+			*
+		FROM myQuestion
+		WHERE myQuestion_id = #{sId}
+	</select>
+
+	<select id="selectUserAnswer" resultType="MyQuestion">
+		SELECT 
+			*
+		FROM myQuestion
+		WHERE myQuestion_num = #{myQuestion_num}
+	</select>
 </mapper>
 

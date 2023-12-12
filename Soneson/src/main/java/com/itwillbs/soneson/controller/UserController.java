@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 import com.itwillbs.soneson.service.UserService;
 import com.itwillbs.soneson.vo.AddressVO;
+import com.itwillbs.soneson.vo.MyQuestionVO;
 import com.itwillbs.soneson.vo.UserVO;
 
 @Controller
@@ -787,23 +788,49 @@ public class UserController {
 	}
 	
 	
-
+	
+	// 나의 문의 조회
+	@GetMapping("userSelectOTO")
+	public String userSelectOTO(HttpSession session, Model model) {
+		System.out.println("UserController - userSelectOTO()");
+		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+			model.addAttribute("targetURL", "login");
+			return "forward";
+		}
+		
+		List<MyQuestionVO> userOTOList = userService.selectUserOTO(sId);
+		model.addAttribute("userOTOList", userOTOList);
+		
+		return "mypage/user/user_select_OTO";
+	} 
+	
 		
 	
+	// 관리자 1대1문의 답변보기
+	@GetMapping("userOTOAnswerSelect")
+	public String userOTOAnswerSelect(String myQuestion_num, Model model, HttpSession session) {
 		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		System.out.println("UserController - userOTOAnswerSelect()");
+		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+			model.addAttribute("targetURL", "login");
+			return "forward";
+		}
+		
+		MyQuestionVO OTOAnswer = userService.selectUserAnswer(myQuestion_num);
+		
+		model.addAttribute("OTOAnswer", OTOAnswer);
+		
+		System.out.println(OTOAnswer);
+		
+		
+		return "mypage/user/user_select_OTO_answer";
+	}
 	
 	
 	
