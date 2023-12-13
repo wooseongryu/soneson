@@ -10,7 +10,6 @@
 				, category
 				, img_main
 				, SUBSTRING_INDEX(end_date , ' ', 1) AS end_date
-				,
 		FROM project  
 		WHERE project_code = #{pro_code}
 	</select>
@@ -55,5 +54,43 @@
 		FROM address
 		WHERE user_id = #{sId}
 	</select>
+	
+	
+	<!-- 후원유저저장 -->
+	<insert id="insertUserFund">
+		INSERT INTO fund 
+		VALUES (
+			NULL
+			, lpad(floor(rand() * 1000000), 6, '0')
+			, #{project_code}
+			, #{user_id}
+			, CAST(REPLACE(#{reward_amount}, ',', '') AS UNSIGNED)
+			, now()
+			, #{reward_code}
+		);
+	</insert>
+	
+	<!-- 후원Auth저장 -->
+	<insert id="insertUserAuth">
+		INSERT INTO user_fund_info
+		VALUES (
+			#{user_id}
+			, #{project_code}
+			, #{user_name}
+			, #{finNumber}
+			, #{pay_startDt}
+		)
+	</insert>
+	
+	<!-- 후원Address저장 -->
+	<insert id="insertUserAddress">
+		INSERT INTO user_fund_address
+		VALUES (
+			#{user_id}
+			, #{project_code}
+			, #{address_idx}
+		)
+	</insert>
+	
 
 </mapper>

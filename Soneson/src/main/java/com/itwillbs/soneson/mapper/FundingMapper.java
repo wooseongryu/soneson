@@ -28,4 +28,11 @@ public interface FundingMapper {
 
 	List<Map<String, String>> selectAddress(String id);
 
+	//fund insert
+	int insertUserFund(Map<String, Object> map);
+
+	int insertUserAuth(Map<String, Object> map);
+
+	int insertUserAddress(Map<String, Object> map);
+
 }

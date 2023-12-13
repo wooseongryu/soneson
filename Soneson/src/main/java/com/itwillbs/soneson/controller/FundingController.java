@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
@@ -138,7 +139,33 @@ public class FundingController {
 	
 	
 	
-	
+	//후원결제 페이지~~~~
+	@GetMapping("insertFundUser") 
+	public String insertFundUser(@RequestParam Map<String, Object> map, HttpSession session, Model model) {
+		String sId = (String)session.getAttribute("sId");
+		
+		if(sId == null) {
+			model.addAttribute("msg", "로그인 후 이용 가능 합니다.");
+			model.addAttribute("targetURL", "login");
+			return "forward";
+		}
+		map.put("user_id", sId);
+		System.out.println(">>>>>>>>>insertFundUser<<<<<<<<<" + map);
+		
+		int insertUserFund = service.insertUserFund(map);
+		if(insertUserFund > 0) {
+			int insertUserAuth = service.insertUserAuth(map);
+			if(insertUserAuth > 0) {
+				int insertUserAddress = service.insertUserAddress(map);
+				if(insertUserAddress > 0) {
+					return "redirect:/fundingSuccess";
+				}
+			}
+		} 
+		
+		model.addAttribute("msg", "다시 시도해주세요.");
+		return "fail_back";
+	}
 	
 	
 	

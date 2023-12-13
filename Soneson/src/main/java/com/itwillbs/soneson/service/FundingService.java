@@ -38,4 +38,19 @@ public class FundingService {
 	public List<Map<String, String>> selectAddress(String id) {
 		return mapper.selectAddress(id);
 	}
+
+	//fund테이블 저장
+	public int insertUserFund(Map<String, Object> map) {
+		return mapper.insertUserFund(map);
+	}
+
+	//funduserAuth
+	public int insertUserAuth(Map<String, Object> map) {
+		return mapper.insertUserAuth(map);
+	}
+
+
+	public int insertUserAddress(Map<String, Object> map) {
+		return mapper.insertUserAddress(map);
+	}
 }

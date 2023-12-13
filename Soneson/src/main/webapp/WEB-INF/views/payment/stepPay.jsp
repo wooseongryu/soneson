@@ -112,6 +112,10 @@ function getAuthAccount(access_token, user_seq_no) {
 	
 }
 
+
+
+
+
 //주소검색
 function search_address_window() { 
 	new daum.Postcode({
@@ -128,6 +132,85 @@ function search_address_window() {
 		}
 	}).open();
 }
+
+let reciver = "";
+let zonecode = "";
+let address = "";
+let detailAddress = "";
+let reciverPhoneNumber = "";
+
+//주소확인
+function checkAddress() {
+	reciver = $("#reciverName").val();
+	zonecode = $("#input-postCod").val();
+	address = $("#input-mainAdd").val();
+	detailAddress = $("#input-subAdd").val();
+	reciverPhoneNumber = $("#funding-inputPhoneNum").val();
+	
+	
+	if (reciver == null || reciver == "") {
+		alert("받는 사람을 입력하세요.");
+		return;
+	}
+	
+	if (zonecode == null || zonecode == "") {
+		alert("주소를 입력하세요.");
+		return;
+	}
+	
+	if (reciverPhoneNumber == null || reciverPhoneNumber == "") {
+		alert("전화번호를 입력하세요.");
+		return;
+	}
+	
+	if (detailAddress == null || detailAddress == "") {
+		if (!confirm("상세주소를 입력 하지 않았습니다.\n이대로 등록 하시겠습니까?")) {
+   			return;
+   		}
+	}
+	
+	insertUserAddressPro();
+	
+	
+}
+
+
+//주소저장
+function insertUserAddressPro() {
+	$.ajax({
+		type: 'post',
+		url: 'insertUserAddressPro',
+		dataType: 'json',
+		data: {
+			address_reciver : reciver,
+			address_code : zonecode,
+			address_main : address,
+			address_sub : detailAddress,
+			address_reciver_phone : reciverPhoneNumber
+		},
+		success: function(resp) {
+			if (!resp.isLogin) {
+				alert("로그인이 해제 되었습니다.\n다시 로그인 해주세요.");
+				location.href="login";
+				return;
+			}
+			
+			if (resp.isSuccess) {
+				alert("배송지가 등록 되었습니다.");
+				userAddress('topUserAddress');
+				return;
+			}
+			
+			alert("배송지 등록 실패.");
+		},
+		error: function() {
+			alert("배송지 등록 실패!");
+		}
+	});
+}
+
+
+
 
 //주소변경
 // function changeFudingAddress(user_id) {
@@ -191,15 +274,15 @@ $(function() {
 
 //후원버튼
 function successFunding() {
-	debugger;
+// 	debugger;
 	let finNumber = $("input[type=radio][name=pro_userAuth]:checked").val();
 	let user_name = $("input[type=radio][name=pro_userAuth]:checked").next().val();
 	let address_idx = $("[name=address_idx]").val();
-	console.log($("[name=reward_code]").val());
-	console.log($("[name=reward_amount]").val());
-	console.log($("[name=project_code]").val());
-	console.log($("[name=address_idx]").val());
-	console.log($("#payStartDate").text());
+	let reward_code = $("[name=reward_code]").val();
+	let reward_amount = $("[name=reward_amount]").val();
+	let project_code = $("[name=project_code]").val();
+	let pay_startDt = $("#payStartDate").text();  
+	
 	
 	console.log("으앙 " + user_name);
 	console.log("뭐야" + finNumber);
@@ -213,31 +296,12 @@ function successFunding() {
 		alert("계좌를 선택해주세요.");
 		return;
 	}
-	location.href="";
-	
+	location.href='insertFundUser?finNumber=' + finNumber+ '&user_name='+ user_name 
+					+ '&address_idx='+address_idx + '&reward_code=' + reward_code
+					+ '&reward_amount=' + reward_amount + '&project_code=' + project_code
+					 + '&pay_startDt=' + pay_startDt;
 }
 
-
-function checkedValue() {
-	debugger;
-	let finNumber = $("input[type=radio][name=pro_userAuth]:checked").val();
-	
-	console.log($("[name=reward_code]").val());
-	console.log($("[name=reward_amount]").val());
-	console.log($("[name=project_code]").val());
-	console.log($("[name=user_name]").val());
-	console.log($("#payStartDate").text());
-	
-	console.log("뭐야" + finNumber);
-	if(finNumber == "" || finNumber == "0") {
-		alert("계좌를 선택해주세요.");
-		return false;
-	}
-	
-	
-	
-	return false;
-}
 
 
 </script>
@@ -253,7 +317,6 @@ function checkedValue() {
     </div>
 	<div class="inner-wrap" style="padding-top:40px; padding-bottom:100px;">
 	<!-- quick-reserve -->
-<!-- 	<form action="successFunding" method="get" onsubmit="return checkedValue()"> -->
 		<div class="quick-reserve">
 	
 			<h2 class="tit">후원하기</h2>
@@ -384,8 +447,8 @@ function checkedValue() {
 								<div class="select-payment ty2">
 									<div class="radio-group">
 										<div class="select-address">
-											<input type="text" placeholder="받는 사람" class="addressInput">
-											<button type="button" onclick="inputAddress()">저장</button>
+											<input type="text" placeholder="받는 사람" class="addressInput" id="reciverName">
+											<button type="button" onclick="checkAddress()">저장</button>
 										</div>
 										<div class="search-address">
 											<input type="text" class="addressInput" id="input-postCode" readonly>
@@ -490,7 +553,6 @@ function checkedValue() {
 			</div>
 			<!--// seat-select-section -->
 		</div>
-<!-- 	</form>	 -->
 	<!--// quick-reserve -->
 </div>
 <br>
