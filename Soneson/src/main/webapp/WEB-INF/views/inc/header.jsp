@@ -176,9 +176,14 @@ ul {
 												<c:if test="${sessionScope.sId eq 'admin' }">
 													<a href="admin">관리자페이지</a>
 												</c:if>
-												<a href="user?id=${sessionScope.sId }">마이페이지</a>
-												<a href="oneToOneQna">1:1문의</a>
+												<a href="user?id=${sessionScope.sId }">프로필</a>
+												<a href="fundingList">후원현황</a>
+												<a href="userProjectsInterest">관심 프로젝트</a>
+<!-- 												<a href="messageList">메세지</a> -->
+												<a href="oneToOneQna">1:1 문의</a>
 												<a href="userSelectOTO">문의내역</a>
+												<a href="userProjectsCreated">내가 만든 프로젝트</a>
+												<a href="userSetting">설정</a>
 												<a href="javascript:logout()">로그아웃</a>
 											</div>
 										</div>
