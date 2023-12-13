@@ -68,7 +68,7 @@
 		                        </div>
 						    </div>
 						    <div class="col-9">
-	                            <textarea class="form-control" name="myQuestion_content" id="content" rows="20" placeholder="문의내용에 개인정보(이름,연락처,카드번호 등)가 포함되지 않도록 유의하세요." maxlength="2000" required="required"></textarea>
+	                            <textarea class="form-control" name="myQuestion_content" id="content" rows="20" placeholder="문의내용에 회원님의 개인정보가 포함되지 않도록 유의하세요." maxlength="2000" required="required"></textarea>
 								<br>
 								<div class="qna_submit" align="center">
 									<button type="submit" class="qna_submit_btn">등록</button>

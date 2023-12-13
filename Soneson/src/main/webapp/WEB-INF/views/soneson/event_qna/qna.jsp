@@ -54,7 +54,7 @@
 	            <div class="col-lg-12 col-md-8" style="float: none; margin: 0 auto;">
 	                <div class="anime__details__review">
 	                    <div class="section-title">
-	                        <h2 align="center">자주묻는질문</h2>
+	                        <h2 align="center" id="qna_mainTitle">자주묻는질문</h2>
 	                    </div>
 	                    <div class="row" style="justify-content: space-evenly">
 							<div class="col-2" id="qna_category">

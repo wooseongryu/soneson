@@ -72,7 +72,7 @@
 				<div class="col-lg-8">
 					<div class="blog__details__content">
 						<div class="blog__details__text">
-							<p>${fn:replace(qna.qna_content, replaceChar, "<br/>")}</p>
+							<p align="center">${fn:replace(qna.qna_content, replaceChar, "<br/>")}</p>
                        	</div>
                    	</div>
                 </div>

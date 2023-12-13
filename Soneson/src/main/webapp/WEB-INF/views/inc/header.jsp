@@ -81,7 +81,7 @@ ul {
   z-index : 1; /*다른 요소들보다 앞에 배치*/
   font-weight: 300;
   background-color: #f9f9f9;
-  min-width : 100px;
+  min-width : 120px;
 }
 
 .hd_dropdown-content a{
@@ -133,12 +133,6 @@ ul {
 						<div class="loginSearch">
 						
 							<div class="loginText">
-								<c:if test="${sessionScope.sId eq 'admin' }">
-									<a href="admin">
-										<span class="">관리자페이지</span>
-										<span class="HeaderUserProfile_bar__1OPU2"></span>
-									</a>
-								</c:if>
 								<a href="projectStartForm">
 									<span class="">
 									<span class="">프로젝트 올리기</span>
@@ -179,6 +173,9 @@ ul {
 												<span class="hd_dropbtn_icon">${sessionScope.sId }</span>
 											</button>
 											<div class="hd_dropdown-content">
+												<c:if test="${sessionScope.sId eq 'admin' }">
+													<a href="admin">관리자페이지</a>
+												</c:if>
 												<a href="user?id=${sessionScope.sId }">마이페이지</a>
 												<a href="oneToOneQna">1:1문의</a>
 												<a href="userSelectOTO">문의내역</a>

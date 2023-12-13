@@ -52,7 +52,7 @@
 	            <div class="col-lg-12 col-md-12" style="float: none; margin: 0 auto;">
 	                <div class="anime__details__review">
 	                    <div class="section-title">
-	                        <h2 align="center">공지사항</h2>
+	                        <h2 align="center" id="notice_title">공지사항</h2>
 	                    </div>
 						<div class="row">
 							<div class="col-1" id="eventCate_category">
@@ -81,11 +81,11 @@
 			                    		<span><button type="button" id="event_status">&nbsp;${eventList.event_status}&nbsp;</button></span><br>
 			                    	</c:if>
 			                        <c:if test="${!empty eventList.event_startDt && !empty eventList.event_endDt }">
-									<span id="event_Dt">이벤트 기간 : ${eventList.event_startDt } ~ ${eventList.event_endDt }</span>
+									<span id="event_Dt">${eventList.eventCate_subject} 기간 : ${eventList.event_startDt } ~ ${eventList.event_endDt }</span>
 									</c:if>
 			                        <h5 id="event_title">${eventList.event_title }</h5>
 			                        
-			                    	<span><fmt:formatDate value="${eventList.event_writeDate}" pattern="yyyy-MM-dd"/></span>
+			                    	<span>등록일 : <fmt:formatDate value="${eventList.event_writeDate}" pattern="yyyy-MM-dd"/></span>
 								</div>
 							    <div class="col-6" align="right" onclick ="location.href = 'eventDetail?event_idx=${eventList.event_idx}'">
 							    	<c:if test="${!empty eventList.event_thumbnail}"> 
