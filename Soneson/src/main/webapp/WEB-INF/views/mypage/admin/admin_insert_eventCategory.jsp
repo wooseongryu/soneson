@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CINEPICK</title>
+    <title>손에손</title>
 
 	<!-- 부트 스트랩 datepicker용 최신 jquery 링크 -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -103,7 +103,7 @@
                             <form class="user" action="adminEventCategoryInsertPro" method="post">
                                 <div class="form-group row">
                                     <div class="col-sm-12 mb-6 mb-sm-0">
-										<label for="">이벤트 카테고리 추가</label>
+										<label for="">게시판 카테고리 추가</label>
                                         <input type="text" name="eventCate_subject" class="form-control form-control-user" id="exampleFirstName"
                                             placeholder="이벤트 카테고리 입력" required="required">
                                     </div>

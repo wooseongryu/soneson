@@ -127,7 +127,7 @@ public class AdminService {
 		return mapper.selectEventCategory();
 	}
 
-	// 이벤트 카테고리 삭제
+	// 게시판 카테고리 삭제
 	public int deleteEventCategory(String eventCate_subject) {
 		System.out.println("AdminService - deleteEventCategory()");
 		return mapper.deleteEventCategory(eventCate_subject);

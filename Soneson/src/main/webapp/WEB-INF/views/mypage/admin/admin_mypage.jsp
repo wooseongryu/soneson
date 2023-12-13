@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-	<title>SB Admin 2 - Dashboard</title>
+	<title>손에손</title>
 
 	<!-- Custom styles for this template-->
 	<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/mypage/css/admin_mypage.css" rel="stylesheet">

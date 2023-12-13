@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CINEPICK</title>
+    <title>손에손</title>
 
 	<!-- 부트 스트랩 datepicker용 최신 jquery 링크 -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -107,6 +107,7 @@
 										<label for="">메인 탭 카테고리 추가</label>
                                         <input type="text" name="tab_Kname" class="form-control form-control-user" id="exampleFirstName"
                                             placeholder="메인 탭 입력(한글)" required="required">
+										<br>
                                         <input type="text" name="tab_Ename" class="form-control form-control-user" id="exampleSecondName"
                                             placeholder="메인 탭 입력(영어)" required="required">
                                     </div>

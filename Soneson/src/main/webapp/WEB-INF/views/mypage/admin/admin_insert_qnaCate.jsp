@@ -106,7 +106,7 @@
                             <form class="user" action="adminQNACategoryInsertPro" method="post">
                                 <div class="form-group row">
                                     <div class="col-sm-12 mb-6 mb-sm-0">
-										<label for="">이벤트 카테고리 추가</label>
+										<label for="">자주묻는질문 카테고리 추가</label>
                                         <input type="text" name="qnaCate_subject" class="form-control form-control-user" id="exampleFirstName"
                                             placeholder="이벤트 카테고리 입력" required="required">
                                     </div>

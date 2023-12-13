@@ -28,6 +28,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
 import com.itwillbs.soneson.service.AdminService;
+import com.itwillbs.soneson.service.ProjectListService;
+import com.itwillbs.soneson.service.ProjectService;
 import com.itwillbs.soneson.service.UserService;
 import com.itwillbs.soneson.vo.EventCateVO;
 import com.itwillbs.soneson.vo.EventVO;
@@ -49,7 +51,8 @@ public class AdminController {
 	@Autowired
 	private UserService userService;
 	
-	
+	@Autowired
+	private ProjectListService projectListService ;
 	
 /*====================================================================
  * - 목차 -
@@ -192,20 +195,20 @@ public class AdminController {
 	
 	
 	// 회원 관리 - 회원결제관리 페이지로 이동	
-	@GetMapping("adminSelectUserPay")
-	public String adminSelectUserPay() {
-		System.out.println("AdminController - adminSelectUserPay()");
-		
-		return "mypage/admin/admin_select_userPay";	
-	}
+//	@GetMapping("adminSelectUserPay")
+//	public String adminSelectUserPay() {
+//		System.out.println("AdminController - adminSelectUserPay()");
+//		
+//		return "mypage/admin/admin_select_userPay";	
+//	}
 	
 	// 회원 관리 - 신고회원관리 페이지로 이동
-	@GetMapping("adminSelectReport")
-	public String adminSelectReport() {
-		System.out.println("AdminController - adminSelectReport()");
-		
-		return "mypage/admin/admin_select_userReport";	
-	}
+//	@GetMapping("adminSelectReport")
+//	public String adminSelectReport() {
+//		System.out.println("AdminController - adminSelectReport()");
+//		
+//		return "mypage/admin/admin_select_userReport";	
+//	}
 	
 /*====================================================================
  * 3. 메인페이지 관리
@@ -313,7 +316,7 @@ public class AdminController {
 	
 	// 프로젝트 심사 디테일 페이지
 	@GetMapping("adminProjectExamDetail")
-	public String adminProjectExamDetail(@RequestParam String project_code, HttpSession session, Model model) {
+	public String adminProjectExamDetail(@RequestParam int project_code, HttpSession session, Model model) {
 		System.out.println("AdminController - adminProjectExamDetail");
 		
 		String sId = (String)session.getAttribute("sId");
@@ -324,9 +327,7 @@ public class AdminController {
 			return "fail_back";
 		}
 
-		ProjectVO project = adminService.selectProjectExamDetail(project_code);
-		
-		
+		Map<String, Object> project = projectListService.selectProject(project_code);
 		
 		model.addAttribute("project", project);
 		

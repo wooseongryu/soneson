@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>손에손</title>
 
     <!-- Custom fonts for this template-->
     <link href="${pageContext.request.contextPath }/resources/mypage/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -74,7 +74,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" href="adminSelectUser">회원정보관리</a>
 <!-- 						<a class="collapse-item" href="adminSelectUserPay">회원결제관리</a> -->
-						<a class="collapse-item" href="adminSelectReport">신고회원관리</a>
+<!-- 						<a class="collapse-item" href="adminSelectReport">신고회원관리</a> -->
 					</div>
 				</div>
 			</li>

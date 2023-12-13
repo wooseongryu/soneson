@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>손에손</title>
 
 
     <!-- Custom styles for this template -->
@@ -83,7 +83,6 @@
 														</c:when>
 														<c:otherwise>
 															<button type="button" class="btn btn-primary" onclick="location.href='adminOTOAnswerSelect?myQuestion_num=${question.myQuestion_num}'">답변보기</button>
-<%-- 															<button type="button" class="btn btn-primary" onclick="location.href='adminOTOAnswerUpdate?myQuestion_num=${question.myQuestion_num}'">답변수정</button> --%>
 														</c:otherwise>
 													</c:choose>
 												</td>

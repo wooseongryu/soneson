@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>CINEPICK</title>
+    <title>손에손</title>
 
 	<!-- 부트 스트랩 datepicker용 최신 jquery 링크 -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -60,7 +60,7 @@
                     <div class="col-lg-12">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">이벤트 등록</h1>
+                                <h1 class="h4 text-gray-900 mb-4">게시글 등록</h1>
                             </div>
                             <form class="user" action="adminEventInsertPro" method="post" enctype="multipart/form-data">
                             	<div class="form-group row">
@@ -76,7 +76,7 @@
                                 </div>
                             	<div class="form-group row">
                                     <div class="col-sm-12 mb-6 mb-sm-0">
-										<label for="">이벤트 제목</label>
+										<label for="">게시글 제목</label>
                                         <input type="text" name="event_title" class="form-control form-control-user" id="exampleFirstName"
                                             placeholder="이벤트제목입력">
                                     </div>
@@ -91,11 +91,11 @@
 								<br>
 								<div class="form-group row">
 								  	<div class="col-sm-5 mb-2 mb-sm-0">
-										<label for="">이벤트 시작일</label>
+										<label for="">게시글 시작일</label>
 										<input type="text" name="event_startDt" class="form-control form-control-user" id="fromDatepicker">
 	                                </div>
 								  	<div class="col-sm-5 mb-2 mb-sm-0">
-										<label for="">이벤트 종료일</label>
+										<label for="">게시글 종료일</label>
 										<input type="text" name="event_endDt" class="form-control form-control-user" id="toDatepicker" >
 	                                </div>
 								</div>
@@ -106,7 +106,7 @@
 										<input type="file" name="event_thumbnail_multi" />
 								    </div>
 									<div class="col-sm-5 mb-1 mb-sm-0">
-								    	<label for="">이벤트 사진</label>
+								    	<label for="">게시글 사진</label>
 										<input type="file" name="event_poster_multi" />
 								    </div>
 								</div>
