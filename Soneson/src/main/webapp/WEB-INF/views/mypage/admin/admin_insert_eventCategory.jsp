@@ -105,7 +105,7 @@
                                     <div class="col-sm-12 mb-6 mb-sm-0">
 										<label for="">게시판 카테고리 추가</label>
                                         <input type="text" name="eventCate_subject" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="이벤트 카테고리 입력" required="required">
+                                            placeholder="게시판 카테고리 입력" required="required">
                                     </div>
                                 </div>
 								<br>
