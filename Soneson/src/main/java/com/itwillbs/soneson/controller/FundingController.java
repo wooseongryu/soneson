@@ -91,7 +91,7 @@ public class FundingController {
 	//세부내용에서 후원하기 버튼 클릭 시 결제페이지 이동 int pro_code, int reward_code, 나중에 추가
 //	@GetMapping("fundingPaymentForm")
 	@PostMapping("fundingPaymentForm")
-	public String fundingPaymentForm(HttpSession session, Model model) {
+	public String fundingPaymentForm(HttpSession session, Model model, @RequestParam int project_code, @RequestParam int reward_code) {
 		// 나중에 파라미터 앞에 @requestParam 붙여주기
 		String sId = (String)session.getAttribute("sId");
 		
@@ -101,13 +101,13 @@ public class FundingController {
 			return "forward";
 		}
 		
-		int pro_code = 50;
+//		int pro_code = 50;
 		// 해당 프로젝트 정보
-		Map<String, String> map = service.selectproject(pro_code);
+		Map<String, String> map = service.selectproject(project_code);
 		
-		int reward_code = 57;
+//		int reward_code = 57;
 		//선택리워드 정보
-		Map<String, String> reward = service.selectReward(pro_code, reward_code);
+		Map<String, String> reward = service.selectReward(project_code, reward_code);
 		
 		//유저배송정보
 		Map<String, String> user = service.selectUser(sId);
