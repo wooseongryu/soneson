@@ -84,7 +84,7 @@ ul {
   min-width : 100%;
   text-align: center;
   padding: 10px;
-  margin-top: 10px;
+/*   margin-top: 10px;  이거 넣으면 드롭다운이 순식간에 사라짐... */
 }
 
 .hd_dropdown-content a{
