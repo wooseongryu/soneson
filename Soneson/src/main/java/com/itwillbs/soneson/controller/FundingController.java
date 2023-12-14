@@ -34,6 +34,8 @@ public class FundingController {
 	@Autowired
 	private ProjectService projectservice;
 	
+	Gson gson = new Gson();
+	
 	/*====================================================================
 	 * 후원 관련 세부 페이지
 	 * ===================================================================
@@ -133,7 +135,7 @@ public class FundingController {
 		System.out.println("유저 배송 정보 >>>>>>>" + user);
 		System.out.println("유저 배송 목록 >>>>>>>" + addressList);
 		JSONArray jsonList = new JSONArray(addressList);
-//		JSONObject jsonObject = new JSONObject(addressList);
+		JSONObject jsonObject = new JSONObject(addressList);
 		System.out.println("유저 배송 목록 >>>>>>>" + jsonList.toString());
 		model.addAttribute("jsonList", jsonList.toString());
 		model.addAttribute("pro", map);
@@ -145,6 +147,7 @@ public class FundingController {
 		return "payment/stepPay";
 	}
 	
+
 	
 	//후원페이지에서 주소저장
 	@ResponseBody

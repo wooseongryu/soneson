@@ -137,35 +137,6 @@ let zonecode = "";
 let address = "";
 let detailAddress = "";
 let reciverPhoneNumber = "";
-let addressList = ${jsonList};
-$(function() {
-	$("#selectAddBtn").click(function() {
-		let a = $("input[type=radio][name=fund_address]:checked").val();
-// 		addressList = ${jsonList};
-		console.log("몇번째 목록임?" + a);
-		console.log(addressList[a]);
-		
-		let str = "";
-		$("#checkedFundAddress").empty();
-		
-		str += 	'<div class="radio-group">'
-		str += 		'<div class="select-address">'
-		str += 			'<h6>' + addressList[a].address_reciver + '</h6>'
-	 	str += 			'<input type="hidden" value="' + addressList[a].address_idx + '" id="addressInfo" name="address_idx">'
-	 	str +=			'<button type="button" data-bs-toggle="modal" data-bs-target="#addressModal">변경</button>'
-	 	str += 		'</div>'
-	 	str += 		'<div>'
-	 	str += 			'<p>[ ' + addressList[a].address_code + ' ]&emsp;' + addressList[a].address_main + '&emsp;' + addressList[a].address_sub + '</p>'
-	 	str += 			'<p>' + addressList[a].address_reciver_phone + '</p>'
-	 	str += 		'</div>'
-	 	str += 	'</div>'
-		
-		$("#checkedFundAddress").append(str);
-	 	
-		
-	});
-	
-});
 
 //주소확인
 function checkAddress() {
@@ -262,49 +233,22 @@ function insertUserAddressPro() {
 			
 			if (resp.isSuccess) {
 				alert("배송지가 등록 되었습니다.");
-				debugger;
-				
-				addressList.push(resp);
+				//화면 바꾸기 ~~~~~~~
 				let str = "";
-				$(".select-payment.ty2.add").remove();
+				$("#newAddressDiv").empty();
 				
-				str +='<div class="select-payment ty2 add" id="checkedFundAddress">'
 				str += 	'<div class="radio-group">'
 				str += 		'<div class="select-address">'
-				str += 			'<h6>' + resp.address_reciver + '</h6>'
+				str += 			'<h6>' + resp.address_recive + '</h6>'
 				str += 			'<input type="hidden" value="' + resp.address_idx + '" id="addressInfo" name="address_idx">'
-			 	if(addressList.length > 1) {
-				str +=			'<button type="button" data-bs-toggle="modal" data-bs-target="#addressModal">변경</button>'
-			 	}
 				str += 		'</div>'
 				str += 		'<div>'
 				str += 			'<p>[ ' + resp.address_code + ' ]&emsp;' + resp.address_main + '&emsp;' + resp.address_sub + '</p>'
 				str += 			'<p>' + resp.address_reciver_phone + '</p>'
 				str += 		'</div>'
 				str += 	'</div>'
-				str +='</div>'
 				
-				$("#fundAddress_div").after(str);
-				
-				
-				$("#modalList").append(
-						'<input type="radio" id="address' + resp.address_idx + '" class="address-radioBtn" name="fund_address" value="' + (addressList.length - 1) + '"checked>'
-						+	'<label for="address' + resp.address_idx + '" class="radio_label">'
-						+		'<div class="radio-group">'
-						+			'<div class="select-address">'
-						+				'<h6>' + resp.address_reciver + '</h6>'
-						+			'</div>'
-						+			'<div>'
-						+				'<p>[ ' + resp.address_code + ' ]&emsp;' + resp.address_main + '&emsp;' + resp.address_sub + '</p>'
-						+				'<p>' + resp.address_reciver_phone + '</p>'
-						+			'</div>'
-						+		'</div>'
-						+	'</label>'		
-				
-				);
-				
-				
-				
+				$("#newAddressDiv").append(str);
 				
 				
 				return;
@@ -319,7 +263,68 @@ function insertUserAddressPro() {
 }
 
 
-//=======전화번호==========
+//배송지 변경
+function selectAddress() {
+	let a = $("input[type=radio][name=fund_address]:checked").val();
+	let addressList = ${jsonList}
+// 	console.log("몇번째 목록임?" + a);
+// 	console.log(addressList);
+// 	console.log(${addressList[a].address_recive});
+// 	console.log(${addressList});
+	let str = "";
+	$("#checkedFundAddress").empty();
+	
+	str += 	'<div class="radio-group">'
+	str += 		'<div class="select-address">'
+	str += 			'<h6>' + ${addressList[a].address_recive} + '</h6>'
+// 	str += 			'<input type="hidden" value="' + resp.address_idx + '" id="addressInfo" name="address_idx">'
+// 	str += 		'</div>'
+// 	str += 		'<div>'
+// 	str += 			'<p>[ ' + resp.address_code + ' ]&emsp;' + resp.address_main + '&emsp;' + resp.address_sub + '</p>'
+// 	str += 			'<p>' + resp.address_reciver_phone + '</p>'
+// 	str += 		'</div>'
+// 	str += 	'</div>'
+	
+	$("#newAddressDiv").append(str);
+	
+}
+
+$(function() {
+	$("#selectAddBtn").click(function() {
+		let a = $("input[type=radio][name=fund_address]:checked").val();
+		let addressList = ${jsonList};
+		console.log("몇번째 목록임?" + a);
+		console.log(addressList[a]);
+		
+		let str = "";
+		$("#checkedFundAddress").empty();
+		
+		str += 	'<div class="radio-group">'
+		str += 		'<div class="select-address">'
+		str += 			'<h6>' + addressList[a].address_reciver + '</h6>'
+	 	str += 			'<input type="hidden" value="' + addressList[a].address_idx + '" id="addressInfo" name="address_idx">'
+	 	str +=			'<button type="button" data-bs-toggle="modal" data-bs-target="#addressModal">변경</button>'
+	 	str += 		'</div>'
+	 	str += 		'<div>'
+	 	str += 			'<p>[ ' + addressList[a].address_code + ' ]&emsp;' + addressList[a].address_main + '&emsp;' + addressList[a].address_sub + '</p>'
+	 	str += 			'<p>' + addressList[a].address_reciver_phone + '</p>'
+	 	str += 		'</div>'
+	 	str += 	'</div>'
+		
+		$("#checkedFundAddress").append(str);
+		
+		
+	});
+	
+	
+	
+});
+
+
+
+
+
+//전화번호
 function onlynumberic(event) {
     event.target.value = event.target.value.replace(/[^0-9]/g, "");
 }
@@ -430,7 +435,7 @@ function successFunding() {
 						</div>
 					</div>
 					<!--리워드 정보 -->
-					<div class="tit-util mt40" >
+					<div class="tit-util mt40">
 						<h3 class="tit small">리워드 정보 <!-- 결제수단선택 --></h3>
 						<input type="hidden" value="${reward.reward_code }" name="reward_code" id="fund_reward_code">
 						<input type="hidden" value="${reward.reward_amount }" name="reward_amount" id="fund_reward_amount">
@@ -490,7 +495,7 @@ function successFunding() {
 					</div>	
 					<!-- 배송 정보 -->
 					<c:if test="${reward.reward_isDeliv eq 'Y'}">
-						<div class="tit-util mt40" id="fundAddress_div">
+						<div class="tit-util mt40">
 							<div>
 							<h3 class="tit small">배송지 정보</h3>
 							</div>
@@ -507,7 +512,6 @@ function successFunding() {
 								        		<h5 class="modal-title" id="addressModalLabel">배송지 등록</h5>
 		<!-- 						        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">완료</button> -->
 								      		</div>
-								      		<form>
 								      		<div class="modal-body">
 								      			<div class="select-payment ty2" id="newAddressDiv">
 													<div class="radio-group">
@@ -531,9 +535,8 @@ function successFunding() {
 												</div>	
 								    		</div>
 								      		<div class="modal-footer">
-								        		<button type="reset" data-bs-dismiss="modal" id="insertAddBtn" onclick="checkAddress()">저장</button>
+								        		<button type="button" data-bs-dismiss="modal" id="insertAddBtn" onclick="checkAddress()">저장</button>
 								      		</div>
-								      		</form>
 										</div>
 									</div>
 								</div>
@@ -541,7 +544,7 @@ function successFunding() {
 						</div>
 						<c:choose>
 							<c:when test="${not empty user.address_main }">
-								<div class="select-payment ty2 add" id="checkedFundAddress">
+								<div class="select-payment ty2" id="checkedFundAddress">
 									<div class="radio-group">
 										<div class="select-address">
 											<h6>${user.address_reciver }</h6>
@@ -562,7 +565,7 @@ function successFunding() {
 								        		<h5 class="modal-title" id="addressModalLabel">배송지 선택</h5>
 		<!-- 						        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">완료</button> -->
 								      		</div>
-								      		<div class="modal-body" id="modalList">
+								      		<div class="modal-body">
 								      			<c:forEach var="address" items="${addressList }" varStatus="status">
 													<input type="radio" id="address${address.address_idx }" class="address-radioBtn" name="fund_address" value="${status.index }"<c:if test="${address.address_idx eq user.address_idx }">checked</c:if>>
 								      				<label for="address${address.address_idx }" class="radio_label">
@@ -586,7 +589,7 @@ function successFunding() {
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div class="select-payment ty2 add" id="newAddressDiv">
+								<div class="select-payment ty2" id="newAddressDiv">
 									<div class="radio-group">
 										<div class="select-address">
 											<input type="text" placeholder="받는 사람" class="addressInput" id="reciverName">
