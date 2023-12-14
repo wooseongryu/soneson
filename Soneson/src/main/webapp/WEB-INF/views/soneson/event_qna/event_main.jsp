@@ -75,19 +75,25 @@
 						<hr>
 						<c:forEach var="eventList" items="${eventList }">
 							<div class="row" id="eventList_row">
-							    <div class="col-6" onclick ="location.href ='eventDetail?event_idx=${eventList.event_idx}'"> 
+							    <div class="col-9" onclick ="location.href ='eventDetail?event_idx=${eventList.event_idx}'"> 
 			                    	<span id="eventCate_subject">${eventList.eventCate_subject}</span>
 			                    	<c:if test="${!empty eventList.event_status}">
 			                    		<span><button type="button" id="event_status">&nbsp;${eventList.event_status}&nbsp;</button></span><br>
 			                    	</c:if>
+			                        <c:if test="${empty eventList.event_startDt && empty eventList.event_endDt }">
+									<span id="event_Dt"><fmt:formatDate value="${eventList.event_writeDate}" pattern="yyyy-MM-dd"/></span>
+									</c:if>
 			                        <c:if test="${!empty eventList.event_startDt && !empty eventList.event_endDt }">
-									<span id="event_Dt">${eventList.eventCate_subject} 기간 : ${eventList.event_startDt } ~ ${eventList.event_endDt }</span>
+									<span id="event_Dt">${eventList.event_startDt } ~ ${eventList.event_endDt }</span>
 									</c:if>
 			                        <h5 id="event_title">${eventList.event_title }</h5>
 			                        
-			                    	<span>등록일 : <fmt:formatDate value="${eventList.event_writeDate}" pattern="yyyy-MM-dd"/></span>
+<%-- 			                    	<span>등록일 : <fmt:formatDate value="${eventList.event_writeDate}" pattern="yyyy-MM-dd"/></span> --%>
 								</div>
-							    <div class="col-6" align="right" onclick ="location.href = 'eventDetail?event_idx=${eventList.event_idx}'">
+							    <div class="col-3" align="right" onclick ="location.href = 'eventDetail?event_idx=${eventList.event_idx}'">
+							    	<c:if test="${empty eventList.event_thumbnail}">
+										<img src ="${pageContext.request.contextPath }/resources/soneson/img/header/soneson2.jpg" width="150" height="150" style="margin: 10px 10px 10px 10px;">
+							    	</c:if>
 							    	<c:if test="${!empty eventList.event_thumbnail}"> 
 										<img src ="${pageContext.request.contextPath }/resources/upload/${eventList.event_thumbnail }" width="150" height="150" style="margin: 10px 10px 10px 10px;">
 		                        	</c:if>
