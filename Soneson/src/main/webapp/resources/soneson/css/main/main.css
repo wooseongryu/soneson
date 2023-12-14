@@ -115,6 +115,8 @@
     color: black;
     font-weight: normal;
     line-height: 19px;
+    margin-bottom: 20px;
+/*     1214 추가 */
 }
 	
 	
@@ -125,8 +127,10 @@
 	
 	.boardWrap .bx-wrapper,
 	.boardWrap .bx-viewport {
-		margin-left: 9px;
+/* 	1214 엄성윤 수정 */
+/* 		margin-left: 9px; */
     	height:400px !important;
+/*     	max-width: 57%; */
 	} 
 	
 	.boardWrap {
@@ -190,7 +194,9 @@
  	.boardWrap .bx-controls .bx-prev, .boardWrap .bx-controls .bx-next{ 
  		position: absolute; 
 /*  		left: 20%; */
- 		top: 30%; 
+/*  		top: 30%;  */
+/* 		1214 추가 */
+		top: 19%;
  		transform: translateY(-50%);
  		font-size: 2em;
  	} 
