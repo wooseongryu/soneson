@@ -142,7 +142,7 @@ let reciverPhoneNumber = "";
 //주소확인
 function checkAddress() {
 	reciver = $("#reciverName").val();
-	zonecode = $("#input-postCod").val();
+	zonecode = $("#input-postCode").val();
 	address = $("#input-mainAdd").val();
 	detailAddress = $("#input-subAdd").val();
 	reciverPhoneNumber = $("#funding-inputPhoneNum").val();
@@ -179,7 +179,7 @@ function checkAddress() {
 function insertUserAddressPro() {
 	$.ajax({
 		type: 'post',
-		url: 'insertUserAddressPro',
+		url: 'insertFundUserAddress',
 		dataType: 'json',
 		data: {
 			address_reciver : reciver,
@@ -197,7 +197,24 @@ function insertUserAddressPro() {
 			
 			if (resp.isSuccess) {
 				alert("배송지가 등록 되었습니다.");
-				userAddress('topUserAddress');
+				//화면 바꾸기 ~~~~~~~
+				let str = "";
+				$("#newAddressDiv").empty();
+				
+				str += 	'<div class="radio-group">'
+				str += 		'<div class="select-address">'
+				str += 			'<h6>' + resp.address_recive + '</h6>'
+				str += 			'<input type="hidden" value="' + resp.address_idx + '" id="addressInfo" name="address_idx">'
+				str += 		'</div>'
+				str += 		'<div>'
+				str += 			'<p>[ ' + resp.address_code + ' ]&emsp;' + resp.address_main + '&emsp;' + resp.address_sub + '</p>'
+				str += 			'<p>' + resp.address_reciver_phone + '</p>'
+				str += 		'</div>'
+				str += 	'</div>'
+				
+				$("#newAddressDiv").append(str);
+				
+				
 				return;
 			}
 			
@@ -210,15 +227,63 @@ function insertUserAddressPro() {
 }
 
 
+//배송지 변경
+function selectAddress() {
+	let a = $("input[type=radio][name=fund_address]:checked").val();
+	let addressList = ${jsonList}
+// 	console.log("몇번째 목록임?" + a);
+// 	console.log(addressList);
+// 	console.log(${addressList[a].address_recive});
+// 	console.log(${addressList});
+	let str = "";
+	$("#checkedFundAddress").empty();
+	
+	str += 	'<div class="radio-group">'
+	str += 		'<div class="select-address">'
+	str += 			'<h6>' + ${addressList[a].address_recive} + '</h6>'
+// 	str += 			'<input type="hidden" value="' + resp.address_idx + '" id="addressInfo" name="address_idx">'
+// 	str += 		'</div>'
+// 	str += 		'<div>'
+// 	str += 			'<p>[ ' + resp.address_code + ' ]&emsp;' + resp.address_main + '&emsp;' + resp.address_sub + '</p>'
+// 	str += 			'<p>' + resp.address_reciver_phone + '</p>'
+// 	str += 		'</div>'
+// 	str += 	'</div>'
+	
+	$("#newAddressDiv").append(str);
+	
+}
 
-
-//주소변경
-// function changeFudingAddress(user_id) {
-// 	console.log("바꿀 배송지 유저 : " + user_id);
-// 	window.open('selectFundingAddress?id=' + user_id,"authWindow", "width=400, height=600");
+$(function() {
+	$("#selectAddBtn").click(function() {
+		let a = $("input[type=radio][name=fund_address]:checked").val();
+		let addressList = ${jsonList};
+		console.log("몇번째 목록임?" + a);
+		console.log(addressList[a]);
+		
+		let str = "";
+		$("#checkedFundAddress").empty();
+		
+		str += 	'<div class="radio-group">'
+		str += 		'<div class="select-address">'
+		str += 			'<h6>' + addressList[a].address_recive + '</h6>'
+//	 	str += 			'<input type="hidden" value="' + resp.address_idx + '" id="addressInfo" name="address_idx">'
+//	 	str += 		'</div>'
+//	 	str += 		'<div>'
+//	 	str += 			'<p>[ ' + resp.address_code + ' ]&emsp;' + resp.address_main + '&emsp;' + resp.address_sub + '</p>'
+//	 	str += 			'<p>' + resp.address_reciver_phone + '</p>'
+//	 	str += 		'</div>'
+//	 	str += 	'</div>'
+		
+		$("#newAddressDiv").append(str);
+		
+		
+	});
 	
 	
-// }
+	
+});
+
+
 
 
 
@@ -266,13 +331,9 @@ $(function() {
 	});
 });
 
-// function selectAddress() {
-// 	let a = $("input[type=radio][name=]:ischecked").val();
-	
-	
-// }
 
-//후원버튼
+
+//=========후원버튼===========
 function successFunding() {
 // 	debugger;
 	let finNumber = $("input[type=radio][name=pro_userAuth]:checked").val();
@@ -392,14 +453,18 @@ function successFunding() {
 					<!-- 배송 정보 -->
 					<c:if test="${reward.reward_isDeliv eq 'Y'}">
 						<div class="tit-util mt40">
-							<h3 class="tit small">배송지 정보 <!-- 결제수단선택 --></h3>
-							
-							<div class="right">
+							<div>
+							<h3 class="tit small">배송지 정보</h3>
 							</div>
+							<c:if test="${not empty user.address_main }">
+								<div id="fundAddAddressBtn">
+									<button type="button" id="#addAddressModal" onclick="">등록</button>
+								</div>
+							</c:if>
 						</div>
 						<c:choose>
 							<c:when test="${not empty user.address_main }">
-								<div class="select-payment ty2">
+								<div class="select-payment ty2" id="checkedFundAddress">
 									<div class="radio-group">
 										<div class="select-address">
 											<h6>${user.address_reciver }</h6>
@@ -422,7 +487,7 @@ function successFunding() {
 								      		</div>
 								      		<div class="modal-body">
 								      			<c:forEach var="address" items="${addressList }" varStatus="status">
-													<input type="radio" id="address${address.address_idx }" class="address-radioBtn" name="pro_userAuth" value="${status.index }"<c:if test="${address.address_idx eq user.address_idx }">checked</c:if>>
+													<input type="radio" id="address${address.address_idx }" class="address-radioBtn" name="fund_address" value="${status.index }"<c:if test="${address.address_idx eq user.address_idx }">checked</c:if>>
 								      				<label for="address${address.address_idx }" class="radio_label">
 														<div class="radio-group">
 															<div class="select-address">
@@ -437,14 +502,14 @@ function successFunding() {
 								      			</c:forEach>
 								    		</div>
 								      		<div class="modal-footer">
-								        		<button type="button" data-bs-dismiss="modal" onclick="selectAddress()">완료</button>
+								        		<button type="button" data-bs-dismiss="modal" id="selectAddBtn">완료</button>
 								      		</div>
 										</div>
 									</div>
 								</div>
 							</c:when>
 							<c:otherwise>
-								<div class="select-payment ty2">
+								<div class="select-payment ty2" id="newAddressDiv">
 									<div class="radio-group">
 										<div class="select-address">
 											<input type="text" placeholder="받는 사람" class="addressInput" id="reciverName">

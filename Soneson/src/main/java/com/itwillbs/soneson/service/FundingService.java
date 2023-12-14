@@ -53,4 +53,9 @@ public class FundingService {
 	public int insertUserAddress(Map<String, Object> map) {
 		return mapper.insertUserAddress(map);
 	}
+
+	//후원페이지 주소저장
+	public int insertAddress(Map<String, String> map) {
+		return mapper.insertAddress(map);
+	}
 }

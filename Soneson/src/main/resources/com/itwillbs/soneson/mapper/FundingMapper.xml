@@ -82,6 +82,25 @@
 		)
 	</insert>
 	
+	<!-- 후원창에서 배송지등록 -->
+	<insert id="insertAddress">
+		<selectKey keyProperty="address_idx" resultType="Integer" order="AFTER">
+	    	SELECT LAST_INSERT_ID() AS address_idx
+	    	<!-- 마지막 auto_increment 값 가져옴 -->
+		</selectKey>
+		INSERT INTO address 
+		VALUES (
+			NULL
+			, #{user_id }
+			, #{address_reciver }
+			, #{address_code }
+			, #{address_main }
+			, #{address_sub }
+			, #{address_reciver_phone }
+		);
+		
+	</insert>
+	
 	<!-- 후원Address저장 -->
 	<insert id="insertUserAddress">
 		INSERT INTO user_fund_address
@@ -91,6 +110,7 @@
 			, #{address_idx}
 		)
 	</insert>
+	
 	
 
 </mapper>

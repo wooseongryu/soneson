@@ -165,6 +165,11 @@ button {
     width: 100%;
 }
 
+#fundAddAddressBtn {
+	display: flex;
+    justify-content: flex-end;
+}
+
 /*==============================  */
 html {
     -webkit-text-size-adjust: 100%

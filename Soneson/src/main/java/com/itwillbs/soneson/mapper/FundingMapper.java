@@ -34,5 +34,7 @@ public interface FundingMapper {
 	int insertUserAuth(Map<String, Object> map);
 
 	int insertUserAddress(Map<String, Object> map);
+	//배송지등록
+	int insertAddress(Map<String, String> map);
 
 }

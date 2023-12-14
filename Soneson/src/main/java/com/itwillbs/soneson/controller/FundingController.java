@@ -3,8 +3,11 @@ package com.itwillbs.soneson.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -127,7 +130,11 @@ public class FundingController {
 		System.out.println("프로젝트 정보 >>>>>>>" + map);
 		System.out.println("선택 리워드 정보 >>>>>>>" + reward);
 		System.out.println("유저 배송 정보 >>>>>>>" + user);
-		
+		System.out.println("유저 배송 목록 >>>>>>>" + addressList);
+		JSONArray jsonList = new JSONArray(addressList);
+//		JSONObject jsonObject = new JSONObject(addressList);
+		System.out.println("유저 배송 목록 >>>>>>>" + jsonList.toString());
+		model.addAttribute("jsonList", jsonList.toString());
 		model.addAttribute("pro", map);
 		model.addAttribute("reward", reward);
 		model.addAttribute("user", user);
@@ -137,6 +144,39 @@ public class FundingController {
 		return "payment/stepPay";
 	}
 	
+	
+	//후원페이지에서 주소저장
+	@ResponseBody
+	@PostMapping("insertFundUserAddress")
+	public String insertFundUserAddress(@RequestParam Map<String, String> map, HttpSession session) {
+		System.out.println(map);
+		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			JSONObject jsonObject = new JSONObject(map);
+			return jsonObject.toString();
+		}
+		map.put("isLogin", "true");
+		map.put("user_id", sId);
+		
+		map.put("address_idx", null);
+		int insertCount = service.insertAddress(map);
+//		int reward_code = Integer.parseInt(map.get("reward_code"));
+		System.out.println(insertCount);
+		System.out.println("등록하고 오는길~~~~~~~~~~~~~~~~" + map);
+		
+		
+		if(insertCount > 0) {
+			map.put("isSuccess", "true");
+			JSONObject jsonObject = new JSONObject(map);
+			return jsonObject.toString();
+		} else {
+			JSONObject jsonObject = new JSONObject(map);
+			return jsonObject.toString();
+		}
+		
+		
+	}
 	
 	
 	//후원결제 페이지~~~~
