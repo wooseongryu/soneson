@@ -151,7 +151,21 @@ ul {
 									</span>
 								</a>
 								<a href="https://happybean.naver.com/my/home" class="HeaderUserProfile_wrap__3FD8V">
-									<img loading="lazy" src="https://phinf.pstatic.net/contact/profile/blog/58/80/bom_bomi.jpg?type=s160" width="30" height="30" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI">
+									
+									
+									<c:choose>
+									    <c:when test="${not empty sessionScope.sId }">
+									    	<img loading="lazy" src="${pageContext.request.contextPath }/resources/upload/${user.user_picture }" width="30" height="30" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI">
+<!-- 									    	<img loading="lazy" src="https://phinf.pstatic.net/contact/profile/blog/58/80/bom_bomi.jpg?type=s160" width="30" height="30" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI"> -->
+									    </c:when>
+									    <c:otherwise>
+									        <img loading="lazy" src="${pageContext.request.contextPath }/resources/soneson/img/header/son33.png" width="30" height="30" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI">
+									    </c:otherwise>
+									</c:choose>
+									
+									
+									
+<!-- 									<img loading="lazy" src="https://phinf.pstatic.net/contact/profile/blog/58/80/bom_bomi.jpg?type=s160" width="30" height="30" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI"> -->
 		<!-- 								<span class="HeaderUserProfile_id__3e8GE"> -->
 		<!-- 									<span class="HeaderUserProfile_ellipsis__1iBvz"></span> -->
 		<!-- 								</span> -->
