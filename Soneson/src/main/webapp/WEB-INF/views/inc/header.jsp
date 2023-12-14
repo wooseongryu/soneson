@@ -150,12 +150,12 @@ ul {
 										<span class="HeaderUserProfile_bar__1OPU2"></span>
 									</span>
 								</a>
-								<a href="https://happybean.naver.com/my/home" class="HeaderUserProfile_wrap__3FD8V">
+								<a href="userSetting" class="HeaderUserProfile_wrap__3FD8V">
 									
 									
 									<c:choose>
-									    <c:when test="${not empty sessionScope.sId }">
-									    	<img loading="lazy" src="${pageContext.request.contextPath }/resources/upload/${user.user_picture }" width="30" height="30" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI">
+									    <c:when test="${not empty sessionScope.sId and not empty sessionScope.profile }">
+									    	<img loading="lazy" src="${pageContext.request.contextPath }/resources/upload/${sessionScope.profile }" width="40" height="40" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI">
 <!-- 									    	<img loading="lazy" src="https://phinf.pstatic.net/contact/profile/blog/58/80/bom_bomi.jpg?type=s160" width="30" height="30" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI"> -->
 									    </c:when>
 									    <c:otherwise>
