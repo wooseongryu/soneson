@@ -370,6 +370,8 @@
     background: white;
 /*     padding-bottom: 1.3em; */
     width: 100%;
+/*     카테고리 안 보이게 다시 1214 */
+    display: none;
 }
 
 .DonationTodayCategory_category_list__2WAdE {
@@ -549,9 +551,9 @@ body {
 
 
 /* extended 메뉴 */
-.DonationTodayCategory_wrap__k2rtu {
-	display: none;
-}
+/* .DonationTodayCategory_wrap__k2rtu { */
+/* 	display: none; */
+/* } */
 .DonationTodayCategory_wrap__k2rtu {
 /* 	margin-top: 2.5em; */
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -127,39 +128,51 @@
 <!-- --------------------------board-----------------------------	 -->
 
 	<div class="mainList">
-		<div class="title">인기 프로젝트</div>
+		<div class="title">주목할 만한 프로젝트</div>
 		<div class="main-project-list">
 			<div class="boardWrap">
 				<ul class="slider-bo">
-					<c:forEach var="movie" items="${movieList }">
-						<li data-movie_code="${movie.movie_code }">
+					<c:forEach var="project" items="${projectList }">
+						<li data-movie_code="${project.project_code }">
 <!-- 							<div class="slider-over"> -->
-								<span class="over">
+<!-- 								<span class="over"> -->
 <!-- 								<span class="over-like"><a href="#"><i class="bi bi-heart"></i></a></span> -->
 <%-- 									<a href="bookingStepOne?movie_code=${movie.movie_code }" class="rsv"><span class="over-rsv">예매하기</span></a> --%>
-									<a href="bookingStepOne?movie_code=${movie.movie_code }" class="rsv">예매하기</a>
+<%-- 									<a href="bookingStepOne?movie_code=${project.project_code }" class="rsv">예매하기</a> --%>
 <%-- 									<a href="movieDetail?movie_code= ${movie.movie_code }&pageNum=1" class="mvInfo"><span class="over-info">상세보기</span></a> --%>
-									<a href="movieDetail?movie_code= ${movie.movie_code }&pageNum=1" class="mvInfo">상세보기</a>
-								</span>
-								<img alt="" src="${movie.movie_poster }">
+<%-- 									<a href="projectDetail?project_code=${project.project_code }">상세보기</a> --%>
+<%-- 									<a href="projectDetail?project_code=${project.project_code }" class="mvInfo">상세보기</a> --%>
+<!-- 								</span> -->
+								
+								<a href="projectDetail?project_code=${project.project_code }">
+								<c:choose>
+								    <c:when test="${fn:contains(project.img_main, 'https')}">
+								        <img src="${project.img_main}" alt="프로젝트 커버 이미지" style="width:100%; height:100%">
+								    </c:when>
+								    <c:otherwise>
+								        <img src="${pageContext.request.contextPath }/resources/upload/${project.img_main }" alt="프로젝트 커버 이미지 DB" style="width:100%; height:100%">
+								    </c:otherwise>
+								</c:choose>
+								</a>
+<%-- 								<img alt="" src="${pageContext.request.contextPath }/resources/upload/${project.img_main }"> --%>
 <!-- 							</div> -->
 							<div class="mv-desc">
-								<c:choose>
- 									<c:when test="${movie.movie_rated eq '전체관람가'}">
-                               			<span class = "rate-all"></span>
-                               		</c:when>
-                               		<c:when test="${movie.movie_rated eq '12세이상관람가'}">
-                               			<span class = "rate-12"></span>
-                               		</c:when>
-                               		<c:when test="${movie.movie_rated eq '15세이상관람가'}">
-                               			<span class = "rate-15"></span>
-                               		</c:when>
-                               		<c:when test="${movie.movie_rated eq '18세이상관람가'}">
-                               			<span class = "rate-18"></span>
-                               		</c:when>
-                               </c:choose>
+<%-- 								<c:choose> --%>
+<%--  									<c:when test="${movie.movie_rated eq '전체관람가'}"> --%>
+<!--                                			<span class = "rate-all"></span> -->
+<%--                                		</c:when> --%>
+<%--                                		<c:when test="${movie.movie_rated eq '12세이상관람가'}"> --%>
+<!--                                			<span class = "rate-12"></span> -->
+<%--                                		</c:when> --%>
+<%--                                		<c:when test="${movie.movie_rated eq '15세이상관람가'}"> --%>
+<!--                                			<span class = "rate-15"></span> -->
+<%--                                		</c:when> --%>
+<%--                                		<c:when test="${movie.movie_rated eq '18세이상관람가'}"> --%>
+<!--                                			<span class = "rate-18"></span> -->
+<%--                                		</c:when> --%>
+<%--                                </c:choose> --%>
 <!-- 								<span class="rate-12">12세관람가</span> -->
-								<span title="${movie.movie_nameK }">${movie.movie_nameK }</span>
+								<span title="${project.title }">${project.title }</span>
 
 							</div>
 						</li>
