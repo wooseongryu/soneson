@@ -597,7 +597,12 @@
 <!-- 															<button class=> -->
 <!-- 															후원 -->
 <!-- 															</button> -->
-															<input type="submit">
+															<form action="fundingPaymentForm" method="post">
+																<input type="hidden" name="project_code" value="${project_code }">
+																<input type="hidden" name="reward_code" value="${reward.reward_code }">
+																<input type="hidden" name="reward_amount" value="${reward.reward_amount }">
+																<input type="submit" id="fund" value="후원">
+															</form>
 															
 															<div class="RewardCard__DeliveryDate-sc-11jni8b-16 cxeoGo"></div>
 															

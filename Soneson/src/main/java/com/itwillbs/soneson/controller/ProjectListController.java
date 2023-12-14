@@ -96,6 +96,7 @@ public class ProjectListController {
 		}
 		
 		model.addAttribute("rewardList", rewardList);
+		model.addAttribute("project_code", project_code);
 		
 //		List<Map<String, Object>> itemList = service.getItemList(project_code);
 //		model.addAttribute("itemList", itemList);

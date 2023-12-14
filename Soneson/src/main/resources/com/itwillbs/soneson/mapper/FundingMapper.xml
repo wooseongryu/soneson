@@ -10,7 +10,8 @@
 				, category
 				, img_main
 				, SUBSTRING_INDEX(end_date , ' ', 1) AS end_date
-				,
+<!-- 				, -->
+<!-- 에러나서 엄성윤이 수정 -->
 		FROM project  
 		WHERE project_code = #{pro_code}
 	</select>

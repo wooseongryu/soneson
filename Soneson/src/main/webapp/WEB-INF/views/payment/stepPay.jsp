@@ -17,7 +17,6 @@
 <script>
 
 
-
 //default Img
 function defaultImg(tagId) {
 	console.log(tagId.id);
@@ -244,6 +243,11 @@ function checkedValue() {
     
 </head>
 <body class="body-iframe">
+
+프로젝트 코드: ${param.project_code }
+리워드 코드: ${param.reward_code }
+리워드 가격: ${param.reward_amount }
+
 
 	<jsp:include page="../inc/header.jsp"></jsp:include>
 	<br>

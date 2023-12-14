@@ -85,7 +85,8 @@ public class FundingController {
 	}
 		
 	//세부내용에서 후원하기 버튼 클릭 시 결제페이지 이동 int pro_code, int reward_code, 나중에 추가
-	@GetMapping("fundingPaymentForm")
+//	@GetMapping("fundingPaymentForm")
+	@PostMapping("fundingPaymentForm")
 	public String fundingPaymentForm(HttpSession session, Model model) {
 		// 나중에 파라미터 앞에 @requestParam 붙여주기
 		String sId = (String)session.getAttribute("sId");
