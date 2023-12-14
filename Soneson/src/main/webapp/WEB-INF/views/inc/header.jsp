@@ -181,7 +181,7 @@ ul {
 												</c:if>
 												<a href="user?id=${sessionScope.sId }">프로필</a>
 												<a href="fundingList">후원현황</a>
-												<a href="userProjectsInterest">관심 <br> 프로젝트</a>
+<!-- 												<a href="userProjectsInterest">관심 <br> 프로젝트</a> -->
 <!-- 												<a href="messageList">메세지</a> -->
 												<a href="oneToOneQna">1:1 문의</a>
 												<a href="userSelectOTO">문의내역</a>

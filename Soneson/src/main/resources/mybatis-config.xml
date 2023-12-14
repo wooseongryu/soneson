@@ -15,7 +15,7 @@
 		<typeAlias type="com.itwillbs.soneson.vo.FundingVO" alias="Funding"/>
 		<typeAlias type="com.itwillbs.soneson.vo.ProItemVO" alias="Item"/>
 		<typeAlias type="com.itwillbs.soneson.vo.AddressVO" alias="Address"/>
-		<typeAlias type="com.itwillbs.soneson.vo.ChatVO" alias="Chat"/>
+		<typeAlias type="com.itwillbs.soneson.vo.ChatMessage2" alias="ChatMessage2"/>
 		<typeAlias type="com.itwillbs.soneson.vo.MainTabVO" alias="MainTab"/>
 		<typeAlias type="com.itwillbs.soneson.vo.MyQuestionVO" alias="MyQuestion"/>
 	</typeAliases>
