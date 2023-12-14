@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -126,42 +127,42 @@
 	    <div class="Category">
 			<ul class="Category_ul">
 				<li class="DonationTodayCategory_list_item__agFbi item_1" aria-current="true">
-					<button type="button" class="Category_button">
+					<button type="button" class="Category_button" onclick="location.href='userProjectsCreated'">
 						<span class="Category_text">&nbsp;&nbsp;전체&nbsp;&nbsp;</span>
 					</button>
 				</li>
-				<li class="DonationTodayCategory_list_item__agFbi item_2" aria-current="false">
-					<button type="button" class="Category_button">
-						<span class="Category_text">&nbsp;&nbsp;작성중&nbsp;&nbsp;</span>
-					</button>
-				</li>
+<!-- 				<li class="DonationTodayCategory_list_item__agFbi item_2" aria-current="false"> -->
+<!-- 					<button type="button" class="Category_button"> -->
+<!-- 						<span class="Category_text">&nbsp;&nbsp;작성중&nbsp;&nbsp;</span> -->
+<!-- 					</button> -->
+<!-- 				</li> -->
 				<li class="DonationTodayCategory_list_item__agFbi item_3" aria-current="false">
-					<button type="button" class="Category_button">
+					<button type="button" class="Category_button" onclick="location.href='userProjectExam'">
 						<span class="Category_text">&nbsp;&nbsp;심사중&nbsp;&nbsp;</span>
 					</button>
 				</li>
 				<li class="DonationTodayCategory_list_item__agFbi item_4" aria-current="false">
-					<button type="button" class="Category_button">
+					<button type="button" class="Category_button" onclick="location.href='userProjectApprove'">
 						<span class="Category_text">&nbsp;&nbsp;승인됨&nbsp;&nbsp;</span>
 					</button>
 				</li>
 				<li class="DonationTodayCategory_list_item__agFbi item_5" aria-current="false">
-					<button type="button" class="Category_button">
+					<button type="button" class="Category_button" onclick="location.href='userProjectReject'">
 						<span class="Category_text">&nbsp;&nbsp;반려됨&nbsp;&nbsp;</span>
 					</button>
 				</li>
 				<li class="DonationTodayCategory_list_item__agFbi item_6" aria-current="false">
-					<button type="button" class="Category_button">
+					<button type="button" class="Category_button" onclick="location.href='userProjectRelease'">
 						<span class="Category_text">&nbsp;&nbsp;공개예정&nbsp;&nbsp;</span>
 					</button>
 				</li>
 				<li class="DonationTodayCategory_list_item__agFbi item_7" aria-current="false">
-					<button type="button" class="Category_button">
+					<button type="button" class="Category_button" onclick="location.href='userProjectProceed'">
 						<span class="Category_text">&nbsp;&nbsp;진행중&nbsp;&nbsp;</span>
 					</button>
 				</li>
 				<li class="DonationTodayCategory_list_item__agFbi item_9" aria-current="false">
-					<button type="button" class="Category_button">
+					<button type="button" class="Category_button" onclick="location.href='userProjectEnd'">
 						<span class="Category_text">&nbsp;&nbsp;종료&nbsp;&nbsp;</span>
 					</button>
 				</li>
@@ -174,14 +175,61 @@
 		<div class="MyProjectListWrapper">
 			<div align="center">
 				<br>
-				<img src="${pageContext.request.contextPath }/resources/user/writer.png" class="writer.png" width="180">
-				<br>
-				<br>
-				<div class=""><h4>작성한 프로젝트가 없습니다.</h4></div>
-				<br>
-				<button type="button" class="btn btn-primary"
-				onclick="location.href='projectStartForm'">&nbsp;&nbsp;&nbsp;&nbsp;프로젝트 올리기&nbsp;&nbsp;&nbsp;&nbsp;</button>
-				<br>
+				<c:if test="${!empty UploadProjectList }">
+					<section class="product-page spad" id="user_upload_project_all">                                                                                                          
+   						<div class="container">                                                                                                                  
+   					    	<div class="row">                                                                                                                      
+   								<div class="col-lg-12">                                                                                                          
+   									<div class="product__page__content" >
+                           				<div class="row">  
+										<c:forEach var="UploadProject" items="${UploadProjectList}">
+											<div class="col-lg-4 col-md-6 col-sm-6" style="">                                                
+												<div class="product__item">
+  					    								<a href="projectDetail?project_code=${UploadProject.project_code}">
+			    										<div class="product__item__pic set-bg" data-setbg="${UploadProject.img_main }" 
+														style="background-image: url('${UploadProject.img_main}')">
+														</div>
+													</a>
+														<div class="product__item__text">                                                   
+															<ul>                                                                            
+																<li>${UploadProject.category }</li>                                           
+															</ul>                                                                           
+															<h5 style="margin-bottom: 7px;">                                                
+															<a href="projectDetail?project_code=' + UploadProject.project_code + '">                            
+																${UploadProject.title }
+															</a>                                                                            
+															</h5>                                                                           
+															<h6>${UploadProject.subtitle}</h6>                                               
+															<ul style="margin-top: 15px">                                                   
+																<li>${UploadProject.rate}%</li>                                              
+																<li>${UploadProject.total}원</li>                                            
+																<li style="float: right">${UploadProject.d_day}</li>                         
+															</ul>                                                                           
+			    										</div>                                                                               
+			    									</div>                                                                                   
+			    								</div>
+										</c:forEach>
+										</div>                                                                               
+									</div>                                                                                                                        
+								</div>                                                                                                                            
+							</div>                                                                                                                                
+				    	</div>                                                                                                                                    
+					</section>                                                                                                                               
+				</c:if>
+				<c:if test="${empty UploadProjectList }">
+					<img src="${pageContext.request.contextPath }/resources/user/writer.png" class="writer.png" width="180">
+					<br>
+					<br>
+					<div class=""><h4>작성한 프로젝트가 없습니다.</h4></div>
+					<br>
+					<button type="button" class="btn btn-primary"
+						onclick="location.href='projectStartForm'">&nbsp;&nbsp;&nbsp;&nbsp;프로젝트 올리기&nbsp;&nbsp;&nbsp;&nbsp;
+					</button>
+					<br>
+				</c:if>
+				<div id="user_content">
+                     <!-- ajax -->
+				</div>
 			</div>
 		</div>
 	</div>

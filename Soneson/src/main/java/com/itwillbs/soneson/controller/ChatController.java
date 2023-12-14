@@ -1,10 +1,22 @@
 package com.itwillbs.soneson.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
+import com.itwillbs.soneson.service.ChatService;
+import com.itwillbs.soneson.vo.ChatMessage2;
 
 @Controller
 public class ChatController {
+	@Autowired
+	private ChatService chatService;
+	
+	Gson gson = new Gson();
 	
 	// 전체 채팅방
 //	@GetMapping("ChatMain")
@@ -12,11 +24,27 @@ public class ChatController {
 //		return "chat/main";
 //	}
 		
-	// 1:1 채팅방 팝업 페이지
-	@GetMapping("chatting")
-	public String chatting() {
-		System.out.println("ChatController - chatting()");
-		return "mypage/chat/chatting";
+//	// 1:1 채팅방 팝업 페이지
+//	@GetMapping("chatting")
+//	public String chatting() {
+//		System.out.println("ChatController - chatting()");
+//		return "mypage/chat/chatting";
+//	}
+	
+	// 1:1 채팅방
+	@GetMapping("ChatMain2")
+	public String main2() {
+		return "mypage/chat/main2";
+	}
+	
+	// 채팅방 채팅 목록 조회
+	@ResponseBody
+	@GetMapping("requestChatList")
+	public String chatList(String room_id) {
+		// ChatService - getChatList() 메서드 호출하여 채팅 목록 조회 요청
+		// => 파라미터 : room_id   리턴타입 : List<ChatMessage2>(chatList)
+		List<ChatMessage2> chatList = chatService.getChatList(room_id);
+		return gson.toJson(chatList);
 	}
 	
 	
