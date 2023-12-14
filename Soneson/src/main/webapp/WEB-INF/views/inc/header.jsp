@@ -70,7 +70,7 @@ ul {
   font-weight: 400;
   color : rgb(37, 37, 37);
   padding : 10px;
-  width :100px;
+  width :130px;
   text-align: center;
   cursor : pointer;
   font-size : 12px;
@@ -81,7 +81,10 @@ ul {
   z-index : 1; /*다른 요소들보다 앞에 배치*/
   font-weight: 300;
   background-color: #f9f9f9;
-  min-width : 120px;
+  min-width : 100%;
+  text-align: center;
+  padding: 10px;
+/*   margin-top: 10px;  이거 넣으면 드롭다운이 순식간에 사라짐... */
 }
 
 .hd_dropdown-content a{
@@ -178,11 +181,11 @@ ul {
 												</c:if>
 												<a href="user?id=${sessionScope.sId }">프로필</a>
 												<a href="fundingList">후원현황</a>
-												<a href="userProjectsInterest">관심 프로젝트</a>
+												<a href="userProjectsInterest">관심 <br> 프로젝트</a>
 <!-- 												<a href="messageList">메세지</a> -->
 												<a href="oneToOneQna">1:1 문의</a>
 												<a href="userSelectOTO">문의내역</a>
-												<a href="userProjectsCreated">내가 만든 프로젝트</a>
+												<a href="userProjectsCreated">내가 만든 <br> 프로젝트</a>
 												<a href="userSetting">설정</a>
 												<a href="javascript:logout()">로그아웃</a>
 											</div>

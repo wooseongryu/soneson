@@ -78,14 +78,14 @@
                                     <div class="col-sm-12 mb-6 mb-sm-0">
 										<label for="">게시글 제목</label>
                                         <input type="text" name="event_title" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="이벤트제목입력">
+                                            placeholder="게시글제목입력">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-12 mb-6 mb-sm-0">
 									  <label for="floatingTextarea">공지내용</label>
 									  <textarea rows="10" name="event_content" class="form-control form-control-textarea" 
-									  	placeholder="이벤트내용작성" id="floatingTextarea" maxlength="3000"></textarea>
+									  	placeholder="게시글내용작성" id="floatingTextarea" maxlength="3000"></textarea>
 									</div>
                                 </div>
 								<br>
