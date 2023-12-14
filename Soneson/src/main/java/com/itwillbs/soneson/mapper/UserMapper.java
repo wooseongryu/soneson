@@ -177,6 +177,30 @@ public interface UserMapper {
 	MyQuestionVO selectUserAnswer(String myQuestion_num);
 	// 유저 올린 프로젝트
 	List<Map<String, String>> selectUploadProjects();
+
+	
+	// 유저 올린 프로젝트
+	List<Map<String, String>> selectUploadProjectList(String sId);
+
+	
+	// 유저 심사중 프로젝트
+	List<Map<String, String>> selectUserProjectExam(String sId);
+
+	// 유저 승인된 프로젝트
+	List<Map<String, String>> selectUserProjectApprove(String sId);
+
+	// 유저 반려된 프로젝트
+	List<Map<String, String>> selectUserProjectReject(String sId);
+
+	// 유저 공개예정 프로젝트
+	List<Map<String, String>> selectUserProjectRelease(String sId);
+
+	// 유저 진행중인 프로젝트
+	List<Map<String, String>> selectUserProjectProceed(String sId);
+
+	// 유저 마감된 프로젝트
+	List<Map<String, String>> selectUserProjectEnd(String sId);
+
 }
 
 

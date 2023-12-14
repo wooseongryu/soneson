@@ -369,6 +369,55 @@ public class UserService {
 		
 		return mapper.selectUploadProjects();
 	}
+
+	// 유저 올린 프로젝트
+	public List<Map<String, String>> selectUploadProjectList(String sId) {
+		System.out.println("UserService - selectUploadProjectList(sId)");
+		
+		return mapper.selectUploadProjectList(sId);
+	}
+
+	// 유저 심사중 프로젝트
+	public List<Map<String, String>> selectUserProjectExam(String sId) {
+		System.out.println("UserService - selectUserProjectExam()");
+		
+		return mapper.selectUserProjectExam(sId);
+	}
+
+	// 유저 승인된 프로젝트
+	public List<Map<String, String>> selectUserProjectApprove(String sId) {
+		System.out.println("UserService - selectUserProjectApprove()");
+		
+		return mapper.selectUserProjectApprove(sId);
+	}
+
+	// 유저 반려된 프로젝트
+	public List<Map<String, String>> selectUserProjectReject(String sId) {
+		System.out.println("UserService - selectUserProjectReject()");
+		
+		return mapper.selectUserProjectReject(sId);
+	}
+
+	// 유저 공개예정 프로젝트
+	public List<Map<String, String>> selectUserProjectRelease(String sId) {
+		System.out.println("UserService - selectUserProjectRelease()");
+		
+		return mapper.selectUserProjectRelease(sId);
+	}
+
+	// 유저 진행중 프로젝트
+	public List<Map<String, String>> selectUserProjectProceed(String sId) {
+		System.out.println("UserService - selectUserProjectProceed()");
+		
+		return mapper.selectUserProjectProceed(sId);
+	}
+
+	// 유저 마감된 프로젝트
+	public List<Map<String, String>> selectUserProjectEnd(String sId) {
+		System.out.println("UserService - selectUserProjectEnd()");
+		
+		return mapper.selectUserProjectEnd(sId);
+	}
 	
 }
 

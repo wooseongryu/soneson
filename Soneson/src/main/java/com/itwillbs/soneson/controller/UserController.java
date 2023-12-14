@@ -309,7 +309,7 @@ public class UserController {
 		user.setUser_id(sId);
 		
 		String uploadDir = "/resources/upload"; // 가상의 경로
-		String saveDir = session.getServletContext().getRealPath(uploadDir); // 실제 업로드 경로
+		String saveDir = session.getServletContext().getRealPath(uploadDir); // 실제  경로
 		String subDir = ""; // 서브디렉토리명을 저장할 변수 선언(날짜로 구분)
 		
 		System.out.println(saveDir);
@@ -751,33 +751,141 @@ public class UserController {
 	
 	// 마이페이지에서 프로젝트 올리기 페이지 이동
 	@GetMapping("userProjectsCreated")
-	public String userProjectsCreated() {
+	public String userProjectsCreated(HttpSession session, Model model) {
 		System.out.println("UserController - userProjectsCreated()");
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		List<Map<String, String>> UploadProjectList = userService.selectUploadProjectList(sId);
+		
+		
+		model.addAttribute("UploadProjectList", UploadProjectList);
+		
 		return "mypage/user/user_projects_created";
 	}
 	
-	// 마이페이지에서 관심 프로젝트
-	@GetMapping("userProjectsInterest")
-	public String userProjectsInterest() {
-		System.out.println("UserController - userProjectsInterest()");
-		return "mypage/user/user_projects_interest";
-	}
-	
-	// 마이페이지에서 관심 프로젝트 - 좋아한 페이지 이동
-	@ResponseBody
-	@PostMapping("userProjectsLiked")
-	public String userProjectsLiked() {
-		System.out.println("UserController - userProjectsLiked()");
-		return "1";
+	// 마이페이지에서 심사중인 프로젝트 
+	@GetMapping("userProjectExam")
+	public String userProjectExam(HttpSession session, Model model) {
+		System.out.println("UserController - userProjectExam()");
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		List<Map<String, String>> ExamProjectList = userService.selectUserProjectExam(sId);
+		
+		model.addAttribute("ExamProjectList", ExamProjectList);
+		
+		return "mypage/user/user_projects_exam";
 	}
 
-	// 마이페이지에서 관심 프로젝트 - 알림신청 페이지 이동
-	@ResponseBody
-	@PostMapping("userProjectsAlarm")
-	public String userProjectsAlarm() {
-		System.out.println("UserController - userProjectsAlarm()");
-		return "1";
+	// 마이페이지에서 승인된 프로젝트 
+	@GetMapping("userProjectApprove")
+	public String userProjectApprove(HttpSession session, Model model) {
+		System.out.println("UserController - userProjectApprove()");
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		List<Map<String, String>> ApproveProjectList = userService.selectUserProjectApprove(sId);
+		
+		model.addAttribute("ApproveProjectList", ApproveProjectList);
+		
+		return "mypage/user/user_projects_approve";
 	}
+
+	// 마이페이지에서 반려된 프로젝트 
+	@GetMapping("userProjectReject")
+	public String userProjectReject(HttpSession session, Model model) {
+		System.out.println("UserController - userProjectReject()");
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		List<Map<String, String>> RejectProjectList = userService.selectUserProjectReject(sId);
+		
+		model.addAttribute("RejectProjectList", RejectProjectList);
+		
+		return "mypage/user/user_projects_reject";
+	}
+
+	// 마이페이지에서 공개예정 프로젝트 
+	@GetMapping("userProjectRelease")
+	public String userProjectRelease(HttpSession session, Model model) {
+		System.out.println("UserController - userProjectRelease()");
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		List<Map<String, String>> ReleaseProjectList = userService.selectUserProjectRelease(sId);
+		
+		model.addAttribute("ReleaseProjectList", ReleaseProjectList);
+		
+		return "mypage/user/user_projects_release";
+	}
+
+	// 마이페이지에서 진행중인 프로젝트 
+	@GetMapping("userProjectProceed")
+	public String userProjectProceed(HttpSession session, Model model) {
+		System.out.println("UserController - userProjectProceed()");
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		List<Map<String, String>> ProceedProjectList = userService.selectUserProjectProceed(sId);
+		
+		model.addAttribute("ProceedProjectList", ProceedProjectList);
+		
+		return "mypage/user/user_projects_proceed";
+	}
+
+	// 마이페이지에서 마감된 프로젝트 
+	@GetMapping("userProjectEnd")
+	public String userProjectEnd(HttpSession session, Model model) {
+		System.out.println("UserController - userProjectEnd()");
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		List<Map<String, String>> endProjectList = userService.selectUserProjectEnd(sId);
+		
+		model.addAttribute("endProjectList", endProjectList);
+		
+		return "mypage/user/user_projects_end";
+	}
+
+
+	
+	
+	
+	
+	
+	
+	
+//	// 마이페이지에서 관심 프로젝트
+//	@GetMapping("userProjectsInterest")
+//	public String userProjectsInterest() {
+//		System.out.println("UserController - userProjectsInterest()");
+//		return "mypage/user/user_projects_interest";
+//	}
+//	
+//	
+//	// 마이페이지에서 관심 프로젝트 - 좋아한 페이지 이동
+//	@ResponseBody
+//	@PostMapping("userProjectsLiked")
+//	public String userProjectsLiked() {
+//		System.out.println("UserController - userProjectsLiked()");
+//		return "1";
+//	}
+//
+//	// 마이페이지에서 관심 프로젝트 - 알림신청 페이지 이동
+//	@ResponseBody
+//	@PostMapping("userProjectsAlarm")
+//	public String userProjectsAlarm() {
+//		System.out.println("UserController - userProjectsAlarm()");
+//		return "1";
+//	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

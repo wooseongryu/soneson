@@ -525,5 +525,188 @@
 		LEFT JOIN fund f
 		ON p.project_code = f.project_code
 	</select>
+
+
+	<select id="selectUploadProjectList" resultType="map">
+		-- selectUploadProjectList
+		SELECT DISTINCT 
+			p.project_code
+			, p.user_id
+			, title
+			, subtitle
+			, category
+			, img_main
+			, CASE
+				WHEN (DATEDIFF(end_date, now()) >= 0) THEN CONCAT(DATEDIFF(end_date, now()), '일 남음')
+				WHEN (DATEDIFF(end_date, now()) = 0) THEN '오늘 종료'
+		        ELSE '종료 됨'
+			  END AS d_day
+			, IFNULL((SELECT sum(cost)
+						FROM fund
+						WHERE project_code = p.project_code), 0) AS total
+			, IFNULL(TRUNCATE((SELECT sum(cost)
+								FROM fund
+								WHERE project_code = p.project_code) / goal_amount * 100, 0), 0) AS rate
+		FROM project p
+		LEFT JOIN fund f
+		ON p.project_code = f.project_code
+		WHERE p.user_id = #{sId}
+	</select>
+
+	
+	<select id="selectUserProjectExam" resultType="map">
+		-- selectUserProjectExam
+		SELECT DISTINCT 
+			p.project_code
+			, p.user_id
+			, title
+			, subtitle
+			, category
+			, img_main
+			, CASE
+				WHEN (DATEDIFF(end_date, now()) >= 0) THEN CONCAT(DATEDIFF(end_date, now()), '일 남음')
+				WHEN (DATEDIFF(end_date, now()) = 0) THEN '오늘 종료'
+		        ELSE '종료 됨'
+			  END AS d_day
+			, IFNULL((SELECT sum(cost)
+						FROM fund
+						WHERE project_code = p.project_code), 0) AS total
+			, IFNULL(TRUNCATE((SELECT sum(cost)
+								FROM fund
+								WHERE project_code = p.project_code) / goal_amount * 100, 0), 0) AS rate
+		FROM project p
+		LEFT JOIN fund f
+		ON p.project_code = f.project_code
+		WHERE p.user_id = #{sId} AND p.status = '심사대기중'
+	</select>
+
+	<select id="selectUserProjectApprove" resultType="map">
+		-- selectUserProjectApprove
+		SELECT DISTINCT 
+			p.project_code
+			, p.user_id
+			, title
+			, subtitle
+			, category
+			, img_main
+			, CASE
+				WHEN (DATEDIFF(end_date, now()) >= 0) THEN CONCAT(DATEDIFF(end_date, now()), '일 남음')
+				WHEN (DATEDIFF(end_date, now()) = 0) THEN '오늘 종료'
+		        ELSE '종료 됨'
+			  END AS d_day
+			, IFNULL((SELECT sum(cost)
+						FROM fund
+						WHERE project_code = p.project_code), 0) AS total
+			, IFNULL(TRUNCATE((SELECT sum(cost)
+								FROM fund
+								WHERE project_code = p.project_code) / goal_amount * 100, 0), 0) AS rate
+		FROM project p
+		LEFT JOIN fund f
+		ON p.project_code = f.project_code
+		WHERE p.user_id = #{sId} AND p.status = '승인'
+	</select>
+
+	<select id="selectUserProjectReject" resultType="map">
+		-- selectUserProjectReject
+		SELECT DISTINCT 
+			p.project_code
+			, p.user_id
+			, title
+			, subtitle
+			, category
+			, img_main
+			, CASE
+				WHEN (DATEDIFF(end_date, now()) >= 0) THEN CONCAT(DATEDIFF(end_date, now()), '일 남음')
+				WHEN (DATEDIFF(end_date, now()) = 0) THEN '오늘 종료'
+		        ELSE '종료 됨'
+			  END AS d_day
+			, IFNULL((SELECT sum(cost)
+						FROM fund
+						WHERE project_code = p.project_code), 0) AS total
+			, IFNULL(TRUNCATE((SELECT sum(cost)
+								FROM fund
+								WHERE project_code = p.project_code) / goal_amount * 100, 0), 0) AS rate
+		FROM project p
+		LEFT JOIN fund f
+		ON p.project_code = f.project_code
+		WHERE p.user_id = #{sId} AND p.status = '반려'
+	</select>
+	
+    <!-- 유저 공개예정 프로젝트 조회 -->
+   	<select id="selectUserProjectRelease" resultType="map">
+		SELECT
+			project_code
+			, title 
+			, subtitle
+			, category
+			, creator
+			, img_main
+			, date(start_date) AS start_date
+			, date(end_date) AS end_date
+			, ifnull(goal_amount, 0) AS goal_amount
+		FROM project p
+		WHERE start_date > now() AND status = '승인' AND user_id = #{sId}
+	</select>
+
+    <!-- 유저 공개예정 프로젝트 조회 -->
+<select id="selectUserProjectProceed" resultType="map">
+	SELECT *
+	FROM 
+		(SELECT
+			p.project_code
+			, max(p.title) AS title
+			, max(p.subtitle) AS subtitle
+			, max(p.category) AS category
+			, max(p.creator) AS creator
+			, max(p.img_main) AS img_main
+			, date(max(p.start_date)) AS start_date
+			, date(max(p.end_date)) AS end_date
+			, ifnull(format(sum(cost) , 0), 0) AS now_amount
+			, ifnull(max(goal_amount), 0) AS goal_amount
+			, ifnull(sum(cost) / max(goal_amount), 0) AS ratio
+			, ifnull(TRUNCATE(sum(cost) / max(goal_amount) * 100, 0), 0) AS goal_rate
+			, CASE count(p.project_code) WHEN 1 THEN 0 
+										 ELSE count(p.project_code)
+										 END AS donor
+		FROM project p
+		LEFT JOIN fund f
+		ON p.project_code = f.project_code
+		<![CDATA[
+		WHERE p.start_date <= now() AND p.end_date >= now() AND status = '승인' AND p.user_id = #{sId}
+		]]>
+		GROUP BY p.project_code) A
+	ORDER BY donor DESC
+	</select>
+	
+   	<!-- 유저 마감된 프로젝트 조회 -->
+	<select id="selectUserProjectEnd" resultType="map">
+	SELECT *
+	FROM 
+		(SELECT
+			p.project_code
+			, max(p.title) AS title
+			, max(p.subtitle) AS subtitle
+			, max(p.category) AS category
+			, max(p.creator) AS creator
+			, max(p.img_main) AS img_main
+			, date(max(p.start_date)) AS start_date
+			, date(max(p.end_date)) AS end_date
+			, ifnull(format(sum(cost) , 0), 0) AS now_amount
+			, ifnull(max(goal_amount), 0) AS goal_amount
+			, ifnull(sum(cost) / max(goal_amount), 0) AS ratio
+			, ifnull(TRUNCATE(sum(cost) / max(goal_amount) * 100, 0), 0) AS goal_rate
+			, CASE count(p.project_code) WHEN 1 THEN 0 
+										 ELSE count(p.project_code)
+										 END AS donor
+		FROM project p
+		LEFT JOIN fund f
+		ON p.project_code = f.project_code
+		<![CDATA[
+		WHERE p.end_date < now() AND status = '승인' AND p.user_id = #{sId}
+		]]>
+		GROUP BY p.project_code) A
+	ORDER BY donor DESC
+	</select>
+	
 </mapper>
 
