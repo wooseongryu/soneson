@@ -150,6 +150,15 @@ ul {
 										<span class="HeaderUserProfile_bar__1OPU2"></span>
 									</span>
 								</a>
+								
+								<!-- 김주영 메세지 a 태그 추가 -->
+								<a href="Chatting" onclick="window.open(this.href, '_blank', 'width=400, height=800'); return false;">
+									<span class="">
+									<span class="">메세지</span>
+										<span class="HeaderUserProfile_bar__1OPU2"></span>
+									</span>
+								</a>
+								
 								<a href="userSetting" class="HeaderUserProfile_wrap__3FD8V">
 									
 <!-- 									<div class="profileImgDivHeader"> -->
