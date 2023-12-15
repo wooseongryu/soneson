@@ -269,7 +269,7 @@ public class BankApiClient {
 		
 		
 		// 1번
-		jo.put("fintech_use_num", map.get("withdraw_fintech_use_num")); // 출금계좌 핀테크이용번호
+		jo.put("fintech_use_num", map.get("fintech_use_num")); // 출금계좌 핀테크이용번호
 		
 		// 류우성
 //		jo.put("fintech_use_num", "120211385488932387478941"); // 출금계좌 핀테크이용번호
@@ -288,11 +288,11 @@ public class BankApiClient {
 		
 		
 		// 2번
-		jo.put("req_client_name", map.get("withdraw_user_name")); // 요청고객성명(출금계좌)
+		jo.put("req_client_name", map.get("user_name")); // 요청고객성명(출금계좌)
 //		jo.put("req_client_name", "박훈나"); // 요청고객성명(출금계좌)
 		
 		
-		jo.put("req_client_fintech_use_num", map.get("withdraw_fintech_use_num")); // 요청고객핀테크이용번호(출금계좌)
+		jo.put("req_client_fintech_use_num", map.get("fintech_use_num")); // 요청고객핀테크이용번호(출금계좌)
 		// => 요청고객계좌번호 미사용 시 핀테크이용번호 설정
 //		jo.put("req_client_num", map.get("id").toUpperCase()); // 요청고객회원번호(아이디처럼 사용) => 단, 영문자는 모두 대문자
 		jo.put("req_client_num", "SONESON"); // 요청고객회원번호(아이디처럼 사용) => 단, 영문자는 모두 대문자

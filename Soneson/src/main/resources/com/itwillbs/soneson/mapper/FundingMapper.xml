@@ -67,6 +67,7 @@
 			, CAST(REPLACE(#{reward_amount}, ',', '') AS UNSIGNED)
 			, now()
 			, #{reward_code}
+			, '결제대기중'
 		);
 	</insert>
 	

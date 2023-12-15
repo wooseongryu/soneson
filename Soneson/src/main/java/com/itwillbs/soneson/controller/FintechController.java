@@ -140,6 +140,7 @@ public class FintechController {
 //		log.info(">>> userInfo : " + userInfo); 
 		
 		model.addAttribute("userInfoList", userInfoList);
+		model.addAttribute("project_code", 50);
 		
 		return "mypage/fintech/fintech_user_info";
 	}
@@ -185,12 +186,18 @@ public class FintechController {
 		
 //		map.put("id", "lsc2464"); // 테스트 출금 정보 등록(요청 사용자 번호용 임시 아이디)
 		
-		ResponseWithdrawVO withdrawResult = bankApiClient.requestWithdraw(map);
-		log.info(">>>>>>>>> withdrawResult : " + withdrawResult);
+		List<Map<String, String>> userInfoList = bankApiService.selectUserToken();
 		
-		model.addAttribute("withdrawResult", withdrawResult);
+		List<ResponseWithdrawVO> withdrawResultList = new ArrayList<ResponseWithdrawVO>();
+		for (Map<String, String> user : userInfoList) {
+			withdrawResultList.add(bankApiClient.requestWithdraw(user));
+		}
+		System.out.println("withdrawResultList--" + withdrawResultList);
 		
-		return "mypage/admin/fintech_payment_result";
+		
+		model.addAttribute("withdrawResultList", withdrawResultList);
+		
+		return "mypage/admin/fintech_account_detail";
 	}
 	
 	

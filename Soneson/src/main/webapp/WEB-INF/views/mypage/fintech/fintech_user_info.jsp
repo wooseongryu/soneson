@@ -115,7 +115,17 @@
 											<th>예금주명</th>
 											<th>결제일</th>
 											<th>핀테크이용번호</th>
-											<th></th>
+											<th>결제액</th>
+											<th>
+												<form action="BankPayment" method="post">
+													<input type="hidden" name="project_code" value="${project_code}">
+<%-- 													<input type="hidden" name="access_token" value="${user.access_token}"> --%>
+<%-- 													<input type="hidden" name="fintech_use_num" value="${user.fintech_use_num}"> --%>
+<%-- 													<input type="hidden" name="user_name" value="${user.user_name}"> --%>
+<%-- 													<input type="hidden" name="account_num_masked" value="${user.account_num_masked}"> --%>
+													<input type="submit" value="출금이체">
+												</form>
+											</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -125,15 +135,8 @@
 											<td>${user.user_name}</td>
 											<td>${user.tranDTime}</td>
 											<td>${user.fintech_use_num}</td>
-											<td>
-												<form action="BankAccountDetail" method="post">
-													<input type="hidden" name="access_token" value="${user.access_token}">
-													<input type="hidden" name="fintech_use_num" value="${user.fintech_use_num}">
-													<input type="hidden" name="user_name" value="${user.user_name}">
-<%-- 													<input type="hidden" name="account_num_masked" value="${user.account_num_masked}"> --%>
-													<input type="submit" value="상세정보">
-												</form>
-											</td>
+											<td>${user.cost}원</td>
+											<td>${user.status }</td>
 										</tr>
 									</c:forEach>
 									</tbody>

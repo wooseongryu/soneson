@@ -16,10 +16,14 @@
 			, u.tranDTime 
 			, f.access_token 
 			, f.user_seq_no 
+			, fund.cost
+			, fund.status
 		FROM user_fund_info u
 		JOIN fintech_user_info f
 		ON u.user_id = f.id
-		WHERE project_code = 50
+		JOIN fund fund
+		ON u.user_id = fund.user_id
+		WHERE u.project_code = 50
 	</select>
 </mapper>
 
