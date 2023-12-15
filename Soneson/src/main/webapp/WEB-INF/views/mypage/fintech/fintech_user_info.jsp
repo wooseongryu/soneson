@@ -88,21 +88,22 @@
 									<tbody>
 									<c:forEach var="user" items="${userInfos}">
 										<c:forEach var="user1" items="${user.res_list }">
-										<tr>
-											<td>${user1.account_alias }</td>
-											<td>${user1.account_num_masked}</td>
-											<td>${user1.bank_name}(${user1.bank_code_std})</td>
-											<td>${user1.account_holder_name}</td>
-											<td>${user1.fintech_use_num}</td>
-											<td>
-												<form action="BankAccountDetail" method="post">
-													<input type="hidden" name="fintech_use_num" value="${user1.fintech_use_num}">
-													<input type="hidden" name="user_name" value="${user.user_name}">
-													<input type="hidden" name="account_num_masked" value="${user1.account_num_masked}">
-													<input type="submit" value="상세정보">
-												</form>
-											</td>
-										</tr>
+											<tr>
+												<td>${user1.account_alias }</td>
+												<td>${user1.account_num_masked}</td>
+												<td>${user1.bank_name}(${user1.bank_code_std})</td>
+												<td>${user1.account_holder_name}</td>
+												<td>${user1.fintech_use_num}</td>
+												<td>
+													<form action="BankAccountDetail" method="post">
+														<input type="hidden" name="access_token" value="${user.access_token}">
+														<input type="hidden" name="fintech_use_num" value="${user1.fintech_use_num}">
+														<input type="hidden" name="user_name" value="${user.user_name}">
+														<input type="hidden" name="account_num_masked" value="${user1.account_num_masked}">
+														<input type="submit" value="상세정보">
+													</form>
+												</td>
+											</tr>
 										</c:forEach>
 									</c:forEach>
 									</tbody>

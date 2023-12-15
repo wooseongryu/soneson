@@ -89,10 +89,10 @@ public class FintechController {
 		System.out.println(map);
 		
 		// 세션에 저장된 엑세스토큰 및 사용자번호를 Map 객체에 저장
-		map.put("access_token", (String)session.getAttribute("access_token"));
-		map.put("user_seq_no", (String)session.getAttribute("user_seq_no"));
+//		map.put("access_token", (String)session.getAttribute("access_token"));
+//		map.put("user_seq_no", (String)session.getAttribute("user_seq_no"));
 
-		System.out.println(map);
+//		System.out.println(map);
 		
 		
 		List<Map<String, String>> userInfoList = bankApiService.selectUserToken();
@@ -104,9 +104,13 @@ public class FintechController {
 		
 		List<ResponseUserInfoVO> userInfos = new ArrayList<ResponseUserInfoVO>();
 		for (Map<String, String> user : userInfoList) {
-//			ResponseUserInfoVO userInfo = bankApiClient.requestUserInfo(user);
-			userInfos.add(bankApiClient.requestUserInfo(user));
+			ResponseUserInfoVO userInfo = bankApiClient.requestUserInfo(user);
+			userInfo.setAccess_token(user.get("access_token"));
+			userInfos.add(userInfo);
 		}
+		
+//		System.out.println(")))))))))+++++++++++++++++");
+//		System.out.println(userInfos);
 		
 //		System.out.println("))))))))))))))))))userInfos");
 //		System.out.println(userInfos);
@@ -135,7 +139,10 @@ public class FintechController {
 	
 	@PostMapping("BankAccountDetail")
 	public String accountDetail(@RequestParam Map<String, String> map, HttpSession session, Model model) {
-		map.put("access_token", (String)session.getAttribute("access_token"));
+//		map.put("access_token", (String)session.getAttribute("access_token"));
+		
+		System.out.println("))))))))))--------------");
+//		System.out.println(map);
 		
 		BankAccountDetailVO accountDetail = bankApiClient.requestAccountDetail(map);
 		log.info(">>>>>>>>> accountDetail : " + accountDetail);

@@ -7,6 +7,8 @@ import lombok.Data;
 //2.2. 사용자/서비스 관리 - 2.2.1. 사용자정보조회 API 응답 결과를 관리할 클래스 정의
 @Data
 public class ResponseUserInfoVO {
+	private String access_token;
+	
 	private String api_tran_id;
 	private String api_tran_dtm;
 	private String rsp_code;    // 요청에 대한 결과 응답 코드
