@@ -1,0 +1,38 @@
+@charset "UTF-8";
+/* top.jsp */
+/* ID 선택자 "member_area" 요소 우측 정렬, 마진 20px */
+#member_area {
+	text-align: right;
+	margin: 20px;
+}
+
+/* 공통 영역 */
+#title {
+	text-align: center;
+}
+
+#content {
+	text-align: center;
+}
+
+article h1, h3 {
+	text-align: center;
+}
+
+table {
+	margin: auto;	
+}
+
+/* 하이퍼링크 밑줄 제거 */
+a {
+	text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
