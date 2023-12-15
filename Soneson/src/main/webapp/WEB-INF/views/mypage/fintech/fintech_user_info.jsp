@@ -74,40 +74,6 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-<!-- 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"> -->
-<!-- 									<thead> -->
-<!-- 										<tr> -->
-<!-- 											<th>계좌별칭</th> -->
-<!-- 											<th>계좌번호</th> -->
-<!-- 											<th>은행명(은행코드)</th> -->
-<!-- 											<th>예금주명</th> -->
-<!-- 											<th>핀테크이용번호</th> -->
-<!-- 											<th></th> -->
-<!-- 										</tr> -->
-<!-- 									</thead> -->
-<!-- 									<tbody> -->
-<%-- 									<c:forEach var="user" items="${userInfos}"> --%>
-<%-- 										<c:forEach var="user1" items="${user.res_list }"> --%>
-<!-- 											<tr> -->
-<%-- 												<td>${user1.account_alias }</td> --%>
-<%-- 												<td>${user1.account_num_masked}</td> --%>
-<%-- 												<td>${user1.bank_name}(${user1.bank_code_std})</td> --%>
-<%-- 												<td>${user1.account_holder_name}</td> --%>
-<%-- 												<td>${user1.fintech_use_num}</td> --%>
-<!-- 												<td> -->
-<!-- 													<form action="BankAccountDetail" method="post"> -->
-<%-- 														<input type="hidden" name="access_token" value="${user.access_token}"> --%>
-<%-- 														<input type="hidden" name="fintech_use_num" value="${user1.fintech_use_num}"> --%>
-<%-- 														<input type="hidden" name="user_name" value="${user.user_name}"> --%>
-<%-- 														<input type="hidden" name="account_num_masked" value="${user1.account_num_masked}"> --%>
-<!-- 														<input type="submit" value="상세정보"> -->
-<!-- 													</form> -->
-<!-- 												</td> -->
-<!-- 											</tr> -->
-<%-- 										</c:forEach> --%>
-<%-- 									</c:forEach> --%>
-<!-- 									</tbody> -->
-<!-- 								</table> -->
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
@@ -119,6 +85,7 @@
 											<th>
 												<form action="BankPayment" method="post">
 													<input type="hidden" name="project_code" value="${project_code}">
+<%-- 													<input type="hidden" name="userInfoList" value="${userInfoList}"> --%>
 <%-- 													<input type="hidden" name="access_token" value="${user.access_token}"> --%>
 <%-- 													<input type="hidden" name="fintech_use_num" value="${user.fintech_use_num}"> --%>
 <%-- 													<input type="hidden" name="user_name" value="${user.user_name}"> --%>

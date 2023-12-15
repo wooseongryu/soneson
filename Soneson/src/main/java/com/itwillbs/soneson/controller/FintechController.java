@@ -83,6 +83,7 @@ public class FintechController {
 		return "forwardFintech";
 	}
 	
+	// 모금성공한 프로젝트 클릭해서 들어갔을 때 해당 프로젝트 후원한 유저 목록
 	// 2.2. 사용자/서비스 관리 - 2.2.1. 사용자정보조회 API
 	@GetMapping("/FintechUserInfo")
 	public String requestUserInfo(Map<String, String> map, HttpSession session, Model model) {
@@ -98,8 +99,8 @@ public class FintechController {
 		
 		List<Map<String, String>> userInfoList = bankApiService.selectUserToken();
 		
-//		System.out.println(")))))))))))))))___________+++");
-//		System.out.println(userInfoList);
+		System.out.println(")))))))))))))))___________+++");
+		System.out.println(userInfoList);
 		
 //		if(map.get("access_token") == null || map.get("user_seq_no") == null) {
 //			model.addAttribute("msg", "계좌 인증 필수!");
@@ -177,27 +178,55 @@ public class FintechController {
 		return "mypage/fintech/fintech_account_detail";
 	}
 	
+	// 출금이체
 	@PostMapping("BankPayment")
 	public String payment(@RequestParam Map<String, String> map, HttpSession session, Model model) {
 //		map.put("access_token", (String)session.getAttribute("access_token"));
 		
 		System.out.println(")))BankPayment");
-		System.out.println(map);
+//		System.out.println(map);
 		
 //		map.put("id", "lsc2464"); // 테스트 출금 정보 등록(요청 사용자 번호용 임시 아이디)
 		
 		List<Map<String, String>> userInfoList = bankApiService.selectUserToken();
+		System.out.println("테스트");
+//		System.out.println(userInfoList.get(0).get("test"));
+		System.out.println(userInfoList.get(0));
+		
+		// 뷰에서 객체를 받아올 수는 있는데 String으로 넘어와서 다시 MAP으로 변환해야됨.
+//		String test = map.get("userInfoList");
+//		
+//		System.out.println("??" + test);
+		
 		
 		List<ResponseWithdrawVO> withdrawResultList = new ArrayList<ResponseWithdrawVO>();
 		for (Map<String, String> user : userInfoList) {
-			withdrawResultList.add(bankApiClient.requestWithdraw(user));
+			ResponseWithdrawVO tmp = bankApiClient.requestWithdraw(user);
+//			withdrawResultList.add(bankApiClient.requestWithdraw(user));
+			withdrawResultList.add(tmp);
+//			System.out.println("유저");
+//			System.out.println(user.get("test"));
+			
+//			if (tmp.getRsp_code().equals("A0000")) {
+//				System.out.println(user.get("idx"));
+//			}
+			
+			System.out.println("-----");
+			System.out.println(tmp.getRsp_code());
 		}
-		System.out.println("withdrawResultList--" + withdrawResultList);
+		
+//		for (ResponseWithdrawVO result : withdrawResultList) {
+//			if (result.getRsp_code().equals("A0000")) {
+//				bankApiService.updateFundStatus(result.);
+//			}
+//		}
+		
+		System.out.println("withdrawResultList1--" + withdrawResultList.get(0).getRsp_code());
 		
 		
 		model.addAttribute("withdrawResultList", withdrawResultList);
 		
-		return "mypage/admin/fintech_account_detail";
+		return "redirect:/FintechUserInfo";
 	}
 	
 	
