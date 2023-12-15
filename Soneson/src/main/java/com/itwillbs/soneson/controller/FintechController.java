@@ -189,26 +189,17 @@ public class FintechController {
 //		map.put("id", "lsc2464"); // 테스트 출금 정보 등록(요청 사용자 번호용 임시 아이디)
 		
 		List<Map<String, String>> userInfoList = bankApiService.selectUserToken();
-		System.out.println("테스트");
-//		System.out.println(userInfoList.get(0).get("test"));
-		System.out.println(userInfoList.get(0));
-		
-		// 뷰에서 객체를 받아올 수는 있는데 String으로 넘어와서 다시 MAP으로 변환해야됨.
-//		String test = map.get("userInfoList");
-//		
-//		System.out.println("??" + test);
-		
 		
 		List<ResponseWithdrawVO> withdrawResultList = new ArrayList<ResponseWithdrawVO>();
 		for (Map<String, String> user : userInfoList) {
 			ResponseWithdrawVO tmp = bankApiClient.requestWithdraw(user);
 //			withdrawResultList.add(bankApiClient.requestWithdraw(user));
 			withdrawResultList.add(tmp);
-//			System.out.println("유저");
-//			System.out.println(user.get("test"));
+			System.out.println("유저");
+			System.out.println(user.get("test"));
 			
 //			if (tmp.getRsp_code().equals("A0000")) {
-//				System.out.println(user.get("idx"));
+//				System.out.println(user.get("test"));
 //			}
 			
 			System.out.println("-----");

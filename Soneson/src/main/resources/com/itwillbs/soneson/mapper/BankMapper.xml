@@ -18,7 +18,8 @@
 			, f.user_seq_no 
 			, fund.cost
 			, fund.status
-			, fund.idx AS test
+<!-- 			, fund.idx AS test -->
+			, CAST(fund.idx AS char(10)) as test
 		FROM user_fund_info u
 		JOIN fintech_user_info f
 		ON u.user_id = f.id
