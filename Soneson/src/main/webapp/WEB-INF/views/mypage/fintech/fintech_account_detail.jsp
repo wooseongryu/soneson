@@ -103,6 +103,7 @@
 												</form>
 												<form action="BankPayment" method="post">
 													<input type="hidden" name="withdraw_fintech_use_num" value="${accountDetail.fintech_use_num}">
+													<input type="hidden" name="access_token" value="${access_token}">
 													<input type="hidden" name="tran_amt" value="50000">	<%-- 거래금액(출금금액) --%>
 													<input type="hidden" name="withdraw_user_name" value="${user_name }">	<%-- 고객성명 --%>
 													<input type="submit" value="상품구매(결제)">

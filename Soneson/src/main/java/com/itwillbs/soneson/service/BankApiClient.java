@@ -235,7 +235,7 @@ public class BankApiClient {
 	public ResponseWithdrawVO requestWithdraw(Map<String, String> map) {
 		// 1. 사용자 정보 조회 시 엑세스 토큰값을 헤더로 담아 전송 필요하므로
 		HttpHeaders headers = new HttpHeaders();
-//		headers.setBearerAuth(map.get("access_token"));
+		headers.setBearerAuth(map.get("access_token"));
 		
 		// 0번
 //		headers.setBearerAuth(map.get("access_token"));
@@ -244,7 +244,7 @@ public class BankApiClient {
 //		headers.setBearerAuth("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDQwODI2Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE3MDk2MDgwMDIsImp0aSI6IjE3N2FjNGRiLTdmM2ItNDEzNy1iMGM4LTkyZTQ5YTQ5ZjMyNCJ9.88LeZ78exF06T39Xm9i5I_YStZNLxpWkqfU-rxsUTT8");
 		
 		// 박훈나
-		headers.setBearerAuth("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDQwODI5Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE3MDk5MDg4NTQsImp0aSI6ImEzYzhjYjE0LTZiZjUtNDM0My1iOWQxLWNhZjc0M2FjNGNkMiJ9.4G-1EPpEeIdghM__stsfl5Mr23BRfbOJdUpl7_Nsf_k");
+//		headers.setBearerAuth("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDQwODI5Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE3MDk5MDg4NTQsImp0aSI6ImEzYzhjYjE0LTZiZjUtNDM0My1iOWQxLWNhZjc0M2FjNGNkMiJ9.4G-1EPpEeIdghM__stsfl5Mr23BRfbOJdUpl7_Nsf_k");
 		
 		// test1 엑세스 토큰
 //		eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDQwODI2Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE3MDk2MDgwMDIsImp0aSI6IjE3N2FjNGRiLTdmM2ItNDEzNy1iMGM4LTkyZTQ5YTQ5ZjMyNCJ9.88LeZ78exF06T39Xm9i5I_YStZNLxpWkqfU-rxsUTT8
@@ -261,38 +261,41 @@ public class BankApiClient {
 		jo.put("bank_tran_id", bankValueGenerator.getBankTranId()); // 거래고유번호(참가기관)
 		jo.put("cntr_account_type", "N"); // 약정 계좌/계정 구분("N" : 계좌, "C" 계정 => N 고정)
 		jo.put("cntr_account_num", "23062003999"); // 약정 계좌/계정 번호(핀테크 서비스 기관 계좌)
-		jo.put("dps_print_content", map.get("id") + "_출금"); // 입금계좌인자내역
+//		jo.put("dps_print_content", map.get("id") + "_출금"); // 입금계좌인자내역
+		jo.put("dps_print_content", "손에손_출금"); // 입금계좌인자내역
 		
 		
 		// --------- 요청 고객(출금 대상) 정보 ---------
 		
 		
 		// 1번
-//		jo.put("fintech_use_num", map.get("withdraw_fintech_use_num")); // 출금계좌 핀테크이용번호
+		jo.put("fintech_use_num", map.get("withdraw_fintech_use_num")); // 출금계좌 핀테크이용번호
 		
 		// 류우성
 //		jo.put("fintech_use_num", "120211385488932387478941"); // 출금계좌 핀테크이용번호
 		
 		// 박훈나 1
-		jo.put("fintech_use_num", "120211385488932387479357"); // 출금계좌 핀테크이용번호
+//		jo.put("fintech_use_num", "120211385488932387479357"); // 출금계좌 핀테크이용번호
 		
 		// 박훈나 2
 //		jo.put("fintech_use_num", "120211385488932399303572"); // 출금계좌 핀테크이용번호
 //		120211385488932387478941 내꺼
 		
 		jo.put("wd_print_content", map.get("deposit_user_name") + "_송금"); // 출금계좌인자내역
-		jo.put("tran_amt", map.get("tran_amt")); // 거래금액
+//		jo.put("tran_amt", map.get("tran_amt")); // 거래금액
+		jo.put("tran_amt", 50000); // 거래금액
 		jo.put("tran_dtime", bankValueGenerator.getTranDTime()); // 요청일시
 		
 		
 		// 2번
-//		jo.put("req_client_name", map.get("withdraw_user_name")); // 요청고객성명(출금계좌)
-		jo.put("req_client_name", "박훈나"); // 요청고객성명(출금계좌)
+		jo.put("req_client_name", map.get("withdraw_user_name")); // 요청고객성명(출금계좌)
+//		jo.put("req_client_name", "박훈나"); // 요청고객성명(출금계좌)
 		
 		
 		jo.put("req_client_fintech_use_num", map.get("withdraw_fintech_use_num")); // 요청고객핀테크이용번호(출금계좌)
 		// => 요청고객계좌번호 미사용 시 핀테크이용번호 설정
-		jo.put("req_client_num", map.get("id").toUpperCase()); // 요청고객회원번호(아이디처럼 사용) => 단, 영문자는 모두 대문자
+//		jo.put("req_client_num", map.get("id").toUpperCase()); // 요청고객회원번호(아이디처럼 사용) => 단, 영문자는 모두 대문자
+		jo.put("req_client_num", "SONESON"); // 요청고객회원번호(아이디처럼 사용) => 단, 영문자는 모두 대문자
 		jo.put("transfer_purpose", "TR"); // 이체용도(송금(TR), 결제(ST))
 		
 		

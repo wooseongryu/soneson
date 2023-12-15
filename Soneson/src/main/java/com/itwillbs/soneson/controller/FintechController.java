@@ -141,7 +141,7 @@ public class FintechController {
 	public String accountDetail(@RequestParam Map<String, String> map, HttpSession session, Model model) {
 //		map.put("access_token", (String)session.getAttribute("access_token"));
 		
-		System.out.println("))))))))))--------------");
+//		System.out.println("))))))))))--------------");
 //		System.out.println(map);
 		
 		BankAccountDetailVO accountDetail = bankApiClient.requestAccountDetail(map);
@@ -150,14 +150,19 @@ public class FintechController {
 		model.addAttribute("accountDetail", accountDetail);
 		model.addAttribute("user_name", map.get("user_name"));
 		model.addAttribute("account_num_masked", map.get("account_num_masked"));
+		model.addAttribute("access_token", map.get("access_token"));
 		
 		return "mypage/fintech/fintech_account_detail";
 	}
 	
 	@PostMapping("BankPayment")
 	public String payment(@RequestParam Map<String, String> map, HttpSession session, Model model) {
-		map.put("access_token", (String)session.getAttribute("access_token"));
-		map.put("id", "lsc2464"); // 테스트 출금 정보 등록(요청 사용자 번호용 임시 아이디)
+//		map.put("access_token", (String)session.getAttribute("access_token"));
+		
+		System.out.println(")))BankPayment");
+		System.out.println(map);
+		
+//		map.put("id", "lsc2464"); // 테스트 출금 정보 등록(요청 사용자 번호용 임시 아이디)
 		
 		ResponseWithdrawVO withdrawResult = bankApiClient.requestWithdraw(map);
 		log.info(">>>>>>>>> withdrawResult : " + withdrawResult);
