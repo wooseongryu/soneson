@@ -208,7 +208,7 @@
 <sql id="youth">
 	<![CDATA[
 			WHERE p.start_date <= now()
-			AND category = '아동/청소년'
+			AND category = '아동·청소년'
 			GROUP BY p.project_code) A
 		ORDER BY donor DESC;	
 	]]>
@@ -241,7 +241,7 @@
 	<![CDATA[
 			WHERE p.start_date <= now()
 	]]>
-			AND category = '가족/여성'
+			AND category = '가족·여성'
 			GROUP BY p.project_code) A
 		ORDER BY donor DESC;	
 </sql>

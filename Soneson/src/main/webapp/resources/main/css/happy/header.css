@@ -683,3 +683,7 @@ body {
 /*     height: 100%; */
     object-fit: cover;
 }
+
+.coloring {
+	color: #F86453;
+}
