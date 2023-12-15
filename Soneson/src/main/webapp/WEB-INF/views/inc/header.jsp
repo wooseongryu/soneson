@@ -152,16 +152,18 @@ ul {
 								</a>
 								<a href="userSetting" class="HeaderUserProfile_wrap__3FD8V">
 									
-									
-									<c:choose>
-									    <c:when test="${not empty sessionScope.sId and not empty sessionScope.profile }">
-									    	<img loading="lazy" src="${pageContext.request.contextPath }/resources/upload/${sessionScope.profile }" width="40" height="40" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI">
-<!-- 									    	<img loading="lazy" src="https://phinf.pstatic.net/contact/profile/blog/58/80/bom_bomi.jpg?type=s160" width="30" height="30" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI"> -->
-									    </c:when>
-									    <c:otherwise>
-									        <img loading="lazy" src="${pageContext.request.contextPath }/resources/soneson/img/header/son33.png" width="30" height="30" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI">
-									    </c:otherwise>
-									</c:choose>
+<!-- 									<div class="profileImgDivHeader"> -->
+										<c:choose>
+										    <c:when test="${not empty sessionScope.sId and not empty sessionScope.profile }">
+										    	<img loading="lazy" src="${pageContext.request.contextPath }/resources/upload/${sessionScope.profile }" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI">
+	<!--									    	<img loading="lazy" src="${pageContext.request.contextPath }/resources/upload/${sessionScope.profile }" width="40" height="40" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI"> -->
+	<!-- 									    	<img loading="lazy" src="https://phinf.pstatic.net/contact/profile/blog/58/80/bom_bomi.jpg?type=s160" width="30" height="30" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI"> -->
+										    </c:when>
+										    <c:otherwise>
+										        <img loading="lazy" src="${pageContext.request.contextPath }/resources/soneson/img/header/son33.png" width="30" height="30" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI">
+										    </c:otherwise>
+										</c:choose>
+<!-- 									</div> -->
 									
 									
 									

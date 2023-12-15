@@ -111,12 +111,18 @@
 
 
 .HeaderUserProfile_img__fxGyI {
-    overflow: hidden;
+/* 	엄성윤 1215 주석 */
+/*     overflow: hidden; */
     width: 30px;
     height: 30px;
+/* 	max-width: 30px; */
+/*     max-height: 30px; */
+/*     width: 100%; 이미지의 가로와 세로 비율을 유지하도록 설정 */
+/*     height: 100%; */
+    object-fit: cover;
     margin-right: 4px;
     border: 1px solid #e0e0e0;
-    border-radius: 50%;
+    border-radius: 70%;
     vertical-align: middle;
 }
 
@@ -662,3 +668,18 @@ body {
 /* .HeaderGnb_item__wcfir:visited { */
 /*     color: #F86453; */
 /* } */
+
+/* 프로필 사진 */
+
+.profileImgDivHeader {
+    width: 30px;
+    height: 30px;
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+.HeaderUserProfile_img__fxGyI {
+/*     width: 100%; */
+/*     height: 100%; */
+    object-fit: cover;
+}
