@@ -2,8 +2,11 @@ package com.itwillbs.soneson.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,16 +27,26 @@ public class ChatController {
 //		return "chat/main";
 //	}
 		
-//	// 1:1 채팅방 팝업 페이지
-//	@GetMapping("chatting")
-//	public String chatting() {
-//		System.out.println("ChatController - chatting()");
-//		return "mypage/chat/chatting";
-//	}
+	// 채팅 아이콘
+	@GetMapping("Chatting")
+	public String chatting(HttpSession session, String user_id, Model model) {
+		System.out.println("ChatController - chatting()");
+
+		String sId = (String)session.getAttribute("sId");
+		System.out.println("sId :" + sId);
+			
+		model.addAttribute("receiver_id" + user_id);
+		
+		return "mypage/chat/chatting";
+	}
 	
 	// 1:1 채팅방
 	@GetMapping("ChatMain2")
-	public String main2() {
+	public String main2(HttpSession session) {
+		
+		String sId = (String)session.getAttribute("sId");
+		System.out.println("sId :" + sId);
+		
 		return "mypage/chat/main2";
 	}
 	

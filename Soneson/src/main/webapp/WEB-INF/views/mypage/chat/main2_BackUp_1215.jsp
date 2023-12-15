@@ -270,7 +270,6 @@
 						+ '<div class="chatRoomTitle" ondblclick="createRoom(\'' + room_id + '\', \'' + receiver_id + '\')">' + title + '</div>'
 						+ '</div>';
 			$("#chatRoomListArea").append(room);
-			
 		}
 		
 	}
@@ -498,7 +497,7 @@
 				location.href = "login";
 			</script>
 		</c:if>
-		<h1>채팅 리스트 노출</h1>
+		<h1>채팅 페이지</h1>
 		<hr>
 		상대방 아이디 : <input type="text" id="receiver_id">
 		<input type="button" value="채팅 시작" id="btnJoin">

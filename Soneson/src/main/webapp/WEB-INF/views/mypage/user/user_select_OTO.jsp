@@ -50,30 +50,35 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead class="table-dark">
-                                        <tr>
-                                            <th>글번호</th>
-                                            <th>제목</th>
-                                            <th>내용</th>
-                                            <th>답변상태</th>
-                                            <th>등록일</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    	<c:forEach var="userOTOList" items="${userOTOList }">
+								<c:if test="${!empty userOTOList }">
+									<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+	                                    <thead class="table-dark">
 	                                        <tr>
-	                                            <td>${userOTOList.myQuestion_num }</td>
-	                                            <td>${userOTOList.myQuestion_subject }</td>
-	                                            <td>${userOTOList.myQuestion_content }</td>
-	                                            <td>${userOTOList.myQuestion_status }</td>
-	                                            <td><fmt:formatDate value="${userOTOList.myQuestion_date }" pattern="yyyy-MM-dd"/></td>
-	                                            <td><button type="button" class="btn btn-primary" onclick="location.href='userOTOAnswerSelect?myQuestion_num=${userOTOList.myQuestion_num}'">답변보기</button></td>
+	                                            <th>글번호</th>
+	                                            <th>제목</th>
+	                                            <th>내용</th>
+	                                            <th>답변상태</th>
+	                                            <th>등록일</th>
+	                                            <th></th>
 	                                        </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
+	                                    </thead>
+	                                    <tbody>
+	                                    	<c:forEach var="userOTOList" items="${userOTOList }">
+		                                        <tr>
+		                                            <td>${userOTOList.myQuestion_num }</td>
+		                                            <td>${userOTOList.myQuestion_subject }</td>
+		                                            <td>${userOTOList.myQuestion_content }</td>
+		                                            <td>${userOTOList.myQuestion_status }</td>
+		                                            <td><fmt:formatDate value="${userOTOList.myQuestion_date }" pattern="yyyy-MM-dd"/></td>
+		                                            <td><button type="button" class="btn btn-primary" onclick="location.href='userOTOAnswerSelect?myQuestion_num=${userOTOList.myQuestion_num}'">답변보기</button></td>
+		                                        </tr>
+	                                        </c:forEach>
+	                                    </tbody>
+	                                </table>
+								</c:if>
+                                <c:if test="${empty userOTOList}">
+									<div class="" align="center"><h4>문의내역이 없습니다.</h4></div>
+								</c:if>
 							</div>
 						</div>
 					</div>

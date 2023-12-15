@@ -30,6 +30,14 @@
 
 /* Template default CSS
 /*----------------------------------------*/
+.donerSelectBtn {
+	background: rgb(248, 100, 83);
+	border-radius: 12px;
+	border: none;
+	color: white;
+}
+
+
 
 html,
 body {

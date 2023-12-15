@@ -21,7 +21,8 @@ public class ChatMessage2 {
 	private String message; // 메세지
 	private String type; // 메세지 타입
 	private String message_target; // 전송 대상
-	private Timestamp send_time; // 발신 시각
+	private String send_time; // 발신 시각
+//	private Timestamp send_time; // 발신 시각
 	
 	// 타입으로 사용될 문자열을 상수(public static final)로 제공
 	public static final String TYPE_ENTER = "ENTER"; // 채팅방 입장

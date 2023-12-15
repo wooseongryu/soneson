@@ -850,7 +850,24 @@ public class UserController {
 
 
 	
-	
+	@GetMapping("fundingDonerInfo")
+	public String fundingDonerInfo(HttpSession session, Model model, @RequestParam Map<String, String> map) {
+		System.out.println("UserController - fundingDonerInfo()");
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		map.put("sId", sId);
+		
+		System.out.println(map);
+		
+		List<Map<String, String>> fundingDonerInfoList = userService.selectfundingDonerInfoList(map);
+		
+		
+		model.addAttribute("fundingDonerInfoList", fundingDonerInfoList);
+		
+		return "mypage/user/funding_select_info";
+		
+	}
 	
 	
 	

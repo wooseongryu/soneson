@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +24,8 @@ public class ProjectListController {
 	private ProjectListService service;
 	
 //	@GetMapping("/{listType}")
-//	public String getListType(Model model, String listType) {
-	public String getListType(Model model, @PathVariable String listType) {
+	public String getListType(Model model, String listType, HttpServletRequest request) {
+//	public String getListType(Model model, @PathVariable String listType) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("listType", listType); // 인기, 신규, 마감임박...
 		
@@ -35,6 +37,10 @@ public class ProjectListController {
 		
 		model.addAttribute("projectList", projectList);
 		model.addAttribute("projectCount", projectCount);
+		System.out.println("서블릿 경로 : " + request.getServletPath());
+		model.addAttribute("servletPath", request.getServletPath());
+		
+		
 //		model.addAttribute("listType", listType);
 		
 		return "list/popular";
@@ -42,31 +48,76 @@ public class ProjectListController {
 	
 //	@GetMapping("/list/{listType}")
 //	@GetMapping("{listType}")
-	@GetMapping("/list/{listType}")
-	public String list(Model model, @PathVariable String listType) {
-		System.out.println("리스트 타입: " + listType);
-	    return getListType(model, listType);
+//	@GetMapping("/list/{listType}")
+//	public String list(Model model, @PathVariable String listType) {
+//		System.out.println("리스트 타입: " + listType);
+//	    return getListType(model, listType);
+//	}
+	
+	@GetMapping("popular")
+	public String popular(Model model, HttpServletRequest request) {
+		return getListType(model, "popular", request);
 	}
 	
-//	@GetMapping("popular")
-//	public String popular(Model model) {
-//		return getListType(model, "popular");
-//	}
-//	
-//	@GetMapping("new")
-//	public String fresh(Model model) {
-//		return getListType(model, "new");
-//	}
-//	
-//	@GetMapping("closing")
-//	public String closing(Model model) {
-//		return getListType(model, "closing");
-//	}
-//	
-//	@GetMapping("upcoming")
-//	public String upcoming(Model model) {
-//		return getListType(model, "upcoming");
-//	}
+	@GetMapping("new")
+	public String fresh(Model model, HttpServletRequest request) {
+		return getListType(model, "new", request);
+	}
+	
+	@GetMapping("closing")
+	public String closing(Model model, HttpServletRequest request) {
+		return getListType(model, "closing", request);
+	}
+	
+	@GetMapping("upcoming")
+	public String upcoming(Model model, HttpServletRequest request) {
+		return getListType(model, "upcoming", request);
+	}
+	
+//	미친듯한 하드코딩 시작
+	
+	@GetMapping("all")
+	public String all(Model model, HttpServletRequest request) {
+		return getListType(model, "all", request);
+	}
+	
+	@GetMapping("youth")
+	public String youth(Model model, HttpServletRequest request) {
+		return getListType(model, "youth", request);
+	}
+	
+	@GetMapping("animal")
+	public String animal(Model model, HttpServletRequest request) {
+		return getListType(model, "animal", request);
+	}
+	
+	@GetMapping("nature")
+	public String nature(Model model, HttpServletRequest request) {
+		return getListType(model, "nature", request);
+	}
+	
+	@GetMapping("disabled")
+	public String disabled(Model model, HttpServletRequest request) {
+		return getListType(model, "disabled", request);
+	}
+	
+	@GetMapping("woman")
+	public String woman(Model model, HttpServletRequest request) {
+		return getListType(model, "woman", request);
+	}
+	
+	@GetMapping("eldery")
+	public String eldery(Model model, HttpServletRequest request) {
+		return getListType(model, "eldery", request);
+	}
+	
+	@GetMapping("etc")
+	public String etc(Model model, HttpServletRequest request) {
+		return getListType(model, "etc", request);
+	}
+	
+	
+// ========================
 	
 	@GetMapping("projectDetail")
 	public String projectDetail(Model model, @RequestParam int project_code) {

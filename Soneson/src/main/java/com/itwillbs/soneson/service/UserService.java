@@ -418,6 +418,11 @@ public class UserService {
 		
 		return mapper.selectUserProjectEnd(sId);
 	}
+
+	public List<Map<String, String>> selectfundingDonerInfoList(Map<String, String> map) {
+		return mapper.selectfundingDonerInfoList(map);
+	}
+
 	
 }
 
