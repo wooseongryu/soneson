@@ -37,4 +37,8 @@ public interface FundingMapper {
 	//배송지등록
 	int insertAddress(Map<String, String> map);
 
+
+	// 후원현황
+	List<Map<String, Object>> selectUserFundingList(String sId);
+
 }

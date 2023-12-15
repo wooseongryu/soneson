@@ -112,5 +112,37 @@
 	</insert>
 	
 	
+	<!-- 후원현황 -->
+	<select id="selectUserFundingList" resultType="map">
+		SELECT *
+		FROM 
+			(SELECT
+				p.project_code AS project_code
+				, p.title AS title
+				, p.subtitle AS subtitle
+				, p.category AS category
+				, p.creator AS creator
+				, p.img_main AS img_main
+				, p.status AS status
+				, f.fund_code AS fund_code
+				, f.user_id AS user_id
+				, f.fund_date AS fund_date
+				, f.cost AS cost
+				, date(p.start_date) AS start_date
+				, date(p.end_date) AS end_date
+				, CASE
+					  WHEN (DATEDIFF(end_date, now()) >= 0) THEN CONCAT(DATEDIFF(end_date, now()), '일 남음')
+					  WHEN (DATEDIFF(end_date, now()) = 0) THEN '오늘 종료'
+					  ELSE '종료 됨'
+				  END AS d_day
+			FROM project p
+			LEFT JOIN fund f
+			ON p.project_code = f.project_code) a
+		<![CDATA[
+		WHERE start_date <= now() AND end_date >= now() AND status = '승인' AND user_id = #{sId} 
+		]]>
+		LIMIT 5
+	</select>
+	
 
 </mapper>

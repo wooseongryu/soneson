@@ -44,6 +44,23 @@
 /* 	margin-bottom: 30px; */
 /* } */
 
+#funding_title {
+    color: #1c1c1c;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 60px;
+    margin-bottom: 15px;
+/*     word-break: break-all; */
+}
+
+#funding_category {
+    color: #1c1c1c;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 30px;
+/*     word-break: break-all; */
+}
+
 #notice_title {
     color: #1c1c1c;
     font-size: 48px;
