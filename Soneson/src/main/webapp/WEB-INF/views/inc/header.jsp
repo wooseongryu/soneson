@@ -344,8 +344,6 @@ ul {
 				</div>
 				
 			</header>
-
-
 	
 		</div>
 	</div>
@@ -381,12 +379,21 @@ ul {
             type: "GET",
             dataType: "json",
             success: function(response) {
+            	console.log(">>>>>>>>>>>>> ${pageContext.request.requestURL}");
 //             	'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="popular">인기</a>'
             	$j.each(response, function(i, e){
 //             		debugger;
 // 					$j('.category').after(
+					let typeClass = "";
+// 					debugger;
+// 					if("/" + e.tab_Ename == "${servletPath}") {
+// 						typeClass = "coloring";
+// // 						typeClass = 'class="coloring"';
+// 					}
 					$j('.worth').before(
+// 							'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="' + e.tab_Ename + '"' + typeClass + '>' + e.tab_Kname + '</a>'		
 							'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="' + e.tab_Ename + '">' + e.tab_Kname + '</a>'		
+// 							'<a class="HeaderGnb_item__wcfir eWDpEZ "' + typeClass + '" role="menuitem" href="' + e.tab_Ename + '">' + e.tab_Kname + '</a>'		
 					);
             	})
             	
