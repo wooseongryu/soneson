@@ -10,10 +10,16 @@
 	
 	<select id="selectUserToken" resultType="map">
 		SELECT 
-			id
-			, access_token
-			, user_seq_no
-		FROM fintech_user_info
+			u.user_id
+			, u.user_name
+			, u.fintech_use_num 
+			, u.tranDTime 
+			, f.access_token 
+			, f.user_seq_no 
+		FROM user_fund_info u
+		JOIN fintech_user_info f
+		ON u.user_id = f.id
+		WHERE project_code = 50
 	</select>
 </mapper>
 

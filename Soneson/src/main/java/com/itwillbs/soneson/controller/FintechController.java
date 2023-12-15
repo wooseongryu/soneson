@@ -86,7 +86,7 @@ public class FintechController {
 	// 2.2. 사용자/서비스 관리 - 2.2.1. 사용자정보조회 API
 	@GetMapping("/FintechUserInfo")
 	public String requestUserInfo(Map<String, String> map, HttpSession session, Model model) {
-		System.out.println(map);
+//		System.out.println(map);
 		
 		// 세션에 저장된 엑세스토큰 및 사용자번호를 Map 객체에 저장
 //		map.put("access_token", (String)session.getAttribute("access_token"));
@@ -94,20 +94,41 @@ public class FintechController {
 
 //		System.out.println(map);
 		
+		map.put("project_code", "50");
 		
 		List<Map<String, String>> userInfoList = bankApiService.selectUserToken();
+		
+//		System.out.println(")))))))))))))))___________+++");
+//		System.out.println(userInfoList);
 		
 //		if(map.get("access_token") == null || map.get("user_seq_no") == null) {
 //			model.addAttribute("msg", "계좌 인증 필수!");
 //			return "fail_back";
 //		}
 		
-		List<ResponseUserInfoVO> userInfos = new ArrayList<ResponseUserInfoVO>();
-		for (Map<String, String> user : userInfoList) {
-			ResponseUserInfoVO userInfo = bankApiClient.requestUserInfo(user);
-			userInfo.setAccess_token(user.get("access_token"));
-			userInfos.add(userInfo);
-		}
+//		List<ResponseUserInfoVO> userInfos = new ArrayList<ResponseUserInfoVO>();
+//		for (Map<String, String> user : userInfoList) {
+//			ResponseUserInfoVO userInfo = bankApiClient.requestUserInfo(user);
+//			userInfo.setAccess_token(user.get("access_token"));
+//			userInfos.add(userInfo);
+//		}
+		
+//		List<ResponseUserInfoVO> userInfos = new ArrayList<ResponseUserInfoVO>();
+//		for (Map<String, String> user : userInfoList) {
+////			ResponseUserInfoVO userInfo = bankApiClient.requestUserInfo(user);
+//			System.out.println("0000000000000");
+//			System.out.println(userInfo);
+//			System.out.println(user.get("fintech_use_num"));
+//			System.out.println(map.get("fintech_use_num"));
+//			System.out.println("--");
+////			if (user.get("fintech_use_num").equals(userInfo.getRes_list().get)) {
+////				userInfo.setAccess_token(user.get("access_token"));
+////				userInfos.add(userInfo);
+////			}
+//		}
+		
+//		System.out.println(")))22222222222");
+//		System.out.println(userInfos);
 		
 //		System.out.println(")))))))))+++++++++++++++++");
 //		System.out.println(userInfos);
@@ -118,7 +139,7 @@ public class FintechController {
 //		ResponseUserInfoVO userInfo = bankApiClient.requestUserInfo(map);
 //		log.info(">>> userInfo : " + userInfo); 
 		
-		model.addAttribute("userInfos", userInfos);
+		model.addAttribute("userInfoList", userInfoList);
 		
 		return "mypage/fintech/fintech_user_info";
 	}
