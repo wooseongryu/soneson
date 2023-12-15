@@ -386,13 +386,14 @@ ul {
 // 					$j('.category').after(
 					let typeClass = "";
 // 					debugger;
-					if("/" + e.tab_Ename == "${servletPath}") {
-						typeClass = 'class="coloring"';
-					}
+// 					if("/" + e.tab_Ename == "${servletPath}") {
+// 						typeClass = "coloring";
+// // 						typeClass = 'class="coloring"';
+// 					}
 					$j('.worth').before(
 // 							'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="' + e.tab_Ename + '"' + typeClass + '>' + e.tab_Kname + '</a>'		
-// 							'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="' + e.tab_Ename + '">' + e.tab_Kname + '</a>'		
-							'<a class="HeaderGnb_item__wcfir eWDpEZ' + typeClass + '" role="menuitem" href="' + e.tab_Ename + '">' + e.tab_Kname + '</a>'		
+							'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="' + e.tab_Ename + '">' + e.tab_Kname + '</a>'		
+// 							'<a class="HeaderGnb_item__wcfir eWDpEZ "' + typeClass + '" role="menuitem" href="' + e.tab_Ename + '">' + e.tab_Kname + '</a>'		
 					);
             	})
             	
