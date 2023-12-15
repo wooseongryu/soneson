@@ -58,4 +58,11 @@ public class FundingService {
 	public int insertAddress(Map<String, String> map) {
 		return mapper.insertAddress(map);
 	}
+
+
+	
+	// 후원현황
+	public List<Map<String, Object>> selectUserFundingList(String sId) {
+		return mapper.selectUserFundingList(sId);
+	}
 }
