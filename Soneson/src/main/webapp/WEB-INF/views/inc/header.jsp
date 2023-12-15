@@ -283,6 +283,7 @@ ul {
 					<ul class="DonationTodayCategory_category_list__2WAdE">
 						<li class="DonationTodayCategory_list_item__agFbi item_1" aria-current="true">
 							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='all'">
+<!-- 							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='all'"> -->
 								<span class="DonationTodayCategory_text__2oRHp">전체</span>
 							</button>
 <!-- 							<a class="DonationTodayCategory_button__1648s"> -->

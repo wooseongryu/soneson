@@ -22,8 +22,8 @@ public class ProjectListController {
 	private ProjectListService service;
 	
 //	@GetMapping("/{listType}")
-//	public String getListType(Model model, String listType) {
-	public String getListType(Model model, @PathVariable String listType) {
+	public String getListType(Model model, String listType) {
+//	public String getListType(Model model, @PathVariable String listType) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("listType", listType); // 인기, 신규, 마감임박...
 		
@@ -42,31 +42,76 @@ public class ProjectListController {
 	
 //	@GetMapping("/list/{listType}")
 //	@GetMapping("{listType}")
-	@GetMapping("/list/{listType}")
-	public String list(Model model, @PathVariable String listType) {
-		System.out.println("리스트 타입: " + listType);
-	    return getListType(model, listType);
+//	@GetMapping("/list/{listType}")
+//	public String list(Model model, @PathVariable String listType) {
+//		System.out.println("리스트 타입: " + listType);
+//	    return getListType(model, listType);
+//	}
+	
+	@GetMapping("popular")
+	public String popular(Model model) {
+		return getListType(model, "popular");
 	}
 	
-//	@GetMapping("popular")
-//	public String popular(Model model) {
-//		return getListType(model, "popular");
-//	}
-//	
-//	@GetMapping("new")
-//	public String fresh(Model model) {
-//		return getListType(model, "new");
-//	}
-//	
-//	@GetMapping("closing")
-//	public String closing(Model model) {
-//		return getListType(model, "closing");
-//	}
-//	
-//	@GetMapping("upcoming")
-//	public String upcoming(Model model) {
-//		return getListType(model, "upcoming");
-//	}
+	@GetMapping("new")
+	public String fresh(Model model) {
+		return getListType(model, "new");
+	}
+	
+	@GetMapping("closing")
+	public String closing(Model model) {
+		return getListType(model, "closing");
+	}
+	
+	@GetMapping("upcoming")
+	public String upcoming(Model model) {
+		return getListType(model, "upcoming");
+	}
+	
+//	미친듯한 하드코딩 시작
+	
+	@GetMapping("all")
+	public String all(Model model) {
+		return getListType(model, "all");
+	}
+	
+	@GetMapping("youth")
+	public String youth(Model model) {
+		return getListType(model, "youth");
+	}
+	
+	@GetMapping("animal")
+	public String animal(Model model) {
+		return getListType(model, "animal");
+	}
+	
+	@GetMapping("nature")
+	public String nature(Model model) {
+		return getListType(model, "nature");
+	}
+	
+	@GetMapping("disabled")
+	public String disabled(Model model) {
+		return getListType(model, "disabled");
+	}
+	
+	@GetMapping("woman")
+	public String woman(Model model) {
+		return getListType(model, "woman");
+	}
+	
+	@GetMapping("eldery")
+	public String eldery(Model model) {
+		return getListType(model, "eldery");
+	}
+	
+	@GetMapping("etc")
+	public String etc(Model model) {
+		return getListType(model, "etc");
+	}
+	
+	
+// ========================
 	
 	@GetMapping("projectDetail")
 	public String projectDetail(Model model, @RequestParam int project_code) {
