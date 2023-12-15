@@ -235,7 +235,19 @@ public class BankApiClient {
 	public ResponseWithdrawVO requestWithdraw(Map<String, String> map) {
 		// 1. 사용자 정보 조회 시 엑세스 토큰값을 헤더로 담아 전송 필요하므로
 		HttpHeaders headers = new HttpHeaders();
-		headers.setBearerAuth(map.get("access_token"));
+//		headers.setBearerAuth(map.get("access_token"));
+		
+		// 0번
+//		headers.setBearerAuth(map.get("access_token"));
+		
+		// 류우성
+//		headers.setBearerAuth("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDQwODI2Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE3MDk2MDgwMDIsImp0aSI6IjE3N2FjNGRiLTdmM2ItNDEzNy1iMGM4LTkyZTQ5YTQ5ZjMyNCJ9.88LeZ78exF06T39Xm9i5I_YStZNLxpWkqfU-rxsUTT8");
+		
+		// 박훈나
+		headers.setBearerAuth("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDQwODI5Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE3MDk5MDg4NTQsImp0aSI6ImEzYzhjYjE0LTZiZjUtNDM0My1iOWQxLWNhZjc0M2FjNGNkMiJ9.4G-1EPpEeIdghM__stsfl5Mr23BRfbOJdUpl7_Nsf_k");
+		
+		// test1 엑세스 토큰
+//		eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDQwODI2Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE3MDk2MDgwMDIsImp0aSI6IjE3N2FjNGRiLTdmM2ItNDEzNy1iMGM4LTkyZTQ5YTQ5ZjMyNCJ9.88LeZ78exF06T39Xm9i5I_YStZNLxpWkqfU-rxsUTT8
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
 		// 2. 요청에 필요한 URI 정보 생성 => 문자열로 바로 생성
@@ -253,11 +265,31 @@ public class BankApiClient {
 		
 		
 		// --------- 요청 고객(출금 대상) 정보 ---------
-		jo.put("fintech_use_num", map.get("withdraw_fintech_use_num")); // 출금계좌 핀테크이용번호
+		
+		
+		// 1번
+//		jo.put("fintech_use_num", map.get("withdraw_fintech_use_num")); // 출금계좌 핀테크이용번호
+		
+		// 류우성
+//		jo.put("fintech_use_num", "120211385488932387478941"); // 출금계좌 핀테크이용번호
+		
+		// 박훈나 1
+		jo.put("fintech_use_num", "120211385488932387479357"); // 출금계좌 핀테크이용번호
+		
+		// 박훈나 2
+//		jo.put("fintech_use_num", "120211385488932399303572"); // 출금계좌 핀테크이용번호
+//		120211385488932387478941 내꺼
+		
 		jo.put("wd_print_content", map.get("deposit_user_name") + "_송금"); // 출금계좌인자내역
 		jo.put("tran_amt", map.get("tran_amt")); // 거래금액
 		jo.put("tran_dtime", bankValueGenerator.getTranDTime()); // 요청일시
-		jo.put("req_client_name", map.get("withdraw_user_name")); // 요청고객성명(출금계좌)
+		
+		
+		// 2번
+//		jo.put("req_client_name", map.get("withdraw_user_name")); // 요청고객성명(출금계좌)
+		jo.put("req_client_name", "박훈나"); // 요청고객성명(출금계좌)
+		
+		
 		jo.put("req_client_fintech_use_num", map.get("withdraw_fintech_use_num")); // 요청고객핀테크이용번호(출금계좌)
 		// => 요청고객계좌번호 미사용 시 핀테크이용번호 설정
 		jo.put("req_client_num", map.get("id").toUpperCase()); // 요청고객회원번호(아이디처럼 사용) => 단, 영문자는 모두 대문자
@@ -267,11 +299,17 @@ public class BankApiClient {
 		// --------- 수취 고객(실제 최종 입금 대상) 정보 ---------
 		// 최종적으로 이 돈을 수신하는 계좌에 대한 정보
 		// 이 정보(3개)는 피싱 등의 사고 발생 시 지급 정지를 위한 정보(검증 수행하지 않음)
-		jo.put("recv_client_name", map.get("deposit_user_name")); // 최종수취고객성명
-		jo.put("recv_client_bank_code", map.get("deposit_bank_code")); // 최종수취고객계좌 개설기관.표준코드
-		jo.put("recv_client_account_num", map.get("deposit_account_num")); // 최종수취고객계좌번호
+//		jo.put("recv_client_name", map.get("deposit_user_name")); // 최종수취고객성명
+//		jo.put("recv_client_bank_code", map.get("deposit_bank_code")); // 최종수취고객계좌 개설기관.표준코드
+//		jo.put("recv_client_account_num", map.get("deposit_account_num")); // 최종수취고객계좌번호
+		
+		jo.put("recv_client_name", "테스트");
+		jo.put("recv_client_bank_code", "111");
+		jo.put("recv_client_account_num", "222");
 		
 		log.info(">>>>> 출금이체 요청 JSON 데이터 : " + jo.toString());
+		
+		
 		
 		// 4. 헤더 정보를 갖는 HttpEntity 객체 생성
 		HttpEntity<String> httpEntity = new HttpEntity<String>(jo.toString(), headers);

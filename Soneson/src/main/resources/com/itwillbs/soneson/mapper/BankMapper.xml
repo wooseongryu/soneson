@@ -7,6 +7,14 @@
 		INSERT INTO fintech_user_info
 		VALUES (#{id}, #{token.access_token}, #{token.user_seq_no})
 	</insert>
+	
+	<select id="selectUserToken" resultType="map">
+		SELECT 
+			id
+			, access_token
+			, user_seq_no
+		FROM fintech_user_info
+	</select>
 </mapper>
 
 

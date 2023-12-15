@@ -74,40 +74,45 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-									<thead>
-										<tr>
-											<th>계좌별칭</th>
-											<th>계좌번호</th> <%-- 일반 계좌번호 대신 마스킹 된 계좌번호(account_num_masked)만 사용 가능 --%>
-											<th>은행명(은행코드)</th>
-											<th>예금주명</th>
-											<th>핀테크이용번호</th>
-											<th></th>
-										</tr>
-									</thead>
-									<tbody>
-									<c:forEach var="account" items="${userInfo.res_list}">
-										<tr>
-											<td>${account.account_alias}</td>
-											<td>${account.account_num_masked}</td>
-											<td>${account.bank_name}(${account.bank_code_std})</td>
-											<td>${account.account_holder_name}</td>
-											<td>${account.fintech_use_num}</td>
-											<td>
-												<%-- 2.3.1. 잔액조회 API 서비스 요청을 위한 데이터 전송 폼 생성(각 계좌 당 1개) --%>
-												<%-- 요청 URL : BankAccountDetail, 요청 방식 : POST --%>
-												<%-- 핀테크이용번호, 예금주명, 계좌번호(마스킹) 전달 --%>
-												<form action="BankAccountDetail" method="post">
-													<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num}">
-													<input type="hidden" name="user_name" value="${userInfo.user_name}">
-													<input type="hidden" name="account_num_masked" value="${account.account_num_masked}">
-													<input type="submit" value="상세정보">
-												</form>
-											</td>
-										</tr>
-									</c:forEach>
-									</tbody>
-								</table>
+							<c:forEach var="account" items="${userInfos}">
+<%-- 							<c:forEach var="account" items="${userInfos.res_list}"> --%>
+								<br>${account }<br>
+<!-- 								---------- -->
+							</c:forEach>
+<!-- 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"> -->
+<!-- 									<thead> -->
+<!-- 										<tr> -->
+<!-- 											<th>계좌별칭</th> -->
+<%-- 											<th>계좌번호</th> 일반 계좌번호 대신 마스킹 된 계좌번호(account_num_masked)만 사용 가능 --%>
+<!-- 											<th>은행명(은행코드)</th> -->
+<!-- 											<th>예금주명</th> -->
+<!-- 											<th>핀테크이용번호</th> -->
+<!-- 											<th></th> -->
+<!-- 										</tr> -->
+<!-- 									</thead> -->
+<!-- 									<tbody> -->
+<%-- 									<c:forEach var="account" items="${userInfos.res_list}"> --%>
+<!-- 										<tr> -->
+<%-- 											<td>${account.account_alias}</td> --%>
+<%-- 											<td>${account.account_num_masked}</td> --%>
+<%-- 											<td>${account.bank_name}(${account.bank_code_std})</td> --%>
+<%-- 											<td>${account.account_holder_name}</td> --%>
+<%-- 											<td>${account.fintech_use_num}</td> --%>
+<!-- 											<td> -->
+<%-- 												2.3.1. 잔액조회 API 서비스 요청을 위한 데이터 전송 폼 생성(각 계좌 당 1개) --%>
+<%-- 												요청 URL : BankAccountDetail, 요청 방식 : POST --%>
+<%-- 												핀테크이용번호, 예금주명, 계좌번호(마스킹) 전달 --%>
+<!-- 												<form action="BankAccountDetail" method="post"> -->
+<%-- 													<input type="hidden" name="fintech_use_num" value="${account.fintech_use_num}"> --%>
+<%-- 													<input type="hidden" name="user_name" value="${userInfo.user_name}"> --%>
+<%-- 													<input type="hidden" name="account_num_masked" value="${account.account_num_masked}"> --%>
+<!-- 													<input type="submit" value="상세정보"> -->
+<!-- 												</form> -->
+<!-- 											</td> -->
+<!-- 										</tr> -->
+<%-- 									</c:forEach> --%>
+<!-- 									</tbody> -->
+<!-- 								</table> -->
 							</div>
 						</div>
 					</div>

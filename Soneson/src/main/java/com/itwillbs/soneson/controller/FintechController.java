@@ -1,6 +1,8 @@
 package com.itwillbs.soneson.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -84,9 +86,7 @@ public class FintechController {
 	// 2.2. 사용자/서비스 관리 - 2.2.1. 사용자정보조회 API
 	@GetMapping("/FintechUserInfo")
 	public String requestUserInfo(Map<String, String> map, HttpSession session, Model model) {
-		
 		System.out.println(map);
-		
 		
 		// 세션에 저장된 엑세스토큰 및 사용자번호를 Map 객체에 저장
 		map.put("access_token", (String)session.getAttribute("access_token"));
@@ -94,15 +94,27 @@ public class FintechController {
 
 		System.out.println(map);
 		
-		if(map.get("access_token") == null || map.get("user_seq_no") == null) {
-			model.addAttribute("msg", "계좌 인증 필수!");
-			return "fail_back";
+		
+		List<Map<String, String>> userInfoList = bankApiService.selectUserToken();
+		
+//		if(map.get("access_token") == null || map.get("user_seq_no") == null) {
+//			model.addAttribute("msg", "계좌 인증 필수!");
+//			return "fail_back";
+//		}
+		
+		List<ResponseUserInfoVO> userInfos = new ArrayList<ResponseUserInfoVO>();
+		for (Map<String, String> user : userInfoList) {
+//			ResponseUserInfoVO userInfo = bankApiClient.requestUserInfo(user);
+			userInfos.add(bankApiClient.requestUserInfo(user));
 		}
 		
-		ResponseUserInfoVO userInfo = bankApiClient.requestUserInfo(map);
-		log.info(">>> userInfo : " + userInfo); 
+//		System.out.println("))))))))))))))))))userInfos");
+//		System.out.println(userInfos);
+//		
+//		ResponseUserInfoVO userInfo = bankApiClient.requestUserInfo(map);
+//		log.info(">>> userInfo : " + userInfo); 
 		
-		model.addAttribute("userInfo", userInfo);
+		model.addAttribute("userInfos", userInfos);
 		
 		return "mypage/fintech/fintech_user_info";
 	}

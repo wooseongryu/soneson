@@ -126,6 +126,8 @@
 										</tr>
 									</tbody>
 								</table>
+								${accountDetail.fintech_use_num}
+								${user_name }
 							</div>
 						</div>
 					</div>
