@@ -41,7 +41,8 @@ public class LoginApiService {
 			sb.append("grant_type=authorization_code");
             
 			sb.append("&client_id=436a131f08ff59d92a8725d7841cd063"); //본인이 발급받은 key
-			sb.append("&redirect_uri=http://localhost:8081/soneson/kakao/callback"); // 본인이 설정한 주소
+//			sb.append("&redirect_uri=http://localhost:8081/soneson/kakao/callback"); // 본인이 설정한 주소
+			sb.append("&redirect_uri=http://c3d2306t1.itwillbs.com/soneson/kakao/callback"); // 본인이 설정한 주소
 			sb.append("&code=" + authorize_code);
 			
 			bw.write(sb.toString());

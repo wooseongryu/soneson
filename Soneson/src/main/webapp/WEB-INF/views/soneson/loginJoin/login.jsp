@@ -104,7 +104,9 @@
 						<div class="login__social__links">
 							<span>or</span>
 							<ul>
-								<li><a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://localhost:8081/soneson/kakao/callback" style="margin-top:50px">
+<!-- 								<li><a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://localhost:8081/soneson/kakao/callback" style="margin-top:50px"> -->
+<%-- 								<img src="${pageContext.request.contextPath }/resources/soneson/img/kakao_login_medium_wide.png" style="height:48px"></a></li> --%>
+								<li><a href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://c3d2306t1.itwillbs.com/soneson/kakao/callback" style="margin-top:50px">
 								<img src="${pageContext.request.contextPath }/resources/soneson/img/kakao_login_medium_wide.png" style="height:48px"></a></li>
 							</ul>
 						</div>

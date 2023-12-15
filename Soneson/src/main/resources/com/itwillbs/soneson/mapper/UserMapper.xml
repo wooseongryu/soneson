@@ -712,6 +712,7 @@
 	<select id="selectfundingDonerInfoList" resultType="map">
 		SELECT 
 			p.project_code AS project_code
+			, p.title AS title
 			, p.user_id AS creator_id
 			, f.user_id AS doner_id
 			, a.address_code AS address_code

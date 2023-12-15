@@ -60,7 +60,7 @@
 									<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 										<thead>
 											<tr>
-												<th>프로젝트 코드</th>
+												<th>프로젝트 제목</th>
 	                                            <th>창작자 아이디</th>
 	                                            <th>후원자 아이디</th>
 	                                            <th>후원자 이름</th>
@@ -74,11 +74,10 @@
 										<tbody>
 	                                       <c:forEach var="fundingDonerInfo" items="${fundingDonerInfoList }">
 												<tr>
-													<td>${fundingDonerInfo.project_code }</td>
+													<td>${fundingDonerInfo.title }</td>
 													<td>${fundingDonerInfo.creator_id }</td>
 													<td>${fundingDonerInfo.doner_id }</td>
 													<td>${fundingDonerInfo.doner_name}</td>
-													
 													<td>${fn:replace(fundingDonerInfo.fund_date ,"T", " ") }</td>
 													<td>${fundingDonerInfo.address_code}</td>
 													<td>${fundingDonerInfo.address_main}&nbsp;${fundingDonerInfo.address_sub}</td>
