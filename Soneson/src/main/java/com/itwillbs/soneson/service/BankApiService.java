@@ -1,6 +1,7 @@
 package com.itwillbs.soneson.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,13 @@ public class BankApiService {
 		// ---------------------------------------------------------------------
 		// 요청 정보가 저장된 Map 객체 리턴
 		return transferResult;
+	}
+
+	// 테스트...
+	public List<Map<String, String>> selectUserToken() {
+		System.out.println("BankApiService - selectUserToken()");
+		
+		return mapper.selectUserToken();
 	}
 	
 }
