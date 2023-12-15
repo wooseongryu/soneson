@@ -35,6 +35,10 @@
     <script type="text/javascript">
     	let pointColor = "#F86453";
 	
+    	function donerSelect(project_code) {
+			location.href = "fundingDonerInfo?project_code="+ project_code;
+		}
+    	
     </script>
     
 <style>
@@ -126,7 +130,7 @@
     <section class="product-page spad">
 	    <div class="Category">
 			<ul class="Category_ul">
-				<li class="DonationTodayCategory_list_item__agFbi item_1" aria-current="true">
+				<li class="DonationTodayCategory_list_item__agFbi item_1" aria-current="false">
 					<button type="button" class="Category_button" onclick="location.href='userProjectsCreated'">
 						<span class="Category_text">&nbsp;&nbsp;전체&nbsp;&nbsp;</span>
 					</button>
@@ -151,7 +155,7 @@
 						<span class="Category_text">&nbsp;&nbsp;반려됨&nbsp;&nbsp;</span>
 					</button>
 				</li>
-				<li class="DonationTodayCategory_list_item__agFbi item_6" aria-current="false">
+				<li class="DonationTodayCategory_list_item__agFbi item_6" aria-current="true">
 					<button type="button" class="Category_button" onclick="location.href='userProjectRelease'">
 						<span class="Category_text">&nbsp;&nbsp;공개예정&nbsp;&nbsp;</span>
 					</button>
@@ -201,9 +205,10 @@
 															</h5>                                                                           
 															<h6>${ReleaseProject.subtitle}</h6>                                               
 															<ul style="margin-top: 15px">                                                   
-																<li style="float: right">${ReleaseProject.d_day}</li>                         
+																<li>${ReleaseProject.d_day}</li>                         
 															</ul>                                                                           
-			    										</div>                                                                               
+			    										</div> 
+		    											<button type="button" class="donerSelectBtn" onclick="donerSelect(${ReleaseProject.project_code})">후원자 조회하기</button>                                                                              
 			    									</div>                                                                                   
 			    								</div>
 										</c:forEach>

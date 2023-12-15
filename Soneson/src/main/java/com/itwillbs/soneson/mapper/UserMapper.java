@@ -201,6 +201,9 @@ public interface UserMapper {
 	// 유저 마감된 프로젝트
 	List<Map<String, String>> selectUserProjectEnd(String sId);
 
+	// 프로젝트 후원자 조회
+	List<Map<String, String>> selectfundingDonerInfoList(Map<String, String> map);
+
 }
 
 

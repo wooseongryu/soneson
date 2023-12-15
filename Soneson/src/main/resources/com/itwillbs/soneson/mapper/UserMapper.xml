@@ -708,5 +708,29 @@
 	ORDER BY donor DESC
 	</select>
 	
+	<!-- 프로젝트 후원자 조회 -->
+	<select id="selectfundingDonerInfoList" resultType="map">
+		SELECT 
+			p.project_code AS project_code
+			, p.user_id AS creator_id
+			, f.user_id AS doner_id
+			, a.address_code AS address_code
+			, f.fund_date AS fund_date
+			, a.address_reciver AS doner_name
+			, a.address_main AS address_main
+			, a.address_sub  AS address_sub
+			, a.address_reciver_phone  AS phone
+			, f.cost AS cost
+		FROM project p
+		JOIN fund f 
+		ON p.project_code = f.project_code
+		JOIN user u 
+		ON f.user_id = u.user_id
+		JOIN address a
+		ON u.user_id = a.user_id
+		WHERE p.user_id = #{sId} AND p.project_code = #{project_code}
+	</select>
+	
+	
 </mapper>
 

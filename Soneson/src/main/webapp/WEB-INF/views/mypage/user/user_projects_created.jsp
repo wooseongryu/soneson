@@ -35,6 +35,12 @@
     <script type="text/javascript">
     	let pointColor = "#F86453";
 	
+    	
+    	function donerSelect(project_code) {
+			location.href = "fundingDonerInfo?project_code="+ project_code;
+		}
+    	
+    	
     </script>
     
 <style>
@@ -90,6 +96,8 @@
 	    background-color: #F86453;
 	    border-color: #F86453;
 	}
+	
+	
 	
 	
 </style>
@@ -185,7 +193,7 @@
 										<c:forEach var="UploadProject" items="${UploadProjectList}">
 											<div class="col-lg-4 col-md-6 col-sm-6" style="">                                                
 												<div class="product__item">
-  					    								<a href="projectDetail?project_code=${UploadProject.project_code}">
+					    							<a href="projectDetail?project_code=${UploadProject.project_code}">
 			    										<div class="product__item__pic set-bg" data-setbg="${UploadProject.img_main }" 
 														style="background-image: url('${UploadProject.img_main}')">
 														</div>
@@ -198,14 +206,15 @@
 															<a href="projectDetail?project_code=' + UploadProject.project_code + '">                            
 																${UploadProject.title }
 															</a>                                                                            
-															</h5>                                                                           
+															</h5>          
 															<h6>${UploadProject.subtitle}</h6>                                               
 															<ul style="margin-top: 15px">                                                   
 																<li>${UploadProject.rate}%</li>                                              
 																<li>${UploadProject.total}원</li>                                            
-																<li style="float: right">${UploadProject.d_day}</li>                         
+																<li>${UploadProject.d_day}</li>                         
 															</ul>                                                                           
 			    										</div>                                                                               
+														<button type="button" class="donerSelectBtn" onclick="donerSelect(${UploadProject.project_code})">후원자 조회하기</button>                                                                 
 			    									</div>                                                                                   
 			    								</div>
 										</c:forEach>

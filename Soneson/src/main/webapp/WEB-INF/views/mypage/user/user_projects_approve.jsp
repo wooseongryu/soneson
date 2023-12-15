@@ -35,6 +35,10 @@
     <script type="text/javascript">
     	let pointColor = "#F86453";
 	
+    	function donerSelect(project_code) {
+			location.href = "fundingDonerInfo?project_code="+ project_code;
+		}
+    	
     </script>
     
 <style>
@@ -203,9 +207,10 @@
 															<ul style="margin-top: 15px">                                                   
 																<li>${ApproveProject.rate}%</li>                                              
 																<li>${ApproveProject.total}원</li>                                            
-																<li style="float: right">${ApproveProject.d_day}</li>                         
+																<li>${ApproveProject.d_day}</li>                         
 															</ul>                                                                           
-			    										</div>                                                                               
+			    										</div>
+			    										<button type="button" class="donerSelectBtn" onclick="donerSelect(${ApproveProject.project_code})">후원자 조회하기</button>                                                                               
 			    									</div>                                                                                   
 			    								</div>
 										</c:forEach>
