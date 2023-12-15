@@ -110,6 +110,7 @@ public class FundingController {
 //		int reward_code = 57;
 		//선택리워드 정보
 		Map<String, String> reward = service.selectReward(project_code, reward_code);
+		reward.replace("reward_item_name", reward.get("reward_item_name").replace("|", " + "));
 		
 		//유저배송정보
 		Map<String, String> user = service.selectUser(sId);
