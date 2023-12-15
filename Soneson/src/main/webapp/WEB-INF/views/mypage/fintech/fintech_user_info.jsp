@@ -74,10 +74,11 @@
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
+							<c:forEach var="account" items="${userInfos}">
 <%-- 							<c:forEach var="account" items="${userInfos.res_list}"> --%>
-<%-- 								<br>${account }<br> --%>
+								<br>${account }<br>
 <!-- 								---------- -->
-<%-- 							</c:forEach> --%>
+							</c:forEach>
 <!-- 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"> -->
 <!-- 									<thead> -->
 <!-- 										<tr> -->

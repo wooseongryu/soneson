@@ -41,8 +41,10 @@ public class ProjectListController {
 	}
 	
 //	@GetMapping("/list/{listType}")
-	@GetMapping("{listType}")
+//	@GetMapping("{listType}")
+	@GetMapping("/list/{listType}")
 	public String list(Model model, @PathVariable String listType) {
+		System.out.println("리스트 타입: " + listType);
 	    return getListType(model, listType);
 	}
 	

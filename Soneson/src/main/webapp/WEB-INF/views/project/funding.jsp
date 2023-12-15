@@ -141,7 +141,7 @@
 			startDt = new Date($("#start-funding").val());
 			
 			if(endDt != "") {
-				debugger;				
+// 				debugger;				
 				endDt = new Date($(this).val());
 				fundingDays = Math.round((endDt - startDt) / 1000 / 60 / 60 / 24);
 				paymentDt = new Date(endDt.setDate(endDt.getDate() + 7));
