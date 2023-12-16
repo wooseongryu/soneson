@@ -83,65 +83,49 @@ public class FintechController {
 		return "forwardFintech";
 	}
 	
+	// TODO 관리자 판별
+	// 모금 성공한 프로젝트 리스트
+	@GetMapping("/FintechWithdrawProjectList")
+	public String FintechWithdrawProjectList(Model model) {
+		System.out.println("FintechController - FintechWithdrawProjectList()");
+		
+		List<Map<String, String>> projectList = bankApiService.selectStandByPaymentProject();
+//		System.out.println(")))))))))");
+//		System.out.println(projectList);
+		
+		model.addAttribute("projectList", projectList);
+		
+		return "mypage/fintech/fintech_project_list";
+	}
+	
+	// TODO 관리자 판별
+	// 입금이체 프로젝트 리스트
+	@GetMapping("/FintechRefundProjectList")
+	public String FintechRefundProjectList(Model model) {
+		System.out.println("FintechController - FintechRefundProjectList()");
+		
+		List<Map<String, String>> projectList = bankApiService.selectStandByRefundProject();
+//		System.out.println(projectList);
+		
+		model.addAttribute("projectList", projectList);
+		
+		return "mypage/fintech/fintech_refund_project_list";
+	}
+	
 	// 모금성공한 프로젝트 클릭해서 들어갔을 때 해당 프로젝트 후원한 유저 목록
 	// 2.2. 사용자/서비스 관리 - 2.2.1. 사용자정보조회 API
 	@GetMapping("/FintechUserInfo")
-	public String requestUserInfo(Map<String, String> map, HttpSession session, Model model) {
+	public String requestUserInfo(@RequestParam Map<String, String> map, HttpSession session, Model model) {
+		System.out.println("FintechController - FintechUserInfo()");
 //		System.out.println(map);
 		
-		// 세션에 저장된 엑세스토큰 및 사용자번호를 Map 객체에 저장
-//		map.put("access_token", (String)session.getAttribute("access_token"));
-//		map.put("user_seq_no", (String)session.getAttribute("user_seq_no"));
-
-//		System.out.println(map);
+		String project_code = map.get("project_code");
 		
-		map.put("project_code", "50");
+		List<Map<String, String>> userInfoList = bankApiService.selectUserToken(project_code);
 		
-		List<Map<String, String>> userInfoList = bankApiService.selectUserToken();
-		
-		System.out.println(")))))))))))))))___________+++");
-		System.out.println(userInfoList);
-		
-//		if(map.get("access_token") == null || map.get("user_seq_no") == null) {
-//			model.addAttribute("msg", "계좌 인증 필수!");
-//			return "fail_back";
-//		}
-		
-//		List<ResponseUserInfoVO> userInfos = new ArrayList<ResponseUserInfoVO>();
-//		for (Map<String, String> user : userInfoList) {
-//			ResponseUserInfoVO userInfo = bankApiClient.requestUserInfo(user);
-//			userInfo.setAccess_token(user.get("access_token"));
-//			userInfos.add(userInfo);
-//		}
-		
-//		List<ResponseUserInfoVO> userInfos = new ArrayList<ResponseUserInfoVO>();
-//		for (Map<String, String> user : userInfoList) {
-////			ResponseUserInfoVO userInfo = bankApiClient.requestUserInfo(user);
-//			System.out.println("0000000000000");
-//			System.out.println(userInfo);
-//			System.out.println(user.get("fintech_use_num"));
-//			System.out.println(map.get("fintech_use_num"));
-//			System.out.println("--");
-////			if (user.get("fintech_use_num").equals(userInfo.getRes_list().get)) {
-////				userInfo.setAccess_token(user.get("access_token"));
-////				userInfos.add(userInfo);
-////			}
-//		}
-		
-//		System.out.println(")))22222222222");
-//		System.out.println(userInfos);
-		
-//		System.out.println(")))))))))+++++++++++++++++");
-//		System.out.println(userInfos);
-		
-//		System.out.println("))))))))))))))))))userInfos");
-//		System.out.println(userInfos);
-//		
-//		ResponseUserInfoVO userInfo = bankApiClient.requestUserInfo(map);
-//		log.info(">>> userInfo : " + userInfo); 
 		
 		model.addAttribute("userInfoList", userInfoList);
-		model.addAttribute("project_code", 50);
+		model.addAttribute("project_code", project_code);
 		
 		return "mypage/fintech/fintech_user_info";
 	}
@@ -188,7 +172,7 @@ public class FintechController {
 		
 //		map.put("id", "lsc2464"); // 테스트 출금 정보 등록(요청 사용자 번호용 임시 아이디)
 		
-		List<Map<String, String>> userInfoList = bankApiService.selectUserToken();
+		List<Map<String, String>> userInfoList = bankApiService.selectUserToken(map.get("project_code"));
 		
 		List<ResponseWithdrawVO> withdrawResultList = new ArrayList<ResponseWithdrawVO>();
 		for (Map<String, String> user : userInfoList) {

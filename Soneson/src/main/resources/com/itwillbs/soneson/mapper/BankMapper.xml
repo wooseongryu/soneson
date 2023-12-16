@@ -25,7 +25,7 @@
 		ON u.user_id = f.id
 		JOIN fund fund
 		ON u.user_id = fund.user_id
-		WHERE u.project_code = 50
+		WHERE u.project_code = #{project_code}
 	</select>
 	
 	<update id="updateFundStatus">
@@ -33,6 +33,46 @@
 		SET status = "결제성공"
 		WHERE idx = #{fundIdx}
 	</update>
+	
+	<select id="selectStandByPaymentProject" resultType="map">
+		<![CDATA[
+			select 
+				project_code
+				, title
+				, creator
+				, date_format(DATE_ADD(end_date, INTERVAL 1 day), '%Y-%m-%d') as payment_date
+				, (select SUM(cost)
+						from fund f
+						where p.project_code = f.project_code) as total_cost
+			From project p
+			WHERE 
+				now() BETWEEN  end_date and DATE_ADD(end_date, INTERVAL 8 day)
+				AND goal_amount <= (select SUM(cost)
+									from fund f
+									where p.project_code = f.project_code)
+		]]>
+	</select>
+	
+	<select id="selectStandByRefundProject" resultType="map">
+		<![CDATA[
+			select 
+			project_code
+			, title
+			, creator
+			, date_format(DATE_ADD(end_date, INTERVAL 1 day), '%Y-%m-%d') as payment_date
+			, (select SUM(cost)
+								from fund f
+								where 
+									p.project_code = f.project_code
+									AND status = "결제성공") as total_cost
+		From project p
+		WHERE 
+			now() BETWEEN DATE_ADD(end_date, INTERVAL 8 day) and DATE_ADD(end_date, INTERVAL 15 day)
+			AND goal_amount <= (select SUM(cost)
+								from fund f
+								where p.project_code = f.project_code)
+		]]>
+	</select>
 </mapper>
 
 

@@ -54,10 +54,10 @@ public class BankApiService {
 	}
 
 	// 테스트...
-	public List<Map<String, String>> selectUserToken() {
+	public List<Map<String, String>> selectUserToken(String project_code) {
 		System.out.println("BankApiService - selectUserToken()");
 		
-		return mapper.selectUserToken();
+		return mapper.selectUserToken(project_code);
 	}
 
 	// Fund테이블 status 변경
@@ -65,6 +65,20 @@ public class BankApiService {
 		System.out.println("BankApiService - updateFundStatus");
 		
 		return mapper.updateFundStatus(fundIdx);
+	}
+
+	// 모금 성공한 프로젝트 리스트
+	public List<Map<String, String>> selectStandByPaymentProject() {
+		System.out.println("BankApiService - selectStandByPaymentProject()");
+		
+		return mapper.selectStandByPaymentProject();
+	}
+
+	// 입금이체 프로젝트 리스트
+	public List<Map<String, String>> selectStandByRefundProject() {
+		System.out.println("BankApiService - selectStandByRefundProject()"); 
+		
+		return mapper.selectStandByRefundProject();
 	}
 	
 }
