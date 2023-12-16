@@ -1,6 +1,7 @@
 package com.itwillbs.soneson.controller;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -161,6 +162,7 @@ public class LoginJoinController {
 	}
 	
 	// 로그인 처리
+	// 성윤 추가
 	@PostMapping("loginPro")
 	public String loginPro(
 			UserVO user, 
@@ -168,7 +170,8 @@ public class LoginJoinController {
 			HttpSession session, 
 			Model model, 
 			HttpServletResponse response,
-			String user_id) {
+			String user_id,
+			Map<String, String> map) {
 		
 		// BCryptPasswordEncoder 객체를 활용한 패스워드 비교
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -210,6 +213,23 @@ public class LoginJoinController {
 				}
 				
 				response.addCookie(cookie);
+				
+				// ------- 프로필 성윤 추가 --------------
+				
+				if(session.getAttribute("sId") != null) {
+					String sId = (String)session.getAttribute("sId");
+					
+					map.put("sId", sId);
+					map.put("id", sId);
+					map = userService.selectUserMainInfo(map);
+					
+//				model.addAttribute("user", map);
+					System.out.println("맵에서: " + map.get("user_picture"));
+					session.setAttribute("profile", map.get("user_picture"));
+					System.out.println("프로필: " + session.getAttribute("profile"));
+				}
+				
+				// ---------------------------------------
 				
 				System.out.println("성공적으로 로그인하였습니다 메인페이지로 이동합니다");
 			}
