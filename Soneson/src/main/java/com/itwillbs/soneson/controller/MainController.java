@@ -31,18 +31,18 @@ public class MainController {
 //		1214 프로필 사진 추가
 		
 		
-		if(session.getAttribute("sId") != null) {
-			String sId = (String)session.getAttribute("sId");
-			
-			map.put("sId", sId);
-			map.put("id", sId);
-			map = userService.selectUserMainInfo(map);
-			
-//		model.addAttribute("user", map);
-			System.out.println("맵에서: " + map.get("user_picture"));
-			session.setAttribute("profile", map.get("user_picture"));
-			System.out.println("프로필: " + session.getAttribute("profile"));
-		}
+//		if(session.getAttribute("sId") != null) {
+//			String sId = (String)session.getAttribute("sId");
+//			
+//			map.put("sId", sId);
+//			map.put("id", sId);
+//			map = userService.selectUserMainInfo(map);
+//			
+////		model.addAttribute("user", map);
+//			System.out.println("맵에서: " + map.get("user_picture"));
+//			session.setAttribute("profile", map.get("user_picture"));
+//			System.out.println("프로필: " + session.getAttribute("profile"));
+//		}
 		
 		Gson gson = new Gson();
 //		gson.toJson(userService.selectUserMainInfo(map));

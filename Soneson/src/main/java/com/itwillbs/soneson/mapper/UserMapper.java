@@ -204,6 +204,9 @@ public interface UserMapper {
 	// 프로젝트 후원자 조회
 	List<Map<String, String>> selectfundingDonerInfoList(Map<String, String> map);
 
+	// 유저 작성중인 프로젝트
+	List<Map<String, String>> selectWritingProjectList(String sId);
+
 }
 
 

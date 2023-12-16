@@ -553,6 +553,13 @@
 		WHERE p.user_id = #{sId}
 	</select>
 
+	<select id="selectWritingProjectList" resultType="map">
+		SELECT *
+		FROM sample_pro
+		WHERE user_id = #{sId}
+	</select>
+
+
 	
 	<select id="selectUserProjectExam" resultType="map">
 		-- selectUserProjectExam

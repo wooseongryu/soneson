@@ -423,6 +423,11 @@ public class UserService {
 		return mapper.selectfundingDonerInfoList(map);
 	}
 
+	// 유저 작성중인 프로젝트
+	public List<Map<String, String>> selectWritingProjectList(String sId) {
+		return mapper.selectWritingProjectList(sId);
+	}
+
 	
 }
 

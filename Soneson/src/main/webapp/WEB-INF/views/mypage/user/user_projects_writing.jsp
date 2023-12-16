@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -35,10 +35,6 @@
     
     <script type="text/javascript">
     	let pointColor = "#F86453";
-	
-    	function donerSelect(project_code) {
-			location.href = "fundingDonerInfo?project_code="+ project_code;
-		}
     	
     </script>
     
@@ -136,12 +132,12 @@
 						<span class="Category_text">&nbsp;&nbsp;전체&nbsp;&nbsp;</span>
 					</button>
 				</li>
-				<li class="DonationTodayCategory_list_item__agFbi item_2" aria-current="false">
+				<li class="DonationTodayCategory_list_item__agFbi item_2" aria-current="true">
 					<button type="button" class="Category_button" onclick="location.href='userProjectsWriting'">
 						<span class="Category_text">&nbsp;&nbsp;작성중&nbsp;&nbsp;</span>
 					</button>
 				</li>
-				<li class="DonationTodayCategory_list_item__agFbi item_3" aria-current="true">
+				<li class="DonationTodayCategory_list_item__agFbi item_3" aria-current="false">
 					<button type="button" class="Category_button" onclick="location.href='userProjectExam'">
 						<span class="Category_text">&nbsp;&nbsp;심사중&nbsp;&nbsp;</span>
 					</button>
@@ -180,43 +176,47 @@
 		<div class="MyProjectListWrapper">
 			<div align="center">
 				<br>
-				<c:if test="${!empty ExamProjectList }">
+				<c:if test="${!empty WritingProjectList }">
 					<section class="product-page spad">                                                                                                          
    						<div class="container">                                                                                                                  
    					    	<div class="row">                                                                                                                      
    								<div class="col-lg-12">                                                                                                          
    									<div class="product__page__content" >
                            				<div class="row">  
-										<c:forEach var="ExamProject" items="${ExamProjectList}">
+										<c:forEach var="WritingProject" items="${WritingProjectList}">
 											<div class="col-lg-4 col-md-6 col-sm-6" style="">                                                
 												<div class="product__item">
-  					    							<a href="projectDetail?project_code=${ExamProject.project_code}">
- 					    								<c:choose>
-															<c:when test="${fn:contains(ExamProject.img_main, 'https')}">
-																<img src="${ExamProject.img_main}" alt="프로젝트 썸네일 이미지" style="width:100%; height:100%">
-															</c:when>
-															<c:otherwise>
-																<img src="${pageContext.request.contextPath }/resources/upload/${ExamProject.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width:100%; height:100%">
-															</c:otherwise>
-														</c:choose>
-													</a>
+													<c:choose>
+														<c:when test="${fn:contains(WritingProject.pro_thumbsnail, 'https')}">
+															<img src="${WritingProject.pro_thumbsnail}" alt="프로젝트 썸네일 이미지" style="width:100%; height:100%">
+														</c:when>
+														<c:otherwise>
+															<img src="${pageContext.request.contextPath }/resources/upload/${WritingProject.pro_thumbsnail }" alt="프로젝트 썸네일 이미지 DB" style="width:100%; height:100%">
+														</c:otherwise>
+													</c:choose>
 														<div class="product__item__text">                                                   
 															<ul>                                                                            
-																<li>${ExamProject.category }</li>                                           
+																<li>${WritingProject.pro_categorie }</li>                                           
+																<li>작성중</li>                                           
 															</ul>                                                                           
 															<h5 style="margin-bottom: 7px;">                                                
-															<a href="projectDetail?project_code=' + ExamProject.project_code + '">                            
-																${ExamProject.title }
+															<a href="#">                            
+																${WritingProject.pro_title }
 															</a>                                                                            
 															</h5>                                                                           
-															<h6>${ExamProject.subtitle}</h6>                                               
-															<ul style="margin-top: 15px">                                                   
-																<li>${ExamProject.rate}%</li>                                              
-																<li>${ExamProject.total}원</li>                                            
-																<li>${ExamProject.d_day}</li>                         
-															</ul>                                                                           
-			    										</div>  
-			    										<button type="button" class="donerSelectBtn" onclick="donerSelect(${ExamProject.project_code})">후원자 조회하기</button>                                                                               
+<%-- 															<h6>${WritingProject.subtitle}</h6>                                                --%>
+<!-- 															<ul style="margin-top: 15px">                                                    -->
+<%-- 																<li>${WritingProject.rate}%</li>                                               --%>
+<%-- 																<li>${WritingProject.total}원</li>                                             --%>
+<%-- 																<li>${WritingProject.d_day}</li>                          --%>
+<!-- 															</ul>                                                                            -->
+			    										</div>
+			    										<form action="projectUpdateForm" method="post">
+															<input type="hidden" name="isNewInsert" value="N"> 
+															<input type="hidden" value="${WritingProject.pro_code }" name="pro_code">
+															<input type="hidden" value="${WritingProject.user_id }" name="user_id">
+															<input class="donerSelectBtn" type="submit" value="이어서 작성 하기" class="ing-probtn">
+														</form>
 			    									</div>                                                                                   
 			    								</div>
 										</c:forEach>
@@ -227,7 +227,7 @@
 				    	</div>                                                                                                                                    
 					</section>                                                                                                                               
 				</c:if>
-				<c:if test="${empty ExamProjectList }">
+				<c:if test="${empty WritingProjectList }">
 					<img src="${pageContext.request.contextPath }/resources/user/writer.png" class="writer.png" width="180">
 					<br>
 					<br>
