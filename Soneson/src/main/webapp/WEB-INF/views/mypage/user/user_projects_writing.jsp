@@ -34,10 +34,6 @@
     
     <script type="text/javascript">
     	let pointColor = "#F86453";
-	
-    	function donerSelect(project_code) {
-			location.href = "fundingDonerInfo?project_code="+ project_code;
-		}
     	
     </script>
     
@@ -179,38 +175,44 @@
 		<div class="MyProjectListWrapper">
 			<div align="center">
 				<br>
-				<c:if test="${!empty ApproveProjectList }">
+				<c:if test="${!empty WritingProjectList }">
 					<section class="product-page spad">                                                                                                          
    						<div class="container">                                                                                                                  
    					    	<div class="row">                                                                                                                      
    								<div class="col-lg-12">                                                                                                          
    									<div class="product__page__content" >
                            				<div class="row">  
-										<c:forEach var="ApproveProject" items="${ApproveProjectList}">
+										<c:forEach var="WritingProject" items="${WritingProjectList}">
 											<div class="col-lg-4 col-md-6 col-sm-6" style="">                                                
 												<div class="product__item">
- 					    							<a href="projectDetail?project_code=${ApproveProject.project_code}">
-			    										<div class="product__item__pic set-bg" data-setbg="${ApproveProject.img_main }" 
-														style="background-image: url('${ApproveProject.img_main}')">
+  					    							<a href="#">
+			    										<div class="product__item__pic set-bg" data-setbg="${WritingProject.pro_thumbsnail }" 
+														style="background-image: url('${WritingProject.pro_thumbsnail}')">
 														</div>
 													</a>
 														<div class="product__item__text">                                                   
 															<ul>                                                                            
-																<li>${ApproveProject.category }</li>                                           
+																<li>${WritingProject.pro_categorie }</li>                                           
+																<li>작성중</li>                                           
 															</ul>                                                                           
 															<h5 style="margin-bottom: 7px;">                                                
-															<a href="projectDetail?project_code=' + ApproveProject.project_code + '">                            
-																${ApproveProject.title }
+															<a href="#">                            
+																${WritingProject.pro_title }
 															</a>                                                                            
 															</h5>                                                                           
-															<h6>${ApproveProject.subtitle}</h6>                                               
-															<ul style="margin-top: 15px">                                                   
-																<li>${ApproveProject.rate}%</li>                                              
-																<li>${ApproveProject.total}원</li>                                            
-																<li>${ApproveProject.d_day}</li>                         
-															</ul>                                                                           
+<%-- 															<h6>${WritingProject.subtitle}</h6>                                                --%>
+<!-- 															<ul style="margin-top: 15px">                                                    -->
+<%-- 																<li>${WritingProject.rate}%</li>                                               --%>
+<%-- 																<li>${WritingProject.total}원</li>                                             --%>
+<%-- 																<li>${WritingProject.d_day}</li>                          --%>
+<!-- 															</ul>                                                                            -->
 			    										</div>
-			    										<button type="button" class="donerSelectBtn" onclick="donerSelect(${ApproveProject.project_code})">후원자 조회하기</button>                                                                               
+			    										<form action="projectUpdateForm" method="post">
+															<input type="hidden" name="isNewInsert" value="N"> 
+															<input type="hidden" value="${WritingProject.pro_code }" name="pro_code">
+															<input type="hidden" value="${WritingProject.user_id }" name="user_id">
+															<input type="submit" value="이어서 작성 하기" class="ing-probtn">
+														</form>
 			    									</div>                                                                                   
 			    								</div>
 										</c:forEach>
@@ -221,7 +223,7 @@
 				    	</div>                                                                                                                                    
 					</section>                                                                                                                               
 				</c:if>
-				<c:if test="${empty ApproveProjectList }">
+				<c:if test="${empty WritingProjectList }">
 					<img src="${pageContext.request.contextPath }/resources/user/writer.png" class="writer.png" width="180">
 					<br>
 					<br>
