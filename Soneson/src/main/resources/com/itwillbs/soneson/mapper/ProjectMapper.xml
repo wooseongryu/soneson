@@ -3,7 +3,13 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.itwillbs.soneson.mapper.ProjectMapper">
-	
+	<!-- 프로젝트 등록 start페이지 작성중 프젝 갯수 -->
+	<select id="selectProCount" resultType="int">
+		SELECT count(*)
+		FROM sample_pro 
+		WHERE user_id = #{sId}
+	</select>
+
 	
 	<!-- 프로젝트 등록 start페이지 -->
 	<select id="selectIdProj" resultType="Project">
@@ -167,7 +173,7 @@
 
 <sql id="popular">
 	<![CDATA[
-			WHERE p.start_date <= now() AND p.status = '승인'
+			WHERE p.start_date <= now()
 	]]>
 			GROUP BY p.project_code) A
 <!-- 		데이터 쌓이면 주석 풀기 -->
@@ -176,14 +182,14 @@
 </sql>
 <sql id="new">
 	<![CDATA[
-			WHERE p.start_date <= now() AND p.status = '승인'
+			WHERE p.start_date <= now()
 			GROUP BY p.project_code) A
 		ORDER BY now() - A.start_date;	
 	]]>
 </sql>
 <sql id="closing">
 	<![CDATA[
-			WHERE p.start_date <= now() AND p.status = '승인'
+			WHERE p.start_date <= now()
 				AND p.end_date > now()
 			GROUP BY p.project_code) A
 		ORDER BY A.end_date - now();	
@@ -192,21 +198,21 @@
 <sql id="upcoming">
 	<![CDATA[
 			GROUP BY p.project_code) A
-		WHERE start_date > now() AND status = '승인';	
+		WHERE start_date > now();	
 	]]>
 </sql>
 
 
 <sql id="all">
 	<![CDATA[
-			WHERE p.start_date <= now() AND p.status = '승인'
+			WHERE p.start_date <= now()
 			GROUP BY p.project_code) A
 		ORDER BY donor DESC;	
 	]]>
 </sql>
 <sql id="youth">
 	<![CDATA[
-			WHERE p.start_date <= now() AND p.status = '승인'
+			WHERE p.start_date <= now()
 			AND category = '아동·청소년'
 			GROUP BY p.project_code) A
 		ORDER BY donor DESC;	
@@ -214,7 +220,7 @@
 </sql>
 <sql id="animal">
 	<![CDATA[
-			WHERE p.start_date <= now() AND p.status = '승인'
+			WHERE p.start_date <= now()
 			AND category = '동물'
 			GROUP BY p.project_code) A
 		ORDER BY donor DESC;	
@@ -222,7 +228,7 @@
 </sql>
 <sql id="nature">
 	<![CDATA[
-			WHERE p.start_date <= now() AND p.status = '승인'
+			WHERE p.start_date <= now()
 			AND category = '환경'
 			GROUP BY p.project_code) A
 		ORDER BY donor DESC;	
@@ -230,7 +236,7 @@
 </sql>
 <sql id="disabled">
 	<![CDATA[
-			WHERE p.start_date <= now() AND p.status = '승인'
+			WHERE p.start_date <= now()
 			AND category = '장애인'
 			GROUP BY p.project_code) A
 		ORDER BY donor DESC;	
@@ -238,7 +244,7 @@
 </sql>
 <sql id="woman">
 	<![CDATA[
-			WHERE p.start_date <= now() AND p.status = '승인'
+			WHERE p.start_date <= now()
 	]]>
 			AND category = '가족·여성'
 			GROUP BY p.project_code) A
@@ -246,7 +252,7 @@
 </sql>
 <sql id="eldery">
 	<![CDATA[
-			WHERE p.start_date <= now() AND p.status = '승인'
+			WHERE p.start_date <= now() AND p.end_date >= now()
 			AND category = '어르신'
 			GROUP BY p.project_code) A
 		ORDER BY donor DESC;	
@@ -254,7 +260,7 @@
 </sql>
 <sql id="etc">
 	<![CDATA[
-			WHERE p.start_date <= now() AND p.status = '승인'
+			WHERE p.start_date <= now() AND p.end_date >= now()
 			AND category = '기타'
 			GROUP BY p.project_code) A
 		ORDER BY donor DESC
@@ -279,7 +285,6 @@
 				, ifnull(sum(cost) / max(goal_amount), 0) AS ratio
 				, ifnull(TRUNCATE(sum(cost) / max(goal_amount) * 100, 0), 0) AS goal_rate
 				, count(f.fund_code) AS donor
-				, max(p.status) AS status
 			FROM project p
 			LEFT JOIN fund f
 			ON p.project_code = f.project_code
