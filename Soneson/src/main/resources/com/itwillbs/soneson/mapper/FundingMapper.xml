@@ -142,6 +142,7 @@
 		<![CDATA[
 		WHERE start_date <= now() AND end_date >= now() AND status = '승인' AND user_id = #{sId} 
 		]]>
+		ORDER BY fund_date desc
 		LIMIT 5
 	</select>
 	

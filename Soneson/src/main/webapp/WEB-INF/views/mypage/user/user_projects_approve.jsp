@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -135,11 +136,11 @@
 						<span class="Category_text">&nbsp;&nbsp;전체&nbsp;&nbsp;</span>
 					</button>
 				</li>
-<!-- 				<li class="DonationTodayCategory_list_item__agFbi item_2" aria-current="false"> -->
-<!-- 					<button type="button" class="Category_button"> -->
-<!-- 						<span class="Category_text">&nbsp;&nbsp;작성중&nbsp;&nbsp;</span> -->
-<!-- 					</button> -->
-<!-- 				</li> -->
+				<li class="DonationTodayCategory_list_item__agFbi item_2" aria-current="false">
+					<button type="button" class="Category_button" onclick="location.href='userProjectsWriting'">
+						<span class="Category_text">&nbsp;&nbsp;작성중&nbsp;&nbsp;</span>
+					</button>
+				</li>
 				<li class="DonationTodayCategory_list_item__agFbi item_3" aria-current="false">
 					<button type="button" class="Category_button" onclick="location.href='userProjectExam'">
 						<span class="Category_text">&nbsp;&nbsp;심사중&nbsp;&nbsp;</span>
@@ -189,10 +190,15 @@
 										<c:forEach var="ApproveProject" items="${ApproveProjectList}">
 											<div class="col-lg-4 col-md-6 col-sm-6" style="">                                                
 												<div class="product__item">
-  					    								<a href="projectDetail?project_code=${ApproveProject.project_code}">
-			    										<div class="product__item__pic set-bg" data-setbg="${ApproveProject.img_main }" 
-														style="background-image: url('${ApproveProject.img_main}')">
-														</div>
+ 					    							<a href="projectDetail?project_code=${ApproveProject.project_code}">
+ 					    								<c:choose>
+															<c:when test="${fn:contains(ApproveProject.img_main, 'https')}">
+																<img src="${ApproveProject.img_main}" alt="프로젝트 썸네일 이미지" style="width:100%; height:100%">
+															</c:when>
+															<c:otherwise>
+																<img src="${pageContext.request.contextPath }/resources/upload/${ApproveProject.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width:100%; height:100%">
+															</c:otherwise>
+														</c:choose>
 													</a>
 														<div class="product__item__text">                                                   
 															<ul>                                                                            

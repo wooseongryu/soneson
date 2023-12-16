@@ -763,6 +763,24 @@ public class UserController {
 		
 		return "mypage/user/user_projects_created";
 	}
+
+	
+	
+	// 마이페이지에서 작성중인 프로젝트
+	@GetMapping("userProjectsWriting")
+	public String userProjectsWriting(HttpSession session, Model model) {
+		System.out.println("UserController - userProjectsWriting()");
+		
+		String sId = (String)session.getAttribute("sId");
+		
+		List<Map<String, String>> WritingProjectList = userService.selectWritingProjectList(sId);
+		
+		
+		model.addAttribute("WritingProjectList", WritingProjectList);
+		
+		return "mypage/user/user_projects_writing";
+	}
+	
 	
 	// 마이페이지에서 심사중인 프로젝트 
 	@GetMapping("userProjectExam")
