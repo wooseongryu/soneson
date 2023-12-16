@@ -31,6 +31,6 @@ public interface BankMapper {
 	int selectExistAccessToken(String id);
 	
 	//토큰 업데이트
-	void updateToken(String id, ResponseTokenVO responseToken);
+	void updateToken(@Param("id") String id, @Param("token") ResponseTokenVO responseToken);
 	
 }
