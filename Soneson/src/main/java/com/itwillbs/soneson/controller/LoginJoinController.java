@@ -223,7 +223,6 @@ public class LoginJoinController {
 					map.put("id", sId);
 					map = userService.selectUserMainInfo(map);
 					
-//				model.addAttribute("user", map);
 					System.out.println("맵에서: " + map.get("user_picture"));
 					session.setAttribute("profile", map.get("user_picture"));
 					System.out.println("프로필: " + session.getAttribute("profile"));

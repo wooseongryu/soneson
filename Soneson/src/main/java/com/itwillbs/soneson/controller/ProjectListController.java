@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.soneson.service.ProjectListService;
@@ -156,6 +157,30 @@ public class ProjectListController {
 		
 		return "list/projectDetail";	
 	}
+	
+	// ============ 검색 기능 ==================================
+	
+	@PostMapping("searchList")
+	public String searchList(
+			@RequestParam(defaultValue = "") String searchKeyword, 
+			Model model) {
+		
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("searchKeyword", searchKeyword);
+		
+		List<Map<String, Object>> projectList = service.getSearchList(map);
+		
+		int projectCount = projectList.size();
+		System.out.println("프로젝트 갯수 : " + projectCount);
+		
+		model.addAttribute("projectList", projectList);
+		model.addAttribute("projectCount", projectCount);
+		
+		return "list/popular";
+	}
+	
+	
 	
 	// ============ 아래는 엄성윤 테스트 =======================
 	
