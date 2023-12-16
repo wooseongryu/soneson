@@ -55,24 +55,106 @@
 	
 	<select id="selectStandByRefundProject" resultType="map">
 		<![CDATA[
-			select 
-			project_code
-			, title
-			, creator
-			, date_format(DATE_ADD(end_date, INTERVAL 1 day), '%Y-%m-%d') as payment_date
-			, (select SUM(cost)
-								from fund f
-								where 
-									p.project_code = f.project_code
-									AND status = "결제성공") as total_cost
+		select 
+		    p.project_code
+		    , title
+		    , creator
+		    , date_format(DATE_ADD(end_date, INTERVAL 1 day), '%Y-%m-%d') as payment_date
+		    , (select SUM(cost)
+		                        from fund f
+		                        where 
+		                            p.project_code = f.project_code
+		                            AND status = "결제성공") as total_cost
+		    , TRUNCATE((select (SUM(cost) - (SUM(cost) * 0.088))
+		                        from fund f
+		                        where 
+		                            p.project_code = f.project_code
+		                            AND status = "결제성공"), 0) as real_cost
 		From project p
+		JOIN creator_account ca 
+		ON p.project_code = ca.project_code 
 		WHERE 
-			now() BETWEEN DATE_ADD(end_date, INTERVAL 8 day) and DATE_ADD(end_date, INTERVAL 15 day)
-			AND goal_amount <= (select SUM(cost)
-								from fund f
-								where p.project_code = f.project_code)
+		    now() BETWEEN DATE_ADD(end_date, INTERVAL 8 day) and DATE_ADD(end_date, INTERVAL 15 day)
+		    AND goal_amount <= (select SUM(cost)
+		                        from fund f
+		                        where p.project_code = f.project_code)
+			AND ca.status = "입금대기"
 		]]>
 	</select>
+	
+	<select id="selectCompleteProject" resultType="map">
+		<![CDATA[
+		select 
+		    p.project_code
+		    , title
+		    , creator
+		    , date_format(DATE_ADD(end_date, INTERVAL 1 day), '%Y-%m-%d') as payment_date
+		    , (select SUM(cost)
+		                        from fund f
+		                        where 
+		                            p.project_code = f.project_code
+		                            AND status = "결제성공") as total_cost
+		    , TRUNCATE((select (SUM(cost) - (SUM(cost) * 0.088))
+		                        from fund f
+		                        where 
+		                            p.project_code = f.project_code
+		                            AND status = "결제성공"), 0) as real_cost
+		From project p
+		JOIN creator_account ca 
+		ON p.project_code = ca.project_code 
+		WHERE 
+		    now() BETWEEN DATE_ADD(end_date, INTERVAL 8 day) and DATE_ADD(end_date, INTERVAL 15 day)
+		    AND goal_amount <= (select SUM(cost)
+		                        from fund f
+		                        where p.project_code = f.project_code)
+			AND ca.status = "입금완료"
+		]]>
+	</select>
+	
+	<!-- 토큰 존재여부확인 -->
+	<select id="selectExistAccessToken" resultType="int">
+		select count(*)
+		from fintech_user_info fui 
+		where id = #{id};
+	</select>
+	
+	<update id="updateToken">
+		UPDATE fintech_user_info 
+		SET access_token = #{token.access_token}
+		WHERE id = #{id}
+	</update>
+	
+	
+	<select id="selectCreatorToken" resultType="map">
+		SELECT 
+			ca.user_id
+			, ca.user_name
+			, ca.fintech_use_num 
+			, f.access_token 
+<!-- 			, CAST(fund.idx AS char(10)) as fundIdx -->
+		FROM creator_account ca 
+		JOIN fintech_user_info f
+		ON ca.user_id = f.id
+		WHERE ca.project_code = #{project_code}
+<!-- 		WHERE ca.project_code = 68 -->
+	</select>
+	
+	<update id="updateCreatorStatus">
+		UPDATE creator_account 
+		SET status = '입금완료' WHERE project_code = #{project_code};
+<!-- 		SET status = '입금완료' WHERE project_code = 68; -->
+	</update>
+	
+	<insert id="insertSettlement">
+		INSERT INTO soneson_settlement
+		VALUES (
+			null
+			, #{project_code}
+			, #{total_cost}
+			, #{total_tax}
+			, now()
+		)
+	</insert>
 </mapper>
 
 

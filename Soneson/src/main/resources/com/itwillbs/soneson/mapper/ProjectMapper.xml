@@ -524,6 +524,7 @@
 			, #{pro_code}
 			, #{user_name}
 			, #{pro_userAuth}
+			, '입금대기'
 		)
 	</insert>
 	

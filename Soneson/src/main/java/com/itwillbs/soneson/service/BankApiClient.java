@@ -343,10 +343,10 @@ public class BankApiClient {
 		HttpHeaders headers = new HttpHeaders();
 		
 		
-//		headers.setBearerAuth(map.get("access_token"));
+		headers.setBearerAuth(map.get("access_token"));
 //		headers.setBearerAuth("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDQwODI2Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE3MDk2MDgwMDIsImp0aSI6IjE3N2FjNGRiLTdmM2ItNDEzNy1iMGM4LTkyZTQ5YTQ5ZjMyNCJ9.88LeZ78exF06T39Xm9i5I_YStZNLxpWkqfU-rxsUTT8");
 		
-		headers.setBearerAuth("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDQwODI5Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwib29iIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE3MTA1MDY0NjgsImp0aSI6Ijg2MDFkZGRkLTM2MGItNDU2Ny05YTc0LTY4NWU2ZjRlNDIwNSJ9.IWF-mJ-99jQGFCclspU26HJw9ikmKuV29i4PLG2At1c");
+//		headers.setBearerAuth("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDQwODI5Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwib29iIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE3MTA1MDY0NjgsImp0aSI6Ijg2MDFkZGRkLTM2MGItNDU2Ny05YTc0LTY4NWU2ZjRlNDIwNSJ9.IWF-mJ-99jQGFCclspU26HJw9ikmKuV29i4PLG2At1c");
 
 		
 		headers.setContentType(MediaType.APPLICATION_JSON);
@@ -361,10 +361,10 @@ public class BankApiClient {
 		joReq.put("bank_tran_id", bankValueGenerator.getBankTranId()); // 거래고유번호
 		
 		
-//		joReq.put("fintech_use_num", map.get("deposit_fintech_use_num")); // 입금계좌 핀테크이용번호(테스트 데이터 등록) 창작자
+		joReq.put("fintech_use_num", map.get("fintech_use_num")); // 입금계좌 핀테크이용번호(테스트 데이터 등록) 창작자
 //		joReq.put("fintech_use_num", "120211385488932387478941"); // 입금계좌 핀테크이용번호(테스트 데이터 등록) 창작자
 		
-		joReq.put("fintech_use_num", "120211385488932387479357");
+//		joReq.put("fintech_use_num", "120211385488932387479357");
 		
 		
 //		joReq.put("print_content", map.get("id") + "_송금"); // 입금계좌인자내역(테스트 데이터 등록)
@@ -373,15 +373,15 @@ public class BankApiClient {
 		joReq.put("tran_amt", 2000); // 거래금액(테스트 데이터 등록)
 		
 		
-//		joReq.put("req_client_name", map.get("deposit_user_name")); // 요청고객성명(거래를 요청한 사용자 이름)
+		joReq.put("req_client_name", map.get("user_name")); // 요청고객성명(거래를 요청한 사용자 이름)
 //		joReq.put("req_client_name", "류우성"); // 요청고객성명(거래를 요청한 사용자 이름)
-		joReq.put("req_client_name", "박훈나"); // 요청고객성명(거래를 요청한 사용자 이름)
+//		joReq.put("req_client_name", "박훈나"); // 요청고객성명(거래를 요청한 사용자 이름)
 		
 		
-//		joReq.put("req_client_fintech_use_num", map.get("deposit_fintech_use_num")); // 요청고객 핀테크이용번호
+		joReq.put("req_client_fintech_use_num", map.get("fintech_use_num")); // 요청고객 핀테크이용번호
 //		joReq.put("req_client_fintech_use_num", "120211385488932387478941"); // 요청고객 핀테크이용번호
 		
-		joReq.put("req_client_fintech_use_num", "120211385488932387479357");
+//		joReq.put("req_client_fintech_use_num", "120211385488932387479357");
 		
 //		joReq.put("req_client_num", map.get("id").toUpperCase()); // 요청고객회원번호
 		joReq.put("req_client_num", "ADMIN"); // 요청고객회원번호

@@ -199,25 +199,48 @@ public class FintechController {
 //		map.put("access_token", (String)session.getAttribute("access_token"));
 //		map.put("id", "lsc2464"); // 테스트 출금 정보 등록(요청 사용자 번호용 임시 아이디)
 		
-		ResponseDepositListVO depositResult = bankApiClient.requestDeposit(map);
+//		System.out.println(">>>>>>>>>>>BankRefund");
+//		System.out.println(map);
+		
+		map.put("total_tax", String.valueOf(Integer.parseInt(map.get("total_cost")) - Integer.parseInt(map.get("real_cost"))));
+		
+		String project_code = map.get("project_code");
+		
+		Map<String, String> userInfo = bankApiService.selectCreatorToken(project_code);
+		System.out.println(">>>>>>>>>>>>>>><<<<<<<<<<<<<<");
+		System.out.println(userInfo);
+		
+		
+		ResponseDepositListVO depositResult = bankApiClient.requestDeposit(userInfo);
 		log.info(">>>>>>>>> depositResult : " + depositResult);
 		
-		model.addAttribute("depositResult", depositResult);
+		if (depositResult.getRsp_code().equals("A0000")) {
+			int updateCount = bankApiService.updateCreatorStatus(project_code);
+
+			if (updateCount > 0) {
+				int insertCount = bankApiService.insertSettlement(map);
+			}
+		}
 		
-		return "mypage/fintech/fintech_refund_result";
+		
+		model.addAttribute("msg", "입금처리가 완료되었습니다.");
+		model.addAttribute("targetURL", "FintechRefundProjectList");
+		return "forward";
+		
+//		return "mypage/fintech/fintech_refund_result";
 	}
 	
-	@PostMapping("BankTransfer")
-	public String transfer(@RequestParam Map<String, String> map, HttpSession session, Model model) {
-		map.put("access_token", (String)session.getAttribute("access_token"));
-		map.put("id", "lsc2464"); // 테스트 출금 정보 등록(요청 사용자 번호용 임시 아이디)
+	// 정산완료 페이지
+	@GetMapping("FintechCompleteProjectList")
+	public String FintechCompleteProjectList(Model model) {
+		System.out.println("FintechController - FintechCompleteProjectList()");
 		
-		Map<String, Object> transferResult = bankApiService.requestTransfer(map);
-		log.info(">>>>>>>>> transferResult : " + transferResult);
+		List<Map<String, String>> projectList = bankApiService.selectCompleteProject();
+//		System.out.println(projectList);
 		
-		model.addAttribute("transferResult", transferResult);
+		model.addAttribute("projectList", projectList);
 		
-		return "mypage/fintech/fintech_transfer_result";
+		return "mypage/fintech/fintech_complete_project_list";
 	}
 	
 }

@@ -108,21 +108,6 @@
 													<input type="hidden" name="withdraw_user_name" value="${user_name }">	<%-- 고객성명 --%>
 													<input type="submit" value="상품구매(결제)">
 												</form>
-												
-												<form action="BankTransfer" method="post">
-													<%-- 송금 요청 대상(출금계좌) 정보를 셋팅 --%>
-													<input type="hidden" name="withdraw_fintech_use_num" value="${accountDetail.fintech_use_num}">
-													<input type="hidden" name="tran_amt" value="35000">
-													<input type="hidden" name="withdraw_user_name" value="${user_name }">
-													<%-- ======================================================== --%>
-													<%-- 송금 대상(입금계좌) 정보를 임의의 정보로 셋팅 --%>
-													<%-- 실제로는 컨트롤러 - 서비스를 통해 해당 회원의 정보 조회 필요 --%>
-													<input type="hidden" name="deposit_fintech_use_num" value="120211385488932387478941">
-													<input type="hidden" name="deposit_user_name" value="류우성">
-													<input type="hidden" name="deposit_bank_code" value="004">
-													<input type="hidden" name="deposit_account_num" value="23062003005">
-													<input type="submit" value="송금">
-												</form>
 											</td>
 										</tr>
 									</tbody>

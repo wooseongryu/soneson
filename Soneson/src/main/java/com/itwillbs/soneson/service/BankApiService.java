@@ -24,6 +24,13 @@ public class BankApiService {
 	// 토큰 관련 정보 저장 요청
 	public void registToken(String id, ResponseTokenVO responseToken) {
 		// BankMapper - insertToken() 메서드 호출하여 토큰 관련 정보 저장 요청
+		int selectCount = mapper.selectExistAccessToken(id);
+		if(selectCount > 0) {
+			System.out.println("쿼리실행~~~~~~~~~~~~~~~~");
+			mapper.updateToken(id, responseToken);
+			System.out.println("쿼리실행완~~~~~~~~~~~~~~~~");
+			return;
+		}
 		mapper.insertToken(id, responseToken);
 	}
 
@@ -79,6 +86,32 @@ public class BankApiService {
 		System.out.println("BankApiService - selectStandByRefundProject()"); 
 		
 		return mapper.selectStandByRefundProject();
+	}
+	
+	
+	// 창작자 정보 가져오기
+	public Map<String, String> selectCreatorToken(String project_code) {
+		return mapper.selectCreatorToken(project_code);
+	}
+	
+	
+	//창작자 정보 상태 변경
+	public int updateCreatorStatus(String project_code) {
+		return mapper.updateCreatorStatus(project_code);
+	}
+
+	// 정산완료 페이지
+	public List<Map<String, String>> selectCompleteProject() {
+		System.out.println("BankApiService - selectCompleteProject()");
+		
+		return mapper.selectCompleteProject();
+	}
+
+	// 손에손 정산
+	public int insertSettlement(Map<String, String> map) {
+		System.out.println("BankApiService - insertSettlement()");
+		
+		return mapper.insertSettlement(map);
 	}
 	
 }
