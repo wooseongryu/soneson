@@ -36,6 +36,9 @@ public interface ProjectMapper {
 	
 	//임시테이블 삭제
 	int deleteProject(int pro_code);
+	
+	//작성중인 프젝 갯수
+	int selectProCount(String sId);
 	// =========== 아래는 프로젝트 리스트, 성윤 =============
 	
 	List<ProjectVO> selectProjectList();
@@ -53,6 +56,7 @@ public interface ProjectMapper {
 	List<Map<String, Object>> getRewardList(int project_code);
 
 	List<Map<String, Object>> getItemList(int project_code);
+
 
 
 

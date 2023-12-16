@@ -64,6 +64,11 @@ public class ProjectService {
 	public int deleteProject(int pro_code) {
 		return mapper.deleteProject(pro_code);
 	}
+	
+	//작성중인 프로젝트 갯수 
+	public int selectProCount(String sId) {
+		return mapper.selectProCount(sId);
+	}
 
 
 	
