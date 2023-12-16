@@ -132,7 +132,7 @@
 					</button>
 				</li>
 				<li class="DonationTodayCategory_list_item__agFbi item_2" aria-current="true">
-					<button type="button" class="Category_button">
+					<button type="button" class="Category_button" onclick="location.href='userProjectsWriting'">
 						<span class="Category_text">&nbsp;&nbsp;작성중&nbsp;&nbsp;</span>
 					</button>
 				</li>
