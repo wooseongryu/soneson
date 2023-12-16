@@ -485,7 +485,7 @@
 						        	<a onclick="deleteFollow('${user.user_id }')">팔로잉</a>
 				        		</c:otherwise>
 				        	</c:choose>
-					        <a href="chatting" onclick="window.open(this.href, '_blank', 'width=400, height=800'); return false;">창작자 문의</a>
+					        <a href="ChatMain2" onclick="window.open(this.href, '_blank', 'width=615, height=650'); return false;">창작자 문의</a>
 				        </c:if>
 				    </div>
 				</div>
