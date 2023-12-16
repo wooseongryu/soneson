@@ -87,6 +87,21 @@
 		WHERE id = #{id}
 	</update>
 	
+	
+	<select id="selectCreatorToken" resultType="map">
+		SELECT 
+			ca.user_id
+			, ca.user_name
+			, ca.fintech_use_num 
+			, f.access_token 
+<!-- 			, CAST(fund.idx AS char(10)) as fundIdx -->
+		FROM creator_account ca 
+		JOIN fintech_user_info f
+		ON ca.user_id = f.id
+<!-- 		WHERE ca.project_code = #{project_code} -->
+		WHERE ca.project_code = 68
+	</select>
+	
 </mapper>
 
 

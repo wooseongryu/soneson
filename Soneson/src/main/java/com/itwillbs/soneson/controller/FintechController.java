@@ -199,7 +199,12 @@ public class FintechController {
 //		map.put("access_token", (String)session.getAttribute("access_token"));
 //		map.put("id", "lsc2464"); // 테스트 출금 정보 등록(요청 사용자 번호용 임시 아이디)
 		
-		ResponseDepositListVO depositResult = bankApiClient.requestDeposit(map);
+		Map<String, String> userInfo = bankApiService.selectCreatorToken(map.get("project_code"));
+		System.out.println(">>>>>>>>>>>>>>><<<<<<<<<<<<<<");
+		System.out.println(userInfo);
+		
+		
+		ResponseDepositListVO depositResult = bankApiClient.requestDeposit(userInfo);
 		log.info(">>>>>>>>> depositResult : " + depositResult);
 		
 		model.addAttribute("depositResult", depositResult);
@@ -207,18 +212,7 @@ public class FintechController {
 		return "mypage/fintech/fintech_refund_result";
 	}
 	
-	@PostMapping("BankTransfer")
-	public String transfer(@RequestParam Map<String, String> map, HttpSession session, Model model) {
-		map.put("access_token", (String)session.getAttribute("access_token"));
-		map.put("id", "lsc2464"); // 테스트 출금 정보 등록(요청 사용자 번호용 임시 아이디)
-		
-		Map<String, Object> transferResult = bankApiService.requestTransfer(map);
-		log.info(">>>>>>>>> transferResult : " + transferResult);
-		
-		model.addAttribute("transferResult", transferResult);
-		
-		return "mypage/fintech/fintech_transfer_result";
-	}
+	
 	
 }
 

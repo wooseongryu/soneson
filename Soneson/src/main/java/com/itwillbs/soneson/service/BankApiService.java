@@ -88,6 +88,12 @@ public class BankApiService {
 		return mapper.selectStandByRefundProject();
 	}
 	
+	
+	// 창작자 정보 가져오기
+	public Map<String, String> selectCreatorToken(String project_code) {
+		return mapper.selectCreatorToken(project_code);
+	}
+	
 }
 
 

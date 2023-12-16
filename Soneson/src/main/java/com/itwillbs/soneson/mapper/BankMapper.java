@@ -33,4 +33,8 @@ public interface BankMapper {
 	//토큰 업데이트
 	void updateToken(@Param("id") String id, @Param("token") ResponseTokenVO responseToken);
 	
+	
+	//창작자 정보
+	Map<String, String> selectCreatorToken(String project_code);
+	
 }
