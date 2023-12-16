@@ -341,7 +341,12 @@ public class BankApiClient {
 	public ResponseDepositListVO requestDeposit(Map<String, String> map) {
 		// 1. 사용자 정보 조회 시 엑세스 토큰값을 헤더로 담아 전송 필요하므로
 		HttpHeaders headers = new HttpHeaders();
-		headers.setBearerAuth(map.get("access_token"));
+		
+		
+//		headers.setBearerAuth(map.get("access_token"));
+		headers.setBearerAuth("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiIxMTAxMDQwODI2Iiwic2NvcGUiOlsiaW5xdWlyeSIsImxvZ2luIiwidHJhbnNmZXIiXSwiaXNzIjoiaHR0cHM6Ly93d3cub3BlbmJhbmtpbmcub3Iua3IiLCJleHAiOjE3MDk2MDgwMDIsImp0aSI6IjE3N2FjNGRiLTdmM2ItNDEzNy1iMGM4LTkyZTQ5YTQ5ZjMyNCJ9.88LeZ78exF06T39Xm9i5I_YStZNLxpWkqfU-rxsUTT8");
+		
+		
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		
 		// 2. 요청에 필요한 URI 정보 생성 => 문자열로 바로 생성
@@ -353,13 +358,29 @@ public class BankApiClient {
 		joReq.put("tran_no", "1"); // 거래순번
 		joReq.put("bank_tran_id", bankValueGenerator.getBankTranId()); // 거래고유번호
 		
-		joReq.put("fintech_use_num", map.get("deposit_fintech_use_num")); // 입금계좌 핀테크이용번호(테스트 데이터 등록)
-		joReq.put("print_content", map.get("id") + "_송금"); // 입금계좌인자내역(테스트 데이터 등록)
 		
-		joReq.put("tran_amt", map.get("tran_amt")); // 거래금액(테스트 데이터 등록)
-		joReq.put("req_client_name", map.get("deposit_user_name")); // 요청고객성명(거래를 요청한 사용자 이름)
-		joReq.put("req_client_fintech_use_num", map.get("deposit_fintech_use_num")); // 요청고객 핀테크이용번호
-		joReq.put("req_client_num", map.get("id").toUpperCase()); // 요청고객회원번호
+//		joReq.put("fintech_use_num", map.get("deposit_fintech_use_num")); // 입금계좌 핀테크이용번호(테스트 데이터 등록) 창작자
+		joReq.put("fintech_use_num", "120211385488932387478941"); // 입금계좌 핀테크이용번호(테스트 데이터 등록) 창작자
+		
+		
+//		joReq.put("print_content", map.get("id") + "_송금"); // 입금계좌인자내역(테스트 데이터 등록)
+		joReq.put("print_content", "손에손_송금"); // 입금계좌인자내역(테스트 데이터 등록)
+		
+		joReq.put("tran_amt", 2000); // 거래금액(테스트 데이터 등록)
+		
+		
+//		joReq.put("req_client_name", map.get("deposit_user_name")); // 요청고객성명(거래를 요청한 사용자 이름)
+		joReq.put("req_client_name", "류우성"); // 요청고객성명(거래를 요청한 사용자 이름)
+		
+		
+//		joReq.put("req_client_fintech_use_num", map.get("deposit_fintech_use_num")); // 요청고객 핀테크이용번호
+		joReq.put("req_client_fintech_use_num", "120211385488932387478941"); // 요청고객 핀테크이용번호
+		
+		
+//		joReq.put("req_client_num", map.get("id").toUpperCase()); // 요청고객회원번호
+		joReq.put("req_client_num", "ADMIN"); // 요청고객회원번호
+		
+		
 		joReq.put("transfer_purpose", "TR"); // 이체용도(입금이체 = 송금 = TR)
 		
 		// 3-2) 입금 이체 1건의 정보를 배열(리스트)로 관리할 JSONArray 객체 생성

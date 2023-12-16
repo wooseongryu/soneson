@@ -149,6 +149,8 @@
 <!-- 								<a class="collapse-item"  onclick="authAccount()">계좌인증(임시_계좌등록용)</a> -->
 								<a class="collapse-item"  onclick="location.href = 'FintechUserInfo'">핀테크사용자정보</a>
 								<a class="collapse-item"  onclick="location.href = 'FintechAccountList'">핀테크등록계좌정보</a>
+								<a class="collapse-item"  onclick="location.href = 'FintechWithdrawProjectList'">출금이체 대기중 프로젝트</a>
+								<a class="collapse-item"  onclick="location.href = 'FintechRefundProjectList'">입금이체 대기중 프로젝트</a>
 							</c:otherwise>
 						</c:choose>
 					</div>
