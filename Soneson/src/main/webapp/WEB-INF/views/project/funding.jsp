@@ -78,7 +78,7 @@
 		if(${not empty pro.pro_startDt} && "${pro.pro_startDt}" < tommorrow) {
 			alert("시작일을 다시 선택해주세요.");
 			$("#start-funding").css('border','1px solid rgb(248, 100, 83)');
-			return;
+// 			return;
 		}
 		let startDt = new Date("${pro.pro_startDt}");
 		let endDt = new Date("${pro.pro_endDt}");
@@ -103,6 +103,8 @@
 		
 		//시작날짜 변경 시
 		$("#start-funding").on('change', function() {
+			debugger;
+		
 			startDt = $(this).val(); 
 			endDt = $("#end-funding").val();
 			console.log("new Date 안했을 때 : " + startDt + ", " + typeof startDt); //Invalid Date, object
