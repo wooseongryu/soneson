@@ -52,5 +52,9 @@ public class ProjectListService {
 		return mapper.getItemList(project_code);
 	}
 
+	public List<Map<String, Object>> getSearchClosedList(Map<String, String> map) {
+		return mapper.getSearchClosedList(map);
+	}
+
 
 }

@@ -172,7 +172,18 @@
 						</div>
 						<div class="ProjectIntroduction__Metric-sc-1kf21am-12 fXsdBd">
 							<div class="ProjectIntroduction__StatusTitle-sc-1kf21am-13 fPBHBs">남은시간</div>
-							<div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs">14<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">일</span></div>
+<%-- 							<div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.dday }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">일</span></div> --%>
+							<c:choose>
+						        <c:when test="${project.dday lt 0}">
+						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">0<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">초</span></div>
+						        </c:when>
+						        <c:otherwise>
+						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.dday }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">일</span></div>
+						        </c:otherwise>
+						    </c:choose>
+						
+						
+						
 						</div>
 						<div class="ProjectIntroduction__Metric-sc-1kf21am-12 fXsdBd">
 							<div class="ProjectIntroduction__StatusTitle-sc-1kf21am-13 fPBHBs">후원자</div>
@@ -189,7 +200,19 @@
 							</dl>
 							<dl class="FundingInformation__InfoItem-sc-84xkqs-2 dsitt">
 								<dt class="FundingInformation__Title-sc-84xkqs-3 cSBHrX">펀딩 기간</dt>
-								<dd class="FundingInformation__Desc-sc-84xkqs-4 Hysth">${project.start_date} ~ ${project.end_date}<span class="FundingInformation__DdayLabel-sc-84xkqs-5 cfyFBE">14일 남음</span></dd>
+								<dd class="FundingInformation__Desc-sc-84xkqs-4 Hysth">${project.start_date} ~ ${project.end_date}
+								
+									<c:choose>
+										<c:when test="${project.dday lt 0}">
+											<span class="FundingInformation__DdayLabel-sc-84xkqs-5 dMFBNs">마감</span>
+										</c:when>
+										<c:otherwise>
+											<span class="FundingInformation__DdayLabel-sc-84xkqs-5 cfyFBE">${project.dday }일 남음</span>
+								        </c:otherwise>
+									</c:choose>
+								
+<%-- 									<span class="FundingInformation__DdayLabel-sc-84xkqs-5 cfyFBE">${project.dday }일 남음</span> --%>
+								</dd>
 							</dl>
 							<dl class="FundingInformation__InfoItem-sc-84xkqs-2 dsitt">
 								<dt class="FundingInformation__Title-sc-84xkqs-3 cSBHrX">결제</dt>

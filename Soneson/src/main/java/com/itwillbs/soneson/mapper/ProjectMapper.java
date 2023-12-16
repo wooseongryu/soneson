@@ -59,6 +59,8 @@ public interface ProjectMapper {
 
 	List<Map<String, Object>> getItemList(int project_code);
 
+	List<Map<String, Object>> getSearchClosedList(Map<String, String> map);
+
 
 
 

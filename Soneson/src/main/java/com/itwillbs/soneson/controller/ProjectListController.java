@@ -72,8 +72,28 @@ public class ProjectListController {
 	
 	@GetMapping("upcoming")
 	public String upcoming(Model model, HttpServletRequest request) {
-		return getListType(model, "upcoming", request);
+		Map<String, String> map = new HashMap<String, String>();
+		
+		map.put("listType", "upcoming");
+		List<Map<String, Object>> projectList = service.getTabProjectList(map);
+		
+		int projectCount = projectList.size();
+		System.out.println("프로젝트 갯수 : " + projectCount);
+		
+		model.addAttribute("projectList", projectList);
+		model.addAttribute("projectCount", projectCount);
+		System.out.println("서블릿 경로 : " + request.getServletPath());
+		model.addAttribute("servletPath", request.getServletPath());
+		
+		System.out.println("업커밍");
+		
+		return "list/upcoming";
 	}
+	
+//	@GetMapping("upcoming")
+//	public String upcoming(Model model, HttpServletRequest request) {
+//		return getListType(model, "upcoming", request);
+//	}
 	
 //	미친듯한 하드코딩 시작
 	
@@ -171,13 +191,23 @@ public class ProjectListController {
 		
 		List<Map<String, Object>> projectList = service.getSearchList(map);
 		
-		int projectCount = projectList.size();
-		System.out.println("프로젝트 갯수 : " + projectCount);
+		int projectOpenCount = projectList.size();
 		
 		model.addAttribute("projectList", projectList);
-		model.addAttribute("projectCount", projectCount);
 		
-		return "list/popular";
+		// 종료된 펀딩 추가
+		
+		List<Map<String, Object>> projectClosedList = service.getSearchClosedList(map);
+		int projectClosedCount = projectClosedList.size();
+		
+		int projectCount = projectOpenCount + projectClosedCount;
+		
+		model.addAttribute("projectClosedList", projectClosedList);
+		
+		model.addAttribute("projectCount", projectCount);
+		// ================
+		
+		return "list/searchList";
 	}
 	
 	
