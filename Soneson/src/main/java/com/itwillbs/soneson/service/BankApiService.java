@@ -106,6 +106,13 @@ public class BankApiService {
 		
 		return mapper.selectCompleteProject();
 	}
+
+	// 손에손 정산
+	public int insertSettlement(Map<String, String> map) {
+		System.out.println("BankApiService - insertSettlement()");
+		
+		return mapper.insertSettlement(map);
+	}
 	
 }
 

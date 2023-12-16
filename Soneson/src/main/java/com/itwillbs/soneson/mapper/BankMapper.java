@@ -42,5 +42,8 @@ public interface BankMapper {
 
 	// 정산완료 페이지
 	List<Map<String, String>> selectCompleteProject();
+
+	// 손에손 정산
+	int insertSettlement(Map<String, String> map);
 	
 }

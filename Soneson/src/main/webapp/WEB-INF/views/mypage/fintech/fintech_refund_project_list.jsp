@@ -98,6 +98,8 @@
 											<td>
 												<form action="BankRefund" method="post">
 													<input type="hidden" name="project_code" value="${project.project_code}">
+													<input type="hidden" name="total_cost" value="${project.total_cost}">
+													<input type="hidden" name="real_cost" value="${project.real_cost}">
 													<input type="submit" value="입금이체">
 												</form>
 											</td>

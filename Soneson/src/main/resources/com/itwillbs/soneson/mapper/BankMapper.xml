@@ -145,7 +145,16 @@
 <!-- 		SET status = '입금완료' WHERE project_code = 68; -->
 	</update>
 	
-	
+	<insert id="insertSettlement">
+		INSERT INTO soneson_settlement
+		VALUES (
+			null
+			, #{project_code}
+			, #{total_cost}
+			, #{total_tax}
+			, now()
+		)
+	</insert>
 </mapper>
 
 

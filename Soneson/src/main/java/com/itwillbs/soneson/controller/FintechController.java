@@ -199,7 +199,14 @@ public class FintechController {
 //		map.put("access_token", (String)session.getAttribute("access_token"));
 //		map.put("id", "lsc2464"); // 테스트 출금 정보 등록(요청 사용자 번호용 임시 아이디)
 		
-		Map<String, String> userInfo = bankApiService.selectCreatorToken(map.get("project_code"));
+//		System.out.println(">>>>>>>>>>>BankRefund");
+//		System.out.println(map);
+		
+		map.put("total_tax", String.valueOf(Integer.parseInt(map.get("total_cost")) - Integer.parseInt(map.get("real_cost"))));
+		
+		String project_code = map.get("project_code");
+		
+		Map<String, String> userInfo = bankApiService.selectCreatorToken(project_code);
 		System.out.println(">>>>>>>>>>>>>>><<<<<<<<<<<<<<");
 		System.out.println(userInfo);
 		
@@ -208,9 +215,11 @@ public class FintechController {
 		log.info(">>>>>>>>> depositResult : " + depositResult);
 		
 		if (depositResult.getRsp_code().equals("A0000")) {
-			int updateCount = bankApiService.updateCreatorStatus(map.get("project_code"));
-			// TODO
-			// updateCount 실패 처리
+			int updateCount = bankApiService.updateCreatorStatus(project_code);
+
+			if (updateCount > 0) {
+				int insertCount = bankApiService.insertSettlement(map);
+			}
 		}
 		
 		
