@@ -19,7 +19,7 @@
 			, fund.cost
 			, fund.status
 <!-- 			, fund.idx AS test -->
-			, CAST(fund.idx AS char(10)) as test
+			, CAST(fund.idx AS char(10)) as fundIdx
 		FROM user_fund_info u
 		JOIN fintech_user_info f
 		ON u.user_id = f.id
@@ -27,6 +27,12 @@
 		ON u.user_id = fund.user_id
 		WHERE u.project_code = 50
 	</select>
+	
+	<update id="updateFundStatus">
+		UPDATE fund
+		SET status = "결제성공"
+		WHERE idx = #{fundIdx}
+	</update>
 </mapper>
 
 

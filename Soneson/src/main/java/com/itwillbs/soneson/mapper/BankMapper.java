@@ -17,5 +17,8 @@ public interface BankMapper {
 
 	// 테스트...
 	List<Map<String, String>> selectUserToken();
+
+	// Fund테이블 status 변경
+	int updateFundStatus(String fundIdx);
 	
 }

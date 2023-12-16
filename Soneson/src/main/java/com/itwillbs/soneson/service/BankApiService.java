@@ -59,6 +59,13 @@ public class BankApiService {
 		
 		return mapper.selectUserToken();
 	}
+
+	// Fund테이블 status 변경
+	public int updateFundStatus(String fundIdx) {
+		System.out.println("BankApiService - updateFundStatus");
+		
+		return mapper.updateFundStatus(fundIdx);
+	}
 	
 }
 

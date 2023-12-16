@@ -192,28 +192,36 @@ public class FintechController {
 		
 		List<ResponseWithdrawVO> withdrawResultList = new ArrayList<ResponseWithdrawVO>();
 		for (Map<String, String> user : userInfoList) {
-			ResponseWithdrawVO tmp = bankApiClient.requestWithdraw(user);
-//			withdrawResultList.add(bankApiClient.requestWithdraw(user));
-			withdrawResultList.add(tmp);
-			System.out.println("유저");
-			System.out.println(user.get("test"));
+			if (!user.get("status").equals("결제성공")) {
+				
+				ResponseWithdrawVO tmp = bankApiClient.requestWithdraw(user);
+//				withdrawResultList.add(bankApiClient.requestWithdraw(user));
+				withdrawResultList.add(tmp);
+//				System.out.println("유저");
+//				System.out.println(user.get("fundIdx"));
+				
+				if (tmp.getRsp_code().equals("A0000")) {
+//					System.out.println(user.get("fundIdx"));
+					
+					int updateCount = bankApiService.updateFundStatus(user.get("fundIdx"));
+					// TODO
+					// updateCount 실패 처리
+				}
+				
+				System.out.println("-----");
+				System.out.println(tmp.getRsp_code());
+			}
 			
-//			if (tmp.getRsp_code().equals("A0000")) {
-//				System.out.println(user.get("test"));
+//			System.out.println("---------");
+			
+//			for (ResponseWithdrawVO result : withdrawResultList) {
+//				if (result.getRsp_code().equals("A0000")) {
+//					bankApiService.updateFundStatus(result.);
+//				}
 //			}
 			
-			System.out.println("-----");
-			System.out.println(tmp.getRsp_code());
+//			System.out.println("withdrawResultList1--" + withdrawResultList.get(0).getRsp_code());
 		}
-		
-//		for (ResponseWithdrawVO result : withdrawResultList) {
-//			if (result.getRsp_code().equals("A0000")) {
-//				bankApiService.updateFundStatus(result.);
-//			}
-//		}
-		
-		System.out.println("withdrawResultList1--" + withdrawResultList.get(0).getRsp_code());
-		
 		
 		model.addAttribute("withdrawResultList", withdrawResultList);
 		
