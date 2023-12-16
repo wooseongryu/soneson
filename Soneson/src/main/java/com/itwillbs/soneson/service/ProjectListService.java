@@ -35,6 +35,10 @@ public class ProjectListService {
 		return mapper.getTabProjectList(map);
 	}
 
+	public List<Map<String, Object>> getSearchList(Map<String, String> map) {
+		return mapper.getSearchList(map);
+	}
+	
 	public List<Map<String, Object>> getTabList() {
 		System.out.println("getTabList");
 		return mapper.getTabList();
@@ -47,5 +51,6 @@ public class ProjectListService {
 	public List<Map<String, Object>> getItemList(int project_code) {
 		return mapper.getItemList(project_code);
 	}
+
 
 }

@@ -389,6 +389,41 @@
 		WHERE project_code = #{project_code}
 	</select>
 	
+	<!-- 프로젝트 리스트 검색 -->
+	
+	<select id="getSearchList" resultType="map">
+		SELECT *
+		FROM 
+			(SELECT
+				p.project_code
+				, max(p.title) AS title
+				, max(p.subtitle) AS subtitle
+				, max(p.category) AS category
+				, max(p.creator) AS creator
+				, max(p.img_main) AS img_main
+				, date(max(p.start_date)) AS start_date
+				, date(max(p.end_date)) AS end_date
+				, ifnull(format(sum(cost) , 0), 0) AS now_amount
+				, ifnull(max(goal_amount), 0) AS goal_amount
+				, ifnull(sum(cost) / max(goal_amount), 0) AS ratio
+				, ifnull(TRUNCATE(sum(cost) / max(goal_amount) * 100, 0), 0) AS goal_rate
+				, count(f.fund_code) AS donor
+				, max(p.status) AS status
+			FROM project p
+			LEFT JOIN fund f
+			ON p.project_code = f.project_code
+			<![CDATA[
+			WHERE p.start_date <= now() AND p.status = '승인'
+			]]>
+				AND p.title LIKE CONCAT('%', #{searchKeyword}, '%')
+				OR p.subtitle LIKE CONCAT('%', #{searchKeyword}, '%')
+				OR p.category LIKE CONCAT('%', #{searchKeyword}, '%')
+				OR p.creator LIKE CONCAT('%', #{searchKeyword}, '%')
+			GROUP BY p.project_code) A
+		ORDER BY now() - A.start_date;
+		
+	</select>
+	
 	<select id="getRewardList" resultType="map">
 		SELECT
 			reward_code

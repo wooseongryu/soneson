@@ -53,9 +53,12 @@ public interface ProjectMapper {
 
 	List<Map<String, Object>> getTabProjectList(Map<String, String> map);
 
+	List<Map<String, Object>> getSearchList(Map<String, String> map);
+	
 	List<Map<String, Object>> getRewardList(int project_code);
 
 	List<Map<String, Object>> getItemList(int project_code);
+
 
 
 
