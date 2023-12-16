@@ -672,7 +672,7 @@
 		LEFT JOIN fund f
 		ON p.project_code = f.project_code
 		<![CDATA[
-		WHERE p.start_date <= now() AND p.end_date >= now() AND status = '승인' AND p.user_id = #{sId}
+		WHERE p.start_date <= now() AND p.end_date >= now() AND p.status = '승인' AND p.user_id = #{sId}
 		]]>
 		GROUP BY p.project_code) A
 	ORDER BY donor DESC
@@ -702,7 +702,7 @@
 		LEFT JOIN fund f
 		ON p.project_code = f.project_code
 		<![CDATA[
-		WHERE p.end_date < now() AND status = '승인' AND p.user_id = #{sId}
+		WHERE p.end_date < now() AND p.status = '승인' AND p.user_id = #{sId}
 		]]>
 		GROUP BY p.project_code) A
 	ORDER BY donor DESC

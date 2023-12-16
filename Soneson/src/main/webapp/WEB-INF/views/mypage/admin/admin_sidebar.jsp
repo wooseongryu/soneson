@@ -89,7 +89,7 @@
 				<div id="collapseCate" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" href="adminSelectMainTab">메인 탭 관리</a>
-						<a class="collapse-item" href="adminSelectMainCate">메인 카테고리 관리</a>
+<!-- 						<a class="collapse-item" href="adminSelectMainCate">메인 카테고리 관리</a> -->
 					</div>
 				</div>
 			</li>

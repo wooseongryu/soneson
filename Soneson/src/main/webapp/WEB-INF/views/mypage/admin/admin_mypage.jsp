@@ -192,6 +192,9 @@
 											<c:if test="${status.index eq 7 }">
 											"fas fa-circle text-blue"	
 											</c:if>
+											<c:if test="${status.index eq 8 }">
+											"fas fa-circle text-cyan"	
+											</c:if>
 											></i> ${AdminSelectMyPieChart.cate }
 										</span>
 										</c:forEach>
