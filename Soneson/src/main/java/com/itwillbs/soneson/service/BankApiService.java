@@ -99,6 +99,13 @@ public class BankApiService {
 	public int updateCreatorStatus(String project_code) {
 		return mapper.updateCreatorStatus(project_code);
 	}
+
+	// 정산완료 페이지
+	public List<Map<String, String>> selectCompleteProject() {
+		System.out.println("BankApiService - selectCompleteProject()");
+		
+		return mapper.selectCompleteProject();
+	}
 	
 }
 

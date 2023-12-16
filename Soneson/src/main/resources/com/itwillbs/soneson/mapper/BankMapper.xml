@@ -82,6 +82,35 @@
 		]]>
 	</select>
 	
+	<select id="selectCompleteProject" resultType="map">
+		<![CDATA[
+		select 
+		    p.project_code
+		    , title
+		    , creator
+		    , date_format(DATE_ADD(end_date, INTERVAL 1 day), '%Y-%m-%d') as payment_date
+		    , (select SUM(cost)
+		                        from fund f
+		                        where 
+		                            p.project_code = f.project_code
+		                            AND status = "결제성공") as total_cost
+		    , TRUNCATE((select (SUM(cost) - (SUM(cost) * 0.088))
+		                        from fund f
+		                        where 
+		                            p.project_code = f.project_code
+		                            AND status = "결제성공"), 0) as real_cost
+		From project p
+		JOIN creator_account ca 
+		ON p.project_code = ca.project_code 
+		WHERE 
+		    now() BETWEEN DATE_ADD(end_date, INTERVAL 8 day) and DATE_ADD(end_date, INTERVAL 15 day)
+		    AND goal_amount <= (select SUM(cost)
+		                        from fund f
+		                        where p.project_code = f.project_code)
+			AND ca.status = "입금완료"
+		]]>
+	</select>
+	
 	<!-- 토큰 존재여부확인 -->
 	<select id="selectExistAccessToken" resultType="int">
 		select count(*)

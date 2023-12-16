@@ -221,7 +221,18 @@ public class FintechController {
 //		return "mypage/fintech/fintech_refund_result";
 	}
 	
-	
+	// 정산완료 페이지
+	@GetMapping("FintechCompleteProjectList")
+	public String FintechCompleteProjectList(Model model) {
+		System.out.println("FintechController - FintechCompleteProjectList()");
+		
+		List<Map<String, String>> projectList = bankApiService.selectCompleteProject();
+//		System.out.println(projectList);
+		
+		model.addAttribute("projectList", projectList);
+		
+		return "mypage/fintech/fintech_complete_project_list";
+	}
 	
 }
 

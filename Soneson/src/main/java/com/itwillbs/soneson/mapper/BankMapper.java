@@ -39,5 +39,8 @@ public interface BankMapper {
 	
 	//창작자 정보 상태 변경
 	int updateCreatorStatus(String project_code);
+
+	// 정산완료 페이지
+	List<Map<String, String>> selectCompleteProject();
 	
 }

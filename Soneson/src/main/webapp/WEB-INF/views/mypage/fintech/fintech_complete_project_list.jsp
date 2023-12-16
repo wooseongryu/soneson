@@ -65,12 +65,12 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">입금이체 대기중 프로젝트 목록</h1>
+					<h1 class="h3 mb-2 text-gray-800">정산완료 프로젝트 목록</h1>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">입금이체 대기중 프로젝트 목록</h6>
+							<h6 class="m-0 font-weight-bold text-primary">정산완료 프로젝트 목록</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -83,7 +83,6 @@
 											<th>결제일</th>
 											<th>총모금액</th>
 											<th>정산액</th>
-											<th></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -95,12 +94,6 @@
 											<td>${project.payment_date}</td>
 											<td>${project.total_cost}원</td>
 											<td>${project.real_cost}원</td>
-											<td>
-												<form action="BankRefund" method="post">
-													<input type="hidden" name="project_code" value="${project.project_code}">
-													<input type="submit" value="입금이체">
-												</form>
-											</td>
 										</tr>
 									</c:forEach>
 									</tbody>
