@@ -207,9 +207,18 @@ public class FintechController {
 		ResponseDepositListVO depositResult = bankApiClient.requestDeposit(userInfo);
 		log.info(">>>>>>>>> depositResult : " + depositResult);
 		
-		model.addAttribute("depositResult", depositResult);
+		if (depositResult.getRsp_code().equals("A0000")) {
+			int updateCount = bankApiService.updateCreatorStatus(map.get("project_code"));
+			// TODO
+			// updateCount 실패 처리
+		}
 		
-		return "mypage/fintech/fintech_refund_result";
+		
+		model.addAttribute("msg", "입금처리가 완료되었습니다.");
+		model.addAttribute("targetURL", "FintechRefundProjectList");
+		return "forward";
+		
+//		return "mypage/fintech/fintech_refund_result";
 	}
 	
 	

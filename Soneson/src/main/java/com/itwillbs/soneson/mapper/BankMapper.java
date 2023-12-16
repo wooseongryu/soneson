@@ -37,4 +37,7 @@ public interface BankMapper {
 	//창작자 정보
 	Map<String, String> selectCreatorToken(String project_code);
 	
+	//창작자 정보 상태 변경
+	int updateCreatorStatus(String project_code);
+	
 }

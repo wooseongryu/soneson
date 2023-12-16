@@ -102,6 +102,13 @@
 		WHERE ca.project_code = 68
 	</select>
 	
+	<update id="updateCreatorStatus">
+		UPDATE creator_account 
+<!-- 		SET status = '입금완료' WHERE project_code = #{project_code}; -->
+		SET status = '입금완료' WHERE project_code = 68;
+	</update>
+	
+	
 </mapper>
 
 

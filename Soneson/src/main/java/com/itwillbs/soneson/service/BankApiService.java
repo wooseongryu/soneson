@@ -94,6 +94,12 @@ public class BankApiService {
 		return mapper.selectCreatorToken(project_code);
 	}
 	
+	
+	//창작자 정보 상태 변경
+	public int updateCreatorStatus(String project_code) {
+		return mapper.updateCreatorStatus(project_code);
+	}
+	
 }
 
 
