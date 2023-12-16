@@ -388,7 +388,9 @@ ul {
             type: "GET",
             dataType: "json",
             success: function(response) {
+//             	쌤이랑 시도해본 것 뿐
 //             	console.log(">>>>>>>>>>>>> ${pageContext.request.requestURL}");
+
 //             	'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="popular">인기</a>'
             	$j.each(response, function(i, e){
 //             		debugger;

@@ -260,7 +260,7 @@
 </sql>
 <sql id="etc">
 	<![CDATA[
-			WHERE p.start_date <= now() AND p.end_date >= now()
+			WHERE p.start_date <= now() AND p.status = '승인'
 			AND category = '기타'
 			GROUP BY p.project_code) A
 		ORDER BY donor DESC
