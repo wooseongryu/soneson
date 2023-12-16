@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -185,11 +186,14 @@
 										<c:forEach var="WritingProject" items="${WritingProjectList}">
 											<div class="col-lg-4 col-md-6 col-sm-6" style="">                                                
 												<div class="product__item">
-  					    							<a href="#">
-			    										<div class="product__item__pic set-bg" data-setbg="${WritingProject.pro_thumbsnail }" 
-														style="background-image: url('${WritingProject.pro_thumbsnail}')">
-														</div>
-													</a>
+													<c:choose>
+														<c:when test="${fn:contains(WritingProject.pro_thumbsnail, 'https')}">
+															<img src="${WritingProject.pro_thumbsnail}" alt="프로젝트 썸네일 이미지" style="width:100%; height:100%">
+														</c:when>
+														<c:otherwise>
+															<img src="${pageContext.request.contextPath }/resources/upload/${WritingProject.pro_thumbsnail }" alt="프로젝트 썸네일 이미지 DB" style="width:100%; height:100%">
+														</c:otherwise>
+													</c:choose>
 														<div class="product__item__text">                                                   
 															<ul>                                                                            
 																<li>${WritingProject.pro_categorie }</li>                                           
@@ -211,7 +215,7 @@
 															<input type="hidden" name="isNewInsert" value="N"> 
 															<input type="hidden" value="${WritingProject.pro_code }" name="pro_code">
 															<input type="hidden" value="${WritingProject.user_id }" name="user_id">
-															<input type="submit" value="이어서 작성 하기" class="ing-probtn">
+															<input class="donerSelectBtn" type="submit" value="이어서 작성 하기" class="ing-probtn">
 														</form>
 			    									</div>                                                                                   
 			    								</div>

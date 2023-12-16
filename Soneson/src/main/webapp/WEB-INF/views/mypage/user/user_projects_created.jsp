@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>   
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -194,9 +195,14 @@
 											<div class="col-lg-4 col-md-6 col-sm-6" style="">                                                
 												<div class="product__item">
 					    							<a href="projectDetail?project_code=${UploadProject.project_code}">
-			    										<div class="product__item__pic set-bg" data-setbg="${UploadProject.img_main }" 
-														style="background-image: url('${UploadProject.img_main}')">
-														</div>
+ 					    								<c:choose>
+															<c:when test="${fn:contains(UploadProject.img_main, 'https')}">
+																<img src="${UploadProject.img_main}" alt="프로젝트 썸네일 이미지" style="width:100%; height:100%">
+															</c:when>
+															<c:otherwise>
+																<img src="${pageContext.request.contextPath }/resources/upload/${UploadProject.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width:100%; height:100%">
+															</c:otherwise>
+														</c:choose>
 													</a>
 														<div class="product__item__text">                                                   
 															<ul>                                                                            
