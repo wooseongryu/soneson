@@ -165,12 +165,7 @@ public class FintechController {
 	// 출금이체
 	@PostMapping("BankPayment")
 	public String payment(@RequestParam Map<String, String> map, HttpSession session, Model model) {
-//		map.put("access_token", (String)session.getAttribute("access_token"));
-		
 		System.out.println(")))BankPayment");
-//		System.out.println(map);
-		
-//		map.put("id", "lsc2464"); // 테스트 출금 정보 등록(요청 사용자 번호용 임시 아이디)
 		
 		List<Map<String, String>> userInfoList = bankApiService.selectUserToken(map.get("project_code"));
 		
@@ -179,14 +174,9 @@ public class FintechController {
 			if (!user.get("status").equals("결제성공")) {
 				
 				ResponseWithdrawVO tmp = bankApiClient.requestWithdraw(user);
-//				withdrawResultList.add(bankApiClient.requestWithdraw(user));
 				withdrawResultList.add(tmp);
-//				System.out.println("유저");
-//				System.out.println(user.get("fundIdx"));
 				
 				if (tmp.getRsp_code().equals("A0000")) {
-//					System.out.println(user.get("fundIdx"));
-					
 					int updateCount = bankApiService.updateFundStatus(user.get("fundIdx"));
 					// TODO
 					// updateCount 실패 처리
@@ -195,16 +185,6 @@ public class FintechController {
 				System.out.println("-----");
 				System.out.println(tmp.getRsp_code());
 			}
-			
-//			System.out.println("---------");
-			
-//			for (ResponseWithdrawVO result : withdrawResultList) {
-//				if (result.getRsp_code().equals("A0000")) {
-//					bankApiService.updateFundStatus(result.);
-//				}
-//			}
-			
-//			System.out.println("withdrawResultList1--" + withdrawResultList.get(0).getRsp_code());
 		}
 		
 		model.addAttribute("withdrawResultList", withdrawResultList);
@@ -216,8 +196,8 @@ public class FintechController {
 	
 	@PostMapping("BankRefund")
 	public String refund(@RequestParam Map<String, String> map, HttpSession session, Model model) {
-		map.put("access_token", (String)session.getAttribute("access_token"));
-		map.put("id", "lsc2464"); // 테스트 출금 정보 등록(요청 사용자 번호용 임시 아이디)
+//		map.put("access_token", (String)session.getAttribute("access_token"));
+//		map.put("id", "lsc2464"); // 테스트 출금 정보 등록(요청 사용자 번호용 임시 아이디)
 		
 		ResponseDepositListVO depositResult = bankApiClient.requestDeposit(map);
 		log.info(">>>>>>>>> depositResult : " + depositResult);

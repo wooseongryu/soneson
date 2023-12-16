@@ -92,7 +92,7 @@
 											<td>${project.title}</td>
 											<td>${project.creator}</td>
 											<td>${project.payment_date}</td>
-											<td>${project.total_cost}</td>
+											<td>${project.total_cost}원</td>
 											<td>
 												<form action="FintechUserInfo" method="get">
 													<input type="hidden" name="project_code" value="${project.project_code}">
