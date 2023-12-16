@@ -130,16 +130,16 @@
     <section class="product-page spad">
 	    <div class="Category">
 			<ul class="Category_ul">
-				<li class="DonationTodayCategory_list_item__agFbi item_1" aria-current="true">
+				<li class="DonationTodayCategory_list_item__agFbi item_1" aria-current="false">
 					<button type="button" class="Category_button" onclick="location.href='userProjectsCreated'">
 						<span class="Category_text">&nbsp;&nbsp;전체&nbsp;&nbsp;</span>
 					</button>
 				</li>
-<!-- 				<li class="DonationTodayCategory_list_item__agFbi item_2" aria-current="false"> -->
-<!-- 					<button type="button" class="Category_button"> -->
-<!-- 						<span class="Category_text">&nbsp;&nbsp;작성중&nbsp;&nbsp;</span> -->
-<!-- 					</button> -->
-<!-- 				</li> -->
+				<li class="DonationTodayCategory_list_item__agFbi item_2" aria-current="false">
+					<button type="button" class="Category_button">
+						<span class="Category_text">&nbsp;&nbsp;작성중&nbsp;&nbsp;</span>
+					</button>
+				</li>
 				<li class="DonationTodayCategory_list_item__agFbi item_3" aria-current="false">
 					<button type="button" class="Category_button" onclick="location.href='userProjectExam'">
 						<span class="Category_text">&nbsp;&nbsp;심사중&nbsp;&nbsp;</span>
@@ -165,7 +165,7 @@
 						<span class="Category_text">&nbsp;&nbsp;진행중&nbsp;&nbsp;</span>
 					</button>
 				</li>
-				<li class="DonationTodayCategory_list_item__agFbi item_9" aria-current="false">
+				<li class="DonationTodayCategory_list_item__agFbi item_9" aria-current="true">
 					<button type="button" class="Category_button" onclick="location.href='userProjectEnd'">
 						<span class="Category_text">&nbsp;&nbsp;종료&nbsp;&nbsp;</span>
 					</button>

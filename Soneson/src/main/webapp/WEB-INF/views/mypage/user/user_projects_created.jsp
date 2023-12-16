@@ -139,11 +139,11 @@
 						<span class="Category_text">&nbsp;&nbsp;전체&nbsp;&nbsp;</span>
 					</button>
 				</li>
-<!-- 				<li class="DonationTodayCategory_list_item__agFbi item_2" aria-current="false"> -->
-<!-- 					<button type="button" class="Category_button"> -->
-<!-- 						<span class="Category_text">&nbsp;&nbsp;작성중&nbsp;&nbsp;</span> -->
-<!-- 					</button> -->
-<!-- 				</li> -->
+				<li class="DonationTodayCategory_list_item__agFbi item_2" aria-current="false">
+					<button type="button" class="Category_button">
+						<span class="Category_text">&nbsp;&nbsp;작성중&nbsp;&nbsp;</span>
+					</button>
+				</li>
 				<li class="DonationTodayCategory_list_item__agFbi item_3" aria-current="false">
 					<button type="button" class="Category_button" onclick="location.href='userProjectExam'">
 						<span class="Category_text">&nbsp;&nbsp;심사중&nbsp;&nbsp;</span>
