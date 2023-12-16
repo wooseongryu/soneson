@@ -130,7 +130,7 @@
     <section class="product-page spad">
 	    <div class="Category">
 			<ul class="Category_ul">
-				<li class="DonationTodayCategory_list_item__agFbi item_1" aria-current="true">
+				<li class="DonationTodayCategory_list_item__agFbi item_1" aria-current="false">
 					<button type="button" class="Category_button" onclick="location.href='userProjectsCreated'">
 						<span class="Category_text">&nbsp;&nbsp;전체&nbsp;&nbsp;</span>
 					</button>
@@ -160,7 +160,7 @@
 						<span class="Category_text">&nbsp;&nbsp;공개예정&nbsp;&nbsp;</span>
 					</button>
 				</li>
-				<li class="DonationTodayCategory_list_item__agFbi item_7" aria-current="false">
+				<li class="DonationTodayCategory_list_item__agFbi item_7" aria-current="true">
 					<button type="button" class="Category_button" onclick="location.href='userProjectProceed'">
 						<span class="Category_text">&nbsp;&nbsp;진행중&nbsp;&nbsp;</span>
 					</button>
