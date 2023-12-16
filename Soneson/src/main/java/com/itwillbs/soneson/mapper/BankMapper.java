@@ -27,4 +27,10 @@ public interface BankMapper {
 	// 입금이체 프로젝트 리스트
 	List<Map<String, String>> selectStandByRefundProject();
 	
+	//access_token 여부확인
+	int selectExistAccessToken(String id);
+	
+	//토큰 업데이트
+	void updateToken(String id, ResponseTokenVO responseToken);
+	
 }

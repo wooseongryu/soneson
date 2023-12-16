@@ -73,6 +73,20 @@
 								where p.project_code = f.project_code)
 		]]>
 	</select>
+	
+	<!-- 토큰 존재여부확인 -->
+	<select id="selectExistAccessToken" resultType="int">
+		select count(*)
+		from fintech_user_info fui 
+		where id = #{id};
+	</select>
+	
+	<update id="updateToken">
+		UPDATE fintech_user_info 
+		SET access_token = #{token.access_token}
+		WHERE id = #{id}
+	</update>
+	
 </mapper>
 
 

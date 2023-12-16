@@ -24,6 +24,13 @@ public class BankApiService {
 	// 토큰 관련 정보 저장 요청
 	public void registToken(String id, ResponseTokenVO responseToken) {
 		// BankMapper - insertToken() 메서드 호출하여 토큰 관련 정보 저장 요청
+		int selectCount = mapper.selectExistAccessToken(id);
+		if(selectCount > 0) {
+			System.out.println("쿼리실행~~~~~~~~~~~~~~~~");
+			mapper.updateToken(id, responseToken);
+			System.out.println("쿼리실행완~~~~~~~~~~~~~~~~");
+			return;
+		}
 		mapper.insertToken(id, responseToken);
 	}
 
