@@ -223,10 +223,6 @@
     				for(user of resp) {
     					let uId = user.uId;
     					
-    					if (uId == sId) {
-    						continue;
-    					}
-    					
     					btnString = '<a onclick="insertFollow(\'' + uId + '\')">+ 팔로우</a>';
         				
     					if (isFollowing(uId)) {
@@ -246,13 +242,35 @@
     	                    + '     		<p>' + info + '</p>'
     	                    + ' 			<div id="followerCnt_' + uId + '">'
     	                    + '     			<p style="margin-top: 10px" >팔로워 ' + user.count + '</p>'
-    	                    + ' 			</div>'
-    	                    + '     		<div class="user_follow_btn" id="followerBtn_' + uId + '">'
-    	                    + 					btnString
-    	                    + '     		</div>'
-    						+ ' 		</div>'
+    	                    + ' 			</div>';
+    	                    
+   	                    if (uId != sId) {
+   	                    	contentStr +=
+   	                    		  '     		<div class="user_follow_btn" id="followerBtn_' + uId + '">'
+   	    	                    + 					btnString
+   	    	                    + '     		</div>';
+       					}
+    	                    
+    	                contentStr +=
+    						  ' 		</div>'
                         	+ ' 	</div>'
                     	 	+ '</div>';
+                    	 	
+//     					contentStr += 
+//     						  '<div class="anime__details__review">'
+//     						+ ' 	<div class="anime__review__item">'
+//                             + ' 		<div class="anime__review__item__text" id="project_review_content">'
+//     	                    + '     		<h6>' + user.user_name + '</h6>'
+//     	                    + '     		<p>' + info + '</p>'
+//     	                    + ' 			<div id="followerCnt_' + uId + '">'
+//     	                    + '     			<p style="margin-top: 10px" >팔로워 ' + user.count + '</p>'
+//     	                    + ' 			</div>'
+//     	                    + '     		<div class="user_follow_btn" id="followerBtn_' + uId + '">'
+//     	                    + 					btnString
+//     	                    + '     		</div>'
+//     						+ ' 		</div>'
+//                         	+ ' 	</div>'
+//                     	 	+ '</div>';
     				}			
     				
 					$("#user_content").append(contentStr);                                                                                                                                                                             
@@ -383,10 +401,6 @@
     				for(user of resp) {
     					let uId = user.uId;
     					
-    					if (uId == sId) {
-    						continue;
-    					}
-    					
     					btnString = '<a onclick="insertFollow(\'' + uId + '\')">+ 팔로우</a>';
         				
     					if (isFollowing(uId)) {
@@ -407,10 +421,16 @@
     	                    + ' 			<div id="followerCnt_' + uId + '">'
     	                    + '     			<p style="margin-top: 10px" >팔로워 ' + user.count + '</p>'
     	                    + ' 			</div>'
-    	                    + '     		<div class="user_follow_btn" id="followerBtn_' + uId + '">'
-    	                    + 					btnString
-    	                    + '     		</div>'
-    						+ ' 		</div>'
+    	                    
+   	                    if (uId != sId) {
+   	                    	contentStr += 
+  	                    		  '     		<div class="user_follow_btn" id="followerBtn_' + uId + '">'
+  	    	                    + 					btnString
+  	    	                    + '     		</div>'
+       					}
+    	                
+   	                    contentStr += 
+    						  ' 		</div>'
                         	+ ' 	</div>'
                     	 	+ '</div>';
     				}			
