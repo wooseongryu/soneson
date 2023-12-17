@@ -613,37 +613,37 @@ function successFunding() {
 					<div class="tit-util mt40">
 						<h3 class="tit small">결제계좌 선택</h3>
 					</div>
-					<!-- 나중에 if문 안에 넣을 div  -->
-					<!-- 내일 핀테크 정보 받아오기 테이블 만들고 name 다시 바꿔야함 위에 ajax에도 -->
-						<div class="projectItem-form"  id="funding-authAccountInfo">
-	<%-- 						<input type="hidden" name="user_name" value="${userInfo.user_name }"> --%>
-							<div class="authInfo-addBtn">
-								<button class="authInfoBtn" type="button" onclick="authAccountCreator()">계좌 추가 등록</button>
-							</div>
-							<c:forEach var="auth" items="${userInfo.res_list }">
-								<label for="accountVal${auth.fintech_use_num }">
-									<input type="radio" id="accountVal${auth.fintech_use_num }" class="account-radioBtn" name="pro_userAuth" value="${auth.fintech_use_num}">
-									<input type="hidden" id="accountVal${auth.account_holder_name }" name="user_name" value="${auth.account_holder_name}">
-									<div class="authInfo-writeDIv">
-										<div class="userAuth-info">
-											<div class="user-authInfo">
-												<h6>
-													${auth.account_holder_name }
-												</h6>
-											</div>
-										</div>
-										<div>
-											<p>
-												${auth.bank_name }&emsp;${auth.account_num_masked }
-											</p>
-										</div>
-									</div>
-								</label>
-							</c:forEach>
-						</div>
-						<!-- //div 끝 -->		
 					<c:choose>
 						<c:when test="${not empty fintechInfo.access_token }">
+						<!-- 나중에 if문 안에 넣을 div  -->
+						<!-- 내일 핀테크 정보 받아오기 테이블 만들고 name 다시 바꿔야함 위에 ajax에도 -->
+							<div class="projectItem-form"  id="funding-authAccountInfo">
+		<%-- 						<input type="hidden" name="user_name" value="${userInfo.user_name }"> --%>
+								<div class="authInfo-addBtn">
+									<button class="authInfoBtn" type="button" onclick="authAccountCreator()">계좌 추가 등록</button>
+								</div>
+								<c:forEach var="auth" items="${userInfo.res_list }">
+									<label for="accountVal${auth.fintech_use_num }">
+										<input type="radio" id="accountVal${auth.fintech_use_num }" class="account-radioBtn" name="pro_userAuth" value="${auth.fintech_use_num}">
+										<input type="hidden" id="accountVal${auth.account_holder_name }" name="user_name" value="${auth.account_holder_name}">
+										<div class="authInfo-writeDIv">
+											<div class="userAuth-info">
+												<div class="user-authInfo">
+													<h6>
+														${auth.account_holder_name }
+													</h6>
+												</div>
+											</div>
+											<div>
+												<p>
+													${auth.bank_name }&emsp;${auth.account_num_masked }
+												</p>
+											</div>
+										</div>
+									</label>
+								</c:forEach>
+							</div>
+							<!-- //div 끝 -->		
 						</c:when>
 						<c:otherwise>
 							<div class="authInfo-writeDIv">
