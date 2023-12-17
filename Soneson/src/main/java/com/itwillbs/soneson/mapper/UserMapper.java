@@ -207,6 +207,9 @@ public interface UserMapper {
 	// 유저 작성중인 프로젝트
 	List<Map<String, String>> selectWritingProjectList(String sId);
 
+	// 1217 엄성윤 헤더 프로필
+	Map<String, String> selectUserPicture(String user_id);
+
 }
 
 

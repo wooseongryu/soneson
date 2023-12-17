@@ -334,6 +334,10 @@ public class UserController {
 		
 		if(!mFile_picture.getOriginalFilename().equals("")) {
 			user.setUser_picture(subDir + "/" + fileName_picture);
+			
+			// 1217 엄성윤 헤더 프로필
+			session.setAttribute("profile", user.getUser_picture());
+			
 		}
 		
 		// 수정전 기존의 파일경로 가지고 있어야됨.
@@ -367,18 +371,6 @@ public class UserController {
 			e.printStackTrace();
 		}
 		
-		// ------- 프로필 성윤 추가 1217 --------------
-		
-		if(session.getAttribute("sId") != null) {
-			
-			map.put("sId", sId);
-			map.put("id", sId);
-			map = userService.selectUserMainInfo(map);
-			
-			System.out.println("맵에서: " + map.get("user_picture"));
-			session.setAttribute("profile", map.get("user_picture"));
-			System.out.println("프로필: " + session.getAttribute("profile"));
-		}
 		
 		return gson.toJson(map);
 	}
