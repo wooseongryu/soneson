@@ -191,7 +191,7 @@
 	<![CDATA[
 			WHERE p.start_date <= now() AND p.end_date > now() AND p.status = '승인'
 			GROUP BY p.project_code) A
-		ORDER BY now() - A.start_date, A.donor DESC
+		ORDER BY now() A.end_date - now(), A.donor DESC
 	]]>
 </sql>
 <sql id="upcoming">
