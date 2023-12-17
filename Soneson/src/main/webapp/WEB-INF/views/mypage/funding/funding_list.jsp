@@ -132,7 +132,7 @@
 												<h6 style="font-size: small; font-weight: 500;">${userFunding.cost }원 결제 예정</h6>
 												<h6 style="font-size: small; font-weight: 400;">결제 예정일까지 ${userFunding.d_day }</h6>
 												<button type="button" class="btnCencel" onclick="location.href = 'projectDetail?project_code=${userFunding.project_code}'">후원프로젝트로</button>
-												<button type="button" class="btnCencel" onclick="fundingCencel('${userFunding.project_code}')">후원취소</button>
+												<button type="button" class="btnCencel" style="background: #7d7d7d" onclick="fundingCencel('${userFunding.project_code}')">후원취소</button>
 												</div>
 											</div>
 										</div>

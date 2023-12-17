@@ -192,14 +192,19 @@
 										<c:forEach var="WritingProject" items="${WritingProjectList}">
 											<div class="col-lg-4 col-md-6 col-sm-6" style="">                                                
 												<div class="product__item">
-													<c:choose>
-														<c:when test="${fn:contains(WritingProject.pro_thumbsnail, 'https')}">
-															<img src="${WritingProject.pro_thumbsnail}" alt="프로젝트 썸네일 이미지" style="width:100%; height:100%">
-														</c:when>
-														<c:otherwise>
-															<img src="${pageContext.request.contextPath }/resources/upload/${WritingProject.pro_thumbsnail }" id="writingImg" alt="DB" style="width:100%; height:100%">
-														</c:otherwise>
-													</c:choose>
+					    							<a href="projectDetail?project_code=${WritingProject.project_code}">
+ 					    								<c:choose>
+															<c:when test="${fn:contains(WritingProject.img_main, 'https')}">
+																<img src="${WritingProject.img_main}" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
+															</c:when>
+ 					    									<c:when test="${WritingProject.img_main}">
+																<img src="${pageContext.request.contextPath }/resources/upload/${WritingProject.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width:350px; height:200px">
+															</c:when>
+															<c:otherwise>
+																<img src="${pageContext.request.contextPath }/resources/soneson/img/project/default.png" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
+															</c:otherwise>
+														</c:choose>
+													</a>
 														<div class="product__item__text">                                                   
 															<ul>                                                                            
 																<li>${WritingProject.pro_categorie }</li>                                           
@@ -210,12 +215,6 @@
 																${WritingProject.pro_title }
 															</a>                                                                            
 															</h5>                                                                           
-<%-- 															<h6>${WritingProject.subtitle}</h6>                                                --%>
-<!-- 															<ul style="margin-top: 15px">                                                    -->
-<%-- 																<li>${WritingProject.rate}%</li>                                               --%>
-<%-- 																<li>${WritingProject.total}원</li>                                             --%>
-<%-- 																<li>${WritingProject.d_day}</li>                          --%>
-<!-- 															</ul>                                                                            -->
 			    										</div>
 			    										<form action="projectUpdateForm" method="post">
 															<input type="hidden" name="isNewInsert" value="N"> 

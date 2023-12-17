@@ -67,7 +67,10 @@ public class FundingController {
 			return "fail_back";
 		}
 		
-		return "redirect:/fundingList";
+		
+		model.addAttribute("msg", "후원이 취소되었습니다.");
+		model.addAttribute("targetURL", "fundingList");
+		return "forward";
 	}
 	
 	
