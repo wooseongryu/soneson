@@ -167,6 +167,12 @@ $(function() {
 		}
 	});
 	
+	$("#admit").click(function() {
+		$(".faghXt").hide();
+		$(".goalRateBtn").removeClass("modalOn");
+		$(".goalRateBtn").addClass("modalOff");
+	})
+	
 	
 	
 });

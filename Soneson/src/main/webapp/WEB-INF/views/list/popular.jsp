@@ -224,7 +224,7 @@ function defaultImg(tagId) {
 								</span>
 							</div>
 							<button id="btnInputScope" class="FilterUIPresetWithRange__FilterUIRangeConfirmButton-sc-187gsyo-4 fHumWM">
-								<span>입력값 적용</span>
+								<span id="admit">입력값 적용</span>
 							</button>
 						</div>
 					</div>

@@ -34,55 +34,14 @@
 	<div class="Discover__FilterWrapper-a92tdn-0 hRsKsV">
 		<div class="Container-gci8y7-0 Discover__FilterContainer-a92tdn-1 QBCRz bNvMNw">
 			<div class="Discover__FilterLayout-a92tdn-2 boizim">
-				<div class="Discover__FilterOptions-a92tdn-3 gIFvgV">
-				
-					<div class="wrap">
-						<span class="Button__ButtonWrapper-sc-10w4uz1-1 kgdDuE">
-<!-- 							<button class="Button__StyledButton-sc-10w4uz1-2 kUUqmZ goalRateBtn"> -->
-							<button class="Button__StyledButton-sc-10w4uz1-2 kUUqmZ goalRateBtn modalOff">
-								<span class="title-wrapper">달성률</span>
-								<span class="Button__ActionIcon-sc-10w4uz1-5 jdZYPW icon-down">
-									<div name="arrow1-down" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV Button__StyledSVGIcon-sc-10w4uz1-0 jZDukg">
-										<svg viewBox="0 0 48 48">
-											<path fill-rule="evenodd" clip-rule="evenodd" d="M45.4003 15.1217L23.9125 36L2.5247 15.1217C1.8251 14.4225 1.8251 13.2237 2.5247 12.5245C3.2243 11.8252 4.42362 11.8252 5.22317 12.5245L23.9125 30.8054L42.7019 12.5245C43.4015 11.8252 44.6008 11.8252 45.4003 12.5245C45.8001 12.8241 46 13.3236 46 13.8231C45.9001 14.3226 45.7002 14.8221 45.4003 15.1217Z">
-											</path>
-										</svg>
-									</div>
-								</span>
-								<span class="Button__ActionIcon-sc-10w4uz1-5 jdZYPW icon-up">
-									<div name="arrow1-up" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV Button__StyledSVGIcon-sc-10w4uz1-0 jZDukg">
-										<svg viewBox="0 0 48 48">
-											<path fill-rule="evenodd" clip-rule="evenodd" d="M46 34.1769C46 34.6764 45.8001 35.1759 45.4003 35.4755C44.7007 36.1748 43.5014 36.1748 42.7019 35.4755L24.0125 17.1946L5.22317 35.4755C4.52357 36.1748 3.32425 36.1748 2.5247 35.4755C1.8251 34.7763 1.8251 33.5765 2.5247 32.8783L24.0125 12L45.5003 32.8783C45.8001 33.1779 46 33.6774 46 34.1769Z">
-											</path>
-										</svg>
-									</div>
-								</span>
-							</button>
-						</span>
-						<span class="Button__ButtonWrapper-sc-10w4uz1-1 kgdDuE">
-							<button class="Button__StyledButton-sc-10w4uz1-2 ieWwZH">
-								<span class="title-wrapper">에디터 추천</span>
-								<span class="Button__ActionIcon-sc-10w4uz1-5 jdZYPW icon-down">
-									<div name="arrow1-down" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV Button__StyledSVGIcon-sc-10w4uz1-0 jZDukg">
-										<svg viewBox="0 0 48 48">
-											<path fill-rule="evenodd" clip-rule="evenodd" d="M45.4003 15.1217L23.9125 36L2.5247 15.1217C1.8251 14.4225 1.8251 13.2237 2.5247 12.5245C3.2243 11.8252 4.42362 11.8252 5.22317 12.5245L23.9125 30.8054L42.7019 12.5245C43.4015 11.8252 44.6008 11.8252 45.4003 12.5245C45.8001 12.8241 46 13.3236 46 13.8231C45.9001 14.3226 45.7002 14.8221 45.4003 15.1217Z">
-											</path>
-										</svg>
-									</div>
-								</span>
-								<span class="Button__ActionIcon-sc-10w4uz1-5 jdZYPW icon-up">
-									<div name="arrow1-up" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV Button__StyledSVGIcon-sc-10w4uz1-0 jZDukg">
-										<svg viewBox="0 0 48 48">
-											<path fill-rule="evenodd" clip-rule="evenodd" d="M46 34.1769C46 34.6764 45.8001 35.1759 45.4003 35.4755C44.7007 36.1748 43.5014 36.1748 42.7019 35.4755L24.0125 17.1946L5.22317 35.4755C4.52357 36.1748 3.32425 36.1748 2.5247 35.4755C1.8251 34.7763 1.8251 33.5765 2.5247 32.8783L24.0125 12L45.5003 32.8783C45.8001 33.1779 46 33.6774 46 34.1769Z">
-											</path>
-										</svg>
-									</div>
-								</span>
-							</button>
-						</span>
-					</div>
-				
-				</div>
+			
+			
+			
+			
+			
+			
+			
+			
 			</div>
 		</div>
 	</div>

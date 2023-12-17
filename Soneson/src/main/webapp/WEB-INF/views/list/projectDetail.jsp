@@ -119,18 +119,18 @@ function defaultImg(tagId) {
 									</div>
 								</div>
 							
-								<div class="swiper-pagination swiper-pagination-bullets">
-									<span class="swiper-pagination-bullet">
-									</span>
-									<span class="swiper-pagination-bullet">
-									</span>
-									<span class="swiper-pagination-bullet">
-									</span>
-									<span class="swiper-pagination-bullet swiper-pagination-bullet-active">
-									</span>
-									<span class="swiper-pagination-bullet">
-									</span>
-								</div>
+<!-- 								<div class="swiper-pagination swiper-pagination-bullets"> -->
+<!-- 									<span class="swiper-pagination-bullet"> -->
+<!-- 									</span> -->
+<!-- 									<span class="swiper-pagination-bullet"> -->
+<!-- 									</span> -->
+<!-- 									<span class="swiper-pagination-bullet"> -->
+<!-- 									</span> -->
+<!-- 									<span class="swiper-pagination-bullet swiper-pagination-bullet-active"> -->
+<!-- 									</span> -->
+<!-- 									<span class="swiper-pagination-bullet"> -->
+<!-- 									</span> -->
+<!-- 								</div> -->
 							</div>
 						
 <!-- 							<div class="swiper-button-prev"> -->
@@ -240,35 +240,36 @@ function defaultImg(tagId) {
 								</div>
 							</div>
 							
-							<div class="Tooltip__TooltipWrapper-sc-188aamo-0 cwWHaU ProjectIntroduction__StyledTooltip-sc-1kf21am-21 boAevj">
-								<div class="ProjectIntroduction__SecondaryButton-sc-1kf21am-22 fjOsjq">
-									<div class="LikeButton__Wrapper-sc-1fgutj5-0 hoXFbI DetailLikeButton__StyledLikeButton-v1ofbi-0 dRjoPj">
-										<div class="DetailLikeButton__StyledDetailLikeButton-v1ofbi-1 dOAQhO">
-											<div name="like-line" class="Icon__SVGICON-sc-12tligs-0 kPBcuc">
-												<svg viewBox="0 0 38 34" fill="none">
-													<path fill-rule="evenodd" clip-rule="evenodd" d="M18.9996 5.62299L15.6051 2.55614C12.2106 -0.510215 6.56995 0.17753 3.48147 3.57849C-0.397666 7.66674 -0.397863 14.5859 3.70675 18.9121L19 33.8811L34.2923 18.9121C38.3969 14.5859 38.3971 7.66747 34.5176 3.57849C31.4291 0.17753 25.7888 -0.510094 22.3942 2.55614L18.9996 5.62299ZM32.0081 16.6701C34.9446 13.533 34.8523 8.58052 32.1962 5.78099L32.1721 5.75565L32.1487 5.72978C30.0533 3.42248 26.4219 3.23047 24.5394 4.93062L18.9996 9.93557L13.4601 4.93076C11.5777 3.2306 7.94577 3.42244 5.85042 5.72978L5.82689 5.75569L5.8028 5.78108C3.14716 8.57988 3.05453 13.533 5.99094 16.6701L18.9999 29.4033L32.0081 16.6701Z" fill="#6D6D6D">
-													</path>
-												</svg>
-											</div>
-											<span>126</span>
-										</div>
-									</div>
-								</div>
-							</div>
+<!-- 							1217 찜, 공유 주석 -->
+<!-- 							<div class="Tooltip__TooltipWrapper-sc-188aamo-0 cwWHaU ProjectIntroduction__StyledTooltip-sc-1kf21am-21 boAevj"> -->
+<!-- 								<div class="ProjectIntroduction__SecondaryButton-sc-1kf21am-22 fjOsjq"> -->
+<!-- 									<div class="LikeButton__Wrapper-sc-1fgutj5-0 hoXFbI DetailLikeButton__StyledLikeButton-v1ofbi-0 dRjoPj"> -->
+<!-- 										<div class="DetailLikeButton__StyledDetailLikeButton-v1ofbi-1 dOAQhO"> -->
+<!-- 											<div name="like-line" class="Icon__SVGICON-sc-12tligs-0 kPBcuc"> -->
+<!-- 												<svg viewBox="0 0 38 34" fill="none"> -->
+<!-- 													<path fill-rule="evenodd" clip-rule="evenodd" d="M18.9996 5.62299L15.6051 2.55614C12.2106 -0.510215 6.56995 0.17753 3.48147 3.57849C-0.397666 7.66674 -0.397863 14.5859 3.70675 18.9121L19 33.8811L34.2923 18.9121C38.3969 14.5859 38.3971 7.66747 34.5176 3.57849C31.4291 0.17753 25.7888 -0.510094 22.3942 2.55614L18.9996 5.62299ZM32.0081 16.6701C34.9446 13.533 34.8523 8.58052 32.1962 5.78099L32.1721 5.75565L32.1487 5.72978C30.0533 3.42248 26.4219 3.23047 24.5394 4.93062L18.9996 9.93557L13.4601 4.93076C11.5777 3.2306 7.94577 3.42244 5.85042 5.72978L5.82689 5.75569L5.8028 5.78108C3.14716 8.57988 3.05453 13.533 5.99094 16.6701L18.9999 29.4033L32.0081 16.6701Z" fill="#6D6D6D"> -->
+<!-- 													</path> -->
+<!-- 												</svg> -->
+<!-- 											</div> -->
+<!-- 											<span>126</span> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 							
-							<div class="ProjectIntroduction__TertiaryButton-sc-1kf21am-26 fMjnaE">
-								<div class="ProjectIntroduction__ShareSNSButtonWrap-sc-1kf21am-23 hOlLMG">
-									<button type="button" class="Button-sc-16r5v81-0 ProjectIntroduction__ShareSNSButton-sc-1kf21am-24 ProjectIntroduction__StyledShareSNSButton-sc-1kf21am-25 biBwQk fWIYyB oAZmP">
-										<div name="share-2" class="Icon__SVGICON-sc-12tligs-0 kPBcuc">
-											<svg viewBox="0 0 32 35" fill="none">
-												<path fill-rule="evenodd" clip-rule="evenodd" d="M25.5 9.8C27.3226 9.8 28.8 8.32254 28.8 6.5C28.8 4.67746 27.3226 3.2 25.5 3.2C23.6775 3.2 22.2 4.67746 22.2 6.5C22.2 8.32254 23.6775 9.8 25.5 9.8ZM25.5 13C29.0899 13 32 10.0899 32 6.5C32 2.91015 29.0899 0 25.5 0C21.9102 0 19 2.91015 19 6.5C19 7.00407 19.0574 7.49475 19.166 7.96584L13.2462 11.8889L10.9897 13.2996C9.82276 12.1847 8.24135 11.4999 6.5 11.4999C2.91015 11.4999 0 14.4101 0 17.9999C0 21.5898 2.91015 24.4999 6.5 24.4999C8.22679 24.4999 9.79631 23.8266 10.9603 22.7281L19.0878 27.4291C19.0301 27.7775 19 28.1352 19 28.4999C19 32.0898 21.9102 34.9999 25.5 34.9999C29.0899 34.9999 32 32.0898 32 28.4999C32 24.9101 29.0899 21.9999 25.5 21.9999C23.4257 21.9999 21.5784 22.9716 20.3882 24.4846L12.6783 20.0251C12.8871 19.3878 13 18.7071 13 17.9999C13 17.3061 12.8913 16.6376 12.6899 16.0106L14.9785 14.5798L20.6465 10.8236C21.8369 12.159 23.5703 13 25.5 13ZM6.5 21.2999C8.32254 21.2999 9.8 19.8225 9.8 17.9999C9.8 16.1774 8.32254 14.6999 6.5 14.6999C4.67746 14.6999 3.2 16.1774 3.2 17.9999C3.2 19.8225 4.67746 21.2999 6.5 21.2999ZM28.8 28.4999C28.8 30.3225 27.3226 31.7999 25.5 31.7999C23.6775 31.7999 22.2 30.3225 22.2 28.4999C22.2 26.6774 23.6775 25.1999 25.5 25.1999C27.3226 25.1999 28.8 26.6774 28.8 28.4999Z" fill="#6D6D6D">
-												</path>
-											</svg>
-										</div>
-										<span>54</span>
-									</button>
-								</div>
-							</div>
+<!-- 							<div class="ProjectIntroduction__TertiaryButton-sc-1kf21am-26 fMjnaE"> -->
+<!-- 								<div class="ProjectIntroduction__ShareSNSButtonWrap-sc-1kf21am-23 hOlLMG"> -->
+<!-- 									<button type="button" class="Button-sc-16r5v81-0 ProjectIntroduction__ShareSNSButton-sc-1kf21am-24 ProjectIntroduction__StyledShareSNSButton-sc-1kf21am-25 biBwQk fWIYyB oAZmP"> -->
+<!-- 										<div name="share-2" class="Icon__SVGICON-sc-12tligs-0 kPBcuc"> -->
+<!-- 											<svg viewBox="0 0 32 35" fill="none"> -->
+<!-- 												<path fill-rule="evenodd" clip-rule="evenodd" d="M25.5 9.8C27.3226 9.8 28.8 8.32254 28.8 6.5C28.8 4.67746 27.3226 3.2 25.5 3.2C23.6775 3.2 22.2 4.67746 22.2 6.5C22.2 8.32254 23.6775 9.8 25.5 9.8ZM25.5 13C29.0899 13 32 10.0899 32 6.5C32 2.91015 29.0899 0 25.5 0C21.9102 0 19 2.91015 19 6.5C19 7.00407 19.0574 7.49475 19.166 7.96584L13.2462 11.8889L10.9897 13.2996C9.82276 12.1847 8.24135 11.4999 6.5 11.4999C2.91015 11.4999 0 14.4101 0 17.9999C0 21.5898 2.91015 24.4999 6.5 24.4999C8.22679 24.4999 9.79631 23.8266 10.9603 22.7281L19.0878 27.4291C19.0301 27.7775 19 28.1352 19 28.4999C19 32.0898 21.9102 34.9999 25.5 34.9999C29.0899 34.9999 32 32.0898 32 28.4999C32 24.9101 29.0899 21.9999 25.5 21.9999C23.4257 21.9999 21.5784 22.9716 20.3882 24.4846L12.6783 20.0251C12.8871 19.3878 13 18.7071 13 17.9999C13 17.3061 12.8913 16.6376 12.6899 16.0106L14.9785 14.5798L20.6465 10.8236C21.8369 12.159 23.5703 13 25.5 13ZM6.5 21.2999C8.32254 21.2999 9.8 19.8225 9.8 17.9999C9.8 16.1774 8.32254 14.6999 6.5 14.6999C4.67746 14.6999 3.2 16.1774 3.2 17.9999C3.2 19.8225 4.67746 21.2999 6.5 21.2999ZM28.8 28.4999C28.8 30.3225 27.3226 31.7999 25.5 31.7999C23.6775 31.7999 22.2 30.3225 22.2 28.4999C22.2 26.6774 23.6775 25.1999 25.5 25.1999C27.3226 25.1999 28.8 26.6774 28.8 28.4999Z" fill="#6D6D6D"> -->
+<!-- 												</path> -->
+<!-- 											</svg> -->
+<!-- 										</div> -->
+<!-- 										<span>54</span> -->
+<!-- 									</button> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 						
 						</div>
 					</div>

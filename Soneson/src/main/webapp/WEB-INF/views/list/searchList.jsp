@@ -90,6 +90,7 @@
 	<div class="Container-gci8y7-0 InfinityList__InfinityContainer-sc-19jay7c-0 cXaiVs dykamL">
 	<div class="InfinityList__ResultWrapper-sc-19jay7c-1 ffcngd">
 	<div class="InfinityList__ResultCounter-sc-19jay7c-2 dsEGnR">
+	'${param.searchKeyword}'로 검색된 
 	<span id="projectCount">${projectCount}</span>개의 프로젝트가 있습니다.</div>
 	
 	
