@@ -140,10 +140,11 @@
 		function userSupportProject(id) {
 			$.ajax({
     			type: 'post',
-    			// TODO
-    			// 수정 필요
-    			url: 'userUploadProject',
+    			url: 'userSupportProject',
     			dataType: 'json',
+    			data: {
+    				user_id : user_id
+    			},
     			success: function(resp) {
     				reset_screen(id);
     				

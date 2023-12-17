@@ -211,6 +211,9 @@ public interface UserMapper {
 	// 1217 엄성윤 헤더 프로필
 	Map<String, String> selectUserPicture(String user_id);
 
+	// 유저프로필 후원한 프로젝트
+	List<Map<String, String>> selectSupportProjects(String user_id);
+
 }
 
 

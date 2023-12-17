@@ -369,7 +369,7 @@ public class UserService {
 		
 		return mapper.selectUploadProjects(user_id);
 	}
-
+	
 	// 유저 올린 프로젝트
 	public List<Map<String, String>> selectUploadProjectList(String sId) {
 		System.out.println("UserService - selectUploadProjectList(sId)");
@@ -432,6 +432,13 @@ public class UserService {
 	// 1217 엄성윤 헤더 프로필
 	public Map<String, String> selectUserPicture(String user_id) {
 		return mapper.selectUserPicture(user_id);
+	}
+
+	// 유저프로필 후원한 프로젝트
+	public List<Map<String, String>> selectSupportProjects(String user_id) {
+		System.out.println("UserService - selectSupportProjects()");
+		
+		return mapper.selectSupportProjects(user_id);
 	}
 
 	
