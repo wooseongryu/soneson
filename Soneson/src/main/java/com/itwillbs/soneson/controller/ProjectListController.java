@@ -164,6 +164,7 @@ public class ProjectListController {
 		}
 		
 		model.addAttribute("project", project);
+		model.addAttribute("startedDay", project.get("startedDay"));
 		
 		List<Map<String, Object>> rewardList = service.getRewardList(project_code);
 		
@@ -233,7 +234,8 @@ public class ProjectListController {
 	
 	// 팔로우
 	@GetMapping("detailFollow")
-	public String follow(String follow_id, HttpSession session, Model model, Map<String, String> map) {
+	public String follow(String follow_id, HttpSession session, Model model, Map<String, String> map, @RequestParam int project_code) {
+//		public String follow(String follow_id, HttpSession session, Model model, Map<String, String> map) {
 		System.out.println("UserController - follow()");
 		
 		String sId = (String)session.getAttribute("sId");
@@ -253,7 +255,7 @@ public class ProjectListController {
 			return "fail_back";
 		}
 		
-		return "";
+		return "projectDetail";
 	}
 	
 	

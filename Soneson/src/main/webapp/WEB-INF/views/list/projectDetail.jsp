@@ -243,7 +243,18 @@ function deleteFollow(user_id) {
 						<div class="ProjectIntroduction__ProjectButtonsInner-sc-1kf21am-19 jDhSeE">
 							<div class="ProjectIntroduction__PrimaryButton-sc-1kf21am-20 gpBnlK">
 								<div class="PledgeButton__Wrapper-sc-19585pn-0 kzJnkH">
-									<button class="Button-sc-16r5v81-0 PledgeButton__StyledButton-sc-19585pn-1 eXFpDs hrOCcK" id="scrollButton">이 프로젝트 후원하기</button>
+								
+									<c:choose>
+										<c:when test="${project.startedDay > 0}">
+											<button class="Button-sc-16r5v81-0 PledgeButton__StyledButton-sc-19585pn-1 eXFpDs hrOCcK fundDisabled" id="scrollButton" disabled>공개 예정 D-${project.startedDay}</button>
+										</c:when>
+										<c:otherwise>
+											<button class="Button-sc-16r5v81-0 PledgeButton__StyledButton-sc-19585pn-1 eXFpDs hrOCcK" id="scrollButton">이 프로젝트 후원하기</button>
+								        </c:otherwise>
+									</c:choose>
+								
+								
+<!-- 									<button class="Button-sc-16r5v81-0 PledgeButton__StyledButton-sc-19585pn-1 eXFpDs hrOCcK" id="scrollButton">이 프로젝트 후원하기</button> -->
 								</div>
 							</div>
 							
@@ -572,11 +583,11 @@ function deleteFollow(user_id) {
 										</path>
 										</svg>
 										</div>
-							        	<a href="detailFollow?follow_id=${creator_id}">팔로우</a>
+							        	<a href="follow?follow_id=${project.creator_id}">팔로우</a>
 <%-- 							        	<a href="follow?follow_id=${user.user_id }">+ 팔로우</a> --%>
 					        		</c:when>
 					        		<c:otherwise>
-							        	<a onclick="detailDeleteFollow('${user.user_id }')">팔로잉</a>
+							        	<a onclick="deleteFollow('${user.user_id }')">팔로잉</a>
 					        		</c:otherwise>
 					        	</c:choose>
 								</span>
@@ -685,7 +696,7 @@ function deleteFollow(user_id) {
 																			</path>
 																		</svg>
 																	</div>
-																	49명이 선택
+<!-- 																	49명이 선택 -->
 																</span>
 															</div>
 															

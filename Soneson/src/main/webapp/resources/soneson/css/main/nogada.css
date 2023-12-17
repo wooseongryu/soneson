@@ -1445,3 +1445,8 @@
     border: 0px;
     border-radius: 0px;
 }
+
+/* 펀딩 마감바 */
+.ddayOver {
+	background: black;
+}

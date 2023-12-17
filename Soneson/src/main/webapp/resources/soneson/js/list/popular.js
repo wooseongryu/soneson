@@ -108,10 +108,11 @@ function restDay() {
 			percentElement.addClass("ggdrCf");
 			if(thisGoldRate >= 100) {
 				$(this).html("펀딩 성공");
-//				debugger;
 			} else {
 				$(this).html("펀딩 무산");
 			}
+			let goalRateBar = $(this).closest(".hjCxPX").siblings(".lcwTLC").find(".goalRate");
+			goalRateBar.addClass("ddayOver");
 		}
 		
 		

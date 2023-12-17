@@ -199,7 +199,8 @@
 	<![CDATA[
 			WHERE p.status = '승인'
 			GROUP BY p.project_code) A
-		WHERE start_date > now();	
+		WHERE start_date > now()
+		ORDER BY A.start_date - now()	
 	]]>
 </sql>
 
@@ -385,6 +386,8 @@
 				, max(p.status) AS status
 				, DATEDIFF(date(max(p.end_date)), date(now())) AS dday
 				, max(p.user_id) AS creator_id
+				, DATEDIFF(NOW(), MAX(p.start_date)) AS startedDay2
+				, DATEDIFF(MAX(p.start_date), now()) AS startedDay
 			FROM project p
 			LEFT JOIN fund f
 			ON p.project_code = f.project_code
