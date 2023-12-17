@@ -428,6 +428,12 @@ public class UserService {
 		return mapper.selectWritingProjectList(sId);
 	}
 
+	// 로그인시 프로필, 성윤
+	// 1217 엄성윤 헤더 프로필
+	public Map<String, String> selectUserPicture(String user_id) {
+		return mapper.selectUserPicture(user_id);
+	}
+
 	
 }
 
