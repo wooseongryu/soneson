@@ -178,6 +178,7 @@ public class FintechController {
 				
 				if (tmp.getRsp_code().equals("A0000")) {
 					int updateCount = bankApiService.updateFundStatus(user.get("fundIdx"));
+					
 					// TODO
 					// updateCount 실패 처리
 				}
@@ -186,10 +187,13 @@ public class FintechController {
 				System.out.println(tmp.getRsp_code());
 			}
 		}
+		model.addAttribute("msg", "출금이체를 처리하였습니다.");
+		model.addAttribute("targetURL", "FintechUserInfo?project_code="+ map.get("project_code"));
+		return "forward";
+	
+//		model.addAttribute("withdrawResultList", withdrawResultList);
 		
-		model.addAttribute("withdrawResultList", withdrawResultList);
-		
-		return "redirect:/FintechUserInfo";
+//		return "redirect:/FintechUserInfo";
 	}
 	
 	

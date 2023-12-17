@@ -28,7 +28,7 @@ function authAccountCreator() {
 	let requestUri = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
 		+ "response_type=code"
 		+ "&client_id=4066d795-aa6e-4720-9383-931d1f60d1a9"
-		+ "&redirect_uri=http://localhost:8081/soneson/callback"
+		+ "&redirect_uri=http://c3d2306t1.itwillbs.com/soneson/callback"
 //			+ "&scope=login inquiry transfer oob"
 		+ "&scope=login inquiry transfer"
 		+ "&state=12345678901234567890123456789012"
