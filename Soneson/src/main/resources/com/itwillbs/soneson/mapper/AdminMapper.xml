@@ -36,6 +36,7 @@
 		FROM fund 
 		WHERE fund_date BETWEEN DATE_ADD(now(), INTERVAL -1 WEEK) AND now()
 		GROUP BY fund_date_a
+		ORDER BY fund_date_a ASC
 	</select>
 
     <!-- 마이페이지 달성률  -->
