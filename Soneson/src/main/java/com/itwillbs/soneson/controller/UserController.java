@@ -771,9 +771,10 @@ public class UserController {
 		String sId = (String)session.getAttribute("sId");
 		
 		List<Map<String, String>> UploadProjectList = userService.selectUploadProjectList(sId);
-		
+		List<Map<String, String>> WritingProjectList = userService.selectWritingProjectList(sId);
 		
 		model.addAttribute("UploadProjectList", UploadProjectList);
+		model.addAttribute("WritingProjectList", WritingProjectList);
 		
 		return "mypage/user/user_projects_created";
 	}

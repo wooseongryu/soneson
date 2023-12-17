@@ -190,7 +190,45 @@
    					    	<div class="row">                                                                                                                      
    								<div class="col-lg-12">                                                                                                          
    									<div class="product__page__content" >
-                           				<div class="row">  
+                           				<div class="row">
+                           				<c:forEach var="WritingProject" items="${WritingProjectList}">
+											<div class="col-lg-4 col-md-6 col-sm-6" style="">                                                
+												<div class="product__item">
+					    							<a>
+ 					    								<c:choose>
+															<c:when test="${fn:contains(WritingProject.img_main, 'https')}">
+																<img src="${WritingProject.img_main}" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
+															</c:when>
+ 					    									<c:when test="${WritingProject.img_main}">
+																<img src="${pageContext.request.contextPath }/resources/upload/${WritingProject.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width:350px; height:200px">
+															</c:when>
+															<c:otherwise>
+																<img src="${pageContext.request.contextPath }/resources/soneson/img/project/default.png" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
+															</c:otherwise>
+														</c:choose>
+													</a>
+														<div class="product__item__text">                                                   
+															<ul>                                                                            
+																<li>${WritingProject.pro_categorie }</li>                                           
+																<li>작성중</li>                                           
+															</ul>                                                                           
+															<h5 style="margin-bottom: 7px;">                                                
+															<a href="#">                            
+																${WritingProject.pro_title }
+															</a>                                                                            
+															</h5>                                                                           
+			    										</div>
+			    										<form action="projectUpdateForm" method="post">
+															<input type="hidden" name="isNewInsert" value="N"> 
+															<input type="hidden" value="${WritingProject.pro_code }" name="pro_code">
+															<input type="hidden" value="${WritingProject.user_id }" name="user_id">
+															<input class="donerSelectBtn" type="submit" value="이어서 작성 하기">
+															<input class="donerSelectBtn" type="button" value="삭제하기" style="background: #7d7d7d" onclick="projectDeleteForm(${WritingProject.pro_code })"
+															>
+														</form>
+			    									</div>                                                                                   
+			    								</div>
+										</c:forEach>  
 										<c:forEach var="UploadProject" items="${UploadProjectList}">
 											<div class="col-lg-4 col-md-6 col-sm-6" style="">                                                
 												<div class="product__item">
