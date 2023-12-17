@@ -553,7 +553,11 @@
 								</span>
 								</button>
 								</div>
-								<a class="style__AskCreatorButton-sc-1kqdyt-1 fisrFD">
+								
+								
+<!-- 							주영 창작자 문의 버튼 ChatMain2.jsp랑 연결 -->
+
+								<a class="style__AskCreatorButton-sc-1kqdyt-1 fisrFD" href="ChatMain2" onclick="window.open(this.href, '_blank', 'width=615, height=650'); return false;">
 								<div name="letter" class="Icon__SVGICON-sc-12tligs-0 kPBcuc style__AskCreatorButtonIcon-sc-1kqdyt-2 scWIP">
 								<svg viewBox="0 0 48 48">
 								<path fill-rule="evenodd" clip-rule="evenodd" d="M41.9 37.8966H6.1C5.1 37.8966 4.2 37.0958 4.2 35.997V34.5964L15.7 26.3993L19 29.0977C21.9 31.4981 26.099 31.4981 29.099 29.0977L32.4 26.3993L43.9 34.5964V35.997C43.799 37.0958 43 37.8966 41.9 37.8966ZM13.9 24.9996L4.2 31.898V17.0015L13.9 24.9996ZM43.799 17.0015V31.898L34.099 24.9996L43.799 17.0015ZM6.1 9.20333H41.9C42.9 9.20333 43.799 10.0031 43.799 11.1029V14.2022L27.7 27.499C25.599 29.1986 22.5 29.1986 20.4 27.499L4.2 14.2022V11.0029C4.2 10.0031 5.1 9.10336 6.1 9.20333ZM41.9 7.00385H6.1C3.9 6.90287 2 8.80243 2 11.0029V35.997C2 38.2955 3.9 40.0951 6.1 39.9961H41.9C44.2 39.9961 46 38.1965 46 35.997V11.0029C46 8.80243 44.2 6.90287 41.9 7.00385Z">

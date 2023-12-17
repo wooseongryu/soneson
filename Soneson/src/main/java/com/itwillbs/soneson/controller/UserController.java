@@ -367,6 +367,19 @@ public class UserController {
 			e.printStackTrace();
 		}
 		
+		// ------- 프로필 성윤 추가 1217 --------------
+		
+		if(session.getAttribute("sId") != null) {
+			
+			map.put("sId", sId);
+			map.put("id", sId);
+			map = userService.selectUserMainInfo(map);
+			
+			System.out.println("맵에서: " + map.get("user_picture"));
+			session.setAttribute("profile", map.get("user_picture"));
+			System.out.println("프로필: " + session.getAttribute("profile"));
+		}
+		
 		return gson.toJson(map);
 	}
 	
