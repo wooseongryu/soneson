@@ -190,13 +190,16 @@
 										<c:forEach var="ReleaseProject" items="${ReleaseProjectList}">
 											<div class="col-lg-4 col-md-6 col-sm-6" style="">                                                
 												<div class="product__item">
-  					    							<a href="projectDetail?project_code=${ReleaseProject.project_code}">
+					    							<a href="projectDetail?project_code=${ReleaseProject.project_code}">
  					    								<c:choose>
 															<c:when test="${fn:contains(ReleaseProject.img_main, 'https')}">
-																<img src="${RejectProject.img_main}" alt="프로젝트 썸네일 이미지" style="width:100%; height:100%">
+																<img src="${ReleaseProject.img_main}" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
+															</c:when>
+ 					    									<c:when test="${ReleaseProject.img_main}">
+																<img src="${pageContext.request.contextPath }/resources/upload/${ReleaseProject.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width:350px; height:200px">
 															</c:when>
 															<c:otherwise>
-																<img src="${pageContext.request.contextPath }/resources/upload/${ReleaseProject.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width:100%; height:100%">
+																<img src="${pageContext.request.contextPath }/resources/soneson/img/project/default.png" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
 															</c:otherwise>
 														</c:choose>
 													</a>
