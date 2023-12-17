@@ -198,13 +198,13 @@
 					    							<a href="projectDetail?project_code=${ProceedProject.project_code}">
  					    								<c:choose>
 															<c:when test="${fn:contains(ProceedProject.img_main, 'https')}">
-																<img src="${ProceedProject.img_main}" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
+																<img src="${ExamProject.img_main}" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
 															</c:when>
- 					    									<c:when test="${ProceedProject.img_main}">
-																<img src="${pageContext.request.contextPath }/resources/upload/${ProceedProject.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width:350px; height:200px">
+ 					    									<c:when test="${not empty ProceedProject.img_main}">
+																<img src="${pageContext.request.contextPath }/resources/soneson/img/project/default.png" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
 															</c:when>
 															<c:otherwise>
-																<img src="${pageContext.request.contextPath }/resources/soneson/img/project/default.png" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
+																<img src="${pageContext.request.contextPath }/resources/upload/${ProceedProject.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width:350px; height:200px">
 															</c:otherwise>
 														</c:choose>
 													</a>

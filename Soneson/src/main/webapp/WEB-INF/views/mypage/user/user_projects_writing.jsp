@@ -198,10 +198,10 @@
 																<img src="${WritingProject.pro_thumbsnail}" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
 															</c:when>
  					    									<c:when test="${not empty WritingProject.pro_thumbsnail}">
-																<img src="${pageContext.request.contextPath }/resources/upload/${WritingProject.pro_thumbsnail }" alt="프로젝트 썸네일 이미지 DB" style="width:350px; height:200px">
+																<img src="${pageContext.request.contextPath }/resources/soneson/img/project/default.png" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
 															</c:when>
 															<c:otherwise>
-																<img src="${pageContext.request.contextPath }/resources/soneson/img/project/default.png" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
+																<img src="${pageContext.request.contextPath }/resources/upload/${WritingProject.pro_thumbsnail }" alt="프로젝트 썸네일 이미지 DB" style="width:350px; height:200px">
 															</c:otherwise>
 														</c:choose>
 													</a>
