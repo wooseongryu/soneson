@@ -21,11 +21,13 @@
 <!-- 			, fund.idx AS test -->
 			, CAST(fund.idx AS char(10)) as fundIdx
 		FROM user_fund_info u
-		JOIN fintech_user_info f
-		ON u.user_id = f.id
-		JOIN fund fund
-		ON u.user_id = fund.user_id
-		WHERE u.project_code = #{project_code}
+			JOIN fintech_user_info f
+			ON u.user_id = f.id
+			JOIN fund fund
+			ON u.user_id = fund.user_id
+		WHERE 
+			u.project_code = #{project_code}
+			AND u.project_code = fund.project_code
 	</select>
 	
 	<update id="updateFundStatus">
