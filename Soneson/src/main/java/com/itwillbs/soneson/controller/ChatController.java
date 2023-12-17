@@ -22,31 +22,31 @@ public class ChatController {
    Gson gson = new Gson();
    
    // 전체 채팅방
-//   @GetMapping("ChatMain")
-//   public String main() {
-//      return "chat/main";
-//   }
+//	@GetMapping("ChatMain")
+//	public String main() {
+//		return "chat/main";
+//	}
       
    
    // 1:1 채팅방
    @GetMapping("ChatMain2")
-   public String main2(HttpSession session, String id, Model model) {
-      
+   public String main2(HttpSession session, String user_id, Model model) {
+      System.out.println("유저아이딩 받아온값: " + user_id);
       String sId = (String)session.getAttribute("sId");
       System.out.println("sId :" + sId);
          
-      model.addAttribute("receiver_id" + id);
+      model.addAttribute("receiverId", user_id);
       
       return "mypage/chat/main2";
    }
    
-   // 채팅 아이콘 리스트
+   // 채팅 아이콘(리스트)
    @GetMapping("Chatting")
    public String chatting(HttpSession session) {
       System.out.println("ChatController - chatting()");
 
       String sId = (String)session.getAttribute("sId");
-         System.out.println("sId : " + sId);
+      System.out.println("sId : " + sId);
       
       return "mypage/chat/chatting";
    }

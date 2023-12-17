@@ -156,7 +156,7 @@
 // 			}
 			
 // 			// 상대방과의 채팅방 연결을 위해 startChat() 함수 호출
-// 			startChat();			
+ 			startChat();			
 		});
 		
 		// 채팅방 나가기 버튼 클릭
@@ -252,7 +252,8 @@
 			// 아니면, 룸 아이디와 발신자 아이디를 전달
 			// (메세지 수신한 사람은 상대방(발신자)이 수신자로 설정되어야 하기 때문)
 			// 또한, 채팅 목록에 해당 채팅방이 없을 경우 표시(목록 추가)
-			
+			appendMessageToTargetRoom(data.room_id, data.sender_id, data.receiver_id, data.message, data.type, data.send_time);
+		
 			if(data.sender_id == current_user_id) {
 				createRoom(data.room_id, data.receiver_id);
 				appendChatRoomToRoomList(data.room_id, data.receiver_id);
@@ -263,7 +264,7 @@
 			// ------------------------------------------------------------------------------
 			// 닉네임 : 메세지 형식으로 출력
 // 			appendMessageToTargetRoom(data.room_id, data.sender_id, data.message);
-			appendMessageToTargetRoom(data.room_id, data.sender_id, data.receiver_id, data.message, data.type, data.send_time);
+//			appendMessageToTargetRoom(data.room_id, data.sender_id, data.receiver_id, data.message, data.type, data.send_time);
 		} else if(data.type == "START") { // 채팅방 열기
 			// 현재 화면에서 상대방과의 채팅방이 열려있지 않으면 새 채팅방 표시
 			// => 채팅방(.chatRoom)들의 class 중에 일치하는 room_id 가 없을 경우 채팅방 표시(hasClass() 활용)
@@ -531,7 +532,7 @@
 				location.href = "login";
 			</script>
 		</c:if>
-<!-- 		<h1>채팅 리스트 노출</h1> -->
+		<h1>채팅 리스트</h1>
 		<hr>
 		<strong>${sessionScope.sId }</strong>님
 <!-- 		상대방 아이디 : <input type="text" id="receiver_id"> -->

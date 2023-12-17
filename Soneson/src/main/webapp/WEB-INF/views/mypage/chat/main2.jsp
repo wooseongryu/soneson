@@ -157,7 +157,7 @@
 // 			}
 			
 // 			// 상대방과의 채팅방 연결을 위해 startChat() 함수 호출
-// 			startChat();			
+ 			startChat();			
 		});
 		
 		// 채팅방 나가기 버튼 클릭
@@ -211,7 +211,7 @@
 		// 채팅 페이지 접속 시 초기화 메세지 전송에 필요한 정보 보내기
 		// => 메세지타입(INIT), 사용자아이디, 나머지 널스트링
 		ws.send(getJsonString("INIT", current_user_id, "", "", ""));
-		ws.send(getJsonString("START", current_user_id, $("receiver_id").val(), "", ""));
+		ws.send(getJsonString("START", current_user_id, $("#receiver_id").val(), "", ""));
 	}
 	
 	// =====================================================================================
@@ -254,7 +254,9 @@
 			// 아니면, 룸 아이디와 발신자 아이디를 전달
 			// (메세지 수신한 사람은 상대방(발신자)이 수신자로 설정되어야 하기 때문)
 			// 또한, 채팅 목록에 해당 채팅방이 없을 경우 표시(목록 추가)
+			
 			appendMessageToTargetRoom(data.room_id, data.sender_id, data.receiver_id, data.message, data.type, data.send_time);
+		
 			if(data.sender_id == current_user_id) {
 				createRoom(data.room_id, data.receiver_id);
 				appendChatRoomToRoomList(data.room_id, data.receiver_id);
@@ -536,7 +538,7 @@
 		<h1>채팅</h1>
 		<hr>
 		<div class="chatUserInfo">
-			상대방 아이디 : ${receiverId }
+			창작자 아이디 : ${receiverId }
 			<input type="hidden" id="receiver_id" value="${receiverId }">
 			<strong>${sessionScope.sId }</strong>님
 <!-- 			<input type="button" value="채팅 시작" id="btnJoin"> -->
