@@ -125,6 +125,7 @@
 				, p.creator AS creator
 				, p.img_main AS img_main
 				, p.status AS status
+				, f.status AS status2
 				, f.fund_code AS fund_code
 				, f.user_id AS user_id
 				, f.fund_date AS fund_date
@@ -140,12 +141,12 @@
 			LEFT JOIN fund f
 			ON p.project_code = f.project_code) a
 		<![CDATA[
-		WHERE start_date <= now() AND end_date >= now() AND status = '승인' AND user_id = #{sId} 
+		WHERE start_date <= now()  AND status2 = '결제대기중' AND user_id = #{sId} 
 		]]>
 		ORDER BY fund_date desc
 		LIMIT 5
 	</select>
-	
+<!-- 	AND status = '승인' -->
 	<!-- 펀드 테이블 데이터 삭제 -->
 	<delete id="deleteFundCount">
 		DELETE 
