@@ -216,17 +216,21 @@ public class LoginJoinController {
 				
 				// ------- 프로필 성윤 추가 --------------
 				
-				if(session.getAttribute("sId") != null) {
-					String sId = (String)session.getAttribute("sId");
-					
-					map.put("sId", sId);
-					map.put("id", sId);
-					map = userService.selectUserMainInfo(map);
-					
-					System.out.println("맵에서: " + map.get("user_picture"));
-					session.setAttribute("profile", map.get("user_picture"));
-					System.out.println("프로필: " + session.getAttribute("profile"));
-				}
+//				if(session.getAttribute("sId") != null) {
+//					String sId = (String)session.getAttribute("sId");
+//					
+//					map.put("sId", sId);
+//					map.put("id", sId);
+//					map = userService.selectUserMainInfo(map);
+//					
+//					System.out.println("맵에서: " + map.get("user_picture"));
+//					session.setAttribute("profile", map.get("user_picture"));
+//					System.out.println("프로필: " + session.getAttribute("profile"));
+//				}
+				
+				// 1217 엄성윤 헤더 프로필
+				map = userService.selectUserPicture(user.getUser_id());
+				session.setAttribute("profile", map.get("user_picture"));
 				
 				// ---------------------------------------
 				

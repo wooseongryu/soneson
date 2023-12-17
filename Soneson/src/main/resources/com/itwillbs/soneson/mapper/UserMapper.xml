@@ -740,6 +740,16 @@
 		WHERE p.user_id = #{sId} AND p.project_code = #{project_code}
 	</select>
 	
+	<!-- 성윤, 유저 프로필 헤더에 -->
+<!-- 	1217 엄성윤 헤더 프로필 -->
+	
+	<select id="selectUserPicture" resultType="map">
+		SELECT 
+			user_id
+			, user_picture 
+		FROM user
+		WHERE user_id = #{user_id}
+	</select>
 	
 </mapper>
 

@@ -83,10 +83,10 @@ public class QnaController {
 	
 	// 자주 묻는 질문 상세글 보기
 	@GetMapping("qnaDetail")
-	public String qnaDetail(String qnaCate_idx , Model model) {
+	public String qnaDetail(@RequestParam String qna_idx , Model model) {
 		System.out.println("QnaController - qnaDetail");
 		
-		QnaVO qna = adminService.getQna(qnaCate_idx).get(0);
+		QnaVO qna = adminService.getQna(qna_idx).get(0);
 
 		List<QnaCateVO> qnaCateList = qnaService.getQnaCateList();
 		
