@@ -40,6 +40,11 @@
 			location.href = "fundingDonerInfo?project_code="+ project_code;
 		}
     	
+    	function defaultImg(tagId) {
+    		console.log(tagId.id);
+    		$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/project/default.png');
+    	}
+    	
     </script>
     
 <style>
@@ -196,7 +201,7 @@
 																<img src="${ProceedProject.img_main}" alt="프로젝트 썸네일 이미지" style="width:100%; height:100%">
 															</c:when>
 															<c:otherwise>
-																<img src="${pageContext.request.contextPath }/resources/upload/${ProceedProject.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width:100%; height:100%">
+																<img src="${pageContext.request.contextPath }/resources/upload/${ProceedProject.img_main }" id="proceedImg" alt="DBDB" style="width:100%; height:100%" onerror="defaultImg(this)">
 															</c:otherwise>
 														</c:choose>
 													</a>

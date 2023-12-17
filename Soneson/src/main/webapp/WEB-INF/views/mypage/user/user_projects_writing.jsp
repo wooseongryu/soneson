@@ -42,8 +42,6 @@
 			}
 		}
     	
-    	
-    	
     </script>
     
 <style>
@@ -199,7 +197,7 @@
 															<img src="${WritingProject.pro_thumbsnail}" alt="프로젝트 썸네일 이미지" style="width:100%; height:100%">
 														</c:when>
 														<c:otherwise>
-															<img src="${pageContext.request.contextPath }/resources/upload/${WritingProject.pro_thumbsnail }" alt="프로젝트 썸네일 이미지 DB" style="width:100%; height:100%">
+															<img src="${pageContext.request.contextPath }/resources/upload/${WritingProject.pro_thumbsnail }" id="writingImg" alt="DB" style="width:100%; height:100%">
 														</c:otherwise>
 													</c:choose>
 														<div class="product__item__text">                                                   
