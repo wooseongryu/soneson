@@ -146,5 +146,26 @@
 		LIMIT 5
 	</select>
 	
+	<!-- 펀드 테이블 데이터 삭제 -->
+	<delete id="deleteFundCount">
+		DELETE 
+		FROM fund 
+		WHERE project_code = #{project_code} AND user_id = #{sId} 
+	</delete>
+
+	<!-- 주소 삭제 -->
+	<delete id="deleteAddressCount">
+		DELETE 
+		FROM user_fund_address 
+		WHERE project_code = #{project_code} AND user_id = #{sId} 
+	</delete>
+
+	<!-- 인포데이터 삭제 -->
+	<delete id="deleteInfoCount">
+		DELETE 
+		FROM user_fund_info 
+		WHERE project_code = #{project_code} AND user_id = #{sId} 
+	</delete>
+
 
 </mapper>

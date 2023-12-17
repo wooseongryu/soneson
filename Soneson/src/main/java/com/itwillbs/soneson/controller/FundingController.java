@@ -41,14 +41,43 @@ public class FundingController {
 	 * ===================================================================
 	 * */
 	
+	@GetMapping("fundingCencel")
+	public String fundingCencel(@RequestParam Map<String, Object> map, HttpSession session, Model model) {
+		System.out.println("FundingController - fundingCencel()");
+		
+		String sId = (String)session.getAttribute("sId");
+		map.put("sId", sId);
+		int deleteFundCount = service.deleteFundCount(map);
+		int deleteAddressCount = service.deleteAddressCount(map);
+		int deleteInfoCount = service.deleteInfoCount(map);
+	
+		
+		if (deleteFundCount == 0) {
+			model.addAttribute("msg", "후원 삭제 실패!");
+			return "fail_back";
+		}
+
+		if (deleteAddressCount == 0) {
+			model.addAttribute("msg", "주소 삭제 실패!");
+			return "fail_back";
+		}
+		
+		if (deleteInfoCount == 0) {
+			model.addAttribute("msg", "후원자 인포 삭제 실패!");
+			return "fail_back";
+		}
+		
+		return "redirect:/fundingList";
+	}
+	
 	
 	// 후원(결제) 완료 페이지
 	@GetMapping("fundingSuccess")
 	public String fundingSuccess() {
 		System.out.println("FundingController - fundingSuccess()");
 		
-
-
+		
+		
 		return "mypage/funding/funding_success";
 	}
 	

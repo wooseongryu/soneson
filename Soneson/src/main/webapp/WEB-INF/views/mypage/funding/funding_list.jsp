@@ -73,13 +73,25 @@
 	   	color: #F86453;
 	   	font-weight: bold;
    	}	
-	    
-	    
+	.btnCencel {
+		background: #F86453;
+		border: none;
+		border-radius: 10px;
+		color: white;
+	}
     </style>
     
     <script type="text/javascript">
     	let pointColor = "#F86453";
-    
+    	function fundingCencel(project_code) {
+    		let result = confirm(project_code  + " 프로젝트 후원을 취소하시겠습니까?");
+    		
+    		if(result) {
+    			location.href = "fundingCencel?project_code=" + project_code;
+    		}
+		}
+    	
+    	
 	</script>
 	
 </head>
@@ -101,28 +113,35 @@
 					<div class="product__page__content">
 						<div class="anime__details__review">
 				        	<h2 id="funding_title">후원 현황</h2>
+							<c:if test="${!empty userFundingList }">
 							<h6 id="funding_category">진행중인 후원</h6>
 							<span>(펀딩일 기준 5개가 조회됩니다)</span>
 							<c:forEach var="userFunding" items="${userFundingList}">
-								<div class="anime__review__item">
-									<div class="anime__review__item__text">
-										<div class="row contents" onclick="location.href = 'projectDetail?project_code=${userFunding.project_code}'">
-	   										<div class="product__item__pic set-bg col-3" data-setbg="${userFunding.img_main }" 
-											style="background-image: url('${userFunding.img_main}'); width: 200px; height: 200px; margin-left: 15px;">
-											</div>
-											<div class="col-8" style="vertical-align: middle; margin-top: 25px;">
-											<span style="font-weight: bold;" >후원일 : ${fn:replace(userFunding.fund_date ,"T", " ") } | 후원번호 : ${userFunding.fund_code }</span> 
-											<br>
-											<br>
-											<h6 style="font-weight: 600;">${userFunding.title }</h6>
-											<br>
-											<h6 style="font-size: small; font-weight: 500;">${userFunding.cost }원 결제 예정</h6>
-											<h6 style="font-size: small; font-weight: 400;">결제 예정일까지 ${userFunding.d_day }</h6>
+									<div class="anime__review__item">
+										<div class="anime__review__item__text">
+											<div class="row contents">
+		   										<div class="product__item__pic set-bg col-3" data-setbg="${userFunding.img_main }" 
+												style="background-image: url('${userFunding.img_main}'); width: 200px; height: 200px; margin-left: 15px;">
+												</div>
+												<div class="col-8" style="vertical-align: middle; margin-top: 25px;">
+												<span style="font-weight: bold;" >후원일 : ${fn:replace(userFunding.fund_date ,"T", " ") } | 후원번호 : ${userFunding.fund_code }</span> 
+												<br>
+												<br>
+												<h6 style="font-weight: 600;">${userFunding.title }</h6>
+												<br>
+												<h6 style="font-size: small; font-weight: 500;">${userFunding.cost }원 결제 예정</h6>
+												<h6 style="font-size: small; font-weight: 400;">결제 예정일까지 ${userFunding.d_day }</h6>
+												<button type="button" class="btnCencel" onclick="location.href = 'projectDetail?project_code=${userFunding.project_code}'">후원프로젝트로</button>
+												<button type="button" class="btnCencel" onclick="fundingCencel('${userFunding.project_code}')">후원취소</button>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
 							</c:forEach>
+							</c:if>
+							<c:if test="${empty userFundingList }">
+							<h6 style="font-weight: 600;">현재 진행중인 후원이 없습니다.</h6>
+							</c:if>
 						</div>
 						<br>
 						

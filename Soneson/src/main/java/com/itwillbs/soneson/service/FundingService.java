@@ -65,4 +65,19 @@ public class FundingService {
 	public List<Map<String, Object>> selectUserFundingList(String sId) {
 		return mapper.selectUserFundingList(sId);
 	}
+
+	// 펀딩 취소 - 데이터 삭제
+	public int deleteFundCount(Map<String, Object> map) {
+		return mapper.deleteFundCount(map);
+	}
+
+	// 펀딩 취소 - 주소 데이터 삭제
+	public int deleteAddressCount(Map<String, Object> map) {
+		return mapper.deleteAddressCount(map);
+	}
+	
+	// 펀딩 취소 - 인포데이터 데이터 삭제
+	public int deleteInfoCount(Map<String, Object> map) {
+		return mapper.deleteInfoCount(map);
+	}
 }

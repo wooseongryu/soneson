@@ -41,4 +41,13 @@ public interface FundingMapper {
 	// 후원현황
 	List<Map<String, Object>> selectUserFundingList(String sId);
 
+	// 펀딩 취소
+	int deleteFundCount(Map<String, Object> map);
+
+	// 펀딩 취소 - 주소 데이터 삭제 
+	int deleteAddressCount(Map<String, Object> map);
+	
+	// 펀딩 취소 - 인포데이터 데이터 삭제
+	int deleteInfoCount(Map<String, Object> map);
+
 }
