@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.soneson.service.ProjectListService;
+import com.itwillbs.soneson.service.UserService;
 import com.itwillbs.soneson.vo.ProjectVO;
 
 @Controller
@@ -23,6 +25,9 @@ public class ProjectListController {
 
 	@Autowired
 	private ProjectListService service;
+	
+	@Autowired
+	private UserService userService;
 	
 //	@GetMapping("/{listType}")
 	public String getListType(Model model, String listType, HttpServletRequest request) {
@@ -141,7 +146,11 @@ public class ProjectListController {
 // ========================
 	
 	@GetMapping("projectDetail")
-	public String projectDetail(Model model, @RequestParam int project_code) {
+	public String projectDetail(Model model, @RequestParam int project_code,
+			// 1217 파라미터 추가
+			HttpSession session,
+			Map<String, String> map
+			) {
 		System.out.println("projectDetailController - projectDetail()");
 	
 		// 정책 <br> 넣기
@@ -175,6 +184,15 @@ public class ProjectListController {
 //		List<Map<String, Object>> itemList = service.getItemList(project_code);
 //		model.addAttribute("itemList", itemList);
 		
+		// ====== 팔로우
+		String sId = (String)session.getAttribute("sId");
+		
+		map.put("sId", sId);
+		map.put("id", sId);
+		
+		map = userService.selectUserMainInfo(map);
+		model.addAttribute("user", map);
+		
 		return "list/projectDetail";	
 	}
 	
@@ -207,7 +225,59 @@ public class ProjectListController {
 		model.addAttribute("projectCount", projectCount);
 		// ================
 		
+		
 		return "list/searchList";
+	}
+	
+	
+	
+	// 팔로우
+	@GetMapping("detailFollow")
+	public String follow(String follow_id, HttpSession session, Model model, Map<String, String> map) {
+		System.out.println("UserController - follow()");
+		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+			model.addAttribute("targetURL", "login");
+			return "forward";
+		}
+		
+		map.put("sId", sId);
+		map.put("follow_id", follow_id);
+		
+		int insertCount = userService.insertFollow(map);
+		
+		if (insertCount == 0) {
+			model.addAttribute("msg", "팔로우 실패!");
+			return "fail_back";
+		}
+		
+		return "";
+	}
+	
+	
+	@GetMapping("detailDeleteFollow")
+	public String deleteFollow(String follow_id, HttpSession session, Model model, Map<String, String> map) {
+		System.out.println("UserController - deleteFollow()");
+		
+		String sId = (String)session.getAttribute("sId");
+		if (sId == null) {
+			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+			return "fail_back";
+		}
+		
+		map.put("sId", sId);
+		map.put("follow_id", follow_id);
+		
+		int deleteCount = userService.deleteFollow(map);
+		
+		if (deleteCount == 0) {
+			model.addAttribute("msg", "팔로우 해제 실패!");
+			return "fail_back";
+		}
+		
+		return "";
 	}
 	
 	

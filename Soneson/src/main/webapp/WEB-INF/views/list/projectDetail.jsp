@@ -32,6 +32,13 @@ function defaultImg(tagId) {
 // 	console.log(tagId.id);
 // 	$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/projectList/' + name + '.png');
 // }
+
+function deleteFollow(user_id) {
+ 		if(confirm("팔로우를 해제 하시겠습니까?")) {
+ 			location.href="detaildeleteFollow?follow_id=" + user_id;
+ 		}
+ 	}
+
 </script>
 
 </head>
@@ -555,16 +562,34 @@ function defaultImg(tagId) {
 								<div class="style__FollowButtonWrapper-sc-1kqdyt-5 VdNWQ">
 								<button class="SolidButton__Button-d4ctco-0 iDFRLW style__FollowButton-sc-1fj9dkx-0 hzzFYf fnt-p1" color="grayEditor200">
 								<span>
-								<div name="plus" class="Icon__SVGICON-sc-12tligs-0 kPBcuc style__FollowButtonIcon-sc-1fj9dkx-2 hTyhjW">
-								<svg viewBox="0 0 48 48">
-								<path fill-rule="evenodd" clip-rule="evenodd" d="M43.7104 21.8549H25.99V4.09524C25.99 2.89796 24.9945 2 23.9005 2C22.8054 2 21.81 2.89796 21.81 4.09524V21.9546H4.0905C2.89593 21.8549 2 22.8526 2 23.9501C2 25.0476 2.89593 26.0454 4.0905 26.0454H21.9095V43.9048C21.9095 45.0023 22.8054 46 23.999 46C25.095 46 26.0905 45.102 26.0905 43.9048V26.0454H43.9085C45.0045 26.0454 46 25.1474 46 23.9501C45.8009 22.8526 44.904 21.8549 43.7104 21.8549C43.7104 21.8549 43.81 21.8549 43.7104 21.8549Z">
-								</path>
-								</svg>
-								</div>
-								<div class="style__FollowButtonText-sc-1fj9dkx-1 jGQFIP">팔로우</div>
+<!-- 								<div class="style__FollowButtonText-sc-1fj9dkx-1 jGQFIP">팔로우</div> -->
+								<c:choose>
+					        		<c:when test="${user.followCnt eq 0 }">
+<!-- 					        			<div class="style__FollowButtonText-sc-1fj9dkx-1 jGQFIP">팔로우</div> -->
+										<div name="plus" class="Icon__SVGICON-sc-12tligs-0 kPBcuc style__FollowButtonIcon-sc-1fj9dkx-2 hTyhjW">
+										<svg viewBox="0 0 48 48">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M43.7104 21.8549H25.99V4.09524C25.99 2.89796 24.9945 2 23.9005 2C22.8054 2 21.81 2.89796 21.81 4.09524V21.9546H4.0905C2.89593 21.8549 2 22.8526 2 23.9501C2 25.0476 2.89593 26.0454 4.0905 26.0454H21.9095V43.9048C21.9095 45.0023 22.8054 46 23.999 46C25.095 46 26.0905 45.102 26.0905 43.9048V26.0454H43.9085C45.0045 26.0454 46 25.1474 46 23.9501C45.8009 22.8526 44.904 21.8549 43.7104 21.8549C43.7104 21.8549 43.81 21.8549 43.7104 21.8549Z">
+										</path>
+										</svg>
+										</div>
+							        	<a href="detailFollow?follow_id=${creator_id}">팔로우</a>
+<%-- 							        	<a href="follow?follow_id=${user.user_id }">+ 팔로우</a> --%>
+					        		</c:when>
+					        		<c:otherwise>
+							        	<a onclick="detailDeleteFollow('${user.user_id }')">팔로잉</a>
+					        		</c:otherwise>
+					        	</c:choose>
 								</span>
 								</button>
 								</div>
+								
+								
+								
+								
+								
+								
+								
+								
 								
 								
 <!-- 							주영 창작자 문의 버튼 ChatMain2.jsp랑 연결 -->
@@ -604,7 +629,8 @@ function defaultImg(tagId) {
 																			</path>
 																		</svg>
 																	</div>
-																	49명이 선택
+<!-- 																	1217 엄성윤 기능 보류 주석 -->
+<!-- 																	49명이 선택 -->
 																</span>
 															</div>
 															
