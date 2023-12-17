@@ -90,7 +90,11 @@
     						+ '				<div class="product__page__content">    '                                                                                                          
                             + '					<div class="row">                   '                                                                                                          
                             ;
-    					    
+					
+					if (resp.length == 0) {
+						contentStr += '올린프로젝트가 없습니다.';
+					}
+                            
     				for (project of resp) {
     					contentStr +=
     						  '                     <div class="col-lg-4 col-md-6 col-sm-6" style="">                                                                                                 '
@@ -157,6 +161,10 @@
                             + '					<div class="row">                   '                                                                                                          
                             ;
     					    
+                    if (resp.length == 0) {
+						contentStr += '후원한프로젝트가 없습니다.';
+					}
+                            
     				for (project of resp) {
     					contentStr +=
     						  '                     <div class="col-lg-4 col-md-6 col-sm-6" style="">                                                                                                 '
@@ -255,22 +263,6 @@
     						  ' 		</div>'
                         	+ ' 	</div>'
                     	 	+ '</div>';
-                    	 	
-//     					contentStr += 
-//     						  '<div class="anime__details__review">'
-//     						+ ' 	<div class="anime__review__item">'
-//                             + ' 		<div class="anime__review__item__text" id="project_review_content">'
-//     	                    + '     		<h6>' + user.user_name + '</h6>'
-//     	                    + '     		<p>' + info + '</p>'
-//     	                    + ' 			<div id="followerCnt_' + uId + '">'
-//     	                    + '     			<p style="margin-top: 10px" >팔로워 ' + user.count + '</p>'
-//     	                    + ' 			</div>'
-//     	                    + '     		<div class="user_follow_btn" id="followerBtn_' + uId + '">'
-//     	                    + 					btnString
-//     	                    + '     		</div>'
-//     						+ ' 		</div>'
-//                         	+ ' 	</div>'
-//                     	 	+ '</div>';
     				}			
     				
 					$("#user_content").append(contentStr);                                                                                                                                                                             

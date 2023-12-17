@@ -65,12 +65,12 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">성공한 프로젝트 목록</h1>
+					<h1 class="h3 mb-2 text-gray-800">출금이체 대기중 프로젝트 목록</h1>
 
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<h6 class="m-0 font-weight-bold text-primary">성공한 프로젝트 목록</h6>
+							<h6 class="m-0 font-weight-bold text-primary">출금이체 대기중 프로젝트 목록</h6>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
