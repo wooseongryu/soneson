@@ -69,7 +69,7 @@ public class BankApiClient {
 					// 주소 뒤에 파라미터 연결 시 queryParam() 메서드 활용(GET 방식일 경우)
 					.queryParam("response_type", "code") // 첫번째 파라미터
 					.queryParam("client_id", client_id) // 두번째 파라미터
-					.queryParam("redirect_uri", "http://localhost:8081/soneson/callback") // 세번째 파라미터
+					.queryParam("redirect_uri", "http://c3d2306t1.itwillbs.com/soneson/callback") // 세번째 파라미터
 					.queryParam("scope", "login inquiry transfer") // 네번째 파라미터
 					.queryParam("state", "12345678901234567890123456789012") // 다섯번째 파라미터
 					.queryParam("auth_type", "0") // 여섯번째 파라미터
@@ -99,7 +99,7 @@ public class BankApiClient {
 		requestToken.setCode(authResponse.get("code"));
 		requestToken.setClient_id(client_id);
 		requestToken.setClient_secret(client_secret);
-		requestToken.setRedirect_uri("http://localhost:8081/soneson/callback");
+		requestToken.setRedirect_uri("http://c3d2306t1.itwillbs.com/soneson/callback");
 		requestToken.setGrant_type("authorization_code");
 		
 		
@@ -110,11 +110,13 @@ public class BankApiClient {
 					.build() // UriComponents 객체 생성
 					.toUri(); // java.net.URI 객체로 변환
 		
+		
+		
  		LinkedMultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.add("code", authResponse.get("code"));
 		parameters.add("client_id", client_id);
 		parameters.add("client_secret", client_secret);
-		parameters.add("redirect_uri", "http://localhost:8081/soneson/callback");
+		parameters.add("redirect_uri", "http://c3d2306t1.itwillbs.com/soneson/callback");
 		parameters.add("grant_type", "authorization_code");
 		System.out.println(parameters);
 		
