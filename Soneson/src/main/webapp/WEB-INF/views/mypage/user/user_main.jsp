@@ -245,7 +245,7 @@
     	                    + '     		<h6>' + user.user_name + '</h6>'
     	                    + '     		<p>' + info + '</p>'
     	                    + ' 			<div id="followerCnt_' + uId + '">'
-    	                    + '     			<p style="margin-top: 10px" >팔로워 ' + user.count + ' · 후원한 프로젝트 11</p>'
+    	                    + '     			<p style="margin-top: 10px" >팔로워 ' + user.count + '</p>'
     	                    + ' 			</div>'
     	                    + '     		<div class="user_follow_btn" id="followerBtn_' + uId + '">'
     	                    + 					btnString
@@ -293,7 +293,7 @@
     				
     				$("#" + divCnt).children().remove();
     				$("#" + divCnt).append(
-    						'<p style="margin-top: 10px" >팔로워 ' + resp.followerCnt + ' · 후원한 프로젝트 11</p>'
+    						'<p style="margin-top: 10px" >팔로워 ' + resp.followerCnt + '</p>'
     				);
     			},
     			error: function(error) {
@@ -332,7 +332,7 @@
     				
     				$("#" + divCnt).children().remove();
     				$("#" + divCnt).append(
-    						'<p style="margin-top: 10px" >팔로워 ' + resp.followerCnt + ' · 후원한 프로젝트 11</p>'
+    						'<p style="margin-top: 10px" >팔로워 ' + resp.followerCnt + '</p>'
     				);
     			},
     			error: function(error) {
@@ -405,7 +405,7 @@
     	                    + '     		<h6>' + user.user_name + '</h6>'
     	                    + '     		<p>' + info + '</p>'
     	                    + ' 			<div id="followerCnt_' + uId + '">'
-    	                    + '     			<p style="margin-top: 10px" >팔로워 ' + user.count + ' · 후원한 프로젝트 11</p>'
+    	                    + '     			<p style="margin-top: 10px" >팔로워 ' + user.count + '</p>'
     	                    + ' 			</div>'
     	                    + '     		<div class="user_follow_btn" id="followerBtn_' + uId + '">'
     	                    + 					btnString
