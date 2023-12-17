@@ -213,6 +213,10 @@ public interface UserMapper {
 
 	// 유저프로필 후원한 프로젝트
 	List<Map<String, String>> selectSupportProjects(String user_id);
+	
+	
+	//작성 중인 프로젝트 삭제
+	int deleteSampleProject(int project_code);
 
 }
 

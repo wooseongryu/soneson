@@ -36,6 +36,14 @@
     <script type="text/javascript">
     	let pointColor = "#F86453";
     	
+    	function projectDeleteForm(project_code) {
+			if(confirm("삭제하시겠습니까?")) {
+				location.href= 'projectDeletePro?project_code=' + project_code;
+			}
+		}
+    	
+    	
+    	
     </script>
     
 <style>
@@ -215,7 +223,9 @@
 															<input type="hidden" name="isNewInsert" value="N"> 
 															<input type="hidden" value="${WritingProject.pro_code }" name="pro_code">
 															<input type="hidden" value="${WritingProject.user_id }" name="user_id">
-															<input class="donerSelectBtn" type="submit" value="이어서 작성 하기" class="ing-probtn">
+															<input class="donerSelectBtn" type="submit" value="이어서 작성 하기">
+															<input class="donerSelectBtn" type="button" value="삭제하기" style="background: #7d7d7d" onclick="projectDeleteForm(${WritingProject.pro_code })"
+															>
 														</form>
 			    									</div>                                                                                   
 			    								</div>

@@ -329,7 +329,8 @@ $(function() {
 							<div class="plan-title">
 								<h2>${pro.pro_title }</h2>
 								<p>${pro.pro_categorie}<c:if test="${not empty pro.pro_creator }"> · ${pro.pro_creator }</c:if></p>
-								<P>${pro.user_id }(${pro.pro_code })</P>
+								<P>${pro.user_id }</P>
+<%-- 								<P>${pro.user_id }(${pro.pro_code })</P> --%>
 							</div>
 						</div>
 					</div>

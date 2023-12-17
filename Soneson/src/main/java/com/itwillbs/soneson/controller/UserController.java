@@ -795,6 +795,25 @@ public class UserController {
 		return "mypage/user/user_projects_writing";
 	}
 	
+	//마이페이지에서 작성중인 프로젝트 삭제
+	@GetMapping("projectDeletePro")
+	public String projectDeletePro(@RequestParam("project_code") int project_code, Model model) {
+		System.out.println(project_code);
+		
+		int deleteCount = userService.deleteSampleProject(project_code);
+		if(deleteCount > 0) {
+			model.addAttribute("msg", "삭제되었습니다.");
+			model.addAttribute("targetURL", "userProjectsWriting");
+			return "forward";
+		} else {
+			model.addAttribute("msg", "다시 시도해주세요.");
+			return "fail_back";
+			
+		}
+		
+	}
+	
+	
 	
 	// 마이페이지에서 심사중인 프로젝트 
 	@GetMapping("userProjectExam")

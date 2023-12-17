@@ -775,5 +775,13 @@
 		WHERE user_id = #{user_id}
 	</select>
 	
+	
+	
+	<!-- 훈나 작성 중인 프로젝트 삭제 -->
+	<delete id="deleteSampleProject">
+		DELETE FROM sample_pro 
+		WHERE pro_code = #{project_code}
+	</delete>
+	
 </mapper>
 

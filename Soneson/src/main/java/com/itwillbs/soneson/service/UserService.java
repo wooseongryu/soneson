@@ -440,6 +440,12 @@ public class UserService {
 		
 		return mapper.selectSupportProjects(user_id);
 	}
+	
+	
+	//작성 중인 프로젝트 삭제
+	public int deleteSampleProject(int project_code) {
+		return mapper.deleteSampleProject(project_code);
+	}
 
 	
 }
