@@ -363,11 +363,11 @@ public class UserService {
 		return mapper.selectUserAnswer(myQuestion_num);
 	}
 
-	// 유저 올린 프로젝트
-	public List<Map<String, String>> selectUploadProjects() {
+	// 유저 프로필 올린 프로젝트
+	public List<Map<String, String>> selectUploadProjects(String user_id) {
 		System.out.println("UserService - selectUploadProjects()");
 		
-		return mapper.selectUploadProjects();
+		return mapper.selectUploadProjects(user_id);
 	}
 
 	// 유저 올린 프로젝트

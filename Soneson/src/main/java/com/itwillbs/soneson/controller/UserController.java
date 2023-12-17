@@ -206,12 +206,12 @@ public class UserController {
 	// 올린 프로젝트
 	@ResponseBody
 	@PostMapping("userUploadProject")
-	public String userUploadProject() {
+	public String userUploadProject(String user_id) {
 		System.out.println("UserController - userUploadProject()");
 		
 		// TODO
 		// 모든 프로젝트 불러오는 중... 해당 유저의 프로젝트만 가져오도록 수정 필요.
-		List<Map<String, String>> map = userService.selectUploadProjects();
+		List<Map<String, String>> map = userService.selectUploadProjects(user_id);
 		
 		return gson.toJson(map);
 	}

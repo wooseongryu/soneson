@@ -524,6 +524,7 @@
 		FROM project p
 		LEFT JOIN fund f
 		ON p.project_code = f.project_code
+		where p.user_id = #{user_id}
 	</select>
 
 

@@ -76,6 +76,9 @@
     			type: 'post',
     			url: 'userUploadProject',
     			dataType: 'json',
+    			data: {
+    				user_id : user_id
+    			},
     			success: function(resp) {
     				reset_screen(id);
     				
