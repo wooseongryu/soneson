@@ -459,8 +459,9 @@
     transition: transform 0.2s ease 0s;
 }
 
+/* 1217 errorImage 추가하면서 주석 */
 .dNCkN .image-wrapper a {
-    background: url(https://tumblbug-pci.imgix.net/47e23589892c1c65c393b94db313aff15f6a7ca9/0f732ed78f2df4300ef0c513213cb765dfd1a17d/9b5330ffddefc46561959f1221eecc3fe4f86ec5/6fb183fc-0ed5-486f-bff3-367f8914eace.jpeg?auto=format%2Ccompress&fit=crop&h=288&lossless=true&w=384&s=8418fd34bf22dcc4f4e0efa4443d00c3) center center / cover no-repeat;
+/*     background: url(https://tumblbug-pci.imgix.net/47e23589892c1c65c393b94db313aff15f6a7ca9/0f732ed78f2df4300ef0c513213cb765dfd1a17d/9b5330ffddefc46561959f1221eecc3fe4f86ec5/6fb183fc-0ed5-486f-bff3-367f8914eace.jpeg?auto=format%2Ccompress&fit=crop&h=288&lossless=true&w=384&s=8418fd34bf22dcc4f4e0efa4443d00c3) center center / cover no-repeat; */
 }
 
 .hfSMxY {

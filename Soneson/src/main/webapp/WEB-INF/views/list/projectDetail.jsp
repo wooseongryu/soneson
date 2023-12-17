@@ -23,6 +23,17 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/soneson/img/header/son33.ico" type="image/x-icon">
 <title>손에손</title>
 
+<script>
+//default Img
+function defaultImg(tagId) {
+	$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/projectList/' + tagId.id + '.png');
+}
+// function defaultImg(tagId, name) {
+// 	console.log(tagId.id);
+// 	$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/projectList/' + name + '.png');
+// }
+</script>
+
 </head>
 <body>
 
@@ -225,7 +236,7 @@
 						<div class="ProjectIntroduction__ProjectButtonsInner-sc-1kf21am-19 jDhSeE">
 							<div class="ProjectIntroduction__PrimaryButton-sc-1kf21am-20 gpBnlK">
 								<div class="PledgeButton__Wrapper-sc-19585pn-0 kzJnkH">
-									<button class="Button-sc-16r5v81-0 PledgeButton__StyledButton-sc-19585pn-1 eXFpDs hrOCcK">이 프로젝트 후원하기</button>
+									<button class="Button-sc-16r5v81-0 PledgeButton__StyledButton-sc-19585pn-1 eXFpDs hrOCcK" id="scrollButton">이 프로젝트 후원하기</button>
 								</div>
 							</div>
 							
@@ -361,7 +372,7 @@
 					
 					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 소개</div>
 					<div class="storyContent">
-						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_content }" alt="프로젝트 내용 이미지">
+						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_content }" id="img_content" alt="프로젝트 내용 이미지" onerror="defaultImg(this)">
 					</div>
 					
 					
@@ -372,7 +383,7 @@
 					<div id="budget" class="style__StorySection-y9rrh6-7 dxcJNl">
 					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 예산</div>
 					<div class="storyContent">
-						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_budget }" alt="프로젝트 예산 이미지">
+						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_budget }" id="img_budget" alt="프로젝트 예산 이미지" onerror="defaultImg(this)">
 					</div>
 					
 					
@@ -380,7 +391,7 @@
 					<div id="schedule" class="style__StorySection-y9rrh6-7 dxcJNl">
 					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 일정</div>
 					<div class="storyContent">
-						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_sch }" alt="프로젝트 일정 이미지">
+						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_sch }" id="img_sch" alt="프로젝트 일정 이미지" onerror="defaultImg(this)">
 					</div>
 					
 					
@@ -391,7 +402,7 @@
 					<div id="introduction" class="style__StorySection-y9rrh6-7 dxcJNl">
 					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 팀 소개</div>
 					<div class="storyContent">
-						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_team }" alt="프로젝트 팀 이미지">
+						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_team }" id="img_team" alt="프로젝트 팀 이미지" onerror="defaultImg(this)">
 					</div>
 				
 				
@@ -401,7 +412,7 @@
 					<div id="rewardsDescription" class="style__StorySection-y9rrh6-7 dxcJNl">
 					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">리워드 설명</div>
 					<div class="storyContent">
-						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_reward }" alt="프로젝트 리워드 이미지">
+						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_reward }" id="img_reward" alt="프로젝트 리워드 이미지" onerror="defaultImg(this)">
 					</div>
 				
 				
@@ -515,7 +526,7 @@
 								<div class="style__CreatorCardLabel-sc-1kqdyt-7 dkwthg">창작자 소개</div>
 								<div class="style__CreatorProfile-sc-1kqdyt-8 jqFoCK">
 									<div class="style__CreatorWrapper-sc-1kqdyt-9 iNlJa-D">
-										<a target="_blank" href="/u/baeunmangdeokcats">
+										<a target="_blank" href="user?id=${project.creator_id }">
 <!-- 											<span class="ProfileImg__StyledProfileImg-sc-1es2i1m-0 izmTNc profileImage"> -->
 <%-- 												<img src="${pageContext.request.contextPath }/resources/upload/${project.creator_profile }" alt="프로젝트 창작자 이미지"> --%>
 <!-- 											</span> -->
@@ -524,13 +535,13 @@
 										</a>
 										<div class="style__CreatorInfo-sc-1kqdyt-10 gFiWmy">
 											<div class="style__TopWrap-sc-1kqdyt-11 cUKpnq">
-												<a target="_blank" href="/u/baeunmangdeokcats">
+												<a target="_blank" href="user?id=${project.creator_id }">
 													<span class="style__CreatorName-sc-1kqdyt-12 ktUknF">${project.creator }</span>
 												</a>
 											</div>
 											<div class="style__BottomWrap-sc-1kqdyt-13 odjCI">
 												<div class="style__CreatorStats-sc-1kqdyt-14 kLwAlh">
-													<span>마지막 로그인</span> <b>23시간 전</b>
+<!-- 													<span>마지막 로그인</span> <b>23시간 전</b> -->
 												</div>
 											</div>
 										</div>
@@ -571,7 +582,8 @@
 						
 						<div class="Sticker__Wrapper-sc-1si6lg8-0 gYVCLo reward-sticker">
 							<div class="Rewards-kxhggz-2 iWbFFD tbb">
-								<div class="Rewards__RewardsLabel-kxhggz-3 hgFOaN">리워드 선택</div>
+<!-- 								<div class="Rewards__RewardsLabel-kxhggz-3 hgFOaN">리워드 선택</div> -->
+								<div class="Rewards__RewardsLabel-kxhggz-3 hgFOaN" id="reward">리워드 선택</div>
 							
 									<!-- 여기 -->
 									<c:forEach var="reward" items="${rewardList }">

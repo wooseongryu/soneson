@@ -9,6 +9,12 @@
 //	    $(this).height(contentHeight);
 //	});
 
+//default Img
+//function defaultImg(tagId) {
+//	console.log(tagId.id);
+//	$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/project/default.png');
+//}
+
 $(function() {
 //	debugger;
 //	$(".iqsxGc").each(function() {
@@ -26,6 +32,9 @@ $(function() {
 //		$(this).removeClass("ehQhai");
 	});
 	
+	$("#scrollButton").click(function() {
+        $("#reward").get(0).scrollIntoView({ behavior: 'smooth' });
+    });
 	
 });
 

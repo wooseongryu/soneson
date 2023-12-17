@@ -382,6 +382,7 @@
 				, count(f.fund_code) AS donor
 				, max(p.status) AS status
 				, DATEDIFF(date(max(p.end_date)), date(now())) AS dday
+				, max(p.user_id) AS creator_id
 			FROM project p
 			LEFT JOIN fund f
 			ON p.project_code = f.project_code

@@ -20,6 +20,11 @@
  
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/soneson/img/header/son33.ico" type="image/x-icon">
 <title>손에손</title>
+<script>
+function defaultImg(tagId) {
+	$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/projectList/errorList.png');
+}
+</script>
 
 
 </head>
@@ -107,10 +112,10 @@
 							<a target="_self" href="projectDetail?project_code=${project.project_code }">
 								<c:choose>
 								    <c:when test="${fn:contains(project.img_main, 'https')}">
-								        <img src="${project.img_main}" alt="프로젝트 커버 이미지" style="width:100%; height:100%">
+								        <img src="${project.img_main}" id="img_main" alt="프로젝트 커버 이미지" style="width:100%; height:100%" onerror="defaultImg(this)">
 								    </c:when>
 								    <c:otherwise>
-								        <img src="${pageContext.request.contextPath }/resources/upload/${project.img_main }" alt="프로젝트 커버 이미지 DB" style="width:100%; height:100%">
+								        <img src="${pageContext.request.contextPath }/resources/upload/${project.img_main }" id="img_main2" alt="프로젝트 커버 이미지 DB" style="width:100%; height:100%" onerror="defaultImg(this)">
 								    </c:otherwise>
 								</c:choose>
 							</a>
