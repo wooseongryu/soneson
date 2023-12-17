@@ -120,10 +120,24 @@
 									<div class="anime__review__item">
 										<div class="anime__review__item__text">
 											<div class="row contents">
-		   										<div class="product__item__pic set-bg col-3" data-setbg="${userFunding.img_main }" 
-												style="background-image: url('${userFunding.img_main}'); width: 200px; height: 200px; margin-left: 15px;">
+<%-- 		   										<div class="product__item__pic set-bg col-3" data-setbg="${userFunding.img_main }"  --%>
+<%-- 												style="background-image: url('${userFunding.img_main}'); width: 200px; height: 200px; margin-left: 15px;"> --%>
+<!-- 												</div> -->
+<!-- 												</div> -->
+		   										<div data-setbg="${userFunding.img_main }"> 
+												<c:choose>
+													<c:when test="${fn:contains(userFunding.img_main, 'https')}">
+														<img src="${userFunding.img_main}" alt="프로젝트 썸네일 이미지" style="width: 200px; height: 200px; margin-left: 15px;">
+													</c:when>
+				    									<c:when test="${userFunding.img_main}">
+														<img src="${pageContext.request.contextPath }/resources/upload/${userFunding.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width: 200px; height: 200px; margin-left: 15px;">
+													</c:when>
+													<c:otherwise>
+														<img src="${pageContext.request.contextPath }/resources/soneson/img/project/default.png" alt="프로젝트 썸네일 이미지" style="width: 200px; height: 200px; margin-left: 15px;">
+													</c:otherwise>
+												</c:choose>
 												</div>
-												<div class="col-8" style="vertical-align: middle; margin-top: 25px;">
+												<div class="col-6" style="vertical-align: middle; margin-top: 25px;">
 												<span style="font-weight: bold;" >후원일 : ${fn:replace(userFunding.fund_date ,"T", " ") } | 후원번호 : ${userFunding.fund_code }</span> 
 												<br>
 												<br>
@@ -132,6 +146,7 @@
 												<h6 style="font-size: small; font-weight: 500;">${userFunding.cost }원 결제 예정</h6>
 												<h6 style="font-size: small; font-weight: 400;">결제 예정일까지 ${userFunding.d_day }</h6>
 												<button type="button" class="btnCencel" onclick="location.href = 'projectDetail?project_code=${userFunding.project_code}'">후원프로젝트로</button>
+												<button type="button" class="btnCencel" onclick="location.href = 'fundingDetail?project_code=${userFunding.project_code}'">펀딩 상세</button>
 												<button type="button" class="btnCencel" style="background: #7d7d7d" onclick="fundingCencel('${userFunding.project_code}')">후원취소</button>
 												</div>
 											</div>

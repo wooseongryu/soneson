@@ -50,4 +50,13 @@ public interface FundingMapper {
 	// 펀딩 취소 - 인포데이터 데이터 삭제
 	int deleteInfoCount(Map<String, Object> map);
 
+
+	int selectUserCount(Map<String, Object> map);
+
+	// 펀딩한 유저 카운트
+	int selectFundCount(int project_code);
+
+	// 펀딩 상세페이지 조회
+	Map<String, Object> selectfundingDetail(@Param("project_code") int project_code, @Param("sId") String sId);
+
 }

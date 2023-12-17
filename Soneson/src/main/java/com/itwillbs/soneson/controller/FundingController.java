@@ -76,30 +76,32 @@ public class FundingController {
 	
 	// 후원(결제) 완료 페이지
 	@GetMapping("fundingSuccess")
-	public String fundingSuccess() {
+	public String fundingSuccess(HttpSession session, Model model, @RequestParam int project_code ) {
 		System.out.println("FundingController - fundingSuccess()");
-		
-		
+
+		model.addAttribute("selectFundCount", service.selectFundCount(project_code));
 		
 		return "mypage/funding/funding_success";
 	}
 	
-	// 후원(결제) 취소 확인 페이지
-	@GetMapping("fundingCancel")
-	public String fundingCancel() {
-		System.out.println("FundingController - fundingCancel()");
-		
-
-		
-		return "mypage/funding/funding_cancel";
-	}
+//	// 후원(결제) 취소 확인 페이지
+//	@GetMapping("fundingCancel")
+//	public String fundingCancel() {
+//		System.out.println("FundingController - fundingCancel()");
+//		return "mypage/funding/funding_cancel";
+//	}
 	
 	// 후원 상세 페이지
 	@GetMapping("fundingDetail")
-	public String fundingDetail() {
+	public String fundingDetail(HttpSession session, Model model, @RequestParam int project_code) {
 		System.out.println("FundingController - fundingDetail()");
 		
+		String sId = (String)session.getAttribute("sId");
+		
+		Map<String, Object> fundingDetail = service.selectfundingDetail(project_code, sId);
 	
+		model.addAttribute("fundingDetail", fundingDetail);
+		
 		return "mypage/funding/funding_detail";
 	}
 		
@@ -210,12 +212,24 @@ public class FundingController {
 		map.put("user_id", sId);
 		System.out.println(">>>>>>>>>insertFundUser<<<<<<<<<" + map);
 		
+		// 유저 확인
+		
+		int selectUserCount = service.selectUserCount(map); 
+		
+		if(selectUserCount > 0) {
+			model.addAttribute("msg", "이미 후원한 프로젝트입니다");
+			model.addAttribute("targetURL", "fundingList");
+			return "forward";
+		}
+		
+		
 		int insertUserFund = service.insertUserFund(map);
 		if(insertUserFund > 0) {
 			int insertUserAuth = service.insertUserAuth(map);
 			if(insertUserAuth > 0) {
 				int insertUserAddress = service.insertUserAddress(map);
 				if(insertUserAddress > 0) {
+					model.addAttribute("project_code", map.get("project_code"));
 					return "redirect:/fundingSuccess";
 				}
 			}

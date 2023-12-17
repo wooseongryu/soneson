@@ -80,4 +80,20 @@ public class FundingService {
 	public int deleteInfoCount(Map<String, Object> map) {
 		return mapper.deleteInfoCount(map);
 	}
+
+
+	public int selectUserCount(Map<String, Object> map) {
+		return mapper.selectUserCount(map);
+	}
+
+	// 후원성공시 유저카운트 
+	public int selectFundCount(int project_code) {
+		return mapper.selectFundCount(project_code);
+	}
+
+	// 펀딩 상세페이지 조회
+	public Map<String, Object> selectfundingDetail(int project_code, String sId) {
+
+		return mapper.selectfundingDetail(project_code, sId);
+	}
 }

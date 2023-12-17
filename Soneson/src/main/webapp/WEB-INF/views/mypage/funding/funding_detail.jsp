@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>    
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -122,19 +125,6 @@
     
 
     
-<!--     <section class="blog-details spad"> -->
-<!--         <div class="container"> -->
-<!-- 		    <div class="blog__details__comment"> -->
-<!-- 				<div class="blog__details__comment__item"> -->
-<!-- 				    <div class="blog__details__comment__item__text"> -->
-<!-- 				        <h3> -->
-<!-- 				        	<b>후원 상세 페이지</b> -->
-<!-- 				        </h3> -->
-<!-- 				    </div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</section> -->
 	
 
     <!-- Product Section Begin -->
@@ -148,12 +138,22 @@
 							<div class="anime__review__item">
 								<div class="" id="project_review_content">
 									<div class="">
-									<a href="${pageContext.request.contextPath }/soneson/popular">
-										<img src="${pageContext.request.contextPath }/resources/user/success.jpg" class="success_jpg">		
-									</a>
-										
-									후원일 2023.11.27 | 후원번호 1000001<br>내 옆에 고양이 다이어리 2024<br>• [선물A] 고양이 다이어리 + 다꾸 고양이 스티커 2매
-									<span>39,000원 결제 예정</span>
+<%-- 									<a href="${pageContext.request.contextPath }/soneson/popular"> --%>
+<%-- 										<img src="${pageContext.request.contextPath }/resources/user/success.jpg" class="success_jpg">		 --%>
+<!-- 									</a> -->
+										<c:choose>
+											<c:when test="${fn:contains(fundingDetail.img_main, 'https')}">
+												<img src="${fundingDetail.img_main}" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
+											</c:when>
+		    									<c:when test="${fundingDetail.img_main}">
+												<img src="${pageContext.request.contextPath }/resources/upload/${fundingDetail.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width:350px; height:200px">
+											</c:when>
+											<c:otherwise>
+												<img src="${pageContext.request.contextPath }/resources/soneson/img/project/default.png" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
+											</c:otherwise>
+										</c:choose>
+										후원일 ${fn:replace(fundingDetail.fund_date ,"T", " ") } | 후원번호 ${fundingDetail.fund_code }<br>${fundingDetail.title }<br>
+										<span>${fundingDetail.cost }원 결제 예정</span>
 									</div>
 								</div>
 							</div>
@@ -170,19 +170,19 @@
 										<div class="contents__InfoBox__InfoItem">
 											<dl class="InfoBox__InfoItem">
 												<dt class="InfoBox__InfoTitle">펀딩 상태</dt>
-												<dd class="InfoBox__InfoContentWrap"><span>펀딩 성공</span></dd>
+												<dd class="InfoBox__InfoContentWrap"><span>${fundingDetail.status }</span></dd>
 											</dl>
 											<dl class="InfoBox__InfoItem">
 												<dt class="InfoBox__InfoTitle">후원 번호</dt>
-												<dd class="InfoBox__InfoContentWrap">2000001</dd>
+												<dd class="InfoBox__InfoContentWrap">${fundingDetail.fund_code }</dd>
 											</dl>
 											<dl class="InfoBox__InfoItem">
 												<dt class="InfoBox__InfoTitle">후원 날짜</dt>
-												<dd class="InfoBox__InfoContentWrap">2023. 11. 01</dd>
+												<dd class="InfoBox__InfoContentWrap">${fn:replace(fundingDetail.fund_date ,"T", " ") }</dd>
 											</dl>
 											<dl class="InfoBox__InfoItem">
 												<dt class="InfoBox__InfoTitle">펀딩 마감일</dt>
-												<dd class="InfoBox__InfoContentWrap">2023. 11. 08</dd>
+												<dd class="InfoBox__InfoContentWrap">${fn:replace(fundingDetail.end_date ,"T", " ") }</dd>
 											</dl>
 										
 										</div>	
@@ -190,39 +190,37 @@
 								</div>
 							</div>
 						</div>
-						<br>
 						
 						
-						<div class="anime__details__review">
-							<div class="anime__review__item">
-								<div class="anime__review__item__text" id="project_review_content">
-									<div class="contents">
-									<h6><b>선물 정보</b></h6>
-									<br>
-										<div class="contents__InfoBox__InfoItem">
-											<dl class="InfoBox__InfoItem">
-												<dt class="InfoBox__InfoTitle">선물 구성</dt>
-												<dd class="InfoBox__InfoContentWrap">• 화이트&블랙 머그컵(x 1)<br></dd>
-											</dl>
-											<dl class="InfoBox__InfoItem">
-												<dt class="InfoBox__InfoTitle">후원 금액</dt>
-												<dd class="InfoBox__InfoContentWrap">27,000원</dd>
-											</dl>
-											<dl class="InfoBox__InfoItem">
-												<dt class="InfoBox__InfoTitle">추가 후원금</dt>
-												<dd class="InfoBox__InfoContentWrap">15,000원</dd>
-											</dl>
-											<dl class="InfoBox__InfoItem">
-												<dt class="InfoBox__InfoTitle">전달 상태</dt>
-												<dd class="InfoBox__InfoContentWrap">2023. 11. 22 전달 완료</dd>
-											</dl>
+<!-- 						<div class="anime__details__review"> -->
+<!-- 							<div class="anime__review__item"> -->
+<!-- 								<div class="anime__review__item__text" id="project_review_content"> -->
+<!-- 									<div class="contents"> -->
+<!-- 									<h6><b>선물 정보</b></h6> -->
+<!-- 									<br> -->
+<!-- 										<div class="contents__InfoBox__InfoItem"> -->
+<!-- 											<dl class="InfoBox__InfoItem"> -->
+<!-- 												<dt class="InfoBox__InfoTitle">선물 구성</dt> -->
+<!-- 												<dd class="InfoBox__InfoContentWrap">• 화이트&블랙 머그컵(x 1)<br></dd> -->
+<!-- 											</dl> -->
+<!-- 											<dl class="InfoBox__InfoItem"> -->
+<!-- 												<dt class="InfoBox__InfoTitle">후원 금액</dt> -->
+<!-- 												<dd class="InfoBox__InfoContentWrap">27,000원</dd> -->
+<!-- 											</dl> -->
+<!-- 											<dl class="InfoBox__InfoItem"> -->
+<!-- 												<dt class="InfoBox__InfoTitle">추가 후원금</dt> -->
+<!-- 												<dd class="InfoBox__InfoContentWrap">15,000원</dd> -->
+<!-- 											</dl> -->
+<!-- 											<dl class="InfoBox__InfoItem"> -->
+<!-- 												<dt class="InfoBox__InfoTitle">전달 상태</dt> -->
+<!-- 												<dd class="InfoBox__InfoContentWrap">2023. 11. 22 전달 완료</dd> -->
+<!-- 											</dl> -->
 										
-										</div>	
-									</div>
-								</div>
-							</div>
-						</div>
-						<br>
+<!-- 										</div>	 -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
 						
 						
 						<div class="anime__details__review">
@@ -232,17 +230,17 @@
 									<h6><b>결제 정보</b></h6>
 									<br>
 										<div class="contents__InfoBox__InfoItem">
-											<dl class="InfoBox__InfoItem">
-												<dt class="InfoBox__InfoTitle">결제 수단</dt>
-												<dd class="InfoBox__InfoContentWrap">신한카드(***1) 일시불<br></dd>
-											</dl>
+<!-- 											<dl class="InfoBox__InfoItem"> -->
+<!-- 												<dt class="InfoBox__InfoTitle">결제 수단</dt> -->
+<!-- 												<dd class="InfoBox__InfoContentWrap">신한카드(***1) 일시불<br></dd> -->
+<!-- 											</dl> -->
 											<dl class="InfoBox__InfoItem">
 												<dt class="InfoBox__InfoTitle">결제 금액</dt>
-												<dd class="InfoBox__InfoContentWrap">42,000원</dd>
+												<dd class="InfoBox__InfoContentWrap">${fundingDetail.cost }원</dd>
 											</dl>
 											<dl class="InfoBox__InfoItem">
 												<dt class="InfoBox__InfoTitle">결제 상태</dt>
-												<dd class="InfoBox__InfoContentWrap">2023. 11. 09 결제 완료</dd>
+												<dd class="InfoBox__InfoContentWrap">${fundingDetail.status }</dd>
 											</dl>
 										</div>	
 									</div>
@@ -261,15 +259,15 @@
 										<div class="contents__InfoBox__InfoItem">
 											<dl class="InfoBox__InfoItem">
 												<dt class="InfoBox__InfoTitle">받는 사람</dt>
-												<dd class="InfoBox__InfoContentWrap">춘식이<br></dd>
+												<dd class="InfoBox__InfoContentWrap">${fundingDetail.address_reciver }<br></dd>
 											</dl>
 											<dl class="InfoBox__InfoItem">
 												<dt class="InfoBox__InfoTitle">연락처</dt>
-												<dd class="InfoBox__InfoContentWrap">010-1111-2222</dd>
+												<dd class="InfoBox__InfoContentWrap">${fundingDetail.address_reciver_phone }</dd>
 											</dl>
 											<dl class="InfoBox__InfoItem">
 												<dt class="InfoBox__InfoTitle">주소</dt>
-												<dd class="InfoBox__InfoContentWrap">(47246) 부산광역시 부산진구 동천로 109 (부전동) 삼한골든게이트 7층</dd>
+												<dd class="InfoBox__InfoContentWrap">(${fundingDetail.address_code }) ${fundingDetail.address_main }${fundingDetail.address_reciver_sub }</dd>
 											</dl>
 										</div>	
 									</div>
