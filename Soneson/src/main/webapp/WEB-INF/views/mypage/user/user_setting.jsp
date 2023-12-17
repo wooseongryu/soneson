@@ -463,7 +463,7 @@
     				if (resp.kakao_id == null) {
     					kakao_id = "미연동 중입니다.";
     					kakao_btn = "연동"
-   						kakao_link = 'href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://localhost:8081/soneson/kakao/callback"';
+   						kakao_link = 'href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://c3d2306t1.itwillbs.com/soneson/kakao/callback"';
     				}
     				
     				phone = resp.user_phone;
@@ -912,7 +912,7 @@
     				alert("카카오 연동을 해제 하였습니다.");
     				
     				kakao_id = "미연동 중입니다.";
-    				kakao_link = 'href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://localhost:8081/soneson/kakao/callback"';
+    				kakao_link = 'href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=436a131f08ff59d92a8725d7841cd063&redirect_uri=http://c3d2306t1.itwillbs.com/soneson/kakao/callback"';
     				kakao_btn = "연동";
     				
     				$("#user_kakao").children().remove();
@@ -1035,7 +1035,7 @@
     		let requestUri = "https://testapi.openbanking.or.kr/oauth/2.0/authorize?"
     			+ "response_type=code"
     			+ "&client_id=4066d795-aa6e-4720-9383-931d1f60d1a9"
-    			+ "&redirect_uri=http://localhost:8081/soneson/callback"
+    			+ "&redirect_uri=http://c3d2306t1.itwillbs.com/soneson/callback"
     			+ "&scope=login inquiry transfer oob"
 //     			+ "&scope=login inquiry transfer"
     			+ "&state=12345678901234567890123456789012"
