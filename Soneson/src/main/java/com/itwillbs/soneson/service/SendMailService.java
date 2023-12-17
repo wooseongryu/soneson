@@ -17,7 +17,7 @@ public class SendMailService {
 		// -----------------------------------------------------------
 		// 인증 메일에 포함시킬 제목과 본문 생성
 		String subject = "[손에손] 가입 인증 메일입니다.";
-		String content = "<a href='http://localhost:8081/soneson/UserEmailAuth?auth_id=" + id + "&auth_code=" + authCode + "'>"
+		String content = "<a href='http://c3d2306t1.itwillbs.com/soneson/UserEmailAuth?auth_id=" + id + "&auth_code=" + authCode + "'>"
 							+ "이메일 인증을 위해 이 링크를 클릭해 주세요!</a>";
 		new Thread(new Runnable() {
 			

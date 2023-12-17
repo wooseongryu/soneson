@@ -192,7 +192,7 @@
 										<c:forEach var="WritingProject" items="${WritingProjectList}">
 											<div class="col-lg-4 col-md-6 col-sm-6" style="">                                                
 												<div class="product__item">
-					    							<a href="projectDetail?project_code=${WritingProject.project_code}">
+					    							<a>
  					    								<c:choose>
 															<c:when test="${fn:contains(WritingProject.img_main, 'https')}">
 																<img src="${WritingProject.img_main}" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
