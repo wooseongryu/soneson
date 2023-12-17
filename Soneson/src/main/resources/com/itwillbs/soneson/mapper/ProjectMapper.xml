@@ -199,8 +199,8 @@
 	<![CDATA[
 			WHERE p.status = '승인'
 			GROUP BY p.project_code) A
-		WHERE start_date > now()
-		ORDER BY A.start_date - now()	
+		WHERE date(A.start_date) >= date(now())
+		ORDER BY date(A.start_date) - date(now())	
 	]]>
 </sql>
 

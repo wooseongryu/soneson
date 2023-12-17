@@ -33,11 +33,11 @@ function defaultImg(tagId) {
 // 	$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/projectList/' + name + '.png');
 // }
 
-function deleteFollow(user_id) {
- 		if(confirm("팔로우를 해제 하시겠습니까?")) {
- 			location.href="detaildeleteFollow?follow_id=" + user_id;
- 		}
- 	}
+// function deleteFollow(user_id) {
+//  		if(confirm("팔로우를 해제 하시겠습니까?")) {
+//  			location.href="detaildeleteFollow?follow_id=" + user_id;
+//  		}
+//  	}
 
 </script>
 
@@ -302,9 +302,9 @@ function deleteFollow(user_id) {
 			<div class="style__ProjectContentsNavigationInner-qovng2-3 kxemOF">
 				<div class="style__NavLeft-qovng2-4 hGCHxL">
 					<a aria-current="page" class="style__NavItem-qovng2-0 cxytbh active" style="color:rgba(0,0,0,1);border-bottom:3px solid rgba(0,0,0,1);padding-bottom:calc(0.5rem - 3px)" href="/baeunmangdeokcats/story?ref=%EA%B2%80%EC%83%89%2F%ED%82%A4%EC%9B%8C%EB%93%9C">프로젝트 계획</a>
-					<a class="style__NavItem-qovng2-0 cxytbh" href="/baeunmangdeokcats/community/creator?ref=%EA%B2%80%EC%83%89%2F%ED%82%A4%EC%9B%8C%EB%93%9C">업데이트<span class="style__CommunityPostAmount-ky14bp-7 cbohWb">1</span></a>
-					<a class="style__NavItem-qovng2-0 cxytbh" href="/baeunmangdeokcats/community/backer?ref=%EA%B2%80%EC%83%89%2F%ED%82%A4%EC%9B%8C%EB%93%9C">커뮤니티<span class="style__CommunityPostAmount-ky14bp-7 cbohWb">15</span></a>
-					<a class="style__NavItem-qovng2-0 cxytbh" href="/baeunmangdeokcats/recommend">추천</a>
+<!-- 					<a class="style__NavItem-qovng2-0 cxytbh" href="/baeunmangdeokcats/community/creator?ref=%EA%B2%80%EC%83%89%2F%ED%82%A4%EC%9B%8C%EB%93%9C">업데이트<span class="style__CommunityPostAmount-ky14bp-7 cbohWb">1</span></a> -->
+<!-- 					<a class="style__NavItem-qovng2-0 cxytbh" href="/baeunmangdeokcats/community/backer?ref=%EA%B2%80%EC%83%89%2F%ED%82%A4%EC%9B%8C%EB%93%9C">커뮤니티<span class="style__CommunityPostAmount-ky14bp-7 cbohWb">15</span></a> -->
+<!-- 					<a class="style__NavItem-qovng2-0 cxytbh" href="/baeunmangdeokcats/recommend">추천</a> -->
 				</div>
 			</div>
 		</nav>
@@ -573,23 +573,21 @@ function deleteFollow(user_id) {
 								<div class="style__FollowButtonWrapper-sc-1kqdyt-5 VdNWQ">
 								<button class="SolidButton__Button-d4ctco-0 iDFRLW style__FollowButton-sc-1fj9dkx-0 hzzFYf fnt-p1" color="grayEditor200">
 								<span>
-<!-- 								<div class="style__FollowButtonText-sc-1fj9dkx-1 jGQFIP">팔로우</div> -->
-								<c:choose>
-					        		<c:when test="${user.followCnt eq 0 }">
-<!-- 					        			<div class="style__FollowButtonText-sc-1fj9dkx-1 jGQFIP">팔로우</div> -->
-										<div name="plus" class="Icon__SVGICON-sc-12tligs-0 kPBcuc style__FollowButtonIcon-sc-1fj9dkx-2 hTyhjW">
-										<svg viewBox="0 0 48 48">
-										<path fill-rule="evenodd" clip-rule="evenodd" d="M43.7104 21.8549H25.99V4.09524C25.99 2.89796 24.9945 2 23.9005 2C22.8054 2 21.81 2.89796 21.81 4.09524V21.9546H4.0905C2.89593 21.8549 2 22.8526 2 23.9501C2 25.0476 2.89593 26.0454 4.0905 26.0454H21.9095V43.9048C21.9095 45.0023 22.8054 46 23.999 46C25.095 46 26.0905 45.102 26.0905 43.9048V26.0454H43.9085C45.0045 26.0454 46 25.1474 46 23.9501C45.8009 22.8526 44.904 21.8549 43.7104 21.8549C43.7104 21.8549 43.81 21.8549 43.7104 21.8549Z">
-										</path>
-										</svg>
-										</div>
-							        	<a href="follow?follow_id=${project.creator_id}">팔로우</a>
-<%-- 							        	<a href="follow?follow_id=${user.user_id }">+ 팔로우</a> --%>
-					        		</c:when>
-					        		<c:otherwise>
-							        	<a onclick="deleteFollow('${user.user_id }')">팔로잉</a>
-					        		</c:otherwise>
-					        	</c:choose>
+								<div class="style__FollowButtonText-sc-1fj9dkx-1 jGQFIP">팔로우</div>
+<%-- 								<c:choose> --%>
+<%-- 					        		<c:when test="${user.followCnt eq 0 }"> --%>
+<!-- 										<div name="plus" class="Icon__SVGICON-sc-12tligs-0 kPBcuc style__FollowButtonIcon-sc-1fj9dkx-2 hTyhjW"> -->
+<!-- 										<svg viewBox="0 0 48 48"> -->
+<!-- 										<path fill-rule="evenodd" clip-rule="evenodd" d="M43.7104 21.8549H25.99V4.09524C25.99 2.89796 24.9945 2 23.9005 2C22.8054 2 21.81 2.89796 21.81 4.09524V21.9546H4.0905C2.89593 21.8549 2 22.8526 2 23.9501C2 25.0476 2.89593 26.0454 4.0905 26.0454H21.9095V43.9048C21.9095 45.0023 22.8054 46 23.999 46C25.095 46 26.0905 45.102 26.0905 43.9048V26.0454H43.9085C45.0045 26.0454 46 25.1474 46 23.9501C45.8009 22.8526 44.904 21.8549 43.7104 21.8549C43.7104 21.8549 43.81 21.8549 43.7104 21.8549Z"> -->
+<!-- 										</path> -->
+<!-- 										</svg> -->
+<!-- 										</div> -->
+<%-- 							        	<a href="follow?follow_id=${project.creator_id}">팔로우</a> --%>
+<%-- 					        		</c:when> --%>
+<%-- 					        		<c:otherwise> --%>
+<%-- 							        	<a onclick="deleteFollow('${user.user_id }')">팔로잉</a> --%>
+<%-- 					        		</c:otherwise> --%>
+<%-- 					        	</c:choose> --%>
 								</span>
 								</button>
 								</div>
@@ -686,82 +684,82 @@ function deleteFollow(user_id) {
 														</div>
 													</section>
 													
-													<section direction="right" class="Stepper__StepperWrapper-sc-14ctxej-1 gcTNai">
-														<div class="RewardCard__RewardCardInner-sc-11jni8b-4 doBnVx">
-															<div class="RewardCard__RewardHeader-sc-11jni8b-5 eHaKBF">
-																<span class="RewardCard__PledgeAmount-sc-11jni8b-6 cMOTuF">
-																	<div name="check" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV RewardCard__StyledSVGIcon-sc-11jni8b-2 eoOxYA">
-																		<svg viewBox="0 0 48 48">
-																			<path fill-rule="evenodd" clip-rule="evenodd" d="M41.6 8L18.9 30.8L6.2 19L2 23.5L19.1 39.4L46 12.4L41.6 8Z">
-																			</path>
-																		</svg>
-																	</div>
-<!-- 																	49명이 선택 -->
-																</span>
-															</div>
+<!-- 													<section direction="right" class="Stepper__StepperWrapper-sc-14ctxej-1 gcTNai"> -->
+<!-- 														<div class="RewardCard__RewardCardInner-sc-11jni8b-4 doBnVx"> -->
+<!-- 															<div class="RewardCard__RewardHeader-sc-11jni8b-5 eHaKBF"> -->
+<!-- 																<span class="RewardCard__PledgeAmount-sc-11jni8b-6 cMOTuF"> -->
+<!-- 																	<div name="check" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV RewardCard__StyledSVGIcon-sc-11jni8b-2 eoOxYA"> -->
+<!-- 																		<svg viewBox="0 0 48 48"> -->
+<!-- 																			<path fill-rule="evenodd" clip-rule="evenodd" d="M41.6 8L18.9 30.8L6.2 19L2 23.5L19.1 39.4L46 12.4L41.6 8Z"> -->
+<!-- 																			</path> -->
+<!-- 																		</svg> -->
+<!-- 																	</div> -->
+<!-- <!-- 																	49명이 선택 -->
+<!-- 																</span> -->
+<!-- 															</div> -->
 															
-															<div class="RewardCard__RewardSelector-sc-11jni8b-13 doSKXg">
-																<div class="sub-wrapper">
-																	<div class="RewardCard__RewardContents-sc-11jni8b-10 cfUWzc">
-																		<div class="RewardCard__RewardMinimumPledgeAmount-sc-11jni8b-11 guDLPF">${reward.reward_amount } +</div>
-																		<div class="RewardCard__RewardDescription-sc-11jni8b-12 ihPVAR">${reward.reward_explain }</div>
-																	</div>
-																</div>
-															</div>
+<!-- 															<div class="RewardCard__RewardSelector-sc-11jni8b-13 doSKXg"> -->
+<!-- 																<div class="sub-wrapper"> -->
+<!-- 																	<div class="RewardCard__RewardContents-sc-11jni8b-10 cfUWzc"> -->
+<%-- 																		<div class="RewardCard__RewardMinimumPledgeAmount-sc-11jni8b-11 guDLPF">${reward.reward_amount } +</div> --%>
+<%-- 																		<div class="RewardCard__RewardDescription-sc-11jni8b-12 ihPVAR">${reward.reward_explain }</div> --%>
+<!-- 																	</div> -->
+<!-- 																</div> -->
+<!-- 															</div> -->
 															
-															<ul class="RewardCard__Items-sc-11jni8b-14 ivsvtS">
-<%-- 																<c:forEach var="item" items="${reward}"> --%>
-<%-- 															        <p>${item.reward_item_name}</p> --%>
-<%-- 															    </c:forEach> --%>
+<!-- 															<ul class="RewardCard__Items-sc-11jni8b-14 ivsvtS"> -->
+<%-- <%-- 																<c:forEach var="item" items="${reward}"> --%> 
+<%-- <%-- 															        <p>${item.reward_item_name}</p> --%> 
+<%-- <%-- 															    </c:forEach> --%> 
 															
-																	<c:forEach var="item" items="${reward.reward_item_name }">
-																<li class="RewardCard__ItemList-sc-11jni8b-15 kYvoWT">
-																        <p>${item}</p>
+<%-- 																	<c:forEach var="item" items="${reward.reward_item_name }"> --%>
+<!-- 																<li class="RewardCard__ItemList-sc-11jni8b-15 kYvoWT"> -->
+<%-- 																        <p>${item}</p> --%>
 																
-<%-- 																${reward.reward_item_name } --%>
-		<!-- 														&nbsp;<span>( x 1 )</span> -->
-																</li>
-																    </c:forEach>
-															</ul>
+<%-- <%-- 																${reward.reward_item_name } --%> 
+<!-- 		<!-- 														&nbsp;<span>( x 1 )</span> --> 
+<!-- 																</li> -->
+<%-- 																    </c:forEach> --%>
+<!-- 															</ul> -->
 															
-															<div class="RewardCard__DeliveryDate-sc-11jni8b-16 gRjZWy">
-																<span>예상 전달일 &nbsp;<b>2023년 12월 20일</b>
-																</span>
-															</div>
+<!-- 															<div class="RewardCard__DeliveryDate-sc-11jni8b-16 gRjZWy"> -->
+<!-- 																<span>예상 전달일 &nbsp;<b>2023년 12월 20일</b> -->
+<!-- 																</span> -->
+<!-- 															</div> -->
 															
-															<div class="ExtraPledge__Wrapper-sc-6m3rsu-0 ipAlaK">
-																<div class="StyledTBB__FormWrapper-trchgn-6 hCtMzp ExtraPledge__StyledFormRenderChildren-sc-6m3rsu-1 eOMuk">
-																	<div class="StyledTBB__FormLabel-trchgn-4 keSzYC form-input-label">추가 후원금(선택)</div>
-																	<div class="StyledTBB__FormContent-trchgn-5 iBKDvR form-input-wrapper">
-																		<div class="InputWithGuideAndLengthCheck__Wrapper-sc-9nmfrw-0 eCSxwJ">
-																			<div class="InputWithGuideAndLengthCheck__InputWrapper-sc-9nmfrw-3 bBnjVq">
-																				<span class="Input__InputWrapper-j7moqy-0 fOjsfs InputWithGuideAndLengthCheck__StyledInput-sc-9nmfrw-1 wmJOZ">
-																					<input type="text" inputmode="numeric" placeholder="0" autocomplete="off" autocapitalize="off" class="Input__InnerInput-j7moqy-1 bfmNPl" value="">
-																				</span>
-																			</div>
-																			<div class="InputWithGuideAndLengthCheck__NoticeArea-sc-9nmfrw-4 ciHGYP">
-																				<p class="InputWithGuideAndLengthCheck__GuideMessage-sc-9nmfrw-5 fduvas"></p>
-																			</div>
-																		</div>
-																	</div>
+<!-- 															<div class="ExtraPledge__Wrapper-sc-6m3rsu-0 ipAlaK"> -->
+<!-- 																<div class="StyledTBB__FormWrapper-trchgn-6 hCtMzp ExtraPledge__StyledFormRenderChildren-sc-6m3rsu-1 eOMuk"> -->
+<!-- 																	<div class="StyledTBB__FormLabel-trchgn-4 keSzYC form-input-label">추가 후원금(선택)</div> -->
+<!-- 																	<div class="StyledTBB__FormContent-trchgn-5 iBKDvR form-input-wrapper"> -->
+<!-- 																		<div class="InputWithGuideAndLengthCheck__Wrapper-sc-9nmfrw-0 eCSxwJ"> -->
+<!-- 																			<div class="InputWithGuideAndLengthCheck__InputWrapper-sc-9nmfrw-3 bBnjVq"> -->
+<!-- 																				<span class="Input__InputWrapper-j7moqy-0 fOjsfs InputWithGuideAndLengthCheck__StyledInput-sc-9nmfrw-1 wmJOZ"> -->
+<!-- 																					<input type="text" inputmode="numeric" placeholder="0" autocomplete="off" autocapitalize="off" class="Input__InnerInput-j7moqy-1 bfmNPl" value=""> -->
+<!-- 																				</span> -->
+<!-- 																			</div> -->
+<!-- 																			<div class="InputWithGuideAndLengthCheck__NoticeArea-sc-9nmfrw-4 ciHGYP"> -->
+<!-- 																				<p class="InputWithGuideAndLengthCheck__GuideMessage-sc-9nmfrw-5 fduvas"></p> -->
+<!-- 																			</div> -->
+<!-- 																		</div> -->
+<!-- 																	</div> -->
 																	
-																	<div class="StyledTBB__FormDescription-trchgn-7 dcierJ form-desc-wrapper">* 더 후원해주시면 프로젝트 성사가 앞당겨집니다.</div>
-																</div>
+<!-- 																	<div class="StyledTBB__FormDescription-trchgn-7 dcierJ form-desc-wrapper">* 더 후원해주시면 프로젝트 성사가 앞당겨집니다.</div> -->
+<!-- 																</div> -->
 																
-																<div class="ExtraPledge__ButtonWrapper-sc-6m3rsu-2 xWAlK">
-																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 5천 원</button>
-																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 1만 원</button>
-																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 5만 원</button>
-																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 10만 원</button>
-																</div>
-															</div>
+<!-- 																<div class="ExtraPledge__ButtonWrapper-sc-6m3rsu-2 xWAlK"> -->
+<!-- 																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 5천 원</button> -->
+<!-- 																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 1만 원</button> -->
+<!-- 																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 5만 원</button> -->
+<!-- 																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 10만 원</button> -->
+<!-- 																</div> -->
+<!-- 															</div> -->
 															
 															
-															<button class="SolidButton__Button-sc-1gsinzz-0 llVOtQ Rewards__StyledSelectRewardDetailButton-kxhggz-6 etABXh fnt-p1" color="main80">
-																<span>${reward.reward_amount }원 후원하기</span>
-															</button>
-														</div>
-													</section>
+<!-- 															<button class="SolidButton__Button-sc-1gsinzz-0 llVOtQ Rewards__StyledSelectRewardDetailButton-kxhggz-6 etABXh fnt-p1" color="main80"> -->
+<%-- 																<span>${reward.reward_amount }원 후원하기</span> --%>
+<!-- 															</button> -->
+<!-- 														</div> -->
+<!-- 													</section> -->
 												</div>
 											</div>
 										</div>

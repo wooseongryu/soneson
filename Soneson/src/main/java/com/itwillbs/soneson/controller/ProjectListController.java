@@ -186,13 +186,13 @@ public class ProjectListController {
 //		model.addAttribute("itemList", itemList);
 		
 		// ====== 팔로우
-		String sId = (String)session.getAttribute("sId");
-		
-		map.put("sId", sId);
-		map.put("id", sId);
-		
-		map = userService.selectUserMainInfo(map);
-		model.addAttribute("user", map);
+//		String sId = (String)session.getAttribute("sId");
+//		
+//		map.put("sId", sId);
+//		map.put("id", sId);
+//		
+//		map = userService.selectUserMainInfo(map);
+//		model.addAttribute("user", map);
 		
 		return "list/projectDetail";	
 	}
