@@ -64,8 +64,9 @@
 	<div class="Container__ContainerComponent">
 		<div class="funding__success">
 			<div align="center">
-				<h2><span>축하합니다. ${selectFundCount}번째</span></h2>
-				<div class="funding__success__notice"><h2>손에 손을 잡았습니다!</h2></div>
+<%-- 				<h2><span>축하합니다. ${selectFundCount}번째</span></h2> --%>
+				<h2><span>축하합니다.</span></h2>
+				<div class="funding__success__notice"><h2>${selectFundCount}번째 <span>손에 손</span>을 잡았습니다!</h2></div>
 <!-- 				<div class="funding__success__notice"><h2>공식 후원자가 되셨습니다!</h2></div> -->
 				<button type="button" class="btn btn-primary"
 				onclick="location.href='fundingList'">&nbsp;&nbsp;&nbsp;&nbsp;후원 현황&nbsp;&nbsp;&nbsp;&nbsp;</button>

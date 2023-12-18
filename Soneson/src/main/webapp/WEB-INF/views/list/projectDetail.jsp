@@ -195,6 +195,9 @@ function defaultImg(tagId) {
 						        <c:when test="${project.dday lt 0}">
 						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">0<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">초</span></div>
 						        </c:when>
+						        <c:when test="${project.dday eq 0}">
+						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.leftHour }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">시간</span></div>
+						        </c:when>
 						        <c:otherwise>
 						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.dday }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">일</span></div>
 						        </c:otherwise>
@@ -363,22 +366,22 @@ function defaultImg(tagId) {
 					<div class="style__SectionTabsWrap-y9rrh6-4 blvrlR">
 					<ul class="style__SectionTabs-y9rrh6-5 gZnims fixed">
 					<li>
-					<a class="isActive isActive">소개</a>
+					<a class="isActive isActive scroll1">소개</a>
 					</li>
 					<li>
-					<a class="">예산</a>
+					<a class="scroll2">예산</a>
 					</li>
 					<li>
-					<a class="">일정</a>
+					<a class="scroll3">일정</a>
 					</li>
 					<li>
-					<a class="">팀 소개</a>
+					<a class="scroll4">팀 소개</a>
 					</li>
 					<li>
-					<a class="">선물 설명</a>
+					<a class="scroll5">리워드 설명</a>
 					</li>
 					<li>
-					<a class="">신뢰와 안전</a>
+					<a class="scroll6">신뢰와 안전</a>
 					</li>
 					</ul>
 					</div>
@@ -389,7 +392,7 @@ function defaultImg(tagId) {
 					
 					
 					
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 소개</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo content">프로젝트 소개</div>
 					<div class="storyContent">
 						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_content }" id="img_content" alt="프로젝트 내용 이미지" onerror="defaultImg(this)">
 					</div>
@@ -400,7 +403,7 @@ function defaultImg(tagId) {
 					
 					</div>
 					<div id="budget" class="style__StorySection-y9rrh6-7 dxcJNl">
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 예산</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo budget">프로젝트 예산</div>
 					<div class="storyContent">
 						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_budget }" id="img_budget" alt="프로젝트 예산 이미지" onerror="defaultImg(this)">
 					</div>
@@ -408,7 +411,7 @@ function defaultImg(tagId) {
 					
 					</div>
 					<div id="schedule" class="style__StorySection-y9rrh6-7 dxcJNl">
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 일정</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo sch">프로젝트 일정</div>
 					<div class="storyContent">
 						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_sch }" id="img_sch" alt="프로젝트 일정 이미지" onerror="defaultImg(this)">
 					</div>
@@ -419,7 +422,7 @@ function defaultImg(tagId) {
 					
 					</div>
 					<div id="introduction" class="style__StorySection-y9rrh6-7 dxcJNl">
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 팀 소개</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo team">프로젝트 팀 소개</div>
 					<div class="storyContent">
 						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_team }" id="img_team" alt="프로젝트 팀 이미지" onerror="defaultImg(this)">
 					</div>
@@ -429,7 +432,7 @@ function defaultImg(tagId) {
 				
 					</div>
 					<div id="rewardsDescription" class="style__StorySection-y9rrh6-7 dxcJNl">
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">리워드 설명</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo reward">리워드 설명</div>
 					<div class="storyContent">
 						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_reward }" id="img_reward" alt="프로젝트 리워드 이미지" onerror="defaultImg(this)">
 					</div>
@@ -443,7 +446,7 @@ function defaultImg(tagId) {
 				
 				
 				<div id="refundExchangePolicy" class="style__StorySection-ygs6af-7 ktoIwn">
-					<div class="style__StorySectionTitle-ygs6af-6 evGXXa eARawo">신뢰와 안전</div>
+					<div class="style__StorySectionTitle-ygs6af-6 evGXXa eARawo trust">신뢰와 안전</div>
 					<div class="style__FundingInfoWrap-ygs6af-11 fyAnHx">
 						<div class="style__SectionSubTitle-ygs6af-9 iMSRJG">크라우드 펀딩에 대한 안내</div>
 						<dl>
@@ -471,13 +474,13 @@ function defaultImg(tagId) {
 			
 					
 					<div class="style__PolicyWrap-ygs6af-10 joCVCp refundPolicy">
-						<div class="style__SectionSubTitle-ygs6af-9 iMSRJG">프로젝트 정책</div>
+						<div class="style__SectionSubTitle-ygs6af-9 iMSRJG policy">프로젝트 정책</div>
 						<div class="policyContents">
 							${project.policy }
 						</div>
 					</div>
 					
-					<div class="style__PolicyWrap-ygs6af-10 joCVCp refundPolicy">
+					<div class="style__PolicyWrap-ygs6af-10 joCVCp refundPolicy difficulty">
 						<div class="style__SectionSubTitle-ygs6af-9 iMSRJG">예상되는 어려움</div>
 						<div class="policyContents">
 							- 프로젝트 마감일 후에는 즉시 제작 및 실행에 착수하는 프로젝트 특성상 단순 변심에 의한 후원금 환불이 불가능합니다.
@@ -676,8 +679,20 @@ function defaultImg(tagId) {
 																<input type="hidden" name="project_code" value="${project_code }">
 																<input type="hidden" name="reward_code" value="${reward.reward_code }">
 																<input type="hidden" name="reward_amount" value="${reward.reward_amount }">
-																<input type="submit" id="fund" value="후원">
+																
+<!-- 																<input type="submit" id="fund" value="후원"> -->
+																<c:choose>
+																    <c:when test="${project.startedDay > 0}">
+<!-- 																		<input type="submit" id="fund" value="후원" disabled> -->
+																		<input type="submit" id="fund" value="후원" disabled style="background-color: grey;">
+																    </c:when>
+																    <c:otherwise>
+																		<input type="submit" id="fund" value="후원">
+																    </c:otherwise>
+																</c:choose>
 															</form>
+															
+															
 															
 															<div class="RewardCard__DeliveryDate-sc-11jni8b-16 cxeoGo"></div>
 															

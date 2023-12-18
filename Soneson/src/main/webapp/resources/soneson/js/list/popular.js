@@ -174,6 +174,9 @@ $(function() {
 		$(".goalRateBtn").addClass("modalOff");
 	})
 	
+	$(".ieWwZH").click(function() {
+		filterGoalRate(80, 99);
+	})
 	
 	
 });
