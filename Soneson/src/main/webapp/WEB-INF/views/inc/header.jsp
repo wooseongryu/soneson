@@ -34,10 +34,6 @@
 			location.href = "Logout";
 		}
 	}
-	
-	function profileDefault(tagId) {
-		$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/header/son33.png');
-	}
 </script>  
 
 <style>
@@ -147,28 +143,28 @@ ul {
 									</span>
 								</a>
 								<!-- 박훈나 임시추가 -->
-<!-- 								<a href="fundingPaymentForm"> -->
-<!-- 									<span class=""> -->
-<!-- 									<span class="">임</span> -->
-<!-- <!-- 									<span class="">임시 결제페이지</span> -->
-<!-- 										<span class="HeaderUserProfile_bar__1OPU2"></span> -->
-<!-- 									</span> -->
-<!-- 								</a> -->
+								<a href="fundingPaymentForm">
+									<span class="">
+									<span class="">임</span>
+<!-- 									<span class="">임시 결제페이지</span> -->
+										<span class="HeaderUserProfile_bar__1OPU2"></span>
+									</span>
+								</a>
 								
 								<!-- 김주영 메세지 a 태그 추가 -->
-<!-- 								<a href="Chatting" onclick="window.open(this.href, '_blank', 'width=615, height=650'); return false;"> -->
-<!-- 									<span class=""> -->
-<!-- 									<span class="">메</span> -->
-<!-- 										<span class="HeaderUserProfile_bar__1OPU2"></span> -->
-<!-- 									</span> -->
-<!-- 								</a> -->
+								<a href="Chatting" onclick="window.open(this.href, '_blank', 'width=550, height=600'); return false;">
+									<span class="">
+									<span class="">메세지</span>
+										<span class="HeaderUserProfile_bar__1OPU2"></span>
+									</span>
+								</a>
 								
 								<a href="userSetting" class="HeaderUserProfile_wrap__3FD8V">
 									
 <!-- 									<div class="profileImgDivHeader"> -->
 										<c:choose>
 										    <c:when test="${not empty sessionScope.sId and not empty sessionScope.profile }">
-										    	<img loading="lazy" src="${pageContext.request.contextPath }/resources/upload/${sessionScope.profile }" id="profilePic" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI" onerror="profileDefault(this)">
+										    	<img loading="lazy" src="${pageContext.request.contextPath }/resources/upload/${sessionScope.profile }" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI">
 	<!--									    	<img loading="lazy" src="${pageContext.request.contextPath }/resources/upload/${sessionScope.profile }" width="40" height="40" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI"> -->
 	<!-- 									    	<img loading="lazy" src="https://phinf.pstatic.net/contact/profile/blog/58/80/bom_bomi.jpg?type=s160" width="30" height="30" alt="유저 프로필 사진" class="HeaderUserProfile_img__fxGyI"> -->
 										    </c:when>
@@ -224,22 +220,14 @@ ul {
 							</div>
 							
 							<div class="style__SearchInputWrapper-zxsodr-15 hbYMFx">
-								<form id="searchForm" action="searchList" method="post">
-							
-									<input placeholder="검색어를 입력해주세요." class="style__SearchInput-zxsodr-16 jPMsmJ" name="searchKeyword" id="searchKeyword" value="${param.searchKeyword }">
-									<div class="style__SearchButton-zxsodr-17 bolWec" onclick="submitForm()">
-										<svg class="style__SearchIcon-zxsodr-34 dtngnQ" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-											<path fill-rule="evenodd" clip-rule="evenodd" d="M29.9979 32.9819C27.3165 34.9694 23.9582 36.0788 20.3642 35.9089C12.0892 35.5176 5.69811 28.4922 6.08938 20.2171C6.48064 11.9421 13.5061 5.55107 21.7811 5.94234C30.0561 6.33361 36.4472 13.359 36.0559 21.6341C35.889 25.1636 34.5152 28.3505 32.3522 30.8144L39.4908 38.6856L37.1205 40.8353L29.9979 32.9819ZM32.6597 21.4735C32.3571 27.8728 26.9241 32.8152 20.5248 32.5127C14.1254 32.2101 9.183 26.7771 9.48558 20.3777C9.78816 13.9784 15.2212 9.03597 21.6205 9.33855C28.0199 9.64113 32.9623 15.0741 32.6597 21.4735Z" fill="black">
-											</path>
-										</svg>
-									</div>
-									
-								</form>
+								<input placeholder="검색어를 입력해주세요." class="style__SearchInput-zxsodr-16 jPMsmJ">
+								<div class="style__SearchButton-zxsodr-17 bolWec">
+									<svg class="style__SearchIcon-zxsodr-34 dtngnQ" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path fill-rule="evenodd" clip-rule="evenodd" d="M29.9979 32.9819C27.3165 34.9694 23.9582 36.0788 20.3642 35.9089C12.0892 35.5176 5.69811 28.4922 6.08938 20.2171C6.48064 11.9421 13.5061 5.55107 21.7811 5.94234C30.0561 6.33361 36.4472 13.359 36.0559 21.6341C35.889 25.1636 34.5152 28.3505 32.3522 30.8144L39.4908 38.6856L37.1205 40.8353L29.9979 32.9819ZM32.6597 21.4735C32.3571 27.8728 26.9241 32.8152 20.5248 32.5127C14.1254 32.2101 9.183 26.7771 9.48558 20.3777C9.78816 13.9784 15.2212 9.03597 21.6205 9.33855C28.0199 9.64113 32.9623 15.0741 32.6597 21.4735Z" fill="black">
+										</path>
+									</svg>
+								</div>
 							</div>
-							
-							
-							
-							
 						
 						</div>
 						
@@ -371,11 +359,6 @@ ul {
 
 <script>
 	var $j = jQuery.noConflict();
-	
-	function submitForm() {
-        $j("#searchForm").submit();
-        console.log("폼 감");
-    }
 
 	$j(function() {
 		
@@ -405,9 +388,7 @@ ul {
             type: "GET",
             dataType: "json",
             success: function(response) {
-//             	쌤이랑 시도해본 것 뿐
-//             	console.log(">>>>>>>>>>>>> ${pageContext.request.requestURL}");
-
+            	console.log(">>>>>>>>>>>>> ${pageContext.request.requestURL}");
 //             	'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="popular">인기</a>'
             	$j.each(response, function(i, e){
 //             		debugger;

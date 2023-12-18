@@ -41,6 +41,12 @@
 			location.href = "fundingDonerInfo?project_code="+ project_code;
 		}
     	
+    	function projectDeleteForm(project_code) {
+			if(confirm("삭제하시겠습니까?")) {
+				location.href= 'projectDeletePro?project_code=' + project_code;
+			}
+		}
+    	
     	
     </script>
     
@@ -199,7 +205,7 @@
 															<c:when test="${fn:contains(WritingProject.pro_thumbsnail, 'https')}">
 																<img src="${WritingProject.pro_thumbsnail}" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
 															</c:when>
- 					    									<c:when test="${not empty WritingProject.pro_thumbsnail}">
+ 					    									<c:when test="${empty WritingProject.pro_thumbsnail}">
 																<img src="${pageContext.request.contextPath }/resources/soneson/img/project/default.png" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
 															</c:when>
 															<c:otherwise>
@@ -223,8 +229,7 @@
 															<input type="hidden" value="${WritingProject.pro_code }" name="pro_code">
 															<input type="hidden" value="${WritingProject.user_id }" name="user_id">
 															<input class="donerSelectBtn" type="submit" value="이어서 작성 하기">
-															<input class="donerSelectBtn" type="button" value="삭제하기" style="background: #7d7d7d" onclick="projectDeleteForm(${WritingProject.pro_code })"
-															>
+															<input class="donerSelectBtn" type="button" value="삭제하기" style="background: #7d7d7d" onclick="projectDeleteForm(${WritingProject.pro_code })">
 														</form>
 			    									</div>                                                                                   
 			    								</div>
@@ -237,7 +242,7 @@
 															<c:when test="${fn:contains(UploadProject.img_main, 'https')}">
 																<img src="${UploadProject.img_main}" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
 															</c:when>
- 					    									<c:when test="${not empty UploadProject.img_main}">
+ 					    									<c:when test="${empty UploadProject.img_main}">
 																<img src="${pageContext.request.contextPath }/resources/soneson/img/project/default.png" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
 															</c:when>
 															<c:otherwise>

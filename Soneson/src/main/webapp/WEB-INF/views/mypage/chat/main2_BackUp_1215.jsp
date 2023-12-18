@@ -270,7 +270,9 @@
 						+ '<div class="chatRoomTitle" ondblclick="createRoom(\'' + room_id + '\', \'' + receiver_id + '\')">' + title + '</div>'
 						+ '</div>';
 			$("#chatRoomListArea").append(room);
+			
 		}
+
 		
 	}
 	

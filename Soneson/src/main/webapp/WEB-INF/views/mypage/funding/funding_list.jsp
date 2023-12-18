@@ -84,7 +84,7 @@
     <script type="text/javascript">
     	let pointColor = "#F86453";
     	function fundingCencel(project_code) {
-    		let result = confirm(project_code  + " 프로젝트 후원을 취소하시겠습니까?");
+    		let result = confirm("프로젝트 후원을 취소하시겠습니까?");
     		
     		if(result) {
     			location.href = "fundingCencel?project_code=" + project_code;
@@ -125,15 +125,15 @@
 <!-- 												</div> -->
 <!-- 												</div> -->
 		   										<div data-setbg="${userFunding.img_main }"> 
-												<c:choose>
+			    								<c:choose>
 													<c:when test="${fn:contains(userFunding.img_main, 'https')}">
-														<img src="${userFunding.img_main}" alt="프로젝트 썸네일 이미지" style="width: 200px; height: 200px; margin-left: 15px;">
+														<img src="${userFunding.img_main}" alt="프로젝트 썸네일 이미지" style="width:200px; height:200px">
 													</c:when>
-				    									<c:when test="${userFunding.img_main}">
-														<img src="${pageContext.request.contextPath }/resources/upload/${userFunding.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width: 200px; height: 200px; margin-left: 15px;">
+				    									<c:when test="${empty userFunding.img_main}">
+														<img src="${pageContext.request.contextPath }/resources/soneson/img/project/default.png" alt="프로젝트 썸네일 이미지" style="width: 200px; height: 200px; margin-left: 15px;">
 													</c:when>
 													<c:otherwise>
-														<img src="${pageContext.request.contextPath }/resources/soneson/img/project/default.png" alt="프로젝트 썸네일 이미지" style="width: 200px; height: 200px; margin-left: 15px;">
+														<img src="${pageContext.request.contextPath }/resources/upload/${userFunding.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width:200px; height:200px">
 													</c:otherwise>
 												</c:choose>
 												</div>

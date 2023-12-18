@@ -141,15 +141,15 @@
 <%-- 									<a href="${pageContext.request.contextPath }/soneson/popular"> --%>
 <%-- 										<img src="${pageContext.request.contextPath }/resources/user/success.jpg" class="success_jpg">		 --%>
 <!-- 									</a> -->
-										<c:choose>
+	    								<c:choose>
 											<c:when test="${fn:contains(fundingDetail.img_main, 'https')}">
 												<img src="${fundingDetail.img_main}" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
 											</c:when>
-		    									<c:when test="${fundingDetail.img_main}">
-												<img src="${pageContext.request.contextPath }/resources/upload/${fundingDetail.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width:350px; height:200px">
+		    									<c:when test="${empty fundingDetail.img_main}">
+												<img src="${pageContext.request.contextPath }/resources/soneson/img/project/default.png" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
 											</c:when>
 											<c:otherwise>
-												<img src="${pageContext.request.contextPath }/resources/soneson/img/project/default.png" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
+												<img src="${pageContext.request.contextPath }/resources/upload/${fundingDetail.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width:350px; height:200px">
 											</c:otherwise>
 										</c:choose>
 										후원일 ${fn:replace(fundingDetail.fund_date ,"T", " ") } | 후원번호 ${fundingDetail.fund_code }<br>${fundingDetail.title }<br>
