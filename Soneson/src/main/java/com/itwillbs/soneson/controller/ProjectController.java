@@ -61,7 +61,8 @@ public class ProjectController {
 			return "forward";
 		}
 		int proCount = service.selectProCount(sId);
-		if(proCount > 4) {
+		System.out.println("프로젝트 갯수~~~~~~~" + proCount);
+		if(proCount >= 4) {
 			model.addAttribute("msg", "작성 중인 프로젝트는 4개까지 가능합니다. 내가만든프로젝트로 이동합니다.");
 			model.addAttribute("targetURL", "userProjectsWriting");
 			return "forward";
