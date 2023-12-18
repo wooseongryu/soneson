@@ -23,6 +23,24 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath }/resources/soneson/img/header/son33.ico" type="image/x-icon">
 <title>손에손</title>
 
+<script>
+//default Img
+function defaultImg(tagId) {
+	$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/projectList/' + tagId.id + '.png');
+}
+// function defaultImg(tagId, name) {
+// 	console.log(tagId.id);
+// 	$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/projectList/' + name + '.png');
+// }
+
+// function deleteFollow(user_id) {
+//  		if(confirm("팔로우를 해제 하시겠습니까?")) {
+//  			location.href="detaildeleteFollow?follow_id=" + user_id;
+//  		}
+//  	}
+
+</script>
+
 </head>
 <body>
 
@@ -108,18 +126,18 @@
 									</div>
 								</div>
 							
-								<div class="swiper-pagination swiper-pagination-bullets">
-									<span class="swiper-pagination-bullet">
-									</span>
-									<span class="swiper-pagination-bullet">
-									</span>
-									<span class="swiper-pagination-bullet">
-									</span>
-									<span class="swiper-pagination-bullet swiper-pagination-bullet-active">
-									</span>
-									<span class="swiper-pagination-bullet">
-									</span>
-								</div>
+<!-- 								<div class="swiper-pagination swiper-pagination-bullets"> -->
+<!-- 									<span class="swiper-pagination-bullet"> -->
+<!-- 									</span> -->
+<!-- 									<span class="swiper-pagination-bullet"> -->
+<!-- 									</span> -->
+<!-- 									<span class="swiper-pagination-bullet"> -->
+<!-- 									</span> -->
+<!-- 									<span class="swiper-pagination-bullet swiper-pagination-bullet-active"> -->
+<!-- 									</span> -->
+<!-- 									<span class="swiper-pagination-bullet"> -->
+<!-- 									</span> -->
+<!-- 								</div> -->
 							</div>
 						
 <!-- 							<div class="swiper-button-prev"> -->
@@ -172,8 +190,6 @@
 						</div>
 						<div class="ProjectIntroduction__Metric-sc-1kf21am-12 fXsdBd">
 							<div class="ProjectIntroduction__StatusTitle-sc-1kf21am-13 fPBHBs">남은시간</div>
-<<<<<<< HEAD
-<%-- 							<div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.dday }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">일</span></div> --%>
 							<c:choose>
 						        <c:when test="${project.dday lt 0}">
 						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">0<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">초</span></div>
@@ -188,9 +204,6 @@
 						
 						
 						
-=======
-							<div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs">14<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">일</span></div>
->>>>>>> branch 'master' of https://github.com/wooseongryu/soneson.git
 						</div>
 						<div class="ProjectIntroduction__Metric-sc-1kf21am-12 fXsdBd">
 							<div class="ProjectIntroduction__StatusTitle-sc-1kf21am-13 fPBHBs">후원자</div>
@@ -207,7 +220,19 @@
 							</dl>
 							<dl class="FundingInformation__InfoItem-sc-84xkqs-2 dsitt">
 								<dt class="FundingInformation__Title-sc-84xkqs-3 cSBHrX">펀딩 기간</dt>
-								<dd class="FundingInformation__Desc-sc-84xkqs-4 Hysth">${project.start_date} ~ ${project.end_date}<span class="FundingInformation__DdayLabel-sc-84xkqs-5 cfyFBE">14일 남음</span></dd>
+								<dd class="FundingInformation__Desc-sc-84xkqs-4 Hysth">${project.start_date} ~ ${project.end_date}
+								
+									<c:choose>
+										<c:when test="${project.dday lt 0}">
+											<span class="FundingInformation__DdayLabel-sc-84xkqs-5 dMFBNs">마감</span>
+										</c:when>
+										<c:otherwise>
+											<span class="FundingInformation__DdayLabel-sc-84xkqs-5 cfyFBE">${project.dday }일 남음</span>
+								        </c:otherwise>
+									</c:choose>
+								
+<%-- 									<span class="FundingInformation__DdayLabel-sc-84xkqs-5 cfyFBE">${project.dday }일 남음</span> --%>
+								</dd>
 							</dl>
 							<dl class="FundingInformation__InfoItem-sc-84xkqs-2 dsitt">
 								<dt class="FundingInformation__Title-sc-84xkqs-3 cSBHrX">결제</dt>
@@ -220,39 +245,51 @@
 						<div class="ProjectIntroduction__ProjectButtonsInner-sc-1kf21am-19 jDhSeE">
 							<div class="ProjectIntroduction__PrimaryButton-sc-1kf21am-20 gpBnlK">
 								<div class="PledgeButton__Wrapper-sc-19585pn-0 kzJnkH">
-									<button class="Button-sc-16r5v81-0 PledgeButton__StyledButton-sc-19585pn-1 eXFpDs hrOCcK">이 프로젝트 후원하기</button>
+								
+									<c:choose>
+										<c:when test="${project.startedDay > 0}">
+											<button class="Button-sc-16r5v81-0 PledgeButton__StyledButton-sc-19585pn-1 eXFpDs hrOCcK fundDisabled" id="scrollButton" disabled>공개 예정 D-${project.startedDay}</button>
+										</c:when>
+										<c:otherwise>
+											<button class="Button-sc-16r5v81-0 PledgeButton__StyledButton-sc-19585pn-1 eXFpDs hrOCcK" id="scrollButton">이 프로젝트 후원하기</button>
+								        </c:otherwise>
+									</c:choose>
+								
+								
+<!-- 									<button class="Button-sc-16r5v81-0 PledgeButton__StyledButton-sc-19585pn-1 eXFpDs hrOCcK" id="scrollButton">이 프로젝트 후원하기</button> -->
 								</div>
 							</div>
 							
-							<div class="Tooltip__TooltipWrapper-sc-188aamo-0 cwWHaU ProjectIntroduction__StyledTooltip-sc-1kf21am-21 boAevj">
-								<div class="ProjectIntroduction__SecondaryButton-sc-1kf21am-22 fjOsjq">
-									<div class="LikeButton__Wrapper-sc-1fgutj5-0 hoXFbI DetailLikeButton__StyledLikeButton-v1ofbi-0 dRjoPj">
-										<div class="DetailLikeButton__StyledDetailLikeButton-v1ofbi-1 dOAQhO">
-											<div name="like-line" class="Icon__SVGICON-sc-12tligs-0 kPBcuc">
-												<svg viewBox="0 0 38 34" fill="none">
-													<path fill-rule="evenodd" clip-rule="evenodd" d="M18.9996 5.62299L15.6051 2.55614C12.2106 -0.510215 6.56995 0.17753 3.48147 3.57849C-0.397666 7.66674 -0.397863 14.5859 3.70675 18.9121L19 33.8811L34.2923 18.9121C38.3969 14.5859 38.3971 7.66747 34.5176 3.57849C31.4291 0.17753 25.7888 -0.510094 22.3942 2.55614L18.9996 5.62299ZM32.0081 16.6701C34.9446 13.533 34.8523 8.58052 32.1962 5.78099L32.1721 5.75565L32.1487 5.72978C30.0533 3.42248 26.4219 3.23047 24.5394 4.93062L18.9996 9.93557L13.4601 4.93076C11.5777 3.2306 7.94577 3.42244 5.85042 5.72978L5.82689 5.75569L5.8028 5.78108C3.14716 8.57988 3.05453 13.533 5.99094 16.6701L18.9999 29.4033L32.0081 16.6701Z" fill="#6D6D6D">
-													</path>
-												</svg>
-											</div>
-											<span>126</span>
-										</div>
-									</div>
-								</div>
-							</div>
+<!-- 							1217 찜, 공유 주석 -->
+<!-- 							<div class="Tooltip__TooltipWrapper-sc-188aamo-0 cwWHaU ProjectIntroduction__StyledTooltip-sc-1kf21am-21 boAevj"> -->
+<!-- 								<div class="ProjectIntroduction__SecondaryButton-sc-1kf21am-22 fjOsjq"> -->
+<!-- 									<div class="LikeButton__Wrapper-sc-1fgutj5-0 hoXFbI DetailLikeButton__StyledLikeButton-v1ofbi-0 dRjoPj"> -->
+<!-- 										<div class="DetailLikeButton__StyledDetailLikeButton-v1ofbi-1 dOAQhO"> -->
+<!-- 											<div name="like-line" class="Icon__SVGICON-sc-12tligs-0 kPBcuc"> -->
+<!-- 												<svg viewBox="0 0 38 34" fill="none"> -->
+<!-- 													<path fill-rule="evenodd" clip-rule="evenodd" d="M18.9996 5.62299L15.6051 2.55614C12.2106 -0.510215 6.56995 0.17753 3.48147 3.57849C-0.397666 7.66674 -0.397863 14.5859 3.70675 18.9121L19 33.8811L34.2923 18.9121C38.3969 14.5859 38.3971 7.66747 34.5176 3.57849C31.4291 0.17753 25.7888 -0.510094 22.3942 2.55614L18.9996 5.62299ZM32.0081 16.6701C34.9446 13.533 34.8523 8.58052 32.1962 5.78099L32.1721 5.75565L32.1487 5.72978C30.0533 3.42248 26.4219 3.23047 24.5394 4.93062L18.9996 9.93557L13.4601 4.93076C11.5777 3.2306 7.94577 3.42244 5.85042 5.72978L5.82689 5.75569L5.8028 5.78108C3.14716 8.57988 3.05453 13.533 5.99094 16.6701L18.9999 29.4033L32.0081 16.6701Z" fill="#6D6D6D"> -->
+<!-- 													</path> -->
+<!-- 												</svg> -->
+<!-- 											</div> -->
+<!-- 											<span>126</span> -->
+<!-- 										</div> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 							
-							<div class="ProjectIntroduction__TertiaryButton-sc-1kf21am-26 fMjnaE">
-								<div class="ProjectIntroduction__ShareSNSButtonWrap-sc-1kf21am-23 hOlLMG">
-									<button type="button" class="Button-sc-16r5v81-0 ProjectIntroduction__ShareSNSButton-sc-1kf21am-24 ProjectIntroduction__StyledShareSNSButton-sc-1kf21am-25 biBwQk fWIYyB oAZmP">
-										<div name="share-2" class="Icon__SVGICON-sc-12tligs-0 kPBcuc">
-											<svg viewBox="0 0 32 35" fill="none">
-												<path fill-rule="evenodd" clip-rule="evenodd" d="M25.5 9.8C27.3226 9.8 28.8 8.32254 28.8 6.5C28.8 4.67746 27.3226 3.2 25.5 3.2C23.6775 3.2 22.2 4.67746 22.2 6.5C22.2 8.32254 23.6775 9.8 25.5 9.8ZM25.5 13C29.0899 13 32 10.0899 32 6.5C32 2.91015 29.0899 0 25.5 0C21.9102 0 19 2.91015 19 6.5C19 7.00407 19.0574 7.49475 19.166 7.96584L13.2462 11.8889L10.9897 13.2996C9.82276 12.1847 8.24135 11.4999 6.5 11.4999C2.91015 11.4999 0 14.4101 0 17.9999C0 21.5898 2.91015 24.4999 6.5 24.4999C8.22679 24.4999 9.79631 23.8266 10.9603 22.7281L19.0878 27.4291C19.0301 27.7775 19 28.1352 19 28.4999C19 32.0898 21.9102 34.9999 25.5 34.9999C29.0899 34.9999 32 32.0898 32 28.4999C32 24.9101 29.0899 21.9999 25.5 21.9999C23.4257 21.9999 21.5784 22.9716 20.3882 24.4846L12.6783 20.0251C12.8871 19.3878 13 18.7071 13 17.9999C13 17.3061 12.8913 16.6376 12.6899 16.0106L14.9785 14.5798L20.6465 10.8236C21.8369 12.159 23.5703 13 25.5 13ZM6.5 21.2999C8.32254 21.2999 9.8 19.8225 9.8 17.9999C9.8 16.1774 8.32254 14.6999 6.5 14.6999C4.67746 14.6999 3.2 16.1774 3.2 17.9999C3.2 19.8225 4.67746 21.2999 6.5 21.2999ZM28.8 28.4999C28.8 30.3225 27.3226 31.7999 25.5 31.7999C23.6775 31.7999 22.2 30.3225 22.2 28.4999C22.2 26.6774 23.6775 25.1999 25.5 25.1999C27.3226 25.1999 28.8 26.6774 28.8 28.4999Z" fill="#6D6D6D">
-												</path>
-											</svg>
-										</div>
-										<span>54</span>
-									</button>
-								</div>
-							</div>
+<!-- 							<div class="ProjectIntroduction__TertiaryButton-sc-1kf21am-26 fMjnaE"> -->
+<!-- 								<div class="ProjectIntroduction__ShareSNSButtonWrap-sc-1kf21am-23 hOlLMG"> -->
+<!-- 									<button type="button" class="Button-sc-16r5v81-0 ProjectIntroduction__ShareSNSButton-sc-1kf21am-24 ProjectIntroduction__StyledShareSNSButton-sc-1kf21am-25 biBwQk fWIYyB oAZmP"> -->
+<!-- 										<div name="share-2" class="Icon__SVGICON-sc-12tligs-0 kPBcuc"> -->
+<!-- 											<svg viewBox="0 0 32 35" fill="none"> -->
+<!-- 												<path fill-rule="evenodd" clip-rule="evenodd" d="M25.5 9.8C27.3226 9.8 28.8 8.32254 28.8 6.5C28.8 4.67746 27.3226 3.2 25.5 3.2C23.6775 3.2 22.2 4.67746 22.2 6.5C22.2 8.32254 23.6775 9.8 25.5 9.8ZM25.5 13C29.0899 13 32 10.0899 32 6.5C32 2.91015 29.0899 0 25.5 0C21.9102 0 19 2.91015 19 6.5C19 7.00407 19.0574 7.49475 19.166 7.96584L13.2462 11.8889L10.9897 13.2996C9.82276 12.1847 8.24135 11.4999 6.5 11.4999C2.91015 11.4999 0 14.4101 0 17.9999C0 21.5898 2.91015 24.4999 6.5 24.4999C8.22679 24.4999 9.79631 23.8266 10.9603 22.7281L19.0878 27.4291C19.0301 27.7775 19 28.1352 19 28.4999C19 32.0898 21.9102 34.9999 25.5 34.9999C29.0899 34.9999 32 32.0898 32 28.4999C32 24.9101 29.0899 21.9999 25.5 21.9999C23.4257 21.9999 21.5784 22.9716 20.3882 24.4846L12.6783 20.0251C12.8871 19.3878 13 18.7071 13 17.9999C13 17.3061 12.8913 16.6376 12.6899 16.0106L14.9785 14.5798L20.6465 10.8236C21.8369 12.159 23.5703 13 25.5 13ZM6.5 21.2999C8.32254 21.2999 9.8 19.8225 9.8 17.9999C9.8 16.1774 8.32254 14.6999 6.5 14.6999C4.67746 14.6999 3.2 16.1774 3.2 17.9999C3.2 19.8225 4.67746 21.2999 6.5 21.2999ZM28.8 28.4999C28.8 30.3225 27.3226 31.7999 25.5 31.7999C23.6775 31.7999 22.2 30.3225 22.2 28.4999C22.2 26.6774 23.6775 25.1999 25.5 25.1999C27.3226 25.1999 28.8 26.6774 28.8 28.4999Z" fill="#6D6D6D"> -->
+<!-- 												</path> -->
+<!-- 											</svg> -->
+<!-- 										</div> -->
+<!-- 										<span>54</span> -->
+<!-- 									</button> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 						
 						</div>
 					</div>
@@ -267,9 +304,9 @@
 			<div class="style__ProjectContentsNavigationInner-qovng2-3 kxemOF">
 				<div class="style__NavLeft-qovng2-4 hGCHxL">
 					<a aria-current="page" class="style__NavItem-qovng2-0 cxytbh active" style="color:rgba(0,0,0,1);border-bottom:3px solid rgba(0,0,0,1);padding-bottom:calc(0.5rem - 3px)" href="/baeunmangdeokcats/story?ref=%EA%B2%80%EC%83%89%2F%ED%82%A4%EC%9B%8C%EB%93%9C">프로젝트 계획</a>
-					<a class="style__NavItem-qovng2-0 cxytbh" href="/baeunmangdeokcats/community/creator?ref=%EA%B2%80%EC%83%89%2F%ED%82%A4%EC%9B%8C%EB%93%9C">업데이트<span class="style__CommunityPostAmount-ky14bp-7 cbohWb">1</span></a>
-					<a class="style__NavItem-qovng2-0 cxytbh" href="/baeunmangdeokcats/community/backer?ref=%EA%B2%80%EC%83%89%2F%ED%82%A4%EC%9B%8C%EB%93%9C">커뮤니티<span class="style__CommunityPostAmount-ky14bp-7 cbohWb">15</span></a>
-					<a class="style__NavItem-qovng2-0 cxytbh" href="/baeunmangdeokcats/recommend">추천</a>
+<!-- 					<a class="style__NavItem-qovng2-0 cxytbh" href="/baeunmangdeokcats/community/creator?ref=%EA%B2%80%EC%83%89%2F%ED%82%A4%EC%9B%8C%EB%93%9C">업데이트<span class="style__CommunityPostAmount-ky14bp-7 cbohWb">1</span></a> -->
+<!-- 					<a class="style__NavItem-qovng2-0 cxytbh" href="/baeunmangdeokcats/community/backer?ref=%EA%B2%80%EC%83%89%2F%ED%82%A4%EC%9B%8C%EB%93%9C">커뮤니티<span class="style__CommunityPostAmount-ky14bp-7 cbohWb">15</span></a> -->
+<!-- 					<a class="style__NavItem-qovng2-0 cxytbh" href="/baeunmangdeokcats/recommend">추천</a> -->
 				</div>
 			</div>
 		</nav>
@@ -408,7 +445,7 @@
 				
 				
 				<div id="refundExchangePolicy" class="style__StorySection-ygs6af-7 ktoIwn">
-					<div class="style__StorySectionTitle-ygs6af-6 evGXXa eARawo trust">신뢰와 안전</div>
+					<div class="style__StorySectionTitle-ygs6af-6 evGXXa eARawo">신뢰와 안전</div>
 					<div class="style__FundingInfoWrap-ygs6af-11 fyAnHx">
 						<div class="style__SectionSubTitle-ygs6af-9 iMSRJG">크라우드 펀딩에 대한 안내</div>
 						<dl>
@@ -436,13 +473,13 @@
 			
 					
 					<div class="style__PolicyWrap-ygs6af-10 joCVCp refundPolicy">
-						<div class="style__SectionSubTitle-ygs6af-9 iMSRJG policy">프로젝트 정책</div>
+						<div class="style__SectionSubTitle-ygs6af-9 iMSRJG">프로젝트 정책</div>
 						<div class="policyContents">
 							${project.policy }
 						</div>
 					</div>
 					
-					<div class="style__PolicyWrap-ygs6af-10 joCVCp refundPolicy difficulty">
+					<div class="style__PolicyWrap-ygs6af-10 joCVCp refundPolicy">
 						<div class="style__SectionSubTitle-ygs6af-9 iMSRJG">예상되는 어려움</div>
 						<div class="policyContents">
 							- 프로젝트 마감일 후에는 즉시 제작 및 실행에 착수하는 프로젝트 특성상 단순 변심에 의한 후원금 환불이 불가능합니다.
@@ -510,7 +547,7 @@
 								<div class="style__CreatorCardLabel-sc-1kqdyt-7 dkwthg">창작자 소개</div>
 								<div class="style__CreatorProfile-sc-1kqdyt-8 jqFoCK">
 									<div class="style__CreatorWrapper-sc-1kqdyt-9 iNlJa-D">
-										<a target="_blank" href="/u/baeunmangdeokcats">
+										<a target="_blank" href="user?id=${project.creator_id }">
 <!-- 											<span class="ProfileImg__StyledProfileImg-sc-1es2i1m-0 izmTNc profileImage"> -->
 <%-- 												<img src="${pageContext.request.contextPath }/resources/upload/${project.creator_profile }" alt="프로젝트 창작자 이미지"> --%>
 <!-- 											</span> -->
@@ -519,13 +556,13 @@
 										</a>
 										<div class="style__CreatorInfo-sc-1kqdyt-10 gFiWmy">
 											<div class="style__TopWrap-sc-1kqdyt-11 cUKpnq">
-												<a target="_blank" href="/u/baeunmangdeokcats">
+												<a target="_blank" href="user?id=${project.creator_id }">
 													<span class="style__CreatorName-sc-1kqdyt-12 ktUknF">${project.creator }</span>
 												</a>
 											</div>
 											<div class="style__BottomWrap-sc-1kqdyt-13 odjCI">
 												<div class="style__CreatorStats-sc-1kqdyt-14 kLwAlh">
-													<span>마지막 로그인</span> <b>23시간 전</b>
+<!-- 													<span>마지막 로그인</span> <b>23시간 전</b> -->
 												</div>
 											</div>
 										</div>
@@ -538,16 +575,36 @@
 								<div class="style__FollowButtonWrapper-sc-1kqdyt-5 VdNWQ">
 								<button class="SolidButton__Button-d4ctco-0 iDFRLW style__FollowButton-sc-1fj9dkx-0 hzzFYf fnt-p1" color="grayEditor200">
 								<span>
-								<div name="plus" class="Icon__SVGICON-sc-12tligs-0 kPBcuc style__FollowButtonIcon-sc-1fj9dkx-2 hTyhjW">
-								<svg viewBox="0 0 48 48">
-								<path fill-rule="evenodd" clip-rule="evenodd" d="M43.7104 21.8549H25.99V4.09524C25.99 2.89796 24.9945 2 23.9005 2C22.8054 2 21.81 2.89796 21.81 4.09524V21.9546H4.0905C2.89593 21.8549 2 22.8526 2 23.9501C2 25.0476 2.89593 26.0454 4.0905 26.0454H21.9095V43.9048C21.9095 45.0023 22.8054 46 23.999 46C25.095 46 26.0905 45.102 26.0905 43.9048V26.0454H43.9085C45.0045 26.0454 46 25.1474 46 23.9501C45.8009 22.8526 44.904 21.8549 43.7104 21.8549C43.7104 21.8549 43.81 21.8549 43.7104 21.8549Z">
-								</path>
-								</svg>
-								</div>
 								<div class="style__FollowButtonText-sc-1fj9dkx-1 jGQFIP">팔로우</div>
+<%-- 								<c:choose> --%>
+<%-- 					        		<c:when test="${user.followCnt eq 0 }"> --%>
+<!-- 										<div name="plus" class="Icon__SVGICON-sc-12tligs-0 kPBcuc style__FollowButtonIcon-sc-1fj9dkx-2 hTyhjW"> -->
+<!-- 										<svg viewBox="0 0 48 48"> -->
+<!-- 										<path fill-rule="evenodd" clip-rule="evenodd" d="M43.7104 21.8549H25.99V4.09524C25.99 2.89796 24.9945 2 23.9005 2C22.8054 2 21.81 2.89796 21.81 4.09524V21.9546H4.0905C2.89593 21.8549 2 22.8526 2 23.9501C2 25.0476 2.89593 26.0454 4.0905 26.0454H21.9095V43.9048C21.9095 45.0023 22.8054 46 23.999 46C25.095 46 26.0905 45.102 26.0905 43.9048V26.0454H43.9085C45.0045 26.0454 46 25.1474 46 23.9501C45.8009 22.8526 44.904 21.8549 43.7104 21.8549C43.7104 21.8549 43.81 21.8549 43.7104 21.8549Z"> -->
+<!-- 										</path> -->
+<!-- 										</svg> -->
+<!-- 										</div> -->
+<%-- 							        	<a href="follow?follow_id=${project.creator_id}">팔로우</a> --%>
+<%-- 					        		</c:when> --%>
+<%-- 					        		<c:otherwise> --%>
+<%-- 							        	<a onclick="deleteFollow('${user.user_id }')">팔로잉</a> --%>
+<%-- 					        		</c:otherwise> --%>
+<%-- 					        	</c:choose> --%>
 								</span>
 								</button>
 								</div>
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+<!-- 							주영 창작자 문의 버튼 ChatMain2.jsp랑 연결 -->
+
 								<a class="style__AskCreatorButton-sc-1kqdyt-1 fisrFD" href="ChatMain2" onclick="window.open(this.href, '_blank', 'width=550, height=600'); return false;">
 								<div name="letter" class="Icon__SVGICON-sc-12tligs-0 kPBcuc style__AskCreatorButtonIcon-sc-1kqdyt-2 scWIP">
 								<svg viewBox="0 0 48 48">
@@ -562,7 +619,8 @@
 						
 						<div class="Sticker__Wrapper-sc-1si6lg8-0 gYVCLo reward-sticker">
 							<div class="Rewards-kxhggz-2 iWbFFD tbb">
-								<div class="Rewards__RewardsLabel-kxhggz-3 hgFOaN">리워드 선택</div>
+<!-- 								<div class="Rewards__RewardsLabel-kxhggz-3 hgFOaN">리워드 선택</div> -->
+								<div class="Rewards__RewardsLabel-kxhggz-3 hgFOaN" id="reward">리워드 선택</div>
 							
 									<!-- 여기 -->
 									<c:forEach var="reward" items="${rewardList }">
@@ -582,7 +640,8 @@
 																			</path>
 																		</svg>
 																	</div>
-																	49명이 선택
+<!-- 																	1217 엄성윤 기능 보류 주석 -->
+<!-- 																	49명이 선택 -->
 																</span>
 															</div>
 															
@@ -632,89 +691,87 @@
 																</c:choose>
 															</form>
 															
-															
-															
 															<div class="RewardCard__DeliveryDate-sc-11jni8b-16 cxeoGo"></div>
 															
 														</div>
 													</section>
 													
-													<section direction="right" class="Stepper__StepperWrapper-sc-14ctxej-1 gcTNai">
-														<div class="RewardCard__RewardCardInner-sc-11jni8b-4 doBnVx">
-															<div class="RewardCard__RewardHeader-sc-11jni8b-5 eHaKBF">
-																<span class="RewardCard__PledgeAmount-sc-11jni8b-6 cMOTuF">
-																	<div name="check" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV RewardCard__StyledSVGIcon-sc-11jni8b-2 eoOxYA">
-																		<svg viewBox="0 0 48 48">
-																			<path fill-rule="evenodd" clip-rule="evenodd" d="M41.6 8L18.9 30.8L6.2 19L2 23.5L19.1 39.4L46 12.4L41.6 8Z">
-																			</path>
-																		</svg>
-																	</div>
-																	49명이 선택
-																</span>
-															</div>
+<!-- 													<section direction="right" class="Stepper__StepperWrapper-sc-14ctxej-1 gcTNai"> -->
+<!-- 														<div class="RewardCard__RewardCardInner-sc-11jni8b-4 doBnVx"> -->
+<!-- 															<div class="RewardCard__RewardHeader-sc-11jni8b-5 eHaKBF"> -->
+<!-- 																<span class="RewardCard__PledgeAmount-sc-11jni8b-6 cMOTuF"> -->
+<!-- 																	<div name="check" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV RewardCard__StyledSVGIcon-sc-11jni8b-2 eoOxYA"> -->
+<!-- 																		<svg viewBox="0 0 48 48"> -->
+<!-- 																			<path fill-rule="evenodd" clip-rule="evenodd" d="M41.6 8L18.9 30.8L6.2 19L2 23.5L19.1 39.4L46 12.4L41.6 8Z"> -->
+<!-- 																			</path> -->
+<!-- 																		</svg> -->
+<!-- 																	</div> -->
+<!-- <!-- 																	49명이 선택 -->
+<!-- 																</span> -->
+<!-- 															</div> -->
 															
-															<div class="RewardCard__RewardSelector-sc-11jni8b-13 doSKXg">
-																<div class="sub-wrapper">
-																	<div class="RewardCard__RewardContents-sc-11jni8b-10 cfUWzc">
-																		<div class="RewardCard__RewardMinimumPledgeAmount-sc-11jni8b-11 guDLPF">${reward.reward_amount } +</div>
-																		<div class="RewardCard__RewardDescription-sc-11jni8b-12 ihPVAR">${reward.reward_explain }</div>
-																	</div>
-																</div>
-															</div>
+<!-- 															<div class="RewardCard__RewardSelector-sc-11jni8b-13 doSKXg"> -->
+<!-- 																<div class="sub-wrapper"> -->
+<!-- 																	<div class="RewardCard__RewardContents-sc-11jni8b-10 cfUWzc"> -->
+<%-- 																		<div class="RewardCard__RewardMinimumPledgeAmount-sc-11jni8b-11 guDLPF">${reward.reward_amount } +</div> --%>
+<%-- 																		<div class="RewardCard__RewardDescription-sc-11jni8b-12 ihPVAR">${reward.reward_explain }</div> --%>
+<!-- 																	</div> -->
+<!-- 																</div> -->
+<!-- 															</div> -->
 															
-															<ul class="RewardCard__Items-sc-11jni8b-14 ivsvtS">
-<%-- 																<c:forEach var="item" items="${reward}"> --%>
-<%-- 															        <p>${item.reward_item_name}</p> --%>
-<%-- 															    </c:forEach> --%>
+<!-- 															<ul class="RewardCard__Items-sc-11jni8b-14 ivsvtS"> -->
+<%-- <%-- 																<c:forEach var="item" items="${reward}"> --%> 
+<%-- <%-- 															        <p>${item.reward_item_name}</p> --%> 
+<%-- <%-- 															    </c:forEach> --%> 
 															
-																	<c:forEach var="item" items="${reward.reward_item_name }">
-																<li class="RewardCard__ItemList-sc-11jni8b-15 kYvoWT">
-																        <p>${item}</p>
+<%-- 																	<c:forEach var="item" items="${reward.reward_item_name }"> --%>
+<!-- 																<li class="RewardCard__ItemList-sc-11jni8b-15 kYvoWT"> -->
+<%-- 																        <p>${item}</p> --%>
 																
-<%-- 																${reward.reward_item_name } --%>
-		<!-- 														&nbsp;<span>( x 1 )</span> -->
-																</li>
-																    </c:forEach>
-															</ul>
+<%-- <%-- 																${reward.reward_item_name } --%> 
+<!-- 		<!-- 														&nbsp;<span>( x 1 )</span> --> 
+<!-- 																</li> -->
+<%-- 																    </c:forEach> --%>
+<!-- 															</ul> -->
 															
-															<div class="RewardCard__DeliveryDate-sc-11jni8b-16 gRjZWy">
-																<span>예상 전달일 &nbsp;<b>2023년 12월 20일</b>
-																</span>
-															</div>
+<!-- 															<div class="RewardCard__DeliveryDate-sc-11jni8b-16 gRjZWy"> -->
+<!-- 																<span>예상 전달일 &nbsp;<b>2023년 12월 20일</b> -->
+<!-- 																</span> -->
+<!-- 															</div> -->
 															
-															<div class="ExtraPledge__Wrapper-sc-6m3rsu-0 ipAlaK">
-																<div class="StyledTBB__FormWrapper-trchgn-6 hCtMzp ExtraPledge__StyledFormRenderChildren-sc-6m3rsu-1 eOMuk">
-																	<div class="StyledTBB__FormLabel-trchgn-4 keSzYC form-input-label">추가 후원금(선택)</div>
-																	<div class="StyledTBB__FormContent-trchgn-5 iBKDvR form-input-wrapper">
-																		<div class="InputWithGuideAndLengthCheck__Wrapper-sc-9nmfrw-0 eCSxwJ">
-																			<div class="InputWithGuideAndLengthCheck__InputWrapper-sc-9nmfrw-3 bBnjVq">
-																				<span class="Input__InputWrapper-j7moqy-0 fOjsfs InputWithGuideAndLengthCheck__StyledInput-sc-9nmfrw-1 wmJOZ">
-																					<input type="text" inputmode="numeric" placeholder="0" autocomplete="off" autocapitalize="off" class="Input__InnerInput-j7moqy-1 bfmNPl" value="">
-																				</span>
-																			</div>
-																			<div class="InputWithGuideAndLengthCheck__NoticeArea-sc-9nmfrw-4 ciHGYP">
-																				<p class="InputWithGuideAndLengthCheck__GuideMessage-sc-9nmfrw-5 fduvas"></p>
-																			</div>
-																		</div>
-																	</div>
+<!-- 															<div class="ExtraPledge__Wrapper-sc-6m3rsu-0 ipAlaK"> -->
+<!-- 																<div class="StyledTBB__FormWrapper-trchgn-6 hCtMzp ExtraPledge__StyledFormRenderChildren-sc-6m3rsu-1 eOMuk"> -->
+<!-- 																	<div class="StyledTBB__FormLabel-trchgn-4 keSzYC form-input-label">추가 후원금(선택)</div> -->
+<!-- 																	<div class="StyledTBB__FormContent-trchgn-5 iBKDvR form-input-wrapper"> -->
+<!-- 																		<div class="InputWithGuideAndLengthCheck__Wrapper-sc-9nmfrw-0 eCSxwJ"> -->
+<!-- 																			<div class="InputWithGuideAndLengthCheck__InputWrapper-sc-9nmfrw-3 bBnjVq"> -->
+<!-- 																				<span class="Input__InputWrapper-j7moqy-0 fOjsfs InputWithGuideAndLengthCheck__StyledInput-sc-9nmfrw-1 wmJOZ"> -->
+<!-- 																					<input type="text" inputmode="numeric" placeholder="0" autocomplete="off" autocapitalize="off" class="Input__InnerInput-j7moqy-1 bfmNPl" value=""> -->
+<!-- 																				</span> -->
+<!-- 																			</div> -->
+<!-- 																			<div class="InputWithGuideAndLengthCheck__NoticeArea-sc-9nmfrw-4 ciHGYP"> -->
+<!-- 																				<p class="InputWithGuideAndLengthCheck__GuideMessage-sc-9nmfrw-5 fduvas"></p> -->
+<!-- 																			</div> -->
+<!-- 																		</div> -->
+<!-- 																	</div> -->
 																	
-																	<div class="StyledTBB__FormDescription-trchgn-7 dcierJ form-desc-wrapper">* 더 후원해주시면 프로젝트 성사가 앞당겨집니다.</div>
-																</div>
+<!-- 																	<div class="StyledTBB__FormDescription-trchgn-7 dcierJ form-desc-wrapper">* 더 후원해주시면 프로젝트 성사가 앞당겨집니다.</div> -->
+<!-- 																</div> -->
 																
-																<div class="ExtraPledge__ButtonWrapper-sc-6m3rsu-2 xWAlK">
-																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 5천 원</button>
-																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 1만 원</button>
-																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 5만 원</button>
-																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 10만 원</button>
-																</div>
-															</div>
+<!-- 																<div class="ExtraPledge__ButtonWrapper-sc-6m3rsu-2 xWAlK"> -->
+<!-- 																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 5천 원</button> -->
+<!-- 																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 1만 원</button> -->
+<!-- 																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 5만 원</button> -->
+<!-- 																	<button class="LineButton__Button-sc-1ozfxit-0 hWwQDf fnt-p2" color="gray10">+ 10만 원</button> -->
+<!-- 																</div> -->
+<!-- 															</div> -->
 															
 															
-															<button class="SolidButton__Button-sc-1gsinzz-0 llVOtQ Rewards__StyledSelectRewardDetailButton-kxhggz-6 etABXh fnt-p1" color="main80">
-																<span>${reward.reward_amount }원 후원하기</span>
-															</button>
-														</div>
-													</section>
+<!-- 															<button class="SolidButton__Button-sc-1gsinzz-0 llVOtQ Rewards__StyledSelectRewardDetailButton-kxhggz-6 etABXh fnt-p1" color="main80"> -->
+<%-- 																<span>${reward.reward_amount }원 후원하기</span> --%>
+<!-- 															</button> -->
+<!-- 														</div> -->
+<!-- 													</section> -->
 												</div>
 											</div>
 										</div>
