@@ -219,7 +219,7 @@
 																<li>${RejectProject.d_day}</li>
 															</ul>                                                                           
 			    										</div>                                                                               
-														<button type="button" class="donerSelectBtn" onclick="donerSelect(${RejectProject.project_code})">후원자 조회하기</button>                              
+<%-- 														<button type="button" class="donerSelectBtn" onclick="donerSelect(${RejectProject.project_code})">후원자 조회하기</button>                               --%>
 			    									</div>                                                                                   
 			    								</div>
 										</c:forEach>
