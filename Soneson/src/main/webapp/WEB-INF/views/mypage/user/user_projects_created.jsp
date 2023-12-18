@@ -242,7 +242,7 @@
 															<c:when test="${fn:contains(UploadProject.img_main, 'https')}">
 																<img src="${UploadProject.img_main}" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
 															</c:when>
- 					    									<c:when test="${not empty UploadProject.img_main}">
+ 					    									<c:when test="${empty UploadProject.img_main}">
 																<img src="${pageContext.request.contextPath }/resources/soneson/img/project/default.png" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
 															</c:when>
 															<c:otherwise>

@@ -84,7 +84,7 @@
     <script type="text/javascript">
     	let pointColor = "#F86453";
     	function fundingCencel(project_code) {
-    		let result = confirm(project_code  + " 프로젝트 후원을 취소하시겠습니까?");
+    		let result = confirm("프로젝트 후원을 취소하시겠습니까?");
     		
     		if(result) {
     			location.href = "fundingCencel?project_code=" + project_code;
