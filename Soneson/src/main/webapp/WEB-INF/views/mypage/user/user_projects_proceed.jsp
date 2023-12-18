@@ -223,7 +223,7 @@
 																<li>${ProceedProject.now_amount}원</li>                                            
 															</ul>                                                                           
 			    										</div> 
-			    										<button type="button" class="donerSelectBtn" onclick="donerSelect(${ProceedProject.project_code})">후원자 조회하기</button>                                                                              
+<%-- 			    										<button type="button" class="donerSelectBtn" onclick="donerSelect(${ProceedProject.project_code})">후원자 조회하기</button>                                                                               --%>
 			    									</div>                                                                                   
 			    								</div>
 										</c:forEach>
