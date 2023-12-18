@@ -98,7 +98,7 @@
 						</dl>
 						
 						<div class="ProjectCard__StyledPrelaunchedInfo-opxl0a-0 hQetpI">
-							<p>201명 알림신청 중</p>
+<!-- 							<p>201명 알림신청 중</p> -->
 							<div class="LikeButton__Wrapper-whittq-0 jcXdKY ProjectCard__StyledPrelaunedLiked-opxl0a-4 oFogy">
 								<button class="CardPrelaunchButton__WrapperButton-sc-1lkgvs7-0 fAYvWN">
 									<div name="notification-line" class="Icon__SVGICON-sc-1nac45c-0 hOKVVV CardPrelaunchButton__UnCheckedIcon-sc-1lkgvs7-2 jSelzS">

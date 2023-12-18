@@ -190,10 +190,12 @@ function defaultImg(tagId) {
 						</div>
 						<div class="ProjectIntroduction__Metric-sc-1kf21am-12 fXsdBd">
 							<div class="ProjectIntroduction__StatusTitle-sc-1kf21am-13 fPBHBs">남은시간</div>
-<%-- 							<div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.dday }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">일</span></div> --%>
 							<c:choose>
 						        <c:when test="${project.dday lt 0}">
 						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">0<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">초</span></div>
+						        </c:when>
+						        <c:when test="${project.dday eq 0}">
+						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.leftHour }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">시간</span></div>
 						        </c:when>
 						        <c:otherwise>
 						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.dday }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">일</span></div>
@@ -363,22 +365,22 @@ function defaultImg(tagId) {
 					<div class="style__SectionTabsWrap-y9rrh6-4 blvrlR">
 					<ul class="style__SectionTabs-y9rrh6-5 gZnims fixed">
 					<li>
-					<a class="isActive isActive">소개</a>
+					<a class="isActive isActive scroll1">소개</a>
 					</li>
 					<li>
-					<a class="">예산</a>
+					<a class="scroll2">예산</a>
 					</li>
 					<li>
-					<a class="">일정</a>
+					<a class="scroll3">일정</a>
 					</li>
 					<li>
-					<a class="">팀 소개</a>
+					<a class="scroll4">팀 소개</a>
 					</li>
 					<li>
-					<a class="">선물 설명</a>
+					<a class="scroll5">리워드 설명</a>
 					</li>
 					<li>
-					<a class="">신뢰와 안전</a>
+					<a class="scroll6">신뢰와 안전</a>
 					</li>
 					</ul>
 					</div>
@@ -389,9 +391,9 @@ function defaultImg(tagId) {
 					
 					
 					
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 소개</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo content">프로젝트 소개</div>
 					<div class="storyContent">
-						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_content }" id="img_content" alt="프로젝트 내용 이미지" onerror="defaultImg(this)">
+						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_content }" alt="프로젝트 내용 이미지">
 					</div>
 					
 					
@@ -400,17 +402,17 @@ function defaultImg(tagId) {
 					
 					</div>
 					<div id="budget" class="style__StorySection-y9rrh6-7 dxcJNl">
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 예산</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo budget">프로젝트 예산</div>
 					<div class="storyContent">
-						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_budget }" id="img_budget" alt="프로젝트 예산 이미지" onerror="defaultImg(this)">
+						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_budget }" alt="프로젝트 예산 이미지">
 					</div>
 					
 					
 					</div>
 					<div id="schedule" class="style__StorySection-y9rrh6-7 dxcJNl">
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 일정</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo sch">프로젝트 일정</div>
 					<div class="storyContent">
-						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_sch }" id="img_sch" alt="프로젝트 일정 이미지" onerror="defaultImg(this)">
+						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_sch }" alt="프로젝트 일정 이미지">
 					</div>
 					
 					
@@ -419,9 +421,9 @@ function defaultImg(tagId) {
 					
 					</div>
 					<div id="introduction" class="style__StorySection-y9rrh6-7 dxcJNl">
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 팀 소개</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo team">프로젝트 팀 소개</div>
 					<div class="storyContent">
-						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_team }" id="img_team" alt="프로젝트 팀 이미지" onerror="defaultImg(this)">
+						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_team }" alt="프로젝트 팀 이미지">
 					</div>
 				
 				
@@ -429,9 +431,9 @@ function defaultImg(tagId) {
 				
 					</div>
 					<div id="rewardsDescription" class="style__StorySection-y9rrh6-7 dxcJNl">
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">리워드 설명</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo reward">리워드 설명</div>
 					<div class="storyContent">
-						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_reward }" id="img_reward" alt="프로젝트 리워드 이미지" onerror="defaultImg(this)">
+						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_reward }" alt="프로젝트 리워드 이미지">
 					</div>
 				
 				
@@ -603,7 +605,7 @@ function defaultImg(tagId) {
 								
 <!-- 							주영 창작자 문의 버튼 ChatMain2.jsp랑 연결 -->
 
-								<a class="style__AskCreatorButton-sc-1kqdyt-1 fisrFD" href="ChatMain2" onclick="window.open(this.href, '_blank', 'width=615, height=650'); return false;">
+								<a class="style__AskCreatorButton-sc-1kqdyt-1 fisrFD" href="ChatMain2" onclick="window.open(this.href, '_blank', 'width=550, height=600'); return false;">
 								<div name="letter" class="Icon__SVGICON-sc-12tligs-0 kPBcuc style__AskCreatorButtonIcon-sc-1kqdyt-2 scWIP">
 								<svg viewBox="0 0 48 48">
 								<path fill-rule="evenodd" clip-rule="evenodd" d="M41.9 37.8966H6.1C5.1 37.8966 4.2 37.0958 4.2 35.997V34.5964L15.7 26.3993L19 29.0977C21.9 31.4981 26.099 31.4981 29.099 29.0977L32.4 26.3993L43.9 34.5964V35.997C43.799 37.0958 43 37.8966 41.9 37.8966ZM13.9 24.9996L4.2 31.898V17.0015L13.9 24.9996ZM43.799 17.0015V31.898L34.099 24.9996L43.799 17.0015ZM6.1 9.20333H41.9C42.9 9.20333 43.799 10.0031 43.799 11.1029V14.2022L27.7 27.499C25.599 29.1986 22.5 29.1986 20.4 27.499L4.2 14.2022V11.0029C4.2 10.0031 5.1 9.10336 6.1 9.20333ZM41.9 7.00385H6.1C3.9 6.90287 2 8.80243 2 11.0029V35.997C2 38.2955 3.9 40.0951 6.1 39.9961H41.9C44.2 39.9961 46 38.1965 46 35.997V11.0029C46 8.80243 44.2 6.90287 41.9 7.00385Z">
@@ -676,7 +678,17 @@ function defaultImg(tagId) {
 																<input type="hidden" name="project_code" value="${project_code }">
 																<input type="hidden" name="reward_code" value="${reward.reward_code }">
 																<input type="hidden" name="reward_amount" value="${reward.reward_amount }">
-																<input type="submit" id="fund" value="후원">
+																
+<!-- 																<input type="submit" id="fund" value="후원"> -->
+																<c:choose>
+																    <c:when test="${project.startedDay > 0}">
+<!-- 																		<input type="submit" id="fund" value="후원" disabled> -->
+																		<input type="submit" id="fund" value="후원" disabled style="background-color: grey;">
+																    </c:when>
+																    <c:otherwise>
+																		<input type="submit" id="fund" value="후원">
+																    </c:otherwise>
+																</c:choose>
 															</form>
 															
 															<div class="RewardCard__DeliveryDate-sc-11jni8b-16 cxeoGo"></div>

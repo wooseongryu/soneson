@@ -36,6 +36,30 @@ $(function() {
         $("#reward").get(0).scrollIntoView({ behavior: 'smooth' });
     });
 	
+	$(".scroll1").click(function() {
+        $(".content").get(0).scrollIntoView({ behavior: 'smooth' });
+    });
+	
+	$(".scroll2").click(function() {
+        $(".budget").get(0).scrollIntoView({ behavior: 'smooth' });
+    });
+	
+	$(".scroll3").click(function() {
+        $(".sch").get(0).scrollIntoView({ behavior: 'smooth' });
+    });
+	
+	$(".scroll4").click(function() {
+        $(".team").get(0).scrollIntoView({ behavior: 'smooth' });
+    });
+    
+	$(".scroll5").click(function() {
+        $(".reward").get(0).scrollIntoView({ behavior: 'smooth' });
+    });
+    
+	$(".scroll6").click(function() {
+        $(".trust").get(0).scrollIntoView({ behavior: 'smooth' });
+    });
+	
 });
 
 

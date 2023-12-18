@@ -388,6 +388,7 @@
 				, max(p.user_id) AS creator_id
 				, DATEDIFF(NOW(), MAX(p.start_date)) AS startedDay2
 				, DATEDIFF(MAX(p.start_date), now()) AS startedDay
+				, TIMESTAMPDIFF(HOUR, NOW(), max(p.end_date)) AS leftHour
 			FROM project p
 			LEFT JOIN fund f
 			ON p.project_code = f.project_code

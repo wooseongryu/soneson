@@ -11,36 +11,30 @@
 <style type="text/css">
 	/* 채팅방 목록 영역 */
 	#chatRoomListArea {
-		width: 180px;
-		height: 400px;
-		border: 2px solid darkgray;
+		width: 300px;
+		height: 600px;
+		border: 1px solid black;
 		margin-top: 20px;
 		margin-bottom: 20px;
 		display: inline-block;
 		/* 지정한 영역 크기 컨텐츠보다 많은 양이 표시될 경우 수직 방향 스크롤바 추가 */
 		overflow-y: auto;
-		text-align: center;
-		margin-right: 20px;
 	}
 	
 	.chatRoomTitle {
-		font-size: 15px;
+		font-size: 18px;
 		margin-bottom: 10px;
-		border-radius: 20px;
-		padding: 10px;
-		margin-bottom: 10px;
-		font-weight: bold;
 	}
 	
 	.chatRoomTitle:hover {
-		background-color: #F86453;
+		background-color: pink;
 	}
 
 	/* 채팅방 전체 영역 */
 	#chatRoomArea {
-		width: 300px;
-		height: 400px;
-		border: 2px solid darkgray;
+		width: 650px;
+		height: 600px;
+		border: 1px solid black;
 		margin-top: 20px;
 		margin-bottom: 20px;
 		display: inline-block;
@@ -61,10 +55,9 @@
 	.chatMessageArea {
 		width: 300px;
 		height: 200px;
-		border: 2px solid darkgray;
+		border: 1px solid blue;
 		/* 지정한 영역 크기 컨텐츠보다 많은 양이 표시될 경우 수직 방향 스크롤바 추가 */
 		overflow-y: auto;
-		padding-top: 15px;
 	}
 	
 	/* 채팅 메세지 */
@@ -76,28 +69,16 @@
 		font-size: 10px;
 	}
 	
- 	.chat_text { 
- 		font-size: 18px; 
- 	} 
+	.chat_text {
+		font-size: 18px;
+	}
 	
 	.message_align_left .chat_text {
- 		background-color: skyblue; 
-		text-align: left;
-		margin: 10px;
-		border-radius: 15px;
-		font-weight: bold;
-		padding: 5px;
-		margin-bottom: 10px;
+		background-color: skyblue;
 	}
 	
 	.message_align_right .chat_text {
- 		background-color: yellow; 
-		text-align: right;
-		margin: 10px;
-		border-radius: 15px;
-		font-weight: bold;
-		padding: 5px;
-		margin-bottom: 10px;
+		background-color: yellow;
 	}
 	
 	/* 채팅 메세지 정렬 */
@@ -115,27 +96,8 @@
 	
 	/* 채팅 메세지 하단 입력 영역 */
 	.commandArea {
-		width: 310px;
+		width: 300px;
 		position: relative;
-		margin-top: 30px;
-	}
-	
-	.btnSend {
-		background-color: #F86453;
-		color: #FFF;
-		border-color: #F86453;
-	}
-	
-	#btnQuit {
-		background-color: #F86453;
-		color: #FFF;
-		border-color: #F86453;
-	}
-	
-	.btnQuitRoom {
-		background-color: #F86453;
-		color: #FFF;
-		border-color: #F86453;
 	}
 </style>
 <script src="${pageContext.request.contextPath }/resources/soneson/js/jquery-3.7.0.js"></script>
@@ -310,6 +272,7 @@
 			$("#chatRoomListArea").append(room);
 			
 		}
+
 		
 	}
 	
@@ -526,7 +489,7 @@
 	<header>
 		<%-- Login, Join 등의 링크 표시 메뉴 영역 --%>
 		<%-- 주의! JSP 파일은 WEB-INF/views 디렉토리 내에 위치 --%>
-<%-- 		<jsp:include page="../../inc/header.jsp"></jsp:include> --%>
+		<jsp:include page="../../inc/header.jsp"></jsp:include>
 	</header>
 	<article>
 		<%-- 본문 표시 영역 --%>
@@ -536,12 +499,11 @@
 				location.href = "login";
 			</script>
 		</c:if>
-		<h1>채팅 리스트</h1>
+		<h1>채팅 페이지</h1>
 		<hr>
-<!-- 		상대방 아이디 : <input type="text" id="receiver_id"> -->
-
-		안녕하세요 :) <strong>${sessionScope.sId}</strong>님 &nbsp;&nbsp;
-<!-- 		<input type="button" value="채팅 시작" id="btnJoin"> -->
+		상대방 아이디 : <input type="text" id="receiver_id" value="${receiverId }">
+		
+		<input type="button" value="채팅 시작" id="btnJoin">
 		<input type="button" value="채팅방 나가기" id="btnQuit">
 		<hr>
 		<div id="chatRoomArea"><%-- 채팅방 추가될 위치 --%></div>
@@ -550,7 +512,7 @@
 	<hr>
 	<footer>
 		<!-- bottom.jsp 페이지를 현재 페이지에 삽입 -->
-<%-- 		<jsp:include page="../../inc/footer.jsp"></jsp:include> --%>
+		<jsp:include page="../../inc/footer.jsp"></jsp:include>
 	</footer>
 </body>
 </html>
