@@ -128,7 +128,8 @@
 <!-- --------------------------board-----------------------------	 -->
 
 	<div class="mainList">
-		<div class="title">주목할 만한 프로젝트</div>
+		<div class="title">손을 잡은 프로젝트</div>
+<!-- 		<div class="title">주목할 만한 프로젝트</div> -->
 		<div class="main-project-list">
 			<div class="boardWrap">
 				<ul class="slider-bo">

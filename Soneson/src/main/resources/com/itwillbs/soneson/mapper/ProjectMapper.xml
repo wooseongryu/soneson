@@ -203,6 +203,13 @@
 		ORDER BY date(A.start_date) - date(now())	
 	]]>
 </sql>
+<sql id="main">
+	<![CDATA[
+			WHERE p.start_date <= now() AND p.end_date > now() AND p.status = '승인'
+			GROUP BY p.project_code) A
+		ORDER BY A.fund_date DESC
+	]]>
+</sql>
 
 
 <sql id="all">
@@ -288,6 +295,7 @@
 				, ifnull(TRUNCATE(sum(cost) / max(goal_amount) * 100, 0), 0) AS goal_rate
 				, count(f.fund_code) AS donor
 				, DATEDIFF(date(max(p.end_date)), date(now())) AS dday
+				, max(f.fund_date) AS fund_date
 			FROM project p
 			LEFT JOIN fund f
 			ON p.project_code = f.project_code
@@ -309,6 +317,11 @@
 			<choose>
 				<when test="listType.equals('upcoming')">
 					<include refid="upcoming"/>
+				</when>
+			</choose>
+			<choose>
+				<when test="listType.equals('main')">
+					<include refid="main"/>
 				</when>
 			</choose>
 			<choose>

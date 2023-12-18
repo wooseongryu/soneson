@@ -30,7 +30,7 @@ public class HomeController {
 		System.out.println("HomeController - home");
 		
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("listType", "popular");
+		map.put("listType", "main");
 		
 		List<Map<String, Object>> projectList = service.getTabProjectList(map);
 		
