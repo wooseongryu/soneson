@@ -77,7 +77,7 @@
 	}
 	
  	.chat_text { 
- 		font-size: 18px; 
+ 		font-size: 16px; 
  	} 
 	
 	.message_align_left .chat_text {
@@ -85,7 +85,7 @@
 		text-align: left;
 		margin: 10px;
 		border-radius: 15px;
-		font-weight: bold;
+/* 		font-weight: bold; */
 		padding: 5px;
 		margin-bottom: 10px;
 	}
@@ -95,7 +95,7 @@
 		text-align: right;
 		margin: 10px;
 		border-radius: 15px;
-		font-weight: bold;
+/* 		font-weight: bold; */
 		padding: 5px;
 		margin-bottom: 10px;
 	}
@@ -107,10 +107,14 @@
 	
 	.message_align_left {
 		text-align: left;
+		padding-top: 5px;
+		margin-bottom: 5px;
 	}
 	
 	.message_align_right {
 		text-align: right;
+		padding-top: 5px;
+		margin-bottom: 5px;
 	}
 	
 	/* 채팅 메세지 하단 입력 영역 */
