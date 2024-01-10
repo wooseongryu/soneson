@@ -418,7 +418,7 @@ img.src = imageUrl; // Start loading the image
 					
 					
 					
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 소개</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo content">프로젝트 소개</div>
 					<div class="storyContent">
 						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_content }" id="img_content" alt="프로젝트 내용 이미지" onerror="defaultImg(this)">
 					</div>
@@ -429,7 +429,7 @@ img.src = imageUrl; // Start loading the image
 					
 					</div>
 					<div id="budget" class="style__StorySection-y9rrh6-7 dxcJNl">
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 예산</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo budget">프로젝트 예산</div>
 					<div class="storyContent">
 						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_budget }" id="img_budget" alt="프로젝트 예산 이미지" onerror="defaultImg(this)">
 					</div>
@@ -437,7 +437,7 @@ img.src = imageUrl; // Start loading the image
 					
 					</div>
 					<div id="schedule" class="style__StorySection-y9rrh6-7 dxcJNl">
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 일정</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo sch">프로젝트 일정</div>
 					<div class="storyContent">
 						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_sch }" id="img_sch" alt="프로젝트 일정 이미지" onerror="defaultImg(this)">
 					</div>
@@ -448,7 +448,7 @@ img.src = imageUrl; // Start loading the image
 					
 					</div>
 					<div id="introduction" class="style__StorySection-y9rrh6-7 dxcJNl">
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 팀 소개</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo team">프로젝트 팀 소개</div>
 					<div class="storyContent">
 						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_team }" id="img_team" alt="프로젝트 팀 이미지" onerror="defaultImg(this)">
 					</div>
@@ -458,7 +458,7 @@ img.src = imageUrl; // Start loading the image
 				
 					</div>
 					<div id="rewardsDescription" class="style__StorySection-y9rrh6-7 dxcJNl">
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">리워드 설명</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo reward">리워드 설명</div>
 					<div class="storyContent">
 						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_reward }" id="img_reward" alt="프로젝트 리워드 이미지" onerror="defaultImg(this)">
 					</div>
@@ -472,7 +472,7 @@ img.src = imageUrl; // Start loading the image
 				
 				
 				<div id="refundExchangePolicy" class="style__StorySection-ygs6af-7 ktoIwn">
-					<div class="style__StorySectionTitle-ygs6af-6 evGXXa eARawo">신뢰와 안전</div>
+					<div class="style__StorySectionTitle-ygs6af-6 evGXXa eARawo trust">신뢰와 안전</div>
 					<div class="style__FundingInfoWrap-ygs6af-11 fyAnHx">
 						<div class="style__SectionSubTitle-ygs6af-9 iMSRJG">크라우드 펀딩에 대한 안내</div>
 						<dl>
@@ -633,7 +633,7 @@ img.src = imageUrl; // Start loading the image
 								
 								
 								
-<!-- 							주영 창작자 문의 버튼 ChatMain2.jsp랑 연결 -->
+<!-- 							창작자 문의 버튼 ChatMain2.jsp랑 연결 -->
 
 								<a class="style__AskCreatorButton-sc-1kqdyt-1 fisrFD" href="ChatMain2" onclick="window.open(this.href, '_blank', 'width=550, height=600'); return false;">
 								<div name="letter" class="Icon__SVGICON-sc-12tligs-0 kPBcuc style__AskCreatorButtonIcon-sc-1kqdyt-2 scWIP">
