@@ -62,15 +62,15 @@
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
-											<th>프로젝트 코드</th>
-											<th>프로젝트 제목</th>
-											<th>프로젝트 카테고리</th>
-											<th>프로젝트 창작자</th>
-											<th>프로젝트 기간</th>
-											<th>프로젝트 후원금액</th>
-											<th>프로젝트 목표금액</th>
-											<th>프로젝트 달성률</th>
-											<th>프로젝트 후원자</th>
+											<th width="5%">코드</th>
+											<th width="25%">제목</th>
+											<th width="10%">카테고리</th>
+											<th width="10%">창작자</th>
+											<th width="15%">기간</th>
+											<th width="10%">후원금액</th>
+											<th width="10%">목표금액</th>
+											<th width="5%">달성률</th>
+											<th width="5%">후원자 수</th>
 										</tr>
 									</thead>
 									<tbody>

@@ -276,20 +276,20 @@
 		GROUP BY p.project_code
 	</select>
 
-    <!-- 진행전인 프로젝트 조회 -->
+    <!-- 진행예정 프로젝트 조회 -->
    	<select id="selectProjectBefore" resultType="map">
-		SELECT
-			project_code
-			, title 
-			, subtitle
-			, category
-			, creator
-			, img_main AS img1
-			, date(start_date) AS start_date
-			, date(end_date) AS end_date
-			, ifnull(goal_amount, 0) AS goal_amount
-		FROM project p
-		WHERE start_date > now() AND status = '승인'
+		SELECT project_code
+				, max(title) AS title
+				, max(subtitle) AS subtitle
+				, max(category) AS category
+				, max(creator) AS creator
+				, max(img_main) AS img1
+				, max(start_date) AS start_date
+				, max(end_date) AS end_date
+				, ifnull(max(goal_amount), 0) AS goal_amount 
+		FROM project p 
+		WHERE start_date > now() AND status = '승인' 
+		GROUP BY project_code
 	</select>
 
 	<!-- 진행중인 프로젝트 조회 -->
@@ -303,8 +303,8 @@
 			, max(p.category) AS category
 			, max(p.creator) AS creator
 			, max(p.img_main) AS img_main
-			, date(max(p.start_date)) AS start_date
-			, date(max(p.end_date)) AS end_date
+			, max(p.start_date) AS start_date
+			, max(p.end_date) AS end_date
 			, ifnull(format(sum(cost) , 0), 0) AS now_amount
 			, ifnull(max(goal_amount), 0) AS goal_amount
 			, ifnull(sum(cost) / max(goal_amount), 0) AS ratio
@@ -333,8 +333,8 @@
 			, max(p.category) AS category
 			, max(p.creator) AS creator
 			, max(p.img_main) AS img_main
-			, date(max(p.start_date)) AS start_date
-			, date(max(p.end_date)) AS end_date
+			, max(p.start_date) AS start_date
+			, max(p.end_date) AS end_date
 			, ifnull(format(sum(cost) , 0), 0) AS now_amount
 			, ifnull(max(goal_amount), 0) AS goal_amount
 			, ifnull(sum(cost) / max(goal_amount), 0) AS ratio
@@ -416,16 +416,17 @@
     <select id="selectExamWaitProjectList" resultType="map">
 		SELECT
 			project_code
-			, title 
-			, subtitle
-			, category
-			, creator
-			, img_main AS img1
-			, date(start_date) AS start_date
-			, date(end_date) AS end_date
-			, ifnull(goal_amount, 0) AS goal_amount
+			, max(title) AS title
+			, max(subtitle) AS subtitle
+			, max(category) AS category
+			, max(creator) AS creator
+			, max(img_main) AS img1
+			, max(start_date) AS start_date
+			, max(end_date) AS end_date
+			, ifnull(max(goal_amount), 0) AS goal_amount 
 		FROM project p
 		WHERE status = '심사대기중'
+		GROUP BY project_code
     </select>
 
 
@@ -433,16 +434,17 @@
     <select id="selectRejectProjectList" resultType="map">
 		SELECT
 			project_code
-			, title 
-			, subtitle
-			, category
-			, creator
-			, img_main AS img1
-			, date(start_date) AS start_date
-			, date(end_date) AS end_date
-			, ifnull(goal_amount, 0) AS goal_amount
+			, max(title) AS title
+			, max(subtitle) AS subtitle
+			, max(category) AS category
+			, max(creator) AS creator
+			, max(img_main) AS img1
+			, max(start_date) AS start_date
+			, max(end_date) AS end_date
+			, ifnull(max(goal_amount), 0) AS goal_amount 
 		FROM project p
 		WHERE status = '반려'
+		GROUP BY project_code
     </select>
 	
 	<!-- 프로젝트 승인 -->

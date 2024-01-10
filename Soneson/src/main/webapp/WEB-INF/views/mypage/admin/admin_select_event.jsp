@@ -74,13 +74,13 @@
 								<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 									<thead>
 										<tr>
-                                            <th>번호</th>
-                                            <th>카테고리</th>
-                                            <th>제목</th>
-                                            <th>작성일</th>
-                                            <th>이벤트 기간</th>
-                                            <th>상태구분</th>
-                                            <th>수정 및 삭제</th>
+                                            <th width="5%">번호</th>
+                                            <th width="10%">카테고리</th>
+                                            <th width="40%">제목</th>
+                                            <th width="10%">작성일</th>
+                                            <th width="15%">이벤트 기간</th>
+                                            <th width="10%">상태구분</th>
+                                            <th width="15%">수정 및 삭제</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -98,7 +98,11 @@
 	                                            <td>${event.eventCate_subject }</td>
 	                                            <td>${event.event_title }</td>
 	                                            <td><fmt:formatDate value="${event.event_writeDate }" pattern="yyyy-MM-dd"/></td>
-	                                            <td>${event.event_startDt } ~ ${event.event_endDt }</td>
+	                                            <td>
+	                                            	<c:if test="${!empty event.event_startDt }">
+	                                            		${event.event_startDt } ~ ${event.event_endDt }
+                                           			</c:if>
+                                           		</td>
 	                                            <td>${event.event_status }</td>
 												<td>
 													<button type="button" class="btn btn-primary" onclick="location.href='adminEventUpdate?event_idx=${event.event_idx}'">수정</button>
