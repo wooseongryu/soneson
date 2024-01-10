@@ -190,17 +190,19 @@ function defaultImg(tagId) {
 						</div>
 						<div class="ProjectIntroduction__Metric-sc-1kf21am-12 fXsdBd">
 							<div class="ProjectIntroduction__StatusTitle-sc-1kf21am-13 fPBHBs">남은시간</div>
-							<c:choose>
-						        <c:when test="${project.dday lt 0}">
-						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">0<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">초</span></div>
-						        </c:when>
-						        <c:when test="${project.dday eq 0}">
-						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.leftHour }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">시간</span></div>
-						        </c:when>
-						        <c:otherwise>
-						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.dday }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">일</span></div>
-						        </c:otherwise>
-						    </c:choose>
+						    <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.dday2 }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">${project.dday3 }</span></div>
+<%-- 						    <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.leftHour }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">시간</span></div> --%>
+<%-- 							<c:choose> --%>
+<%-- 						        <c:when test="${project.dday lt 0}"> --%>
+<!-- 						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">0<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">초</span></div> -->
+<%-- 						        </c:when> --%>
+<%-- 						        <c:when test="${project.dday eq 0}"> --%>
+<%-- 						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.leftHour }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">시간</span></div> --%>
+<%-- 						        </c:when> --%>
+<%-- 						        <c:otherwise> --%>
+<%-- 						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.dday }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">일</span></div> --%>
+<%-- 						        </c:otherwise> --%>
+<%-- 						    </c:choose --%>
 						
 						
 						
@@ -391,9 +393,9 @@ function defaultImg(tagId) {
 					
 					
 					
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo content">프로젝트 소개</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 소개</div>
 					<div class="storyContent">
-						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_content }" alt="프로젝트 내용 이미지">
+						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_content }" id="img_content" alt="프로젝트 내용 이미지" onerror="defaultImg(this)">
 					</div>
 					
 					
@@ -402,17 +404,17 @@ function defaultImg(tagId) {
 					
 					</div>
 					<div id="budget" class="style__StorySection-y9rrh6-7 dxcJNl">
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo budget">프로젝트 예산</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 예산</div>
 					<div class="storyContent">
-						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_budget }" alt="프로젝트 예산 이미지">
+						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_budget }" id="img_budget" alt="프로젝트 예산 이미지" onerror="defaultImg(this)">
 					</div>
 					
 					
 					</div>
 					<div id="schedule" class="style__StorySection-y9rrh6-7 dxcJNl">
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo sch">프로젝트 일정</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 일정</div>
 					<div class="storyContent">
-						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_sch }" alt="프로젝트 일정 이미지">
+						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_sch }" id="img_sch" alt="프로젝트 일정 이미지" onerror="defaultImg(this)">
 					</div>
 					
 					
@@ -421,9 +423,9 @@ function defaultImg(tagId) {
 					
 					</div>
 					<div id="introduction" class="style__StorySection-y9rrh6-7 dxcJNl">
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo team">프로젝트 팀 소개</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">프로젝트 팀 소개</div>
 					<div class="storyContent">
-						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_team }" alt="프로젝트 팀 이미지">
+						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_team }" id="img_team" alt="프로젝트 팀 이미지" onerror="defaultImg(this)">
 					</div>
 				
 				
@@ -431,9 +433,9 @@ function defaultImg(tagId) {
 				
 					</div>
 					<div id="rewardsDescription" class="style__StorySection-y9rrh6-7 dxcJNl">
-					<div class="style__StorySectionTitle-y9rrh6-6 eARawo reward">리워드 설명</div>
+					<div class="style__StorySectionTitle-y9rrh6-6 eARawo">리워드 설명</div>
 					<div class="storyContent">
-						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_reward }" alt="프로젝트 리워드 이미지">
+						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_reward }" id="img_reward" alt="프로젝트 리워드 이미지" onerror="defaultImg(this)">
 					</div>
 				
 				
