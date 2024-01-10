@@ -90,7 +90,12 @@
 											<div class="row no-gutters align-items-center">
 												<div class="col-auto">
 													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-													${costAmount[0].sum_cost }원
+														<c:if test="${costAmount[0].sum_cost ne null }">
+														${costAmount[0].sum_cost }원
+														</c:if>
+														<c:if test="${costAmount[0].sum_cost eq null }">
+														주간 펀딩 금액이 없습니다
+														</c:if>
 													</div>
 												</div>
 											</div>
