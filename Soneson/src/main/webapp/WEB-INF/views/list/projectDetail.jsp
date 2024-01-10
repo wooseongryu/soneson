@@ -28,6 +28,17 @@
 function defaultImg(tagId) {
 	$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/projectList/' + tagId.id + '.png');
 }
+
+// function defaultCreator(tagId) {
+// 	$("#" + tagId.id).attr('style','background-image: url("${pageContext.request.contextPath }/resources/soneson/img/projectList/creator.png")');
+// }
+
+// function defaultCreator(element) {
+//     // Replace the URL below with the URL of your default image
+// //     $(element).css('background-image', 'url("' + '${pageContext.request.contextPath}/resources/soneson/img/projectList/creator.png' + '")');
+//     debugger;
+//     element.style.backgroundImage = "url('${pageContext.request.contextPath}/resources/soneson/img/projectList/creator.png')";
+// }
 // function defaultImg(tagId, name) {
 // 	console.log(tagId.id);
 // 	$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/projectList/' + name + '.png');
@@ -38,6 +49,20 @@ function defaultImg(tagId) {
 //  			location.href="detaildeleteFollow?follow_id=" + user_id;
 //  		}
 //  	}
+
+var imageUrl = '${pageContext.request.contextPath}/resources/upload/${project.creator_profile}';
+var defaultImageUrl = '${pageContext.request.contextPath}/resources/soneson/img/projectList/creator.png';
+
+var img = new Image();
+img.onload = function() {
+    // Image loaded successfully
+    document.getElementById('img_creator').style.backgroundImage = 'url("' + imageUrl + '")';
+};
+img.onerror = function() {
+    // Image failed to load, set default background
+    document.getElementById('img_creator').style.backgroundImage = 'url("' + defaultImageUrl + '")';
+};
+img.src = imageUrl; // Start loading the image
 
 </script>
 
@@ -190,17 +215,19 @@ function defaultImg(tagId) {
 						</div>
 						<div class="ProjectIntroduction__Metric-sc-1kf21am-12 fXsdBd">
 							<div class="ProjectIntroduction__StatusTitle-sc-1kf21am-13 fPBHBs">남은시간</div>
-							<c:choose>
-						        <c:when test="${project.dday lt 0}">
-						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">0<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">초</span></div>
-						        </c:when>
-						        <c:when test="${project.dday eq 0}">
-						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.leftHour }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">시간</span></div>
-						        </c:when>
-						        <c:otherwise>
-						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.dday }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">일</span></div>
-						        </c:otherwise>
-						    </c:choose>
+						    <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.dday2 }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">${project.dday3 }</span></div>
+<%-- 						    <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.leftHour }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">시간</span></div> --%>
+<%-- 							<c:choose> --%>
+<%-- 						        <c:when test="${project.dday lt 0}"> --%>
+<!-- 						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">0<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">초</span></div> -->
+<%-- 						        </c:when> --%>
+<%-- 						        <c:when test="${project.dday eq 0}"> --%>
+<%-- 						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.leftHour }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">시간</span></div> --%>
+<%-- 						        </c:when> --%>
+<%-- 						        <c:otherwise> --%>
+<%-- 						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.dday }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">일</span></div> --%>
+<%-- 						        </c:otherwise> --%>
+<%-- 						    </c:choose --%>
 						
 						
 						
@@ -393,7 +420,7 @@ function defaultImg(tagId) {
 					
 					<div class="style__StorySectionTitle-y9rrh6-6 eARawo content">프로젝트 소개</div>
 					<div class="storyContent">
-						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_content }" alt="프로젝트 내용 이미지">
+						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_content }" id="img_content" alt="프로젝트 내용 이미지" onerror="defaultImg(this)">
 					</div>
 					
 					
@@ -404,7 +431,7 @@ function defaultImg(tagId) {
 					<div id="budget" class="style__StorySection-y9rrh6-7 dxcJNl">
 					<div class="style__StorySectionTitle-y9rrh6-6 eARawo budget">프로젝트 예산</div>
 					<div class="storyContent">
-						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_budget }" alt="프로젝트 예산 이미지">
+						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_budget }" id="img_budget" alt="프로젝트 예산 이미지" onerror="defaultImg(this)">
 					</div>
 					
 					
@@ -412,7 +439,7 @@ function defaultImg(tagId) {
 					<div id="schedule" class="style__StorySection-y9rrh6-7 dxcJNl">
 					<div class="style__StorySectionTitle-y9rrh6-6 eARawo sch">프로젝트 일정</div>
 					<div class="storyContent">
-						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_sch }" alt="프로젝트 일정 이미지">
+						 <img src="${pageContext.request.contextPath }/resources/upload/${project.img_sch }" id="img_sch" alt="프로젝트 일정 이미지" onerror="defaultImg(this)">
 					</div>
 					
 					
@@ -423,7 +450,7 @@ function defaultImg(tagId) {
 					<div id="introduction" class="style__StorySection-y9rrh6-7 dxcJNl">
 					<div class="style__StorySectionTitle-y9rrh6-6 eARawo team">프로젝트 팀 소개</div>
 					<div class="storyContent">
-						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_team }" alt="프로젝트 팀 이미지">
+						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_team }" id="img_team" alt="프로젝트 팀 이미지" onerror="defaultImg(this)">
 					</div>
 				
 				
@@ -433,7 +460,7 @@ function defaultImg(tagId) {
 					<div id="rewardsDescription" class="style__StorySection-y9rrh6-7 dxcJNl">
 					<div class="style__StorySectionTitle-y9rrh6-6 eARawo reward">리워드 설명</div>
 					<div class="storyContent">
-						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_reward }" alt="프로젝트 리워드 이미지">
+						<img src="${pageContext.request.contextPath }/resources/upload/${project.img_reward }" id="img_reward" alt="프로젝트 리워드 이미지" onerror="defaultImg(this)">
 					</div>
 				
 				
@@ -445,7 +472,7 @@ function defaultImg(tagId) {
 				
 				
 				<div id="refundExchangePolicy" class="style__StorySection-ygs6af-7 ktoIwn">
-					<div class="style__StorySectionTitle-ygs6af-6 evGXXa eARawo">신뢰와 안전</div>
+					<div class="style__StorySectionTitle-ygs6af-6 evGXXa eARawo trust">신뢰와 안전</div>
 					<div class="style__FundingInfoWrap-ygs6af-11 fyAnHx">
 						<div class="style__SectionSubTitle-ygs6af-9 iMSRJG">크라우드 펀딩에 대한 안내</div>
 						<dl>
@@ -544,6 +571,7 @@ function defaultImg(tagId) {
 						</div>
 						<div class="Card-sc-101a3bk-0 gOXjRK style__StyledCreatorCard-qovng2-13 doOMJs">
 							<div class="style__CreatorCardInner-sc-1kqdyt-6 fpENpF">
+<!-- 							TODO -->
 								<div class="style__CreatorCardLabel-sc-1kqdyt-7 dkwthg">창작자 소개</div>
 								<div class="style__CreatorProfile-sc-1kqdyt-8 jqFoCK">
 									<div class="style__CreatorWrapper-sc-1kqdyt-9 iNlJa-D">
@@ -551,8 +579,10 @@ function defaultImg(tagId) {
 <!-- 											<span class="ProfileImg__StyledProfileImg-sc-1es2i1m-0 izmTNc profileImage"> -->
 <%-- 												<img src="${pageContext.request.contextPath }/resources/upload/${project.creator_profile }" alt="프로젝트 창작자 이미지"> --%>
 <!-- 											</span> -->
-											<span class="ProfileImg__StyledProfileImg-sc-1es2i1m-0 izmTNc profileImage" style="background-image: url('${pageContext.request.contextPath }/resources/upload/${project.creator_profile }');">
-											</span>
+<%-- 											<span class="ProfileImg__StyledProfileImg-sc-1es2i1m-0 izmTNc profileImage" id="img_creator" style="background-image: url('${pageContext.request.contextPath }/resources/upload/${project.creator_profile }');" onerror="defaultCreator(this)"> --%>
+<!-- 											</span> -->
+												<span class="ProfileImg__StyledProfileImg-sc-1es2i1m-0 izmTNc profileImage" id="img_creator">
+												</span>		
 										</a>
 										<div class="style__CreatorInfo-sc-1kqdyt-10 gFiWmy">
 											<div class="style__TopWrap-sc-1kqdyt-11 cUKpnq">
