@@ -28,6 +28,17 @@
 function defaultImg(tagId) {
 	$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/projectList/' + tagId.id + '.png');
 }
+
+// function defaultCreator(tagId) {
+// 	$("#" + tagId.id).attr('style','background-image: url("${pageContext.request.contextPath }/resources/soneson/img/projectList/creator.png")');
+// }
+
+// function defaultCreator(element) {
+//     // Replace the URL below with the URL of your default image
+// //     $(element).css('background-image', 'url("' + '${pageContext.request.contextPath}/resources/soneson/img/projectList/creator.png' + '")');
+//     debugger;
+//     element.style.backgroundImage = "url('${pageContext.request.contextPath}/resources/soneson/img/projectList/creator.png')";
+// }
 // function defaultImg(tagId, name) {
 // 	console.log(tagId.id);
 // 	$("#" + tagId.id).attr('src','${pageContext.request.contextPath }/resources/soneson/img/projectList/' + name + '.png');
@@ -38,6 +49,20 @@ function defaultImg(tagId) {
 //  			location.href="detaildeleteFollow?follow_id=" + user_id;
 //  		}
 //  	}
+
+var imageUrl = '${pageContext.request.contextPath}/resources/upload/${project.creator_profile}';
+var defaultImageUrl = '${pageContext.request.contextPath}/resources/soneson/img/projectList/creator.png';
+
+var img = new Image();
+img.onload = function() {
+    // Image loaded successfully
+    document.getElementById('img_creator').style.backgroundImage = 'url("' + imageUrl + '")';
+};
+img.onerror = function() {
+    // Image failed to load, set default background
+    document.getElementById('img_creator').style.backgroundImage = 'url("' + defaultImageUrl + '")';
+};
+img.src = imageUrl; // Start loading the image
 
 </script>
 
@@ -546,6 +571,7 @@ function defaultImg(tagId) {
 						</div>
 						<div class="Card-sc-101a3bk-0 gOXjRK style__StyledCreatorCard-qovng2-13 doOMJs">
 							<div class="style__CreatorCardInner-sc-1kqdyt-6 fpENpF">
+<!-- 							TODO -->
 								<div class="style__CreatorCardLabel-sc-1kqdyt-7 dkwthg">창작자 소개</div>
 								<div class="style__CreatorProfile-sc-1kqdyt-8 jqFoCK">
 									<div class="style__CreatorWrapper-sc-1kqdyt-9 iNlJa-D">
@@ -553,8 +579,10 @@ function defaultImg(tagId) {
 <!-- 											<span class="ProfileImg__StyledProfileImg-sc-1es2i1m-0 izmTNc profileImage"> -->
 <%-- 												<img src="${pageContext.request.contextPath }/resources/upload/${project.creator_profile }" alt="프로젝트 창작자 이미지"> --%>
 <!-- 											</span> -->
-											<span class="ProfileImg__StyledProfileImg-sc-1es2i1m-0 izmTNc profileImage" style="background-image: url('${pageContext.request.contextPath }/resources/upload/${project.creator_profile }');">
-											</span>
+<%-- 											<span class="ProfileImg__StyledProfileImg-sc-1es2i1m-0 izmTNc profileImage" id="img_creator" style="background-image: url('${pageContext.request.contextPath }/resources/upload/${project.creator_profile }');" onerror="defaultCreator(this)"> --%>
+<!-- 											</span> -->
+												<span class="ProfileImg__StyledProfileImg-sc-1es2i1m-0 izmTNc profileImage" id="img_creator">
+												</span>		
 										</a>
 										<div class="style__CreatorInfo-sc-1kqdyt-10 gFiWmy">
 											<div class="style__TopWrap-sc-1kqdyt-11 cUKpnq">
