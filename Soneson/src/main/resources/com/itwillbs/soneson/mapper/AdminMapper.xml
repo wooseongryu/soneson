@@ -416,16 +416,17 @@
     <select id="selectExamWaitProjectList" resultType="map">
 		SELECT
 			project_code
-			, title 
-			, subtitle
-			, category
-			, creator
-			, img_main AS img1
-			, date(start_date) AS start_date
-			, date(end_date) AS end_date
-			, ifnull(goal_amount, 0) AS goal_amount
+			, max(title) AS title
+			, max(subtitle) AS subtitle
+			, max(category) AS category
+			, max(creator) AS creator
+			, max(img_main) AS img1
+			, max(start_date) AS start_date
+			, max(end_date) AS end_date
+			, ifnull(max(goal_amount), 0) AS goal_amount 
 		FROM project p
 		WHERE status = '심사대기중'
+		GROUP BY project_code
     </select>
 
 
@@ -433,16 +434,17 @@
     <select id="selectRejectProjectList" resultType="map">
 		SELECT
 			project_code
-			, title 
-			, subtitle
-			, category
-			, creator
-			, img_main AS img1
-			, date(start_date) AS start_date
-			, date(end_date) AS end_date
-			, ifnull(goal_amount, 0) AS goal_amount
+			, max(title) AS title
+			, max(subtitle) AS subtitle
+			, max(category) AS category
+			, max(creator) AS creator
+			, max(img_main) AS img1
+			, max(start_date) AS start_date
+			, max(end_date) AS end_date
+			, ifnull(max(goal_amount), 0) AS goal_amount 
 		FROM project p
 		WHERE status = '반려'
+		GROUP BY project_code
     </select>
 	
 	<!-- 프로젝트 승인 -->

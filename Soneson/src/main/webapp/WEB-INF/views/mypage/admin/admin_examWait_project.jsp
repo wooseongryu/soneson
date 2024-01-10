@@ -91,7 +91,7 @@
 	                                            <td>${examWaitProject.title }</td>
 	                                            <td>${examWaitProject.category }</td>
 	                                            <td>${examWaitProject.creator }</td>
-	                                            <td>${examWaitProject.start_date } ~<br> ${examWaitProject.end_date}</td>
+	                                            <td>${fn:replace(examWaitProject.start_date ,"T", " ") } ~<br> ${fn:replace(examWaitProject.end_date ,"T", " ") }</td>
 	                                            <td>${examWaitProject.goal_amount }원</td>
 	                                            <td>
 		                                            <button type="button" class="btn btn-primary" onclick="confirmUpdateExam('${examWaitProject.project_code }')">프로젝트 심사하기</button>&nbsp;&nbsp;
