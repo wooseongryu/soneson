@@ -115,9 +115,6 @@
     	
     	function updateUserProfilePic() {
     		$.ajax({
-    			type: 'post',
-    			url: 'settingUpdateUserProfilePic',
-    			dataType: 'json',
     			success: function(resp) {
     				$("#user_profile_pic").children().remove();
     				
@@ -211,9 +208,6 @@
     	
     	function cancelUpdateUserProfilePic() {
     		$.ajax({
-    			type: 'post',
-    			url: 'settingCancelUpdateUserProfilePic',
-    			dataType: 'json',
     			success: function(resp) {
     				$("#user_profile_pic").children().remove();
     				
@@ -235,9 +229,6 @@
     	
     	function updateUserName() {
     		$.ajax({
-    			type: 'post',
-    			url: 'settingUpdateUserName',
-    			dataType: 'json',
     			success: function(resp) {
     				$("#user_name").children().remove();
     				
@@ -314,9 +305,6 @@
     	
     	function cancelUpdateUserName() {
     		$.ajax({
-    			type: 'post',
-    			url: 'settingCancelUpdateUserName',
-    			dataType: 'json',
     			success: function(resp) {
     				$("#user_name").children().remove();
     				
@@ -336,9 +324,6 @@
     	
     	function updateUserIntroduction() {
     		$.ajax({
-    			type: 'post',
-    			url: 'settingUpdateUserIntro',
-    			dataType: 'json',
     			success: function(resp) {
     				let tmp = "";
     				if (info != null) {
@@ -423,9 +408,6 @@
     	
     	function cancelUpdateUserIntroduction() {
     		$.ajax({
-    			type: 'post',
-    			url: 'settingcCancelUpdateUserIntro',
-    			dataType: 'json',
     			success: function(resp) {
 					$("#user_intro").children().remove();
     				
@@ -528,9 +510,6 @@
     	
     	function updateUserPassword() {
     		$.ajax({
-    			type: 'post',
-    			url: 'settingUpdateUserPassword',
-    			dataType: 'json',
     			success: function(resp) {
     				$("#user_password").children().remove();
 
@@ -739,9 +718,6 @@
     	
     	function cancelUpdateUserPassword() {
     		$.ajax({
-    			type: 'post',
-    			url: 'settingCancelUpdateUserPassword',
-    			dataType: 'json',
     			success: function(resp) {
     				$("#user_password").children().remove();
 
@@ -760,9 +736,6 @@
     	
     	function updateUserPhone() {
     		$.ajax({
-    			type: 'post',
-    			url: 'settingUpdateUserPhone',
-    			dataType: 'json',
     			success: function(resp) {
     				$("#user_phone").children().remove();
 
@@ -868,9 +841,6 @@
     	
     	function cancelUpdateUserPhone() {
     		$.ajax({
-    			type: 'post',
-    			url: 'settingCancelUpdateUserPhone',
-    			dataType: 'json',
     			success: function(resp) {
     				$("#user_phone").children().remove();
 
@@ -933,9 +903,6 @@
     	
     	function updateUserLeave() {
     		$.ajax({
-    			type: 'post',
-    			url: 'settingUpdateUserLeave',
-    			dataType: 'json',
     			success: function(resp) {
     				$("#user_leave").children().remove();
 
@@ -1011,9 +978,6 @@
     	
     	function cancelUpdateUserLeave() {
     		$.ajax({
-    			type: 'post',
-    			url: 'settingCancelUpdateUserLeave',
-    			dataType: 'json',
     			success: function(resp) {
     				$("#user_leave").children().remove();
 
@@ -1074,9 +1038,6 @@
     		checkSessionAlive();
     		
     		$.ajax({
-    			type: 'post',
-    			url: 'settingUserPayment',
-    			dataType: 'json',
     			success: function(resp) {
     				reset_screen(id);
     				
