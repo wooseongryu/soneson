@@ -195,14 +195,6 @@ public class UserController {
 		return gson.toJson(user_info);
 	}
 	
-	// 프로젝트 후기
-	@ResponseBody
-	@PostMapping("userProfileProjectReview")
-	public String userProfileProjectReview() {
-		System.out.println("UserController - userProfileProjectReview()");
-		return "1";
-	}
-	
 	// 올린 프로젝트
 	@ResponseBody
 	@PostMapping("userUploadProject")
@@ -295,14 +287,6 @@ public class UserController {
 		return gson.toJson(user);
 	}
 	
-	// 유저 설정 프로필 사진 변경
-	@ResponseBody
-	@PostMapping("settingUpdateUserProfilePic")
-	public String settingUpdateUserProfilePic() {
-		System.out.println("UserController - settingUpdateUserProfilePic()");
-		return "1";
-	}
-	
 	// 유저 설정 프로필 사진 수정
 	@ResponseBody
 	@PostMapping("uploadUserProfilePic")
@@ -384,38 +368,6 @@ public class UserController {
 		return gson.toJson(map);
 	}
 	
-	// 유저 설정 프로필 사진 변경 취소
-	@ResponseBody
-	@PostMapping("settingCancelUpdateUserProfilePic")
-	public String settingCancelUpdateUserProfilePic() {
-		System.out.println("UserController - settingCancelUpdateUserProfilePic()");
-		return "1";
-	}
-	
-	// 유저 설정 이름 변경
-	@ResponseBody
-	@PostMapping("settingUpdateUserName")
-	public String settingUpdateUserName() {
-		System.out.println("UserController - settingUpdateUserName()");
-		return "1";
-	}
-	
-	// 유저 설정 이름 변경 취소
-	@ResponseBody
-	@PostMapping("settingCancelUpdateUserName")
-	public String settingCancelUpdateUserName() {
-		System.out.println("UserController - settingCancelUpdateUserName()");
-		return "1";
-	}
-	
-	// 유저 설정 소개 변경
-	@ResponseBody
-	@PostMapping("settingUpdateUserIntro")
-	public String settingUpdateUserIntro() {
-		System.out.println("UserController - settingUpdateUserIntro()");
-		return "1";
-	}
-	
 	// 유저 설정 소개 변경 pro
 	@ResponseBody
 	@PostMapping("settingUpdateUserProfilePro")
@@ -444,14 +396,6 @@ public class UserController {
 		return gson.toJson(map);
 	}
 	
-	// 유저 설정 소개 변경 취소
-	@ResponseBody
-	@PostMapping("settingcCancelUpdateUserIntro")
-	public String settingcCancelUpdateUserIntro() {
-		System.out.println("UserController - settingcCancelUpdateUserIntro()");
-		return "1";
-	}
-	
 	// 유저 설정 계정 초기 출력 화면
 	@ResponseBody
 	@PostMapping("settingUserAccount")
@@ -463,14 +407,6 @@ public class UserController {
 		user = userService.selectUserAccount(sId);
 		
 		return gson.toJson(user);
-	}
-	
-	// 유저 설정 계정 비밀번호 변경
-	@ResponseBody
-	@PostMapping("settingUpdateUserPassword")
-	public String settingUpdateUserPassword() {
-		System.out.println("UserController - settingUpdateUserPassword()");
-		return "1";
 	}
 	
 	// 유저 설정 계정 비밀번호 변경 pro
@@ -520,22 +456,6 @@ public class UserController {
 		return "true";
 	}
 	
-	// 유저 설정 계정 비밀번호 변경 취소
-	@ResponseBody
-	@PostMapping("settingCancelUpdateUserPassword")
-	public String settingCancelUpdateUserPassword() {
-		System.out.println("UserController - settingCancelUpdateUserPassword()");
-		return "1";
-	}
-	
-	// 유저 설정 계정 연락처 변경
-	@ResponseBody
-	@PostMapping("settingUpdateUserPhone")
-	public String settingUpdateUserPhone() {
-		System.out.println("UserController - settingUpdateUserPhone()");
-		return "1";
-	}
-	
 	// 유저 설정 계정 연락처 변경 pro
 	@ResponseBody
 	@PostMapping("settingUpdateUserPhonePro")
@@ -561,14 +481,6 @@ public class UserController {
 		return gson.toJson(map);
 	}
 		
-	// 유저 설정 계정 연락처 변경 취소
-	@ResponseBody
-	@PostMapping("settingCancelUpdateUserPhone")
-	public String settingCancelUpdateUserPhone() {
-		System.out.println("UserController - settingCancelUpdateUserPhone()");
-		return "1";
-	}
-	
 	// 유저 설정 카카오 연동 해제
 	@ResponseBody
 	@PostMapping("settingDisconnectKakao")
@@ -589,23 +501,6 @@ public class UserController {
 		
 		map.put("isSuccess", "true");
 		return gson.toJson(map);
-	}
-	
-	
-	// 유저 설정 계정 회원탈퇴
-	@ResponseBody
-	@PostMapping("settingUpdateUserLeave")
-	public String settingUpdateUserLeave() {
-		System.out.println("UserController - settingUpdateUserLeave()");
-		return "1";
-	}
-	
-	// 유저 설정 계정 회원탈퇴 취소
-	@ResponseBody
-	@PostMapping("settingCancelUpdateUserLeave")
-	public String settingCancelUpdateUserLeave() {
-		System.out.println("UserController - settingCancelUpdateUserLeave()");
-		return "1";
 	}
 	
 	// 유저 설정 계정 회원탈퇴 처리
@@ -644,14 +539,6 @@ public class UserController {
 		session.invalidate();
 		map.put("isSuccess", "true");
 		return gson.toJson(map);
-	}
-	
-	// 유저 설정 계정 결제수단 초기 출력 화면
-	@ResponseBody
-	@PostMapping("settingUserPayment")
-	public String settingUserPayment() {
-		System.out.println("UserController - settingUserPayment()");
-		return "1";
 	}
 	
 	// 유저 설정 계정 배송지 초기 출력 화면
