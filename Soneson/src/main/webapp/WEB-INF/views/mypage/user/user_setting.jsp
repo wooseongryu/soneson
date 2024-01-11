@@ -54,12 +54,12 @@
     				
 					info = resp.user_info;
 					info_print = resp.user_info;
-    				if (info == "" || info == null) {
+    				if (info == null || info == "") {
     					info_print = "등록된 소개가 없습니다.";
     				}
     				
     				picture = resp.user_picture;
-    				if (picture == "" || picture == null) {
+    				if (picture == null || picture == "") {
     					picture = "${pageContext.request.contextPath }/resources/user/prifile.png";
     				} else {
 	    				picture = "${pageContext.request.contextPath }/resources/upload/" + resp.user_picture;
