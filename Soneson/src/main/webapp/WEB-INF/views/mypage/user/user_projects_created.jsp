@@ -190,7 +190,6 @@
 		<div class="MyProjectListWrapper">
 			<div align="center">
 				<br>
-				<c:if test="${!empty UploadProjectList }">
 					<section class="product-page spad" id="user_upload_project_all">                                                                                                          
    						<div class="container">                                                                                                                  
    					    	<div class="row">                                                                                                                      
@@ -276,8 +275,7 @@
 							</div>                                                                                                                                
 				    	</div>                                                                                                                                    
 					</section>                                                                                                                               
-				</c:if>
-				<c:if test="${empty UploadProjectList }">
+				<c:if test="${empty WritingProjectList && empty UploadProjectList}">
 					<img src="${pageContext.request.contextPath }/resources/user/writer.png" class="writer.png" width="180">
 					<br>
 					<br>

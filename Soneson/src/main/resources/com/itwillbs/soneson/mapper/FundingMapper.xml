@@ -115,6 +115,7 @@
 	
 	<!-- 후원현황 -->
 	<select id="selectUserFundingList" resultType="map">
+		<![CDATA[
 		SELECT *
 		FROM 
 			(SELECT
@@ -132,19 +133,21 @@
 				, f.cost AS cost
 				, date(p.start_date) AS start_date
 				, date(p.end_date) AS end_date
+				, rr.reward_explain AS reward_explain
 				, CASE
 					  WHEN (DATEDIFF(end_date, now()) >= 0) THEN CONCAT(DATEDIFF(end_date, now()), '일 남음')
 					  WHEN (DATEDIFF(end_date, now()) = 0) THEN '오늘 종료'
 					  ELSE '종료 됨'
 				  END AS d_day
 			FROM project p
-			LEFT JOIN fund f
-			ON p.project_code = f.project_code) a
-		<![CDATA[
+			JOIN fund f
+			  ON p.project_code = f.project_code
+		  	JOIN pro_reward rr
+		  	  ON rr.reward_code = f.reward_idx) a
 		WHERE start_date <= now()  AND status2 = '결제대기중' AND user_id = #{sId} 
-		]]>
 		ORDER BY fund_date desc
 		LIMIT 5
+		]]>
 	</select>
 <!-- 	AND status = '승인' -->
 	<!-- 펀드 테이블 데이터 삭제 -->
@@ -190,7 +193,9 @@
 		  JOIN user_fund_address ufa 
 		    ON p.project_code = ufa.project_code
 		  JOIN address a
-		    ON ufa.address_idx = a.address_idx 
+		    ON ufa.address_idx = a.address_idx
+	      JOIN pro_reward rr
+			ON rr.reward_code = f.reward_idx 
 		 WHERE f.project_code = #{project_code}
 		   AND f.user_id = #{sId}
 		   AND a.address_reciver = (SELECT a.address_reciver from user u 

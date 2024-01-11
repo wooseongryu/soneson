@@ -37,7 +37,7 @@ public class ChatController {
 		
 		System.out.println("창작자 아이디 : " + user_id);
 			
-		model.addAttribute("receiverId" + user_id);
+		model.addAttribute("receiverId", user_id);
 		
 		return "mypage/chat/main2";
 	}
