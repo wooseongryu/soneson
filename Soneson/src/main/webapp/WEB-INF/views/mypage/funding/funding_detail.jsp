@@ -194,22 +194,22 @@
 						</div>
 						
 						
-<!-- 						<div class="anime__details__review"> -->
-<!-- 							<div class="anime__review__item"> -->
-<!-- 								<div class="anime__review__item__text" id="project_review_content"> -->
-<!-- 									<div class="contents"> -->
-<!-- 									<h6><b>선물 정보</b></h6> -->
-<!-- 									<br> -->
-<!-- 										<div class="contents__InfoBox__InfoItem"> -->
-<!-- 											<dl class="InfoBox__InfoItem"> -->
-<!-- 												<dt class="InfoBox__InfoTitle">선물 구성</dt> -->
-<!-- 												<dd class="InfoBox__InfoContentWrap">• 화이트&블랙 머그컵(x 1)<br></dd> -->
-<!-- 											</dl> -->
-<!-- 										</div>	 -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
+						<div class="anime__details__review">
+							<div class="anime__review__item">
+								<div class="anime__review__item__text" id="project_review_content">
+									<div class="contents">
+									<h6><b>선물 정보</b></h6>
+									<br>
+										<div class="contents__InfoBox__InfoItem">
+											<dl class="InfoBox__InfoItem">
+												<dt class="InfoBox__InfoTitle">선물 구성</dt>
+												<dd class="InfoBox__InfoContentWrap">${fundingDetail.reward_explain }<br></dd>
+											</dl>
+										</div>	
+									</div>
+								</div>
+							</div>
+						</div>
 						<div class="anime__details__review">
 							<div class="anime__review__item">
 								<div class="anime__review__item__text" id="project_review_content">
@@ -258,12 +258,9 @@
 						
 						<div align="center">
 							<button type="button" class="btn btn-primary"
-							onclick="location.href='fundingList'">&nbsp;&nbsp;&nbsp;&nbsp;후원 목록 보기&nbsp;&nbsp;&nbsp;&nbsp;</button>
-						</div>			
-						<br><br>
-						<div align="center">
+							onclick="location.href='fundingList'">후원 목록 보기</button>
 							<button type="button" class="btn btn-primary" onclick="fundingCencel('${fundingDetail.project_code}')">후원취소</button>
-						</div>				
+						</div>			
 					</div>
 				</div>
 			</div>
