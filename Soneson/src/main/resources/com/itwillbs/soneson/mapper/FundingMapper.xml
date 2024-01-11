@@ -184,19 +184,19 @@
 	<!-- 펀딩 상세페이지  -->
 	<select id="selectfundingDetail" resultType="map">
 		SELECT DISTINCT *
-		FROM fund f
-		JOIN project p 
-		ON f.project_code = p.project_code 
-		JOIN user_fund_address ufa 
-		ON p.project_code = ufa.project_code
-		JOIN address a
-		ON ufa.address_idx = a.address_idx 
-		WHERE f.project_code = #{project_code}
-		AND f.user_id = #{sId}
-		AND a.address_reciver = (SELECT a.address_reciver from user u 
-								 JOIN address a 
-							 	 ON u.user_id = a.user_id where u.user_id = #{sId}
-						 		 LIMIT 1)	 
+		  FROM fund f
+		  JOIN project p 
+		    ON f.project_code = p.project_code 
+		  JOIN user_fund_address ufa 
+		    ON p.project_code = ufa.project_code
+		  JOIN address a
+		    ON ufa.address_idx = a.address_idx 
+		 WHERE f.project_code = #{project_code}
+		   AND f.user_id = #{sId}
+		   AND a.address_reciver = (SELECT a.address_reciver from user u 
+								      JOIN address a 
+							 	        ON u.user_id = a.user_id where u.user_id = #{sId}
+						 		     LIMIT 1)	 
 	</select>
 
 

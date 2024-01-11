@@ -98,18 +98,15 @@
     
     <script type="text/javascript">
     	let pointColor = "#F86453";
-    
-    	function confirmCancel(fund_idx) {
-    		let result = confirm(fund_idx  + "번 후원 취소를 원하시나요?");
+    	function fundingCencel(project_code) {
+    		let result = confirm("프로젝트 후원을 취소하시겠습니까?");
     		
     		if(result) {
-    			location.href = "fundingCancel?fund_idx=" + fund_idx;
-    			
+    			location.href = "fundingCencel?project_code=" + project_code;
     		}
-    	}
+		}
     	
-		
-		
+    	
 	</script>
 	
 </head>
@@ -152,8 +149,13 @@
 												<img src="${pageContext.request.contextPath }/resources/upload/${fundingDetail.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width:350px; height:200px">
 											</c:otherwise>
 										</c:choose>
-										후원일 ${fn:replace(fundingDetail.fund_date ,"T", " ") } | 후원번호 ${fundingDetail.fund_code }<br>${fundingDetail.title }<br>
-										<span>${fundingDetail.cost }원 결제 예정</span>
+										<div>
+											<span>후원일 ${fn:replace(fundingDetail.fund_date ,"T", " ") } | 후원번호 ${fundingDetail.fund_code }</span>
+											<br>
+											<span>${fundingDetail.title }</span>
+											<br>
+											<span>${fundingDetail.cost }원 결제 예정</span>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -177,7 +179,7 @@
 												<dd class="InfoBox__InfoContentWrap">${fundingDetail.fund_code }</dd>
 											</dl>
 											<dl class="InfoBox__InfoItem">
-												<dt class="InfoBox__InfoTitle">후원 날짜</dt>
+												<dt class="InfoBox__InfoTitle">후원일</dt>
 												<dd class="InfoBox__InfoContentWrap">${fn:replace(fundingDetail.fund_date ,"T", " ") }</dd>
 											</dl>
 											<dl class="InfoBox__InfoItem">
@@ -203,26 +205,11 @@
 <!-- 												<dt class="InfoBox__InfoTitle">선물 구성</dt> -->
 <!-- 												<dd class="InfoBox__InfoContentWrap">• 화이트&블랙 머그컵(x 1)<br></dd> -->
 <!-- 											</dl> -->
-<!-- 											<dl class="InfoBox__InfoItem"> -->
-<!-- 												<dt class="InfoBox__InfoTitle">후원 금액</dt> -->
-<!-- 												<dd class="InfoBox__InfoContentWrap">27,000원</dd> -->
-<!-- 											</dl> -->
-<!-- 											<dl class="InfoBox__InfoItem"> -->
-<!-- 												<dt class="InfoBox__InfoTitle">추가 후원금</dt> -->
-<!-- 												<dd class="InfoBox__InfoContentWrap">15,000원</dd> -->
-<!-- 											</dl> -->
-<!-- 											<dl class="InfoBox__InfoItem"> -->
-<!-- 												<dt class="InfoBox__InfoTitle">전달 상태</dt> -->
-<!-- 												<dd class="InfoBox__InfoContentWrap">2023. 11. 22 전달 완료</dd> -->
-<!-- 											</dl> -->
-										
 <!-- 										</div>	 -->
 <!-- 									</div> -->
 <!-- 								</div> -->
 <!-- 							</div> -->
 <!-- 						</div> -->
-						
-						
 						<div class="anime__details__review">
 							<div class="anime__review__item">
 								<div class="anime__review__item__text" id="project_review_content">
@@ -230,10 +217,6 @@
 									<h6><b>결제 정보</b></h6>
 									<br>
 										<div class="contents__InfoBox__InfoItem">
-<!-- 											<dl class="InfoBox__InfoItem"> -->
-<!-- 												<dt class="InfoBox__InfoTitle">결제 수단</dt> -->
-<!-- 												<dd class="InfoBox__InfoContentWrap">신한카드(***1) 일시불<br></dd> -->
-<!-- 											</dl> -->
 											<dl class="InfoBox__InfoItem">
 												<dt class="InfoBox__InfoTitle">결제 금액</dt>
 												<dd class="InfoBox__InfoContentWrap">${fundingDetail.cost }원</dd>
@@ -247,9 +230,6 @@
 								</div>
 							</div>
 						</div>
-						<br>
-						
-						
 						<div class="anime__details__review">
 							<div class="anime__review__item">
 								<div class="anime__review__item__text" id="project_review_content">
@@ -280,19 +260,10 @@
 							<button type="button" class="btn btn-primary"
 							onclick="location.href='fundingList'">&nbsp;&nbsp;&nbsp;&nbsp;후원 목록 보기&nbsp;&nbsp;&nbsp;&nbsp;</button>
 						</div>			
-						
+						<br><br>
 						<div align="center">
-							<a class="cancel" href=fundingCancel
-							onclick='return confirm("후원을 취소하시겠어요? 선착순 마감된 선물은 취소 후 다시 후원할 수 없습니다. 신중하게 고민하고 취소를 결정해주세요.");'>
-							   	후원을 취소하시겠어요?
-							</a>
+							<button type="button" class="btn btn-primary" onclick="fundingCencel('${fundingDetail.project_code}')">후원취소</button>
 						</div>				
-						
-					                        
-						<div id="user_content">
-						<!-- ajax -->
-						</div>
-											
 					</div>
 				</div>
 			</div>
