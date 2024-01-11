@@ -24,7 +24,7 @@
 
 	<script type="text/javascript">
 		function confirmUpdateApprove(project_code) {
-			let result = confirm(project_code  + "번 게시글을 승인하시겠습니까?");
+			let result = confirm(project_code  + "번 프로젝트를 승인하시겠습니까?");
 			
 			if(result) {
 				location.href = "adminProjectApprove?project_code=" + project_code;
@@ -32,7 +32,7 @@
 		}
 	
 		function confirmUpdateReject(project_code) {
-			let result = confirm(project_code  + "번 게시글을 반려하시겠습니까?");
+			let result = confirm(project_code  + "번 프로젝트을 반려하시겠습니까?");
 			
 			if(result) {
 				location.href = "adminProjectReject?project_code=" + project_code;

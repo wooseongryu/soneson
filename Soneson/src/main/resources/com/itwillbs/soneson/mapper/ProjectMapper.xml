@@ -402,6 +402,22 @@
 				, DATEDIFF(NOW(), MAX(p.start_date)) AS startedDay2
 				, DATEDIFF(MAX(p.start_date), now()) AS startedDay
 				, TIMESTAMPDIFF(HOUR, NOW(), max(p.end_date)) AS leftHour
+					<![CDATA[
+				, CASE
+					  WHEN DATEDIFF(date(max(p.end_date)), date(now())) = 0 
+					  	THEN TIMESTAMPDIFF(HOUR, NOW(), max(p.end_date))
+					  WHEN DATEDIFF(date(max(p.end_date)), date(now())) > 0 
+					  	THEN DATEDIFF(date(max(p.end_date)), date(now()))
+					  ELSE 0
+					END AS dday2
+				, CASE
+					  WHEN DATEDIFF(date(max(p.end_date)), date(now())) = 0 
+					  	THEN '시간'
+					  WHEN DATEDIFF(date(max(p.end_date)), date(now())) > 0 
+					  	THEN '일'
+					  ELSE '초'
+					END AS dday3
+					]]>
 			FROM project p
 			LEFT JOIN fund f
 			ON p.project_code = f.project_code

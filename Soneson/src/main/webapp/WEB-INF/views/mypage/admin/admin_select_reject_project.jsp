@@ -88,7 +88,7 @@
 	                                            <td>${rejectProject.title }</td>
 	                                            <td>${rejectProject.category }</td>
 	                                            <td>${rejectProject.creator }</td>
-	                                            <td>${rejectProject.start_date } ~<br> ${rejectProject.end_date}</td>
+	                                            <td>${fn:replace(rejectProject.start_date ,"T", " ") } ~<br> ${fn:replace(rejectProject.end_date ,"T", " ") }</td>
 	                                            <td>${rejectProject.goal_amount }원</td>
 	                                            <td>
 	                                            	<button type="button" class="btn btn-primary" onclick="confirmUpdateApprove('${rejectProject.project_code }')">승인</button>&nbsp;&nbsp;

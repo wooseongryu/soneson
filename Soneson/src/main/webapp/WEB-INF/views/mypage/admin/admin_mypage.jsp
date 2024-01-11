@@ -90,7 +90,12 @@
 											<div class="row no-gutters align-items-center">
 												<div class="col-auto">
 													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-													${costAmount[0].sum_cost }원
+														<c:if test="${costAmount[0].sum_cost ne null }">
+														${costAmount[0].sum_cost }원
+														</c:if>
+														<c:if test="${costAmount[0].sum_cost eq null }">
+														주간 펀딩 금액이 없습니다
+														</c:if>
 													</div>
 												</div>
 											</div>
@@ -147,7 +152,7 @@
 					<div class="row">
 
 						<!-- Pie Chart -->
-						<div class="col-xl-4 col-lg-5">
+						<div class="col-xl-5 col-lg-5">
 							<div class="card shadow mb-4">
 <!-- 								Card Header - Dropdown -->
 								<div
@@ -192,9 +197,6 @@
 											<c:if test="${status.index eq 7 }">
 											"fas fa-circle text-blue"	
 											</c:if>
-											<c:if test="${status.index eq 8 }">
-											"fas fa-circle text-cyan"	
-											</c:if>
 											></i> ${AdminSelectMyPieChart.cate }
 										</span>
 										</c:forEach>
@@ -203,7 +205,7 @@
 							</div>
 						</div>
 						<!-- Content Column -->
-						<div class="col-xl-8 col-lg-8">
+						<div class="col-xl-7 col-lg-7">
 
 							<!-- Project Card Example -->
 							<div class="card shadow mb-4">
