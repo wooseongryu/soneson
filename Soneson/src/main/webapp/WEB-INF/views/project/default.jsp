@@ -362,6 +362,7 @@ $(function() {
 						</ul>
 						<div class="top-menu-btn">
 <%-- 							<button formaction="updateProject" onclick="updateProject(${pro.pro_code})">저장하기</button> --%>
+							<button type="button" data-bs-toggle="modal" data-bs-target="#previewModal">미리보기</button>
 							<button type="button" onclick="updateProject(${pro.pro_code})">저장하기</button>
 							<input type="hidden" name="isNewInsert" value="N">
 						</div>

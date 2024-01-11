@@ -785,5 +785,17 @@
 		WHERE pro_code = #{project_code}
 	</delete>
 	
+	<!-- 훈나 작성 중인 프로젝트 리워드삭제 1/11-->
+	<delete id="deleteReward">
+		DELETE FROM pro_reward
+		WHERE pro_code = #{project_code}
+	</delete>
+	
+	<!-- 훈나 작성 중인 프로젝트 아이템삭제 1/11-->
+	<delete id="deleteItem">
+		DELETE FROM pro_item
+		WHERE pro_code = #{project_code}
+	</delete>
+	
 </mapper>
 

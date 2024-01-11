@@ -803,6 +803,9 @@ public class UserController {
 		
 		int deleteCount = userService.deleteSampleProject(project_code);
 		if(deleteCount > 0) {
+			int deleteRewardCount = userService.deleteReward(project_code);
+			int deleteItemCount = userService.deleteItem(project_code);
+			
 			model.addAttribute("msg", "삭제되었습니다.");
 			model.addAttribute("targetURL", "userProjectsWriting");
 			return "forward";
