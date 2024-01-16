@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--     개인 css 엄성윤 -->
-<link href="${pageContext.request.contextPath }/resources/soneson/css/main/nogada.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath }/resources/soneson/css/main/infoNogada.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath }/resources/soneson/css/main/detailNogada.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath }/resources/main/css/tumble/app.81892d40d14a84165880.css" rel="stylesheet">
+<%-- <link href="${pageContext.request.contextPath }/resources/soneson/css/main/nogada.css" rel="stylesheet"> --%>
+<%-- <link href="${pageContext.request.contextPath }/resources/soneson/css/main/infoNogada.css" rel="stylesheet"> --%>
+<%-- <link href="${pageContext.request.contextPath }/resources/soneson/css/main/detailNogada.css" rel="stylesheet"> --%>
+<%-- <link href="${pageContext.request.contextPath }/resources/main/css/tumble/app.81892d40d14a84165880.css" rel="stylesheet"> --%>
 <div class="modal-content">
   		<div class="modal-header">
     		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
