@@ -114,16 +114,14 @@
 						<div class="anime__details__review">
 				        	<h2 id="funding_title">후원 현황</h2>
 							<c:if test="${!empty userFundingList }">
-							<h6 id="funding_category">진행중인 후원</h6>
+							<div>
+								<h6 id="funding_category">진행중인 후원</h6>
+							</div>
 							<span>(펀딩일 기준 5개가 조회됩니다)</span>
 							<c:forEach var="userFunding" items="${userFundingList}">
 									<div class="anime__review__item">
 										<div class="anime__review__item__text">
 											<div class="row contents">
-<%-- 		   										<div class="product__item__pic set-bg col-3" data-setbg="${userFunding.img_main }"  --%>
-<%-- 												style="background-image: url('${userFunding.img_main}'); width: 200px; height: 200px; margin-left: 15px;"> --%>
-<!-- 												</div> -->
-<!-- 												</div> -->
 		   										<div class="col-3" data-setbg="${userFunding.img_main }"> 
 			    								<c:choose>
 													<c:when test="${fn:contains(userFunding.img_main, 'https')}">
@@ -160,47 +158,6 @@
 							</c:if>
 						</div>
 						<br>
-						
-<!-- 						<div class="anime__details__review"> -->
-<!-- 							<h6><b>후원 성공(1)</b></h6> -->
-<!-- 							<br> -->
-<!-- 							<div class="anime__review__item"> -->
-<!-- 								<div class="anime__review__item__text" id="project_review_content"> -->
-<!-- 									<div class="contents"> -->
-<!-- 										후원일 2023.11.01 | 후원번호 2000001 -->
-<!-- 									</div> -->
-<!-- 									<h6>길냥이 유메의 냥생역전을 위한 첫걸음!</h6> -->
-<!-- 									• 화이트&블랙 머그컵(x 1)<br> -->
-<!-- 									42,000원 결제 완료 -->
-<!-- 									<br> -->
-<!-- 									<br>	 -->
-<!-- 									<span>선물 전달 완료일 2023. 11. 22</span> -->
-<!-- 									<div class="user_follow_btn"> -->
-<!-- 										<a href="#">후기 작성</a> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<br> -->
-						
-<!-- 						<div class="anime__details__review"> -->
-<!-- 							<h6><b>후원 실패(1)</b></h6> -->
-<!-- 							<br> -->
-<!-- 							<div class="anime__review__item"> -->
-<!-- 								<div class="anime__review__item__text" id="project_review_content"> -->
-<!-- 									<div class="contents"> -->
-<!-- 										후원일 2023.10.31 | 후원번호 3000001 -->
-<!-- 									</div> -->
-<!-- 									<h6>일상 속 '향기 한 잔 [캄파눌라]'</h6> -->
-<!-- 									• 캄파눌라 고블렛(x 1) 옵션 : 화이트<br> -->
-<!-- 									54,000원 결제 예약 취소 -->
-<!-- 									<br> -->
-<!-- 									<br> -->
-<!-- 									결제 예약 취소일 2023. 11. 01 -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<br> -->
 					</div>
 				</div>
 			</div>

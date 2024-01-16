@@ -234,24 +234,6 @@
 										</c:forEach>
 										</div>                                                                               
 									</div>
-									<div class="product__pagination" id="pageList">
-										<c:if test="${pageNum > 1 }">
-											<a href="eventList?eventCate_idx=${param.eventCate_idx }&pageNum=${pageNum - 1 }"><i class="fa fa-angle-double-left"></i></a>					
-										</c:if>
-										<c:forEach var="i" begin="${pageInfo.startPage }" end="${pageInfo.endPage }">
-											<c:choose>
-												<c:when test="${pageNum eq i }">
-													<a class="current-page" href="eventList?eventCate_idx=${param.eventCate_idx }&pageNum=${i }">${i }</a>
-												</c:when>
-												<c:otherwise>
-													<a href="eventList?eventCate_idx=${param.eventCate_idx }&pageNum=${i }">${i }</a> 
-												</c:otherwise>
-											</c:choose>
-										</c:forEach>
-										<c:if test="${pageNum < pageInfo.maxPage }">
-											<a href="eventList?eventCate_idx=${param.eventCate_idx }&pageNum=${pageNum + 1 }"><i class="fa fa-angle-double-right"></i></a>					
-										</c:if>
-									</div>                                                                                                                        
 								</div>                                                                                                                            
 							</div>                                                                                                                                
 				    	</div>                                                                                                                                    

@@ -135,9 +135,6 @@
 							<div class="anime__review__item">
 								<div class="" id="project_review_content">
 									<div class="">
-<%-- 									<a href="${pageContext.request.contextPath }/soneson/popular"> --%>
-<%-- 										<img src="${pageContext.request.contextPath }/resources/user/success.jpg" class="success_jpg">		 --%>
-<!-- 									</a> -->
 	    								<c:choose>
 											<c:when test="${fn:contains(fundingDetail.img_main, 'https')}">
 												<img src="${fundingDetail.img_main}" alt="프로젝트 썸네일 이미지" style="width:350px; height:200px">
