@@ -1,6 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!--     개인 css 엄성윤 -->
+<link href="${pageContext.request.contextPath }/resources/soneson/css/main/nogada.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/soneson/css/main/infoNogada.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/soneson/css/main/detailNogada.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/main/css/tumble/app.81892d40d14a84165880.css" rel="stylesheet">
+<div class="modal-content">
+  		<div class="modal-header">
+    		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  		</div>
+  		<div class="modal-body" style="display: flex;">
 <div id="react-view" class="tbb-only-ff">
 	<div class="ProjectIntroduction__ProjectIntroductionBackground-sc-1kf21am-0 eGtYeZ">
 		<!-- 여기서부터 시작 -->
@@ -9,7 +19,7 @@
 				<div class="ProjectIntroduction__ProjectOutline-sc-1kf21am-2 jqMDnB">
 					<div class="ProjectIntroduction__ProjectOutlineInner-sc-1kf21am-3 edHMaW">
 						<a href="/discover?tab=category&amp;category=calendar-and-diary">
-							<span class="ProjectIntroduction__ProjectCategory-sc-1kf21am-4 gObYWz">${pro.pro_category }</span>
+							<span class="ProjectIntroduction__ProjectCategory-sc-1kf21am-4 gObYWz">${pro.pro_categorie }</span>
 						</a>
 						<h1 class="ProjectIntroduction__ProjectTitle-sc-1kf21am-5 VbzlC">${pro.pro_title }</h1>
 					</div>
@@ -83,11 +93,11 @@
 							</dl>
 							<dl class="FundingInformation__InfoItem-sc-84xkqs-2 dsitt">
 								<dt class="FundingInformation__Title-sc-84xkqs-3 cSBHrX">펀딩 기간</dt>
-								<dd class="FundingInformation__Desc-sc-84xkqs-4 Hysth">${pro.pro_startDt} ~ ${pro.pro_EndDt}<span class="FundingInformation__DdayLabel-sc-84xkqs-5 cfyFBE">14일 남음</span></dd>
+								<dd class="FundingInformation__Desc-sc-84xkqs-4 Hysth">${pro.pro_startDt} ~ ${pro.pro_endDt}<span class="FundingInformation__DdayLabel-sc-84xkqs-5 cfyFBE">14일 남음</span></dd>
 							</dl>
 							<dl class="FundingInformation__InfoItem-sc-84xkqs-2 dsitt">
 								<dt class="FundingInformation__Title-sc-84xkqs-3 cSBHrX">결제</dt>
-								<dd class="FundingInformation__Desc-sc-84xkqs-4 Hysth">목표금액 달성시 ${pro.pro_EndDt + 1}에 결제 진행</dd>
+								<dd class="FundingInformation__Desc-sc-84xkqs-4 Hysth">목표금액 달성시 ${pro.pro_endDt + 1}에 결제 진행</dd>
 							</dl>
 						</div>
 					</div>
@@ -95,15 +105,7 @@
 						<div class="ProjectIntroduction__ProjectButtonsInner-sc-1kf21am-19 jDhSeE">
 							<div class="ProjectIntroduction__PrimaryButton-sc-1kf21am-20 gpBnlK">
 								<div class="PledgeButton__Wrapper-sc-19585pn-0 kzJnkH">
-									<button class="Button-sc-16r5v81-0 PledgeButton__StyledButton-sc-19585pn-1 eXFpDs hrOCcK"onclick="confirmUpdateApprove('${project.project_code }')">프로젝트 승인</button>
-								</div>
-								<br>
-								<div class="PledgeButton__Wrapper-sc-19585pn-0 kzJnkH">
-									<button class="Button-sc-16r5v81-0 PledgeButton__StyledButton-sc-19585pn-1 eXFpDs hrOCcK"onclick="confirmUpdateReject('${project.project_code }')">프로젝트 반려</button>
-								</div>
-								<br>
-								<div class="PledgeButton__Wrapper-sc-19585pn-0 kzJnkH">
-									<button class="Button-sc-16r5v81-0 PledgeButton__StyledButton-sc-19585pn-1 eXFpDs hrOCcK"onclick="history.back()">돌아가기</button>
+									<button class="Button-sc-16r5v81-0 PledgeButton__StyledButton-sc-19585pn-1 eXFpDs hrOCcK" type="button">후원하기</button>
 								</div>
 							</div>
 						</div>

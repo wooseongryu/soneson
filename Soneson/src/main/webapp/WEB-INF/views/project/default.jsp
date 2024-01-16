@@ -383,7 +383,7 @@ $(function() {
 						        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						      		</div>
 						      		<div class="modal-body" style="display: flex;">
-<%-- 						        		<jsp:include page="./preview_modal.jsp"></jsp:include> --%>
+						        		<jsp:include page="./preview_modal.jsp"></jsp:include>
 						      		</div>
 						      		<div class="modal-footer">
 						        		<button type="button" data-bs-dismiss="modal">Close</button>
