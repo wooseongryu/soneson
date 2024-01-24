@@ -379,10 +379,13 @@ function successFunding() {
 	
 	console.log("으앙 " + user_name);
 	console.log("뭐야" + finNumber);
-	if(address_idx == "" || address_idx == undefined) {
-		alert("배송지를 입력해주세요.");
-		return;
-		
+	
+	// 배송지가 있을 때만 alert창
+	if(${reward.reward_isDeliv eq 'Y'}) {
+		if(address_idx == "" || address_idx == undefined) {
+			alert("배송지를 입력해주세요.");
+			return;
+		}
 	}
 	
 	if(finNumber == "" || finNumber == "0" || finNumber == undefined) {
