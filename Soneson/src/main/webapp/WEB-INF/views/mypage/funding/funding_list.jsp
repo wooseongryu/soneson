@@ -114,40 +114,39 @@
 						<div class="anime__details__review">
 				        	<h2 id="funding_title">후원 현황</h2>
 							<c:if test="${!empty userFundingList }">
-							<h6 id="funding_category">진행중인 후원</h6>
+							<div>
+								<h6 id="funding_category">진행중인 후원</h6>
+							</div>
 							<span>(펀딩일 기준 5개가 조회됩니다)</span>
 							<c:forEach var="userFunding" items="${userFundingList}">
 									<div class="anime__review__item">
 										<div class="anime__review__item__text">
 											<div class="row contents">
-<%-- 		   										<div class="product__item__pic set-bg col-3" data-setbg="${userFunding.img_main }"  --%>
-<%-- 												style="background-image: url('${userFunding.img_main}'); width: 200px; height: 200px; margin-left: 15px;"> --%>
-<!-- 												</div> -->
-<!-- 												</div> -->
-		   										<div data-setbg="${userFunding.img_main }"> 
+		   										<div class="col-3" data-setbg="${userFunding.img_main }"> 
 			    								<c:choose>
 													<c:when test="${fn:contains(userFunding.img_main, 'https')}">
-														<img src="${userFunding.img_main}" alt="프로젝트 썸네일 이미지" style="width:200px; height:200px">
+														<img src="${userFunding.img_main}" alt="프로젝트 썸네일 이미지" style="width:200px; height:200px; margin-left: 15px;">
 													</c:when>
 				    									<c:when test="${empty userFunding.img_main}">
 														<img src="${pageContext.request.contextPath }/resources/soneson/img/project/default.png" alt="프로젝트 썸네일 이미지" style="width: 200px; height: 200px; margin-left: 15px;">
 													</c:when>
 													<c:otherwise>
-														<img src="${pageContext.request.contextPath }/resources/upload/${userFunding.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width:200px; height:200px">
+														<img src="${pageContext.request.contextPath }/resources/upload/${userFunding.img_main }" alt="프로젝트 썸네일 이미지 DB" style="width:200px; height:200px; margin-left: 15px;">
 													</c:otherwise>
 												</c:choose>
 												</div>
-												<div class="col-6" style="vertical-align: middle; margin-top: 25px;">
-												<span style="font-weight: bold;" >후원일 : ${fn:replace(userFunding.fund_date ,"T", " ") } | 후원번호 : ${userFunding.fund_code }</span> 
-												<br>
-												<br>
-												<h6 style="font-weight: 600;">${userFunding.title }</h6>
-												<br>
-												<h6 style="font-size: small; font-weight: 500;">${userFunding.cost }원 결제 예정</h6>
-												<h6 style="font-size: small; font-weight: 400;">결제 예정일까지 ${userFunding.d_day }</h6>
-												<button type="button" class="btnCencel" onclick="location.href = 'projectDetail?project_code=${userFunding.project_code}'">후원프로젝트로</button>
-												<button type="button" class="btnCencel" onclick="location.href = 'fundingDetail?project_code=${userFunding.project_code}'">후원상세</button>
-												<button type="button" class="btnCencel" style="background: #7d7d7d" onclick="fundingCencel('${userFunding.project_code}')">후원취소</button>
+												<div class="col-9" style="vertical-align: middle;">
+													<span style="font-weight: bold;" >후원일 : ${fn:replace(userFunding.fund_date ,"T", " ") } | 후원번호 : ${userFunding.fund_code }</span> 
+													<br>
+													<h6 style="font-weight: 600;">${userFunding.title }</h6>
+													<br>
+													<h6 style="font-size: small; font-weight: 500;">선물구성 : ${userFunding.reward_explain }</h6>
+													<h6 style="font-size: small; font-weight: 500;">결제 금액 : ${userFunding.cost }원 결제 예정</h6>
+													<h6 style="font-size: small; font-weight: 400;">결제 상태 : ${userFunding.d_day }</h6>
+													<br>
+													<button type="button" class="btnCencel" onclick="location.href = 'projectDetail?project_code=${userFunding.project_code}'">후원프로젝트로</button>
+													<button type="button" class="btnCencel" onclick="location.href = 'fundingDetail?project_code=${userFunding.project_code}'">후원상세</button>
+													<button type="button" class="btnCencel" style="background: #7d7d7d" onclick="fundingCencel('${userFunding.project_code}')">후원취소</button>
 												</div>
 											</div>
 										</div>
@@ -159,47 +158,6 @@
 							</c:if>
 						</div>
 						<br>
-						
-<!-- 						<div class="anime__details__review"> -->
-<!-- 							<h6><b>후원 성공(1)</b></h6> -->
-<!-- 							<br> -->
-<!-- 							<div class="anime__review__item"> -->
-<!-- 								<div class="anime__review__item__text" id="project_review_content"> -->
-<!-- 									<div class="contents"> -->
-<!-- 										후원일 2023.11.01 | 후원번호 2000001 -->
-<!-- 									</div> -->
-<!-- 									<h6>길냥이 유메의 냥생역전을 위한 첫걸음!</h6> -->
-<!-- 									• 화이트&블랙 머그컵(x 1)<br> -->
-<!-- 									42,000원 결제 완료 -->
-<!-- 									<br> -->
-<!-- 									<br>	 -->
-<!-- 									<span>선물 전달 완료일 2023. 11. 22</span> -->
-<!-- 									<div class="user_follow_btn"> -->
-<!-- 										<a href="#">후기 작성</a> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<br> -->
-						
-<!-- 						<div class="anime__details__review"> -->
-<!-- 							<h6><b>후원 실패(1)</b></h6> -->
-<!-- 							<br> -->
-<!-- 							<div class="anime__review__item"> -->
-<!-- 								<div class="anime__review__item__text" id="project_review_content"> -->
-<!-- 									<div class="contents"> -->
-<!-- 										후원일 2023.10.31 | 후원번호 3000001 -->
-<!-- 									</div> -->
-<!-- 									<h6>일상 속 '향기 한 잔 [캄파눌라]'</h6> -->
-<!-- 									• 캄파눌라 고블렛(x 1) 옵션 : 화이트<br> -->
-<!-- 									54,000원 결제 예약 취소 -->
-<!-- 									<br> -->
-<!-- 									<br> -->
-<!-- 									결제 예약 취소일 2023. 11. 01 -->
-<!-- 								</div> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 						<br> -->
 					</div>
 				</div>
 			</div>

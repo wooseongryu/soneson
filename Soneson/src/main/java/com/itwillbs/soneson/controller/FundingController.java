@@ -227,11 +227,18 @@ public class FundingController {
 		if(insertUserFund > 0) {
 			int insertUserAuth = service.insertUserAuth(map);
 			if(insertUserAuth > 0) {
-				int insertUserAddress = service.insertUserAddress(map);
-				if(insertUserAddress > 0) {
-					model.addAttribute("project_code", map.get("project_code"));
-					return "redirect:/fundingSuccess";
+				System.out.println(">>>>>>>>>>>>>>>>>배송지 저장" + map.get("address_idx"));
+				// 배송지 있을 때만 저장
+				if(!map.get("address_idx").equals("undefined")) {
+					System.out.println(">>>>>>>>>>>>>>>>>배송지 저장" );
+					
+					int insertUserAddress = service.insertUserAddress(map);
 				}
+				model.addAttribute("project_code", map.get("project_code"));
+				return "redirect:/fundingSuccess";
+				
+//				if(insertUserAddress > 0) {
+//				}
 			}
 		} 
 		

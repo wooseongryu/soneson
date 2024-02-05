@@ -217,6 +217,13 @@ public interface UserMapper {
 	
 	//작성 중인 프로젝트 삭제
 	int deleteSampleProject(int project_code);
+	
+	//작성 중인 프로젝트 리워드 삭제
+	int deleteReward(int project_code);
+
+	//작성 중인 프로젝트 아이템 삭제
+	int deleteItem(int project_code);
+
 
 }
 

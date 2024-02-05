@@ -446,6 +446,16 @@ public class UserService {
 	public int deleteSampleProject(int project_code) {
 		return mapper.deleteSampleProject(project_code);
 	}
+	
+	//작성 중인 프로젝트 리워드 삭제
+	public int deleteReward(int project_code) {
+		return mapper.deleteReward(project_code);
+	}
+	
+	//작성 중인 프로젝트 아이템 삭제
+	public int deleteItem(int project_code) {
+		return mapper.deleteItem(project_code);
+	}
 
 	
 }

@@ -69,6 +69,14 @@ function updateProject(pro_code) {
 
 
 $(function() {
+	// enter키 submit방지 1/11추가
+	$('input[type="text"]').keydown(function() {
+		if (event.keyCode === 13) {
+	    event.preventDefault();
+		};
+	});
+	
+	
 	//div 영역
 	 $(".content-form").eq(0).show(0);
 	  $(".top-menu-list li").click(function () {
@@ -362,8 +370,26 @@ $(function() {
 						</ul>
 						<div class="top-menu-btn">
 <%-- 							<button formaction="updateProject" onclick="updateProject(${pro.pro_code})">저장하기</button> --%>
+							<button type="button" data-bs-toggle="modal" data-bs-target="#previewModal">미리보기</button>
 							<button type="button" onclick="updateProject(${pro.pro_code})">저장하기</button>
 							<input type="hidden" name="isNewInsert" value="N">
+						</div>
+						
+						<!-- 미리보기 modal -->
+						<div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+						    	<div class="modal-content">
+						      		<div class="modal-header">
+						        		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						      		</div>
+						      		<div class="modal-body" style="display: flex;">
+						        		<jsp:include page="./preview_modal.jsp"></jsp:include>
+						      		</div>
+						      		<div class="modal-footer">
+						        		<button type="button" data-bs-dismiss="modal">Close</button>
+						      		</div>
+						    	</div>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -155,11 +155,11 @@
 		// 채팅 시작 버튼 클릭
 		$("#btnJoin").click(function() {
 			// 상대방 아이디 미입력 시 오류메세지 출력 및 입력창 포커스
-			if($("#receiver_id").val() == "") {
-				alert("상대방 아이디 입력 필수!");
-				$("#receiver_id").focus();
-				return;
-			}
+// 			if($("#receiver_id").val() == "") {
+// 				alert("상대방 아이디 입력 필수!");
+// 				$("#receiver_id").focus();
+// 				return;
+// 			}
 			
 			// 상대방과의 채팅방 연결을 위해 startChat() 함수 호출
 			startChat();			
@@ -547,10 +547,10 @@
 		</c:if>
 		<h1>1:1 채팅</h1>
 		<hr>
-<%-- 		창작자 아이디 : ${receiverId } --%>
-<%-- 		<input type="hidden" id="receiver_id" value="${receiverId }"><br> --%>
-		창작자 아이디 : <input type="text" id="receiver_id" value="${receiverId }">
-		<input type="button" value="채팅 시작" id="btnJoin">
+		창작자 아이디 : ${receiverId }
+		<input type="hidden" id="receiver_id" value="${receiverId }"><br>
+<%-- 		창작자 아이디 : <input type="text" id="receiver_id" value="${receiverId }"> --%>
+<!-- 		<input type="button" value="채팅 시작" id="btnJoin"> -->
 		<input type="button" value="채팅방 나가기" id="btnQuit">
 		<hr>
 		<div id="chatRoomArea"><%-- 채팅방 추가될 위치 --%></div>
