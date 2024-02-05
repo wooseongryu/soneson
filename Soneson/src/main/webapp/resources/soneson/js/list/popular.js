@@ -2,6 +2,7 @@ let hideCount = 0;
 
 function filterGoalRate(from, to) {
 	if(to === undefined || to === ''){
+		debugger;
 		to = 9999;
 	}
 	

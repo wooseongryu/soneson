@@ -172,107 +172,32 @@
 
 
 <sql id="popular">
-	<![CDATA[
-			WHERE p.start_date <= now() AND p.end_date > now() AND p.status = '승인'
-	]]>
-			GROUP BY p.project_code) A
 <!-- 		데이터 쌓이면 주석 풀기 -->
 <!-- 		WHERE A.goal_rate >= 100	 -->
-		ORDER BY donor DESC;	
+		ORDER BY donor DESC
 </sql>
+
 <sql id="new">
-	<![CDATA[
-			WHERE p.start_date <= now() AND p.end_date > now() AND p.status = '승인'
-			GROUP BY p.project_code) A
 		ORDER BY now() - A.start_date, A.donor DESC
-	]]>
 </sql>
+
 <sql id="closing">
 	<![CDATA[
-			WHERE p.start_date <= now() AND p.end_date > now() AND p.status = '승인'
-			GROUP BY p.project_code) A
 		WHERE A.dday < 20
 		ORDER BY A.end_date - now(), A.donor DESC
 	]]>
 </sql>
+
+<sql id="main">
+		ORDER BY A.fund_date DESC
+</sql>
+
 <sql id="upcoming">
 	<![CDATA[
 			WHERE p.status = '승인'
 			GROUP BY p.project_code) A
 		WHERE date(A.start_date) >= date(now())
 		ORDER BY date(A.start_date) - date(now())	
-	]]>
-</sql>
-<sql id="main">
-	<![CDATA[
-			WHERE p.start_date <= now() AND p.end_date > now() AND p.status = '승인'
-			GROUP BY p.project_code) A
-		ORDER BY A.fund_date DESC
-	]]>
-</sql>
-
-
-<sql id="all">
-	<![CDATA[
-			WHERE p.start_date <= now() AND p.end_date > now() AND p.status = '승인'
-			GROUP BY p.project_code) A
-		ORDER BY donor DESC;	
-	]]>
-</sql>
-<sql id="youth">
-	<![CDATA[
-			WHERE p.start_date <= now() AND p.end_date > now() AND p.status = '승인'
-			AND category = '아동·청소년'
-			GROUP BY p.project_code) A
-		ORDER BY donor DESC;	
-	]]>
-</sql>
-<sql id="animal">
-	<![CDATA[
-			WHERE p.start_date <= now() AND p.end_date > now() AND p.status = '승인'
-			AND category = '동물'
-			GROUP BY p.project_code) A
-		ORDER BY donor DESC;	
-	]]>
-</sql>
-<sql id="nature">
-	<![CDATA[
-			WHERE p.start_date <= now() AND p.end_date > now() AND p.status = '승인'
-			AND category = '환경'
-			GROUP BY p.project_code) A
-		ORDER BY donor DESC;	
-	]]>
-</sql>
-<sql id="disabled">
-	<![CDATA[
-			WHERE p.start_date <= now() AND p.end_date > now() AND p.status = '승인'
-			AND category = '장애인'
-			GROUP BY p.project_code) A
-		ORDER BY donor DESC;	
-	]]>
-</sql>
-<sql id="woman">
-	<![CDATA[
-			WHERE p.start_date <= now() AND p.end_date > now() AND p.status = '승인'
-	]]>
-			AND category = '가족·여성'
-			GROUP BY p.project_code) A
-		ORDER BY donor DESC;	
-</sql>
-<sql id="eldery">
-	<![CDATA[
-			WHERE p.start_date <= now() AND p.end_date > now() AND p.status = '승인'
-			AND category = '어르신'
-			GROUP BY p.project_code) A
-		ORDER BY donor DESC;	
-	]]>
-</sql>
-<sql id="etc">
-	<![CDATA[
-			WHERE p.start_date <= now() AND p.end_date > now() AND p.status = '승인'
-			AND category = '기타'
-			GROUP BY p.project_code) A
-		ORDER BY donor DESC
 	]]>
 </sql>
 
@@ -300,70 +225,111 @@
 			LEFT JOIN fund f
 			ON p.project_code = f.project_code
 			<choose>
-				<when test="listType.equals('popular')">
-					<include refid="popular"/>
+				<when test="category != null">
+						LEFT JOIN category c
+						ON p.category = c.category_Kname 
+						<![CDATA[
+						WHERE p.start_date <= now() AND p.end_date > now() AND p.status = '승인'
+						]]>
+						<if test="!category.equals('all')">
+				            AND c.category_Ename = #{category}
+						</if>
+						GROUP BY p.project_code) A
+					ORDER BY donor DESC
 				</when>
-			</choose>
-			<choose>
-				<when test="listType.equals('new')">
-					<include refid="new"/>
-				</when>
-			</choose>
-			<choose>
-				<when test="listType.equals('closing')">
-					<include refid="closing"/>
-				</when>
-			</choose>
-			<choose>
-				<when test="listType.equals('upcoming')">
+				<when test="listType != null and listType.equals('upcoming')">
 					<include refid="upcoming"/>
 				</when>
+				<otherwise>
+					<![CDATA[
+							WHERE p.start_date <= now()
+							  AND p.end_date > now() AND p.status = '승인'
+						GROUP BY p.project_code) A
+					]]>
+					<choose>
+						<when test="listType.equals('popular')">
+							<include refid="popular"/>
+						</when>
+						<when test="listType.equals('new')">
+							<include refid="new"/>
+						</when>
+						<when test="listType.equals('closing')">
+							<include refid="closing"/>
+						</when>
+						<when test="listType.equals('main')">
+							<include refid="main"/>
+						</when>
+					</choose>
+				</otherwise>
 			</choose>
-			<choose>
-				<when test="listType.equals('main')">
-					<include refid="main"/>
-				</when>
-			</choose>
-			<choose>
-				<when test="listType.equals('all')">
-					<include refid="all"/>
-				</when>
-			</choose>
-			<choose>
-				<when test="listType.equals('youth')">
-					<include refid="youth"/>
-				</when>
-			</choose>
-			<choose>
-				<when test="listType.equals('animal')">
-					<include refid="animal"/>
-				</when>
-			</choose>
-			<choose>
-				<when test="listType.equals('nature')">
-					<include refid="nature"/>
-				</when>
-			</choose>
-			<choose>
-				<when test="listType.equals('disabled')">
-					<include refid="disabled"/>
-				</when>
-			</choose>
-			<choose>
-				<when test="listType.equals('woman')">
-					<include refid="woman"/>
-				</when>
-			</choose>
-			<choose>
-				<when test="listType.equals('eldery')">
-					<include refid="eldery"/>
-				</when>
-			</choose>
-			<choose>
-				<when test="listType.equals('etc')">
-					<include refid="etc"/>
-				</when>
-			</choose>
+			
+			
+			
+<!-- 			<choose> -->
+<!-- 				<when test="listType.equals('popular')"> -->
+<!-- 					<include refid="popular"/> -->
+<!-- 				</when> -->
+<!-- 			</choose> -->
+<!-- 			<choose> -->
+<!-- 				<when test="listType.equals('new')"> -->
+<!-- 					<include refid="new"/> -->
+<!-- 				</when> -->
+<!-- 			</choose> -->
+<!-- 			<choose> -->
+<!-- 				<when test="listType.equals('closing')"> -->
+<!-- 					<include refid="closing"/> -->
+<!-- 				</when> -->
+<!-- 			</choose> -->
+<!-- 			<choose> -->
+<!-- 				<when test="listType.equals('upcoming')"> -->
+<!-- 					<include refid="upcoming"/> -->
+<!-- 				</when> -->
+<!-- 			</choose> -->
+<!-- 			<choose> -->
+<!-- 				<when test="listType.equals('main')"> -->
+<!-- 					<include refid="main"/> -->
+<!-- 				</when> -->
+<!-- 			</choose> -->
+<!-- 			<choose> -->
+<!-- 				<when test="listType.equals('all')"> -->
+<!-- 					<include refid="all"/> -->
+<!-- 				</when> -->
+<!-- 			</choose> -->
+<!-- 			<choose> -->
+<!-- 				<when test="listType.equals('youth')"> -->
+<!-- 					<include refid="youth"/> -->
+<!-- 				</when> -->
+<!-- 			</choose> -->
+<!-- 			<choose> -->
+<!-- 				<when test="listType.equals('animal')"> -->
+<!-- 					<include refid="animal"/> -->
+<!-- 				</when> -->
+<!-- 			</choose> -->
+<!-- 			<choose> -->
+<!-- 				<when test="listType.equals('nature')"> -->
+<!-- 					<include refid="nature"/> -->
+<!-- 				</when> -->
+<!-- 			</choose> -->
+<!-- 			<choose> -->
+<!-- 				<when test="listType.equals('disabled')"> -->
+<!-- 					<include refid="disabled"/> -->
+<!-- 				</when> -->
+<!-- 			</choose> -->
+<!-- 			<choose> -->
+<!-- 				<when test="listType.equals('woman')"> -->
+<!-- 					<include refid="woman"/> -->
+<!-- 				</when> -->
+<!-- 			</choose> -->
+<!-- 			<choose> -->
+<!-- 				<when test="listType.equals('eldery')"> -->
+<!-- 					<include refid="eldery"/> -->
+<!-- 				</when> -->
+<!-- 			</choose> -->
+<!-- 			<choose> -->
+<!-- 				<when test="listType.equals('etc')"> -->
+<!-- 					<include refid="etc"/> -->
+<!-- 				</when> -->
+<!-- 			</choose> -->
 		
 	</select>
 	

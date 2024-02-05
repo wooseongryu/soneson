@@ -43,6 +43,7 @@ public class MainController {
 //			session.setAttribute("profile", map.get("user_picture"));
 //			System.out.println("프로필: " + session.getAttribute("profile"));
 //		}
+		System.out.println("헤더 뜸");
 		
 		Gson gson = new Gson();
 //		gson.toJson(userService.selectUserMainInfo(map));

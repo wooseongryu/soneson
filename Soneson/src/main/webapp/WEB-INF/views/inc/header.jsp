@@ -126,7 +126,8 @@ ul {
 				<div class="Header_gnb__122-B">
 					<div class="Header_inner__3RznR">
 						<h1 class="Header_logo__3iS1b">
-							<a href="./">
+<!-- 							<a href="./"> -->
+							<a href="/soneson/">
 								<%-- 	<img src="${pageContext.request.contextPath }/resources/soneson/img/header/sone.png" class="package_img" width="160px"> --%>
 								<img src="${pageContext.request.contextPath }/resources/soneson/img/header/soneson2.jpg" class="package_img" width="160px">
 							</a>
@@ -311,7 +312,7 @@ ul {
 				<div class="DonationTodayCategory_wrap__k2rtu">
 					<ul class="DonationTodayCategory_category_list__2WAdE">
 						<li class="DonationTodayCategory_list_item__agFbi item_1" aria-current="true">
-							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='all'">
+							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='all.cat'">
 <!-- 							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='all'"> -->
 								<span class="DonationTodayCategory_text__2oRHp">전체</span>
 							</button>
@@ -320,7 +321,7 @@ ul {
 <!-- 							</a> -->
 						</li>
 						<li class="DonationTodayCategory_list_item__agFbi item_2" aria-current="false">
-							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='youth'">
+							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='youth.cat'">
 								<span class="DonationTodayCategory_text__2oRHp">아동•청소년</span>
 							</button>
 						</li>
@@ -335,27 +336,27 @@ ul {
 <!-- 							</button> -->
 <!-- 						</li> -->
 						<li class="DonationTodayCategory_list_item__agFbi item_3" aria-current="false">
-							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='animal'">
+							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='animal.cat'">
 								<span class="DonationTodayCategory_text__2oRHp">동물</span>
 							</button>
 						</li>
 						<li class="DonationTodayCategory_list_item__agFbi item_4" aria-current="false">
-							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='nature'">
+							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='nature.cat'">
 								<span class="DonationTodayCategory_text__2oRHp">환경</span>
 							</button>
 						</li>
 						<li class="DonationTodayCategory_list_item__agFbi item_5" aria-current="false">
-							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='disabled'">
+							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='disabled.cat'">
 								<span class="DonationTodayCategory_text__2oRHp">장애인</span>
 							</button>
 						</li>
 						<li class="DonationTodayCategory_list_item__agFbi item_6" aria-current="false">
-							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='woman'">
+							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='woman.cat'">
 								<span class="DonationTodayCategory_text__2oRHp">가족•여성</span>
 							</button>
 						</li>
 						<li class="DonationTodayCategory_list_item__agFbi item_7" aria-current="false">
-							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='eldery'">
+							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='eldery.cat'">
 								<span class="DonationTodayCategory_text__2oRHp">어르신</span>
 							</button>
 						</li>
@@ -365,7 +366,7 @@ ul {
 <!-- 							</button> -->
 <!-- 						</li> -->
 						<li class="DonationTodayCategory_list_item__agFbi item_9" aria-current="false">
-							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='etc'">
+							<button type="button" class="DonationTodayCategory_button__1648s" onclick="location.href='etc.cat'">
 								<span class="DonationTodayCategory_text__2oRHp">기타</span>
 							</button>
 						</li>
@@ -410,6 +411,7 @@ ul {
         // HeaderGnb_menu__1fvV3
         $j.ajax({
             url: "header",  // 서버의 URL로 변경
+//             url: "header.do",  // 서버의 URL로 변경
             type: "GET",
             dataType: "json",
             success: function(response) {
@@ -422,14 +424,21 @@ ul {
 // 					$j('.category').after(
 					let typeClass = "";
 // 					debugger;
-					if("/" + e.tab_Ename == "${servletPath}") {
+// 240205 리팩토링
+// 					if("/" + e.tab_Ename == "${servletPath}") {
+// 					if("/list/" + e.tab_Ename == "${servletPath}") {
+					if("/" + e.tab_Ename + ".bo" == "${servletPath}") {
+						debugger;
 						typeClass = "coloring";
 // 						typeClass = 'class="coloring"';
 					}
 					$j('.worth').before(
 // 							'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="' + e.tab_Ename + '"' + typeClass + '>' + e.tab_Kname + '</a>'		
 // 							'<a class="HeaderGnb_item__wcfir eWDpEZ" role="menuitem" href="' + e.tab_Ename + '">' + e.tab_Kname + '</a>'		
-							'<a class="HeaderGnb_item__wcfir eWDpEZ ' + typeClass + '" role="menuitem" href="' + e.tab_Ename + '">' + e.tab_Kname + '</a>'		
+// 240205 리팩토링
+// 							'<a class="HeaderGnb_item__wcfir eWDpEZ ' + typeClass + '" role="menuitem" href="' + e.tab_Ename + '">' + e.tab_Kname + '</a>'		
+// 							'<a class="HeaderGnb_item__wcfir eWDpEZ ' + typeClass + '" role="menuitem" href="/soneson/list/' + e.tab_Ename + '">' + e.tab_Kname + '</a>'		
+							'<a class="HeaderGnb_item__wcfir eWDpEZ ' + typeClass + '" role="menuitem" href="' + e.tab_Ename + '.bo">' + e.tab_Kname + '</a>'		
 					);
             	})
             	

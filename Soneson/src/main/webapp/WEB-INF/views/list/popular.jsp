@@ -109,6 +109,8 @@ function defaultImg(tagId) {
 				<div class="ProjectCard__Card-opxl0a-7 dPhtaB link-wrapper">
 					<div class="ProjectCard__StyledImageBox-opxl0a-2 dNCkN">
 						<div class="image-wrapper">
+<!-- 						240205 추가 -->
+<%-- 							<a target="_self" href="projectDetail?project_code=${project.project_code }"> --%>
 							<a target="_self" href="projectDetail?project_code=${project.project_code }">
 								<c:choose>
 								    <c:when test="${fn:contains(project.img_main, 'https')}">
