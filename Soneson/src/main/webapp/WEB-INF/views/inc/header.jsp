@@ -114,8 +114,8 @@ ul {
 				<div class="Header_gnb__122-B">
 					<div class="Header_inner__3RznR">
 						<h1 class="Header_logo__3iS1b">
-<!-- 							<a href="./"> -->
-							<a href="/soneson/">
+							<a href="./">
+<!-- 							<a href="/soneson/"> -->
 								<%-- 	<img src="${pageContext.request.contextPath }/resources/soneson/img/header/sone.png" class="package_img" width="160px"> --%>
 								<img src="${pageContext.request.contextPath }/resources/soneson/img/header/soneson2.jpg" class="package_img" width="160px">
 							</a>
