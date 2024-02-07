@@ -9,5 +9,9 @@
 		SELECT *
 		FROM project_tab;
 	</select>
+	<select id="getCategoryList" resultType="map">
+		SELECT *
+		FROM category;
+	</select>
 
 </mapper>

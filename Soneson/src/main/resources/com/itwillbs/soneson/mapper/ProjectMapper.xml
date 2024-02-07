@@ -247,6 +247,9 @@
 						GROUP BY p.project_code) A
 					]]>
 					<choose>
+						<when test="listType.equals('main')">
+							<include refid="main"/>
+						</when>
 						<when test="listType.equals('popular')">
 							<include refid="popular"/>
 						</when>
@@ -256,8 +259,8 @@
 						<when test="listType.equals('closing')">
 							<include refid="closing"/>
 						</when>
-						<when test="listType.equals('main')">
-							<include refid="main"/>
+						<when test="listType.equals('worth')">
+							<include refid="closing"/>
 						</when>
 					</choose>
 				</otherwise>

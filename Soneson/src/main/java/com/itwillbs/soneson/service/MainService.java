@@ -19,4 +19,9 @@ public class MainService {
 		return mapper.getTabList();
 	}
 
+	public List<Map<String, Object>> getCategoryList() {
+		System.out.println("getCategoryList");
+		return mapper.getCategoryList();
+	}
+
 }

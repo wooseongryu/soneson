@@ -324,11 +324,21 @@
 	    content: "";
 	}
 	
-	.DonationTodayCategory_list_item__agFbi[aria-current=true] .DonationTodayCategory_button__1648s {
+/* 	.DonationTodayCategory_list_item__agFbi[aria-current=true] .DonationTodayCategory_button__1648s { */
+/* 	    background-color: #F86453; */
+/* 	    border-color: #F86453; */
+/* 	} */
+	
+/* 	240206 추가 */
+	
+/* 	.DonationTodayCategory_list_item__agFbi .DonationTodayCategory_button__1648s cateColoring { */
+/* 	    background-color: #F86453; */
+/* 	    border-color: #F86453; */
+/* 	} */
+	.cateColoring {
 	    background-color: #F86453;
 	    border-color: #F86453;
 	}
-	
 	
 /* 1122 추가 */
 
@@ -378,6 +388,7 @@
 /*     padding-bottom: 1.3em; */
     width: 100%;
 /*     카테고리 안 보이게 다시 1214 */
+/* 240206 */
     display: none;
 }
 
@@ -687,4 +698,14 @@ body {
 
 .coloring {
 	color: #F86453;
+}
+
+.cateColoring {
+	background-color: #F86453;
+    border-color: #F86453;
+}
+
+.DonationTodayCategory_list_item__agFbi[aria-current=true] .DonationTodayCategory_button__1648s {
+    background-color: #F86453;
+    border-color: #F86453;
 }

@@ -55,7 +55,7 @@ public class ProjectListController {
 	}
 	
 	@GetMapping("{listType}.bo")
-	public String list(Model model, @PathVariable String listType, HttpServletRequest request, boolean isTab) {
+	public String list(Model model, @PathVariable String listType,HttpServletRequest request, boolean isTab) {
 		System.out.println("리스트 타입: " + listType);
 	    return getListType(model, listType, request, true);
 	}

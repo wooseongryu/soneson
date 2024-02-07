@@ -11,5 +11,6 @@ import com.itwillbs.soneson.vo.ProjectVO;
 public interface MainMapper {
 
 	List<Map<String, Object>> getTabList();
+	List<Map<String, Object>> getCategoryList();
 	
 }

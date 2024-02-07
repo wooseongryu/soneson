@@ -1,5 +1,7 @@
 package com.itwillbs.soneson.controller;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -26,28 +28,16 @@ public class MainController {
 	@ResponseBody
 	@GetMapping("header")
 	public String header(HttpSession session, Model model, Map<String, String> map) {
-		System.out.println("!@#!@#");
 		
-//		1214 프로필 사진 추가
-		
-		
-//		if(session.getAttribute("sId") != null) {
-//			String sId = (String)session.getAttribute("sId");
-//			
-//			map.put("sId", sId);
-//			map.put("id", sId);
-//			map = userService.selectUserMainInfo(map);
-//			
-////		model.addAttribute("user", map);
-//			System.out.println("맵에서: " + map.get("user_picture"));
-//			session.setAttribute("profile", map.get("user_picture"));
-//			System.out.println("프로필: " + session.getAttribute("profile"));
-//		}
 		System.out.println("헤더 뜸");
 		
-		Gson gson = new Gson();
-//		gson.toJson(userService.selectUserMainInfo(map));
-		return gson.toJson(service.getTabList());
+	    Gson gson = new Gson();
+
+	    Map<String, List<?>> responseData = new HashMap<>();
+	    responseData.put("tabList", service.getTabList());
+	    responseData.put("categoryList", service.getCategoryList());
+
+	    return gson.toJson(responseData);
 	}
 	
 }
