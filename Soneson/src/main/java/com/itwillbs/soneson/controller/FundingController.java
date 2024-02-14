@@ -58,6 +58,7 @@ public class FundingController {
 		}
 
 		if (deleteAddressCount == 0) {
+//			System.out.println(deleteAddressCount);
 			model.addAttribute("msg", "주소 삭제 실패!");
 			return "fail_back";
 		}
