@@ -215,19 +215,19 @@ img.src = imageUrl; // Start loading the image
 						</div>
 						<div class="ProjectIntroduction__Metric-sc-1kf21am-12 fXsdBd">
 							<div class="ProjectIntroduction__StatusTitle-sc-1kf21am-13 fPBHBs">남은시간</div>
-						    <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.dday2 }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">${project.dday3 }</span></div>
+<%-- 						    <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.dday2 }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">${project.dday3 }</span></div> --%>
 <%-- 						    <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.leftHour }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">시간</span></div> --%>
-<%-- 							<c:choose> --%>
-<%-- 						        <c:when test="${project.dday lt 0}"> --%>
-<!-- 						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">0<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">초</span></div> -->
-<%-- 						        </c:when> --%>
-<%-- 						        <c:when test="${project.dday eq 0}"> --%>
-<%-- 						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.leftHour }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">시간</span></div> --%>
-<%-- 						        </c:when> --%>
-<%-- 						        <c:otherwise> --%>
-<%-- 						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.dday }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">일</span></div> --%>
-<%-- 						        </c:otherwise> --%>
-<%-- 						    </c:choose --%>
+							<c:choose>
+						        <c:when test="${project.dday lt 0}">
+						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">0<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">초</span></div>
+						        </c:when>
+						        <c:when test="${project.dday eq 0}">
+						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.leftHour }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">시간</span></div>
+						        </c:when>
+						        <c:otherwise>
+						            <div class="ProjectIntroduction__StatusValue-sc-1kf21am-14 ePQNCs dday">${project.dday }<span class="ProjectIntroduction__Small-sc-1kf21am-17 hPYEXD">일</span></div>
+						        </c:otherwise>
+						    </c:choose>
 						
 						
 						
