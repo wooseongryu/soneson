@@ -96,6 +96,15 @@
 					}
                             
     				for (project of resp) {
+    					
+    					if (project.img_main == null) {
+    						continue;
+    					}
+    					
+   						if (!project.img_main.includes('http')) {
+       						project.img_main = '${pageContext.request.contextPath }/resources/upload/' + project.img_main;
+       					}
+    					
     					contentStr +=
     						  '                     <div class="col-lg-4 col-md-6 col-sm-6" style="">                                                                                                 '
     					    + '                         <div class="product__item">                                                                                                                   '
@@ -166,6 +175,15 @@
 					}
                             
     				for (project of resp) {
+    					
+    					if (project.img_main == null) {
+    						continue;
+    					}
+    					
+   						if (!project.img_main.includes('http')) {
+       						project.img_main = '${pageContext.request.contextPath }/resources/upload/' + project.img_main;
+       					}
+
     					contentStr +=
     						  '                     <div class="col-lg-4 col-md-6 col-sm-6" style="">                                                                                                 '
     					    + '                         <div class="product__item">                                                                                                                   '
